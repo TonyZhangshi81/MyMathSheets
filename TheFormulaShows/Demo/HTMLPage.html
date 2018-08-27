@@ -36,7 +36,15 @@
 		});
 
 		function btnTheirPapersClick() {
-			alert(1);
+			$("input[id*='input']").each(function (index, element) {
+				if ($(element).val() != $('#hidden' + index).val()) {
+					$('#imgOK' + index).hide();
+					$('#imgNo' + index).show();
+				} else {
+					$('#imgOK' + index).show();
+					$('#imgNo' + index).hide();
+				}
+			});
 		}
 	</script>
 </head>
@@ -65,20 +73,26 @@
 		<div class="row text-center row-margin-top">
 			<div class="col-md-3 form-inline">
 				<h5>
-					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<input id="input0" type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<input id="hidden0" type="hidden" value="25" />
 					<span class="label">+</span>
 					<span class="label">8</span>
 					<span class="label">=</span>
 					<span class="label">33</span>
+					<img id="imgOK0" src="../Content/image/icon_52.png" style="width:40px; height:40px; display:none;" />
+					<img id="imgNo0" src="../Content/image/delete.png" style="width:30px; height:30px; display:none;" />
 				</h5>
 			</div>
 			<div class="col-md-3 form-inline">
 				<h5>
-					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<input id="input1" type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<input id="hidden1" type="hidden" value="14" />
 					<span class="label">+</span>
 					<span class="label">2</span>
 					<span class="label">=</span>
 					<span class="label">16</span>
+					<img id="imgOK1" src="../Content/image/icon_52.png" style="width:40px; height:40px; display:none;" />
+					<img id="imgNo1" src="../Content/image/delete.png" style="width:30px; height:30px; display:none;" />
 				</h5>
 			</div>
 			<div class="col-md-3 form-inline">

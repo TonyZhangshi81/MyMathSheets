@@ -36,7 +36,15 @@
 		});
 
 		function btnTheirPapersClick() {
-			alert(1);
+			$("input[id*='input']").each(function (index, element) {
+				if ($(element).val() != $('#hidden' + index).val()) {
+					$('#imgOK' + index).hide();
+					$('#imgNo' + index).show();
+				} else {
+					$('#imgOK' + index).show();
+					$('#imgNo' + index).hide();
+				}
+			});
 		}
 	</script>
 </head>

@@ -80,7 +80,7 @@ namespace MathSheetsSettingApp
 
 		private void SureClick(object sender, EventArgs e)
 		{
-			if(!this.chkAdition.Checked && !this.chkDivision.Checked && !this.chkMultiplication.Checked && !this.chkSubtraction.Checked)
+			if (!this.chkAdition.Checked && !this.chkDivision.Checked && !this.chkMultiplication.Checked && !this.chkSubtraction.Checked)
 			{
 				MessageBox.Show(this, "加减乘除未指定！");
 				return;
@@ -111,6 +111,8 @@ namespace MathSheetsSettingApp
 			File.WriteAllLines(destFileName, allTextLines, Encoding.Unicode);
 
 			System.Diagnostics.Process.Start(@"IExplore.exe", destFileName);
+
+			Environment.Exit(0);
 		}
 
 		/// <summary>

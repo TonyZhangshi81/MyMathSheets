@@ -24,6 +24,7 @@ namespace TheFormulaShows
 			int numberOfColumns = 0;
 			bool isRowHtmlClosed = false;
 
+			var controlIndex = 0;
 			var html = new StringBuilder();
 			var rowHtml = new StringBuilder();
 			var colHtml = new StringBuilder();
@@ -32,14 +33,17 @@ namespace TheFormulaShows
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-3 form-inline\">");
 				colHtml.AppendLine("<h5>");
-				colHtml.AppendLine(this.GetHtml(item.Gap, item.LeftParameter, GapFilling.Left));
+				colHtml.AppendLine(this.GetHtml(item.Gap, item.LeftParameter, GapFilling.Left, controlIndex));
 				colHtml.AppendLine("<span class=\"label\">+</span>");
-				colHtml.AppendLine(this.GetHtml(item.Gap, item.RightParameter, GapFilling.Right));
+				colHtml.AppendLine(this.GetHtml(item.Gap, item.RightParameter, GapFilling.Right, controlIndex));
 				colHtml.AppendLine("<span class=\"label\">=</span>");
-				colHtml.AppendLine(this.GetHtml(item.Gap, item.Answer, GapFilling.Answer));
+				colHtml.AppendLine(this.GetHtml(item.Gap, item.Answer, GapFilling.Answer, controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgOK{0}\" src=\"Content/image/icon_52.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgNo{0}\" src=\"Content/image/delete.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine("</h5>");
 				colHtml.AppendLine("</div>");
 
+				controlIndex++;
 				numberOfColumns++;
 				if (numberOfColumns == 4)
 				{
@@ -68,12 +72,21 @@ namespace TheFormulaShows
 			return html.ToString();
 		}
 
-		private string GetHtml(GapFilling item, int parameter, GapFilling gap)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <param name="parameter"></param>
+		/// <param name="gap"></param>
+		/// <param name="index"></param>
+		/// <returns></returns>
+		private string GetHtml(GapFilling item, int parameter, GapFilling gap, int index)
 		{
 			var html = string.Empty;
 			if (item == gap)
 			{
-				html = "<input type = \"text\" placeholder=\" ?? \" class=\"form - control\" style=\"width: 50px; \" />";
+				html += string.Format("<input id=\"input{0}\" type = \"text\" placeholder=\" ?? \" class=\"form - control\" style=\"width: 50px; \" />", index);
+				html += string.Format("<input id=\"hidden{0}\" type=\"hidden\" value=\"{1}\"/>", index, parameter);
 			}
 			else
 			{
