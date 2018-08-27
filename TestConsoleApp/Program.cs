@@ -30,7 +30,7 @@ namespace TestConsoleApp
 
 			work.FormulaList.ToList().ForEach(d =>
 			{
-				Console.WriteLine(string.Format("{0} + {1} = {2}",
+				Console.WriteLine(string.Format("{0} - {1} = {2}",
 					GetValue(GapFilling.Left, d.LeftParameter, d.Gap),
 					GetValue(GapFilling.Right, d.RightParameter, d.Gap),
 					GetValue(GapFilling.Answer, d.Answer, d.Gap)));

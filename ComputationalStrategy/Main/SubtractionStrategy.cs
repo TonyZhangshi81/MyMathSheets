@@ -20,7 +20,59 @@ namespace ComputationalStrategy.Main
 		/// <returns></returns>
 		public Formula Make(int maximumLimit, QuestionTypes type = QuestionTypes.Standard)
 		{
-			throw new NotImplementedException();
+			var formula = new Formula();
+
+			formula.LeftParameter = GetLeftParameter(maximumLimit);
+			formula.SignOfOperation = Operation.subtraction;
+			formula.RightParameter = GetRightParameter(formula.LeftParameter);
+			formula.Answer = GetAnswer(formula.LeftParameter, formula.RightParameter);
+			formula.Gap = GapFilling.Answer;
+
+			if (type == QuestionTypes.GapFilling)
+			{
+				formula.Gap = GetGapItem();
+			}
+
+			return formula;
+		}
+
+		private GapFilling GetGapItem()
+		{
+			var number = new RandomNumberComposition(0, 2);
+			return (GapFilling)number.GetRandomNumber();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="maximumLimit"></param>
+		/// <returns></returns>
+		private int GetLeftParameter(int maximumLimit)
+		{
+			var number = new RandomNumberComposition(0, maximumLimit);
+			return number.GetRandomNumber();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="leftParameter"></param>
+		/// <returns></returns>
+		private int GetRightParameter(int leftParameter)
+		{
+			var number = new RandomNumberComposition(0, leftParameter);
+			return number.GetRandomNumber();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="leftParameter"></param>
+		/// <param name="rightParameter"></param>
+		/// <returns></returns>
+		public int GetAnswer(int leftParameter, int rightParameter)
+		{
+			return (leftParameter - rightParameter);
 		}
 	}
 }

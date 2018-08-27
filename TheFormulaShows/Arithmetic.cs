@@ -34,12 +34,12 @@ namespace TheFormulaShows
 				colHtml.AppendLine("<div class=\"col-md-3 form-inline\">");
 				colHtml.AppendLine("<h5>");
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.LeftParameter, GapFilling.Left, controlIndex));
-				colHtml.AppendLine("<span class=\"label\">+</span>");
+				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", this.GetOperation(item.SignOfOperation)));
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.RightParameter, GapFilling.Right, controlIndex));
 				colHtml.AppendLine("<span class=\"label\">=</span>");
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.Answer, GapFilling.Answer, controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgOK{0}\" src=\"Content/image/icon_52.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgNo{0}\" src=\"Content/image/delete.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgOK{0}\" src=\"../Content/image/icon_52.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgNo{0}\" src=\"../Content/image/delete.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine("</h5>");
 				colHtml.AppendLine("</div>");
 
@@ -75,6 +75,32 @@ namespace TheFormulaShows
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="operation"></param>
+		/// <returns></returns>
+		private string GetOperation(Operation operation)
+		{
+			var flag = string.Empty;
+			switch (operation)
+			{
+				case Operation.add:
+					flag = "+";
+					break;
+				case Operation.subtraction:
+					flag = "-";
+					break;
+				case Operation.division:
+					flag = "÷";
+					break;
+				case Operation.multiplication:
+					flag = "×";
+					break;
+			}
+			return flag;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="parameter"></param>
 		/// <param name="gap"></param>
@@ -85,7 +111,7 @@ namespace TheFormulaShows
 			var html = string.Empty;
 			if (item == gap)
 			{
-				html += string.Format("<input id=\"input{0}\" type = \"text\" placeholder=\" ?? \" class=\"form - control\" style=\"width: 50px; \" />", index);
+				html += string.Format("<input id=\"input{0}\" type = \"text\" placeholder=\" ?? \" class=\"form - control\" style=\"width: 50px; text-align:center;\" />", index);
 				html += string.Format("<input id=\"hidden{0}\" type=\"hidden\" value=\"{1}\"/>", index, parameter);
 			}
 			else

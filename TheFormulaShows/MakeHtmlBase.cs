@@ -39,7 +39,7 @@ namespace TheFormulaShows
 		/// </summary>
 		public void Structure()
 		{
-			var main = new BuildOperation(new AditionStrategy(), this.MaximumLimit, this.QType);
+			var main = new BuildOperation(new SubtractionStrategy(), this.MaximumLimit, this.QType);
 			this.FormulaList = main.GetFormulaList(this.NumberOf);
 		}
 	}

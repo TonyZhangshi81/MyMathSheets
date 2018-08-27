@@ -66,17 +66,18 @@
 			this.chkAdition.TabIndex = 1;
 			this.chkAdition.Text = "加法";
 			this.chkAdition.UseVisualStyleBackColor = true;
+			this.chkAdition.CheckedChanged += new System.EventHandler(this.chkAdition_CheckedChanged);
 			// 
 			// chkSubtraction
 			// 
 			this.chkSubtraction.AutoSize = true;
-			this.chkSubtraction.Enabled = false;
 			this.chkSubtraction.Location = new System.Drawing.Point(246, 18);
 			this.chkSubtraction.Name = "chkSubtraction";
 			this.chkSubtraction.Size = new System.Drawing.Size(48, 16);
 			this.chkSubtraction.TabIndex = 2;
 			this.chkSubtraction.Text = "减法";
 			this.chkSubtraction.UseVisualStyleBackColor = true;
+			this.chkSubtraction.CheckedChanged += new System.EventHandler(this.chkSubtraction_CheckedChanged);
 			// 
 			// chkMultiplication
 			// 
@@ -88,6 +89,7 @@
 			this.chkMultiplication.TabIndex = 3;
 			this.chkMultiplication.Text = "乘法";
 			this.chkMultiplication.UseVisualStyleBackColor = true;
+			this.chkMultiplication.CheckedChanged += new System.EventHandler(this.chkMultiplication_CheckedChanged);
 			// 
 			// chkDivision
 			// 
@@ -99,6 +101,7 @@
 			this.chkDivision.TabIndex = 4;
 			this.chkDivision.Text = "除法";
 			this.chkDivision.UseVisualStyleBackColor = true;
+			this.chkDivision.CheckedChanged += new System.EventHandler(this.chkDivision_CheckedChanged);
 			// 
 			// radStandard
 			// 
@@ -153,7 +156,7 @@
 			this.lblTopic.AutoSize = true;
 			this.lblTopic.Location = new System.Drawing.Point(37, 24);
 			this.lblTopic.Name = "lblTopic";
-			this.lblTopic.Size = new System.Drawing.Size(35, 12);
+			this.lblTopic.Size = new System.Drawing.Size(41, 12);
 			this.lblTopic.TabIndex = 9;
 			this.lblTopic.Text = "题型：";
 			// 
@@ -162,7 +165,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(38, 53);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(35, 12);
+			this.label1.Size = new System.Drawing.Size(41, 12);
 			this.label1.TabIndex = 10;
 			this.label1.Text = "数量：";
 			// 
@@ -170,7 +173,7 @@
 			// 
 			this.tbxNumberOf.Location = new System.Drawing.Point(109, 50);
 			this.tbxNumberOf.Name = "tbxNumberOf";
-			this.tbxNumberOf.Size = new System.Drawing.Size(100, 19);
+			this.tbxNumberOf.Size = new System.Drawing.Size(100, 21);
 			this.tbxNumberOf.TabIndex = 11;
 			this.tbxNumberOf.Text = "35";
 			this.tbxNumberOf.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -180,7 +183,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(39, 81);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(35, 12);
+			this.label2.Size = new System.Drawing.Size(41, 12);
 			this.label2.TabIndex = 12;
 			this.label2.Text = "等级：";
 			// 

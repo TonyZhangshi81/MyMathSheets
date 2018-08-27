@@ -130,5 +130,45 @@ namespace MathSheetsSettingApp
 			}
 			return parameter.ToString();
 		}
+
+		private void chkAdition_CheckedChanged(object sender, EventArgs e)
+		{
+			if (this.radStandard.Checked && this.chkAdition.Checked)
+			{
+				this.chkSubtraction.Checked = false;
+				this.chkDivision.Checked = false;
+				this.chkMultiplication.Checked = false;
+			}
+		}
+
+		private void chkSubtraction_CheckedChanged(object sender, EventArgs e)
+		{
+			if (this.radStandard.Checked && this.chkSubtraction.Checked)
+			{
+				this.chkAdition.Checked = false;
+				this.chkDivision.Checked = false;
+				this.chkMultiplication.Checked = false;
+			}
+		}
+
+		private void chkMultiplication_CheckedChanged(object sender, EventArgs e)
+		{
+			if (this.radStandard.Checked && this.chkMultiplication.Checked)
+			{
+				this.chkAdition.Checked = false;
+				this.chkDivision.Checked = false;
+				this.chkSubtraction.Checked = false;
+			}
+		}
+
+		private void chkDivision_CheckedChanged(object sender, EventArgs e)
+		{
+			if (this.radStandard.Checked && this.chkDivision.Checked)
+			{
+				this.chkAdition.Checked = false;
+				this.chkMultiplication.Checked = false;
+				this.chkSubtraction.Checked = false;
+			}
+		}
 	}
 }
