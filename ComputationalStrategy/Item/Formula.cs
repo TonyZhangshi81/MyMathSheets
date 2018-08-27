@@ -81,7 +81,7 @@ namespace ComputationalStrategy.Item
 		/// <summary>
 		/// 
 		/// </summary>
-		Standard = 0,
+		Standard = 1,
 		/// <summary>
 		/// 
 		/// </summary>

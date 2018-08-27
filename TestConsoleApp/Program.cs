@@ -20,9 +20,12 @@ namespace TestConsoleApp
 		/// <param name="args"></param>
 		static void Main(string[] args)
 		{
-			MakeHtmlBase work = new Arithmetic();
-			work.MaximumLimit = 100;
-			work.NumberOf = 35;
+			MakeHtmlBase work = new Arithmetic
+			{
+				MaximumLimit = 100,
+				NumberOf = 35,
+				QType = QuestionTypes.GapFilling
+			};
 			work.Structure();
 
 			work.FormulaList.ToList().ForEach(d =>

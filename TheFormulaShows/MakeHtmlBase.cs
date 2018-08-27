@@ -22,6 +22,11 @@ namespace TheFormulaShows
 		/// <summary>
 		/// 
 		/// </summary>
+		public QuestionTypes QType { get; set; }
+
+		/// <summary>
+		/// 
+		/// </summary>
 		public IList<Formula> FormulaList { get; private set; }
 
 		/// <summary>
@@ -34,10 +39,7 @@ namespace TheFormulaShows
 		/// </summary>
 		public void Structure()
 		{
-			var main = new BuildOperation(new AditionStrategy(), this.MaximumLimit)
-			{
-				QType = QuestionTypes.GapFilling
-			};
+			var main = new BuildOperation(new AditionStrategy(), this.MaximumLimit, this.QType);
 			this.FormulaList = main.GetFormulaList(this.NumberOf);
 		}
 	}

@@ -26,11 +26,11 @@ namespace ComputationalStrategy.Main
 		/// </summary>
 		/// <param name="strategy"></param>
 		/// <param name="maximumLimit"></param>
-		public BuildOperation(ICalculatePattern strategy, int maximumLimit)
+		public BuildOperation(ICalculatePattern strategy, int maximumLimit, QuestionTypes type = QuestionTypes.Standard)
 		{
 			this.strategy = strategy;
 			this.maximumLimit = maximumLimit;
-			this.QType = QuestionTypes.Standard;
+			this.QType = type;
 		}
 		/// <summary>
 		/// 
