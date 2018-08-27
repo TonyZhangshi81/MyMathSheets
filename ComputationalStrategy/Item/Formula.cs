@@ -27,6 +27,10 @@ namespace ComputationalStrategy.Item
 		/// 
 		/// </summary>
 		public int Answer { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public GapFilling Gap { get; set; }
 	}
 
 	/// <summary>
@@ -50,5 +54,37 @@ namespace ComputationalStrategy.Item
 		/// 
 		/// </summary>
 		division
+	}
+	/// <summary>
+	/// 
+	/// </summary>
+	public enum GapFilling : int
+	{
+		/// <summary>
+		/// 
+		/// </summary>
+		Left = 0,
+		/// <summary>
+		/// 
+		/// </summary>
+		Right,
+		/// <summary>
+		/// 
+		/// </summary>
+		Answer
+	}
+	/// <summary>
+	/// 
+	/// </summary>
+	public enum QuestionTypes : int
+	{
+		/// <summary>
+		/// 
+		/// </summary>
+		Standard = 0,
+		/// <summary>
+		/// 
+		/// </summary>
+		GapFilling
 	}
 }

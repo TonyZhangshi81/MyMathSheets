@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="Content/favicon.ico">
+	<link href="Content/bootstrap.min.css" rel="stylesheet">
+	<script src="Scripts/jquery-3.0.0.min.js"></script>
+	<script src="Scripts/bootstrap.min.js"></script>
+	<title>题库</title>
+
+	<style type="text/css">
+		.row-margin-top {
+			margin-top: 10px;
+		}
+
+		.jumbotron-ext {
+			/*height: 270px;
+			padding-top: 14px;
+			padding-bottom: 34px;*/
+			background-color: lightpink;
+		}
+
+		.main-ext {
+			background-color: aliceblue;
+		}
+	</style>
+
+	<script>
+		$(document).ready(function () {
+			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
+		});
+
+		function btnTheirPapersClick() {
+			alert(1);
+		}
+	</script>
+</head>
+<body>
+	<div class="container theme-showcase main-ext" role="main">
+		<div class="jumbotron jumbotron-ext">
+			<h1>欢迎，数学运算</h1>
+			<h6>
+				<span class="text-info" style="padding-left:30px;">普洛克拉斯："那里有数,那里就有美。"</span>
+				<br />
+				<span class="text-info" style="padding-left:30px;">
+					罗素："数学,如果正常地看它,不但拥有真理,而且也具有至高的美,正如雕塑的美,是一种冷而严肃的美。"
+				</span>
+				<br />
+				<span class="text-info" style="padding-left:30px;">华罗庚："数学是壮丽多彩、千姿百态、引人入胜的……认为数学枯燥乏味的人，只是看到了数学的严谨性，而没有体会出数学的内在美。"</span>
+			</h6>
+			<br />
+			<hr />
+			<div class="page-header">
+				<h6>答题类型:加减法混算(填空题型或标准题型)</h6>
+			</div>
+		</div>
+		<HR>
+		<!-- 题型1<填充区> -->
+		<!--ARITHMETIC-->
+		<!-- 题型2<填充区> -->
+		<!-- 题型3<填充区> -->
+		<!-- 题型4<填充区> -->
+		<!-- 题型5<填充区> -->
+		<HR>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<p class="text-right">
+					<button id="btnTheirPapers" type="button" class="btn btn-lg btn-success">交卷</button>
+				</p>
+			</div>
+		</div>
+		<div class="page-header">
+			<h4>练习情况</h4>
+		</div>
+		<div class="well">
+			<p>做题所用时间:XXXX<br />答对:XX题<br />答错:XX题</p>
+		</div>
+	</div>
+</body>
+</html>

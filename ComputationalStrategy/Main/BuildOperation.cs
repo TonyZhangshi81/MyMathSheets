@@ -16,6 +16,10 @@ namespace ComputationalStrategy.Main
 		/// <summary>
 		/// 
 		/// </summary>
+		public QuestionTypes QType { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
 		private readonly int maximumLimit;
 		/// <summary>
 		/// 
@@ -26,6 +30,7 @@ namespace ComputationalStrategy.Main
 		{
 			this.strategy = strategy;
 			this.maximumLimit = maximumLimit;
+			this.QType = QuestionTypes.Standard;
 		}
 		/// <summary>
 		/// 
@@ -37,7 +42,7 @@ namespace ComputationalStrategy.Main
 			var list = new List<Formula>();
 			for (var i=0; i < numberOf; i++)
 			{
-				list.Add(strategy.Make(maximumLimit));
+				list.Add(strategy.Make(maximumLimit, this.QType));
 			}
 
 			return list;

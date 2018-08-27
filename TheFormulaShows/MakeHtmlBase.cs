@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace TheFormulaShows
 {
-	/// <summary>
-	/// 
-	/// </summary>
-    public class MakeHtml
-    {
+	public abstract class MakeHtmlBase : IMakeHtml
+	{
 		/// <summary>
 		/// 
 		/// </summary>
@@ -30,16 +27,17 @@ namespace TheFormulaShows
 		/// <summary>
 		/// 
 		/// </summary>
-		public MakeHtml()
-		{
-		}
+		public abstract string MakeHtml();
 
 		/// <summary>
 		/// 
 		/// </summary>
 		public void Structure()
 		{
-			var main = new BuildOperation(new AditionStrategy(), this.MaximumLimit);
+			var main = new BuildOperation(new AditionStrategy(), this.MaximumLimit)
+			{
+				QType = QuestionTypes.GapFilling
+			};
 			this.FormulaList = main.GetFormulaList(this.NumberOf);
 		}
 	}

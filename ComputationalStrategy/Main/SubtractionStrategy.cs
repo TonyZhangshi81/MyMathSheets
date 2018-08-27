@@ -7,9 +7,18 @@ using ComputationalStrategy.Item;
 
 namespace ComputationalStrategy.Main
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class SubtractionStrategy : ICalculatePattern
 	{
-		public Formula Make(int maximumLimit)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="maximumLimit"></param>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		public Formula Make(int maximumLimit, QuestionTypes type = QuestionTypes.Standard)
 		{
 			throw new NotImplementedException();
 		}

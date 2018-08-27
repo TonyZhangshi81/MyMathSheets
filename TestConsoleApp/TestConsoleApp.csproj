@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,6 +58,13 @@
       <Project>{ed789079-5836-4377-b0a6-6cde453092c1}</Project>
       <Name>TheFormulaShows</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="App_Data\Work\Content\bootstrap.min.css" />
+    <Content Include="App_Data\Work\Content\favicon.ico" />
+    <Content Include="App_Data\Work\Scripts\bootstrap.min.js" />
+    <Content Include="App_Data\Work\Scripts\jquery-3.0.0.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

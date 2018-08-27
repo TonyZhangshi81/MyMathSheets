@@ -16,8 +16,9 @@ namespace ComputationalStrategy.Main
 		/// 
 		/// </summary>
 		/// <param name="maximumLimit"></param>
+		/// <param name="type"></param>
 		/// <returns></returns>
-		public Formula Make(int maximumLimit)
+		public Formula Make(int maximumLimit, QuestionTypes type = QuestionTypes.Standard)
 		{
 			var formula = new Formula();
 
@@ -25,8 +26,20 @@ namespace ComputationalStrategy.Main
 			formula.SignOfOperation = Operation.add;
 			formula.RightParameter = GetRightParameter(maximumLimit, formula.LeftParameter);
 			formula.Answer = GetAnswer(formula.LeftParameter, formula.RightParameter);
+			formula.Gap = GapFilling.Answer;
+
+			if(type == QuestionTypes.GapFilling)
+			{
+				formula.Gap = GetGapItem();
+			}
 
 			return formula;
+		}
+
+		private GapFilling GetGapItem()
+		{
+			var number = new RandomNumberComposition(0, 2);
+			return (GapFilling)number.GetRandomNumber();
 		}
 
 		/// <summary>

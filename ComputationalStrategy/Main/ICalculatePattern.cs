@@ -16,7 +16,10 @@ namespace ComputationalStrategy.Main
 		/// 
 		/// </summary>
 		/// <param name="maximumLimit"></param>
+		/// <param name="type"></param>
 		/// <returns></returns>
-		Formula Make(int maximumLimit);
+		Formula Make(int maximumLimit, QuestionTypes type = QuestionTypes.Standard);
+
+		
 	}
 }

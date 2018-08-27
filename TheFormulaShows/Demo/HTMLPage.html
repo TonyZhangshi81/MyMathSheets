@@ -13,6 +13,23 @@
 	<script src="../Scripts/bootstrap.min.js"></script>
 	<title>题库</title>
 
+	<style type="text/css">
+		.row-margin-top {
+			margin-top: 10px;
+		}
+
+		.jumbotron-ext {
+			/*height: 270px;
+			padding-top: 14px;
+			padding-bottom: 34px;*/
+			background-color: lightpink;
+		}
+
+		.main-ext {
+			background-color: aliceblue;
+		}
+	</style>
+
 	<script>
 		$(document).ready(function () {
 			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
@@ -24,307 +41,153 @@
 	</script>
 </head>
 <body>
-	<div class="container theme-showcase" role="main" style="background-color:palegreen">
-		<div class="jumbotron" style="height: 212px; padding-top: 14px; padding-bottom: 34px;">
-			<h1>数学题来了!</h1>
-			<p><br /></p>
+	<div class="container theme-showcase main-ext" role="main">
+		<div class="jumbotron jumbotron-ext">
+			<h1>欢迎，数学运算</h1>
+			<h6>
+				<span class="text-info" style="padding-left:30px;">普洛克拉斯："那里有数,那里就有美。"</span>
+				<br />
+				<span class="text-info" style="padding-left:30px;">
+					罗素："数学,如果正常地看它,不但拥有真理,而且也具有至高的美,正如雕塑的美,是一种冷而严肃的美。"
+				</span>
+				<br />
+				<span class="text-info" style="padding-left:30px;">华罗庚："数学是壮丽多彩、千姿百态、引人入胜的,认为数学枯燥乏味的人，只是看到了数学的严谨性，而没有体会出数学的内在美。"</span>
+			</h6>
+			<br />
+			<hr />
 			<div class="page-header">
-				<h4>详细信息</h4>
-				<h5>答题类型:加减法混算(填空题型或标准题型)</h5>
+				<h6>答题类型:加减法混算(填空题型或标准题型)</h6>
 			</div>
 		</div>
 		<HR>
 		<!-- 题型1<填充区> -->
-		<div class="row">
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<input type="text" placeholder="??" style="width:50px;">
-				</h4>
+		<!--ARITHMETIC-->
+		<div class="row text-center row-margin-top">
+			<div class="col-md-3 form-inline">
+				<h5>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">+</span>
+					<span class="label">8</span>
+					<span class="label">=</span>
+					<span class="label">33</span>
+				</h5>
 			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+			<div class="col-md-3 form-inline">
+				<h5>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">+</span>
+					<span class="label">2</span>
+					<span class="label">=</span>
+					<span class="label">16</span>
+				</h5>
 			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+			<div class="col-md-3 form-inline">
+				<h5>
+					<span class="label">29</span>
+					<span class="label">+</span>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">=</span>
+					<span class="label">32</span>
+				</h5>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+			<div class="col-md-3 form-inline">
+				<h5>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">+</span>
+					<span class="label">0</span>
+					<span class="label">=</span>
+					<span class="label">29</span>
+				</h5>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+		<div class="row text-center row-margin-top">
+			<div class="col-md-3 form-inline">
+				<h5>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">+</span>
+					<span class="label">2</span>
+					<span class="label">=</span>
+					<span class="label">21</span>
+				</h5>
 			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+			<div class="col-md-3 form-inline">
+				<h5>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">+</span>
+					<span class="label">23</span>
+					<span class="label">=</span>
+					<span class="label">26</span>
+				</h5>
 			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+			<div class="col-md-3 form-inline">
+				<h5>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">+</span>
+					<span class="label">6</span>
+					<span class="label">=</span>
+					<span class="label">18</span>
+				</h5>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+			<div class="col-md-3 form-inline">
+				<h5>
+					<span class="label">13</span>
+					<span class="label">+</span>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">=</span>
+					<span class="label">35</span>
+				</h5>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+		<div class="row text-center row-margin-top">
+			<div class="col-md-3 form-inline">
+				<h5>
+					<span class="label">20</span>
+					<span class="label">+</span>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">=</span>
+					<span class="label">31</span>
+				</h5>
 			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+			<div class="col-md-3 form-inline">
+				<h5>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">+</span>
+					<span class="label">23</span>
+					<span class="label">=</span>
+					<span class="label">31</span>
+				</h5>
 			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+			<div class="col-md-3 form-inline">
+				<h5>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">+</span>
+					<span class="label">11</span>
+					<span class="label">=</span>
+					<span class="label">48</span>
+				</h5>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+			<div class="col-md-3 form-inline">
+				<h5>
+					<span class="label">11</span>
+					<span class="label">+</span>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">=</span>
+					<span class="label">11</span>
+				</h5>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
+		<div class="row text-center row-margin-top">
+			<div class="col-md-3 form-inline">
+				<h5>
+					<span class="label">12</span>
+					<span class="label">+</span>
+					<input type="text" placeholder=" ?? " class="form - control" style="width: 50px; " />
+					<span class="label">=</span>
+					<span class="label">33</span>
+				</h5>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-			<div class="col-md-4">
-				<h4>
-					<span class="label label-default">30</span>
-					<span class="label label-warning">+</span>
-					<span class="label label-primary">20</span>
-					<span class="label label-success">=</span>
-					<span class="label label-info">50</span>
-				</h4>
-			</div>
-		</div>
+
 		<!-- 题型2<填充区> -->
 		<!-- 题型3<填充区> -->
 		<!-- 题型4<填充区> -->
