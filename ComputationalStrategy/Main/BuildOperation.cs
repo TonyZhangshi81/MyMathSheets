@@ -1,8 +1,4 @@
 ﻿using ComputationalStrategy.Item;
-using Spring.Context.Support;
-using Spring.Core.IO;
-using Spring.Objects.Factory;
-using Spring.Objects.Factory.Xml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,43 +26,11 @@ namespace ComputationalStrategy.Main
 		/// </summary>
 		/// <param name="strategy"></param>
 		/// <param name="maximumLimit"></param>
-		/// <param name="type"></param>
 		public BuildOperation(ICalculatePattern strategy, int maximumLimit, QuestionTypes type = QuestionTypes.Standard)
 		{
 			this.strategy = strategy;
 			this.maximumLimit = maximumLimit;
 			this.QType = type;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="maximumLimit"></param>
-		/// <param name="type"></param>
-		public BuildOperation(int maximumLimit, QuestionTypes type = QuestionTypes.Standard)
-		{
-			IResource input = new FileSystemResource(@"..\Config\Operator.xml");
-			IObjectFactory factory = new XmlObjectFactory(input);
-
-
-			ICalculatePattern per = (ICalculatePattern)factory.GetObject("Adition");
-
-		}
-
-
-
-
-
-
-
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
-		public Formula GetFormula()
-		{
-			return strategy.Make(maximumLimit, this.QType);
 		}
 		/// <summary>
 		/// 
