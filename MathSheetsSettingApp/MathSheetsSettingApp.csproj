@@ -86,6 +86,8 @@
     <Content Include="App_Data\Work\Content\image\icon_52.png" />
     <Content Include="App_Data\Work\Scripts\bootstrap.min.js" />
     <Content Include="App_Data\Work\Scripts\jquery-3.0.0.min.js" />
+    <Content Include="App_Data\Work\Scripts\json2.min.js" />
+    <Content Include="App_Data\Work\Scripts\store.legacy.min.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ComputationalStrategy\ComputationalStrategy.csproj">

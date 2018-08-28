@@ -11,6 +11,8 @@
 	<link href="../Content/bootstrap.min.css" rel="stylesheet">
 	<script src="../Scripts/jquery-3.0.0.min.js"></script>
 	<script src="../Scripts/bootstrap.min.js"></script>
+	<script src="../Scripts/store.legacy.min.js"></script>
+	<script src="../Scripts/json2.min.js"></script>
 	<title>题库</title>
 
 	<style type="text/css">
@@ -32,19 +34,37 @@
 
 	<script>
 		$(document).ready(function () {
+			// 按键屏蔽防止刷新页面
+			forbidKeyDown();
+
+			// 准备
+			$('#btnReady').click(function () { btnReadyClick(); });
 			// 提交答题
 			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
 			// 订正错题
 			$('#btnMakeCorrections').click(function () { btnMakeCorrectionsClick(); });
 			// 完成
 			$('#btnOver').click(function () { btnOverClick(); });
-			// 准备
-			$('#btnReady').click(function () { btnReadyClick(); });			
+
+			// 还原上一次答题结果
+			lastTimeRestore();
 		});
+
+		function lastTimeRestore() {
+			// 获取内容
+			var result = store.get('result');
+			$('#spanOld').text(result.time);
+			$('#spanOldOK').text(result.right);
+			$('#spanOldNo').text(result.fault);
+		}
 
 		function btnReadyClick() {
 			$('#btnTheirPapers').show();
 			$('#btnReady').hide();
+
+			$("input[id*='input']").each(function (index, element) {
+				$(element).removeAttr("disabled");
+			});
 
 			// 计时开始
 			startTime();
@@ -145,7 +165,56 @@
 
 			$('#btnTheirPapers').hide();
 
+			// 计时停止
 			isStop = true;
+
+			// 存储变量到result键（答题结果）
+			var timeStr = $('#spanHH').text() + '：' + $('#spanMM').text() + '：' + $('#spanSS').text();
+			store.set('result', { time: timeStr, right: isRight, fault: isFault });
+		}
+
+		// 按键屏蔽防止刷新页面
+		function forbidKeyDown() {
+			$(document).bind("keydown", function (e) {
+				var e = window.event || e;
+				// 屏蔽 Alt+ 方向键 ← 
+				// 屏蔽 Alt+ 方向键 →
+				if ((e.altKey) && ((e.keyCode == 37) || (e.keyCode == 39))) {
+					e.returnValue = false;
+					return false;
+				}
+
+				// 屏蔽退格删除键 
+				if (e.keyCode == 8) {
+					if (document.activeElement.tagName.toLowerCase() == 'input'.toLowerCase()) {
+						var typeName = document.activeElement.type.toLowerCase();
+						if (typeName == 'text'.toLowerCase() || typeName == 'password'.toLowerCase()) {
+							if (!document.activeElement.readOnly) {
+								return true;
+							}
+						}
+					} else if (document.activeElement.tagName.toLowerCase() == 'textarea'.toLowerCase()) {
+						if (!document.activeElement.readOnly)
+							return true;
+					}
+					return false;
+				}
+
+				// 屏蔽F5刷新键 
+				if (e.keyCode == 116) {
+					return false;
+				}
+
+				// 屏蔽alt+R 
+				if ((e.ctrlKey) && (e.keyCode == 82)) {
+					return false;
+				}
+			});
+
+			// 禁用右键单击功能
+			$(document).bind("contextmenu", function (e) {
+				return false;
+			}); 
 		}
 	</script>
 </head>
@@ -160,13 +229,17 @@
 				<br />
 				<span class="text-info" style="padding-left:30px;">华罗庚："数学是壮丽多彩、千姿百态、引人入胜的,认为数学枯燥乏味的人，只是看到了数学的严谨性，而没有体会出数学的内在美。"</span>
 			</h6>
-			<br />
 			<hr />
-			<div class="page-header">
-				<h6>答题类型:加减法混算(填空题型或标准题型)</h6>
+			<div class="well">
+				上一次做题用时:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+				<span style="padding-left:20px;">答对:</span><span id="spanOldOK" style="padding-left:10px;"></span>题
+				<span style="padding-left:20px;">答错:</span><span id="spanOldNo" style="padding-left:10px;"></span>题
 			</div>
 		</div>
-		<HR>
+		<div class="page-header">
+			<h6>1. 四则运算题</h6>
+		</div>
+		<hr />
 		<!-- 题型1<填充区> -->
 		<!--ARITHMETIC-->
 		<!-- 题型2<填充区> -->
@@ -188,9 +261,11 @@
 			<h4>练习情况</h4>
 		</div>
 		<div class="well">
-			<p>做题用时:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
-			<br />答对:<span id="spanOK" style="padding-left:20px;"></span>题
-			<br />答错:<span id="spanNo" style="padding-left:20px;"></span>题</p>
+			<p>
+				做题用时:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+				<br />答对:<span id="spanOK" style="padding-left:20px;"></span>题
+				<br />答错:<span id="spanNo" style="padding-left:20px;"></span>题
+			</p>
 		</div>
 	</div>
 </body>
