@@ -12,7 +12,7 @@ namespace TestConsoleApp
 	/// <summary>
 	/// 
 	/// </summary>
-	class Program
+	public class Program
 	{
 		/// <summary>
 		/// 
@@ -20,43 +20,74 @@ namespace TestConsoleApp
 		/// <param name="args"></param>
 		static void Main(string[] args)
 		{
-			IList<SignOfOperation> signs = new List<SignOfOperation>
+			MakeHtmlBase work = null;
+
+			while (1 == 1)
 			{
-				SignOfOperation.Plus,
-				SignOfOperation.Subtraction,
-				SignOfOperation.Multiple,
-				SignOfOperation.Division
-			};
+				ConsoleKey key = Console.ReadKey().Key;
+				switch (key)
+				{
+					case ConsoleKey.D1:
+						IList<SignOfOperation> signs = new List<SignOfOperation>
+						{
+							SignOfOperation.Plus,
+							SignOfOperation.Subtraction,
+							SignOfOperation.Multiple,
+							SignOfOperation.Division
+						};
 
-			Console.WriteLine("TestCase0001");
-			// TestCase0001
-			MakeHtmlBase work = new Arithmetic(FourOperationsType.Random, signs, QuestionType.GapFilling, 100, 35);
-			work.Structure();
-			ConsoleFormulas(work.Formulas);
+						Console.WriteLine();
+						Console.WriteLine("TestCase0001");
+						// TestCase0001
+						work = new Arithmetic(FourOperationsType.Random, signs, QuestionType.GapFilling, 100, 35);
+						work.Structure();
+						ConsoleFormulas(work.Formulas);
+						break;
 
-			Console.WriteLine("TestCase0002");
-			// TestCase0002
-			work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 50, 20);
-			work.Structure();
-			ConsoleFormulas(work.Formulas);
+					case ConsoleKey.D2:
+						Console.WriteLine();
+						Console.WriteLine("TestCase0002");
+						// TestCase0002
+						work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 50, 20);
+						work.Structure();
+						ConsoleFormulas(work.Formulas);
+						break;
 
-			Console.WriteLine("TestCase0003");
-			// TestCase0003
-			work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 200, 15);
-			work.Structure();
-			ConsoleFormulas(work.Formulas);
+					case ConsoleKey.D3:
+						Console.WriteLine();
+						Console.WriteLine("TestCase0003");
+						// TestCase0003
+						work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 200, 15);
+						work.Structure();
+						ConsoleFormulas(work.Formulas);
+						break;
 
-			Console.WriteLine("TestCase0004");
-			// TestCase0004
-			work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Multiple, QuestionType.GapFilling, 81, 20);
-			work.Structure();
-			ConsoleFormulas(work.Formulas);
+					case ConsoleKey.D4:
+						Console.WriteLine();
+						Console.WriteLine("TestCase0004");
+						// TestCase0004
+						work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Multiple, QuestionType.GapFilling, 81, 20);
+						work.Structure();
+						ConsoleFormulas(work.Formulas);
+						break;
 
-			Console.WriteLine("TestCase0005");
-			// TestCase0005
-			work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.GapFilling, 81, 20);
-			work.Structure();
-			ConsoleFormulas(work.Formulas);
+					case ConsoleKey.D5:
+						Console.WriteLine();
+						Console.WriteLine("TestCase0005");
+						// TestCase0005
+						work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.GapFilling, 81, 20);
+						work.Structure();
+						ConsoleFormulas(work.Formulas);
+						break;
+
+					default:
+						Console.WriteLine();
+						Console.WriteLine("Close");
+						Console.ReadKey();
+						Environment.Exit(0);
+						break;
+				}
+			}
 		}
 
 		/// <summary>
@@ -73,7 +104,6 @@ namespace TestConsoleApp
 					 GetValue(GapFilling.Right, d.RightParameter, d.Gap),
 					 GetValue(GapFilling.Answer, d.Answer, d.Gap)));
 			 });
-			Console.ReadKey();
 		}
 
 		/// <summary>

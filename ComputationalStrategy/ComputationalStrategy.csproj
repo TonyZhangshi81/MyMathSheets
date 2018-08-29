@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Main\BuildOperation.cs" />
+    <Compile Include="Main\CalculatePatternBase.cs" />
     <Compile Include="Main\DivisionStrategy.cs" />
     <Compile Include="Main\MultiplicationStrategy.cs" />
     <Compile Include="Main\RandomNumberComposition.cs" />

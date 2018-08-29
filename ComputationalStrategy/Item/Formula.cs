@@ -71,7 +71,7 @@ namespace ComputationalStrategy.Item
 		/// </summary>
 		Right,
 		/// <summary>
-		/// 等式结果
+		/// 等式结果(符号个数 = 3)
 		/// </summary>
 		Answer
 	}

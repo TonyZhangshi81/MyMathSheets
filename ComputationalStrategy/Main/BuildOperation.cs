@@ -136,18 +136,18 @@ namespace ComputationalStrategy.Main
 
 				for (var i = 0; i < _numberOfQuestions; i++)
 				{
-					_formulas.Add(strategy.Make(_maximumLimit, _questionType));
+					_formulas.Add(strategy.CreateFormula(_maximumLimit, _questionType));
 				}
 			}
 			else
 			{
 				for (var i = 0; i < _numberOfQuestions; i++)
 				{
-					RandomNumberComposition random = new RandomNumberComposition(0, _signs.Count);
+					RandomNumberComposition random = new RandomNumberComposition(0, _signs.Count - 1);
 					SignOfOperation sign = _signs[random.GetRandomNumber()];
 
 					strategy = GetPatternInstance(sign);
-					_formulas.Add(strategy.Make(_maximumLimit, _questionType));
+					_formulas.Add(strategy.CreateFormula(_maximumLimit, _questionType));
 				}
 			}
 		}
