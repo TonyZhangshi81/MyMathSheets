@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ComputationalStrategy.Item;
+﻿using ComputationalStrategy.Item;
 
-namespace ComputationalStrategy.Main
+namespace ComputationalStrategy.Main.ArithmeticStrategy
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class MultiplicationStrategy : CalculatePatternBase
+	public class Multiplication : CalculatePatternBase
 	{
 		/// <summary>
 		/// 

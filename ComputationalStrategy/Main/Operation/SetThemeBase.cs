@@ -1,18 +1,14 @@
 ﻿using ComputationalStrategy.Item;
-using Spring.Objects.Factory;
-using System;
+using ComputationalStrategy.Main.ArithmeticStrategy;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ComputationalStrategy.Main
+namespace ComputationalStrategy.Main.Operation
 {
 	/// <summary>
 	/// 
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public abstract class SetThemeOperationBase<T> where T : new()
+	public abstract class SetThemeBase<T> where T : new()
 	{
 		/// <summary>
 		/// 
@@ -50,7 +46,7 @@ namespace ComputationalStrategy.Main
 		/// <summary>
 		/// 
 		/// </summary>
-		public SetThemeOperationBase()
+		public SetThemeBase()
 		{
 			_formulas = new T();
 		}

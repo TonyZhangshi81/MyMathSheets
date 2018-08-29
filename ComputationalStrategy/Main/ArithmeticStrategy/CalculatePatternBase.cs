@@ -1,12 +1,12 @@
 ﻿using ComputationalStrategy.Item;
+using ComputationalStrategy.Main.Util;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ComputationalStrategy.Main
+namespace ComputationalStrategy.Main.ArithmeticStrategy
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public abstract class CalculatePatternBase : ICalculatePattern
 	{
 		/// <summary>

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ComputationalStrategy.Item;
+﻿using ComputationalStrategy.Item;
 
-namespace ComputationalStrategy.Main
+namespace ComputationalStrategy.Main.ArithmeticStrategy
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class AditionStrategy : CalculatePatternBase
+	public class Subtraction : CalculatePatternBase
 	{
 		/// <summary>
 		/// 
@@ -23,8 +18,8 @@ namespace ComputationalStrategy.Main
 			_formula = base.CreateFormula(maximumLimit, type);
 
 			_formula.LeftParameter = GetLeftParameter(maximumLimit);
-			_formula.SignOfOperation = SignOfOperation.Plus;
-			_formula.RightParameter = GetRightParameter(maximumLimit, _formula.LeftParameter);
+			_formula.SignOfOperation = SignOfOperation.Subtraction;
+			_formula.RightParameter = GetRightParameter(_formula.LeftParameter);
 			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
 
 			return _formula;

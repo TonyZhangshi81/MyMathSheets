@@ -1,10 +1,6 @@
 ﻿using ComputationalStrategy.Item;
-using ComputationalStrategy.Main;
-using System;
+using ComputationalStrategy.Main.Operation;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TheFormulaShows
 {
@@ -80,7 +76,7 @@ namespace TheFormulaShows
 		/// </summary>
 		public void Structure()
 		{
-			SetThemeOperationBase<List<Formula>> main = new ArithmeticOperation(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
+			SetThemeBase<List<Formula>> main = new ComputationalStrategy.Main.Operation.Arithmetic(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
 
 			main.MarkFormulaList();
 

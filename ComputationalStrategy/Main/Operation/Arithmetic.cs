@@ -1,17 +1,14 @@
 ﻿using ComputationalStrategy.Item;
-using Spring.Context.Support;
+using ComputationalStrategy.Main.ArithmeticStrategy;
+using ComputationalStrategy.Main.Util;
 using Spring.Core.IO;
 using Spring.Objects.Factory;
 using Spring.Objects.Factory.Xml;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ComputationalStrategy.Main
+namespace ComputationalStrategy.Main.Operation
 {
-	public class ArithmeticOperation : SetThemeOperationBase<List<Formula>>
+	public class Arithmetic : SetThemeBase<List<Formula>>
 	{
 		/// <summary>
 		/// 
@@ -21,7 +18,7 @@ namespace ComputationalStrategy.Main
 		/// <summary>
 		/// 
 		/// </summary>
-		public ArithmeticOperation() : base()
+		public Arithmetic() : base()
 		{
 			_cacheStrategy = new Dictionary<string, ICalculatePattern>();
 
@@ -37,7 +34,7 @@ namespace ComputationalStrategy.Main
 		/// <param name="questionType"></param>
 		/// <param name="maximumLimit"></param>
 		/// <param name="numberOfQuestions"></param>
-		public ArithmeticOperation(FourOperationsType fourOperationsType, SignOfOperation sign, QuestionType questionType, int maximumLimit, int numberOfQuestions)
+		public Arithmetic(FourOperationsType fourOperationsType, SignOfOperation sign, QuestionType questionType, int maximumLimit, int numberOfQuestions)
 			: this(fourOperationsType, new List<SignOfOperation>(), questionType, maximumLimit, numberOfQuestions)
 		{
 			_signs.Add(sign);
@@ -51,7 +48,7 @@ namespace ComputationalStrategy.Main
 		/// <param name="questionType"></param>
 		/// <param name="maximumLimit"></param>
 		/// <param name="numberOfQuestions"></param>
-		public ArithmeticOperation(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
+		public Arithmetic(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
 		: this()
 		{
 			_fourOperationsType = fourOperationsType;

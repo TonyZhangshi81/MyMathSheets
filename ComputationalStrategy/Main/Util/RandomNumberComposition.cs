@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ComputationalStrategy.Main
+namespace ComputationalStrategy.Main.Util
 {
 	/// <summary>
 	/// 随机数取得机能对象
