@@ -82,7 +82,6 @@
 			// chkMultiplication
 			// 
 			this.chkMultiplication.AutoSize = true;
-			this.chkMultiplication.Enabled = false;
 			this.chkMultiplication.Location = new System.Drawing.Point(160, 40);
 			this.chkMultiplication.Name = "chkMultiplication";
 			this.chkMultiplication.Size = new System.Drawing.Size(48, 16);
@@ -94,7 +93,6 @@
 			// chkDivision
 			// 
 			this.chkDivision.AutoSize = true;
-			this.chkDivision.Enabled = false;
 			this.chkDivision.Location = new System.Drawing.Point(246, 40);
 			this.chkDivision.Name = "chkDivision";
 			this.chkDivision.Size = new System.Drawing.Size(48, 16);

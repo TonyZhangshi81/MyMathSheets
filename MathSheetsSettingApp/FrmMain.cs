@@ -74,9 +74,9 @@ namespace MathSheetsSettingApp
 			this.chkDivision.Checked = false;
 
 			this.chkAdition.Enabled = true;
-			this.chkSubtraction.Enabled = false;
-			this.chkMultiplication.Enabled = false;
-			this.chkDivision.Enabled = false;
+			this.chkSubtraction.Enabled = true;
+			this.chkMultiplication.Enabled = true;
+			this.chkDivision.Enabled = true;
 		}
 		/// <summary>
 		/// 
@@ -87,26 +87,14 @@ namespace MathSheetsSettingApp
 		{
 			this.chkAdition.Checked = true;
 			this.chkSubtraction.Checked = true;
-			this.chkMultiplication.Checked = false;
-			this.chkDivision.Checked = false;
+			this.chkMultiplication.Checked = true;
+			this.chkDivision.Checked = true;
 
 			this.chkAdition.Enabled = false;
 			this.chkSubtraction.Enabled = false;
 			this.chkMultiplication.Enabled = false;
 			this.chkDivision.Enabled = false;
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		private SignOfOperation _sign
-		{
-			get
-			{
-				return chkAdition.Checked ? SignOfOperation.Plus :
-							chkDivision.Checked ? SignOfOperation.Division :
-							chkMultiplication.Checked ? SignOfOperation.Multiple : SignOfOperation.Subtraction;
-			}
-		}
+		}	
 		/// <summary>
 		/// 
 		/// </summary>

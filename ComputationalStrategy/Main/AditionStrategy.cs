@@ -36,6 +36,10 @@ namespace ComputationalStrategy.Main
 			return formula;
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		private GapFilling GetGapItem()
 		{
 			var number = new RandomNumberComposition(0, 2);
@@ -71,7 +75,7 @@ namespace ComputationalStrategy.Main
 		/// <param name="leftParameter"></param>
 		/// <param name="rightParameter"></param>
 		/// <returns></returns>
-		public int GetAnswer(int leftParameter, int rightParameter)
+		private int GetAnswer(int leftParameter, int rightParameter)
 		{
 			return (leftParameter + rightParameter);
 		}
