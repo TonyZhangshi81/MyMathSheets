@@ -33,6 +33,7 @@
 	</style>
 
 	<script>
+		// 页面启动后加载
 		$(document).ready(function () {
 			// 按键屏蔽防止刷新页面
 			forbidKeyDown();
@@ -50,6 +51,7 @@
 			lastTimeRestore();
 		});
 
+		// 显示上一次答题结果
 		function lastTimeRestore() {
 			// 获取内容
 			var result = store.get('result');
@@ -57,11 +59,13 @@
 			$('#spanOldOK').text(result.right);
 			$('#spanOldNo').text(result.fault);
 		}
-
+		// 答题准备按钮
 		function btnReadyClick() {
+			// 交卷按钮显示
 			$('#btnTheirPapers').show();
+			// 准备按钮隐藏
 			$('#btnReady').hide();
-
+			// 设定页面所有输入域为可用状态
 			$("input[id*='input']").each(function (index, element) {
 				$(element).removeAttr("disabled");
 			});
@@ -70,93 +74,116 @@
 			startTime();
 		}
 
-		  
+
 		var second = 0;
 		var minute = 0;
 		var hour = 0;
+		// 用于停止计时功能(停止计时:true)
 		var isStop = false;
+		// 读秒计时器(当准备按钮按下后,答题开始,计时器开始计时)
 		function startTime() {
+			// 停止计时
 			if (isStop) {
 				return;
 			}
 
 			second++;
+			// 读秒
 			$('#spanSS').text(this.checkTime(second));
-
+			// 读分
 			minute = parseInt($('#spanMM').text());
+			// 60秒后,分钟加1,秒针归0
 			if (second == 60) {
 				minute++;
 				second = 0;
 				$('#spanMM').text(this.checkTime(minute));
 				$('#spanSS').text(this.checkTime(second));
 			}
-
+			// 读时
 			hour = parseInt($('#spanHH').text());
+			// 60分后,时钟加1,分针归0
 			if (minute == 60) {
 				hour++;
 				minute = 0;
 				$('#spanHH').text(this.checkTime(hour));
 				$('#spanMM').text(this.checkTime(minute));
 			}
-
+			// 59:59:59为计时器上限值,将强制停止计时器
 			if (second == 59 && minute == 59 && hour == 59) {
 				isStop = true;
 			}
-
+			// 定时执行(设定间隔为1秒)
 			setTimeout('startTime()', 1000)
 		}
 
+		// 计时器-不足十位向前补0
 		function checkTime(i) {
 			if (i < 10) { i = "0" + i }
 			return i
 		}
 
+		// 完成(关闭页面)
 		function btnOverClick() {
 			window.close();
 		}
 
+		// 订正按钮(不计入答题情况信息)
 		function btnMakeCorrectionsClick() {
 			var isFault = 0;
 			$("input[id*='input']").each(function (index, element) {
-				if ($(element).val() != $('#hidden' + index).val()) {
-					$('#imgOK' + index).hide();
-					$('#imgNo' + index).show();
+				// 答题验证
+				if (!homeWorkCorrecting(index, element)) {
+					// 答题错误时,错误件数加一
 					isFault++;
-				} else {
-					$('#imgOK' + index).show();
-					$('#imgNo' + index).hide();
-					$(element).attr("disabled", "disabled");
 				}
 			});
-
+			// 是否存在错题
 			if (isFault != 0) {
+				// 存在:订正按钮显示
 				$('#btnMakeCorrections').show();
 			} else {
+				// 不存在:订正按钮隐藏,完成按钮显示
 				$('#btnMakeCorrections').hide();
 				$('#btnOver').show();
 			}
 		}
 
+		// 答题验证(正确:true  错误:false)
+		function homeWorkCorrecting(index, element) {
+			// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
+			if ($(element).val() == $('#hidden' + index).val() || parseInt($('#hidden' + index).val()) == -999) {
+				// 对错图片显示和隐藏
+				$('#imgOK' + index).show();
+				$('#imgNo' + index).hide();
+				$(element).attr("disabled", "disabled");
+				// 正确:true
+				return true;
+			} else {
+				// 对错图片显示和隐藏
+				$('#imgOK' + index).hide();
+				$('#imgNo' + index).show();
+				// 错误:false
+				return false;
+			}
+		}
+
+		// 交卷按钮(记录在答题情况下,以便可以看到前一次做题情况)
 		function btnTheirPapersClick() {
 			var isRight = 0;
 			var isFault = 0;
 			$("input[id*='input']").each(function (index, element) {
-				if ($(element).val() != $('#hidden' + index).val()) {
-					$('#imgOK' + index).hide();
-					$('#imgNo' + index).show();
+				// 答题验证
+				if (!homeWorkCorrecting(index, element)) {
+					// 答题错误时,错误件数加一
 					isFault++;
 				} else {
-					$('#imgOK' + index).show();
-					$('#imgNo' + index).hide();
 					isRight++;
-
-					$(element).attr("disabled", "disabled");
 				}
 			});
 
 			$('#spanOK').text(isRight);
 			$('#spanNo').text(isFault);
-
+			// 对错图片显示和隐藏
 			if (isFault != 0) {
 				$('#btnMakeCorrections').show();
 			} else {
@@ -177,14 +204,14 @@
 		function forbidKeyDown() {
 			$(document).bind("keydown", function (e) {
 				var e = window.event || e;
-				// 屏蔽 Alt+ 方向键 ← 
+				// 屏蔽 Alt+ 方向键 ←
 				// 屏蔽 Alt+ 方向键 →
 				if ((e.altKey) && ((e.keyCode == 37) || (e.keyCode == 39))) {
 					e.returnValue = false;
 					return false;
 				}
 
-				// 屏蔽退格删除键 
+				// 屏蔽退格删除键
 				if (e.keyCode == 8) {
 					if (document.activeElement.tagName.toLowerCase() == 'input'.toLowerCase()) {
 						var typeName = document.activeElement.type.toLowerCase();
@@ -200,12 +227,12 @@
 					return false;
 				}
 
-				// 屏蔽F5刷新键 
+				// 屏蔽F5刷新键
 				if (e.keyCode == 116) {
 					return false;
 				}
 
-				// 屏蔽alt+R 
+				// 屏蔽alt+R
 				if ((e.ctrlKey) && (e.keyCode == 82)) {
 					return false;
 				}
@@ -214,7 +241,7 @@
 			// 禁用右键单击功能
 			$(document).bind("contextmenu", function (e) {
 				return false;
-			}); 
+			});
 		}
 	</script>
 </head>
