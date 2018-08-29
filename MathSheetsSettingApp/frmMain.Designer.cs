@@ -66,7 +66,7 @@
 			this.chkAdition.TabIndex = 1;
 			this.chkAdition.Text = "加法";
 			this.chkAdition.UseVisualStyleBackColor = true;
-			this.chkAdition.CheckedChanged += new System.EventHandler(this.chkAdition_CheckedChanged);
+			this.chkAdition.CheckedChanged += new System.EventHandler(this.AditionCheckedChanged);
 			// 
 			// chkSubtraction
 			// 
@@ -77,7 +77,7 @@
 			this.chkSubtraction.TabIndex = 2;
 			this.chkSubtraction.Text = "减法";
 			this.chkSubtraction.UseVisualStyleBackColor = true;
-			this.chkSubtraction.CheckedChanged += new System.EventHandler(this.chkSubtraction_CheckedChanged);
+			this.chkSubtraction.CheckedChanged += new System.EventHandler(this.SubtractionCheckedChanged);
 			// 
 			// chkMultiplication
 			// 
@@ -89,7 +89,7 @@
 			this.chkMultiplication.TabIndex = 3;
 			this.chkMultiplication.Text = "乘法";
 			this.chkMultiplication.UseVisualStyleBackColor = true;
-			this.chkMultiplication.CheckedChanged += new System.EventHandler(this.chkMultiplication_CheckedChanged);
+			this.chkMultiplication.CheckedChanged += new System.EventHandler(this.MultiplicationCheckedChanged);
 			// 
 			// chkDivision
 			// 
@@ -101,7 +101,7 @@
 			this.chkDivision.TabIndex = 4;
 			this.chkDivision.Text = "除法";
 			this.chkDivision.UseVisualStyleBackColor = true;
-			this.chkDivision.CheckedChanged += new System.EventHandler(this.chkDivision_CheckedChanged);
+			this.chkDivision.CheckedChanged += new System.EventHandler(this.DivisionCheckedChanged);
 			// 
 			// radStandard
 			// 

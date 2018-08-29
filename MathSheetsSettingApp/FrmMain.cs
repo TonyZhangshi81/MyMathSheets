@@ -78,6 +78,74 @@ namespace MathSheetsSettingApp
 			this.chkSubtraction.Enabled = false;
 		}
 
+		private SignOfOperation _sign
+		{
+			get
+			{
+				return chkAdition.Checked ? SignOfOperation.Plus :
+							chkDivision.Checked ? SignOfOperation.Division :
+							chkMultiplication.Checked ? SignOfOperation.Multiple : SignOfOperation.Subtraction;
+			}
+		}
+
+		private QuestionType _questionType
+		{
+			get
+			{
+				return (QuestionType)(Convert.ToInt32(this.cmbTopic.SelectedValue));
+			}
+		}
+
+		private int _maximumLimit
+		{
+			get
+			{
+				return Convert.ToInt32(((KeyValuePair<int, string>)this.cmbComplexity.SelectedValue).Key);
+			}
+		}
+
+		private int _numberOfQuestions
+		{
+			get
+			{
+				return Convert.ToInt32(this.tbxNumberOf.Text);
+			}
+		}
+
+		private FourOperationsType _fourOperationsType
+		{
+			get
+			{
+				return radStandard.Checked ? FourOperationsType.Standard : FourOperationsType.Random;
+			}
+		}
+
+		private IList<SignOfOperation> _signs
+		{
+			get
+			{
+				var tmp = new List<SignOfOperation>();
+				if (chkAdition.Checked)
+				{
+					tmp.Add(SignOfOperation.Plus);
+				}
+				if (chkDivision.Checked)
+				{
+					tmp.Add(SignOfOperation.Division);
+				}
+				if (chkMultiplication.Checked)
+				{
+					tmp.Add(SignOfOperation.Multiple);
+				}
+				if (chkSubtraction.Checked)
+				{
+					tmp.Add(SignOfOperation.Subtraction);
+				}
+
+				return tmp;
+			}
+		}
+
 		private void SureClick(object sender, EventArgs e)
 		{
 			if (!this.chkAdition.Checked && !this.chkDivision.Checked && !this.chkMultiplication.Checked && !this.chkSubtraction.Checked)
@@ -86,10 +154,7 @@ namespace MathSheetsSettingApp
 				return;
 			}
 
-			MakeHtmlBase work = new Arithmetic();
-			work.MaximumLimit = Convert.ToInt32(((KeyValuePair<int, string>)this.cmbComplexity.SelectedValue).Key);
-			work.NumberOf = Convert.ToInt32(this.tbxNumberOf.Text);
-			work.QType = (QuestionTypes)(Convert.ToInt32(this.cmbTopic.SelectedValue));
+			MakeHtmlBase work = new Arithmetic(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
 			work.Structure();
 
 			string html = work.MakeHtml();
@@ -131,7 +196,7 @@ namespace MathSheetsSettingApp
 			return parameter.ToString();
 		}
 
-		private void chkAdition_CheckedChanged(object sender, EventArgs e)
+		private void AditionCheckedChanged(object sender, EventArgs e)
 		{
 			if (this.radStandard.Checked && this.chkAdition.Checked)
 			{
@@ -141,7 +206,7 @@ namespace MathSheetsSettingApp
 			}
 		}
 
-		private void chkSubtraction_CheckedChanged(object sender, EventArgs e)
+		private void SubtractionCheckedChanged(object sender, EventArgs e)
 		{
 			if (this.radStandard.Checked && this.chkSubtraction.Checked)
 			{
@@ -151,7 +216,7 @@ namespace MathSheetsSettingApp
 			}
 		}
 
-		private void chkMultiplication_CheckedChanged(object sender, EventArgs e)
+		private void MultiplicationCheckedChanged(object sender, EventArgs e)
 		{
 			if (this.radStandard.Checked && this.chkMultiplication.Checked)
 			{
@@ -161,7 +226,7 @@ namespace MathSheetsSettingApp
 			}
 		}
 
-		private void chkDivision_CheckedChanged(object sender, EventArgs e)
+		private void DivisionCheckedChanged(object sender, EventArgs e)
 		{
 			if (this.radStandard.Checked && this.chkDivision.Checked)
 			{

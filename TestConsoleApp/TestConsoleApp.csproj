@@ -60,11 +60,5 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Content Include="App_Data\Work\Content\bootstrap.min.css" />
-    <Content Include="App_Data\Work\Content\favicon.ico" />
-    <Content Include="App_Data\Work\Scripts\bootstrap.min.js" />
-    <Content Include="App_Data\Work\Scripts\jquery-3.0.0.min.js" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -18,17 +18,17 @@ namespace ComputationalStrategy.Main
 		/// <param name="maximumLimit"></param>
 		/// <param name="type"></param>
 		/// <returns></returns>
-		public Formula Make(int maximumLimit, QuestionTypes type = QuestionTypes.Standard)
+		public Formula Make(int maximumLimit, QuestionType type = QuestionType.Standard)
 		{
 			var formula = new Formula();
 
 			formula.LeftParameter = GetLeftParameter(maximumLimit);
-			formula.SignOfOperation = Operation.subtraction;
+			formula.SignOfOperation = SignOfOperation.Subtraction;
 			formula.RightParameter = GetRightParameter(formula.LeftParameter);
 			formula.Answer = GetAnswer(formula.LeftParameter, formula.RightParameter);
 			formula.Gap = GapFilling.Answer;
 
-			if (type == QuestionTypes.GapFilling)
+			if (type == QuestionType.GapFilling)
 			{
 				formula.Gap = GetGapItem();
 			}

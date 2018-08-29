@@ -18,7 +18,7 @@ namespace ComputationalStrategy.Main
 		/// <param name="maximumLimit"></param>
 		/// <param name="type"></param>
 		/// <returns></returns>
-		public Formula Make(int maximumLimit, QuestionTypes type = QuestionTypes.Standard)
+		public Formula Make(int maximumLimit, QuestionType type = QuestionType.Standard)
 		{
 			throw new NotImplementedException();
 		}

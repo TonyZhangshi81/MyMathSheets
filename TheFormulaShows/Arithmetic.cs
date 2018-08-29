@@ -13,10 +13,34 @@ namespace TheFormulaShows
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="fourOperationsType"></param>
+		/// <param name="sign"></param>
+		/// <param name="questionType"></param>
+		/// <param name="maximumLimit"></param>
+		/// <param name="numberOfQuestions"></param>
+		public Arithmetic(FourOperationsType fourOperationsType, SignOfOperation sign, QuestionType questionType, int maximumLimit, int numberOfQuestions) : base(fourOperationsType, sign, questionType, maximumLimit, numberOfQuestions)
+		{
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="fourOperationsType"></param>
+		/// <param name="signs"></param>
+		/// <param name="questionType"></param>
+		/// <param name="maximumLimit"></param>
+		/// <param name="numberOfQuestions"></param>
+		public Arithmetic(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions) : base(fourOperationsType, signs, questionType, maximumLimit, numberOfQuestions)
+		{
+		}
+
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <returns></returns>
 		public override string MakeHtml()
 		{
-			if (this.FormulaList.Count == 0)
+			if (_formulas.Count == 0)
 			{
 				return "<BR/>";
 			}
@@ -28,7 +52,7 @@ namespace TheFormulaShows
 			var html = new StringBuilder();
 			var rowHtml = new StringBuilder();
 			var colHtml = new StringBuilder();
-			foreach (var item in this.FormulaList)
+			foreach (var item in _formulas)
 			{
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-3 form-inline\">");
@@ -77,21 +101,21 @@ namespace TheFormulaShows
 		/// </summary>
 		/// <param name="operation"></param>
 		/// <returns></returns>
-		private string GetOperation(Operation operation)
+		private string GetOperation(SignOfOperation operation)
 		{
 			var flag = string.Empty;
 			switch (operation)
 			{
-				case Operation.add:
+				case SignOfOperation.Plus:
 					flag = "+";
 					break;
-				case Operation.subtraction:
+				case SignOfOperation.Subtraction:
 					flag = "-";
 					break;
-				case Operation.division:
+				case SignOfOperation.Division:
 					flag = "÷";
 					break;
-				case Operation.multiplication:
+				case SignOfOperation.Multiple:
 					flag = "×";
 					break;
 			}

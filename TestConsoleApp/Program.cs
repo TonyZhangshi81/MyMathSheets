@@ -20,45 +20,17 @@ namespace TestConsoleApp
 		/// <param name="args"></param>
 		static void Main(string[] args)
 		{
-			MakeHtmlBase work = new Arithmetic
-			{
-				MaximumLimit = 100,
-				NumberOf = 35,
-				QType = QuestionTypes.GapFilling
-			};
+			MakeHtmlBase work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 100, 25);
 			work.Structure();
 
-			work.FormulaList.ToList().ForEach(d =>
+			work.Formulas.ToList().ForEach(d =>
 			{
-				Console.WriteLine(string.Format("{0} - {1} = {2}",
+				Console.WriteLine(string.Format("{0} {1} {2} = {3}",
 					GetValue(GapFilling.Left, d.LeftParameter, d.Gap),
+					GetOperation(d.SignOfOperation),
 					GetValue(GapFilling.Right, d.RightParameter, d.Gap),
 					GetValue(GapFilling.Answer, d.Answer, d.Gap)));
 			});
-
-			string html = work.MakeHtml();
-			//Write(html);
-
-			Console.ReadKey();
-
-
-			var sourceFileName = System.Configuration.ConfigurationManager.AppSettings.Get("Template");
-			var destFileName = System.Configuration.ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("HTMLPage_{0}.html", DateTime.Now.ToString("HHmmssfff"));
-			File.Copy(sourceFileName, destFileName);
-
-			var index = 0;
-			string[] allTextLines = File.ReadAllLines(destFileName, Encoding.UTF8);
-			allTextLines.ToList().ForEach(d =>
-			{
-				index++;
-				if (d.IndexOf("<!--ARITHMETIC-->") >= 0)
-				{
-					allTextLines[index] = html;
-				}
-			});
-			File.WriteAllLines(destFileName, allTextLines, Encoding.Unicode);
-
-			System.Diagnostics.Process.Start(@"IExplore.exe", destFileName);
 		}
 
 		/// <summary>
@@ -76,6 +48,32 @@ namespace TestConsoleApp
 					sw.Flush();
 				}
 			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <returns></returns>
+		static string GetOperation(SignOfOperation operation)
+		{
+			var flag = string.Empty;
+			switch (operation)
+			{
+				case SignOfOperation.Plus:
+					flag = "+";
+					break;
+				case SignOfOperation.Subtraction:
+					flag = "-";
+					break;
+				case SignOfOperation.Division:
+					flag = "÷";
+					break;
+				case SignOfOperation.Multiple:
+					flag = "×";
+					break;
+			}
+			return flag;
 		}
 
 		/// <summary>
