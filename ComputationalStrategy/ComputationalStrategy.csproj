@@ -51,11 +51,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Main\BuildOperation.cs" />
+    <Compile Include="Main\ArithmeticOperation.cs" />
     <Compile Include="Main\CalculatePatternBase.cs" />
     <Compile Include="Main\DivisionStrategy.cs" />
+    <Compile Include="Main\EqualityComparisonOperation.cs" />
     <Compile Include="Main\MultiplicationStrategy.cs" />
     <Compile Include="Main\RandomNumberComposition.cs" />
+    <Compile Include="Main\SetThemeOperationBase.cs" />
     <Compile Include="Main\SubtractionStrategy.cs" />
     <Compile Include="Main\AditionStrategy.cs" />
     <Compile Include="Main\ICalculatePattern.cs" />

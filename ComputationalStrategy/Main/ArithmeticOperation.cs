@@ -11,52 +11,19 @@ using System.Threading.Tasks;
 
 namespace ComputationalStrategy.Main
 {
-	public class BuildOperation
+	public class ArithmeticOperation : SetThemeOperationBase<List<Formula>>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		private Dictionary<string, ICalculatePattern> _cacheStrategy;
-		/// <summary>
-		/// 
-		/// </summary>
-		protected IList<Formula> _formulas;
-		/// <summary>
-		/// 题型（标准、随机填空）
-		/// </summary>
-		private readonly QuestionType _questionType;
-		/// <summary>
-		/// 在四则运算标准题下指定运算法（加减乘除）
-		/// </summary>
-		private readonly IList<SignOfOperation> _signs;
-		/// <summary>
-		/// 四则运算类型（标准、随机出题）
-		/// </summary>
-		private readonly FourOperationsType _fourOperationsType;
-		/// <summary>
-		/// 运算结果最大限度值
-		/// </summary>
-		private readonly int _maximumLimit;
-		/// <summary>
-		/// 出题数量
-		/// </summary>
-		private readonly int _numberOfQuestions;
-		/// <summary>
-		/// 
-		/// </summary>
 		private IObjectFactory _operatorObjectFactory;
-		/// <summary>
-		/// 
-		/// </summary>
-		public IList<Formula> Formulas { get => _formulas; private set => _formulas = value; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public BuildOperation()
+		public ArithmeticOperation() : base()
 		{
 			_cacheStrategy = new Dictionary<string, ICalculatePattern>();
-			_formulas = new List<Formula>();
 
 			// 
 			CreateOperatorObjectFactory();
@@ -70,7 +37,7 @@ namespace ComputationalStrategy.Main
 		/// <param name="questionType"></param>
 		/// <param name="maximumLimit"></param>
 		/// <param name="numberOfQuestions"></param>
-		public BuildOperation(FourOperationsType fourOperationsType, SignOfOperation sign, QuestionType questionType, int maximumLimit, int numberOfQuestions)
+		public ArithmeticOperation(FourOperationsType fourOperationsType, SignOfOperation sign, QuestionType questionType, int maximumLimit, int numberOfQuestions)
 			: this(fourOperationsType, new List<SignOfOperation>(), questionType, maximumLimit, numberOfQuestions)
 		{
 			_signs.Add(sign);
@@ -84,7 +51,7 @@ namespace ComputationalStrategy.Main
 		/// <param name="questionType"></param>
 		/// <param name="maximumLimit"></param>
 		/// <param name="numberOfQuestions"></param>
-		public BuildOperation(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
+		public ArithmeticOperation(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
 		: this()
 		{
 			_fourOperationsType = fourOperationsType;
@@ -118,11 +85,10 @@ namespace ComputationalStrategy.Main
 			return _cacheStrategy[sign.ToString()];
 		}
 
-
 		/// <summary>
 		/// 
 		/// </summary>
-		public void MarkFormulaList()
+		public override void MarkFormulaList()
 		{
 			if (_fourOperationsType == FourOperationsType.Default)
 			{

@@ -80,7 +80,7 @@ namespace TheFormulaShows
 		/// </summary>
 		public void Structure()
 		{
-			BuildOperation main = new BuildOperation(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
+			SetThemeOperationBase<List<Formula>> main = new ArithmeticOperation(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
 
 			main.MarkFormulaList();
 
