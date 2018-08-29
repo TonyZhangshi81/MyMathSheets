@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <objects xmlns="http://www.springframework.net">
-	<object id="Adition" type="ComputationalStrategy.Main.AditionStrategy"></object>
-	<object id="Division" type="ComputationalStrategy.Main.DivisionStrategy"></object>
-	<object id="Multiplication" type="ComputationalStrategy.Main.MultiplicationStrategy"></object>
+	<!-- 加 -->
+	<object id="Plus" type="ComputationalStrategy.Main.AditionStrategy"></object>
+	<!-- 减 -->
 	<object id="Subtraction" type="ComputationalStrategy.Main.SubtractionStrategy"></object>
+	<!-- 乘 -->
+	<object id="Multiple" type="ComputationalStrategy.Main.MultiplicationStrategy"></object>
+	<!-- 除 -->
+	<object id="Division" type="ComputationalStrategy.Main.DivisionStrategy"></object>
 </objects>

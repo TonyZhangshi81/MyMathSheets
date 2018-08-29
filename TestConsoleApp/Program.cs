@@ -20,17 +20,49 @@ namespace TestConsoleApp
 		/// <param name="args"></param>
 		static void Main(string[] args)
 		{
-			MakeHtmlBase work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 100, 25);
-			work.Structure();
-
-			work.Formulas.ToList().ForEach(d =>
+			IList<SignOfOperation> signs = new List<SignOfOperation>
 			{
-				Console.WriteLine(string.Format("{0} {1} {2} = {3}",
-					GetValue(GapFilling.Left, d.LeftParameter, d.Gap),
-					GetOperation(d.SignOfOperation),
-					GetValue(GapFilling.Right, d.RightParameter, d.Gap),
-					GetValue(GapFilling.Answer, d.Answer, d.Gap)));
-			});
+				SignOfOperation.Plus,
+				SignOfOperation.Subtraction
+			};
+
+			Console.WriteLine("TestCase0001");
+			Console.ReadKey();
+			// TestCase0001
+			MakeHtmlBase work = new Arithmetic(FourOperationsType.Random, signs, QuestionType.GapFilling, 100, 12);
+			work.Structure();
+			ConsoleFormulas(work.Formulas);
+
+			Console.WriteLine("TestCase0002");
+			Console.ReadKey();
+			// TestCase0002
+			work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 50, 20);
+			work.Structure();
+			ConsoleFormulas(work.Formulas);
+
+			Console.WriteLine("TestCase0003");
+			Console.ReadKey();
+			// TestCase0003
+			work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 200, 15);
+			work.Structure();
+			ConsoleFormulas(work.Formulas);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="formulas"></param>
+		private static void ConsoleFormulas(IList<Formula> formulas)
+		{
+			formulas.ToList().ForEach(d =>
+			 {
+				 Console.WriteLine(string.Format("{0} {1} {2} = {3}",
+					 GetValue(GapFilling.Left, d.LeftParameter, d.Gap),
+					 GetOperation(d.SignOfOperation),
+					 GetValue(GapFilling.Right, d.RightParameter, d.Gap),
+					 GetValue(GapFilling.Answer, d.Answer, d.Gap)));
+			 });
+			Console.ReadKey();
 		}
 
 		/// <summary>
@@ -87,7 +119,7 @@ namespace TestConsoleApp
 		{
 			if (item == gap)
 			{
-				return string.Empty.PadLeft(2);
+				return string.Format("({0})", parameter);
 			}
 			return parameter.ToString();
 		}

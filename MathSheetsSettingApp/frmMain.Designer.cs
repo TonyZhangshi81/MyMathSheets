@@ -119,7 +119,6 @@
 			// radMixture
 			// 
 			this.radMixture.AutoSize = true;
-			this.radMixture.Enabled = false;
 			this.radMixture.Location = new System.Drawing.Point(16, 40);
 			this.radMixture.Name = "radMixture";
 			this.radMixture.Size = new System.Drawing.Size(71, 16);
@@ -156,7 +155,7 @@
 			this.lblTopic.AutoSize = true;
 			this.lblTopic.Location = new System.Drawing.Point(37, 24);
 			this.lblTopic.Name = "lblTopic";
-			this.lblTopic.Size = new System.Drawing.Size(41, 12);
+			this.lblTopic.Size = new System.Drawing.Size(35, 12);
 			this.lblTopic.TabIndex = 9;
 			this.lblTopic.Text = "题型：";
 			// 
@@ -165,7 +164,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(38, 53);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(41, 12);
+			this.label1.Size = new System.Drawing.Size(35, 12);
 			this.label1.TabIndex = 10;
 			this.label1.Text = "数量：";
 			// 
@@ -173,7 +172,7 @@
 			// 
 			this.tbxNumberOf.Location = new System.Drawing.Point(109, 50);
 			this.tbxNumberOf.Name = "tbxNumberOf";
-			this.tbxNumberOf.Size = new System.Drawing.Size(100, 21);
+			this.tbxNumberOf.Size = new System.Drawing.Size(100, 19);
 			this.tbxNumberOf.TabIndex = 11;
 			this.tbxNumberOf.Text = "35";
 			this.tbxNumberOf.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -183,7 +182,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(39, 81);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(41, 12);
+			this.label2.Size = new System.Drawing.Size(35, 12);
 			this.label2.TabIndex = 12;
 			this.label2.Text = "等级：";
 			// 

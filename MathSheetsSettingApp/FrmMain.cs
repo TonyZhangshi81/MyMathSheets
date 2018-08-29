@@ -13,13 +13,23 @@ using TheFormulaShows;
 
 namespace MathSheetsSettingApp
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public partial class FrmMain : Form
 	{
+		/// <summary>
+		/// 
+		/// </summary>
 		public FrmMain()
 		{
 			InitializeComponent();
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			Dictionary<int, string> kvTopic = new Dictionary<int, string>
@@ -51,33 +61,43 @@ namespace MathSheetsSettingApp
 			this.cmbTopic.ValueMember = "Key";
 			this.cmbTopic.DisplayMember = "Value";
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void StandardCheckedChanged(object sender, EventArgs e)
 		{
 			this.chkAdition.Checked = true;
-			this.chkDivision.Checked = false;
-			this.chkMultiplication.Checked = false;
 			this.chkSubtraction.Checked = false;
+			this.chkMultiplication.Checked = false;
+			this.chkDivision.Checked = false;
 
 			this.chkAdition.Enabled = true;
-			this.chkDivision.Enabled = false;
-			this.chkMultiplication.Enabled = false;
 			this.chkSubtraction.Enabled = false;
+			this.chkMultiplication.Enabled = false;
+			this.chkDivision.Enabled = false;
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void MixtureCheckedChanged(object sender, EventArgs e)
 		{
 			this.chkAdition.Checked = true;
-			this.chkDivision.Checked = true;
-			this.chkMultiplication.Checked = true;
 			this.chkSubtraction.Checked = true;
+			this.chkMultiplication.Checked = false;
+			this.chkDivision.Checked = false;
 
 			this.chkAdition.Enabled = false;
-			this.chkDivision.Enabled = false;
-			this.chkMultiplication.Enabled = false;
 			this.chkSubtraction.Enabled = false;
+			this.chkMultiplication.Enabled = false;
+			this.chkDivision.Enabled = false;
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
 		private SignOfOperation _sign
 		{
 			get
@@ -87,7 +107,9 @@ namespace MathSheetsSettingApp
 							chkMultiplication.Checked ? SignOfOperation.Multiple : SignOfOperation.Subtraction;
 			}
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
 		private QuestionType _questionType
 		{
 			get
@@ -95,7 +117,9 @@ namespace MathSheetsSettingApp
 				return (QuestionType)(Convert.ToInt32(this.cmbTopic.SelectedValue));
 			}
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
 		private int _maximumLimit
 		{
 			get
@@ -103,7 +127,9 @@ namespace MathSheetsSettingApp
 				return Convert.ToInt32(((KeyValuePair<int, string>)this.cmbComplexity.SelectedValue).Key);
 			}
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
 		private int _numberOfQuestions
 		{
 			get
@@ -111,7 +137,9 @@ namespace MathSheetsSettingApp
 				return Convert.ToInt32(this.tbxNumberOf.Text);
 			}
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
 		private FourOperationsType _fourOperationsType
 		{
 			get
@@ -119,7 +147,9 @@ namespace MathSheetsSettingApp
 				return radStandard.Checked ? FourOperationsType.Standard : FourOperationsType.Random;
 			}
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
 		private IList<SignOfOperation> _signs
 		{
 			get
@@ -145,10 +175,14 @@ namespace MathSheetsSettingApp
 				return tmp;
 			}
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void SureClick(object sender, EventArgs e)
 		{
-			if (!this.chkAdition.Checked && !this.chkDivision.Checked && !this.chkMultiplication.Checked && !this.chkSubtraction.Checked)
+			if (!chkAdition.Checked && !chkDivision.Checked && !chkMultiplication.Checked && !chkSubtraction.Checked)
 			{
 				MessageBox.Show(this, "加减乘除未指定！");
 				return;
@@ -156,14 +190,13 @@ namespace MathSheetsSettingApp
 
 			MakeHtmlBase work = new Arithmetic(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
 			work.Structure();
-
 			string html = work.MakeHtml();
 
-			var sourceFileName = System.Configuration.ConfigurationManager.AppSettings.Get("Template");
-			var destFileName = System.Configuration.ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("HTMLPage_{0}.html", DateTime.Now.ToString("HHmmssfff"));
+			string sourceFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("Template"));
+			string destFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("HTMLPage_{0}.html", DateTime.Now.ToString("HHmmssfff")));
 			File.Copy(sourceFileName, destFileName);
 
-			var index = 0;
+			int index = 0;
 			string[] allTextLines = File.ReadAllLines(destFileName, Encoding.UTF8);
 			allTextLines.ToList().ForEach(d =>
 			{
@@ -175,7 +208,7 @@ namespace MathSheetsSettingApp
 			});
 			File.WriteAllLines(destFileName, allTextLines, Encoding.Unicode);
 
-			System.Diagnostics.Process.Start(@"IExplore.exe", destFileName);
+			System.Diagnostics.Process.Start(@"IExplore.exe", Path.GetFullPath(destFileName));
 
 			Environment.Exit(0);
 		}
@@ -195,7 +228,11 @@ namespace MathSheetsSettingApp
 			}
 			return parameter.ToString();
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void AditionCheckedChanged(object sender, EventArgs e)
 		{
 			if (this.radStandard.Checked && this.chkAdition.Checked)
@@ -205,7 +242,11 @@ namespace MathSheetsSettingApp
 				this.chkMultiplication.Checked = false;
 			}
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void SubtractionCheckedChanged(object sender, EventArgs e)
 		{
 			if (this.radStandard.Checked && this.chkSubtraction.Checked)
@@ -215,7 +256,11 @@ namespace MathSheetsSettingApp
 				this.chkMultiplication.Checked = false;
 			}
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void MultiplicationCheckedChanged(object sender, EventArgs e)
 		{
 			if (this.radStandard.Checked && this.chkMultiplication.Checked)
@@ -225,7 +270,11 @@ namespace MathSheetsSettingApp
 				this.chkSubtraction.Checked = false;
 			}
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void DivisionCheckedChanged(object sender, EventArgs e)
 		{
 			if (this.radStandard.Checked && this.chkDivision.Checked)

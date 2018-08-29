@@ -68,4 +68,8 @@
     <Content Include="Config\Operator.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "..\Config\*.xml" "..\..\TestConsoleApp\Config\" /Y
+copy "..\Config\*.xml" "..\..\MathSheetsSettingApp\Config\" /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

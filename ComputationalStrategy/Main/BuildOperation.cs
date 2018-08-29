@@ -143,7 +143,7 @@ namespace ComputationalStrategy.Main
 			{
 				for (var i = 0; i < _numberOfQuestions; i++)
 				{
-					RandomNumberComposition random = new RandomNumberComposition(0, _signs.Count - 1);
+					RandomNumberComposition random = new RandomNumberComposition(0, _signs.Count);
 					SignOfOperation sign = _signs[random.GetRandomNumber()];
 
 					strategy = GetPatternInstance(sign);

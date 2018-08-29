@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="../Content/favicon.ico">
+	<link href="../Content/bootstrap.min.css" rel="stylesheet">
+	<script src="../Scripts/jquery-3.0.0.min.js"></script>
+	<script src="../Scripts/bootstrap.min.js"></script>
+	<script src="../Scripts/store.legacy.min.js"></script>
+	<script src="../Scripts/json2.min.js"></script>
+	<title>题库</title>
+
+	<style type="text/css">
+		.row-margin-top {
+			margin-top: 10px;
+		}
+
+		.jumbotron-ext {
+			/*height: 270px;
+			padding-top: 14px;
+			padding-bottom: 34px;*/
+			background-color: lightpink;
+		}
+
+		.main-ext {
+			background-color: aliceblue;
+		}
+	</style>
+
+	<script>
+		$(document).ready(function () {
+			// 按键屏蔽防止刷新页面
+			forbidKeyDown();
+
+			// 准备
+			$('#btnReady').click(function () { btnReadyClick(); });
+			// 提交答题
+			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
+			// 订正错题
+			$('#btnMakeCorrections').click(function () { btnMakeCorrectionsClick(); });
+			// 完成
+			$('#btnOver').click(function () { btnOverClick(); });
+
+			// 还原上一次答题结果
+			lastTimeRestore();
+		});
+
+		function lastTimeRestore() {
+			// 获取内容
+			var result = store.get('result');
+			$('#spanOld').text(result.time);
+			$('#spanOldOK').text(result.right);
+			$('#spanOldNo').text(result.fault);
+		}
+
+		function btnReadyClick() {
+			$('#btnTheirPapers').show();
+			$('#btnReady').hide();
+
+			$("input[id*='input']").each(function (index, element) {
+				$(element).removeAttr("disabled");
+			});
+
+			// 计时开始
+			startTime();
+		}
+
+		  
+		var second = 0;
+		var minute = 0;
+		var hour = 0;
+		var isStop = false;
+		function startTime() {
+			if (isStop) {
+				return;
+			}
+
+			second++;
+			$('#spanSS').text(this.checkTime(second));
+
+			minute = parseInt($('#spanMM').text());
+			if (second == 60) {
+				minute++;
+				second = 0;
+				$('#spanMM').text(this.checkTime(minute));
+				$('#spanSS').text(this.checkTime(second));
+			}
+
+			hour = parseInt($('#spanHH').text());
+			if (minute == 60) {
+				hour++;
+				minute = 0;
+				$('#spanHH').text(this.checkTime(hour));
+				$('#spanMM').text(this.checkTime(minute));
+			}
+
+			if (second == 59 && minute == 59 && hour == 59) {
+				isStop = true;
+			}
+
+			setTimeout('startTime()', 1000)
+		}
+
+		function checkTime(i) {
+			if (i < 10) { i = "0" + i }
+			return i
+		}
+
+		function btnOverClick() {
+			window.close();
+		}
+
+		function btnMakeCorrectionsClick() {
+			var isFault = 0;
+			$("input[id*='input']").each(function (index, element) {
+				if ($(element).val() != $('#hidden' + index).val()) {
+					$('#imgOK' + index).hide();
+					$('#imgNo' + index).show();
+					isFault++;
+				} else {
+					$('#imgOK' + index).show();
+					$('#imgNo' + index).hide();
+					$(element).attr("disabled", "disabled");
+				}
+			});
+
+			if (isFault != 0) {
+				$('#btnMakeCorrections').show();
+			} else {
+				$('#btnMakeCorrections').hide();
+				$('#btnOver').show();
+			}
+		}
+
+		function btnTheirPapersClick() {
+			var isRight = 0;
+			var isFault = 0;
+			$("input[id*='input']").each(function (index, element) {
+				if ($(element).val() != $('#hidden' + index).val()) {
+					$('#imgOK' + index).hide();
+					$('#imgNo' + index).show();
+					isFault++;
+				} else {
+					$('#imgOK' + index).show();
+					$('#imgNo' + index).hide();
+					isRight++;
+
+					$(element).attr("disabled", "disabled");
+				}
+			});
+
+			$('#spanOK').text(isRight);
+			$('#spanNo').text(isFault);
+
+			if (isFault != 0) {
+				$('#btnMakeCorrections').show();
+			} else {
+				$('#btnOver').show();
+			}
+
+			$('#btnTheirPapers').hide();
+
+			// 计时停止
+			isStop = true;
+
+			// 存储变量到result键（答题结果）
+			var timeStr = $('#spanHH').text() + '：' + $('#spanMM').text() + '：' + $('#spanSS').text();
+			store.set('result', { time: timeStr, right: isRight, fault: isFault });
+		}
+
+		// 按键屏蔽防止刷新页面
+		function forbidKeyDown() {
+			$(document).bind("keydown", function (e) {
+				var e = window.event || e;
+				// 屏蔽 Alt+ 方向键 ← 
+				// 屏蔽 Alt+ 方向键 →
+				if ((e.altKey) && ((e.keyCode == 37) || (e.keyCode == 39))) {
+					e.returnValue = false;
+					return false;
+				}
+
+				// 屏蔽退格删除键 
+				if (e.keyCode == 8) {
+					if (document.activeElement.tagName.toLowerCase() == 'input'.toLowerCase()) {
+						var typeName = document.activeElement.type.toLowerCase();
+						if (typeName == 'text'.toLowerCase() || typeName == 'password'.toLowerCase()) {
+							if (!document.activeElement.readOnly) {
+								return true;
+							}
+						}
+					} else if (document.activeElement.tagName.toLowerCase() == 'textarea'.toLowerCase()) {
+						if (!document.activeElement.readOnly)
+							return true;
+					}
+					return false;
+				}
+
+				// 屏蔽F5刷新键 
+				if (e.keyCode == 116) {
+					return false;
+				}
+
+				// 屏蔽alt+R 
+				if ((e.ctrlKey) && (e.keyCode == 82)) {
+					return false;
+				}
+			});
+
+			// 禁用右键单击功能
+			$(document).bind("contextmenu", function (e) {
+				return false;
+			}); 
+		}
+	</script>
+</head>
+<body>
+	<div class="container theme-showcase main-ext" role="main">
+		<div class="jumbotron jumbotron-ext">
+			<h1>欢迎，数学运算</h1>
+			<h6>
+				<span class="text-info" style="padding-left:30px;">普洛克拉斯："那里有数,那里就有美。"</span>
+				<br />
+				<span class="text-info" style="padding-left:30px;">罗素："数学,如果正常地看它,不但拥有真理,而且也具有至高的美,正如雕塑的美,是一种冷而严肃的美。"</span>
+				<br />
+				<span class="text-info" style="padding-left:30px;">华罗庚："数学是壮丽多彩、千姿百态、引人入胜的,认为数学枯燥乏味的人，只是看到了数学的严谨性，而没有体会出数学的内在美。"</span>
+			</h6>
+			<hr />
+			<div class="well">
+				上一次做题用时:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+				<span style="padding-left:20px;">答对:</span><span id="spanOldOK" style="padding-left:10px;"></span>题
+				<span style="padding-left:20px;">答错:</span><span id="spanOldNo" style="padding-left:10px;"></span>题
+			</div>
+		</div>
+		<div class="page-header">
+			<h6>1. 四则运算题</h6>
+		</div>
+		<hr />
+		<!-- 题型1<填充区> -->
+		<!--ARITHMETIC-->
+		<!-- 题型2<填充区> -->
+		<!-- 题型3<填充区> -->
+		<!-- 题型4<填充区> -->
+		<!-- 题型5<填充区> -->
+		<HR>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<p class="text-right">
+					<button id="btnReady" type="button" class="btn btn-lg btn-success">准备</button>
+					<button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
+					<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">订正</button>
+					<button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
+				</p>
+			</div>
+		</div>
+		<div class="page-header">
+			<h4>练习情况</h4>
+		</div>
+		<div class="well">
+			<p>
+				做题用时:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+				<br />答对:<span id="spanOK" style="padding-left:20px;"></span>题
+				<br />答错:<span id="spanNo" style="padding-left:20px;"></span>题
+			</p>
+		</div>
+	</div>
+</body>
+</html>
