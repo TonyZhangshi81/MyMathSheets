@@ -63,7 +63,7 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 				throw new NullReferenceException();
 			}
 
-			switch (_formula.SignOfOperation)
+			switch (_formula.Sign)
 			{
 				case SignOfOperation.Plus:
 					return (leftParameter + rightParameter);

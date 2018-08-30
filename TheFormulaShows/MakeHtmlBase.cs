@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace TheFormulaShows
 {
-	public abstract class MakeHtmlBase : IMakeHtml
+	public abstract class MakeHtmlBase<T> where T : new()
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		protected IList<Formula> _formulas;
+		protected T _formulas;
 		/// <summary>
 		/// 题型（标准、随机填空）
 		/// </summary>
@@ -33,12 +33,12 @@ namespace TheFormulaShows
 		/// <summary>
 		/// 
 		/// </summary>
-		public IList<Formula> Formulas { get => _formulas; private set => _formulas = value; }
+		public T Formulas { get => _formulas; private set => _formulas = value; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public abstract string MakeHtml();
+		private IMakeHtml _htmlSupport;
 
 		/// <summary>
 		/// 
@@ -76,11 +76,11 @@ namespace TheFormulaShows
 		/// </summary>
 		public void Structure()
 		{
-			SetThemeBase<List<Formula>> main = new ComputationalStrategy.Main.Operation.Arithmetic(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
+			//SetThemeBase<T> main = new Arithmetic(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
 
-			main.MarkFormulaList();
+			//main.MarkFormulaList();
 
-			_formulas = main.Formulas;
+			//_formulas = main.Formulas;
 		}
 	}
 }

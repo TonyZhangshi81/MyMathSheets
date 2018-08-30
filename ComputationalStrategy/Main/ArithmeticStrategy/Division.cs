@@ -19,7 +19,7 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 			_formula = base.CreateFormula(maximumLimit, type);
 
 			_formula.RightParameter = GetLeftParameter(9);
-			_formula.SignOfOperation = SignOfOperation.Division;
+			_formula.Sign = SignOfOperation.Division;
 			_formula.LeftParameter = GetRightParameter(9, _formula.RightParameter);
 			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
 			// 结果特殊处理(当被除数为0时,求解值可以为任何数)  只在随机除法填空题型且分子为0的情况下

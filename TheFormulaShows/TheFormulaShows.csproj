@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arithmetic.cs" />
+    <Compile Include="ArithmeticHtmlSupport.cs" />
     <Compile Include="IMakeHtml.cs" />
     <Compile Include="MakeHtmlBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

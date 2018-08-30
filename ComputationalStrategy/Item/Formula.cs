@@ -23,7 +23,7 @@ namespace ComputationalStrategy.Item
 		/// 运算符
 		/// </summary>
 		/// <see cref="Item.SignOfOperation"/>
-		public SignOfOperation SignOfOperation { get; set; }
+		public SignOfOperation Sign { get; set; }
 		/// <summary>
 		/// 等式结果
 		/// </summary>

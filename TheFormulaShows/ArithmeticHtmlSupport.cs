@@ -4,7 +4,10 @@ using System.Text;
 
 namespace TheFormulaShows
 {
-	public class Arithmetic : MakeHtmlBase
+	/// <summary>
+	/// 
+	/// </summary>
+	public class ArithmeticHtmlSupport : MakeHtmlBase<List<Formula>>
 	{
 		/// <summary>
 		/// 
@@ -14,9 +17,11 @@ namespace TheFormulaShows
 		/// <param name="questionType"></param>
 		/// <param name="maximumLimit"></param>
 		/// <param name="numberOfQuestions"></param>
-		public Arithmetic(FourOperationsType fourOperationsType, SignOfOperation sign, QuestionType questionType, int maximumLimit, int numberOfQuestions) : base(fourOperationsType, sign, questionType, maximumLimit, numberOfQuestions)
+		public ArithmeticHtmlSupport(FourOperationsType fourOperationsType, SignOfOperation sign, QuestionType questionType, int maximumLimit, int numberOfQuestions) 
+			: base(fourOperationsType, sign, questionType, maximumLimit, numberOfQuestions)
 		{
 		}
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -25,7 +30,8 @@ namespace TheFormulaShows
 		/// <param name="questionType"></param>
 		/// <param name="maximumLimit"></param>
 		/// <param name="numberOfQuestions"></param>
-		public Arithmetic(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions) : base(fourOperationsType, signs, questionType, maximumLimit, numberOfQuestions)
+		public ArithmeticHtmlSupport(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions) 
+			: base(fourOperationsType, signs, questionType, maximumLimit, numberOfQuestions)
 		{
 		}
 
@@ -54,7 +60,7 @@ namespace TheFormulaShows
 				colHtml.AppendLine("<div class=\"col-md-3 form-inline\">");
 				colHtml.AppendLine("<h5>");
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.LeftParameter, GapFilling.Left, controlIndex));
-				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", this.GetOperation(item.SignOfOperation)));
+				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", this.GetOperation(item.Sign)));
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.RightParameter, GapFilling.Right, controlIndex));
 				colHtml.AppendLine("<span class=\"label\">=</span>");
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.Answer, GapFilling.Answer, controlIndex));

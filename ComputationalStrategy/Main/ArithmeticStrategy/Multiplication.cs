@@ -18,7 +18,7 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 			_formula = base.CreateFormula(maximumLimit, type);
 
 			_formula.LeftParameter = GetLeftParameter(9);
-			_formula.SignOfOperation = SignOfOperation.Multiple;
+			_formula.Sign = SignOfOperation.Multiple;
 			_formula.RightParameter = GetRightParameter(9);
 			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
 			// 结果特殊处理

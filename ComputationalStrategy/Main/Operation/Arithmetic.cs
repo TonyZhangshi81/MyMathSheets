@@ -1,31 +1,12 @@
 ﻿using ComputationalStrategy.Item;
 using ComputationalStrategy.Main.ArithmeticStrategy;
 using ComputationalStrategy.Main.Util;
-using Spring.Core.IO;
-using Spring.Objects.Factory;
-using Spring.Objects.Factory.Xml;
 using System.Collections.Generic;
 
 namespace ComputationalStrategy.Main.Operation
 {
 	public class Arithmetic : SetThemeBase<List<Formula>>
 	{
-		/// <summary>
-		/// 
-		/// </summary>
-		private IObjectFactory _operatorObjectFactory;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		public Arithmetic() : base()
-		{
-			_cacheStrategy = new Dictionary<string, ICalculatePattern>();
-
-			// 
-			CreateOperatorObjectFactory();
-		}
-
 		/// <summary>
 		/// 
 		/// </summary>
@@ -49,37 +30,12 @@ namespace ComputationalStrategy.Main.Operation
 		/// <param name="maximumLimit"></param>
 		/// <param name="numberOfQuestions"></param>
 		public Arithmetic(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
-		: this()
+			: base(maximumLimit, numberOfQuestions)
 		{
 			_fourOperationsType = fourOperationsType;
 			_signs = signs;
 			_questionType = questionType;
-			_maximumLimit = maximumLimit;
-			_numberOfQuestions = numberOfQuestions;
-		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		private void CreateOperatorObjectFactory()
-		{
-			IResource input = new FileSystemResource(@"..\Config\Operator.xml");
-			_operatorObjectFactory = new XmlObjectFactory(input);
-		}
-
-		/// <summary>
-		/// 指定运算符获得相应的运算处理对象（实例）
-		/// </summary>
-		/// <param name="sign">运算符</param>
-		/// <returns>运算处理对象（实例）</returns>
-		private ICalculatePattern GetPatternInstance(SignOfOperation sign)
-		{
-			ICalculatePattern strategy = (ICalculatePattern)_operatorObjectFactory.GetObject(sign.ToString());
-			if (!_cacheStrategy.ContainsKey(sign.ToString()))
-			{
-				_cacheStrategy.Add(sign.ToString(), strategy);
-			}
-			return _cacheStrategy[sign.ToString()];
 		}
 
 		/// <summary>
@@ -93,23 +49,29 @@ namespace ComputationalStrategy.Main.Operation
 			}
 
 			ICalculatePattern strategy = null;
+			// 標準題型（指定單個運算符）
 			if (_fourOperationsType == FourOperationsType.Standard)
 			{
+				// 指定單個運算符實例
 				strategy = GetPatternInstance(_signs[0]);
-
+				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < _numberOfQuestions; i++)
 				{
+					// 計算式作成
 					_formulas.Add(strategy.CreateFormula(_maximumLimit, _questionType));
 				}
 			}
 			else
 			{
+				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < _numberOfQuestions; i++)
 				{
 					RandomNumberComposition random = new RandomNumberComposition(0, _signs.Count - 1);
+					// 混合題型（加減乘除運算符實例隨機抽取）
 					SignOfOperation sign = _signs[random.GetRandomNumber()];
-
+					// 對四則運算符實例進行cache管理
 					strategy = GetPatternInstance(sign);
+					// 計算式作成
 					_formulas.Add(strategy.CreateFormula(_maximumLimit, _questionType));
 				}
 			}
