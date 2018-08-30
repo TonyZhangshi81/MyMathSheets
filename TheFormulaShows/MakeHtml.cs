@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 namespace TheFormulaShows
 {
-	public abstract class MakeHtmlBase<T> where T : new()
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	public class MakeHtml<T> where T : new()
 	{
 		/// <summary>
 		/// 
@@ -34,11 +38,10 @@ namespace TheFormulaShows
 		/// 
 		/// </summary>
 		public T Formulas { get => _formulas; private set => _formulas = value; }
-
 		/// <summary>
 		/// 
 		/// </summary>
-		private IMakeHtml _htmlSupport;
+		public IMakeHtml<T> _htmlSupport;
 
 		/// <summary>
 		/// 
@@ -48,7 +51,7 @@ namespace TheFormulaShows
 		/// <param name="questionType"></param>
 		/// <param name="maximumLimit"></param>
 		/// <param name="numberOfQuestions"></param>
-		public MakeHtmlBase(FourOperationsType fourOperationsType, SignOfOperation sign, QuestionType questionType, int maximumLimit, int numberOfQuestions)
+		public MakeHtml(FourOperationsType fourOperationsType, SignOfOperation sign, QuestionType questionType, int maximumLimit, int numberOfQuestions)
 			: this(fourOperationsType, new List<SignOfOperation>(), questionType, maximumLimit, numberOfQuestions)
 		{
 			_signs.Add(sign);
@@ -62,7 +65,7 @@ namespace TheFormulaShows
 		/// <param name="questionType"></param>
 		/// <param name="maximumLimit"></param>
 		/// <param name="numberOfQuestions"></param>
-		public MakeHtmlBase(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
+		public MakeHtml(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
 		{
 			_fourOperationsType = fourOperationsType;
 			_signs = signs;
@@ -76,11 +79,18 @@ namespace TheFormulaShows
 		/// </summary>
 		public void Structure()
 		{
-			//SetThemeBase<T> main = new Arithmetic(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
+			SetThemeBase<T> main = new Arithmetic(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions) as SetThemeBase<T>;
+			main.MarkFormulaList();
+			_formulas = main.Formulas;
+		}
 
-			//main.MarkFormulaList();
-
-			//_formulas = main.Formulas;
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public string GetHtmlStatement()
+		{
+			return _htmlSupport.MakeHtml(_formulas);
 		}
 	}
 }

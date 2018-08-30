@@ -1,7 +1,16 @@
 ﻿namespace TheFormulaShows
 {
-	public interface IMakeHtml
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <typeparam name="T"></typeparam>
+	public interface IMakeHtml<T>
 	{
-		string MakeHtml();
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="formulas"></param>
+		/// <returns></returns>
+		string MakeHtml(T formulas);
 	}
 }

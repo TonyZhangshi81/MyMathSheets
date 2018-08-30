@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="ArithmeticHtmlSupport.cs" />
     <Compile Include="IMakeHtml.cs" />
-    <Compile Include="MakeHtmlBase.cs" />
+    <Compile Include="MakeHtml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

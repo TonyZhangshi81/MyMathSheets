@@ -10,11 +10,11 @@ namespace ComputationalStrategy.Main.Operation
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="fourOperationsType"></param>
-		/// <param name="sign"></param>
-		/// <param name="questionType"></param>
-		/// <param name="maximumLimit"></param>
-		/// <param name="numberOfQuestions"></param>
+		/// <param name="fourOperationsType">四则运算类型（标准、随机出题）</param>
+		/// <param name="sign">在四则运算标准题下指定运算法（加减乘除）</param>
+		/// <param name="questionType">题型（标准、随机填空）</param>
+		/// <param name="maximumLimit">运算结果最大限度值</param>
+		/// <param name="numberOfQuestions">出题数量</param>
 		public Arithmetic(FourOperationsType fourOperationsType, SignOfOperation sign, QuestionType questionType, int maximumLimit, int numberOfQuestions)
 			: this(fourOperationsType, new List<SignOfOperation>(), questionType, maximumLimit, numberOfQuestions)
 		{
@@ -24,18 +24,17 @@ namespace ComputationalStrategy.Main.Operation
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="fourOperationsType"></param>
-		/// <param name="signs"></param>
-		/// <param name="questionType"></param>
-		/// <param name="maximumLimit"></param>
-		/// <param name="numberOfQuestions"></param>
+		/// <param name="fourOperationsType">四则运算类型（标准、随机出题）</param>
+		/// <param name="signs">在四则运算标准题下指定运算法（加减乘除）</param>
+		/// <param name="questionType">题型（标准、随机填空）</param>
+		/// <param name="maximumLimit">运算结果最大限度值</param>
+		/// <param name="numberOfQuestions">出题数量</param>
 		public Arithmetic(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
 			: base(maximumLimit, numberOfQuestions)
 		{
 			_fourOperationsType = fourOperationsType;
 			_signs = signs;
 			_questionType = questionType;
-
 		}
 
 		/// <summary>

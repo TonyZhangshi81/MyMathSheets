@@ -19,8 +19,8 @@ namespace TestConsoleApp
 		/// <param name="args"></param>
 		static void Main(string[] args)
 		{
-			MakeHtmlBase work = null;
-			
+			MakeHtml<List<Formula>> work = null;
+			MakeHtml<List<EqualityFormula>> work1 = null;
 
 			while (1 == 1)
 			{
@@ -57,7 +57,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算填空");
 						// TestCase0001
-						work = new Arithmetic(FourOperationsType.Random, signs, QuestionType.GapFilling, 100, 35);
+						work = new MakeHtml<List<Formula>>(FourOperationsType.Random, signs, QuestionType.GapFilling, 100, 35);
 						work.Structure();
 						ConsoleFormulas(work.Formulas);
 						break;
@@ -66,7 +66,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準加法填空");
 						// TestCase0002
-						work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 50, 20);
+						work = new MakeHtml<List<Formula>>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 50, 20);
 						work.Structure();
 						ConsoleFormulas(work.Formulas);
 						break;
@@ -75,7 +75,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準減法填空");
 						// TestCase0003
-						work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 200, 15);
+						work = new MakeHtml<List<Formula>>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 200, 15);
 						work.Structure();
 						ConsoleFormulas(work.Formulas);
 						break;
@@ -84,7 +84,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準乘法填空");
 						// TestCase0004
-						work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Multiple, QuestionType.GapFilling, 81, 20);
+						work = new MakeHtml<List<Formula>>(FourOperationsType.Standard, SignOfOperation.Multiple, QuestionType.GapFilling, 81, 20);
 						work.Structure();
 						ConsoleFormulas(work.Formulas);
 						break;
@@ -93,7 +93,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準除法填空");
 						// TestCase0005
-						work = new Arithmetic(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.GapFilling, 81, 20);
+						work = new MakeHtml<List<Formula>>(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.GapFilling, 81, 20);
 						work.Structure();
 						ConsoleFormulas(work.Formulas);
 						break;
@@ -102,18 +102,18 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準加法比較");
 						// TestCase0005
-						work = new EqualityComparison(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.GapFilling, 81, 20);
-						work.Structure();
-						ConsoleFormulas(work.Formulas);
+						work1 = new MakeHtml<List<EqualityFormula>>(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.GapFilling, 81, 20);
+						work1.Structure();
+						//ConsoleFormulas(work1.Formulas);
 						break;
 
 					case ConsoleKey.D8:
 						Console.WriteLine();
 						Console.WriteLine("標準減法比較");
 						// TestCase0005
-						work = new EqualityComparison(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.GapFilling, 81, 20);
-						work.Structure();
-						ConsoleFormulas(work.Formulas);
+						work1 = new MakeHtml<List<EqualityFormula>>(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.GapFilling, 81, 20);
+						work1.Structure();
+						//ConsoleFormulas(work1.Formulas);
 						break;
 
 					default:

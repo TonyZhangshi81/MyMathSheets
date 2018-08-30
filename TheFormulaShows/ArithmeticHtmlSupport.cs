@@ -7,42 +7,16 @@ namespace TheFormulaShows
 	/// <summary>
 	/// 
 	/// </summary>
-	public class ArithmeticHtmlSupport : MakeHtmlBase<List<Formula>>
+	public class ArithmeticHtmlSupport : IMakeHtml<List<Formula>>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="fourOperationsType"></param>
-		/// <param name="sign"></param>
-		/// <param name="questionType"></param>
-		/// <param name="maximumLimit"></param>
-		/// <param name="numberOfQuestions"></param>
-		public ArithmeticHtmlSupport(FourOperationsType fourOperationsType, SignOfOperation sign, QuestionType questionType, int maximumLimit, int numberOfQuestions) 
-			: base(fourOperationsType, sign, questionType, maximumLimit, numberOfQuestions)
-		{
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="fourOperationsType"></param>
-		/// <param name="signs"></param>
-		/// <param name="questionType"></param>
-		/// <param name="maximumLimit"></param>
-		/// <param name="numberOfQuestions"></param>
-		public ArithmeticHtmlSupport(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions) 
-			: base(fourOperationsType, signs, questionType, maximumLimit, numberOfQuestions)
-		{
-		}
-
-
-		/// <summary>
-		/// 
-		/// </summary>
+		/// <param name="formulas"></param>
 		/// <returns></returns>
-		public override string MakeHtml()
+		public string MakeHtml(List<Formula> formulas)
 		{
-			if (_formulas.Count == 0)
+			if (formulas.Count == 0)
 			{
 				return "<BR/>";
 			}
@@ -50,11 +24,11 @@ namespace TheFormulaShows
 			int numberOfColumns = 0;
 			bool isRowHtmlClosed = false;
 
-			var controlIndex = 0;
-			var html = new StringBuilder();
-			var rowHtml = new StringBuilder();
-			var colHtml = new StringBuilder();
-			foreach (var item in _formulas)
+			int controlIndex = 0;
+			StringBuilder html = new StringBuilder();
+			StringBuilder rowHtml = new StringBuilder();
+			StringBuilder colHtml = new StringBuilder();
+			foreach (Formula item in formulas)
 			{
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-3 form-inline\">");
