@@ -83,8 +83,12 @@
   <ItemGroup>
     <Content Include="App_Data\Work\Content\bootstrap.min.css" />
     <Content Include="App_Data\Work\Content\favicon.ico" />
-    <Content Include="App_Data\Work\Content\image\delete.png" />
-    <Content Include="App_Data\Work\Content\image\icon_52.png" />
+    <Content Include="App_Data\Work\Content\image\calculator.png" />
+    <Content Include="App_Data\Work\Content\image\char-less.png" />
+    <Content Include="App_Data\Work\Content\image\char-more.png" />
+    <Content Include="App_Data\Work\Content\image\correct.png" />
+    <Content Include="App_Data\Work\Content\image\fault.png" />
+    <Content Include="App_Data\Work\Content\image\help.png" />
     <Content Include="App_Data\Work\Scripts\bootstrap.min.js" />
     <Content Include="App_Data\Work\Scripts\jquery-3.0.0.min.js" />
     <Content Include="App_Data\Work\Scripts\json2.min.js" />

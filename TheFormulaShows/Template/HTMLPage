@@ -65,10 +65,11 @@
 			$('#btnTheirPapers').show();
 			// 准备按钮隐藏
 			$('#btnReady').hide();
-			// 设定页面所有输入域为可用状态
-			$("input[id*='input']").each(function (index, element) {
-				$(element).removeAttr("disabled");
-			});
+			// 设定页面所有输入域为可用状态(四则运算)
+			arithmeticReady();
+			// 设定页面所有输入域为可用状态(算式比大小)
+			//equalityComparisonReady();
+
 
 			// 计时开始
 			startTime();
@@ -129,16 +130,14 @@
 
 		// 订正按钮(不计入答题情况信息)
 		function btnMakeCorrectionsClick() {
-			var isFault = 0;
-			$("input[id*='input']").each(function (index, element) {
-				// 答题验证
-				if (!homeWorkCorrecting(index, element)) {
-					// 答题错误时,错误件数加一
-					isFault++;
-				}
-			});
+			// 四则运算题
+			var fault = arithmeticMakeCorrections();
+			// 算式比较大小
+			//fault += equalityComparisonMakeCorrections();
+
+
 			// 是否存在错题
-			if (isFault != 0) {
+			if (fault != 0) {
 				// 存在:订正按钮显示
 				$('#btnMakeCorrections').show();
 			} else {
@@ -148,38 +147,17 @@
 			}
 		}
 
-		// 答题验证(正确:true  错误:false)
-		function homeWorkCorrecting(index, element) {
-			// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
-			if ($(element).val() == $('#hidden' + index).val() || parseInt($('#hidden' + index).val()) == -999) {
-				// 对错图片显示和隐藏
-				$('#imgOK' + index).show();
-				$('#imgNo' + index).hide();
-				$(element).attr("disabled", "disabled");
-				// 正确:true
-				return true;
-			} else {
-				// 对错图片显示和隐藏
-				$('#imgOK' + index).hide();
-				$('#imgNo' + index).show();
-				// 错误:false
-				return false;
-			}
-		}
-
+		// 答对数量
+		var isRight = 0;
+		// 答错数量
+		var isFault = 0;
 		// 交卷按钮(记录在答题情况下,以便可以看到前一次做题情况)
 		function btnTheirPapersClick() {
-			var isRight = 0;
-			var isFault = 0;
-			$("input[id*='input']").each(function (index, element) {
-				// 答题验证
-				if (!homeWorkCorrecting(index, element)) {
-					// 答题错误时,错误件数加一
-					isFault++;
-				} else {
-					isRight++;
-				}
-			});
+			// 四则运算交卷
+			arithmeticTheirPapers();
+			// 算式比较大小交卷
+			//equalityComparisonTheirPapers();
+
 
 			$('#spanOK').text(isRight);
 			$('#spanNo').text(isFault);
@@ -189,7 +167,6 @@
 			} else {
 				$('#btnOver').show();
 			}
-
 			$('#btnTheirPapers').hide();
 
 			// 计时停止
@@ -268,8 +245,140 @@
 			<h6>1. 四则运算题</h6>
 		</div>
 		<hr />
+		<script>
+			// 设定页面所有输入域为可用状态(四则运算)
+			function arithmeticReady() {
+				$("input[id*='inputAc']").each(function (index, element) {
+					$(element).removeAttr("disabled");
+				});
+			}
+
+			// 订正(四则运算题)
+			function arithmeticMakeCorrections() {
+				var fault = 0;
+				$("input[id*='inputAc']").each(function (index, element) {
+					// 答题验证
+					if (!arithmeticCorrecting(index, element)) {
+						// 答题错误时,错误件数加一
+						fault++;
+					}
+				});
+				return fault;
+			}
+
+			// 答题验证(正确:true  错误:false)
+			function arithmeticCorrecting(index, element) {
+				// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
+				if ($(element).val() == $('#hiddenAc' + index).val()
+					|| (parseInt($('#hiddenAc' + index).val()) == -999 && $('#hiddenAc' + index).val() != '')) {
+					// 对错图片显示和隐藏
+					$('#imgArithmeticOK' + index).show();
+					$('#imgArithmeticNo' + index).hide();
+					$(element).attr("disabled", "disabled");
+					// 正确:true
+					return true;
+				} else {
+					// 对错图片显示和隐藏
+					$('#imgArithmeticOK' + index).hide();
+					$('#imgArithmeticNo' + index).show();
+					// 错误:false
+					return false;
+				}
+			}
+
+			// 四则运算交卷
+			function arithmeticTheirPapers() {
+				$("input[id*='inputAc']").each(function (index, element) {
+					// 答题验证
+					if (!arithmeticCorrecting(index, element)) {
+						// 答题错误时,错误件数加一
+						isFault++;
+					} else {
+						isRight++;
+					}
+				});
+			}
+		</script>
 		<!--ARITHMETIC-->
-		<!-- 题型2<填充区> -->
+		<!-- 题型2<运算比大小> -->
+		<div class="page-header">
+			<h6>2. 运算比大小</h6>
+		</div>
+		<hr />
+		<script>
+			// 设定页面所有输入域为可用状态(算式比大小)
+			function equalityComparisonReady() {
+				$("img[id*='imgEc']").each(function (index, element) {
+					$(element).click(function () { imgEqualityClick(element); });
+				});
+			}
+
+			function imgEqualityClick(element) {
+				if ($(element).attr("title") == 'help') {
+					$(element).attr("title", 'less');
+					$(element).attr("src", '../Content/image/char-less.png');
+					return;
+				} else if ($(element).attr("title") == 'less') {
+					$(element).attr("title", 'more');
+					$(element).attr("src", '../Content/image/char-more.png');
+					return;
+				} else if ($(element).attr("title") == 'more') {
+					$(element).attr("title", 'calculator');
+					$(element).attr("src", '../Content/image/calculator.png');
+					return;
+				} else if ($(element).attr("title") == 'calculator') {
+					$(element).attr("title", 'less');
+					$(element).attr("src", '../Content/image/char-less.png');
+					return;
+				}
+			}
+
+			function equalityComparisonTheirPapers() {
+				$("img[id*='imgEc']").each(function (index, element) {
+					// 答题验证
+					if (!equalityComparisonCorrecting(index, element)) {
+						// 答题错误时,错误件数加一
+						isFault++;
+					} else {
+						isRight++;
+					}
+				});
+			}
+
+			// 答题验证(正确:true  错误:false)
+			function equalityComparisonCorrecting(index, element) {
+				// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
+				if ($(element).attr("title") == $('#hiddenEc' + index).val()) {
+					// 对错图片显示和隐藏
+					$('#imgEqualityOK' + index).show();
+					$('#imgEqualityNo' + index).hide();
+					$(element).attr("disabled", "disabled");
+					// 正确:true
+					return true;
+				} else {
+					// 对错图片显示和隐藏
+					$('#imgEqualityOK' + index).hide();
+					$('#imgEqualityNo' + index).show();
+					// 错误:false
+					return false;
+				}
+			}
+
+			// 订正(运算比大小)
+			function equalityComparisonMakeCorrections() {
+				var fault = 0;
+				$("img[id*='imgEc']").each(function (index, element) {
+					// 答题验证
+					if (!equalityComparisonCorrecting(index, element)) {
+						// 答题错误时,错误件数加一
+						fault++;
+					}
+				});
+				return fault;
+			}
+			
+		</script>
+		<!--EQUALITYCOMPARISON-->
 		<!-- 题型3<填充区> -->
 		<!-- 题型4<填充区> -->
 		<!-- 题型5<填充区> -->

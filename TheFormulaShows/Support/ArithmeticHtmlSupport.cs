@@ -38,8 +38,8 @@ namespace TheFormulaShows.Support
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.RightParameter, GapFilling.Right, controlIndex));
 				colHtml.AppendLine("<span class=\"label\">=</span>");
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.Answer, GapFilling.Answer, controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgOK{0}\" src=\"../Content/image/icon_52.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgNo{0}\" src=\"../Content/image/delete.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgArithmeticOK{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgArithmeticNo{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine("</h5>");
 				colHtml.AppendLine("</div>");
 
@@ -111,8 +111,8 @@ namespace TheFormulaShows.Support
 			var html = string.Empty;
 			if (item == gap)
 			{
-				html += string.Format("<input id=\"input{0}\" type = \"text\" placeholder=\" ?? \" class=\"form-control\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" />", index);
-				html += string.Format("<input id=\"hidden{0}\" type=\"hidden\" value=\"{1}\"/>", index, parameter);
+				html += string.Format("<input id=\"inputAc{0}\" type = \"text\" placeholder=\" ?? \" class=\"form-control\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", index);
+				html += string.Format("<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>", index, parameter);
 			}
 			else
 			{
