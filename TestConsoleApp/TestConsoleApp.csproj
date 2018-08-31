@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EqualityFormulaWrite.cs" />
+    <Compile Include="ComputingConnectionWrite.cs" />
     <Compile Include="FormulaWrite.cs" />
     <Compile Include="IConsoleWrite.cs" />
     <Compile Include="Program.cs" />

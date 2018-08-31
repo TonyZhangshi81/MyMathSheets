@@ -8,7 +8,8 @@ namespace ComputationalStrategy.Item
 {
 	public class EqualityFormula
 	{
-
+		/// <summary>
+		/// 
 		/// </summary>
 		public Formula LeftFormula { get; set; }
 		/// <summary>

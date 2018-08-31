@@ -12,13 +12,6 @@ namespace TestConsoleApp
 		/// <summary>
 		/// 
 		/// </summary>
-		public FormulaWrite()
-		{
-
-		}
-		/// <summary>
-		/// 
-		/// </summary>
 		/// <param name="formulas"></param>
 		public void ConsoleFormulas(List<Formula> formulas)
 		{

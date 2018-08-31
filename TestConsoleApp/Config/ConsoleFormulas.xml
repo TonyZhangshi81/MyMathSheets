@@ -2,4 +2,5 @@
 <objects xmlns="http://www.springframework.net">
 	<object id="FormulaWrite" type="TestConsoleApp.FormulaWrite"></object>
 	<object id="EqualityFormulaWrite" type="TestConsoleApp.EqualityFormulaWrite"></object>
+	<object id="ComputingConnectionWrite" type="TestConsoleApp.ComputingConnectionWrite"></object>
 </objects>

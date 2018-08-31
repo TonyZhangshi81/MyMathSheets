@@ -97,7 +97,7 @@ namespace TheFormulaShows
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		private F GetHtmlSipportInstance()
+		private F GetHtmlSupportInstance()
 		{
 			Type type = typeof(F);
 
@@ -108,6 +108,11 @@ namespace TheFormulaShows
 				arguments = new object[5] { _fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions };
 			}
 			else if (type.Equals(typeof(EqualityComparison)))
+			{
+				// 构造函数的参数 
+				arguments = new object[4] { _fourOperationsType, _signs, _maximumLimit, _numberOfQuestions };
+			}
+			else if (type.Equals(typeof(ComputingConnection)))
 			{
 				// 构造函数的参数 
 				arguments = new object[4] { _fourOperationsType, _signs, _maximumLimit, _numberOfQuestions };
@@ -124,7 +129,7 @@ namespace TheFormulaShows
 		/// </summary>
 		public void Structure()
 		{
-			main = GetHtmlSipportInstance() as SetThemeBase<T>;
+			main = GetHtmlSupportInstance() as SetThemeBase<T>;
 			main.MarkFormulaList();
 			_formulas = main.Formulas;
 		}

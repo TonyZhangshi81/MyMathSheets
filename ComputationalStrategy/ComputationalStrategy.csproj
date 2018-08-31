@@ -50,10 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Item\ConnectionFormula.cs" />
     <Compile Include="Item\EqualityFormula.cs" />
     <Compile Include="Main\Operation\Arithmetic.cs" />
     <Compile Include="Main\ArithmeticStrategy\CalculatePatternBase.cs" />
     <Compile Include="Main\ArithmeticStrategy\Division.cs" />
+    <Compile Include="Main\Operation\ComputingConnection.cs" />
     <Compile Include="Main\Operation\EqualityComparison.cs" />
     <Compile Include="Main\ArithmeticStrategy\Multiplication.cs" />
     <Compile Include="Main\Util\RandomNumberComposition.cs" />

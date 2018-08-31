@@ -94,5 +94,31 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 			}
 			return _formula;
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="maximumLimit"></param>
+		/// <param name="previousFormula"></param>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		public virtual Formula CreateFormula(int maximumLimit, Formula previousFormula, QuestionType type = QuestionType.GapFilling)
+		{
+			_formula = new Formula();
+
+			// 产生第一次计算式
+			if(previousFormula == null)
+			{
+				// 随机设定填空项位置
+				RandomNumberComposition number = new RandomNumberComposition(0, (int)GapFilling.Right);
+				_formula.Gap = (GapFilling)number.GetRandomNumber();
+			}
+			else
+			{
+				// 产生后续计算式(沿用前一次计算式的填空设置)
+				_formula.Gap = previousFormula.Gap;
+			}
+			return _formula;
+		}
 	}
 }

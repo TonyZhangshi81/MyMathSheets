@@ -24,5 +24,25 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 
 			return _formula;
 		}
+
+		/// <summary>
+		/// 该构造用于计算接龙题型(即:计算式左边值等于上一个计算式的结果值)
+		/// </summary>
+		/// <param name="maximumLimit"></param>
+		/// <param name="previousFormula">前一层计算式</param>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		public override Formula CreateFormula(int maximumLimit, Formula previousFormula, QuestionType type = QuestionType.GapFilling)
+		{
+			_formula = base.CreateFormula(maximumLimit, previousFormula, type);
+
+			// 如果当前是第一层计算式,需要随机获取计算式最左边的值
+			_formula.LeftParameter = (previousFormula == null) ? GetLeftParameter(maximumLimit) : previousFormula.Answer;
+			_formula.Sign = SignOfOperation.Plus;
+			_formula.RightParameter = GetRightParameter(maximumLimit, _formula.LeftParameter);
+			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
+
+			return _formula;
+		}
 	}
 }

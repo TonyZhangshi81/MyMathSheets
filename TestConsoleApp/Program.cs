@@ -21,6 +21,7 @@ namespace TestConsoleApp
 		{
 			MakeHtml<List<Formula>, Arithmetic> work = null;
 			MakeHtml<List<EqualityFormula>, EqualityComparison> work1 = null;
+			MakeHtml<List<ConnectionFormula>, ComputingConnection> work2 = null;
 			bool isShowMenu = true;
 
 			while (1 == 1)
@@ -28,10 +29,20 @@ namespace TestConsoleApp
 				if (isShowMenu)
 				{
 					Console.WriteLine("參數選擇：");
-					Console.WriteLine(" 四則運算： ");
-					Console.WriteLine("    1-隨機四則運算填空    2-標準加法填空    3-標準減法填空    4-標準乘法填空    5-標準除法填空");
-					Console.WriteLine(" 計算比大小： ");
-					Console.WriteLine("    6-隨機四則運算比較    7-標準加法比較    8-標準減法比較");
+					Console.WriteLine("************************* 四則運算 *************************");
+					Console.WriteLine("    a-隨機四則運算填空");
+					Console.WriteLine("    b-標準加法填空");
+					Console.WriteLine("    c-標準減法填空");
+					Console.WriteLine("    d-標準乘法填空");
+					Console.WriteLine("    e-標準除法填空");
+					Console.WriteLine("************************* 計算比大小 ***********************");
+					Console.WriteLine("    f-隨機四則運算比較");
+					Console.WriteLine("    g-標準加法比較");
+					Console.WriteLine("    h-標準減法比較");
+					Console.WriteLine("************************* 計算接龙 ***********************");
+					Console.WriteLine("    i-隨機加减運算接龙");
+					Console.WriteLine("    j-標準加法運算接龙");
+					Console.WriteLine("    k-標準減法運算接龙");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜单    0-退出");
 					Console.WriteLine("");
@@ -43,7 +54,7 @@ namespace TestConsoleApp
 				ConsoleKey key = Console.ReadKey().Key;
 				switch (key)
 				{
-					case ConsoleKey.D1:
+					case ConsoleKey.A:
 						IList<SignOfOperation> signs = new List<SignOfOperation>
 						{
 							SignOfOperation.Plus,
@@ -60,7 +71,7 @@ namespace TestConsoleApp
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
 						break;
 
-					case ConsoleKey.D2:
+					case ConsoleKey.B:
 						Console.WriteLine();
 						Console.WriteLine("標準加法填空");
 						// TestCase0002
@@ -69,7 +80,7 @@ namespace TestConsoleApp
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
 						break;
 
-					case ConsoleKey.D3:
+					case ConsoleKey.C:
 						Console.WriteLine();
 						Console.WriteLine("標準減法填空");
 						// TestCase0003
@@ -78,7 +89,7 @@ namespace TestConsoleApp
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
 						break;
 
-					case ConsoleKey.D4:
+					case ConsoleKey.D:
 						Console.WriteLine();
 						Console.WriteLine("標準乘法填空");
 						// TestCase0004
@@ -87,7 +98,7 @@ namespace TestConsoleApp
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
 						break;
 
-					case ConsoleKey.D5:
+					case ConsoleKey.E:
 						Console.WriteLine();
 						Console.WriteLine("標準除法填空");
 						// TestCase0005
@@ -96,7 +107,7 @@ namespace TestConsoleApp
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
 						break;
 
-					case ConsoleKey.D6:
+					case ConsoleKey.F:
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算比較");
 						// TestCase0006
@@ -105,7 +116,7 @@ namespace TestConsoleApp
 						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
 						break;
 
-					case ConsoleKey.D7:
+					case ConsoleKey.G:
 						Console.WriteLine();
 						Console.WriteLine("標準加法比較");
 						// TestCase0005
@@ -114,7 +125,7 @@ namespace TestConsoleApp
 						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
 						break;
 
-					case ConsoleKey.D8:
+					case ConsoleKey.H:
 						Console.WriteLine();
 						Console.WriteLine("標準減法比較");
 						// TestCase0005
@@ -122,6 +133,34 @@ namespace TestConsoleApp
 						work1.Structure();
 						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
 						break;
+
+					case ConsoleKey.I:
+						Console.WriteLine();
+						Console.WriteLine("標準加法運算接龙");
+						// TestCase0005
+						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Random, new List<SignOfOperation> {  SignOfOperation.Plus, SignOfOperation.Subtraction}, QuestionType.GapFilling, 100, 4);
+						work2.Structure();
+						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
+						break;
+
+					case ConsoleKey.J:
+						Console.WriteLine();
+						Console.WriteLine("標準加法運算接龙");
+						// TestCase0005
+						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 100, 4);
+						work2.Structure();
+						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
+						break;
+
+					case ConsoleKey.K:
+						Console.WriteLine();
+						Console.WriteLine("標準減法運算接龙");
+						// TestCase00055
+						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 100, 4);
+						work2.Structure();
+						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
+						break;
+
 
 					case ConsoleKey.D9:
 						isShowMenu = true;
