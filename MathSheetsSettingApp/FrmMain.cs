@@ -1,4 +1,5 @@
 ﻿using ComputationalStrategy.Item;
+using ComputationalStrategy.Main.Operation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -172,9 +173,9 @@ namespace MathSheetsSettingApp
 				return;
 			}
 
-			MakeHtmlBase work = new Arithmetic(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
+			MakeHtml<List<Formula>, Arithmetic> work = new MakeHtml<List<Formula>, Arithmetic>(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
 			work.Structure();
-			string html = work.MakeHtml();
+			string html = work.GetHtmlStatement();
 
 			string sourceFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("Template"));
 			string destFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("HTMLPage_{0}.html", DateTime.Now.ToString("HHmmssfff")));

@@ -24,7 +24,7 @@ namespace ComputationalStrategy.Main.Operation
 		/// <summary>
 		/// 
 		/// </summary>
-		protected Dictionary<string, ICalculatePattern> _cacheStrategy;
+		private readonly Dictionary<string, ICalculatePattern> _cacheStrategy;
 		/// <summary>
 		/// 题型（标准、随机填空）
 		/// </summary>

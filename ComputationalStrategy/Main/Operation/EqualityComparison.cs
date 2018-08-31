@@ -14,20 +14,6 @@ namespace ComputationalStrategy.Main.Operation
 		/// 
 		/// </summary>
 		/// <param name="fourOperationsType">四则运算类型（标准、随机出题）</param>
-		/// <param name="sign">在四则运算标准题下指定运算法（加减乘除）</param>
-		/// <param name="questionType">题型（标准、随机填空）</param>
-		/// <param name="maximumLimit">运算结果最大限度值</param>
-		/// <param name="numberOfQuestions">出题数量</param>
-		public EqualityComparison(FourOperationsType fourOperationsType, SignOfOperation sign, int maximumLimit, int numberOfQuestions)
-			: this(fourOperationsType, new List<SignOfOperation>(), maximumLimit, numberOfQuestions)
-		{
-			_signs.Add(sign);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="fourOperationsType">四则运算类型（标准、随机出题）</param>
 		/// <param name="signs">在四则运算标准题下指定运算法（加减乘除）</param>
 		/// <param name="maximumLimit">运算结果最大限度值</param>
 		/// <param name="numberOfQuestions">出题数量</param>

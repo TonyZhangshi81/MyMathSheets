@@ -89,6 +89,7 @@
     <Content Include="App_Data\Work\Scripts\jquery-3.0.0.min.js" />
     <Content Include="App_Data\Work\Scripts\json2.min.js" />
     <Content Include="App_Data\Work\Scripts\store.legacy.min.js" />
+    <Content Include="Config\HtmlSupport.xml" />
     <Content Include="Config\Operator.xml" />
   </ItemGroup>
   <ItemGroup>
