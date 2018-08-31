@@ -5,7 +5,6 @@ using Spring.Objects.Factory;
 using Spring.Objects.Factory.Xml;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace TheFormulaShows
 {
@@ -47,14 +46,6 @@ namespace TheFormulaShows
 		/// 
 		/// </summary>
 		private SetThemeBase<T> main;
-		/// <summary>
-		/// 
-		/// </summary>
-		private readonly Dictionary<string, IMakeHtml<T>> _cacheHtmlSupport;
-		/// <summary>
-		/// 
-		/// </summary>
-		private IObjectFactory _supportObjectFactory;
 
 		/// <summary>
 		/// 
@@ -79,34 +70,12 @@ namespace TheFormulaShows
 		/// <param name="maximumLimit"></param>
 		/// <param name="numberOfQuestions"></param>
 		public MakeHtml(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
-			: this()
 		{
 			_fourOperationsType = fourOperationsType;
 			_signs = signs;
 			_questionType = questionType;
 			_maximumLimit = maximumLimit;
 			_numberOfQuestions = numberOfQuestions;
-
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		public MakeHtml()
-		{
-			_cacheHtmlSupport = new Dictionary<string, IMakeHtml<T>>();
-
-			// spring对象工厂实例作成（设定文件导入）
-			CreateHtmlSupportObjectFactory();
-		}
-
-		/// <summary>
-		/// spring对象工厂实例作成（设定文件导入）
-		/// </summary>
-		private void CreateHtmlSupportObjectFactory()
-		{
-			// 设定文件导入
-			IResource input = new FileSystemResource(@"..\Config\HtmlSupport.xml");
-			_supportObjectFactory = new XmlObjectFactory(input);
 		}
 
 		/// <summary>
@@ -116,12 +85,12 @@ namespace TheFormulaShows
 		/// <returns>题型HTML处理对象（实例）</returns>
 		protected IMakeHtml<T> GetHtmlSupportInstance(string name)
 		{
-			IMakeHtml<T> strategy = (IMakeHtml<T>)_supportObjectFactory.GetObject(name);
-			if (!_cacheHtmlSupport.ContainsKey(name))
-			{
-				_cacheHtmlSupport.Add(name, strategy);
-			}
-			return _cacheHtmlSupport[name];
+			// spring对象工厂实例作成（设定文件导入）
+			IResource input = new FileSystemResource(@"..\Config\HtmlSupport.xml");
+			IObjectFactory supportObjectFactory = new XmlObjectFactory(input);
+
+			IMakeHtml<T> support = (IMakeHtml<T>)supportObjectFactory.GetObject(name);
+			return support;
 		}
 
 		/// <summary>
