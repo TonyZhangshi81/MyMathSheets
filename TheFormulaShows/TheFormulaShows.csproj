@@ -54,6 +54,7 @@
     <Compile Include="IMakeHtml.cs" />
     <Compile Include="MakeHtml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\EqualityComparisonHtmlSupport.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ComputationalStrategy\ComputationalStrategy.csproj">

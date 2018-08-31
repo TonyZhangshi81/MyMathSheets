@@ -73,7 +73,11 @@ namespace ComputationalStrategy.Item
 		/// <summary>
 		/// 等式结果(符号个数 = 3)
 		/// </summary>
-		Answer
+		Answer,
+		/// <summary>
+		/// 
+		/// </summary>
+		Default
 	}
 
 	/// <summary>

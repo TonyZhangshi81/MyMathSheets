@@ -8,11 +8,11 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<link rel="icon" href="../Content/favicon.ico">
-	<link href="../Content/bootstrap.min.css" rel="stylesheet">
-	<script src="../Scripts/jquery-3.0.0.min.js"></script>
-	<script src="../Scripts/bootstrap.min.js"></script>
-	<script src="../Scripts/store.legacy.min.js"></script>
-	<script src="../Scripts/json2.min.js"></script>
+	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+	<script src="../Scripts/jquery-3.0.0.min.js" charset="utf-8"></script>
+	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
+	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
+	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
 	<title>题库</title>
 
 	<style type="text/css">
@@ -278,7 +278,7 @@
 			function arithmeticCorrecting(index, element) {
 				// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
 				if ($(element).val() == $('#hiddenAc' + index).val()
-					|| (parseInt($('#hiddenAc' + index).val()) == -999 && $('#hiddenAc' + index).val() != '')) {
+					|| (parseInt($('#hiddenAc' + index).val()) == -999 && $(element).val() != '')) {
 					// 对错图片显示和隐藏
 					$('#imgArithmeticOK' + index).show();
 					$('#imgArithmeticNo' + index).hide();

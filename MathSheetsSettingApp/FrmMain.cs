@@ -177,6 +177,18 @@ namespace MathSheetsSettingApp
 			work.Structure();
 			string html = work.GetHtmlStatement();
 
+
+			MakeHtml<List<EqualityFormula>, EqualityComparison> work2 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(_fourOperationsType, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.Standard, _maximumLimit, _numberOfQuestions);
+			work2.Structure();
+			string html2 = work2.GetHtmlStatement();
+
+
+
+
+
+
+
+
 			string sourceFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("Template"));
 			string destFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("HTMLPage_{0}.html", DateTime.Now.ToString("HHmmssfff")));
 			File.Copy(sourceFileName, destFileName);
@@ -189,6 +201,10 @@ namespace MathSheetsSettingApp
 				if (d.IndexOf("<!--ARITHMETIC-->") >= 0)
 				{
 					allTextLines[index] = html;
+				}
+				else if (d.IndexOf("<!--EQUALITYCOMPARISON-->") >= 0)
+				{
+					allTextLines[index] = html2;
 				}
 			});
 			File.WriteAllLines(destFileName, allTextLines, Encoding.Unicode);
