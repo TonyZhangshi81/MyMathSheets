@@ -77,6 +77,8 @@
 			arithmeticReady();
 			// 设定页面所有输入域为可用状态(算式比大小)
 			equalityComparisonReady();
+			// 设定页面所有输入域为可用状态(等式接龙)
+			computingConnectionReady();
 
 
 			// 计时开始
@@ -142,7 +144,8 @@
 			var fault = arithmeticMakeCorrections();
 			// 算式比较大小
 			fault += equalityComparisonMakeCorrections();
-
+			// 等式接龙
+			fault += computingConnectionMakeCorrections();
 
 			// 是否存在错题
 			if (fault != 0) {
@@ -165,6 +168,8 @@
 			arithmeticTheirPapers();
 			// 算式比较大小交卷
 			equalityComparisonTheirPapers();
+			// 等式接龙交卷
+			computingConnectionTheirPapers();
 
 
 			$('#spanOK').text(isRight);
@@ -430,7 +435,7 @@
 				});
 				return fault;
 			}
-			
+
 		</script>
 		<!--EQUALITYCOMPARISON-->
 		<div class="row text-center row-margin-top">
@@ -477,7 +482,128 @@
 				</h5>
 			</div>
 		</div>
-		<!-- 题型3<填充区> -->
+		<!-- 题型3<等式接龙> -->
+		<div class="page-header">
+			<h6>3. 等式接龙</h6>
+		</div>
+		<hr />
+		<script>
+			// 设定页面所有输入域为可用状态(等式接龙)
+			function computingConnectionReady() {
+				$("input[id*='inputCc']").each(function (index, element) {
+					$(element).removeAttr("disabled");
+				});
+			}
+
+			// 订正(等式接龙)
+			function computingConnectionMakeCorrections() {
+				var fault = 0;
+				$("input[id*='hiddenAllCc']").each(function (pIndex, element) {
+					// 层数获取
+					var allCc = parseInt($(element).val());
+					// 答题验证
+					if (!computingConnectionCorrecting(pIndex, element)) {
+						// 答题错误时,错误件数加一
+						fault++;
+					}
+				});
+				return fault;
+			}
+
+			// 答题验证(正确:true  错误:false)
+			function computingConnectionCorrecting(pIndex, element) {
+				var isErr = false;
+				var inputCcArray = new Array()
+				$("input[id*='inputCc" + pIndex + "']").each(function (index, element) {
+					// 验证输入值是否与答案一致
+					if ($(element).val() != $('#hiddenCc' + pIndex + index).val()) {
+						isErr = true;
+					}
+					inputCcArray.push($(element));
+				});
+
+				// 不存在错误的情况下
+				if (!isErr) {
+					// 对错图片显示和隐藏
+					$('#imgComputingConnectionOK' + pIndex).show();
+					$('#imgComputingConnectionNo' + pIndex).hide();
+
+					inputCcArray.forEach(function (element, index) {
+						$(element).attr("disabled", "disabled");
+					});
+					// 正确:true
+					return true;
+				} else {
+					// 对错图片显示和隐藏
+					$('#imgComputingConnectionOK' + pIndex).hide();
+					$('#imgComputingConnectionNo' + pIndex).show();
+					// 错误:false
+					return false;
+				}
+			}
+
+			// 等式接龙交卷
+			function computingConnectionTheirPapers() {
+				$("input[id*='hiddenAllCc']").each(function (pIndex, element) {
+					// 答题验证
+					if (!computingConnectionCorrecting(pIndex, element)) {
+						// 答题错误时,错误件数加一
+						isFault++;
+					} else {
+						isRight++;
+					}
+				});
+			}
+		</script>
+		<!--COMPUTINGCONNECTION-->
+		<div class="row text-center row-margin-top">
+			<div class="col-md-10 form-inline">
+				<h5>
+					<span class="label">19</span>
+					<span class="label">-</span>
+					<input id="inputCc00" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc00" type="hidden" value="9" />
+					<span class="label">=</span>
+					<span class="label">10</span>
+					<span class="label">+</span>
+					<input id="inputCc01" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc01" type="hidden" value="8" />
+					<span class="label">=</span>
+					<span class="label">18</span>
+					<span class="label">+</span>
+					<input id="inputCc02" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc02" type="hidden" value="2" />
+					<span class="label">=</span>
+					<span class="label">20</span>
+					<span class="label">-</span>
+					<input id="inputCc03" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc03" type="hidden" value="15" />
+					<span class="label">=</span>
+					<span class="label">5</span>
+					<img id="imgComputingConnectionOK0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+					<img id="imgComputingConnectionNo0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					<input id="hiddenAllCc0" type="hidden" value="4" />
+				</h5>
+			</div>
+		</div>
+		<div class="row text-center row-margin-top">
+			<div class="col-md-10 form-inline">
+				<h5>
+					<span class="label">5</span>
+					<span class="label">+</span>
+					<input id="inputCc10" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc10" type="hidden" value="15" />
+					<span class="label">=</span>
+					<span class="label">20</span>
+					<span class="label">+</span>
+					<input id="inputCc11" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc11" type="hidden" value="5" />
+					<span class="label">=</span>
+					<span class="label">25</span>
+					<span class="label">-</span>
+					<input id="inputCc12" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc12" type="hidden" value="10" />
+					<span class="label">=</span>
+					<span class="label">15</span>
+					<img id="imgComputingConnectionOK1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+					<img id="imgComputingConnectionNo1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					<input id="hiddenAllCc1" type="hidden" value="3" />
+				</h5>
+			</div>
+		</div>
 		<!-- 题型4<填充区> -->
 		<!-- 题型5<填充区> -->
 		<HR>
