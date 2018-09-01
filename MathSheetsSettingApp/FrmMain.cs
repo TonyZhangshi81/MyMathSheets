@@ -184,7 +184,9 @@ namespace MathSheetsSettingApp
 
 
 
-
+			MakeHtml<List<ConnectionFormula>, ComputingConnection> work3 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(_fourOperationsType, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.Standard, _maximumLimit, _numberOfQuestions);
+			work3.Structure();
+			string html3 = work3.GetHtmlStatement();
 
 
 
@@ -205,6 +207,10 @@ namespace MathSheetsSettingApp
 				else if (d.IndexOf("<!--EQUALITYCOMPARISON-->") >= 0)
 				{
 					allTextLines[index] = html2;
+				}
+				else if (d.IndexOf("<!--COMPUTINGCONNECTION-->") >= 0)
+				{
+					allTextLines[index] = html3;
 				}
 			});
 			File.WriteAllLines(destFileName, allTextLines, Encoding.Unicode);

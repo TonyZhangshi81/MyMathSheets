@@ -59,6 +59,7 @@
 			$('#spanOldOK').text(result.right);
 			$('#spanOldNo').text(result.fault);
 		}
+
 		// 答题准备按钮
 		function btnReadyClick() {
 			// 交卷按钮显示
@@ -69,6 +70,8 @@
 			arithmeticReady();
 			// 设定页面所有输入域为可用状态(算式比大小)
 			equalityComparisonReady();
+			// 设定页面所有输入域为可用状态(等式接龙)
+			computingConnectionReady();
 
 
 			// 计时开始
@@ -134,7 +137,8 @@
 			var fault = arithmeticMakeCorrections();
 			// 算式比较大小
 			fault += equalityComparisonMakeCorrections();
-
+			// 等式接龙
+			fault += computingConnectionMakeCorrections();
 
 			// 是否存在错题
 			if (fault != 0) {
@@ -157,6 +161,8 @@
 			arithmeticTheirPapers();
 			// 算式比较大小交卷
 			equalityComparisonTheirPapers();
+			// 等式接龙交卷
+			computingConnectionTheirPapers();
 
 
 			$('#spanOK').text(isRight);
@@ -379,7 +385,80 @@
 			
 		</script>
 		<!--EQUALITYCOMPARISON-->
-		<!-- 题型3<填充区> -->
+		<!-- 题型3<等式接龙> -->
+		<div class="page-header">
+			<h6>3. 等式接龙</h6>
+		</div>
+		<hr />
+		<script>
+			// 设定页面所有输入域为可用状态(等式接龙)
+			function computingConnectionReady() {
+				$("input[id*='inputCc']").each(function (index, element) {
+					$(element).removeAttr("disabled");
+				});
+			}
+
+			// 订正(等式接龙)
+			function computingConnectionMakeCorrections() {
+				var fault = 0;
+				$("input[id*='hiddenAllCc']").each(function (pIndex, element) {
+					// 层数获取
+					var allCc = parseInt($(element).val());
+					// 答题验证
+					if (!computingConnectionCorrecting(pIndex, element)) {
+						// 答题错误时,错误件数加一
+						fault++;
+					}
+				});
+				return fault;
+			}
+
+			// 答题验证(正确:true  错误:false)
+			function computingConnectionCorrecting(pIndex, element) {
+				var isErr = false;
+				var inputCcArray = new Array()
+				$("input[id*='inputCc" + pIndex + "']").each(function (index, element) {
+					// 验证输入值是否与答案一致
+					if ($(element).val() != $('#hiddenCc' + pIndex + index).val()) {
+						isErr = true;
+					}
+					inputCcArray.push($(element));
+				});
+
+				// 不存在错误的情况下
+				if (!isErr) {
+					// 对错图片显示和隐藏
+					$('#imgComputingConnectionOK' + pIndex).show();
+					$('#imgComputingConnectionNo' + pIndex).hide();
+
+					inputCcArray.forEach(function (element, index) {
+						$(element).attr("disabled", "disabled");
+					});
+					// 正确:true
+					return true;
+				} else {
+					// 对错图片显示和隐藏
+					$('#imgComputingConnectionOK' + pIndex).hide();
+					$('#imgComputingConnectionNo' + pIndex).show();
+					// 错误:false
+					return false;
+				}
+			}
+
+			// 等式接龙交卷
+			function computingConnectionTheirPapers() {
+				$("input[id*='hiddenAllCc']").each(function (pIndex, element) {
+					// 答题验证
+					if (!computingConnectionCorrecting(pIndex, element)) {
+						// 答题错误时,错误件数加一
+						isFault++;
+					} else {
+						isRight++;
+					}
+				});
+			}
+		</script>
+		<!--COMPUTINGCONNECTION-->
 		<!-- 题型4<填充区> -->
 		<!-- 题型5<填充区> -->
 		<HR>

@@ -2,4 +2,5 @@
 <objects xmlns="http://www.springframework.net">
 	<object id="Arithmetic" type="TheFormulaShows.Support.ArithmeticHtmlSupport"></object>
 	<object id="EqualityComparison" type="TheFormulaShows.Support.EqualityComparisonHtmlSupport"></object>
+	<object id="ComputingConnection" type="TheFormulaShows.Support.ComputingConnectionHtmlSupport"></object>
 </objects>

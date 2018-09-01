@@ -33,14 +33,14 @@ namespace TheFormulaShows.Support
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-4 form-inline\">");
 				colHtml.AppendLine("<h5>");
-				colHtml.AppendLine(this.GetHtml(GapFilling.Default, item.LeftFormula.LeftParameter, GapFilling.Left, controlIndex));
+				colHtml.AppendLine(this.GetHtml(GapFilling.Left, item.LeftFormula.LeftParameter, GapFilling.Default, controlIndex));
 				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", GetOperation(item.LeftFormula.Sign)));
-				colHtml.AppendLine(this.GetHtml(GapFilling.Default, item.LeftFormula.RightParameter, GapFilling.Left, controlIndex));
+				colHtml.AppendLine(this.GetHtml(GapFilling.Right, item.LeftFormula.RightParameter, GapFilling.Default, controlIndex));
 				colHtml.AppendLine(string.Format("<img src=\"../Content/image/help.png\" width=\"30\" height=\"30\" id=\"imgEc{0}\" title=\"help\" />", controlIndex));
 				colHtml.AppendLine(string.Format("<input id=\"hiddenEc{0}\" type=\"hidden\" value=\"{1}\" />", controlIndex, ToSignOfCompare(item.Answer)));
-				colHtml.AppendLine(this.GetHtml(GapFilling.Default, item.RightFormula.LeftParameter, GapFilling.Left, controlIndex));
+				colHtml.AppendLine(this.GetHtml(GapFilling.Left, item.RightFormula.LeftParameter, GapFilling.Default, controlIndex));
 				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", GetOperation(item.RightFormula.Sign)));
-				colHtml.AppendLine(this.GetHtml(GapFilling.Default, item.RightFormula.RightParameter, GapFilling.Left, controlIndex));
+				colHtml.AppendLine(this.GetHtml(GapFilling.Right, item.RightFormula.RightParameter, GapFilling.Default, controlIndex));
 				colHtml.AppendLine(string.Format("<img id=\"imgEqualityOK{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine(string.Format("<img id=\"imgEqualityNo{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine("</h5>");

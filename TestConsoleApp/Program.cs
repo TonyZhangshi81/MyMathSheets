@@ -75,7 +75,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準加法填空");
 						// TestCase0002
-						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 50, 20);
+						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Standard, 50, 20);
 						work.Structure();
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
 						break;
@@ -84,7 +84,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準減法填空");
 						// TestCase0003
-						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 200, 15);
+						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Standard, 200, 15);
 						work.Structure();
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
 						break;
@@ -93,7 +93,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準乘法填空");
 						// TestCase0004
-						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Multiple, QuestionType.GapFilling, 81, 20);
+						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Multiple, QuestionType.Standard, 81, 20);
 						work.Structure();
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
 						break;
@@ -102,7 +102,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準除法填空");
 						// TestCase0005
-						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.GapFilling, 81, 20);
+						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.Standard, 81, 20);
 						work.Structure();
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
 						break;
@@ -111,7 +111,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算比較");
 						// TestCase0006
-						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Random, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.GapFilling, 81, 20);
+						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Random, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.Default, 81, 20);
 						work1.Structure();
 						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
 						break;
@@ -120,7 +120,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準加法比較");
 						// TestCase0005
-						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 81, 20);
+						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 81, 20);
 						work1.Structure();
 						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
 						break;
@@ -129,7 +129,7 @@ namespace TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準減法比較");
 						// TestCase0005
-						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 81, 20);
+						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Default, 81, 20);
 						work1.Structure();
 						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
 						break;

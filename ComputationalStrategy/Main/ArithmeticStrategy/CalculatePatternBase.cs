@@ -88,6 +88,7 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		{
 			_formula = new Formula();
 
+			_formula.Gap = GapFilling.Answer;
 			if (type == QuestionType.GapFilling)
 			{
 				_formula.Gap = GapFillingItem;

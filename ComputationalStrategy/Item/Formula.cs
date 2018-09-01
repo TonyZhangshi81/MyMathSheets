@@ -92,7 +92,11 @@ namespace ComputationalStrategy.Item
 		/// <summary>
 		/// 随机填空
 		/// </summary>
-		GapFilling
+		GapFilling,
+		/// <summary>
+		/// 默认值(未设定)
+		/// </summary>
+		Default
 	}
 
 	/// <summary>
