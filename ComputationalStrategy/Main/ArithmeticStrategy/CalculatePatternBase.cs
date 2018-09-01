@@ -106,18 +106,8 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		{
 			_formula = new Formula();
 
-			// 产生第一次计算式
-			if(previousFormula == null)
-			{
-				// 随机设定填空项位置
-				RandomNumberComposition number = new RandomNumberComposition(0, (int)GapFilling.Right);
-				_formula.Gap = (GapFilling)number.GetRandomNumber();
-			}
-			else
-			{
-				// 产生后续计算式(沿用前一次计算式的填空设置)
-				_formula.Gap = previousFormula.Gap;
-			}
+			// 设定填空项位置
+			_formula.Gap = GapFilling.Right;
 			return _formula;
 		}
 	}
