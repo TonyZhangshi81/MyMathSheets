@@ -42,6 +42,9 @@
 			this.tbxNumberOf = new System.Windows.Forms.TextBox();
 			this.label2 = new System.Windows.Forms.Label();
 			this.cmbComplexity = new System.Windows.Forms.ComboBox();
+			this.chkArithmetic = new System.Windows.Forms.CheckBox();
+			this.chkEqualityComparison = new System.Windows.Forms.CheckBox();
+			this.chkComputingConnection = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -153,7 +156,7 @@
 			this.lblTopic.AutoSize = true;
 			this.lblTopic.Location = new System.Drawing.Point(37, 24);
 			this.lblTopic.Name = "lblTopic";
-			this.lblTopic.Size = new System.Drawing.Size(35, 12);
+			this.lblTopic.Size = new System.Drawing.Size(41, 12);
 			this.lblTopic.TabIndex = 9;
 			this.lblTopic.Text = "题型：";
 			// 
@@ -162,7 +165,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(38, 53);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(35, 12);
+			this.label1.Size = new System.Drawing.Size(41, 12);
 			this.label1.TabIndex = 10;
 			this.label1.Text = "数量：";
 			// 
@@ -170,9 +173,9 @@
 			// 
 			this.tbxNumberOf.Location = new System.Drawing.Point(109, 50);
 			this.tbxNumberOf.Name = "tbxNumberOf";
-			this.tbxNumberOf.Size = new System.Drawing.Size(100, 19);
+			this.tbxNumberOf.Size = new System.Drawing.Size(100, 21);
 			this.tbxNumberOf.TabIndex = 11;
-			this.tbxNumberOf.Text = "35";
+			this.tbxNumberOf.Text = "5";
 			this.tbxNumberOf.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// label2
@@ -180,7 +183,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(39, 81);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(35, 12);
+			this.label2.Size = new System.Drawing.Size(41, 12);
 			this.label2.TabIndex = 12;
 			this.label2.Text = "等级：";
 			// 
@@ -193,11 +196,47 @@
 			this.cmbComplexity.Size = new System.Drawing.Size(100, 20);
 			this.cmbComplexity.TabIndex = 13;
 			// 
+			// chkArithmetic
+			// 
+			this.chkArithmetic.AutoSize = true;
+			this.chkArithmetic.Location = new System.Drawing.Point(254, 21);
+			this.chkArithmetic.Name = "chkArithmetic";
+			this.chkArithmetic.Size = new System.Drawing.Size(72, 16);
+			this.chkArithmetic.TabIndex = 14;
+			this.chkArithmetic.Text = "四则运算";
+			this.chkArithmetic.UseVisualStyleBackColor = true;
+			this.chkArithmetic.CheckedChanged += new System.EventHandler(this.ArithmeticCheckedChanged);
+			// 
+			// chkEqualityComparison
+			// 
+			this.chkEqualityComparison.AutoSize = true;
+			this.chkEqualityComparison.Location = new System.Drawing.Point(254, 43);
+			this.chkEqualityComparison.Name = "chkEqualityComparison";
+			this.chkEqualityComparison.Size = new System.Drawing.Size(84, 16);
+			this.chkEqualityComparison.TabIndex = 15;
+			this.chkEqualityComparison.Text = "算式比大小";
+			this.chkEqualityComparison.UseVisualStyleBackColor = true;
+			this.chkEqualityComparison.CheckedChanged += new System.EventHandler(this.EqualityComparisonCheckedChanged);
+			// 
+			// chkComputingConnection
+			// 
+			this.chkComputingConnection.AutoSize = true;
+			this.chkComputingConnection.Location = new System.Drawing.Point(254, 65);
+			this.chkComputingConnection.Name = "chkComputingConnection";
+			this.chkComputingConnection.Size = new System.Drawing.Size(72, 16);
+			this.chkComputingConnection.TabIndex = 16;
+			this.chkComputingConnection.Text = "等式接龙";
+			this.chkComputingConnection.UseVisualStyleBackColor = true;
+			this.chkComputingConnection.CheckedChanged += new System.EventHandler(this.ComputingConnectionCheckedChanged);
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(399, 240);
+			this.ClientSize = new System.Drawing.Size(771, 240);
+			this.Controls.Add(this.chkComputingConnection);
+			this.Controls.Add(this.chkEqualityComparison);
+			this.Controls.Add(this.chkArithmetic);
 			this.Controls.Add(this.cmbComplexity);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.tbxNumberOf);
@@ -232,6 +271,9 @@
 		private System.Windows.Forms.TextBox tbxNumberOf;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.ComboBox cmbComplexity;
+		private System.Windows.Forms.CheckBox chkArithmetic;
+		private System.Windows.Forms.CheckBox chkEqualityComparison;
+		private System.Windows.Forms.CheckBox chkComputingConnection;
 	}
 }
 

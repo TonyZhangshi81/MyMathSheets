@@ -13,6 +13,9 @@
 	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
+	<!--ARITHMETICSCRIPT-->
+	<!--EQUALITYCOMPARISONSCRIPT-->
+	<!--COMPUTINGCONNECTIONSCRIPT-->
 	<title>题库</title>
 
 	<style type="text/css">
@@ -67,11 +70,11 @@
 			// 准备按钮隐藏
 			$('#btnReady').hide();
 			// 设定页面所有输入域为可用状态(四则运算)
-			arithmeticReady();
+			//<!--ARITHMETICREADY-->
 			// 设定页面所有输入域为可用状态(算式比大小)
-			equalityComparisonReady();
+			//<!--EQUALITYCOMPARISONREADY-->
 			// 设定页面所有输入域为可用状态(等式接龙)
-			computingConnectionReady();
+			//<!--COMPUTINGCONNECTIONREADY-->
 
 
 			// 计时开始
@@ -133,12 +136,13 @@
 
 		// 订正按钮(不计入答题情况信息)
 		function btnMakeCorrectionsClick() {
+			var fault = 0;
 			// 四则运算题
-			var fault = arithmeticMakeCorrections();
+			//<!--ARITHMETICMAKECORRECTIONS-->
 			// 算式比较大小
-			fault += equalityComparisonMakeCorrections();
+			//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->
 			// 等式接龙
-			fault += computingConnectionMakeCorrections();
+			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
 
 			// 是否存在错题
 			if (fault != 0) {
@@ -158,11 +162,11 @@
 		// 交卷按钮(记录在答题情况下,以便可以看到前一次做题情况)
 		function btnTheirPapersClick() {
 			// 四则运算交卷
-			arithmeticTheirPapers();
+			//<!--ARITHMETICTHEIRPAPERS-->
 			// 算式比较大小交卷
-			equalityComparisonTheirPapers();
+			//<!--EQUALITYCOMPARISONTHEIRPAPERS-->
 			// 等式接龙交卷
-			computingConnectionTheirPapers();
+			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
 
 
 			$('#spanOK').text(isRight);
@@ -246,218 +250,11 @@
 				<span style="padding-left:20px;">答错:</span><span id="spanOldNo" style="padding-left:10px;"></span>题
 			</div>
 		</div>
-		<!-- 题型1<四则运算题> -->
-		<div class="page-header">
-			<h6>1. 四则运算题</h6>
-		</div>
-		<hr />
-		<script>
-			// 设定页面所有输入域为可用状态(四则运算)
-			function arithmeticReady() {
-				$("input[id*='inputAc']").each(function (index, element) {
-					$(element).removeAttr("disabled");
-				});
-			}
-
-			// 订正(四则运算题)
-			function arithmeticMakeCorrections() {
-				var fault = 0;
-				$("input[id*='inputAc']").each(function (index, element) {
-					// 答题验证
-					if (!arithmeticCorrecting(index, element)) {
-						// 答题错误时,错误件数加一
-						fault++;
-					}
-				});
-				return fault;
-			}
-
-			// 答题验证(正确:true  错误:false)
-			function arithmeticCorrecting(index, element) {
-				// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
-				if ($(element).val() == $('#hiddenAc' + index).val()
-					|| (parseInt($('#hiddenAc' + index).val()) == -999 && $(element).val() != '')) {
-					// 对错图片显示和隐藏
-					$('#imgArithmeticOK' + index).show();
-					$('#imgArithmeticNo' + index).hide();
-					$(element).attr("disabled", "disabled");
-					// 正确:true
-					return true;
-				} else {
-					// 对错图片显示和隐藏
-					$('#imgArithmeticOK' + index).hide();
-					$('#imgArithmeticNo' + index).show();
-					// 错误:false
-					return false;
-				}
-			}
-
-			// 四则运算交卷
-			function arithmeticTheirPapers() {
-				$("input[id*='inputAc']").each(function (index, element) {
-					// 答题验证
-					if (!arithmeticCorrecting(index, element)) {
-						// 答题错误时,错误件数加一
-						isFault++;
-					} else {
-						isRight++;
-					}
-				});
-			}
-		</script>
+		<br/>
 		<!--ARITHMETIC-->
-		<!-- 题型2<运算比大小> -->
-		<div class="page-header">
-			<h6>2. 运算比大小</h6>
-		</div>
-		<hr />
-		<script>
-			// 设定页面所有输入域为可用状态(算式比大小)
-			function equalityComparisonReady() {
-				$("img[id*='imgEc']").each(function (index, element) {
-					$(element).click(function () { imgEqualityClick(element); });
-				});
-			}
-
-			function imgEqualityClick(element) {
-				if ($(element).attr("title") == 'help') {
-					$(element).attr("title", 'less');
-					$(element).attr("src", '../Content/image/char-less.png');
-					return;
-				} else if ($(element).attr("title") == 'less') {
-					$(element).attr("title", 'more');
-					$(element).attr("src", '../Content/image/char-more.png');
-					return;
-				} else if ($(element).attr("title") == 'more') {
-					$(element).attr("title", 'calculator');
-					$(element).attr("src", '../Content/image/calculator.png');
-					return;
-				} else if ($(element).attr("title") == 'calculator') {
-					$(element).attr("title", 'less');
-					$(element).attr("src", '../Content/image/char-less.png');
-					return;
-				}
-			}
-
-			function equalityComparisonTheirPapers() {
-				$("img[id*='imgEc']").each(function (index, element) {
-					// 答题验证
-					if (!equalityComparisonCorrecting(index, element)) {
-						// 答题错误时,错误件数加一
-						isFault++;
-					} else {
-						isRight++;
-					}
-				});
-			}
-
-			// 答题验证(正确:true  错误:false)
-			function equalityComparisonCorrecting(index, element) {
-				// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
-				if ($(element).attr("title") == $('#hiddenEc' + index).val()) {
-					// 对错图片显示和隐藏
-					$('#imgEqualityOK' + index).show();
-					$('#imgEqualityNo' + index).hide();
-					$(element).attr("disabled", "disabled");
-					// 正确:true
-					return true;
-				} else {
-					// 对错图片显示和隐藏
-					$('#imgEqualityOK' + index).hide();
-					$('#imgEqualityNo' + index).show();
-					// 错误:false
-					return false;
-				}
-			}
-
-			// 订正(运算比大小)
-			function equalityComparisonMakeCorrections() {
-				var fault = 0;
-				$("img[id*='imgEc']").each(function (index, element) {
-					// 答题验证
-					if (!equalityComparisonCorrecting(index, element)) {
-						// 答题错误时,错误件数加一
-						fault++;
-					}
-				});
-				return fault;
-			}
-			
-		</script>
+		<br/>
 		<!--EQUALITYCOMPARISON-->
-		<!-- 题型3<等式接龙> -->
-		<div class="page-header">
-			<h6>3. 等式接龙</h6>
-		</div>
-		<hr />
-		<script>
-			// 设定页面所有输入域为可用状态(等式接龙)
-			function computingConnectionReady() {
-				$("input[id*='inputCc']").each(function (index, element) {
-					$(element).removeAttr("disabled");
-				});
-			}
-
-			// 订正(等式接龙)
-			function computingConnectionMakeCorrections() {
-				var fault = 0;
-				$("input[id*='hiddenAllCc']").each(function (pIndex, element) {
-					// 层数获取
-					var allCc = parseInt($(element).val());
-					// 答题验证
-					if (!computingConnectionCorrecting(pIndex, element)) {
-						// 答题错误时,错误件数加一
-						fault++;
-					}
-				});
-				return fault;
-			}
-
-			// 答题验证(正确:true  错误:false)
-			function computingConnectionCorrecting(pIndex, element) {
-				var isErr = false;
-				var inputCcArray = new Array()
-				$("input[id*='inputCc" + pIndex + "']").each(function (index, element) {
-					// 验证输入值是否与答案一致
-					if ($(element).val() != $('#hiddenCc' + pIndex + index).val()) {
-						isErr = true;
-					}
-					inputCcArray.push($(element));
-				});
-
-				// 不存在错误的情况下
-				if (!isErr) {
-					// 对错图片显示和隐藏
-					$('#imgComputingConnectionOK' + pIndex).show();
-					$('#imgComputingConnectionNo' + pIndex).hide();
-
-					inputCcArray.forEach(function (element, index) {
-						$(element).attr("disabled", "disabled");
-					});
-					// 正确:true
-					return true;
-				} else {
-					// 对错图片显示和隐藏
-					$('#imgComputingConnectionOK' + pIndex).hide();
-					$('#imgComputingConnectionNo' + pIndex).show();
-					// 错误:false
-					return false;
-				}
-			}
-
-			// 等式接龙交卷
-			function computingConnectionTheirPapers() {
-				$("input[id*='hiddenAllCc']").each(function (pIndex, element) {
-					// 答题验证
-					if (!computingConnectionCorrecting(pIndex, element)) {
-						// 答题错误时,错误件数加一
-						isFault++;
-					} else {
-						isRight++;
-					}
-				});
-			}
-		</script>
+		<br/>
 		<!--COMPUTINGCONNECTION-->
 		<!-- 题型4<填充区> -->
 		<!-- 题型5<填充区> -->

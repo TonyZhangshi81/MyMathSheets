@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TheFormulaShows;
+using TheFormulaShows.Attributes;
+using TheFormulaShows.Support;
 
 namespace MathSheetsSettingApp
 {
@@ -22,6 +24,11 @@ namespace MathSheetsSettingApp
 		{
 			InitializeComponent();
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private Dictionary<string, Dictionary<string, string>> _htmlMaps = new Dictionary<string, Dictionary<string, string>>();
 		/// <summary>
 		/// 
 		/// </summary>
@@ -91,7 +98,7 @@ namespace MathSheetsSettingApp
 			this.chkSubtraction.Enabled = false;
 			this.chkMultiplication.Enabled = false;
 			this.chkDivision.Enabled = false;
-		}	
+		}
 		/// <summary>
 		/// 
 		/// </summary>
@@ -173,47 +180,22 @@ namespace MathSheetsSettingApp
 				return;
 			}
 
-			MakeHtml<List<Formula>, Arithmetic> work = new MakeHtml<List<Formula>, Arithmetic>(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
-			work.Structure();
-			string html = work.GetHtmlStatement();
-
-
-			MakeHtml<List<EqualityFormula>, EqualityComparison> work2 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(_fourOperationsType, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.Standard, _maximumLimit, _numberOfQuestions);
-			work2.Structure();
-			string html2 = work2.GetHtmlStatement();
-
-
-
-			MakeHtml<List<ConnectionFormula>, ComputingConnection> work3 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(_fourOperationsType, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.Standard, _maximumLimit, _numberOfQuestions);
-			work3.Structure();
-			string html3 = work3.GetHtmlStatement();
-
-
-
-
 			string sourceFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("Template"));
 			string destFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("HTMLPage_{0}.html", DateTime.Now.ToString("HHmmssfff")));
 			File.Copy(sourceFileName, destFileName);
 
-			int index = 0;
-			string[] allTextLines = File.ReadAllLines(destFileName, Encoding.UTF8);
-			allTextLines.ToList().ForEach(d =>
+			StringBuilder htmlTemplate = new StringBuilder();
+			htmlTemplate.Append(File.ReadAllText(destFileName, Encoding.UTF8));
+
+			foreach (KeyValuePair<string, Dictionary<string, string>> d in _htmlMaps)
 			{
-				index++;
-				if (d.IndexOf("<!--ARITHMETIC-->") >= 0)
+				foreach (KeyValuePair<string, string> m in d.Value)
 				{
-					allTextLines[index] = html;
+					htmlTemplate.Replace(m.Key, m.Value);
 				}
-				else if (d.IndexOf("<!--EQUALITYCOMPARISON-->") >= 0)
-				{
-					allTextLines[index] = html2;
-				}
-				else if (d.IndexOf("<!--COMPUTINGCONNECTION-->") >= 0)
-				{
-					allTextLines[index] = html3;
-				}
-			});
-			File.WriteAllLines(destFileName, allTextLines, Encoding.Unicode);
+			}
+
+			File.WriteAllText(destFileName, htmlTemplate.ToString(), Encoding.UTF8);
 
 			System.Diagnostics.Process.Start(@"IExplore.exe", Path.GetFullPath(destFileName));
 
@@ -289,6 +271,94 @@ namespace MathSheetsSettingApp
 				this.chkAdition.Checked = false;
 				this.chkMultiplication.Checked = false;
 				this.chkSubtraction.Checked = false;
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ArithmeticCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkArithmetic.Checked)
+			{
+				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
+				MakeHtml<List<Formula>, Arithmetic> work = new MakeHtml<List<Formula>, Arithmetic>(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
+				work.Structure();
+				htmlMaps.Add("<!--ARITHMETIC-->", work.GetHtmlStatement());
+
+				Type type = typeof(ArithmeticHtmlSupport);
+				object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
+				attribute.ToList().ForEach(d =>
+				{
+					var attr = (SubstituteAttribute)d;
+					htmlMaps.Add(attr.Source, attr.Target);
+				});
+
+				_htmlMaps.Add("ARITHMETIC", htmlMaps);
+			}
+			else
+			{
+				_htmlMaps.Remove("ARITHMETIC");
+			}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void EqualityComparisonCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkEqualityComparison.Checked)
+			{
+				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
+				MakeHtml<List<EqualityFormula>, EqualityComparison> work = new MakeHtml<List<EqualityFormula>, EqualityComparison>(_fourOperationsType, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.Standard, _maximumLimit, _numberOfQuestions);
+				work.Structure();
+				htmlMaps.Add("<!--EQUALITYCOMPARISON-->", work.GetHtmlStatement());
+
+				Type type = typeof(EqualityComparisonHtmlSupport);
+				object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
+				attribute.ToList().ForEach(d =>
+				{
+					var attr = (SubstituteAttribute)d;
+					htmlMaps.Add(attr.Source, attr.Target);
+				});
+
+				_htmlMaps.Add("EQUALITYCOMPARISON", htmlMaps);
+			}
+			else
+			{
+				_htmlMaps.Remove("EQUALITYCOMPARISON");
+			}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ComputingConnectionCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkComputingConnection.Checked)
+			{
+				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
+				MakeHtml<List<ConnectionFormula>, ComputingConnection> work = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(_fourOperationsType, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.Standard, _maximumLimit, _numberOfQuestions);
+				work.Structure();
+				htmlMaps.Add("<!--COMPUTINGCONNECTION-->", work.GetHtmlStatement());
+
+				Type type = typeof(ComputingConnectionHtmlSupport);
+				object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
+				attribute.ToList().ForEach(d =>
+				{
+					var attr = (SubstituteAttribute)d;
+					htmlMaps.Add(attr.Source, attr.Target);
+				});
+
+				_htmlMaps.Add("COMPUTINGCONNECTION", htmlMaps);
+			}
+			else
+			{
+				_htmlMaps.Remove("COMPUTINGCONNECTION");
 			}
 		}
 	}

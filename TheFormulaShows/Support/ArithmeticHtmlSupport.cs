@@ -1,12 +1,17 @@
 ﻿using ComputationalStrategy.Item;
 using System.Collections.Generic;
 using System.Text;
+using TheFormulaShows.Attributes;
 
 namespace TheFormulaShows.Support
 {
 	/// <summary>
 	/// 
 	/// </summary>
+	[Substitute("<!--ARITHMETICSCRIPT-->", "<script src=\"../Scripts/Ext/Arithmetic.js\" charset=\"utf-8\"></script>")]
+	[Substitute("//<!--ARITHMETICREADY-->", "arithmeticReady();")]
+	[Substitute("//<!--ARITHMETICMAKECORRECTIONS-->", "fault += arithmeticMakeCorrections();")]
+	[Substitute("//<!--ARITHMETICTHEIRPAPERS-->", "arithmeticTheirPapers();")]
 	public class ArithmeticHtmlSupport : IMakeHtml<List<Formula>>
 	{
 		/// <summary>
@@ -67,6 +72,11 @@ namespace TheFormulaShows.Support
 				rowHtml.AppendLine("</div>");
 
 				html.Append(rowHtml);
+			}
+
+			if(html.Length != 0)
+			{
+				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />四则运算题</h4></div><hr />");
 			}
 
 			return html.ToString();

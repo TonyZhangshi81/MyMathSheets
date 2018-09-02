@@ -1,4 +1,4 @@
-﻿namespace TheFormulaShows
+﻿namespace TheFormulaShows.Support
 {
 	/// <summary>
 	/// 

@@ -4,9 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheFormulaShows.Attributes;
 
 namespace TheFormulaShows.Support
 {
+	/// <summary>
+	/// 
+	/// </summary>
+	[Substitute("<!--EQUALITYCOMPARISONSCRIPT-->", "<script src=\"../Scripts/Ext/EqualityComparison.js\" charset=\"utf-8\"></script>")]
+	[Substitute("//<!--EQUALITYCOMPARISONREADY-->", "equalityComparisonReady();")]
+	[Substitute("//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->", "fault += equalityComparisonMakeCorrections();")]
+	[Substitute("//<!--EQUALITYCOMPARISONTHEIRPAPERS-->", "equalityComparisonTheirPapers();")]
 	public class EqualityComparisonHtmlSupport : IMakeHtml<List<EqualityFormula>>
 	{
 		/// <summary>
@@ -72,6 +80,10 @@ namespace TheFormulaShows.Support
 				html.Append(rowHtml);
 			}
 
+			if (html.Length != 0)
+			{
+				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />运算比大小</h4></div><hr />");
+			}
 			return html.ToString();
 		}
 

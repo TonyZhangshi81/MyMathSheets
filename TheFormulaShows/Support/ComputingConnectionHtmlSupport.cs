@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheFormulaShows.Attributes;
 
 namespace TheFormulaShows.Support
 {
 	/// <summary>
 	/// 
 	/// </summary>
+	[Substitute("<!--COMPUTINGCONNECTIONSCRIPT-->", "<script src=\"../Scripts/Ext/ComputingConnection.js\" charset=\"utf-8\"></script>")]
+	[Substitute("//<!--COMPUTINGCONNECTIONREADY-->", "computingConnectionReady();")]
+	[Substitute("//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->", "fault += computingConnectionMakeCorrections();")]
+	[Substitute("//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->", "computingConnectionTheirPapers();")]
 	public class ComputingConnectionHtmlSupport : IMakeHtml<List<ConnectionFormula>>
 	{
 		/// <summary>
@@ -56,6 +61,11 @@ namespace TheFormulaShows.Support
 
 				parentControlIndex++;
 				controlIndex = 0;
+			}
+
+			if (html.Length != 0)
+			{
+				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />等式接龙</h4></div><hr />");
 			}
 			return html.ToString();
 		}
