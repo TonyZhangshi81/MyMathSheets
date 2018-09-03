@@ -16,6 +16,7 @@
 	<!--ARITHMETICSCRIPT-->
 	<!--EQUALITYCOMPARISONSCRIPT-->
 	<!--COMPUTINGCONNECTIONSCRIPT-->
+	<!--MATHWORDPROBLEMSSCRIPT-->
 	<title>题库</title>
 
 	<style type="text/css">
@@ -75,6 +76,8 @@
 			//<!--EQUALITYCOMPARISONREADY-->
 			// 设定页面所有输入域为可用状态(等式接龙)
 			//<!--COMPUTINGCONNECTIONREADY-->
+			// 设定页面所有输入域为可用状态(算数应用题)
+			//<!--MATHWORDPROBLEMSREADY-->
 
 
 			// 计时开始
@@ -143,6 +146,8 @@
 			//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->
 			// 等式接龙
 			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
+			// 算数应用题
+			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
 
 			// 是否存在错题
 			if (fault != 0) {
@@ -167,6 +172,8 @@
 			//<!--EQUALITYCOMPARISONTHEIRPAPERS-->
 			// 等式接龙交卷
 			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
+			// 算数应用题交卷
+			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
 
 
 			$('#spanOK').text(isRight);
@@ -256,7 +263,9 @@
 		<!--EQUALITYCOMPARISON-->
 		<br/>
 		<!--COMPUTINGCONNECTION-->
-		<!-- 题型4<填充区> -->
+		<br/>
+		<!--MATHWORDPROBLEMS-->
+		<br/>
 		<!-- 题型5<填充区> -->
 		<HR>
 		<div class="row">

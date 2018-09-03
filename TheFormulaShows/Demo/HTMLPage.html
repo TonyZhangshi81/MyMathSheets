@@ -21,6 +21,7 @@
 	<!--ARITHMETICSCRIPT-->
 	<!--EQUALITYCOMPARISONSCRIPT-->
 	<!--COMPUTINGCONNECTIONSCRIPT-->
+	<!--MATHWORDPROBLEMSSCRIPT-->
 	<title>题库</title>
 
 	<style type="text/css">
@@ -90,6 +91,10 @@
 			// 设定页面所有输入域为可用状态(等式接龙)
 			//<!--COMPUTINGCONNECTIONREADY-->
 			//computingConnectionReady();
+
+			// 设定页面所有输入域为可用状态(算数应用题)
+			//<!--MATHWORDPROBLEMSREADY-->
+			//mathWordProblemsReady();
 
 
 			// 计时开始
@@ -161,6 +166,9 @@
 			// 等式接龙
 			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
 			//fault += computingConnectionMakeCorrections();
+			// 算数应用题
+			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
+			//fault += mathWordProblemsMakeCorrections();
 
 			// 是否存在错题
 			if (fault != 0) {
@@ -188,6 +196,9 @@
 			// 等式接龙交卷
 			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
 			//computingConnectionTheirPapers();
+			// 算数应用题交卷
+			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
+			//mathWordProblemsTheirPapers();
 
 
 			$('#spanOK').text(isRight);
@@ -428,7 +439,49 @@
 				</h5>
 			</div>
 		</div>
-		<!-- 题型4<填充区> -->
+		<!-- 题型4<算数应用题> -->
+		<div class="page-header">
+			<h6>4. 算数应用题</h6>
+		</div>
+		<hr />
+		<!--MATHWORDPROBLEMS-->
+		<div class="row text-center row-margin-top">
+			<div class="col-md-12 form-inline">
+				<h5>
+					<span class="label">小明有蝴蝶标本20只蜻蜓标本6只。小明一共有多少只标本？</span>
+				</h5>
+			</div>
+			<div class="col-md-12 form-inline">
+				<h5>
+					<input id="inputMwp00" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
+					<img src="../Content/image/help.png" id="imgMwp0" style="width: 30px; height: 30px;" title="help" />
+					<input id="inputMwp01" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
+					<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+					<input id="inputMwp02" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
+					<input id="hiddenMwp0" type="hidden" value="20+6=26,6+20=26" />
+					<img id="imgProblemsOK0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+					<img id="imgProblemsNo0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+				</h5>
+			</div>
+			<div class="col-md-12 form-inline">
+				<h5>
+					<span class="label">小华要给10棵小树苗浇水，已经浇了6棵。还有多少棵没浇？</span>
+				</h5>
+			</div>
+			<div class="col-md-12 form-inline">
+				<h5>
+					<input id="inputMwp10" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
+					<img src="../Content/image/help.png" id="imgMwp1" style="width: 30px; height: 30px;" title="help" />
+					<input id="inputMwp11" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
+					<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+					<input id="inputMwp12" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
+					<input id="hiddenMwp1" type="hidden" value="10-6=4" />
+					<img id="imgProblemsOK1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+					<img id="imgProblemsNo1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+				</h5>
+			</div>
+		</div>
+
 		<!-- 题型5<填充区> -->
 		<HR>
 		<div class="row">

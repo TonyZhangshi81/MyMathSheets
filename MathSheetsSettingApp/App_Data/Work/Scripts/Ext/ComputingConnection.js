@@ -23,7 +23,7 @@ function computingConnectionMakeCorrections() {
 // 答题验证(正确:true  错误:false)
 function computingConnectionCorrecting(pIndex, element) {
 	var isErr = false;
-	var inputCcArray = new Array()
+	var inputCcArray = new Array();
 	$("input[id*='inputCc" + pIndex + "']").each(function (index, element) {
 		// 验证输入值是否与答案一致
 		if ($(element).val() != $('#hiddenCc' + pIndex + index).val()) {

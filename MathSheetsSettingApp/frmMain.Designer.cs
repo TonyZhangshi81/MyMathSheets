@@ -45,6 +45,7 @@
 			this.chkArithmetic = new System.Windows.Forms.CheckBox();
 			this.chkEqualityComparison = new System.Windows.Forms.CheckBox();
 			this.chkComputingConnection = new System.Windows.Forms.CheckBox();
+			this.chkMathWordProblems = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -156,7 +157,7 @@
 			this.lblTopic.AutoSize = true;
 			this.lblTopic.Location = new System.Drawing.Point(37, 24);
 			this.lblTopic.Name = "lblTopic";
-			this.lblTopic.Size = new System.Drawing.Size(41, 12);
+			this.lblTopic.Size = new System.Drawing.Size(35, 12);
 			this.lblTopic.TabIndex = 9;
 			this.lblTopic.Text = "题型：";
 			// 
@@ -165,7 +166,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(38, 53);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(41, 12);
+			this.label1.Size = new System.Drawing.Size(35, 12);
 			this.label1.TabIndex = 10;
 			this.label1.Text = "数量：";
 			// 
@@ -173,7 +174,7 @@
 			// 
 			this.tbxNumberOf.Location = new System.Drawing.Point(109, 50);
 			this.tbxNumberOf.Name = "tbxNumberOf";
-			this.tbxNumberOf.Size = new System.Drawing.Size(100, 21);
+			this.tbxNumberOf.Size = new System.Drawing.Size(100, 19);
 			this.tbxNumberOf.TabIndex = 11;
 			this.tbxNumberOf.Text = "5";
 			this.tbxNumberOf.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -183,7 +184,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(39, 81);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(41, 12);
+			this.label2.Size = new System.Drawing.Size(35, 12);
 			this.label2.TabIndex = 12;
 			this.label2.Text = "等级：";
 			// 
@@ -229,11 +230,23 @@
 			this.chkComputingConnection.UseVisualStyleBackColor = true;
 			this.chkComputingConnection.CheckedChanged += new System.EventHandler(this.ComputingConnectionCheckedChanged);
 			// 
+			// chkMathWordProblems
+			// 
+			this.chkMathWordProblems.AutoSize = true;
+			this.chkMathWordProblems.Location = new System.Drawing.Point(254, 87);
+			this.chkMathWordProblems.Name = "chkMathWordProblems";
+			this.chkMathWordProblems.Size = new System.Drawing.Size(84, 16);
+			this.chkMathWordProblems.TabIndex = 17;
+			this.chkMathWordProblems.Text = "算式应用题";
+			this.chkMathWordProblems.UseVisualStyleBackColor = true;
+			this.chkMathWordProblems.CheckedChanged += new System.EventHandler(this.MathWordProblemsCheckedChanged);
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(771, 240);
+			this.Controls.Add(this.chkMathWordProblems);
 			this.Controls.Add(this.chkComputingConnection);
 			this.Controls.Add(this.chkEqualityComparison);
 			this.Controls.Add(this.chkArithmetic);
@@ -274,6 +287,7 @@
 		private System.Windows.Forms.CheckBox chkArithmetic;
 		private System.Windows.Forms.CheckBox chkEqualityComparison;
 		private System.Windows.Forms.CheckBox chkComputingConnection;
+		private System.Windows.Forms.CheckBox chkMathWordProblems;
 	}
 }
 

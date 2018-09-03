@@ -361,5 +361,35 @@ namespace MathSheetsSettingApp
 				_htmlMaps.Remove("COMPUTINGCONNECTION");
 			}
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void MathWordProblemsCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkMathWordProblems.Checked)
+			{
+				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
+				MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(_fourOperationsType, _signs, QuestionType.Default, _maximumLimit, _numberOfQuestions);
+				work.Structure();
+				htmlMaps.Add("<!--MATHWORDPROBLEMS-->", work.GetHtmlStatement());
+
+				Type type = typeof(MathWordProblemsSupport);
+				object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
+				attribute.ToList().ForEach(d =>
+				{
+					var attr = (SubstituteAttribute)d;
+					htmlMaps.Add(attr.Source, attr.Target);
+				});
+
+				_htmlMaps.Add("MATHWORDPROBLEMS", htmlMaps);
+			}
+			else
+			{
+				_htmlMaps.Remove("MATHWORDPROBLEMS");
+			}
+		}
 	}
 }

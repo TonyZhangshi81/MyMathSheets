@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\SubstituteAttribute.cs" />
+    <Compile Include="Support\MathWordProblemsSupport.cs" />
     <Compile Include="Support\ArithmeticHtmlSupport.cs" />
     <Compile Include="Support\IMakeHtml.cs" />
     <Compile Include="MakeHtml.cs" />
@@ -74,10 +75,14 @@
     <Content Include="Content\image\calculator.png" />
     <Content Include="Content\image\char-less.png" />
     <Content Include="Content\image\char-more.png" />
+    <Content Include="Content\image\Division.png" />
     <Content Include="Content\image\fault.png" />
     <Content Include="Content\image\help.png" />
     <Content Include="Content\image\correct.png" />
     <Content Include="Content\image\homework.png" />
+    <Content Include="Content\image\Multiple.png" />
+    <Content Include="Content\image\Plus.png" />
+    <Content Include="Content\image\Subtraction.png" />
     <Content Include="Demo\HTMLPage.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -90,6 +95,7 @@
     <Content Include="Scripts\Ext\Arithmetic.js" />
     <Content Include="Scripts\Ext\ComputingConnection.js" />
     <Content Include="Scripts\Ext\EqualityComparison.js" />
+    <Content Include="Scripts\Ext\MathWordProblems.js" />
     <Content Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />

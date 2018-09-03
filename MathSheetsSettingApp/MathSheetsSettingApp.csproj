@@ -89,8 +89,13 @@
     <Content Include="App_Data\Work\Content\image\char-less.png" />
     <Content Include="App_Data\Work\Content\image\char-more.png" />
     <Content Include="App_Data\Work\Content\image\correct.png" />
+    <Content Include="App_Data\Work\Content\image\Division.png" />
     <Content Include="App_Data\Work\Content\image\fault.png" />
     <Content Include="App_Data\Work\Content\image\help.png" />
+    <Content Include="App_Data\Work\Content\image\homework.png" />
+    <Content Include="App_Data\Work\Content\image\Multiple.png" />
+    <Content Include="App_Data\Work\Content\image\Plus.png" />
+    <Content Include="App_Data\Work\Content\image\Subtraction.png" />
     <Content Include="App_Data\Work\Scripts\bootstrap.min.js" />
     <Content Include="App_Data\Work\Scripts\jquery-3.0.0.min.js" />
     <Content Include="App_Data\Work\Scripts\json2.min.js" />
