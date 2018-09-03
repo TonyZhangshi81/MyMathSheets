@@ -2,11 +2,7 @@
 using Spring.Core.IO;
 using Spring.Objects.Factory;
 using Spring.Objects.Factory.Xml;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TestConsoleApp.Write;
 
 namespace TestConsoleApp
 {
@@ -91,7 +87,7 @@ namespace TestConsoleApp
 		/// <param name="formulas"></param>
 		public static void CreateOperatorObjectFactory<T>(string name, T formulas)
 		{
-			if(_objectFactory == null)
+			if (_objectFactory == null)
 			{
 				// 设定文件导入
 				IResource input = new FileSystemResource(@"..\Config\ConsoleFormulas.xml");

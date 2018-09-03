@@ -52,11 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MathWordProblemsFormulaWrite.cs" />
-    <Compile Include="EqualityFormulaWrite.cs" />
-    <Compile Include="ComputingConnectionWrite.cs" />
-    <Compile Include="FormulaWrite.cs" />
-    <Compile Include="IConsoleWrite.cs" />
+    <Compile Include="Write\MathWordProblemsFormulaWrite.cs" />
+    <Compile Include="Write\EqualityFormulaWrite.cs" />
+    <Compile Include="Write\ComputingConnectionWrite.cs" />
+    <Compile Include="Write\FormulaWrite.cs" />
+    <Compile Include="Write\IConsoleWrite.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util.cs" />
