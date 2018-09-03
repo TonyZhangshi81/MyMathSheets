@@ -1,4 +1,5 @@
-﻿using ComputationalStrategy.Item;
+﻿using CommonLib.Util;
+using ComputationalStrategy.Item;
 using System.Collections.Generic;
 using System.Text;
 using TheFormulaShows.Attributes;
@@ -74,7 +75,7 @@ namespace TheFormulaShows.Support
 				html.Append(rowHtml);
 			}
 
-			if(html.Length != 0)
+			if (html.Length != 0)
 			{
 				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />四则运算题</h4></div><hr />");
 			}

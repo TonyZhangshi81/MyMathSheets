@@ -1,4 +1,5 @@
-﻿using ComputationalStrategy.Item;
+﻿using CommonLib.Util;
+using ComputationalStrategy.Item;
 using ComputationalStrategy.Main.Util;
 using System;
 
@@ -94,9 +95,10 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 			// 随机下限值
 			_minimumLimit = minimumLimit;
 
-			_formula = new Formula();
-
-			_formula.Gap = GapFilling.Answer;
+			_formula = new Formula
+			{
+				Gap = GapFilling.Answer,
+			};
 			if (type == QuestionType.GapFilling)
 			{
 				_formula.Gap = GapFillingItem;
@@ -117,10 +119,12 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 			// 随机下限值
 			_minimumLimit = minimumLimit;
 
-			_formula = new Formula();
+			_formula = new Formula
+			{
+				// 设定填空项位置
+				Gap = GapFilling.Right
+			};
 
-			// 设定填空项位置
-			_formula.Gap = GapFilling.Right;
 			return _formula;
 		}
 	}

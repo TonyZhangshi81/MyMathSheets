@@ -60,6 +60,10 @@
     <Compile Include="Support\EqualityComparisonHtmlSupport.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ComputationalStrategy\ComputationalStrategy.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e1}</Project>
       <Name>ComputationalStrategy</Name>

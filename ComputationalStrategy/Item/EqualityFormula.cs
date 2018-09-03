@@ -1,4 +1,6 @@
-﻿namespace ComputationalStrategy.Item
+﻿using CommonLib.Util;
+
+namespace ComputationalStrategy.Item
 {
 	public class EqualityFormula
 	{
@@ -17,22 +19,5 @@
 		public SignOfCompare Answer { get; set; }
 	}
 
-	/// <summary>
-	/// 比较运算符
-	/// </summary>
-	public enum SignOfCompare : int
-	{
-		/// <summary>
-		/// 大于
-		/// </summary>
-		Greater = 0,
-		/// <summary>
-		/// 小于
-		/// </summary>
-		Less,
-		/// <summary>
-		/// 等于
-		/// </summary>
-		Equal
-	}
+
 }

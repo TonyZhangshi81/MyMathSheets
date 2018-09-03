@@ -6,7 +6,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputationalStrategy.Main.Util
+namespace CommonLib.Util
 {
 	/// <summary>
 	/// 

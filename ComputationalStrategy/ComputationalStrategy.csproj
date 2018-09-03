@@ -61,14 +61,12 @@
     <Compile Include="Main\Operation\EqualityComparison.cs" />
     <Compile Include="Main\ArithmeticStrategy\Multiplication.cs" />
     <Compile Include="Main\Operation\MathWordProblems.cs" />
-    <Compile Include="Main\Util\JsonExtension.cs" />
     <Compile Include="Main\Util\RandomNumberComposition.cs" />
     <Compile Include="Main\Operation\SetThemeBase.cs" />
     <Compile Include="Main\ArithmeticStrategy\Subtraction.cs" />
     <Compile Include="Main\ArithmeticStrategy\Adition.cs" />
     <Compile Include="Main\ArithmeticStrategy\ICalculatePattern.cs" />
     <Compile Include="Item\Formula.cs" />
-    <Compile Include="Main\Util\StringUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +78,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Main\EqualityStrategy\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
+      <Name>CommonLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

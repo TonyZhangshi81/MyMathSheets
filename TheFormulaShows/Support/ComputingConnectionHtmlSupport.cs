@@ -1,9 +1,7 @@
-﻿using ComputationalStrategy.Item;
-using System;
+﻿using CommonLib.Util;
+using ComputationalStrategy.Item;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using TheFormulaShows.Attributes;
 
 namespace TheFormulaShows.Support
@@ -38,7 +36,7 @@ namespace TheFormulaShows.Support
 				html.AppendLine("<div class=\"col-md-10 form-inline\">");
 				html.AppendLine("<h5>");
 
-				foreach(Formula item in items.ConfixFormulas)
+				foreach (Formula item in items.ConfixFormulas)
 				{
 					html.AppendLine(this.GetHtml(GapFilling.Left, item.LeftParameter, GapFilling.Right, parentControlIndex, controlIndex));
 					html.AppendLine(string.Format("<span class=\"label\">{0}</span>", this.GetOperation(item.Sign)));
@@ -46,7 +44,7 @@ namespace TheFormulaShows.Support
 					html.AppendLine("<span class=\"label\">=</span>");
 					controlIndex++;
 
-					if(items.ConfixNumber == controlIndex)
+					if (items.ConfixNumber == controlIndex)
 					{
 						// 最后一层时需要将算式结果显示在页面上
 						html.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.Answer));

@@ -1,9 +1,8 @@
-﻿using ComputationalStrategy.Item;
+﻿using CommonLib.Util;
+using ComputationalStrategy.Item;
 using ComputationalStrategy.Main.Operation;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using TheFormulaShows;
 
 namespace TestConsoleApp
@@ -134,7 +133,7 @@ namespace TestConsoleApp
 					case ConsoleKey.I:
 						Console.WriteLine();
 						Console.WriteLine("標準加法運算接龙");
-						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Random, new List<SignOfOperation> {  SignOfOperation.Plus, SignOfOperation.Subtraction}, QuestionType.GapFilling, 100, 4);
+						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Random, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.GapFilling, 100, 4);
 						work2.Structure();
 						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
 						break;
@@ -158,7 +157,7 @@ namespace TestConsoleApp
 					case ConsoleKey.L:
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算应用");
-						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Random, 
+						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Random,
 																								new List<SignOfOperation>
 																								{
 																									SignOfOperation.Plus,

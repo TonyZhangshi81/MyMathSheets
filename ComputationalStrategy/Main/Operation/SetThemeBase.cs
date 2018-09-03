@@ -1,4 +1,4 @@
-﻿using ComputationalStrategy.Item;
+﻿using CommonLib.Util;
 using ComputationalStrategy.Main.ArithmeticStrategy;
 using Spring.Core.IO;
 using Spring.Objects.Factory;
@@ -79,7 +79,7 @@ namespace ComputationalStrategy.Main.Operation
 		/// <param name="maximumLimit">运算结果最大限度值</param>
 		/// <param name="numberOfQuestions">出题数量</param>
 		public SetThemeBase(int maximumLimit, int numberOfQuestions)
-			:this()
+			: this()
 		{
 			_maximumLimit = maximumLimit;
 			_numberOfQuestions = numberOfQuestions;

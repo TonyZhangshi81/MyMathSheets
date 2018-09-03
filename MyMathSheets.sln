@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathSheetsSettingApp", "MathSheetsSettingApp\MathSheetsSettingApp.csproj", "{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathWordProblemsConsoleApp", "MathWordProblemsConsoleApp\MathWordProblemsConsoleApp.csproj", "{C89B91C6-DB3A-4698-842D-4BA979C14AE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLib", "CommonLib\CommonLib.csproj", "{076E9C76-BEB2-4024-8A09-5183D0D65EC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C89B91C6-DB3A-4698-842D-4BA979C14AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C89B91C6-DB3A-4698-842D-4BA979C14AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C89B91C6-DB3A-4698-842D-4BA979C14AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C89B91C6-DB3A-4698-842D-4BA979C14AE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{076E9C76-BEB2-4024-8A09-5183D0D65EC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{076E9C76-BEB2-4024-8A09-5183D0D65EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{076E9C76-BEB2-4024-8A09-5183D0D65EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{076E9C76-BEB2-4024-8A09-5183D0D65EC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

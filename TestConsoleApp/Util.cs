@@ -1,4 +1,5 @@
-﻿using ComputationalStrategy.Item;
+﻿using CommonLib.Util;
+using ComputationalStrategy.Item;
 using Spring.Core.IO;
 using Spring.Objects.Factory;
 using Spring.Objects.Factory.Xml;
@@ -6,60 +7,11 @@ using TestConsoleApp.Write;
 
 namespace TestConsoleApp
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public static class Util
 	{
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="operation"></param>
-		/// <returns></returns>
-		public static string ToOperationString(this SignOfOperation operation)
-		{
-			var flag = string.Empty;
-			switch (operation)
-			{
-				case SignOfOperation.Plus:
-					flag = "+";
-					break;
-				case SignOfOperation.Subtraction:
-					flag = "-";
-					break;
-				case SignOfOperation.Division:
-					flag = "÷";
-					break;
-				case SignOfOperation.Multiple:
-					flag = "×";
-					break;
-				default:
-					break;
-			}
-			return flag;
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="operation"></param>
-		/// <returns></returns>
-		public static string ToSignOfCompareString(this SignOfCompare operation)
-		{
-			var flag = string.Empty;
-			switch (operation)
-			{
-				case SignOfCompare.Equal:
-					flag = "=";
-					break;
-				case SignOfCompare.Greater:
-					flag = ">";
-					break;
-				case SignOfCompare.Less:
-					flag = "<";
-					break;
-				default:
-					break;
-			}
-			return flag;
-		}
-
 		/// <summary>
 		/// 
 		/// </summary>
