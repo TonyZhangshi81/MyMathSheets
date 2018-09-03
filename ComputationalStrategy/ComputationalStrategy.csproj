@@ -42,6 +42,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,20 +61,18 @@
     <Compile Include="Main\Operation\EqualityComparison.cs" />
     <Compile Include="Main\ArithmeticStrategy\Multiplication.cs" />
     <Compile Include="Main\Operation\MathWordProblems.cs" />
+    <Compile Include="Main\Util\JsonExtension.cs" />
     <Compile Include="Main\Util\RandomNumberComposition.cs" />
     <Compile Include="Main\Operation\SetThemeBase.cs" />
     <Compile Include="Main\ArithmeticStrategy\Subtraction.cs" />
     <Compile Include="Main\ArithmeticStrategy\Adition.cs" />
     <Compile Include="Main\ArithmeticStrategy\ICalculatePattern.cs" />
     <Compile Include="Item\Formula.cs" />
+    <Compile Include="Main\Util\StringUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResGenerate.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResGenerate.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Config\Problems.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -82,15 +81,11 @@
   <ItemGroup>
     <Folder Include="Main\EqualityStrategy\" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ResGenerate.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResGenerate.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "..\Config\*.xml" "..\..\TestConsoleApp\Config\" /Y
-copy "..\Config\*.xml" "..\..\MathSheetsSettingApp\Config\" /Y</PostBuildEvent>
+copy "..\Config\*.json" "..\..\TestConsoleApp\Config\" /Y
+copy "..\Config\*.xml" "..\..\MathSheetsSettingApp\Config\" /Y
+copy "..\Config\*.json" "..\..\MathSheetsSettingApp\Config\" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

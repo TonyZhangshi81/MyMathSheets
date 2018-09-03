@@ -13,10 +13,11 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// </summary>
 		/// <param name="maximumLimit"></param>
 		/// <param name="type"></param>
+		/// <param name="minimumLimit"></param>
 		/// <returns></returns>
-		public override Formula CreateFormula(int maximumLimit, QuestionType type = QuestionType.Standard)
+		public override Formula CreateFormula(int maximumLimit, QuestionType type = QuestionType.Standard, int minimumLimit = 0)
 		{
-			_formula = base.CreateFormula(maximumLimit, type);
+			_formula = base.CreateFormula(maximumLimit, type, minimumLimit);
 
 			_formula.RightParameter = GetLeftParameter(9);
 			_formula.Sign = SignOfOperation.Division;
@@ -46,7 +47,7 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <returns></returns>
 		protected override int GetRightParameter(int maximumLimit, int rightParameter)
 		{
-			var number = new RandomNumberComposition(0, maximumLimit);
+			var number = new RandomNumberComposition(_minimumLimit, maximumLimit);
 			return number.GetRandomNumber() * rightParameter;
 		}
 

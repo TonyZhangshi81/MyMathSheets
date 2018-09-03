@@ -10,6 +10,10 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 	public abstract class CalculatePatternBase : ICalculatePattern
 	{
 		/// <summary>
+		/// 随机下限值取得（默认值为0）
+		/// </summary>
+		protected int _minimumLimit { get; set; }
+		/// <summary>
 		/// 
 		/// </summary>
 		protected Formula _formula { get; set; }
@@ -34,7 +38,7 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <returns></returns>
 		protected virtual int GetLeftParameter(int maximumLimit)
 		{
-			var number = new RandomNumberComposition(0, maximumLimit);
+			var number = new RandomNumberComposition(_minimumLimit, maximumLimit);
 			return number.GetRandomNumber();
 		}
 
@@ -46,7 +50,7 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <returns></returns>
 		protected virtual int GetRightParameter(int maximumLimit, int leftParameter = 0)
 		{
-			var number = new RandomNumberComposition(0, maximumLimit - leftParameter);
+			var number = new RandomNumberComposition(_minimumLimit, maximumLimit - leftParameter);
 			return number.GetRandomNumber();
 		}
 
@@ -83,9 +87,13 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// </summary>
 		/// <param name="maximumLimit"></param>
 		/// <param name="type"></param>
+		/// <param name="minimumLimit"></param>
 		/// <returns></returns>
-		public virtual Formula CreateFormula(int maximumLimit, QuestionType type = QuestionType.Standard)
+		public virtual Formula CreateFormula(int maximumLimit, QuestionType type = QuestionType.Standard, int minimumLimit = 0)
 		{
+			// 随机下限值
+			_minimumLimit = minimumLimit;
+
 			_formula = new Formula();
 
 			_formula.Gap = GapFilling.Answer;
@@ -102,9 +110,13 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <param name="maximumLimit"></param>
 		/// <param name="previousFormula"></param>
 		/// <param name="type"></param>
+		/// <param name="minimumLimit"></param>
 		/// <returns></returns>
-		public virtual Formula CreateFormula(int maximumLimit, Formula previousFormula, QuestionType type = QuestionType.GapFilling)
+		public virtual Formula CreateFormula(int maximumLimit, Formula previousFormula, QuestionType type = QuestionType.GapFilling, int minimumLimit = 0)
 		{
+			// 随机下限值
+			_minimumLimit = minimumLimit;
+
 			_formula = new Formula();
 
 			// 设定填空项位置

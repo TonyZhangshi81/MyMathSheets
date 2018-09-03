@@ -22,6 +22,7 @@ namespace TestConsoleApp
 			MakeHtml<List<Formula>, Arithmetic> work = null;
 			MakeHtml<List<EqualityFormula>, EqualityComparison> work1 = null;
 			MakeHtml<List<ConnectionFormula>, ComputingConnection> work2 = null;
+			MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work3 = null;
 			bool isShowMenu = true;
 
 			while (1 == 1)
@@ -43,6 +44,10 @@ namespace TestConsoleApp
 					Console.WriteLine("    i-隨機加减運算接龙");
 					Console.WriteLine("    j-標準加法運算接龙");
 					Console.WriteLine("    k-標準減法運算接龙");
+					Console.WriteLine("************************* 应用题 ***********************");
+					Console.WriteLine("    l-隨機四則運算应用");
+					Console.WriteLine("    m-加法应用");
+					Console.WriteLine("    n-减法应用");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜单    0-退出");
 					Console.WriteLine("");
@@ -65,7 +70,6 @@ namespace TestConsoleApp
 
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算填空");
-						// TestCase0001
 						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Random, signs, QuestionType.GapFilling, 100, 35);
 						work.Structure();
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
@@ -74,7 +78,6 @@ namespace TestConsoleApp
 					case ConsoleKey.B:
 						Console.WriteLine();
 						Console.WriteLine("標準加法填空");
-						// TestCase0002
 						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Standard, 50, 20);
 						work.Structure();
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
@@ -83,7 +86,6 @@ namespace TestConsoleApp
 					case ConsoleKey.C:
 						Console.WriteLine();
 						Console.WriteLine("標準減法填空");
-						// TestCase0003
 						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Standard, 200, 15);
 						work.Structure();
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
@@ -92,7 +94,6 @@ namespace TestConsoleApp
 					case ConsoleKey.D:
 						Console.WriteLine();
 						Console.WriteLine("標準乘法填空");
-						// TestCase0004
 						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Multiple, QuestionType.Standard, 81, 20);
 						work.Structure();
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
@@ -101,7 +102,6 @@ namespace TestConsoleApp
 					case ConsoleKey.E:
 						Console.WriteLine();
 						Console.WriteLine("標準除法填空");
-						// TestCase0005
 						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.Standard, 81, 20);
 						work.Structure();
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
@@ -110,7 +110,6 @@ namespace TestConsoleApp
 					case ConsoleKey.F:
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算比較");
-						// TestCase0006
 						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Random, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.Default, 81, 20);
 						work1.Structure();
 						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
@@ -119,7 +118,6 @@ namespace TestConsoleApp
 					case ConsoleKey.G:
 						Console.WriteLine();
 						Console.WriteLine("標準加法比較");
-						// TestCase0005
 						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 81, 20);
 						work1.Structure();
 						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
@@ -128,7 +126,6 @@ namespace TestConsoleApp
 					case ConsoleKey.H:
 						Console.WriteLine();
 						Console.WriteLine("標準減法比較");
-						// TestCase0005
 						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Default, 81, 20);
 						work1.Structure();
 						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
@@ -137,7 +134,6 @@ namespace TestConsoleApp
 					case ConsoleKey.I:
 						Console.WriteLine();
 						Console.WriteLine("標準加法運算接龙");
-						// TestCase0005
 						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Random, new List<SignOfOperation> {  SignOfOperation.Plus, SignOfOperation.Subtraction}, QuestionType.GapFilling, 100, 4);
 						work2.Structure();
 						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
@@ -146,7 +142,6 @@ namespace TestConsoleApp
 					case ConsoleKey.J:
 						Console.WriteLine();
 						Console.WriteLine("標準加法運算接龙");
-						// TestCase0005
 						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 100, 4);
 						work2.Structure();
 						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
@@ -155,12 +150,40 @@ namespace TestConsoleApp
 					case ConsoleKey.K:
 						Console.WriteLine();
 						Console.WriteLine("標準減法運算接龙");
-						// TestCase00055
 						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 100, 4);
 						work2.Structure();
 						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
 						break;
 
+					case ConsoleKey.L:
+						Console.WriteLine();
+						Console.WriteLine("隨機四則運算应用");
+						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Random, 
+																								new List<SignOfOperation>
+																								{
+																									SignOfOperation.Plus,
+																									SignOfOperation.Subtraction,
+																									SignOfOperation.Multiple,
+																									SignOfOperation.Division
+																								}, QuestionType.Default, 30, 4);
+						work3.Structure();
+						Util.CreateOperatorObjectFactory<List<MathWordProblemsFormula>>("MathWordProblemsFormulaWrite", work3.Formulas);
+						break;
+
+					case ConsoleKey.M:
+						Console.WriteLine();
+						Console.WriteLine("加法应用");
+						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Default, 20, 4);
+						work3.Structure();
+						Util.CreateOperatorObjectFactory<List<MathWordProblemsFormula>>("MathWordProblemsFormulaWrite", work3.Formulas);
+						break;
+					case ConsoleKey.N:
+						Console.WriteLine();
+						Console.WriteLine("减法应用");
+						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 15, 4);
+						work3.Structure();
+						Util.CreateOperatorObjectFactory<List<MathWordProblemsFormula>>("MathWordProblemsFormulaWrite", work3.Formulas);
+						break;
 
 					case ConsoleKey.D9:
 						isShowMenu = true;

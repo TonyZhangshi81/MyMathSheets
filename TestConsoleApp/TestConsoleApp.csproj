@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MathWordProblemsFormulaWrite.cs" />
     <Compile Include="EqualityFormulaWrite.cs" />
     <Compile Include="ComputingConnectionWrite.cs" />
     <Compile Include="FormulaWrite.cs" />
@@ -62,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Config\Problems.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

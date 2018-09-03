@@ -3,4 +3,5 @@
 	<object id="FormulaWrite" type="TestConsoleApp.FormulaWrite"></object>
 	<object id="EqualityFormulaWrite" type="TestConsoleApp.EqualityFormulaWrite"></object>
 	<object id="ComputingConnectionWrite" type="TestConsoleApp.ComputingConnectionWrite"></object>
+	<object id="MathWordProblemsFormulaWrite" type="TestConsoleApp.MathWordProblemsFormulaWrite"></object>
 </objects>

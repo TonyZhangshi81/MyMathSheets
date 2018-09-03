@@ -28,7 +28,6 @@ namespace TestConsoleApp
 										Util.GetValue(GapFilling.Left, dd.LeftParameter, dd.Gap),
 										dd.Sign.ToOperationString(),
 										Util.GetValue(GapFilling.Right, dd.RightParameter, dd.Gap));
-		
 				});
 				if (builder.Length != 0)
 				{
