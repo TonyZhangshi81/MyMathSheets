@@ -13,6 +13,7 @@ namespace TheFormulaShows.Support
 	[Substitute("//<!--COMPUTINGCONNECTIONREADY-->", "computingConnectionReady();")]
 	[Substitute("//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->", "fault += computingConnectionMakeCorrections();")]
 	[Substitute("//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->", "computingConnectionTheirPapers();")]
+	[Substitute("//<!--COMPUTINGCONNECTIONPRINTSETTING-->", "computingConnectionPrintSetting();")]
 	public class ComputingConnectionHtmlSupport : IMakeHtml<List<ConnectionFormula>>
 	{
 		/// <summary>
@@ -63,7 +64,7 @@ namespace TheFormulaShows.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />等式接龙</h4></div><hr />");
+				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />等式接龍</h4></div><hr />");
 			}
 			return html.ToString();
 		}

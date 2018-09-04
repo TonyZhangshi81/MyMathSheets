@@ -1,4 +1,12 @@
-﻿// 设定页面所有输入域为可用状态(四则运算)
+﻿// 打印設置
+function arithmeticPrintSetting() {
+	$("input[id*='inputAc']").each(function (index, element) {
+		$(element).removeAttr('placeholder');
+		$(element).removeAttr("disabled");
+	});
+}
+
+// 设定页面所有输入域为可用状态(四则运算)
 function arithmeticReady() {
 	$("input[id*='inputAc']").each(function (index, element) {
 		$(element).removeAttr("disabled");

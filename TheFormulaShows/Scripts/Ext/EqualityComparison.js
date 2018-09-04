@@ -1,4 +1,11 @@
-﻿// 设定页面所有输入域为可用状态(算式比大小)
+﻿// 打印設置
+function equalityComparisonPrintSetting() {
+	$("img[id*='imgEc']").each(function (index, element) {
+		$(element).replaceWith("<button type=\"button\" class=\"btn btn-default btn-circle\"><i class=\"glyphicon glyphicon-ok\"></i></button>");
+	});
+}
+
+// 设定页面所有输入域为可用状态(算式比大小)
 function equalityComparisonReady() {
 	$("img[id*='imgEc']").each(function (index, element) {
 		$(element).click(function () { imgEqualityClick(element); });

@@ -13,6 +13,7 @@ namespace TheFormulaShows.Support
 	[Substitute("//<!--ARITHMETICREADY-->", "arithmeticReady();")]
 	[Substitute("//<!--ARITHMETICMAKECORRECTIONS-->", "fault += arithmeticMakeCorrections();")]
 	[Substitute("//<!--ARITHMETICTHEIRPAPERS-->", "arithmeticTheirPapers();")]
+	[Substitute("//<!--ARITHMETICPRINTSETTING-->", "arithmeticPrintSetting();")]
 	public class ArithmeticHtmlSupport : IMakeHtml<List<Formula>>
 	{
 		/// <summary>
@@ -77,7 +78,7 @@ namespace TheFormulaShows.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />四则运算题</h4></div><hr />");
+				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />四則運算</h4></div><hr />");
 			}
 
 			return html.ToString();

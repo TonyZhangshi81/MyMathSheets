@@ -1,4 +1,15 @@
-﻿// 设定页面所有输入域为可用状态(算式应用题)
+﻿// 打印設置
+function mathWordProblemsPrintSetting() {
+	$("img[id*='imgMwp']").each(function (index, element) {
+		$(element).replaceWith("<button type=\"button\" class=\"btn btn-default btn-circle\"><i class=\"glyphicon glyphicon-ok\"></i></button>");
+	});
+
+	$("input[id*='inputMwp']").each(function (index, element) {
+		$(element).removeAttr('placeholder');
+	});
+}
+
+// 设定页面所有输入域为可用状态(算式应用题)
 function mathWordProblemsReady() {
 	$("input[id*='inputMwp']").each(function (index, element) {
 		$(element).removeAttr("disabled");

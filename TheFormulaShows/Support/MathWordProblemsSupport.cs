@@ -12,6 +12,7 @@ namespace TheFormulaShows.Support
 	[Substitute("//<!--MATHWORDPROBLEMSREADY-->", "mathWordProblemsReady();")]
 	[Substitute("//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->", "fault += mathWordProblemsMakeCorrections();")]
 	[Substitute("//<!--MATHWORDPROBLEMSTHEIRPAPERS-->", "mathWordProblemsTheirPapers();")]
+	[Substitute("//<!--MATHWORDPROBLEMSPRINTSETTING-->", "mathWordProblemsPrintSetting();")]
 	public class MathWordProblemsSupport : IMakeHtml<List<MathWordProblemsFormula>>
 	{
 		/// <summary>
@@ -61,7 +62,7 @@ namespace TheFormulaShows.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />算式应用题</h4></div><hr />");
+				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />算數應用題</h4></div><hr />");
 			}
 
 			return html.ToString();

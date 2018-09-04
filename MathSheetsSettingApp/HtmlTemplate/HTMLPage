@@ -17,7 +17,7 @@
 	<!--EQUALITYCOMPARISONSCRIPT-->
 	<!--COMPUTINGCONNECTIONSCRIPT-->
 	<!--MATHWORDPROBLEMSSCRIPT-->
-	<title>题库</title>
+	<title>題庫</title>
 
 	<style type="text/css">
 		.row-margin-top {
@@ -34,53 +34,81 @@
 		.main-ext {
 			background-color: aliceblue;
 		}
+
+		.btn-circle {
+			width: 30px;
+			height: 30px;
+			text-align: center;
+			padding: 6px 0;
+			font-size: 12px;
+			line-height: 1.428571429;
+			border-radius: 15px;
+		}
 	</style>
 
 	<script>
-		// 页面启动后加载
+		// 頁面啟動后加載
 		$(document).ready(function () {
-			// 按键屏蔽防止刷新页面
+			// 按鍵屏蔽防止刷新頁面
 			forbidKeyDown();
 
-			// 准备
+			// 準備
 			$('#btnReady').click(function () { btnReadyClick(); });
-			// 提交答题
+			// 提交答題
 			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
-			// 订正错题
+			// 訂正錯題
 			$('#btnMakeCorrections').click(function () { btnMakeCorrectionsClick(); });
 			// 完成
 			$('#btnOver').click(function () { btnOverClick(); });
+			// 打印
+			$('#btnPrint').click(function () { btnPrintClick(); });
 
-			// 还原上一次答题结果
+			// 還原上一次答題結果
 			lastTimeRestore();
 		});
 
-		// 显示上一次答题结果
+		// 打印
+		function btnPrintClick() {
+			//<!--ARITHMETICPRINTSETTING-->
+			//<!--EQUALITYCOMPARISONPRINTSETTING-->
+			//<!--COMPUTINGCONNECTIONPRINTSETTING-->
+			//<!--MATHWORDPROBLEMSPRINTSETTING-->
+
+			var printId = "divPrintContent";
+			var k = $("#" + printId).prop("outerHTML");
+			$("body *").hide();
+			$("body").append(k);
+			window.print();
+			$("body *").show();
+			$("body #" + printId + ":last").remove();
+		}
+
+		// 顯示上一次答題結果
 		function lastTimeRestore() {
-			// 获取内容
+			// 獲取內容
 			var result = store.get('result');
 			$('#spanOld').text(result.time);
 			$('#spanOldOK').text(result.right);
 			$('#spanOldNo').text(result.fault);
 		}
 
-		// 答题准备按钮
+		// 答題準備按鍵
 		function btnReadyClick() {
-			// 交卷按钮显示
+			// 交卷按鈕顯示
 			$('#btnTheirPapers').show();
-			// 准备按钮隐藏
+			// 準備按鈕隱藏
 			$('#btnReady').hide();
-			// 设定页面所有输入域为可用状态(四则运算)
+			// 設定頁面所有輸入域為可用狀態（四則運算）
 			//<!--ARITHMETICREADY-->
-			// 设定页面所有输入域为可用状态(算式比大小)
+			// 設定頁面所有輸入域為可用狀態(運算比大小)
 			//<!--EQUALITYCOMPARISONREADY-->
-			// 设定页面所有输入域为可用状态(等式接龙)
+			// 設定頁面所有輸入域為可用狀態(等式接龍)
 			//<!--COMPUTINGCONNECTIONREADY-->
-			// 设定页面所有输入域为可用状态(算数应用题)
+			// 設定頁面所有輸入域為可用狀態(算數應用題)
 			//<!--MATHWORDPROBLEMSREADY-->
 
 
-			// 计时开始
+			// 計時開始
 			startTime();
 		}
 
@@ -257,6 +285,7 @@
 				<span style="padding-left:20px;">答错:</span><span id="spanOldNo" style="padding-left:10px;"></span>题
 			</div>
 		</div>
+		<div id="divPrintContent">
 		<br/>
 		<!--ARITHMETIC-->
 		<br/>
@@ -267,25 +296,27 @@
 		<!--MATHWORDPROBLEMS-->
 		<br/>
 		<!-- 题型5<填充区> -->
+		</div>
 		<HR>
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<p class="text-right">
-					<button id="btnReady" type="button" class="btn btn-lg btn-success">准备</button>
+					<button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
 					<button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
-					<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">订正</button>
+					<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
 					<button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
+					<button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
 				</p>
 			</div>
 		</div>
 		<div class="page-header">
-			<h4>练习情况</h4>
+			<h4>練習情況</h4>
 		</div>
 		<div class="well">
 			<p>
-				做题用时:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
-				<br />答对:<span id="spanOK" style="padding-left:20px;"></span>题
-				<br />答错:<span id="spanNo" style="padding-left:20px;"></span>题
+				做題用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+				<br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
+				<br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
 			</p>
 		</div>
 	</div>

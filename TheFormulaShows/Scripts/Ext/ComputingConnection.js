@@ -1,4 +1,11 @@
-﻿// 设定页面所有输入域为可用状态(等式接龙)
+﻿// 打印設置
+function computingConnectionPrintSetting() {
+	$("input[id*='inputCc']").each(function (index, element) {
+		$(element).removeAttr('placeholder');
+	});
+}
+
+// 设定页面所有输入域为可用状态(等式接龙)
 function computingConnectionReady() {
 	$("input[id*='inputCc']").each(function (index, element) {
 		$(element).removeAttr("disabled");

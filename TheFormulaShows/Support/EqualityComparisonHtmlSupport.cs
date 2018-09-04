@@ -13,6 +13,7 @@ namespace TheFormulaShows.Support
 	[Substitute("//<!--EQUALITYCOMPARISONREADY-->", "equalityComparisonReady();")]
 	[Substitute("//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->", "fault += equalityComparisonMakeCorrections();")]
 	[Substitute("//<!--EQUALITYCOMPARISONTHEIRPAPERS-->", "equalityComparisonTheirPapers();")]
+	[Substitute("//<!--EQUALITYCOMPARISONPRINTSETTING-->", "equalityComparisonPrintSetting();")]
 	public class EqualityComparisonHtmlSupport : IMakeHtml<List<EqualityFormula>>
 	{
 		/// <summary>
@@ -80,7 +81,7 @@ namespace TheFormulaShows.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />运算比大小</h4></div><hr />");
+				html.Insert(0, "<div class=\"page - header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" />算式比大小</h4></div><hr />");
 			}
 			return html.ToString();
 		}

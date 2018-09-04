@@ -135,10 +135,10 @@ namespace MathSheetsSettingApp
 			this.chkMultiplication.Checked = true;
 			this.chkDivision.Checked = true;
 
-			this.chkAdition.Enabled = false;
-			this.chkSubtraction.Enabled = false;
-			this.chkMultiplication.Enabled = false;
-			this.chkDivision.Enabled = false;
+			//this.chkAdition.Enabled = false;
+			//this.chkSubtraction.Enabled = false;
+			//this.chkMultiplication.Enabled = false;
+			//this.chkDivision.Enabled = false;
 		}
 		/// <summary>
 		/// 
@@ -301,37 +301,6 @@ namespace MathSheetsSettingApp
 		}
 
 		/// <summary>
-		/// 四則運算
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void ArithmeticCheckedChanged(object sender, EventArgs e)
-		{
-			if (chkArithmetic.Checked)
-			{
-				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
-				MakeHtml<List<Formula>, Arithmetic> work = new MakeHtml<List<Formula>, Arithmetic>(_fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions);
-				work.Structure();
-				htmlMaps.Add("<!--ARITHMETIC-->", work.GetHtmlStatement());
-
-				Type type = typeof(ArithmeticHtmlSupport);
-				object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
-				attribute.ToList().ForEach(d =>
-				{
-					var attr = (SubstituteAttribute)d;
-					htmlMaps.Add(attr.Source, attr.Target);
-				});
-
-				_htmlMaps.Add(LayoutSetting.Preview.Arithmetic.ToString(), htmlMaps);
-			}
-			else
-			{
-				_htmlMaps.Remove(LayoutSetting.Preview.Arithmetic.ToString());
-			}
-			PreviewReflash();
-		}
-
-		/// <summary>
 		/// 題型縮略瀏覽初期化
 		/// </summary>
 		private void PreviewReflash()
@@ -384,6 +353,37 @@ namespace MathSheetsSettingApp
 		}
 
 		/// <summary>
+		/// 四則運算
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void ArithmeticCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkArithmetic.Checked)
+			{
+				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
+				MakeHtml<List<Formula>, Arithmetic> work = new MakeHtml<List<Formula>, Arithmetic>(_fourOperationsType, _signs, _questionType, 30, 20);
+				work.Structure();
+				htmlMaps.Add("<!--ARITHMETIC-->", work.GetHtmlStatement());
+
+				Type type = typeof(ArithmeticHtmlSupport);
+				object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
+				attribute.ToList().ForEach(d =>
+				{
+					var attr = (SubstituteAttribute)d;
+					htmlMaps.Add(attr.Source, attr.Target);
+				});
+
+				_htmlMaps.Add(LayoutSetting.Preview.Arithmetic.ToString(), htmlMaps);
+			}
+			else
+			{
+				_htmlMaps.Remove(LayoutSetting.Preview.Arithmetic.ToString());
+			}
+			PreviewReflash();
+		}
+
+		/// <summary>
 		/// 等式比大小
 		/// </summary>
 		/// <param name="sender"></param>
@@ -393,7 +393,7 @@ namespace MathSheetsSettingApp
 			if (chkEqualityComparison.Checked)
 			{
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
-				MakeHtml<List<EqualityFormula>, EqualityComparison> work = new MakeHtml<List<EqualityFormula>, EqualityComparison>(_fourOperationsType, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.Standard, _maximumLimit, _numberOfQuestions);
+				MakeHtml<List<EqualityFormula>, EqualityComparison> work = new MakeHtml<List<EqualityFormula>, EqualityComparison>(_fourOperationsType, _signs, QuestionType.Standard, _maximumLimit, 8);
 				work.Structure();
 				htmlMaps.Add("<!--EQUALITYCOMPARISON-->", work.GetHtmlStatement());
 
@@ -423,7 +423,7 @@ namespace MathSheetsSettingApp
 			if (chkComputingConnection.Checked)
 			{
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
-				MakeHtml<List<ConnectionFormula>, ComputingConnection> work = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(_fourOperationsType, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.Standard, _maximumLimit, _numberOfQuestions);
+				MakeHtml<List<ConnectionFormula>, ComputingConnection> work = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(_fourOperationsType, _signs, QuestionType.Standard, _maximumLimit, 3);
 				work.Structure();
 				htmlMaps.Add("<!--COMPUTINGCONNECTION-->", work.GetHtmlStatement());
 
@@ -454,7 +454,7 @@ namespace MathSheetsSettingApp
 			if (chkMathWordProblems.Checked)
 			{
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
-				MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(_fourOperationsType, _signs, QuestionType.Default, _maximumLimit, _numberOfQuestions);
+				MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(_fourOperationsType, _signs, QuestionType.Default, _maximumLimit, 5);
 				work.Structure();
 				htmlMaps.Add("<!--MATHWORDPROBLEMS-->", work.GetHtmlStatement());
 
