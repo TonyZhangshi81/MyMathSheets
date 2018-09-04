@@ -6,7 +6,6 @@ using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
-using TimeSheetHelperConsoleApp.Util;
 
 namespace MathWordProblemsConsoleApp.Ext
 {
@@ -15,10 +14,6 @@ namespace MathWordProblemsConsoleApp.Ext
 	/// </summary>
 	public class SpireXls : ISpireExt, IDisposable
 	{
-		/// <summary>
-		/// save the path
-		/// </summary>
-		public XlsConfig Config { get; private set; }
 		/// <summary>
 		/// 
 		/// </summary>
@@ -53,17 +48,11 @@ namespace MathWordProblemsConsoleApp.Ext
 		}
 
 		/// <summary>
-		/// 
-		/// </summary>
-		string _filePath { get; set; }
-
-		/// <summary>
 		/// The constructor
 		/// </summary>
 		public SpireXls()
 		{
 			_workBook = new Workbook();
-			Config = Configuration.Get<XlsConfig>("XLS");
 		}
 
 		#region Load the Excel file
@@ -74,8 +63,7 @@ namespace MathWordProblemsConsoleApp.Ext
 		/// <param name="fileName">The file name</param>
 		public void Load(string fileName)
 		{
-			_filePath = string.Format("{0}{1}.xls", Config.Path, fileName);
-			_workBook.LoadFromFile(_filePath, Config.Version);
+			_workBook.LoadFromFile(fileName, ExcelVersion.Version2007);
 		}
 
 		#endregion
@@ -88,7 +76,14 @@ namespace MathWordProblemsConsoleApp.Ext
 		/// <param name="style"></param>
 		public string GetRangeText(string cellName)
 		{
-			return Sheet.Range[cellName].Text;
+			CellRange cell = Sheet.Range[cellName];
+			if (cell.HasFormula)
+			{
+				Object value = cell.FormulaValue;
+				cell.Clear(ExcelClearOptions.ClearContent);
+				cell.Value2 = value;
+			}
+			return Sheet.Range[cellName].Value;
 		}
 
 		#region Release resources

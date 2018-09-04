@@ -101,12 +101,12 @@ namespace ComputationalStrategy.Main.Operation
 				// 运算式
 				ProblemFormula = formula,
 				// 应用题文字内容
-				MathWordProblem = problem.Content.Replace("[x]", formula.LeftParameter.ToString())
-													.Replace("[y]", formula.RightParameter.ToString()),
+				MathWordProblem = problem.Content.Replace("x", formula.LeftParameter.ToString())
+													.Replace("y", formula.RightParameter.ToString()),
 				// 标准答案
-				Verify = problem.Verify.Replace("[x]", formula.LeftParameter.ToString())
-													.Replace("[y]", formula.RightParameter.ToString())
-													.Replace("[n]", formula.Answer.ToString())
+				Verify = problem.Verify.Replace("x", formula.LeftParameter.ToString())
+													.Replace("y", formula.RightParameter.ToString())
+													.Replace("n", formula.Answer.ToString())
 			});
 		}
 

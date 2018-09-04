@@ -21,7 +21,6 @@ namespace MathWordProblemsConsoleApp.Ext
 		/// 
 		/// </summary>
 		/// <param name="cellName"></param>
-		/// <param name="value"></param>
-		string GetRangeText(string cellName, string value);
+		string GetRangeText(string cellName);
 	}
 }

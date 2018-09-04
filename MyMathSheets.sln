@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathSheetsSettingApp", "MathSheetsSettingApp\MathSheetsSettingApp.csproj", "{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathWordProblemsConsoleApp", "MathWordProblemsConsoleApp\MathWordProblemsConsoleApp.csproj", "{C89B91C6-DB3A-4698-842D-4BA979C14AE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathWordProblemsConsoleApp", "Tools\MathWordProblemsConsoleApp\MathWordProblemsConsoleApp.csproj", "{C89B91C6-DB3A-4698-842D-4BA979C14AE1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLib", "CommonLib\CommonLib.csproj", "{076E9C76-BEB2-4024-8A09-5183D0D65EC3}"
 EndProject

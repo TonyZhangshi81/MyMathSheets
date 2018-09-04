@@ -3,6 +3,7 @@ using ComputationalStrategy.Item;
 using ComputationalStrategy.Main.Operation;
 using System;
 using System.Collections.Generic;
+using System.Text;
 using TheFormulaShows;
 
 namespace TestConsoleApp
@@ -18,6 +19,8 @@ namespace TestConsoleApp
 		/// <param name="args"></param>
 		static void Main(string[] args)
 		{
+			Console.OutputEncoding = Encoding.Unicode;
+
 			MakeHtml<List<Formula>, Arithmetic> work = null;
 			MakeHtml<List<EqualityFormula>, EqualityComparison> work1 = null;
 			MakeHtml<List<ConnectionFormula>, ComputingConnection> work2 = null;
@@ -39,16 +42,16 @@ namespace TestConsoleApp
 					Console.WriteLine("    f-隨機四則運算比較");
 					Console.WriteLine("    g-標準加法比較");
 					Console.WriteLine("    h-標準減法比較");
-					Console.WriteLine("************************* 計算接龙 ***********************");
-					Console.WriteLine("    i-隨機加减運算接龙");
-					Console.WriteLine("    j-標準加法運算接龙");
-					Console.WriteLine("    k-標準減法運算接龙");
-					Console.WriteLine("************************* 应用题 ***********************");
-					Console.WriteLine("    l-隨機四則運算应用");
-					Console.WriteLine("    m-加法应用");
-					Console.WriteLine("    n-减法应用");
+					Console.WriteLine("************************* 計算接龍 ***********************");
+					Console.WriteLine("    i-隨機加减運算接龍");
+					Console.WriteLine("    j-標準加法運算接龍");
+					Console.WriteLine("    k-標準減法運算接龍");
+					Console.WriteLine("************************* 應用題 ***********************");
+					Console.WriteLine("    l-隨機四則運算應用題");
+					Console.WriteLine("    m-加法應用題");
+					Console.WriteLine("    n-減法應用題");
 					Console.WriteLine("*************************");
-					Console.Write("    9-菜单    0-退出");
+					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
 					Console.Write("");
 
@@ -132,7 +135,7 @@ namespace TestConsoleApp
 
 					case ConsoleKey.I:
 						Console.WriteLine();
-						Console.WriteLine("標準加法運算接龙");
+						Console.WriteLine("標準加法運算接龍");
 						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Random, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.GapFilling, 100, 4);
 						work2.Structure();
 						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
@@ -140,7 +143,7 @@ namespace TestConsoleApp
 
 					case ConsoleKey.J:
 						Console.WriteLine();
-						Console.WriteLine("標準加法運算接龙");
+						Console.WriteLine("標準加法運算接龍");
 						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 100, 4);
 						work2.Structure();
 						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
@@ -148,7 +151,7 @@ namespace TestConsoleApp
 
 					case ConsoleKey.K:
 						Console.WriteLine();
-						Console.WriteLine("標準減法運算接龙");
+						Console.WriteLine("標準減法運算接龍");
 						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 100, 4);
 						work2.Structure();
 						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
@@ -156,7 +159,7 @@ namespace TestConsoleApp
 
 					case ConsoleKey.L:
 						Console.WriteLine();
-						Console.WriteLine("隨機四則運算应用");
+						Console.WriteLine("隨機四則運算應用題");
 						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Random,
 																								new List<SignOfOperation>
 																								{
@@ -164,22 +167,22 @@ namespace TestConsoleApp
 																									SignOfOperation.Subtraction,
 																									SignOfOperation.Multiple,
 																									SignOfOperation.Division
-																								}, QuestionType.Default, 30, 4);
+																								}, QuestionType.Default, 50, 10);
 						work3.Structure();
 						Util.CreateOperatorObjectFactory<List<MathWordProblemsFormula>>("MathWordProblemsFormulaWrite", work3.Formulas);
 						break;
 
 					case ConsoleKey.M:
 						Console.WriteLine();
-						Console.WriteLine("加法应用");
-						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Default, 20, 4);
+						Console.WriteLine("加法應用題");
+						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Default, 20, 10);
 						work3.Structure();
 						Util.CreateOperatorObjectFactory<List<MathWordProblemsFormula>>("MathWordProblemsFormulaWrite", work3.Formulas);
 						break;
 					case ConsoleKey.N:
 						Console.WriteLine();
-						Console.WriteLine("减法应用");
-						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 15, 4);
+						Console.WriteLine("減法應用題");
+						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 20, 10);
 						work3.Structure();
 						Util.CreateOperatorObjectFactory<List<MathWordProblemsFormula>>("MathWordProblemsFormulaWrite", work3.Formulas);
 						break;
