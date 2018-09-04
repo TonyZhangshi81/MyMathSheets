@@ -34,7 +34,9 @@ namespace TheFormulaShows.Support
 			{
 				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
 				rowHtml.AppendLine("<h5>");
+				rowHtml.AppendLine("<p class=\"text-info\">");
 				rowHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.MathWordProblem));
+				rowHtml.AppendLine("</p>");
 				rowHtml.AppendLine("</h5>");
 				rowHtml.AppendLine("</div>");
 				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
