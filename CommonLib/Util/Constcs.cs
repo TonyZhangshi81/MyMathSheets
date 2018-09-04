@@ -112,4 +112,41 @@ namespace CommonLib.Util
 		/// </summary>
 		Equal
 	}
+
+	/// <summary>
+	/// 
+	/// </summary>
+	public class LayoutSetting
+	{
+		/// <summary>
+		/// 瀏覽設定
+		/// </summary>
+		public enum Preview : int
+		{
+			/// <summary>
+			/// 標題瀏覽
+			/// </summary>
+			Title = 0,
+			/// <summary>
+			/// 四則運算瀏覽
+			/// </summary>
+			Arithmetic,
+			/// <summary>
+			/// 運算比大小瀏覽
+			/// </summary>
+			EqualityComparison,
+			/// <summary>
+			/// 等式接龍瀏覽
+			/// </summary>
+			ComputingConnection,
+			/// <summary>
+			/// 算式應用題瀏覽
+			/// </summary>
+			MathWordProblems,
+			/// <summary>
+			/// 答題結束瀏覽
+			/// </summary>
+			Ready
+		}
+	}
 }

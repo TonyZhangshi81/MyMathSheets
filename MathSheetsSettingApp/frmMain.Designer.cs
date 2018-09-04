@@ -46,6 +46,7 @@
 			this.chkEqualityComparison = new System.Windows.Forms.CheckBox();
 			this.chkComputingConnection = new System.Windows.Forms.CheckBox();
 			this.chkMathWordProblems = new System.Windows.Forms.CheckBox();
+			this.flpPreview = new System.Windows.Forms.FlowLayoutPanel();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -241,11 +242,22 @@
 			this.chkMathWordProblems.UseVisualStyleBackColor = true;
 			this.chkMathWordProblems.CheckedChanged += new System.EventHandler(this.MathWordProblemsCheckedChanged);
 			// 
+			// flpPreview
+			// 
+			this.flpPreview.AutoScroll = true;
+			this.flpPreview.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+			this.flpPreview.Location = new System.Drawing.Point(409, 12);
+			this.flpPreview.Name = "flpPreview";
+			this.flpPreview.Size = new System.Drawing.Size(511, 382);
+			this.flpPreview.TabIndex = 18;
+			this.flpPreview.WrapContents = false;
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(771, 240);
+			this.ClientSize = new System.Drawing.Size(932, 405);
+			this.Controls.Add(this.flpPreview);
 			this.Controls.Add(this.chkMathWordProblems);
 			this.Controls.Add(this.chkComputingConnection);
 			this.Controls.Add(this.chkEqualityComparison);
@@ -288,6 +300,7 @@
 		private System.Windows.Forms.CheckBox chkEqualityComparison;
 		private System.Windows.Forms.CheckBox chkComputingConnection;
 		private System.Windows.Forms.CheckBox chkMathWordProblems;
+		private System.Windows.Forms.FlowLayoutPanel flpPreview;
 	}
 }
 

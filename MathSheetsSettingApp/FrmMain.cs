@@ -3,6 +3,7 @@ using ComputationalStrategy.Item;
 using ComputationalStrategy.Main.Operation;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -65,7 +66,45 @@ namespace MathSheetsSettingApp
 			this.cmbComplexity.DataSource = bsComplexity;
 			this.cmbTopic.ValueMember = "Key";
 			this.cmbTopic.DisplayMember = "Value";
+
+			// 題型縮略瀏覽初期化
+			PreviewInit();
 		}
+
+		/// <summary>
+		/// 題型縮略瀏覽初期化
+		/// </summary>
+		private void PreviewInit()
+		{
+			// 標題瀏覽
+			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Title);
+			// 答題結束瀏覽
+			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Ready);
+		}
+
+		/// <summary>
+		/// 添加題型模塊至瀏覽項目
+		/// </summary>
+		/// <param name="name">題型的名字</param>
+		private void PictureIntoFlowLayoutPanel(LayoutSetting.Preview name)
+		{
+			PictureBox picBox = new PictureBox
+			{
+				// 獲取題型項目的縮略圖
+				Image = (System.Drawing.Bitmap)Properties.Resources.ResourceManager.GetObject(name.ToString()),
+				Tag = name.ToString(),
+				SizeMode = PictureBoxSizeMode.StretchImage,
+				Width = flpPreview.Width - 20,
+				Height = 100
+			};
+			// 將題型縮略圖添加至瀏覽框
+			flpPreview.Controls.Add(picBox);
+			// 防止閃爍
+			flpPreview.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(picBox, true, null);
+
+			picBox.Margin = new Padding(0);
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -83,6 +122,7 @@ namespace MathSheetsSettingApp
 			this.chkMultiplication.Enabled = true;
 			this.chkDivision.Enabled = true;
 		}
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -177,7 +217,7 @@ namespace MathSheetsSettingApp
 		{
 			if (!chkAdition.Checked && !chkDivision.Checked && !chkMultiplication.Checked && !chkSubtraction.Checked)
 			{
-				MessageBox.Show(this, "加减乘除未指定！");
+				MessageBox.Show(this, "運算符未指定");
 				return;
 			}
 
@@ -203,21 +243,6 @@ namespace MathSheetsSettingApp
 			Environment.Exit(0);
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="item"></param>
-		/// <param name="parameter"></param>
-		/// <param name="gap"></param>
-		/// <returns></returns>
-		private string GetValue(GapFilling item, int parameter, GapFilling gap)
-		{
-			if (item == gap)
-			{
-				return string.Empty.PadLeft(2);
-			}
-			return parameter.ToString();
-		}
 		/// <summary>
 		/// 
 		/// </summary>
@@ -276,7 +301,7 @@ namespace MathSheetsSettingApp
 		}
 
 		/// <summary>
-		/// 
+		/// 四則運算
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -297,15 +322,69 @@ namespace MathSheetsSettingApp
 					htmlMaps.Add(attr.Source, attr.Target);
 				});
 
-				_htmlMaps.Add("ARITHMETIC", htmlMaps);
+				_htmlMaps.Add(LayoutSetting.Preview.Arithmetic.ToString(), htmlMaps);
 			}
 			else
 			{
-				_htmlMaps.Remove("ARITHMETIC");
+				_htmlMaps.Remove(LayoutSetting.Preview.Arithmetic.ToString());
 			}
+			PreviewReflash();
 		}
+
 		/// <summary>
-		/// 
+		/// 題型縮略瀏覽初期化
+		/// </summary>
+		private void PreviewReflash()
+		{
+			flpPreview.Controls.Clear();
+
+			// 標題瀏覽
+			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Title);
+			// 四則運算瀏覽
+			if (chkArithmetic.Checked)
+			{
+				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Arithmetic);
+			}
+			// 運算比大小瀏覽
+			if (chkEqualityComparison.Checked)
+			{
+				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.EqualityComparison);
+			}
+			// 等式接龍瀏覽
+			if (chkComputingConnection.Checked)
+			{
+				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.ComputingConnection);
+			}
+			// 算式應用題瀏覽
+			if (chkMathWordProblems.Checked)
+			{
+				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.MathWordProblems);
+			}
+			// 答題結束瀏覽
+			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Ready);
+		}
+
+		/// <summary>
+		/// 獲取指定題型的瀏覽所在位置
+		/// </summary>
+		/// <param name="viewName"></param>
+		/// <returns></returns>
+		private int GetPreviewItemIndexof(LayoutSetting.Preview viewName)
+		{
+			int index = 0;
+			foreach (PictureBox pictureBox in flpPreview.Controls)
+			{
+				if (pictureBox.Tag.ToString().Equals(viewName.ToString()))
+				{
+					index = flpPreview.Controls.GetChildIndex(pictureBox);
+					break;
+				}
+			}
+			return index;
+		}
+
+		/// <summary>
+		/// 等式比大小
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -326,15 +405,16 @@ namespace MathSheetsSettingApp
 					htmlMaps.Add(attr.Source, attr.Target);
 				});
 
-				_htmlMaps.Add("EQUALITYCOMPARISON", htmlMaps);
+				_htmlMaps.Add(LayoutSetting.Preview.EqualityComparison.ToString(), htmlMaps);
 			}
 			else
 			{
-				_htmlMaps.Remove("EQUALITYCOMPARISON");
+				_htmlMaps.Remove(LayoutSetting.Preview.EqualityComparison.ToString());
 			}
+			PreviewReflash();
 		}
 		/// <summary>
-		/// 
+		/// 等式接龍
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -355,16 +435,17 @@ namespace MathSheetsSettingApp
 					htmlMaps.Add(attr.Source, attr.Target);
 				});
 
-				_htmlMaps.Add("COMPUTINGCONNECTION", htmlMaps);
+				_htmlMaps.Add(LayoutSetting.Preview.ComputingConnection.ToString(), htmlMaps);
 			}
 			else
 			{
-				_htmlMaps.Remove("COMPUTINGCONNECTION");
+				_htmlMaps.Remove(LayoutSetting.Preview.ComputingConnection.ToString());
 			}
+			PreviewReflash();
 		}
 
 		/// <summary>
-		/// 
+		/// 算式應用題
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -385,12 +466,13 @@ namespace MathSheetsSettingApp
 					htmlMaps.Add(attr.Source, attr.Target);
 				});
 
-				_htmlMaps.Add("MATHWORDPROBLEMS", htmlMaps);
+				_htmlMaps.Add(LayoutSetting.Preview.MathWordProblems.ToString(), htmlMaps);
 			}
 			else
 			{
-				_htmlMaps.Remove("MATHWORDPROBLEMS");
+				_htmlMaps.Remove(LayoutSetting.Preview.MathWordProblems.ToString());
 			}
+			PreviewReflash();
 		}
 	}
 }

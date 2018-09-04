@@ -66,6 +66,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Config\Problems.json" />
     <None Include="HtmlTemplate\HTMLPage" />
@@ -85,17 +86,23 @@
   <ItemGroup>
     <Content Include="App_Data\Work\Content\bootstrap.min.css" />
     <Content Include="App_Data\Work\Content\favicon.ico" />
+    <None Include="App_Data\Work\Content\image\Arithmetic.png" />
     <Content Include="App_Data\Work\Content\image\calculator.png" />
     <Content Include="App_Data\Work\Content\image\char-less.png" />
     <Content Include="App_Data\Work\Content\image\char-more.png" />
+    <None Include="App_Data\Work\Content\image\ComputingConnection.png" />
     <Content Include="App_Data\Work\Content\image\correct.png" />
     <Content Include="App_Data\Work\Content\image\Division.png" />
+    <None Include="App_Data\Work\Content\image\EqualityComparison.png" />
     <Content Include="App_Data\Work\Content\image\fault.png" />
     <Content Include="App_Data\Work\Content\image\help.png" />
     <Content Include="App_Data\Work\Content\image\homework.png" />
+    <None Include="App_Data\Work\Content\image\MathWordProblems.png" />
     <Content Include="App_Data\Work\Content\image\Multiple.png" />
     <Content Include="App_Data\Work\Content\image\Plus.png" />
+    <None Include="App_Data\Work\Content\image\ready.png" />
     <Content Include="App_Data\Work\Content\image\Subtraction.png" />
+    <None Include="App_Data\Work\Content\image\title.png" />
     <Content Include="App_Data\Work\Scripts\bootstrap.min.js" />
     <Content Include="App_Data\Work\Scripts\jquery-3.0.0.min.js" />
     <Content Include="App_Data\Work\Scripts\json2.min.js" />
