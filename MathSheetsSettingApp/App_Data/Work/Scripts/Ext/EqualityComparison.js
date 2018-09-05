@@ -1,7 +1,7 @@
 ﻿// 打印設置
 function equalityComparisonPrintSetting() {
 	$("img[id*='imgEc']").each(function (index, element) {
-		$(element).replaceWith("<button type=\"button\" class=\"btn btn-default btn-circle\"><i class=\"glyphicon glyphicon-ok\"></i></button>");
+		$(element).replaceWith("<button type=\"button\" class=\"btn btn-default btn-circle button-addBorder\"></button>");
 	});
 }
 

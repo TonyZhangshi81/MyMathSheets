@@ -1,6 +1,7 @@
 ﻿// 打印設置
 function arithmeticPrintSetting() {
 	$("input[id*='inputAc']").each(function (index, element) {
+		$(element).addClass('input-print');
 		$(element).removeAttr('placeholder');
 		$(element).removeAttr("disabled");
 	});

@@ -2,6 +2,7 @@
 function computingConnectionPrintSetting() {
 	$("input[id*='inputCc']").each(function (index, element) {
 		$(element).removeAttr('placeholder');
+		$(element).removeAttr("disabled");
 	});
 }
 

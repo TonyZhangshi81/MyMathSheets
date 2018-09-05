@@ -23,12 +23,16 @@
 		.row-margin-top {
 			margin-top: 10px;
 		}
+		
+		.hr-Ext {
+			margin-bottom: 0rem;
+		}
 
 		.jumbotron-ext {
-			/*height: 270px;
-			padding-top: 14px;
-			padding-bottom: 34px;*/
-			background-color: lightpink;
+			padding: 2rem 3rem;
+			border-radius: 0.8rem;
+			background: url("../Content/image/timg.png") no-repeat;
+			background-size:100% 100%;
 		}
 
 		.main-ext {
@@ -44,6 +48,38 @@
 			line-height: 1.428571429;
 			border-radius: 15px;
 		}
+
+		.input-print {
+			border: 1px solid black;
+		}
+
+		.input-addBorder {
+			border: 1px solid black;
+		}
+
+		.button-addBorder {
+			border: 1px solid black;
+			background: white;
+		}
+		
+		.label-title{
+			margin-bottom: 0.5rem;
+			font-family: inherit;
+			font-weight: 500;
+			line-height: 1.2;
+			font-size: 2.5rem;
+			color: white;
+		}
+		
+		.div-famousPeople{
+			margin-left:30px;
+		}
+		
+		.text-info{
+			color: #6c757d!important;
+			font-size: 0.7rem;
+		}
+		
 	</style>
 
 	<script>
@@ -116,97 +152,97 @@
 		var second = 0;
 		var minute = 0;
 		var hour = 0;
-		// 用于停止计时功能(停止计时:true)
+		// 用於停止計時器(停止計時:true)
 		var isStop = false;
-		// 读秒计时器(当准备按钮按下后,答题开始,计时器开始计时)
+		// 讀秒計時器(當準備按鈕按下后,答題開始,計時器開始計時)
 		function startTime() {
-			// 停止计时
+			// 停止計時
 			if (isStop) {
 				return;
 			}
 
 			second++;
-			// 读秒
+			// 讀秒
 			$('#spanSS').text(this.checkTime(second));
-			// 读分
+			// 讀分
 			minute = parseInt($('#spanMM').text());
-			// 60秒后,分钟加1,秒针归0
+			// 60秒后,分鐘加1,秒針歸0
 			if (second == 60) {
 				minute++;
 				second = 0;
 				$('#spanMM').text(this.checkTime(minute));
 				$('#spanSS').text(this.checkTime(second));
 			}
-			// 读时
+			// 讀時
 			hour = parseInt($('#spanHH').text());
-			// 60分后,时钟加1,分针归0
+			// 60分后,時針加1,分針歸0
 			if (minute == 60) {
 				hour++;
 				minute = 0;
 				$('#spanHH').text(this.checkTime(hour));
 				$('#spanMM').text(this.checkTime(minute));
 			}
-			// 59:59:59为计时器上限值,将强制停止计时器
+			// 59:59:59為計時器上限值,將強制停止計時器
 			if (second == 59 && minute == 59 && hour == 59) {
 				isStop = true;
 			}
-			// 定时执行(设定间隔为1秒)
+			// 定時執行(設定時間間隔為1秒)
 			setTimeout('startTime()', 1000)
 		}
 
-		// 计时器-不足十位向前补0
+		// 計時器-不足十位向前補0
 		function checkTime(i) {
 			if (i < 10) { i = "0" + i }
 			return i
 		}
 
-		// 完成(关闭页面)
+		// 完成(關閉頁面)
 		function btnOverClick() {
 			window.close();
 		}
 
-		// 订正按钮(不计入答题情况信息)
+		// 訂正按鈕(不計入答題情況信息)
 		function btnMakeCorrectionsClick() {
 			var fault = 0;
-			// 四则运算题
+			// 四則運算題
 			//<!--ARITHMETICMAKECORRECTIONS-->
-			// 算式比较大小
+			// 算式比較大小
 			//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->
-			// 等式接龙
+			// 等式接龍
 			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
-			// 算数应用题
+			// 算數應用題
 			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
 
-			// 是否存在错题
+			// 是否存在錯題
 			if (fault != 0) {
-				// 存在:订正按钮显示
+				// 存在:訂正按鈕顯示
 				$('#btnMakeCorrections').show();
 			} else {
-				// 不存在:订正按钮隐藏,完成按钮显示
+				// 不存在：訂正按鈕隱藏，完成按鈕顯示
 				$('#btnMakeCorrections').hide();
 				$('#btnOver').show();
 			}
 		}
 
-		// 答对数量
+		// 答對數量
 		var isRight = 0;
-		// 答错数量
+		// 答錯數量
 		var isFault = 0;
-		// 交卷按钮(记录在答题情况下,以便可以看到前一次做题情况)
+		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
 		function btnTheirPapersClick() {
-			// 四则运算交卷
+			// 四則運算交卷
 			//<!--ARITHMETICTHEIRPAPERS-->
-			// 算式比较大小交卷
+			// 算式比大小交卷
 			//<!--EQUALITYCOMPARISONTHEIRPAPERS-->
-			// 等式接龙交卷
+			// 等式接龍交卷
 			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
-			// 算数应用题交卷
+			// 算數應用題交卷
 			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
 
 
 			$('#spanOK').text(isRight);
 			$('#spanNo').text(isFault);
-			// 对错图片显示和隐藏
+			// 對/錯圖片顯示和隱藏
 			if (isFault != 0) {
 				$('#btnMakeCorrections').show();
 			} else {
@@ -214,26 +250,26 @@
 			}
 			$('#btnTheirPapers').hide();
 
-			// 计时停止
+			// 計時停止
 			isStop = true;
 
-			// 存储变量到result键（答题结果）
+			// 存儲變量到result鍵（答題結果）
 			var timeStr = $('#spanHH').text() + '：' + $('#spanMM').text() + '：' + $('#spanSS').text();
 			store.set('result', { time: timeStr, right: isRight, fault: isFault });
 		}
 
-		// 按键屏蔽防止刷新页面
+		// 按鍵屏蔽防止刷新頁面
 		function forbidKeyDown() {
 			$(document).bind("keydown", function (e) {
 				var e = window.event || e;
-				// 屏蔽 Alt+ 方向键 ←
-				// 屏蔽 Alt+ 方向键 →
+				// 屏蔽 Alt+ 方向鍵 ←
+				// 屏蔽 Alt+ 方向鍵 →
 				if ((e.altKey) && ((e.keyCode == 37) || (e.keyCode == 39))) {
 					e.returnValue = false;
 					return false;
 				}
 
-				// 屏蔽退格删除键
+				// 屏蔽退格刪除鍵
 				if (e.keyCode == 8) {
 					if (document.activeElement.tagName.toLowerCase() == 'input'.toLowerCase()) {
 						var typeName = document.activeElement.type.toLowerCase();
@@ -249,7 +285,7 @@
 					return false;
 				}
 
-				// 屏蔽F5刷新键
+				// 屏蔽F5刷新建
 				if (e.keyCode == 116) {
 					return false;
 				}
@@ -260,7 +296,7 @@
 				}
 			});
 
-			// 禁用右键单击功能
+			// 禁用右鍵點擊功能
 			$(document).bind("contextmenu", function (e) {
 				return false;
 			});
@@ -269,20 +305,22 @@
 </head>
 <body>
 	<div class="container theme-showcase main-ext" role="main">
-		<div class="jumbotron jumbotron-ext">
-			<h1>欢迎，数学运算</h1>
-			<h6>
-				<span class="text-info" style="padding-left:30px;">普洛克拉斯："那里有数,那里就有美。"</span>
-				<br />
-				<span class="text-info" style="padding-left:30px;">罗素："数学,如果正常地看它,不但拥有真理,而且也具有至高的美,正如雕塑的美,是一种冷而严肃的美。"</span>
-				<br />
-				<span class="text-info" style="padding-left:30px;">华罗庚："数学是壮丽多彩、千姿百态、引人入胜的,认为数学枯燥乏味的人，只是看到了数学的严谨性，而没有体会出数学的内在美。"</span>
-			</h6>
-			<hr />
-			<div class="well">
-				上一次做题用时:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
-				<span style="padding-left:20px;">答对:</span><span id="spanOldOK" style="padding-left:10px;"></span>题
-				<span style="padding-left:20px;">答错:</span><span id="spanOldNo" style="padding-left:10px;"></span>题
+		<div class="jumbotron-ext">
+			<div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
+			<div class="div-famousPeople">
+				<h6>
+					<span class="text-info">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+					<br />
+					<span class="text-info">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+					<br />
+					<span class="text-info">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+				</h6>
+			</div>
+			<hr class="hr-Ext" />
+			<div class="text-info">
+				前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
+				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
 			</div>
 		</div>
 		<div id="divPrintContent">

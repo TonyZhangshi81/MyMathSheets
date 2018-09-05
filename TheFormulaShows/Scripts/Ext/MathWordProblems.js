@@ -1,11 +1,13 @@
 ﻿// 打印設置
 function mathWordProblemsPrintSetting() {
 	$("img[id*='imgMwp']").each(function (index, element) {
-		$(element).replaceWith("<button type=\"button\" class=\"btn btn-default btn-circle\"><i class=\"glyphicon glyphicon-ok\"></i></button>");
+		$(element).replaceWith("<button type=\"button\" class=\"btn btn-default btn-circle button-addBorder\"></button>");
 	});
 
 	$("input[id*='inputMwp']").each(function (index, element) {
+		$(element).addClass('input-print');
 		$(element).removeAttr('placeholder');
+		$(element).removeAttr("disabled");
 	});
 }
 
