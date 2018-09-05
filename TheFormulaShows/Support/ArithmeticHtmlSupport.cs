@@ -9,11 +9,11 @@ namespace TheFormulaShows.Support
 	/// <summary>
 	/// 
 	/// </summary>
-	[Substitute("<!--ARITHMETICSCRIPT-->", "<script src=\"../Scripts/Ext/Arithmetic.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--ARITHMETICREADY-->", "arithmeticReady();")]
-	[Substitute("//<!--ARITHMETICMAKECORRECTIONS-->", "fault += arithmeticMakeCorrections();")]
-	[Substitute("//<!--ARITHMETICTHEIRPAPERS-->", "arithmeticTheirPapers();")]
-	[Substitute("//<!--ARITHMETICPRINTSETTING-->", "arithmeticPrintSetting();")]
+	[Substitute("<!--ARITHMETICSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.Arithmetic.js\" charset=\"utf-8\"></script>")]
+	[Substitute("//<!--ARITHMETICREADY-->", "MathSheets.Arithmetic.ready();")]
+	[Substitute("//<!--ARITHMETICMAKECORRECTIONS-->", "fault += MathSheets.Arithmetic.makeCorrections();")]
+	[Substitute("//<!--ARITHMETICTHEIRPAPERS-->", "MathSheets.Arithmetic.theirPapers();")]
+	[Substitute("//<!--ARITHMETICPRINTSETTING-->", "MathSheets.Arithmetic.printSetting();")]
 	public class ArithmeticHtmlSupport : IMakeHtml<List<Formula>>
 	{
 		/// <summary>

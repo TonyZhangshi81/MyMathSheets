@@ -9,11 +9,11 @@ namespace TheFormulaShows.Support
 	/// <summary>
 	/// 
 	/// </summary>
-	[Substitute("<!--EQUALITYCOMPARISONSCRIPT-->", "<script src=\"../Scripts/Ext/EqualityComparison.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--EQUALITYCOMPARISONREADY-->", "equalityComparisonReady();")]
-	[Substitute("//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->", "fault += equalityComparisonMakeCorrections();")]
-	[Substitute("//<!--EQUALITYCOMPARISONTHEIRPAPERS-->", "equalityComparisonTheirPapers();")]
-	[Substitute("//<!--EQUALITYCOMPARISONPRINTSETTING-->", "equalityComparisonPrintSetting();")]
+	[Substitute("<!--EQUALITYCOMPARISONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.EqualityComparison.js\" charset=\"utf-8\"></script>")]
+	[Substitute("//<!--EQUALITYCOMPARISONREADY-->", "MathSheets.EqualityComparison.ready();")]
+	[Substitute("//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->", "fault += MathSheets.EqualityComparison.makeCorrections();")]
+	[Substitute("//<!--EQUALITYCOMPARISONTHEIRPAPERS-->", "MathSheets.EqualityComparison.theirPapers();")]
+	[Substitute("//<!--EQUALITYCOMPARISONPRINTSETTING-->", "MathSheets.EqualityComparison.printSetting();")]
 	public class EqualityComparisonHtmlSupport : IMakeHtml<List<EqualityFormula>>
 	{
 		/// <summary>

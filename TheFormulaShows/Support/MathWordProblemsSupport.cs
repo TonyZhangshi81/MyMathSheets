@@ -8,11 +8,11 @@ namespace TheFormulaShows.Support
 	/// <summary>
 	/// 
 	/// </summary>
-	[Substitute("<!--MATHWORDPROBLEMSSCRIPT-->", "<script src=\"../Scripts/Ext/MathWordProblems.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--MATHWORDPROBLEMSREADY-->", "mathWordProblemsReady();")]
-	[Substitute("//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->", "fault += mathWordProblemsMakeCorrections();")]
-	[Substitute("//<!--MATHWORDPROBLEMSTHEIRPAPERS-->", "mathWordProblemsTheirPapers();")]
-	[Substitute("//<!--MATHWORDPROBLEMSPRINTSETTING-->", "mathWordProblemsPrintSetting();")]
+	[Substitute("<!--MATHWORDPROBLEMSSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.MathWordProblems.js\" charset=\"utf-8\"></script>")]
+	[Substitute("//<!--MATHWORDPROBLEMSREADY-->", "MathSheets.MathWordProblems.ready();")]
+	[Substitute("//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->", "fault += MathSheets.MathWordProblems.makeCorrections();")]
+	[Substitute("//<!--MATHWORDPROBLEMSTHEIRPAPERS-->", "MathSheets.MathWordProblems.theirPapers();")]
+	[Substitute("//<!--MATHWORDPROBLEMSPRINTSETTING-->", "MathSheets.MathWordProblems.printSetting();")]
 	public class MathWordProblemsSupport : IMakeHtml<List<MathWordProblemsFormula>>
 	{
 		/// <summary>

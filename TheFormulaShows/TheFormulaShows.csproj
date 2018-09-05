@@ -96,10 +96,11 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\Ext\Arithmetic.js" />
-    <Content Include="Scripts\Ext\ComputingConnection.js" />
-    <Content Include="Scripts\Ext\EqualityComparison.js" />
-    <Content Include="Scripts\Ext\MathWordProblems.js" />
+    <Content Include="Scripts\Ext\MathSheets.Arithmetic.js" />
+    <Content Include="Scripts\Ext\MathSheets.Common.js" />
+    <Content Include="Scripts\Ext\MathSheets.ComputingConnection.js" />
+    <Content Include="Scripts\Ext\MathSheets.EqualityComparison.js" />
+    <Content Include="Scripts\Ext\MathSheets.MathWordProblems.js" />
     <Content Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />

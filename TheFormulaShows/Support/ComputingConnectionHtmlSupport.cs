@@ -9,11 +9,11 @@ namespace TheFormulaShows.Support
 	/// <summary>
 	/// 
 	/// </summary>
-	[Substitute("<!--COMPUTINGCONNECTIONSCRIPT-->", "<script src=\"../Scripts/Ext/ComputingConnection.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--COMPUTINGCONNECTIONREADY-->", "computingConnectionReady();")]
-	[Substitute("//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->", "fault += computingConnectionMakeCorrections();")]
-	[Substitute("//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->", "computingConnectionTheirPapers();")]
-	[Substitute("//<!--COMPUTINGCONNECTIONPRINTSETTING-->", "computingConnectionPrintSetting();")]
+	[Substitute("<!--COMPUTINGCONNECTIONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.ComputingConnection.js\" charset=\"utf-8\"></script>")]
+	[Substitute("//<!--COMPUTINGCONNECTIONREADY-->", "MathSheets.ComputingConnection.ready();")]
+	[Substitute("//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->", "fault += MathSheets.ComputingConnection.makeCorrections();")]
+	[Substitute("//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->", "MathSheets.ComputingConnection.theirPapers();")]
+	[Substitute("//<!--COMPUTINGCONNECTIONPRINTSETTING-->", "MathSheets.ComputingConnection.printSetting();")]
 	public class ComputingConnectionHtmlSupport : IMakeHtml<List<ConnectionFormula>>
 	{
 		/// <summary>

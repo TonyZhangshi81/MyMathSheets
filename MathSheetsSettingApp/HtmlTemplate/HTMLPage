@@ -13,6 +13,7 @@
 	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
 	<!--ARITHMETICSCRIPT-->
 	<!--EQUALITYCOMPARISONSCRIPT-->
 	<!--COMPUTINGCONNECTIONSCRIPT-->
@@ -75,7 +76,7 @@
 			margin-left:30px;
 		}
 		
-		.text-info{
+		.text-info-ext{
 			color: #6c757d!important;
 			font-size: 0.7rem;
 		}
@@ -85,9 +86,6 @@
 	<script>
 		// 頁面啟動后加載
 		$(document).ready(function () {
-			// 按鍵屏蔽防止刷新頁面
-			forbidKeyDown();
-
 			// 準備
 			$('#btnReady').click(function () { btnReadyClick(); });
 			// 提交答題
@@ -100,7 +98,7 @@
 			$('#btnPrint').click(function () { btnPrintClick(); });
 
 			// 還原上一次答題結果
-			lastTimeRestore();
+			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
 		});
 
 		// 打印
@@ -110,22 +108,8 @@
 			//<!--COMPUTINGCONNECTIONPRINTSETTING-->
 			//<!--MATHWORDPROBLEMSPRINTSETTING-->
 
-			var printId = "divPrintContent";
-			var k = $("#" + printId).prop("outerHTML");
-			$("body *").hide();
-			$("body").append(k);
-			window.print();
-			$("body *").show();
-			$("body #" + printId + ":last").remove();
-		}
-
-		// 顯示上一次答題結果
-		function lastTimeRestore() {
-			// 獲取內容
-			var result = store.get('result');
-			$('#spanOld').text(result.time);
-			$('#spanOldOK').text(result.right);
-			$('#spanOldNo').text(result.fault);
+			// 頁面答應處理
+			MathSheets.Common.pagePrint('divPrintContent');
 		}
 
 		// 答題準備按鍵
@@ -145,60 +129,12 @@
 
 
 			// 計時開始
-			startTime();
-		}
-
-
-		var second = 0;
-		var minute = 0;
-		var hour = 0;
-		// 用於停止計時器(停止計時:true)
-		var isStop = false;
-		// 讀秒計時器(當準備按鈕按下后,答題開始,計時器開始計時)
-		function startTime() {
-			// 停止計時
-			if (isStop) {
-				return;
-			}
-
-			second++;
-			// 讀秒
-			$('#spanSS').text(this.checkTime(second));
-			// 讀分
-			minute = parseInt($('#spanMM').text());
-			// 60秒后,分鐘加1,秒針歸0
-			if (second == 60) {
-				minute++;
-				second = 0;
-				$('#spanMM').text(this.checkTime(minute));
-				$('#spanSS').text(this.checkTime(second));
-			}
-			// 讀時
-			hour = parseInt($('#spanHH').text());
-			// 60分后,時針加1,分針歸0
-			if (minute == 60) {
-				hour++;
-				minute = 0;
-				$('#spanHH').text(this.checkTime(hour));
-				$('#spanMM').text(this.checkTime(minute));
-			}
-			// 59:59:59為計時器上限值,將強制停止計時器
-			if (second == 59 && minute == 59 && hour == 59) {
-				isStop = true;
-			}
-			// 定時執行(設定時間間隔為1秒)
-			setTimeout('startTime()', 1000)
-		}
-
-		// 計時器-不足十位向前補0
-		function checkTime(i) {
-			if (i < 10) { i = "0" + i }
-			return i
+			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
 		}
 
 		// 完成(關閉頁面)
 		function btnOverClick() {
-			window.close();
+			MathSheets.Common.windowClose();
 		}
 
 		// 訂正按鈕(不計入答題情況信息)
@@ -213,21 +149,10 @@
 			// 算數應用題
 			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
 
-			// 是否存在錯題
-			if (fault != 0) {
-				// 存在:訂正按鈕顯示
-				$('#btnMakeCorrections').show();
-			} else {
-				// 不存在：訂正按鈕隱藏，完成按鈕顯示
-				$('#btnMakeCorrections').hide();
-				$('#btnOver').show();
-			}
+			// 訂正按鈕處理
+			MathSheets.Common.makeCorrections('btnMakeCorrections', 'btnOver');
 		}
 
-		// 答對數量
-		var isRight = 0;
-		// 答錯數量
-		var isFault = 0;
 		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
 		function btnTheirPapersClick() {
 			// 四則運算交卷
@@ -239,67 +164,10 @@
 			// 算數應用題交卷
 			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
 
-
-			$('#spanOK').text(isRight);
-			$('#spanNo').text(isFault);
-			// 對/錯圖片顯示和隱藏
-			if (isFault != 0) {
-				$('#btnMakeCorrections').show();
-			} else {
-				$('#btnOver').show();
-			}
-			$('#btnTheirPapers').hide();
-
-			// 計時停止
-			isStop = true;
-
-			// 存儲變量到result鍵（答題結果）
-			var timeStr = $('#spanHH').text() + '：' + $('#spanMM').text() + '：' + $('#spanSS').text();
-			store.set('result', { time: timeStr, right: isRight, fault: isFault });
-		}
-
-		// 按鍵屏蔽防止刷新頁面
-		function forbidKeyDown() {
-			$(document).bind("keydown", function (e) {
-				var e = window.event || e;
-				// 屏蔽 Alt+ 方向鍵 ←
-				// 屏蔽 Alt+ 方向鍵 →
-				if ((e.altKey) && ((e.keyCode == 37) || (e.keyCode == 39))) {
-					e.returnValue = false;
-					return false;
-				}
-
-				// 屏蔽退格刪除鍵
-				if (e.keyCode == 8) {
-					if (document.activeElement.tagName.toLowerCase() == 'input'.toLowerCase()) {
-						var typeName = document.activeElement.type.toLowerCase();
-						if (typeName == 'text'.toLowerCase() || typeName == 'password'.toLowerCase()) {
-							if (!document.activeElement.readOnly) {
-								return true;
-							}
-						}
-					} else if (document.activeElement.tagName.toLowerCase() == 'textarea'.toLowerCase()) {
-						if (!document.activeElement.readOnly)
-							return true;
-					}
-					return false;
-				}
-
-				// 屏蔽F5刷新建
-				if (e.keyCode == 116) {
-					return false;
-				}
-
-				// 屏蔽alt+R
-				if ((e.ctrlKey) && (e.keyCode == 82)) {
-					return false;
-				}
-			});
-
-			// 禁用右鍵點擊功能
-			$(document).bind("contextmenu", function (e) {
-				return false;
-			});
+			// 交卷按鈕處理
+			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
+			// 計時停止（答題結果設定）
+			MathSheets.Common.timeStop('spanSS', 'spanMM', 'spanHH');
 		}
 	</script>
 </head>
@@ -309,15 +177,15 @@
 			<div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
 			<div class="div-famousPeople">
 				<h6>
-					<span class="text-info">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+					<span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
 					<br />
-					<span class="text-info">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+					<span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
 					<br />
-					<span class="text-info">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+					<span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
 				</h6>
 			</div>
 			<hr class="hr-Ext" />
-			<div class="text-info">
+			<div class="text-info-ext">
 				前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
 				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
 				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題

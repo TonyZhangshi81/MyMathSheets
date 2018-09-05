@@ -393,7 +393,7 @@ namespace MathSheetsSettingApp
 			if (chkEqualityComparison.Checked)
 			{
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
-				MakeHtml<List<EqualityFormula>, EqualityComparison> work = new MakeHtml<List<EqualityFormula>, EqualityComparison>(_fourOperationsType, _signs, QuestionType.Standard, _maximumLimit, 8);
+				MakeHtml<List<EqualityFormula>, EqualityComparison> work = new MakeHtml<List<EqualityFormula>, EqualityComparison>(_fourOperationsType, _signs, QuestionType.Standard, 30, 8);
 				work.Structure();
 				htmlMaps.Add("<!--EQUALITYCOMPARISON-->", work.GetHtmlStatement());
 
@@ -423,7 +423,7 @@ namespace MathSheetsSettingApp
 			if (chkComputingConnection.Checked)
 			{
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
-				MakeHtml<List<ConnectionFormula>, ComputingConnection> work = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(_fourOperationsType, _signs, QuestionType.Standard, _maximumLimit, 3);
+				MakeHtml<List<ConnectionFormula>, ComputingConnection> work = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(_fourOperationsType, _signs, QuestionType.Standard, 30, 3);
 				work.Structure();
 				htmlMaps.Add("<!--COMPUTINGCONNECTION-->", work.GetHtmlStatement());
 
@@ -454,7 +454,7 @@ namespace MathSheetsSettingApp
 			if (chkMathWordProblems.Checked)
 			{
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
-				MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(_fourOperationsType, _signs, QuestionType.Default, _maximumLimit, 5);
+				MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(_fourOperationsType, _signs, QuestionType.Default, 30, 3);
 				work.Structure();
 				htmlMaps.Add("<!--MATHWORDPROBLEMS-->", work.GetHtmlStatement());
 
