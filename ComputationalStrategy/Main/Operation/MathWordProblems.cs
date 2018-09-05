@@ -95,6 +95,8 @@ namespace ComputationalStrategy.Main.Operation
 			Problems problem = GetRandomProblemsIndex(signProblems);
 			// 計算式作成
 			Formula formula = strategy.CreateFormula(_maximumLimit, _questionType, 1);
+			// 答題矯正(當答題中未出現x或y值時)
+			AnswerCorrect(problem, formula);
 
 			_formulas.Add(new MathWordProblemsFormula()
 			{
@@ -108,6 +110,30 @@ namespace ComputationalStrategy.Main.Operation
 													.Replace("y", formula.RightParameter.ToString())
 													.Replace("n", formula.Answer.ToString())
 			});
+		}
+
+		/// <summary>
+		/// 答題矯正(當答題中未出現x或y值時)
+		/// </summary>
+		/// <param name="problem">资料库</param>
+		/// <param name="formula">計算式</param>
+		/// <remarks>
+		/// 基於計算式的推斷,當資料庫中出現x+x=n或者y+y=n的情況時,需要對計算式進行矯正,以匹配資料庫中的答案等式
+		/// </remarks>
+		private void AnswerCorrect(Problems problem, Formula formula)
+		{
+			// 答題結果中不存在x參數
+			if(problem.Verify.IndexOf("x") < 0)
+			{
+				formula.LeftParameter = formula.RightParameter;
+				formula.Answer = formula.RightParameter * 2;
+			}
+			// 答題結果中不存在y參數
+			if (problem.Verify.IndexOf("y") < 0)
+			{
+				formula.RightParameter = formula.LeftParameter;
+				formula.Answer = formula.LeftParameter * 2;
+			}
 		}
 
 		/// <summary>

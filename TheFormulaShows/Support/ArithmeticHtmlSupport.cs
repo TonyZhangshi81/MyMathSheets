@@ -14,6 +14,7 @@ namespace TheFormulaShows.Support
 	[Substitute("//<!--ARITHMETICMAKECORRECTIONS-->", "fault += MathSheets.Arithmetic.makeCorrections();")]
 	[Substitute("//<!--ARITHMETICTHEIRPAPERS-->", "MathSheets.Arithmetic.theirPapers();")]
 	[Substitute("//<!--ARITHMETICPRINTSETTING-->", "MathSheets.Arithmetic.printSetting();")]
+	[Substitute("//<!--ARITHMETICPRINTAFTERSETTING-->", "MathSheets.Arithmetic.printAfterSetting();")]
 	public class ArithmeticHtmlSupport : IMakeHtml<List<Formula>>
 	{
 		/// <summary>
@@ -45,8 +46,8 @@ namespace TheFormulaShows.Support
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.RightParameter, GapFilling.Right, controlIndex));
 				colHtml.AppendLine("<span class=\"label\">=</span>");
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.Answer, GapFilling.Answer, controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgArithmeticOK{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgArithmeticNo{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgOKArithmetic{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgNoArithmetic{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine("</h5>");
 				colHtml.AppendLine("</div>");
 

@@ -110,14 +110,19 @@
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
+			// 打印后恢復頁面最初狀態設置
+			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
+			// 打印后頁面設定
+			//<!--ARITHMETICPRINTAFTERSETTING-->
+			//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->
+			//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->
+			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
 		function btnReadyClick() {
-			// 交卷按鈕顯示
-			$('#btnTheirPapers').show();
-			// 準備按鈕隱藏
-			$('#btnReady').hide();
+			// 設定頁面所有輸入域為可用狀態(共通)-交卷按鈕顯示,準備按鈕隱藏,打印按鈕隱藏
+			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
 			// 設定頁面所有輸入域為可用狀態（四則運算）
 			//<!--ARITHMETICREADY-->
 			// 設定頁面所有輸入域為可用狀態(運算比大小)

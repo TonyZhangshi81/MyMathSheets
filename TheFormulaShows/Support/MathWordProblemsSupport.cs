@@ -13,6 +13,7 @@ namespace TheFormulaShows.Support
 	[Substitute("//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->", "fault += MathSheets.MathWordProblems.makeCorrections();")]
 	[Substitute("//<!--MATHWORDPROBLEMSTHEIRPAPERS-->", "MathSheets.MathWordProblems.theirPapers();")]
 	[Substitute("//<!--MATHWORDPROBLEMSPRINTSETTING-->", "MathSheets.MathWordProblems.printSetting();")]
+	[Substitute("//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->", "MathSheets.MathWordProblems.printAfterSetting();")]
 	public class MathWordProblemsSupport : IMakeHtml<List<MathWordProblemsFormula>>
 	{
 		/// <summary>
@@ -47,8 +48,8 @@ namespace TheFormulaShows.Support
 				rowHtml.AppendLine("<img src=\"../Content/image/calculator.png\" style=\"width: 30px; height: 30px;\" />");
 				rowHtml.AppendLine(string.Format("<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, 2));
 				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwp{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex, item.Verify));
-				rowHtml.AppendLine(string.Format("<img id=\"imgProblemsOK{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
-				rowHtml.AppendLine(string.Format("<img id=\"imgProblemsNo{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
+				rowHtml.AppendLine(string.Format("<img id=\"imgOKProblems{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
+				rowHtml.AppendLine(string.Format("<img id=\"imgNoProblems{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
 				rowHtml.AppendLine("</h5>");
 				rowHtml.AppendLine("</div>");
 

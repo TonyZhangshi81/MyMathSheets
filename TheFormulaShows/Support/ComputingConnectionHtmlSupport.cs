@@ -14,6 +14,7 @@ namespace TheFormulaShows.Support
 	[Substitute("//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->", "fault += MathSheets.ComputingConnection.makeCorrections();")]
 	[Substitute("//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->", "MathSheets.ComputingConnection.theirPapers();")]
 	[Substitute("//<!--COMPUTINGCONNECTIONPRINTSETTING-->", "MathSheets.ComputingConnection.printSetting();")]
+	[Substitute("//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->", "MathSheets.ComputingConnection.printAfterSetting();")]
 	public class ComputingConnectionHtmlSupport : IMakeHtml<List<ConnectionFormula>>
 	{
 		/// <summary>
@@ -49,8 +50,8 @@ namespace TheFormulaShows.Support
 					{
 						// 最后一层时需要将算式结果显示在页面上
 						html.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.Answer));
-						html.AppendLine(string.Format("<img id=\"imgComputingConnectionOK{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
-						html.AppendLine(string.Format("<img id=\"imgComputingConnectionNo{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
+						html.AppendLine(string.Format("<img id=\"imgOKComputingConnection{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
+						html.AppendLine(string.Format("<img id=\"imgNoComputingConnection{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
 						html.AppendLine(string.Format("<input id=\"hiddenAllCc{0}\" type=\"hidden\" value=\"{1}\"/>", parentControlIndex, items.ConfixNumber));
 					}
 				}

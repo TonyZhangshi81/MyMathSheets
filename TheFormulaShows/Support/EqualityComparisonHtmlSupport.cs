@@ -14,6 +14,7 @@ namespace TheFormulaShows.Support
 	[Substitute("//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->", "fault += MathSheets.EqualityComparison.makeCorrections();")]
 	[Substitute("//<!--EQUALITYCOMPARISONTHEIRPAPERS-->", "MathSheets.EqualityComparison.theirPapers();")]
 	[Substitute("//<!--EQUALITYCOMPARISONPRINTSETTING-->", "MathSheets.EqualityComparison.printSetting();")]
+	[Substitute("//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->", "MathSheets.EqualityComparison.printAfterSetting();")]
 	public class EqualityComparisonHtmlSupport : IMakeHtml<List<EqualityFormula>>
 	{
 		/// <summary>
@@ -48,8 +49,8 @@ namespace TheFormulaShows.Support
 				colHtml.AppendLine(this.GetHtml(GapFilling.Left, item.RightFormula.LeftParameter, GapFilling.Default, controlIndex));
 				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", GetOperation(item.RightFormula.Sign)));
 				colHtml.AppendLine(this.GetHtml(GapFilling.Right, item.RightFormula.RightParameter, GapFilling.Default, controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgEqualityOK{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgEqualityNo{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgOKEquality{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgNoEquality{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine("</h5>");
 				colHtml.AppendLine("</div>");
 
