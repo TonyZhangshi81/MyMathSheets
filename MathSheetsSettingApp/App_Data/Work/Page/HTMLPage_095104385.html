@@ -82,12 +82,12 @@
 			font-size: 0.7rem;
 		}
 		
-		.divDrag{z-index:2; width:50px; height:50px; background:white;}
-		.divContainer{z-index:1; width:120px; height:120px; background:white; position:absolute; border:1px solid #ccc;}
-		.div0{left:500px; top:20px;}
-		.div1{left:500px; top:150px;}
-		.div2{left:500px; top:280px;}
-		.div3{left:500px; top:410px;}
+		.divDrag{z-index:2; width:40px; height:60px; background:aliceblue;}
+		.divContainer{z-index:1; width:80px; height:80px; background:aliceblue; position:absolute; border:1px solid #ccc;}
+		.div0{left:300px; top:20px;}
+		.div1{left:300px; top:110px;}
+		.div2{left:300px; top:200px;}
+		.div3{left:300px; top:290px;}
 
 		
 	</style>
@@ -710,25 +710,37 @@
 		
 	<div class="easyui-panel" style="position:relative;overflow:hidden;width:800px;height:600px">
 		<div id="divDrag0" class="easyui-draggable divDrag" data-options="onDrag:onDrag, onStopDrag:onStopDrag, onBeforeDrag:onBeforeDrag">
-			<img src="../Content/image/fruits/banana.png" width=50 height=50></img>
+			<img src="../Content/image/fruits/banana.png" width=40 height=40></img>
+			<span class="label">12+4</span>
 		</div>
 		<div id="divDrag1" class="easyui-draggable divDrag" data-options="onDrag:onDrag, onStopDrag:onStopDrag, onBeforeDrag:onBeforeDrag">
-			<img src="../Content/image/fruits/apple-red.png" width=50 height=50></img>
+			<img src="../Content/image/fruits/apple-red.png" width=40 height=40></img>
+			<span class="label">11+1</span>
 		</div>
 		<div id="divDrag2" class="easyui-draggable divDrag" data-options="onDrag:onDrag, onStopDrag:onStopDrag, onBeforeDrag:onBeforeDrag">
-			<img src="../Content/image/fruits/orange.png" width=50 height=50></img>
+			<img src="../Content/image/fruits/orange.png" width=40 height=40></img>
+			<span class="label">9+4</span>
 		</div>
 		<div id="divDrag3" class="easyui-draggable divDrag" data-options="onDrag:onDrag, onStopDrag:onStopDrag, onBeforeDrag:onBeforeDrag">
-			<img src="../Content/image/fruits/watermelon.png" width=50 height=50></img>
+			<img src="../Content/image/fruits/watermelon.png" width=40 height=40></img>
+			<span class="label">7+12</span>
 		</div>
 		
-		<div id="div0" class="divContainer div0"></div>
+		<div id="div0" class="divContainer div0">
+			<span class="label">6+7</span>
+		</div>
 		<input type="hidden" id="divDrag0Input"></input>
-		<div id="div1" class="divContainer div1"></div>
+		<div id="div1" class="divContainer div1">
+			<span class="label">6+6</span>
+		</div>
 		<input type="hidden" id="divDrag1Input"></input>
-		<div id="div2" class="divContainer div2"></div>
+		<div id="div2" class="divContainer div2">
+			<span class="label">10+9</span>
+		</div>
 		<input type="hidden" id="divDrag2Input"></input>
-		<div id="div3" class="divContainer div3"></div>
+		<div id="div3" class="divContainer div3">
+			<span class="label">8+8</span>
+		</div>
 		<input type="hidden" id="divDrag3Input"></input>
 	</div>
 	<script>
@@ -748,13 +760,19 @@
 			divUpDownInit();
 		}
 		
+		var myFruits = new Array();
+		myFruits[0]=2;
+		myFruits[1]=1;
+		myFruits[2]=3;
+		myFruits[3]=0;
+		
 		function divUpDownInit(){
 			$("div[class*='divContainer']").each(function (index, element) {
 				var leftup = $(this).position().left;
-				var leftdown = leftup + ($(this).width() - $('#divDrag' + index).width());
+				var leftdown = leftup + ($(this).width() - $('#divDrag0').width());
 				var topup = $(this).position().top;
-				var topdown = $(this).height() + topup - $('#divDrag' + index).height();
-				$("#divDrag" + index + "Input").val(leftup + "," + leftdown + "," + topup + "," + topdown);
+				var topdown = $(this).height() + topup - $('#divDrag0').height();
+				$("#divDrag" + myFruits[index] + "Input").val(leftup + "," + leftdown + "," + topup + "," + topdown);
 			});
 		}
 		
