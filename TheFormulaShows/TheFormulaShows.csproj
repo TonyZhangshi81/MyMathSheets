@@ -99,6 +99,7 @@
     <Content Include="Content\image\Plus.png" />
     <Content Include="Content\image\Subtraction.png" />
     <Content Include="Content\image\table.png" />
+    <Content Include="Content\image\timg.png" />
     <Content Include="Demo\HTMLPage.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
