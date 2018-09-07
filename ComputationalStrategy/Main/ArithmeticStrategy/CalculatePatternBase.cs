@@ -63,11 +63,6 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <returns></returns>
 		protected virtual int GetAnswer(int leftParameter, int rightParameter)
 		{
-			if (_formula == null)
-			{
-				throw new NullReferenceException();
-			}
-
 			switch (_formula.Sign)
 			{
 				case SignOfOperation.Plus:
@@ -92,17 +87,22 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <returns></returns>
 		public virtual Formula CreateFormula(int maximumLimit, QuestionType type = QuestionType.Standard, int minimumLimit = 0)
 		{
-			// 随机下限值
-			_minimumLimit = minimumLimit;
-
 			_formula = new Formula
 			{
-				Gap = GapFilling.Answer,
+				// 默認情況為無填空項
+				Gap = GapFilling.Default
 			};
+
+			// 随机下限值
+			_minimumLimit = minimumLimit;
+			// 默認填空項是答案項
+			_formula.Gap = GapFilling.Answer;
 			if (type == QuestionType.GapFilling)
 			{
+				// 要求隨機設定填空項
 				_formula.Gap = GapFillingItem;
 			}
+
 			return _formula;
 		}
 
@@ -116,14 +116,39 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <returns></returns>
 		public virtual Formula CreateFormula(int maximumLimit, Formula previousFormula, QuestionType type = QuestionType.GapFilling, int minimumLimit = 0)
 		{
+			_formula = new Formula
+			{
+				// 默認情況為無填空項
+				Gap = GapFilling.Default
+			};
+
 			// 随机下限值
 			_minimumLimit = minimumLimit;
 
+			// 设定填空项位置
+			_formula.Gap = GapFilling.Right;
+
+			return _formula;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="maximumLimit"></param>
+		/// <param name="answer"></param>
+		/// <param name="type"></param>
+		/// <param name="minimumLimit"></param>
+		/// <returns></returns>
+		public virtual Formula CreateFormulaWithAnswer(int maximumLimit, int answer, QuestionType type = QuestionType.Standard, int minimumLimit = 0)
+		{
 			_formula = new Formula
 			{
-				// 设定填空项位置
-				Gap = GapFilling.Right
+				// 默認情況為無填空項
+				Gap = GapFilling.Default
 			};
+
+			// 随机下限值
+			_minimumLimit = minimumLimit;
 
 			return _formula;
 		}

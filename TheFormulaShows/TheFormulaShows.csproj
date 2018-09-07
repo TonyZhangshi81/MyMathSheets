@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\SubstituteAttribute.cs" />
+    <Compile Include="Support\FruitsLinkageHtmlSupport.cs" />
     <Compile Include="Support\MathWordProblemsSupport.cs" />
     <Compile Include="Support\ArithmeticHtmlSupport.cs" />
     <Compile Include="Support\IMakeHtml.cs" />
@@ -81,17 +82,17 @@
     <Content Include="Content\image\char-more.png" />
     <Content Include="Content\image\Division.png" />
     <Content Include="Content\image\fault.png" />
-    <Content Include="Content\image\fruits\apple-red.png" />
-    <Content Include="Content\image\fruits\apricot512.png" />
-    <Content Include="Content\image\fruits\banana.png" />
-    <Content Include="Content\image\fruits\cherry512.png" />
-    <Content Include="Content\image\fruits\grape.png" />
-    <Content Include="Content\image\fruits\hami-melon.png" />
-    <Content Include="Content\image\fruits\orange.png" />
-    <Content Include="Content\image\fruits\peach512.png" />
-    <Content Include="Content\image\fruits\pear512.png" />
-    <Content Include="Content\image\fruits\strawberry512.png" />
-    <Content Include="Content\image\fruits\watermelon.png" />
+    <Content Include="Content\image\fruits\Apple.png" />
+    <Content Include="Content\image\fruits\Apricot.png" />
+    <Content Include="Content\image\fruits\Banana.png" />
+    <Content Include="Content\image\fruits\Cherry.png" />
+    <Content Include="Content\image\fruits\Grape.png" />
+    <Content Include="Content\image\fruits\Hamimelon.png" />
+    <Content Include="Content\image\fruits\Orange.png" />
+    <Content Include="Content\image\fruits\Peach.png" />
+    <Content Include="Content\image\fruits\Pear.png" />
+    <Content Include="Content\image\fruits\Strawberry.png" />
+    <Content Include="Content\image\fruits\Watermelon.png" />
     <Content Include="Content\image\help.png" />
     <Content Include="Content\image\correct.png" />
     <Content Include="Content\image\homework.png" />

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Write\FruitsLinkageWrite.cs" />
     <Compile Include="Write\MathWordProblemsFormulaWrite.cs" />
     <Compile Include="Write\EqualityFormulaWrite.cs" />
     <Compile Include="Write\ComputingConnectionWrite.cs" />

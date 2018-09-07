@@ -114,6 +114,57 @@ namespace CommonLib.Util
 	}
 
 	/// <summary>
+	/// 水果
+	/// </summary>
+	public enum Fruits : int
+	{
+		/// <summary>
+		/// 蘋果
+		/// </summary>
+		Apple = 0,
+		/// <summary>
+		/// 木瓜
+		/// </summary>
+		Apricot,
+		/// <summary>
+		/// 香蕉
+		/// </summary>
+		Banana,
+		/// <summary>
+		/// 櫻桃
+		/// </summary>
+		Cherry,
+		/// <summary>
+		/// 葡萄
+		/// </summary>
+		Grape,
+		/// <summary>
+		/// 哈密瓜
+		/// </summary>
+		Hamimelon,
+		/// <summary>
+		/// 桔子
+		/// </summary>
+		Orange,
+		/// <summary>
+		/// 桃子
+		/// </summary>
+		Peach,
+		/// <summary>
+		/// 梨
+		/// </summary>
+		Pear,
+		/// <summary>
+		/// 草莓
+		/// </summary>
+		Strawberry,
+		/// <summary>
+		/// 西瓜
+		/// </summary>
+		Watermelon
+	}
+
+	/// <summary>
 	/// 
 	/// </summary>
 	public class LayoutSetting

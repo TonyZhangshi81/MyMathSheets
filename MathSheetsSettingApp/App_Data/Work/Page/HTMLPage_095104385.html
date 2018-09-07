@@ -745,6 +745,7 @@
 		</div>
 		<HR>
 
+		<input type="hidden" id="hidFruitsArray" value="3,1,0,2,4,6,5" />
 		<div class="row text-center row-margin-top" style="float: left; position: absolute; display: inline-block; width:200px;">
 			<div class="col-md-10 form-inline">
 				<h5>
@@ -779,7 +780,7 @@
 			<div class="col-md-10 form-inline">
 				<h5>
 					<img src="../Content/image/fruits/strawberry512.png" width=25 height=25>
-					<span class="label">16-7</span>
+					<span class="label">16-4</span>
 				</h5>
 			</div>
 			<div class="col-md-10 form-inline">
@@ -793,74 +794,74 @@
 		<div class="easyui-panel" style="position:relative;overflow:hidden;width:800px;height:600px;display: inline-block;left:200px;">
 			<div id="divDrag0" class="easyui-draggable divDrag" data-options="onDrag:onDrag, onStopDrag:onStopDrag, onBeforeDrag:onBeforeDrag">
 				<img src="../Content/image/fruits/banana.png" width=40 height=40>
+				<input type="hidden" id="divDrag0Input">
 			</div>
 			<div id="divDrag1" class="easyui-draggable divDrag" data-options="onDrag:onDrag, onStopDrag:onStopDrag, onBeforeDrag:onBeforeDrag">
 				<img src="../Content/image/fruits/apple-red.png" width=40 height=40>
+				<input type="hidden" id="divDrag1Input">
 			</div>
 			<div id="divDrag2" class="easyui-draggable divDrag" data-options="onDrag:onDrag, onStopDrag:onStopDrag, onBeforeDrag:onBeforeDrag">
 				<img src="../Content/image/fruits/orange.png" width=40 height=40>
+				<input type="hidden" id="divDrag2Input">
 			</div>
 			<div id="divDrag3" class="easyui-draggable divDrag" data-options="onDrag:onDrag, onStopDrag:onStopDrag, onBeforeDrag:onBeforeDrag">
 				<img src="../Content/image/fruits/watermelon.png" width=40 height=40>
+				<input type="hidden" id="divDrag3Input">
 			</div>
 			<div id="divDrag4" class="easyui-draggable divDrag" data-options="onDrag:onDrag, onStopDrag:onStopDrag, onBeforeDrag:onBeforeDrag">
 				<img src="../Content/image/fruits/pear512.png" width=40 height=40>
+				<input type="hidden" id="divDrag4Input">
 			</div>
 			<div id="divDrag5" class="easyui-draggable divDrag" data-options="onDrag:onDrag, onStopDrag:onStopDrag, onBeforeDrag:onBeforeDrag">
 				<img src="../Content/image/fruits/strawberry512.png" width=40 height=40>
+				<input type="hidden" id="divDrag5Input">
 			</div>
 			<div id="divDrag6" class="easyui-draggable divDrag" data-options="onDrag:onDrag, onStopDrag:onStopDrag, onBeforeDrag:onBeforeDrag">
 				<img src="../Content/image/fruits/cherry512.png" width=40 height=40>
+				<input type="hidden" id="divDrag6Input">
 			</div>
 
-			<div id="div0" class="divContainer div0">
+			<div id="divContainer0" class="divContainer div0">
 				<h5>
 					<span class="label">6+7</span>
 					<img src="../Content/image/table.png" width=78 height=20 style="margin-top:35px;">
 				</h5>
-				<input type="hidden" id="divDrag0Input">
 			</div>
-			<div id="div1" class="divContainer div1">
+			<div id="divContainer1" class="divContainer div1">
 				<h5>
 					<span class="label">6+6</span>
 					<img src="../Content/image/table.png" width=78 height=20 style="margin-top:35px;">
 				</h5>
-				<input type="hidden" id="divDrag1Input">
 			</div>
-			<div id="div2" class="divContainer div2">
+			<div id="divContainer2" class="divContainer div2">
 				<h5>
 					<span class="label">10+9</span>
 					<img src="../Content/image/table.png" width=78 height=20 style="margin-top:35px;">
 				</h5>
-				<input type="hidden" id="divDrag2Input">
 			</div>
-			<div id="div3" class="divContainer div3">
+			<div id="divContainer3" class="divContainer div3">
 				<h5>
 					<span class="label">8+8</span>
 					<img src="../Content/image/table.png" width=78 height=20 style="margin-top:35px;">
 				</h5>
-				<input type="hidden" id="divDrag3Input">
 			</div>
-			<div id="div4" class="divContainer div4">
+			<div id="divContainer4" class="divContainer div4">
 				<h5>
 					<span class="label">2+5</span>
 					<img src="../Content/image/table.png" width=78 height=20 style="margin-top:35px;">
 				</h5>
-				<input type="hidden" id="divDrag4Input">
 			</div>
-			<div id="div5" class="divContainer div5">
+			<div id="divContainer5" class="divContainer div5">
 				<h5>
 					<span class="label">7+7</span>
 					<img src="../Content/image/table.png" width=78 height=20 style="margin-top:35px;">
 				</h5>
-				<input type="hidden" id="divDrag5Input">
 			</div>
-			<div id="div6" class="divContainer div6">
+			<div id="divContainer6" class="divContainer div6">
 				<h5>
 					<span class="label">3+9</span>
 					<img src="../Content/image/table.png" width=78 height=20 style="margin-top:35px;">
 				</h5>
-				<input type="hidden" id="divDrag6Input">
 			</div>
 		</div>
 		<script>
@@ -877,25 +878,43 @@
 			}
 
 			function loading() {
+				
+				fruitsArrayInit();
+				
 				divUpDownInit();
 			}
+			
+			var _fruitsAry = new Array();
+			function fruitsArrayInit(){
+				var list = ($('#hidFruitsArray').val() || "").split(',');
+				$.each(list, function(index, value){
+					_fruitsAry.push(value);
+				});
+			}
 
-			var myFruits = new Array();
-			myFruits[0] = 2;
+			/*
+			myFruits[0] = 3;
 			myFruits[1] = 1;
-			myFruits[2] = 3;
-			myFruits[3] = 4;
-			myFruits[4] = 6;
-			myFruits[5] = 0;
+			myFruits[2] = 0;
+			myFruits[3] = 2;
+			myFruits[4] = 4;
+			myFruits[5] = 6;
 			myFruits[6] = 5;
+			*/
 
 			function divUpDownInit() {
-				$("div[class*='divContainer']").each(function (index, element) {
-					var leftup = $(this).position().left;
-					var leftdown = leftup + ($(this).width() - $('#divDrag0').width());
-					var topup = $(this).position().top;
-					var topdown = $(this).height() + topup - $('#divDrag0').height();
-					$("#divDrag" + myFruits[index] + "Input").val(leftup + "," + leftdown + "," + topup + "," + topdown);
+				
+				var dragWidth = $('#divDrag0').width();
+				var dragHeight = $('#divDrag0').height();
+				
+				$.each(_fruitsAry, function(index, value){
+					var element = $("div[id*='divContainer" + _fruitsAry[index] + "']");
+					var leftup = $(element).position().left;
+					var leftdown = leftup + ($(element).width() - dragWidth);
+					var topup = $(element).position().top;
+					var topdown = $(element).height() + topup - dragHeight;
+					
+					$("#divDrag" + index + "Input").val(leftup + "," + leftdown + "," + topup + "," + topdown);
 				});
 			}
 
@@ -916,8 +935,6 @@
 
 			function onStopDrag(e) {
 				var d = e.data;
-
-
 				getUpAndDown($(this).attr('id'));
 				if (d.left >= leftUp && d.left <= leftDown && d.top >= topUp && d.top <= topDown) {
 					$(this).attr('title', 'OK');

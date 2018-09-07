@@ -47,5 +47,25 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 
 			return _formula;
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="maximumLimit">加法运算的最大值就是算式的答案Answer值</param>
+		/// <param name="answer"></param>
+		/// <param name="type"></param>
+		/// <param name="minimumLimit"></param>
+		/// <returns></returns>
+		public override Formula CreateFormulaWithAnswer(int maximumLimit, int answer, QuestionType type = QuestionType.Standard, int minimumLimit = 0)
+		{
+			_formula = base.CreateFormulaWithAnswer(maximumLimit, answer, type, minimumLimit);
+
+			_formula.Answer = answer;
+			_formula.Sign = SignOfOperation.Plus;
+			_formula.LeftParameter = GetLeftParameter(answer);
+			_formula.RightParameter = _formula.Answer - _formula.LeftParameter;
+
+			return _formula;
+		}
 	}
 }

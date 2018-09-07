@@ -26,5 +26,15 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <param name="minimumLimit"></param>
 		/// <returns></returns>
 		Formula CreateFormula(int maximumLimit, Formula previousFormula, QuestionType type = QuestionType.GapFilling, int minimumLimit = 0);
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="maximumLimit"></param>
+		/// <param name="answer"></param>
+		/// <param name="type"></param>
+		/// <param name="minimumLimit"></param>
+		/// <returns></returns>
+		Formula CreateFormulaWithAnswer(int maximumLimit, int answer, QuestionType type = QuestionType.Standard, int minimumLimit = 0);
 	}
 }

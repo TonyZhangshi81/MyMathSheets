@@ -25,6 +25,8 @@ namespace TestConsoleApp
 			MakeHtml<List<EqualityFormula>, EqualityComparison> work1 = null;
 			MakeHtml<List<ConnectionFormula>, ComputingConnection> work2 = null;
 			MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work3 = null;
+			MakeHtml<FruitsLinkageFormula, FruitsLinkage> work4 = null;
+
 			bool isShowMenu = true;
 
 			while (1 == 1)
@@ -50,6 +52,10 @@ namespace TestConsoleApp
 					Console.WriteLine("    l-隨機四則運算應用題");
 					Console.WriteLine("    m-加法應用題");
 					Console.WriteLine("    n-減法應用題");
+					Console.WriteLine("************************* 水果連連看 ***********************");
+					Console.WriteLine("    o-隨機四則運算連連看");
+					Console.WriteLine("    p-加法連連看");
+					Console.WriteLine("    q-減法連連看");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -179,12 +185,42 @@ namespace TestConsoleApp
 						work3.Structure();
 						Util.CreateOperatorObjectFactory<List<MathWordProblemsFormula>>("MathWordProblemsFormulaWrite", work3.Formulas);
 						break;
+
 					case ConsoleKey.N:
 						Console.WriteLine();
 						Console.WriteLine("減法應用題");
 						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 20, 10);
 						work3.Structure();
 						Util.CreateOperatorObjectFactory<List<MathWordProblemsFormula>>("MathWordProblemsFormulaWrite", work3.Formulas);
+						break;
+
+					case ConsoleKey.O:
+						Console.WriteLine();
+						Console.WriteLine("隨機四則運算連連看");
+						work4 = new MakeHtml<FruitsLinkageFormula, FruitsLinkage>(FourOperationsType.Random,
+																								new List<SignOfOperation>
+																								{
+																									SignOfOperation.Plus,
+																									SignOfOperation.Subtraction
+																								}, QuestionType.Default, 50, 10);
+						work4.Structure();
+						Util.CreateOperatorObjectFactory<FruitsLinkageFormula>("FruitsLinkageWrite", work4.Formulas);
+						break;
+
+					case ConsoleKey.P:
+						Console.WriteLine();
+						Console.WriteLine("加法連連看");
+						work4 = new MakeHtml<FruitsLinkageFormula, FruitsLinkage>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 50, 10);
+						work4.Structure();
+						Util.CreateOperatorObjectFactory<FruitsLinkageFormula>("FruitsLinkageWrite", work4.Formulas);
+						break;
+
+					case ConsoleKey.Q:
+						Console.WriteLine();
+						Console.WriteLine("減法連連看");
+						work4 = new MakeHtml<FruitsLinkageFormula, FruitsLinkage>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Default, 40, 5);
+						work4.Structure();
+						Util.CreateOperatorObjectFactory<FruitsLinkageFormula>("FruitsLinkageWrite", work4.Formulas);
 						break;
 
 					case ConsoleKey.D9:

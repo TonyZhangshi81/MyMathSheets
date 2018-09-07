@@ -47,5 +47,27 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 
 			return _formula;
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="maximumLimit">用於限定被減數的取值範圍</param>
+		/// <param name="answer"></param>
+		/// <param name="type"></param>
+		/// <param name="minimumLimit"></param>
+		/// <returns></returns>
+		public override Formula CreateFormulaWithAnswer(int maximumLimit, int answer, QuestionType type = QuestionType.Standard, int minimumLimit = 0)
+		{
+			_formula = base.CreateFormulaWithAnswer(maximumLimit, answer, type, minimumLimit);
+
+			_formula.Answer = answer;
+			_formula.Sign = SignOfOperation.Subtraction;
+			// 计算式左侧项目的取值范围（答案值至最大计算值）
+			_minimumLimit = answer;
+			_formula.LeftParameter = GetLeftParameter(maximumLimit);
+			_formula.RightParameter = _formula.LeftParameter - _formula.Answer;
+
+			return _formula;
+		}
 	}
 }
