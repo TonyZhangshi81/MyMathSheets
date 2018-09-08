@@ -42,7 +42,7 @@ namespace TheFormulaShows.Support
 				colHtml.AppendLine("<div class=\"col-md-3 form-inline\">");
 				colHtml.AppendLine("<h5>");
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.LeftParameter, GapFilling.Left, controlIndex));
-				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", this.GetOperation(item.Sign)));
+				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.Sign.ToOperationString()));
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.RightParameter, GapFilling.Right, controlIndex));
 				colHtml.AppendLine("<span class=\"label\">=</span>");
 				colHtml.AppendLine(this.GetHtml(item.Gap, item.Answer, GapFilling.Answer, controlIndex));
@@ -83,32 +83,6 @@ namespace TheFormulaShows.Support
 			}
 
 			return html.ToString();
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="operation"></param>
-		/// <returns></returns>
-		private string GetOperation(SignOfOperation operation)
-		{
-			var flag = string.Empty;
-			switch (operation)
-			{
-				case SignOfOperation.Plus:
-					flag = "+";
-					break;
-				case SignOfOperation.Subtraction:
-					flag = "-";
-					break;
-				case SignOfOperation.Division:
-					flag = "÷";
-					break;
-				case SignOfOperation.Multiple:
-					flag = "×";
-					break;
-			}
-			return flag;
 		}
 
 		/// <summary>

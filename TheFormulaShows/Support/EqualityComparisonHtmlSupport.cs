@@ -42,12 +42,12 @@ namespace TheFormulaShows.Support
 				colHtml.AppendLine("<div class=\"col-md-4 form-inline\">");
 				colHtml.AppendLine("<h5>");
 				colHtml.AppendLine(this.GetHtml(GapFilling.Left, item.LeftFormula.LeftParameter, GapFilling.Default, controlIndex));
-				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", GetOperation(item.LeftFormula.Sign)));
+				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.LeftFormula.Sign.ToOperationString()));
 				colHtml.AppendLine(this.GetHtml(GapFilling.Right, item.LeftFormula.RightParameter, GapFilling.Default, controlIndex));
 				colHtml.AppendLine(string.Format("<img src=\"../Content/image/help.png\" width=\"30\" height=\"30\" id=\"imgEc{0}\" title=\"help\" />", controlIndex));
-				colHtml.AppendLine(string.Format("<input id=\"hiddenEc{0}\" type=\"hidden\" value=\"{1}\" />", controlIndex, ToSignOfCompare(item.Answer)));
+				colHtml.AppendLine(string.Format("<input id=\"hiddenEc{0}\" type=\"hidden\" value=\"{1}\" />", controlIndex, item.Answer.ToSignOfCompareEnString()));
 				colHtml.AppendLine(this.GetHtml(GapFilling.Left, item.RightFormula.LeftParameter, GapFilling.Default, controlIndex));
-				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", GetOperation(item.RightFormula.Sign)));
+				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.RightFormula.Sign.ToOperationString()));
 				colHtml.AppendLine(this.GetHtml(GapFilling.Right, item.RightFormula.RightParameter, GapFilling.Default, controlIndex));
 				colHtml.AppendLine(string.Format("<img id=\"imgOKEquality{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine(string.Format("<img id=\"imgNoEquality{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
@@ -85,57 +85,6 @@ namespace TheFormulaShows.Support
 				html.Insert(0, "<div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">算式比大小</span></h4></div><hr />");
 			}
 			return html.ToString();
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="operation"></param>
-		/// <returns></returns>
-		private string ToSignOfCompare(SignOfCompare operation)
-		{
-			var flag = string.Empty;
-			switch (operation)
-			{
-				case SignOfCompare.Equal:
-					flag = "calculator";
-					break;
-				case SignOfCompare.Greater:
-					flag = "more";
-					break;
-				case SignOfCompare.Less:
-					flag = "less";
-					break;
-				default:
-					break;
-			}
-			return flag;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="operation"></param>
-		/// <returns></returns>
-		private string GetOperation(SignOfOperation operation)
-		{
-			var flag = string.Empty;
-			switch (operation)
-			{
-				case SignOfOperation.Plus:
-					flag = "+";
-					break;
-				case SignOfOperation.Subtraction:
-					flag = "-";
-					break;
-				case SignOfOperation.Division:
-					flag = "÷";
-					break;
-				case SignOfOperation.Multiple:
-					flag = "×";
-					break;
-			}
-			return flag;
 		}
 
 		/// <summary>

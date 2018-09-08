@@ -195,6 +195,10 @@ namespace CommonLib.Util
 			/// </summary>
 			MathWordProblems,
 			/// <summary>
+			/// 水果連連看瀏覽
+			/// </summary>
+			FruitsLinkage,
+			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
 			Ready

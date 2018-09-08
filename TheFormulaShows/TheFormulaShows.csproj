@@ -52,7 +52,7 @@
   <ItemGroup>
     <Compile Include="Attributes\SubstituteAttribute.cs" />
     <Compile Include="Support\FruitsLinkageHtmlSupport.cs" />
-    <Compile Include="Support\MathWordProblemsSupport.cs" />
+    <Compile Include="Support\MathWordProblemsHtmlSupport.cs" />
     <Compile Include="Support\ArithmeticHtmlSupport.cs" />
     <Compile Include="Support\IMakeHtml.cs" />
     <Compile Include="MakeHtml.cs" />
@@ -111,6 +111,7 @@
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
     <Content Include="Scripts\Ext\MathSheets.Arithmetic.js" />
+    <Content Include="Scripts\Ext\MathSheets.FruitsLinkage.js" />
     <Content Include="Scripts\Ext\MathSheets.Common.js" />
     <Content Include="Scripts\Ext\MathSheets.ComputingConnection.js" />
     <Content Include="Scripts\Ext\MathSheets.EqualityComparison.js" />

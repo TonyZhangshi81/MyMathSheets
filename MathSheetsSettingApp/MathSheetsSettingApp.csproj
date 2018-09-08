@@ -95,6 +95,7 @@
     <Content Include="App_Data\Work\Content\image\Division.png" />
     <None Include="App_Data\Work\Content\image\EqualityComparison.png" />
     <Content Include="App_Data\Work\Content\image\fault.png" />
+    <Content Include="App_Data\Work\Content\image\FruitsLinkage.png" />
     <Content Include="App_Data\Work\Content\image\fruits\Apple.png" />
     <Content Include="App_Data\Work\Content\image\fruits\Apricot.png" />
     <Content Include="App_Data\Work\Content\image\fruits\Banana.png" />

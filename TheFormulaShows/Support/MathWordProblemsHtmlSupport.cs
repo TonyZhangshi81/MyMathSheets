@@ -14,7 +14,7 @@ namespace TheFormulaShows.Support
 	[Substitute("//<!--MATHWORDPROBLEMSTHEIRPAPERS-->", "MathSheets.MathWordProblems.theirPapers();")]
 	[Substitute("//<!--MATHWORDPROBLEMSPRINTSETTING-->", "MathSheets.MathWordProblems.printSetting();")]
 	[Substitute("//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->", "MathSheets.MathWordProblems.printAfterSetting();")]
-	public class MathWordProblemsSupport : IMakeHtml<List<MathWordProblemsFormula>>
+	public class MathWordProblemsHtmlSupport : IMakeHtml<List<MathWordProblemsFormula>>
 	{
 		/// <summary>
 		/// 

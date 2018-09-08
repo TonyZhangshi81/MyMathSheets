@@ -3,5 +3,6 @@
 	<object id="Arithmetic" type="TheFormulaShows.Support.ArithmeticHtmlSupport"></object>
 	<object id="EqualityComparison" type="TheFormulaShows.Support.EqualityComparisonHtmlSupport"></object>
 	<object id="ComputingConnection" type="TheFormulaShows.Support.ComputingConnectionHtmlSupport"></object>
-	<object id="MathWordProblems" type="TheFormulaShows.Support.MathWordProblemsSupport"></object>
+	<object id="MathWordProblems" type="TheFormulaShows.Support.MathWordProblemsHtmlSupport"></object>
+	<object id="FruitsLinkage" type="TheFormulaShows.Support.FruitsLinkageHtmlSupport"></object>
 </objects>

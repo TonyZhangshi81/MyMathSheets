@@ -329,6 +329,11 @@ namespace MathSheetsSettingApp
 			{
 				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.MathWordProblems);
 			}
+			// 水果連連看
+			if (chkFruitsLinkage.Checked)
+			{
+				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.FruitsLinkage);
+			}
 			// 答題結束瀏覽
 			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Ready);
 		}
@@ -458,7 +463,7 @@ namespace MathSheetsSettingApp
 				work.Structure();
 				htmlMaps.Add("<!--MATHWORDPROBLEMS-->", work.GetHtmlStatement());
 
-				Type type = typeof(MathWordProblemsSupport);
+				Type type = typeof(MathWordProblemsHtmlSupport);
 				object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
 				attribute.ToList().ForEach(d =>
 				{
@@ -471,6 +476,37 @@ namespace MathSheetsSettingApp
 			else
 			{
 				_htmlMaps.Remove(LayoutSetting.Preview.MathWordProblems.ToString());
+			}
+			PreviewReflash();
+		}
+
+		/// <summary>
+		/// 水果連連看
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void FruitsLinkageCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkFruitsLinkage.Checked)
+			{
+				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
+				MakeHtml<FruitsLinkageFormula, FruitsLinkage> work = new MakeHtml<FruitsLinkageFormula, FruitsLinkage>(_fourOperationsType, _signs, QuestionType.Default, 50, 4);
+				work.Structure();
+				htmlMaps.Add("<!--FRUITSLINKAGE-->", work.GetHtmlStatement());
+
+				Type type = typeof(FruitsLinkageHtmlSupport);
+				object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
+				attribute.ToList().ForEach(d =>
+				{
+					var attr = (SubstituteAttribute)d;
+					htmlMaps.Add(attr.Source, attr.Target);
+				});
+
+				_htmlMaps.Add(LayoutSetting.Preview.FruitsLinkage.ToString(), htmlMaps);
+			}
+			else
+			{
+				_htmlMaps.Remove(LayoutSetting.Preview.FruitsLinkage.ToString());
 			}
 			PreviewReflash();
 		}

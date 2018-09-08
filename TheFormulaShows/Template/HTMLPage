@@ -10,6 +10,7 @@
 	<link rel="icon" href="../Content/favicon.ico">
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
 	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
@@ -18,6 +19,7 @@
 	<!--EQUALITYCOMPARISONSCRIPT-->
 	<!--COMPUTINGCONNECTIONSCRIPT-->
 	<!--MATHWORDPROBLEMSSCRIPT-->
+	<!--FRUITSLINKAGESCRIPT-->
 	<title>題庫</title>
 
 	<style type="text/css">
@@ -80,7 +82,113 @@
 			color: #6c757d!important;
 			font-size: 0.7rem;
 		}
-		
+
+		.divFruitDrag {
+			z-index: 2;
+			width: 40px;
+			height: 40px;
+			background: aliceblue;
+		}
+
+		.divContainer {
+			z-index: 1;
+			width: 80px;
+			height: 80px;
+			background: aliceblue;
+			position: absolute;
+			border: 1px solid #ccc;
+		}
+
+		.divSeat0 {
+			left: 250px;
+			top: 20px;
+		}
+
+		.divSeat4 {
+			left: 300px;
+			top: 120px;
+		}
+
+		.divSeat7 {
+			left: 300px;
+			top: 220px;
+		}
+
+		.divSeat1 {
+			left: 360px;
+			top: 20px;
+		}
+
+		.divSeat5 {
+			left: 410px;
+			top: 120px;
+		}
+
+		.divSeat8 {
+			left: 410px;
+			top: 220px;
+		}
+
+		.divSeat2 {
+			left: 470px;
+			top: 20px;
+		}
+
+		.divSeat6 {
+			left: 520px;
+			top: 120px;
+		}
+
+		.divSeat9 {
+			left: 520px;
+			top: 220px;
+		}
+
+		.divSeat3 {
+			left: 580px;
+			top: 20px;
+		}
+
+		.form-inline-ext {
+			padding-left: 15px;
+			padding-right: 8px;
+			text-align: left !important
+		}
+
+		.fruitsFormula-left {
+			float: left;
+			position: absolute;
+			display: inline-block;
+			border-style: solid;
+			background-color: gainsboro;
+			margin-left: 5px;
+			height: 180px;
+			padding-top: 10px;
+		}
+
+		.fruitsFormula-right {
+			float: left;
+			position: absolute;
+			display: inline-block;
+			left: 250px;
+			border-style: solid;
+			background-color: gainsboro;
+			height: 180px;
+			padding-top:10px;
+		}
+
+		.fruitsImg {
+			margin-top: -10px;
+		}
+
+		.easyui-panel-ext {
+			position: relative;
+			overflow: hidden;
+			width: 800px!important;
+			height: 400px;
+			display: inline-block;
+			left: 240px;
+		}
 	</style>
 
 	<script>
@@ -131,6 +239,8 @@
 			//<!--COMPUTINGCONNECTIONREADY-->
 			// 設定頁面所有輸入域為可用狀態(算數應用題)
 			//<!--MATHWORDPROBLEMSREADY-->
+			// 設定頁面所有輸入域為可用狀態(水果連連看)
+			//<!--FRUITSLINKAGEREADY-->
 
 
 			// 計時開始
@@ -153,9 +263,11 @@
 			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
 			// 算數應用題
 			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
-
+			// 水果連連看
+			//<!--FRUITSLINKAGEMAKECORRECTIONS-->
+			
 			// 訂正按鈕處理
-			MathSheets.Common.makeCorrections('btnMakeCorrections', 'btnOver');
+			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
 		}
 
 		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
@@ -168,6 +280,8 @@
 			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
 			// 算數應用題交卷
 			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
+			// 水果連連看
+			//<!--FRUITSLINKAGETHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -206,7 +320,7 @@
 		<br/>
 		<!--MATHWORDPROBLEMS-->
 		<br/>
-		<!-- 题型5<填充区> -->
+		<!--FRUITSLINKAGE-->
 		</div>
 		<HR>
 		<div class="row">

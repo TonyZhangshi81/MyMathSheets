@@ -84,5 +84,30 @@
 			}
 			return flag;
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <returns></returns>
+		public static string ToSignOfCompareEnString(this SignOfCompare operation)
+		{
+			var flag = string.Empty;
+			switch (operation)
+			{
+				case SignOfCompare.Equal:
+					flag = "calculator";
+					break;
+				case SignOfCompare.Greater:
+					flag = "more";
+					break;
+				case SignOfCompare.Less:
+					flag = "less";
+					break;
+				default:
+					break;
+			}
+			return flag;
+		}
 	}
 }

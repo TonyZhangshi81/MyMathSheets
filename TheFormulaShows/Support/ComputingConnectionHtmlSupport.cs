@@ -41,7 +41,7 @@ namespace TheFormulaShows.Support
 				foreach (Formula item in items.ConfixFormulas)
 				{
 					html.AppendLine(this.GetHtml(GapFilling.Left, item.LeftParameter, GapFilling.Right, parentControlIndex, controlIndex));
-					html.AppendLine(string.Format("<span class=\"label\">{0}</span>", this.GetOperation(item.Sign)));
+					html.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.Sign.ToOperationString()));
 					html.AppendLine(this.GetHtml(GapFilling.Right, item.RightParameter, GapFilling.Right, parentControlIndex, controlIndex));
 					html.AppendLine("<span class=\"label\">=</span>");
 					controlIndex++;
@@ -68,32 +68,6 @@ namespace TheFormulaShows.Support
 				html.Insert(0, "<div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">等式接龍</span></h4></div><hr />");
 			}
 			return html.ToString();
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="operation"></param>
-		/// <returns></returns>
-		private string GetOperation(SignOfOperation operation)
-		{
-			var flag = string.Empty;
-			switch (operation)
-			{
-				case SignOfOperation.Plus:
-					flag = "+";
-					break;
-				case SignOfOperation.Subtraction:
-					flag = "-";
-					break;
-				case SignOfOperation.Division:
-					flag = "÷";
-					break;
-				case SignOfOperation.Multiple:
-					flag = "×";
-					break;
-			}
-			return flag;
 		}
 
 		/// <summary>
