@@ -14,10 +14,11 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <param name="maximumLimit"></param>
 		/// <param name="type"></param>
 		/// <param name="minimumLimit"></param>
+		/// <param name="gap"></param>
 		/// <returns></returns>
-		public override Formula CreateFormula(int maximumLimit, QuestionType type = QuestionType.Standard, int minimumLimit = 0)
+		public override Formula CreateFormula(int maximumLimit, QuestionType type = QuestionType.Standard, int minimumLimit = 0, GapFilling gap = GapFilling.Answer)
 		{
-			_formula = base.CreateFormula(maximumLimit, type, minimumLimit);
+			_formula = base.CreateFormula(maximumLimit, type, minimumLimit, gap);
 
 			_formula.LeftParameter = GetLeftParameter(9);
 			_formula.Sign = SignOfOperation.Multiple;
@@ -32,14 +33,33 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="maximumLimit"></param>
+		/// <param name="previousFormula"></param>
+		/// <param name="type"></param>
+		/// <param name="minimumLimit"></param>
+		/// <param name="gap"></param>
+		/// <returns></returns>
+		public override Formula CreateFormula(int maximumLimit, Formula previousFormula, QuestionType type = QuestionType.GapFilling, int minimumLimit = 0, GapFilling gap = GapFilling.Right)
+		{
+			_formula = base.CreateFormula(maximumLimit, previousFormula, type, minimumLimit, gap);
+
+			// TODO
+
+			return _formula;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <param name="maximumLimit">乘法运算的最大值就是算式的答案Answer值</param>
 		/// <param name="answer"></param>
 		/// <param name="type"></param>
 		/// <param name="minimumLimit"></param>
+		/// <param name="gap"></param>
 		/// <returns></returns>
-		public override Formula CreateFormulaWithAnswer(int maximumLimit, int answer, QuestionType type = QuestionType.Standard, int minimumLimit = 0)
+		public override Formula CreateFormulaWithAnswer(int maximumLimit, int answer, QuestionType type = QuestionType.Standard, int minimumLimit = 0, GapFilling gap = GapFilling.Answer)
 		{
-			_formula = base.CreateFormulaWithAnswer(maximumLimit, answer, type, minimumLimit);
+			_formula = base.CreateFormulaWithAnswer(maximumLimit, answer, type, minimumLimit, gap);
 
 			_formula.Answer = answer;
 			_formula.Sign = SignOfOperation.Multiple;

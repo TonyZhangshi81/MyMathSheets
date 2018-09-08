@@ -21,11 +21,7 @@ namespace TestConsoleApp
 		/// <returns></returns>
 		public static string GetValue(GapFilling item, int parameter, GapFilling gap)
 		{
-			if (item == gap)
-			{
-				return string.Format("({0})", parameter);
-			}
-			return parameter.ToString();
+			return item == gap ? string.Format("({0})", parameter) : parameter.ToString();
 		}
 
 		/// <summary>

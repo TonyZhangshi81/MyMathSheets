@@ -1,10 +1,7 @@
 ﻿using CommonLib.Util;
 using ComputationalStrategy.Item;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestConsoleApp.Write
 {
@@ -20,27 +17,28 @@ namespace TestConsoleApp.Write
 		public void ConsoleFormulas(FruitsLinkageFormula formulas)
 		{
 			int index = 0;
-			formulas.FruitsFormulas.ToList().ForEach(d => {
-
-				Formula container = formulas.ContainersFormulas[index];
-
-				Console.WriteLine(string.Format("水果：{0} {1} {2} = {3}  容器編號：{4}   容器{5}：{6} {7} {8} = {9}",
-					Util.GetValue(GapFilling.Default, d.LeftParameter, d.Gap),
+			formulas.FruitsFormulas.ToList().ForEach(d =>
+			{
+				Console.WriteLine(string.Format("水果：{0} {1} {2} = {3}   容器編號：{4}",
+					Util.GetValue(GapFilling.Left, d.LeftParameter, d.Gap),
 					d.Sign.ToOperationString(),
-					Util.GetValue(GapFilling.Default, d.RightParameter, d.Gap),
-					Util.GetValue(GapFilling.Default, d.Answer, d.Gap),
+					Util.GetValue(GapFilling.Right, d.RightParameter, d.Gap),
+					Util.GetValue(GapFilling.Answer, d.Answer, d.Gap),
+					formulas.Seats[index++]));
+			});
 
-					formulas.Seats[index],
+			int seat = 0;
+			formulas.Sort.ToList().ForEach(d =>
+			{
+				Formula container = formulas.ContainersFormulas[d];
 
-					index,
-
-					Util.GetValue(GapFilling.Default, container.LeftParameter, d.Gap),
+				GapFilling gap = container.Gap;
+				Console.WriteLine(string.Format("容器{0}：{1} {2} {3} = {4}",
+					seat++,
+					Util.GetValue(GapFilling.Left, container.LeftParameter, gap),
 					container.Sign.ToOperationString(),
-					Util.GetValue(GapFilling.Default, container.RightParameter, d.Gap),
-					Util.GetValue(GapFilling.Default, container.Answer, d.Gap)
-					));
-
-				index++;
+					Util.GetValue(GapFilling.Right, container.RightParameter, gap),
+					Util.GetValue(GapFilling.Answer, container.Answer, gap)));
 			});
 		}
 	}

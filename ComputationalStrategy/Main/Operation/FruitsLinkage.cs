@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace ComputationalStrategy.Main.Operation
 {
 	/// <summary>
-	/// 
+	/// 水果連連看題型構築
 	/// </summary>
 	public class FruitsLinkage : SetThemeBase<FruitsLinkageFormula>
 	{
@@ -21,7 +21,7 @@ namespace ComputationalStrategy.Main.Operation
 		private const int INVERSE_NUMBER = 3;
 
 		/// <summary>
-		/// 
+		/// 水果連連看題型構築對象初期化
 		/// </summary>
 		/// <param name="fourOperationsType">四则运算类型（标准、随机出题）</param>
 		/// <param name="signs">在四则运算标准题下指定运算法（加减乘除）</param>
@@ -67,7 +67,7 @@ namespace ComputationalStrategy.Main.Operation
 				for (var i = 0; i < _numberOfQuestions; i++)
 				{
 					// 計算式作成
-					Formula fruit = strategy.CreateFormula(_maximumLimit, QuestionType.Standard);
+					Formula fruit = strategy.CreateFormula(_maximumLimit, QuestionType.Standard, 0);
 					fruitsFormulas.Add(fruit);
 					// 計算式作成（依據水果算式的答案推算容器算式）
 					Formula container = strategy.CreateFormulaWithAnswer(_maximumLimit, fruit.Answer);
@@ -110,7 +110,7 @@ namespace ComputationalStrategy.Main.Operation
 					// 對四則運算符實例進行cache管理
 					strategy = GetPatternInstance(sign);
 					// 計算式作成
-					Formula fruit = strategy.CreateFormula(_maximumLimit, QuestionType.Standard);
+					Formula fruit = strategy.CreateFormula(_maximumLimit, QuestionType.Standard, 0, GapFilling.Default);
 					// 水果算式列表添加
 					fruitsFormulas.Add(fruit);
 
@@ -163,7 +163,11 @@ namespace ComputationalStrategy.Main.Operation
 			// 結果設定
 			_formulas = fruitsLinkageFormula;
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="seats"></param>
+		/// <returns></returns>
 		private IList<int> GetNewSeats(IList<int> seats)
 		{
 			IList<int> newSeats = new List<int>();
