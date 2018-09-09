@@ -26,6 +26,7 @@ namespace TestConsoleApp
 			MakeHtml<List<ConnectionFormula>, ComputingConnection> work2 = null;
 			MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work3 = null;
 			MakeHtml<FruitsLinkageFormula, FruitsLinkage> work4 = null;
+			MakeHtml<List<EqualityFormula>, FindNearestNumber> work5 = null;
 
 			bool isShowMenu = true;
 
@@ -56,6 +57,10 @@ namespace TestConsoleApp
 					Console.WriteLine("    o-隨機四則運算連連看");
 					Console.WriteLine("    p-加法連連看");
 					Console.WriteLine("    q-減法連連看");
+					Console.WriteLine("************************* 尋找最近的數字 ***********************");
+					Console.WriteLine("    r-隨機四則運算");
+					Console.WriteLine("    s-加法");
+					Console.WriteLine("    t-減法");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -221,6 +226,19 @@ namespace TestConsoleApp
 						work4 = new MakeHtml<FruitsLinkageFormula, FruitsLinkage>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Default, 40, 5);
 						work4.Structure();
 						Util.CreateOperatorObjectFactory<FruitsLinkageFormula>("FruitsLinkageWrite", work4.Formulas);
+						break;
+
+					case ConsoleKey.R:
+						Console.WriteLine();
+						Console.WriteLine("尋找最近的數字");
+						work5 = new MakeHtml<List<EqualityFormula>, FindNearestNumber>(FourOperationsType.Random,
+																								new List<SignOfOperation>
+																								{
+																									SignOfOperation.Plus,
+																									SignOfOperation.Subtraction
+																								}, QuestionType.Default, 50, 10);
+						work5.Structure();
+						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("FindNearestNumberWrite", work5.Formulas);
 						break;
 
 					case ConsoleKey.D9:

@@ -2,10 +2,14 @@
 
 namespace ComputationalStrategy.Item
 {
+
+	/// <summary>
+	/// 等式比大小題型结构对象
+	/// </summary>
 	public class EqualityFormula
 	{
 		/// <summary>
-		/// 
+		/// 运算符左边参数
 		/// </summary>
 		public Formula LeftFormula { get; set; }
 		/// <summary>

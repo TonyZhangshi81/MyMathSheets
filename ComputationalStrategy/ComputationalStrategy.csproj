@@ -61,6 +61,7 @@
     <Compile Include="Main\Operation\ComputingConnection.cs" />
     <Compile Include="Main\Operation\EqualityComparison.cs" />
     <Compile Include="Main\ArithmeticStrategy\Multiplication.cs" />
+    <Compile Include="Main\Operation\FindNearestNumber.cs" />
     <Compile Include="Main\Operation\FruitsLinkage.cs" />
     <Compile Include="Main\Operation\MathWordProblems.cs" />
     <Compile Include="Main\Util\RandomNumberComposition.cs" />
