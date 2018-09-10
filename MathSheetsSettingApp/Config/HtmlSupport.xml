@@ -5,4 +5,5 @@
 	<object id="ComputingConnection" type="TheFormulaShows.Support.ComputingConnectionHtmlSupport"></object>
 	<object id="MathWordProblems" type="TheFormulaShows.Support.MathWordProblemsHtmlSupport"></object>
 	<object id="FruitsLinkage" type="TheFormulaShows.Support.FruitsLinkageHtmlSupport"></object>
+	<object id="FindNearestNumber" type="TheFormulaShows.Support.FindNearestNumberHtmlSupport"></object>
 </objects>

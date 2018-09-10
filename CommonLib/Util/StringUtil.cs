@@ -99,10 +99,10 @@
 					flag = "calculator";
 					break;
 				case SignOfCompare.Greater:
-					flag = "more";
+					flag = "char-more";
 					break;
 				case SignOfCompare.Less:
-					flag = "less";
+					flag = "char-less";
 					break;
 				default:
 					break;

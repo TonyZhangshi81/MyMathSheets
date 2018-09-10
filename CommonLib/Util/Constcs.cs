@@ -199,6 +199,10 @@ namespace CommonLib.Util
 			/// </summary>
 			FruitsLinkage,
 			/// <summary>
+			/// 找到最近的數字瀏覽
+			/// </summary>
+			FindNearestNumber,
+			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
 			Ready

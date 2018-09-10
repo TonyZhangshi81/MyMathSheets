@@ -21,6 +21,7 @@
 	<!--COMPUTINGCONNECTIONSCRIPT-->
 	<!--MATHWORDPROBLEMSSCRIPT-->
 	<!--FRUITSLINKAGESCRIPT-->
+	<!--FINDNEARESTNUMBERSCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -47,6 +48,7 @@
 			//<!--EQUALITYCOMPARISONPRINTSETTING-->
 			//<!--COMPUTINGCONNECTIONPRINTSETTING-->
 			//<!--MATHWORDPROBLEMSPRINTSETTING-->
+			//<!--FINDNEARESTNUMBERPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -57,6 +59,7 @@
 			//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->
 			//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->
 			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
+			//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -73,6 +76,8 @@
 			//<!--MATHWORDPROBLEMSREADY-->
 			// 設定頁面所有輸入域為可用狀態(水果連連看)
 			//<!--FRUITSLINKAGEREADY-->
+			// 設定頁面所有輸入域為可用狀態(找到最近的數字)
+			//<!--FINDNEARESTNUMBERREADY-->
 
 
 			// 計時開始
@@ -97,6 +102,8 @@
 			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
 			// 水果連連看
 			//<!--FRUITSLINKAGEMAKECORRECTIONS-->
+			// 找到最近的數字
+			//<!--FINDNEARESTNUMBERMAKECORRECTIONS-->
 			
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -114,6 +121,8 @@
 			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
 			// 水果連連看
 			//<!--FRUITSLINKAGETHEIRPAPERS-->
+			// 找到最近的數字
+			//<!--FINDNEARESTNUMBERTHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -143,16 +152,12 @@
 			</div>
 		</div>
 		<div id="divPrintContent">
-		<br/>
 		<!--ARITHMETIC-->
-		<br/>
 		<!--EQUALITYCOMPARISON-->
-		<br/>
 		<!--COMPUTINGCONNECTION-->
-		<br/>
 		<!--MATHWORDPROBLEMS-->
-		<br/>
 		<!--FRUITSLINKAGE-->
+		<!--FINDNEARESTNUMBER-->
 		</div>
 		<HR>
 		<div class="row">

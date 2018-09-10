@@ -6,11 +6,11 @@ MathSheets.EqualityComparison = MathSheets.EqualityComparison || (function () {
 	// 關係運算符的切換
 	_imgEqualityClick = function (element) {
 		if ($(element).attr("title") == 'help') {
-			$(element).attr("title", 'less');
+			$(element).attr("title", 'char-less');
 			$(element).attr("src", '../Content/image/char-less.png');
 			return;
 		} else if ($(element).attr("title") == 'less') {
-			$(element).attr("title", 'more');
+			$(element).attr("title", 'char-more');
 			$(element).attr("src", '../Content/image/char-more.png');
 			return;
 		} else if ($(element).attr("title") == 'more') {
@@ -18,7 +18,7 @@ MathSheets.EqualityComparison = MathSheets.EqualityComparison || (function () {
 			$(element).attr("src", '../Content/image/calculator.png');
 			return;
 		} else if ($(element).attr("title") == 'calculator') {
-			$(element).attr("title", 'less');
+			$(element).attr("title", 'char-less');
 			$(element).attr("src", '../Content/image/char-less.png');
 			return;
 		}

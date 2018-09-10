@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\SubstituteAttribute.cs" />
+    <Compile Include="Support\FindNearestNumberHtmlSupport.cs" />
     <Compile Include="Support\FruitsLinkageHtmlSupport.cs" />
     <Compile Include="Support\MathWordProblemsHtmlSupport.cs" />
     <Compile Include="Support\ArithmeticHtmlSupport.cs" />
@@ -112,6 +113,7 @@
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
     <Content Include="Scripts\Ext\MathSheets.Arithmetic.js" />
+    <Content Include="Scripts\Ext\MathSheets.FindNearestNumber.js" />
     <Content Include="Scripts\Ext\MathSheets.FruitsLinkage.js" />
     <Content Include="Scripts\Ext\MathSheets.Common.js" />
     <Content Include="Scripts\Ext\MathSheets.ComputingConnection.js" />

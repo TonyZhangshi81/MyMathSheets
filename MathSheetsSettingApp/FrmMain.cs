@@ -334,6 +334,11 @@ namespace MathSheetsSettingApp
 			{
 				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.FruitsLinkage);
 			}
+			// 水果連連看
+			if (chkFindNearestNumber.Checked)
+			{
+				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.FindNearestNumber);
+			}
 			// 答題結束瀏覽
 			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Ready);
 		}
@@ -507,6 +512,37 @@ namespace MathSheetsSettingApp
 			else
 			{
 				_htmlMaps.Remove(LayoutSetting.Preview.FruitsLinkage.ToString());
+			}
+			PreviewReflash();
+		}
+
+		/// <summary>
+		/// 找出最近的數字
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void FindNearestNumberCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkFindNearestNumber.Checked)
+			{
+				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
+				MakeHtml<List<EqualityFormula>, FindNearestNumber> work = new MakeHtml<List<EqualityFormula>, FindNearestNumber>(_fourOperationsType, _signs, QuestionType.GapFilling, 50, 8);
+				work.Structure();
+				htmlMaps.Add("<!--FINDNEARESTNUMBER-->", work.GetHtmlStatement());
+
+				Type type = typeof(FindNearestNumberHtmlSupport);
+				object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
+				attribute.ToList().ForEach(d =>
+				{
+					var attr = (SubstituteAttribute)d;
+					htmlMaps.Add(attr.Source, attr.Target);
+				});
+
+				_htmlMaps.Add(LayoutSetting.Preview.FindNearestNumber.ToString(), htmlMaps);
+			}
+			else
+			{
+				_htmlMaps.Remove(LayoutSetting.Preview.FindNearestNumber.ToString());
 			}
 			PreviewReflash();
 		}

@@ -48,12 +48,13 @@
 			this.chkMathWordProblems = new System.Windows.Forms.CheckBox();
 			this.flpPreview = new System.Windows.Forms.FlowLayoutPanel();
 			this.chkFruitsLinkage = new System.Windows.Forms.CheckBox();
+			this.chkFindNearestNumber = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// btnSure
 			// 
-			this.btnSure.Location = new System.Drawing.Point(22, 214);
+			this.btnSure.Location = new System.Drawing.Point(22, 232);
 			this.btnSure.Name = "btnSure";
 			this.btnSure.Size = new System.Drawing.Size(354, 23);
 			this.btnSure.TabIndex = 0;
@@ -139,7 +140,7 @@
 			this.groupBox1.Controls.Add(this.chkMultiplication);
 			this.groupBox1.Controls.Add(this.chkAdition);
 			this.groupBox1.Controls.Add(this.chkSubtraction);
-			this.groupBox1.Location = new System.Drawing.Point(22, 132);
+			this.groupBox1.Location = new System.Drawing.Point(22, 150);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(354, 66);
 			this.groupBox1.TabIndex = 7;
@@ -159,7 +160,7 @@
 			this.lblTopic.AutoSize = true;
 			this.lblTopic.Location = new System.Drawing.Point(37, 24);
 			this.lblTopic.Name = "lblTopic";
-			this.lblTopic.Size = new System.Drawing.Size(41, 12);
+			this.lblTopic.Size = new System.Drawing.Size(35, 12);
 			this.lblTopic.TabIndex = 9;
 			this.lblTopic.Text = "題型：";
 			// 
@@ -168,7 +169,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Location = new System.Drawing.Point(38, 53);
 			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(41, 12);
+			this.label1.Size = new System.Drawing.Size(35, 12);
 			this.label1.TabIndex = 10;
 			this.label1.Text = "數量：";
 			// 
@@ -176,7 +177,7 @@
 			// 
 			this.tbxNumberOf.Location = new System.Drawing.Point(109, 50);
 			this.tbxNumberOf.Name = "tbxNumberOf";
-			this.tbxNumberOf.Size = new System.Drawing.Size(100, 21);
+			this.tbxNumberOf.Size = new System.Drawing.Size(100, 19);
 			this.tbxNumberOf.TabIndex = 11;
 			this.tbxNumberOf.Text = "5";
 			this.tbxNumberOf.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -186,7 +187,7 @@
 			this.label2.AutoSize = true;
 			this.label2.Location = new System.Drawing.Point(39, 81);
 			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(41, 12);
+			this.label2.Size = new System.Drawing.Size(35, 12);
 			this.label2.TabIndex = 12;
 			this.label2.Text = "等級：";
 			// 
@@ -264,11 +265,23 @@
 			this.chkFruitsLinkage.UseVisualStyleBackColor = true;
 			this.chkFruitsLinkage.CheckedChanged += new System.EventHandler(this.FruitsLinkageCheckedChanged);
 			// 
+			// chkFindNearestNumber
+			// 
+			this.chkFindNearestNumber.AutoSize = true;
+			this.chkFindNearestNumber.Location = new System.Drawing.Point(254, 132);
+			this.chkFindNearestNumber.Name = "chkFindNearestNumber";
+			this.chkFindNearestNumber.Size = new System.Drawing.Size(108, 16);
+			this.chkFindNearestNumber.TabIndex = 20;
+			this.chkFindNearestNumber.Text = "找出最近的數字";
+			this.chkFindNearestNumber.UseVisualStyleBackColor = true;
+			this.chkFindNearestNumber.CheckedChanged += new System.EventHandler(this.FindNearestNumberCheckedChanged);
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(932, 405);
+			this.Controls.Add(this.chkFindNearestNumber);
 			this.Controls.Add(this.chkFruitsLinkage);
 			this.Controls.Add(this.flpPreview);
 			this.Controls.Add(this.chkMathWordProblems);
@@ -315,6 +328,7 @@
 		private System.Windows.Forms.CheckBox chkMathWordProblems;
 		private System.Windows.Forms.FlowLayoutPanel flpPreview;
 		private System.Windows.Forms.CheckBox chkFruitsLinkage;
+		private System.Windows.Forms.CheckBox chkFindNearestNumber;
 	}
 }
 
