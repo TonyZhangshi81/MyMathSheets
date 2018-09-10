@@ -116,6 +116,7 @@
     <Content Include="App_Data\Work\Content\image\Subtraction.png" />
     <None Include="App_Data\Work\Content\image\title.png" />
     <Content Include="App_Data\Work\Content\image\timg.png" />
+    <Content Include="App_Data\Work\Content\MathSheets.css" />
     <Content Include="App_Data\Work\Scripts\bootstrap.min.js" />
     <Content Include="App_Data\Work\Scripts\jquery-3.3.1.min.js" />
     <Content Include="App_Data\Work\Scripts\jquery.easyui.min.js" />

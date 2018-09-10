@@ -101,6 +101,7 @@
     <Content Include="Content\image\Subtraction.png" />
     <Content Include="Content\image\table.png" />
     <Content Include="Content\image\timg.png" />
+    <Content Include="Content\MathSheets.css" />
     <Content Include="Demo\HTMLPage.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -171,6 +172,7 @@
   <PropertyGroup>
     <PostBuildEvent>copy "..\Template\HTMLPage" "..\..\MathSheetsSettingApp\HtmlTemplate\" /Y
 copy "..\Scripts\Ext\*.js" "..\..\MathSheetsSettingApp\App_Data\Work\Scripts\Ext\" /Y
+copy "..\Content\MathSheets.css" "..\..\MathSheetsSettingApp\App_Data\Work\Content\" /Y
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

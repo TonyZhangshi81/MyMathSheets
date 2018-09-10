@@ -1,0 +1,166 @@
+﻿.row-margin-top {
+	margin-top: 10px;
+}
+
+.hr-Ext {
+	margin-bottom: 0rem;
+}
+
+.jumbotron-ext {
+	padding: 2rem 3rem;
+	border-radius: 0.8rem;
+	background: url("../Content/image/timg.png") no-repeat;
+	background-size: 100% 100%;
+}
+
+.main-ext {
+	background-color: aliceblue;
+}
+
+.btn-circle {
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	padding: 6px 0;
+	font-size: 12px;
+	line-height: 1.428571429;
+	border-radius: 15px;
+}
+
+.input-print {
+	border: 1px solid black;
+}
+
+.input-addBorder {
+	border: 1px solid black;
+}
+
+.button-addBorder {
+	border: 1px solid black;
+	background: white;
+}
+
+.label-title {
+	margin-bottom: 0.5rem;
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.2;
+	font-size: 2.5rem;
+	color: white;
+}
+
+.div-famousPeople {
+	margin-left: 30px;
+}
+
+.text-info-ext {
+	color: #6c757d !important;
+	font-size: 0.7rem;
+}
+
+.divFruitDrag {
+	z-index: 2;
+	width: 40px;
+	height: 40px;
+	background: aliceblue;
+}
+
+.divContainer {
+	z-index: 1;
+	width: 80px;
+	height: 80px;
+	background: aliceblue;
+	position: absolute;
+	border: 1px solid #ccc;
+}
+
+.divSeat0 {
+	left: 250px;
+	top: 20px;
+}
+
+.divSeat4 {
+	left: 300px;
+	top: 120px;
+}
+
+.divSeat7 {
+	left: 300px;
+	top: 220px;
+}
+
+.divSeat1 {
+	left: 360px;
+	top: 20px;
+}
+
+.divSeat5 {
+	left: 410px;
+	top: 120px;
+}
+
+.divSeat8 {
+	left: 410px;
+	top: 220px;
+}
+
+.divSeat2 {
+	left: 470px;
+	top: 20px;
+}
+
+.divSeat6 {
+	left: 520px;
+	top: 120px;
+}
+
+.divSeat9 {
+	left: 520px;
+	top: 220px;
+}
+
+.divSeat3 {
+	left: 580px;
+	top: 20px;
+}
+
+.form-inline-ext {
+	padding-left: 15px;
+	padding-right: 8px;
+	text-align: left !important
+}
+
+.fruitsFormula-left {
+	float: left;
+	position: absolute;
+	display: inline-block;
+	border-style: solid;
+	background-color: gainsboro;
+	margin-left: 5px;
+	height: 180px;
+	padding-top: 10px;
+}
+
+.fruitsFormula-right {
+	float: left;
+	position: absolute;
+	display: inline-block;
+	left: 250px;
+	border-style: solid;
+	background-color: gainsboro;
+	height: 180px;
+	padding-top: 10px;
+}
+
+.fruitsImg {
+	margin-top: -10px;
+}
+
+.easyui-panel-ext {
+	position: relative;
+	overflow: hidden;
+	width: 800px !important;
+	height: 400px;
+	display: inline-block;
+	left: 240px;
+}

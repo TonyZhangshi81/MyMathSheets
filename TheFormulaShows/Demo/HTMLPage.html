@@ -9,193 +9,19 @@
 	<meta name="author" content="">
 	<link rel="icon" href="../Content/favicon.ico">
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
 	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
-
 	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
-	<script src="../Scripts/Ext/MathSheets.Arithmetic.js" charset="utf-8"></script>
-	<script src="../Scripts/Ext/MathSheets.EqualityComparison.js" charset="utf-8"></script>
-	<script src="../Scripts/Ext/MathSheets.ComputingConnection.js" charset="utf-8"></script>
-	<script src="../Scripts/Ext/MathSheets.MathWordProblems.js" charset="utf-8"></script>
-	<script src="../Scripts/Ext/MathSheets.FruitsLinkage.js" charset="utf-8"></script>
 	<!--ARITHMETICSCRIPT-->
-	<!--EQUALITYCOMPARISONSCRIPT-->
+	<script src="../Scripts/Ext/MathSheets.EqualityComparison.js" charset="utf-8"></script>
 	<!--COMPUTINGCONNECTIONSCRIPT-->
 	<!--MATHWORDPROBLEMSSCRIPT-->
 	<!--FRUITSLINKAGESCRIPT-->
 	<title>題庫</title>
-
-	<style type="text/css">
-		.row-margin-top {
-			margin-top: 10px;
-		}
-
-		.hr-Ext {
-			margin-bottom: 0rem;
-		}
-
-		.jumbotron-ext {
-			padding: 2rem 3rem;
-			border-radius: 0.8rem;
-			background: url("../Content/image/timg.png") no-repeat;
-			background-size: 100% 100%;
-		}
-
-		.main-ext {
-			background-color: aliceblue;
-		}
-
-		.btn-circle {
-			width: 30px;
-			height: 30px;
-			text-align: center;
-			padding: 6px 0;
-			font-size: 12px;
-			line-height: 1.428571429;
-			border-radius: 15px;
-		}
-
-		.input-print {
-			border: 1px solid black;
-		}
-
-		.input-addBorder {
-			border: 1px solid black;
-		}
-
-		.button-addBorder {
-			border: 1px solid black;
-			background: white;
-		}
-
-		.label-title {
-			margin-bottom: 0.5rem;
-			font-family: inherit;
-			font-weight: 500;
-			line-height: 1.2;
-			font-size: 2.5rem;
-			color: white;
-		}
-
-		.div-famousPeople {
-			margin-left: 30px;
-		}
-		
-		.text-info-ext{
-			color: #6c757d!important;
-			font-size: 0.7rem;
-		}
-
-		.divFruitDrag {
-			z-index: 2;
-			width: 40px;
-			height: 40px;
-			background: aliceblue;
-		}
-
-		.divContainer {
-			z-index: 1;
-			width: 80px;
-			height: 80px;
-			background: aliceblue;
-			position: absolute;
-			border: 1px solid #ccc;
-		}
-
-		.divSeat0 {
-			left: 250px;
-			top: 20px;
-		}
-
-		.divSeat4 {
-			left: 300px;
-			top: 120px;
-		}
-
-		.divSeat7 {
-			left: 300px;
-			top: 220px;
-		}
-
-		.divSeat1 {
-			left: 360px;
-			top: 20px;
-		}
-
-		.divSeat5 {
-			left: 410px;
-			top: 120px;
-		}
-
-		.divSeat8 {
-			left: 410px;
-			top: 220px;
-		}
-
-		.divSeat2 {
-			left: 470px;
-			top: 20px;
-		}
-
-		.divSeat6 {
-			left: 520px;
-			top: 120px;
-		}
-
-		.divSeat9 {
-			left: 520px;
-			top: 220px;
-		}
-
-		.divSeat3 {
-			left: 580px;
-			top: 20px;
-		}
-
-		.form-inline-ext {
-			padding-left: 15px;
-			padding-right: 8px;
-			text-align: left !important
-		}
-
-		.fruitsFormula-left {
-			float: left;
-			position: absolute;
-			display: inline-block;
-			border-style: solid;
-			background-color: gainsboro;
-			margin-left: 5px;
-			height: 180px;
-			padding-top: 10px;
-		}
-
-		.fruitsFormula-right {
-			float: left;
-			position: absolute;
-			display: inline-block;
-			left: 250px;
-			border-style: solid;
-			background-color: gainsboro;
-			height: 180px;
-			padding-top:10px;
-		}
-
-		.fruitsImg {
-			margin-top: -10px;
-		}
-
-		.easyui-panel-ext {
-			position: relative;
-			overflow: hidden;
-			width: 800px!important;
-			height: 400px;
-			display: inline-block;
-			left: 240px;
-		}
-	</style>
 
 	<script>
 		// 頁面啟動后加載
@@ -213,13 +39,12 @@
 
 			// 還原上一次答題結果
 			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
-
 		});
 
 		// 打印
 		function btnPrintClick() {
 			//<!--ARITHMETICPRINTSETTING-->
-			//<!--EQUALITYCOMPARISONPRINTSETTING-->
+			MathSheets.EqualityComparison.printSetting();
 			//<!--COMPUTINGCONNECTIONPRINTSETTING-->
 			//<!--MATHWORDPROBLEMSPRINTSETTING-->
 
@@ -229,7 +54,7 @@
 			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
 			// 打印后頁面設定
 			//<!--ARITHMETICPRINTAFTERSETTING-->
-			//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->
+			MathSheets.EqualityComparison.printAfterSetting();
 			//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->
 			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
 		}
@@ -240,17 +65,12 @@
 			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
 			// 設定頁面所有輸入域為可用狀態（四則運算）
 			//<!--ARITHMETICREADY-->
-			//arithmeticReady();
 			// 設定頁面所有輸入域為可用狀態(運算比大小)
-			//<!--EQUALITYCOMPARISONREADY-->
-			//equalityComparisonReady();
+			MathSheets.EqualityComparison.ready();
 			// 設定頁面所有輸入域為可用狀態(等式接龍)
 			//<!--COMPUTINGCONNECTIONREADY-->
-			//computingConnectionReady();
-
 			// 設定頁面所有輸入域為可用狀態(算數應用題)
 			//<!--MATHWORDPROBLEMSREADY-->
-			//mathWordProblemsReady();
 			// 設定頁面所有輸入域為可用狀態(水果連連看)
 			//<!--FRUITSLINKAGEREADY-->
 
@@ -270,14 +90,14 @@
 			// 四則運算題
 			//<!--ARITHMETICMAKECORRECTIONS-->
 			// 算式比較大小
-			//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->
+			fault += MathSheets.EqualityComparison.makeCorrections();
 			// 等式接龍
 			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
 			// 算數應用題
 			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
 			// 水果連連看
 			//<!--FRUITSLINKAGEMAKECORRECTIONS-->
-			
+
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
 		}
@@ -287,7 +107,7 @@
 			// 四則運算交卷
 			//<!--ARITHMETICTHEIRPAPERS-->
 			// 算式比大小交卷
-			//<!--EQUALITYCOMPARISONTHEIRPAPERS-->
+			MathSheets.EqualityComparison.theirPapers();
 			// 等式接龍交卷
 			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
 			// 算數應用題交卷
@@ -323,207 +143,134 @@
 			</div>
 		</div>
 		<div id="divPrintContent">
-			<!-- 题型1<四则运算题> -->
-			<div class="page-header">
-				<img src="../Content/image/homework.png" width="20" height="20" />
-				<h6>1. 四则运算题</h6>
-			</div>
-			<hr />
+			<br />
 			<!--ARITHMETIC-->
-			<div class="row text-center row-margin-top">
-				<div class="col-md-3 form-inline">
-					<h5>
-						<input id="inputAc0" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden0" type="hidden" value="41" />
-						<span class="label">-</span>
-						<span class="label">19</span>
-						<span class="label">=</span>
-						<span class="label">22</span>
-						<img id="imgArithmeticOK0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgArithmeticNo0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-					</h5>
-				</div>
-				<div class="col-md-3 form-inline">
-					<h5>
-						<span class="label">63</span>
-						<span class="label">-</span>
-						<input id="inputAc1" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden1" type="hidden" value="-999" />
-						<span class="label">=</span>
-						<span class="label">51</span>
-						<img id="imgArithmeticOK1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgArithmeticNo1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-					</h5>
-				</div>
-				<div class="col-md-3 form-inline">
-					<h5>
-						<input id="inputAc2" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
-						<span class="label">-</span>
-						<span class="label">2</span>
-						<span class="label">=</span>
-						<span class="label">10</span>
-						<img id="imgArithmeticOK2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgArithmeticNo2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-					</h5>
-				</div>
-				<div class="col-md-3 form-inline">
-					<h5>
-						<input id="inputAc3" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden3" type="hidden" value="24" />
-						<span class="label">-</span>
-						<span class="label">4</span>
-						<span class="label">=</span>
-						<span class="label">20</span>
-						<img id="imgArithmeticOK3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgArithmeticNo3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-					</h5>
-				</div>
-			</div>
-			<!-- 题型2<运算比大小> -->
-			<div class="page-header">
-				<h6>2. 运算比大小</h6>
-			</div>
-			<hr />
-			<!--EQUALITYCOMPARISON-->
-			<div class="row text-center row-margin-top">
+			<br />
+			<div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">算式比大小</span></h4></div><hr /><div class="row text-center row-margin-top">
 				<div class="col-md-4 form-inline">
 					<h5>
-						<span class="label">20</span>
-						<span class="label">-</span>
-						<span class="label">19</span>
+						<span class="label">13</span>
+						<span class="label">+</span>
+						<span class="label">11</span>
 						<img src="../Content/image/help.png" width="30" height="30" id="imgEc0" title="help" />
 						<input id="hiddenEc0" type="hidden" value="less" />
-						<span class="label">22</span>
-						<span class="label">-</span>
-						<span class="label">9</span>
-						<img id="imgEqualityOK0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgEqualityNo0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-					</h5>
-				</div>
-				<div class="col-md-4 form-inline">
-					<h5>
-						<span class="label">20</span>
-						<span class="label">-</span>
-						<span class="label">19</span>
-						<img src="../Content/image/help.png" id="imgEc1" style="width: 30px; height: 30px;" title="help" />
-						<input id="hiddenEc1" type="hidden" value="more" />
-						<span class="label">22</span>
-						<span class="label">-</span>
-						<span class="label">9</span>
-						<img id="imgEqualityOK1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgEqualityNo1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-					</h5>
-				</div>
-				<div class="col-md-4 form-inline">
-					<h5>
-						<span class="label">20</span>
-						<span class="label">-</span>
-						<span class="label">19</span>
-						<img src="../Content/image/help.png" id="imgEc2" style="width: 30px; height: 30px;" title="help" />
-						<input id="hiddenEc2" type="hidden" value="calculator" />
-						<span class="label">3</span>
-						<span class="label">-</span>
-						<span class="label">2</span>
-						<img id="imgEqualityOK2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgEqualityNo2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-					</h5>
-				</div>
-			</div>
-			<!-- 题型3<等式接龙> -->
-			<div class="page-header">
-				<h6>3. 等式接龙</h6>
-			</div>
-			<hr />
-			<!--COMPUTINGCONNECTION-->
-			<div class="row text-center row-margin-top">
-				<div class="col-md-10 form-inline">
-					<h5>
-						<span class="label">19</span>
-						<span class="label">-</span>
-						<input id="inputCc00" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc00" type="hidden" value="9" />
-						<span class="label">=</span>
-						<span class="label">10</span>
+						<span class="label">24</span>
 						<span class="label">+</span>
-						<input id="inputCc01" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc01" type="hidden" value="8" />
-						<span class="label">=</span>
+						<span class="label">3</span>
+						<img id="imgOKEquality0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoEquality0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					</h5>
+				</div>
+				<div class="col-md-4 form-inline">
+					<h5>
+						<span class="label">15</span>
+						<span class="label">+</span>
+						<span class="label">11</span>
+						<img src="../Content/image/help.png" width="30" height="30" id="imgEc1" title="help" />
+						<input id="hiddenEc1" type="hidden" value="calculator" />
+						<span class="label">24</span>
+						<span class="label">+</span>
+						<span class="label">2</span>
+						<img id="imgOKEquality1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoEquality1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					</h5>
+				</div>
+				<div class="col-md-4 form-inline">
+					<h5>
+						<span class="label">9</span>
+						<span class="label">+</span>
+						<span class="label">3</span>
+						<img src="../Content/image/help.png" width="30" height="30" id="imgEc2" title="help" />
+						<input id="hiddenEc2" type="hidden" value="less" />
+						<span class="label">13</span>
+						<span class="label">+</span>
+						<span class="label">0</span>
+						<img id="imgOKEquality2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoEquality2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					</h5>
+				</div>
+			</div>
+			<div class="row text-center row-margin-top">
+				<div class="col-md-4 form-inline">
+					<h5>
+						<span class="label">24</span>
+						<span class="label">+</span>
+						<span class="label">3</span>
+						<img src="../Content/image/help.png" width="30" height="30" id="imgEc3" title="help" />
+						<input id="hiddenEc3" type="hidden" value="more" />
+						<span class="label">0</span>
+						<span class="label">+</span>
+						<span class="label">14</span>
+						<img id="imgOKEquality3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoEquality3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					</h5>
+				</div>
+				<div class="col-md-4 form-inline">
+					<h5>
 						<span class="label">18</span>
 						<span class="label">+</span>
-						<input id="inputCc02" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc02" type="hidden" value="2" />
-						<span class="label">=</span>
-						<span class="label">20</span>
-						<span class="label">-</span>
-						<input id="inputCc03" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc03" type="hidden" value="15" />
-						<span class="label">=</span>
-						<span class="label">5</span>
-						<img id="imgComputingConnectionOK0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgComputingConnectionNo0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-						<input id="hiddenAllCc0" type="hidden" value="4" />
+						<span class="label">1</span>
+						<img src="../Content/image/help.png" width="30" height="30" id="imgEc4" title="help" />
+						<input id="hiddenEc4" type="hidden" value="less" />
+						<span class="label">16</span>
+						<span class="label">+</span>
+						<span class="label">13</span>
+						<img id="imgOKEquality4" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoEquality4" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					</h5>
+				</div>
+				<div class="col-md-4 form-inline">
+					<h5>
+						<span class="label">4</span>
+						<span class="label">+</span>
+						<span class="label">7</span>
+						<img src="../Content/image/help.png" width="30" height="30" id="imgEc5" title="help" />
+						<input id="hiddenEc5" type="hidden" value="less" />
+						<span class="label">27</span>
+						<span class="label">+</span>
+						<span class="label">1</span>
+						<img id="imgOKEquality5" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoEquality5" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
 					</h5>
 				</div>
 			</div>
 			<div class="row text-center row-margin-top">
-				<div class="col-md-10 form-inline">
+				<div class="col-md-4 form-inline">
 					<h5>
-						<span class="label">5</span>
+						<span class="label">28</span>
 						<span class="label">+</span>
-						<input id="inputCc10" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc10" type="hidden" value="15" />
-						<span class="label">=</span>
+						<span class="label">1</span>
+						<img src="../Content/image/help.png" width="30" height="30" id="imgEc6" title="help" />
+						<input id="hiddenEc6" type="hidden" value="calculator" />
 						<span class="label">20</span>
 						<span class="label">+</span>
-						<input id="inputCc11" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc11" type="hidden" value="5" />
-						<span class="label">=</span>
-						<span class="label">25</span>
-						<span class="label">-</span>
-						<input id="inputCc12" type="text" placeholder="??" class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hiddenCc12" type="hidden" value="10" />
-						<span class="label">=</span>
-						<span class="label">15</span>
-						<img id="imgComputingConnectionOK1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgComputingConnectionNo1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-						<input id="hiddenAllCc1" type="hidden" value="3" />
+						<span class="label">9</span>
+						<img id="imgOKEquality6" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoEquality6" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
 					</h5>
 				</div>
-			</div>
-			<!-- 题型4<算数应用题> -->
-			<div class="page-header">
-				<h6>4. 算数应用题</h6>
-			</div>
-			<hr />
-			<!--MATHWORDPROBLEMS-->
-			<div class="row text-center row-margin-top">
-				<div class="col-md-12 form-inline">
+				<div class="col-md-4 form-inline">
 					<h5>
-						<span class="label">小明有蝴蝶标本20只蜻蜓标本6只。小明一共有多少只标本？</span>
-					</h5>
-				</div>
-				<div class="col-md-12 form-inline">
-					<h5>
-						<input id="inputMwp00" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
-						<img src="../Content/image/help.png" id="imgMwp0" style="width: 30px; height: 30px;" title="help" />
-						<input id="inputMwp01" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
-						<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
-						<input id="inputMwp02" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
-						<input id="hiddenMwp0" type="hidden" value="20+6=26,6+20=26" />
-						<img id="imgProblemsOK0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgProblemsNo0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-					</h5>
-				</div>
-				<div class="col-md-12 form-inline">
-					<h5>
-						<span class="label">小华要给10棵小树苗浇水，已经浇了6棵。还有多少棵没浇？</span>
-					</h5>
-				</div>
-				<div class="col-md-12 form-inline">
-					<h5>
-						<input id="inputMwp10" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
-						<img src="../Content/image/help.png" id="imgMwp1" style="width: 30px; height: 30px;" title="help" />
-						<input id="inputMwp11" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
-						<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
-						<input id="inputMwp12" type="text" placeholder=" ?? " class="form-control" style="width: 50px; text-align:center;" disabled="disabled" /><input id="hidden2" type="hidden" value="12" />
-						<input id="hiddenMwp1" type="hidden" value="10-6=4" />
-						<img id="imgProblemsOK1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgProblemsNo1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+						<span class="label">10</span>
+						<span class="label">+</span>
+						<span class="label">14</span>
+						<img src="../Content/image/help.png" width="30" height="30" id="imgEc7" title="help" />
+						<input id="hiddenEc7" type="hidden" value="less" />
+						<span class="label">0</span>
+						<span class="label">+</span>
+						<span class="label">28</span>
+						<img id="imgOKEquality7" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoEquality7" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
 					</h5>
 				</div>
 			</div>
 
-			<!-- 题型5<填充区> -->
+			<br />
+			<!--COMPUTINGCONNECTION-->
+			<br />
+			<!--MATHWORDPROBLEMS-->
+			<br />
+			<!--FRUITSLINKAGE-->
 		</div>
 		<HR>
 		<div class="row">
