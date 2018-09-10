@@ -6,4 +6,6 @@
 	<object id="MathWordProblemsFormulaWrite" type="TestConsoleApp.Write.MathWordProblemsFormulaWrite"></object>
 	<object id="FruitsLinkageWrite" type="TestConsoleApp.Write.FruitsLinkageWrite"></object>
 	<object id="FindNearestNumberWrite" type="TestConsoleApp.Write.FindNearestNumberWrite"></object>
+	<object id="CombinatorialFormulaWrite" type="TestConsoleApp.Write.CombinatorialFormulaWrite"></object>
+	
 </objects>

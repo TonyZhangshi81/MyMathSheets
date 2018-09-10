@@ -27,6 +27,7 @@ namespace TestConsoleApp
 			MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work3 = null;
 			MakeHtml<FruitsLinkageFormula, FruitsLinkage> work4 = null;
 			MakeHtml<List<EqualityFormula>, FindNearestNumber> work5 = null;
+			MakeHtml<List<CombinatorialFormula>, CombinatorialEquation> work6 = null;
 
 			bool isShowMenu = true;
 
@@ -61,6 +62,8 @@ namespace TestConsoleApp
 					Console.WriteLine("    r-隨機四則運算");
 					Console.WriteLine("    s-加法");
 					Console.WriteLine("    t-減法");
+					Console.WriteLine("************************* 算式組合 ***********************");
+					Console.WriteLine("    u-算式組合");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -255,6 +258,14 @@ namespace TestConsoleApp
 						work5 = new MakeHtml<List<EqualityFormula>, FindNearestNumber>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 40, 5);
 						work5.Structure();
 						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("FindNearestNumberWrite", work5.Formulas);
+						break;
+
+					case ConsoleKey.U:
+						Console.WriteLine();
+						Console.WriteLine("算式組合");
+						work6 = new MakeHtml<List<CombinatorialFormula>, CombinatorialEquation>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 40, 5);
+						work6.Structure();
+						Util.CreateOperatorObjectFactory<List<CombinatorialFormula>>("CombinatorialFormulaWrite", work6.Formulas);
 						break;
 
 					case ConsoleKey.D9:

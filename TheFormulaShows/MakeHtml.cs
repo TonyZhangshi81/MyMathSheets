@@ -133,6 +133,11 @@ namespace TheFormulaShows
 				// 构造函数的参数 
 				arguments = new object[5] { _fourOperationsType, _signs, _questionType, _maximumLimit, _numberOfQuestions };
 			}
+			else if (type.Equals(typeof(CombinatorialEquation)))
+			{
+				// 构造函数的参数 
+				arguments = new object[2] { _maximumLimit, _numberOfQuestions };
+			}
 
 			// 用Activator的CreateInstance静态方法，生成新对象 
 			F instance = (F)Activator.CreateInstance(type, arguments);

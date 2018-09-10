@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Write\CombinatorialFormulaWrite.cs" />
     <Compile Include="Write\FindNearestNumberWrite.cs" />
     <Compile Include="Write\FruitsLinkageWrite.cs" />
     <Compile Include="Write\MathWordProblemsFormulaWrite.cs" />
