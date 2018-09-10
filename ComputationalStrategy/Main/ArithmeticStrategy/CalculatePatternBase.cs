@@ -63,7 +63,7 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <returns></returns>
 		protected virtual int GetAnswer(int leftParameter, int rightParameter)
 		{
-			if(_formula == null)
+			if (_formula == null)
 			{
 				throw new NullReferenceException();
 			}
@@ -91,7 +91,10 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <param name="minimumLimit"></param>
 		/// <param name="gap">隨機項目設定值(默認值:等式結果)</param>
 		/// <returns></returns>
-		public virtual Formula CreateFormula(int maximumLimit, QuestionType type = QuestionType.Standard, int minimumLimit = 0, GapFilling gap = GapFilling.Answer)
+		public virtual Formula CreateFormula(int maximumLimit,
+											QuestionType type = QuestionType.Standard,
+											int minimumLimit = 0,
+											GapFilling gap = GapFilling.Answer)
 		{
 			_formula = new Formula();
 
@@ -109,6 +112,17 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		}
 
 		/// <summary>
+		/// 指定範圍內隨機設定填空項目
+		/// </summary>
+		/// <param name="minValue">上限值</param>
+		/// <param name="maxValue">下限值</param>
+		public void SetGapFillingItem(GapFilling minValue, GapFilling maxValue)
+		{
+			RandomNumberComposition number = new RandomNumberComposition((int)minValue, (int)maxValue);
+			_formula.Gap = (GapFilling)number.GetRandomNumber();
+		}
+
+		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="maximumLimit"></param>
@@ -117,7 +131,11 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <param name="minimumLimit"></param>
 		/// <param name="gap">隨機項目設定值(默認值:運算式右邊參數)</param>
 		/// <returns></returns>
-		public virtual Formula CreateFormula(int maximumLimit, Formula previousFormula, QuestionType type = QuestionType.GapFilling, int minimumLimit = 0, GapFilling gap = GapFilling.Right)
+		public virtual Formula CreateFormula(int maximumLimit,
+											Formula previousFormula,
+											QuestionType type = QuestionType.GapFilling,
+											int minimumLimit = 0,
+											GapFilling gap = GapFilling.Right)
 		{
 			_formula = new Formula
 			{

@@ -236,7 +236,23 @@ namespace TestConsoleApp
 																								{
 																									SignOfOperation.Plus,
 																									SignOfOperation.Subtraction
-																								}, QuestionType.Default, 50, 10);
+																								}, QuestionType.GapFilling, 50, 6);
+						work5.Structure();
+						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("FindNearestNumberWrite", work5.Formulas);
+						break;
+
+					case ConsoleKey.S:
+						Console.WriteLine();
+						Console.WriteLine("加法");
+						work5 = new MakeHtml<List<EqualityFormula>, FindNearestNumber> (FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 50, 3);
+						work5.Structure();
+						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("FindNearestNumberWrite", work5.Formulas);
+						break;
+
+					case ConsoleKey.T:
+						Console.WriteLine();
+						Console.WriteLine("減法");
+						work5 = new MakeHtml<List<EqualityFormula>, FindNearestNumber>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 40, 5);
 						work5.Structure();
 						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("FindNearestNumberWrite", work5.Formulas);
 						break;

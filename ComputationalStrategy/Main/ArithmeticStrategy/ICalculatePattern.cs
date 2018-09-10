@@ -39,5 +39,13 @@ namespace ComputationalStrategy.Main.ArithmeticStrategy
 		/// <param name="gap">隨機項目設定值</param>
 		/// <returns>計算式</returns>
 		Formula CreateFormulaWithAnswer(int maximumLimit, int answer, QuestionType type = QuestionType.Standard, int minimumLimit = 0, GapFilling gap = GapFilling.Default);
+
+		/// <summary>
+		/// 指定範圍內隨機設定填空項目
+		/// </summary>
+		/// <param name="minValue">上限值</param>
+		/// <param name="maxValue">下限值</param>>
+		/// <returns></returns>
+		void SetGapFillingItem(GapFilling minValue, GapFilling maxValue);
 	}
 }

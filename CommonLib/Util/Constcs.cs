@@ -57,7 +57,7 @@ namespace CommonLib.Util
 	}
 
 	/// <summary>
-	/// 题型（标准、随机填空）
+	/// 题型（标准:結果項為填空、随机：等式中隨機選擇一個項目為填空）
 	/// </summary>
 	public enum QuestionType : int
 	{
@@ -76,7 +76,7 @@ namespace CommonLib.Util
 	}
 
 	/// <summary>
-	/// 四则运算类型（标准、随机出题）
+	/// 四则运算类型（标准：指定一種運算符、随机出题：隨機抽取一種運算符）
 	/// </summary>
 	public enum FourOperationsType : int
 	{

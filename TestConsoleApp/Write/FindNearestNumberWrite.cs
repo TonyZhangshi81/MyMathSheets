@@ -22,13 +22,13 @@ namespace TestConsoleApp.Write
 			formulas.ToList().ForEach(d =>
 			{
 				Console.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} {6}",
-					d.LeftFormula.LeftParameter,
+					Util.GetValue(GapFilling.Left, d.LeftFormula.LeftParameter, d.LeftFormula.Gap),
 					d.LeftFormula.Sign.ToOperationString(),
-					d.LeftFormula.RightParameter,
+					Util.GetValue(GapFilling.Right, d.LeftFormula.RightParameter, d.LeftFormula.Gap),
 					d.Answer.ToSignOfCompareString(),
-					d.RightFormula.LeftParameter,
+					Util.GetValue(GapFilling.Left, d.RightFormula.LeftParameter, d.RightFormula.Gap),
 					d.RightFormula.Sign.ToOperationString(),
-					d.RightFormula.RightParameter));
+					Util.GetValue(GapFilling.Right, d.RightFormula.RightParameter, d.RightFormula.Gap)));
 			});
 		}
 	}

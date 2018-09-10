@@ -5,6 +5,5 @@
 	<object id="ComputingConnectionWrite" type="TestConsoleApp.Write.ComputingConnectionWrite"></object>
 	<object id="MathWordProblemsFormulaWrite" type="TestConsoleApp.Write.MathWordProblemsFormulaWrite"></object>
 	<object id="FruitsLinkageWrite" type="TestConsoleApp.Write.FruitsLinkageWrite"></object>
-	<object id="FruitsLinkageWrite" type="TestConsoleApp.Write.FruitsLinkageWrite"></object>
 	<object id="FindNearestNumberWrite" type="TestConsoleApp.Write.FindNearestNumberWrite"></object>
 </objects>
