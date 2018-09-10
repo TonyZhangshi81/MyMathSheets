@@ -25,7 +25,7 @@ namespace TheFormulaShows.Support
 		{
 			if (formulas.Count == 0)
 			{
-				return "<BR/>";
+				return string.Empty;
 			}
 
 			int parentControlIndex = 0;
@@ -65,6 +65,7 @@ namespace TheFormulaShows.Support
 
 			if (html.Length != 0)
 			{
+				html.AppendLine("<br/>");
 				html.Insert(0, "<div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">算數應用題</span></h4></div><hr />");
 			}
 

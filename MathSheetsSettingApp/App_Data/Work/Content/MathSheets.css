@@ -160,7 +160,7 @@
 	position: relative;
 	overflow: hidden;
 	width: 800px !important;
-	height: 400px;
+	height: 300px !important;
 	display: inline-block;
 	left: 240px;
 }

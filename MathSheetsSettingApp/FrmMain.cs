@@ -495,7 +495,7 @@ namespace MathSheetsSettingApp
 			if (chkFruitsLinkage.Checked)
 			{
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
-				MakeHtml<FruitsLinkageFormula, FruitsLinkage> work = new MakeHtml<FruitsLinkageFormula, FruitsLinkage>(_fourOperationsType, _signs, QuestionType.Default, 50, 4);
+				MakeHtml<FruitsLinkageFormula, FruitsLinkage> work = new MakeHtml<FruitsLinkageFormula, FruitsLinkage>(_fourOperationsType, _signs, QuestionType.Default, 50, 10);
 				work.Structure();
 				htmlMaps.Add("<!--FRUITSLINKAGE-->", work.GetHtmlStatement());
 
