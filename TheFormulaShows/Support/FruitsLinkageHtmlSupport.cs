@@ -177,8 +177,7 @@ namespace TheFormulaShows.Support
 
 			if (html.Length != 0)
 			{
-				html.AppendLine("<br/>");
-				html.Insert(0, "<div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">水果連連看</span></h4></div><hr />");
+				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">水果連連看</span></h4></div><hr />");
 			}
 
 			return html.ToString();
