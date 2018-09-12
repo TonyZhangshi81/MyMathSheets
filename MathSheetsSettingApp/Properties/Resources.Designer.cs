@@ -73,6 +73,16 @@ namespace MathSheetsSettingApp.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap CombinatorialEquation {
+            get {
+                object obj = ResourceManager.GetObject("CombinatorialEquation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap ComputingConnection {
             get {
                 object obj = ResourceManager.GetObject("ComputingConnection", resourceCulture);

@@ -3,7 +3,6 @@ using ComputationalStrategy.Item;
 using ComputationalStrategy.Main.Operation;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -339,6 +338,11 @@ namespace MathSheetsSettingApp
 			{
 				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.FindNearestNumber);
 			}
+			// 運算組合
+			if (chkCombinatorialEquation.Checked)
+			{
+				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.CombinatorialEquation);
+			}
 			// 答題結束瀏覽
 			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Ready);
 		}
@@ -543,6 +547,37 @@ namespace MathSheetsSettingApp
 			else
 			{
 				_htmlMaps.Remove(LayoutSetting.Preview.FindNearestNumber.ToString());
+			}
+			PreviewReflash();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void CombinatorialEquationCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkCombinatorialEquation.Checked)
+			{
+				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
+				MakeHtml<List<CombinatorialFormula>, CombinatorialEquation> work = new MakeHtml<List<CombinatorialFormula>, CombinatorialEquation>(50, 8);
+				work.Structure();
+				htmlMaps.Add("<!--COMBINATORIALFORMULA-->", work.GetHtmlStatement());
+
+				Type type = typeof(CombinatorialEquationHtmlSupport);
+				object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
+				attribute.ToList().ForEach(d =>
+				{
+					var attr = (SubstituteAttribute)d;
+					htmlMaps.Add(attr.Source, attr.Target);
+				});
+
+				_htmlMaps.Add(LayoutSetting.Preview.CombinatorialEquation.ToString(), htmlMaps);
+			}
+			else
+			{
+				_htmlMaps.Remove(LayoutSetting.Preview.CombinatorialEquation.ToString());
 			}
 			PreviewReflash();
 		}

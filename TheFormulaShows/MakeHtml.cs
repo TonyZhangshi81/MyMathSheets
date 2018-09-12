@@ -71,10 +71,20 @@ namespace TheFormulaShows
 		/// <param name="maximumLimit"></param>
 		/// <param name="numberOfQuestions"></param>
 		public MakeHtml(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
+			: this(maximumLimit, numberOfQuestions)
 		{
 			_fourOperationsType = fourOperationsType;
 			_signs = signs;
 			_questionType = questionType;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="maximumLimit"></param>
+		/// <param name="numberOfQuestions"></param>
+		public MakeHtml(int maximumLimit, int numberOfQuestions)
+		{
 			_maximumLimit = maximumLimit;
 			_numberOfQuestions = numberOfQuestions;
 		}

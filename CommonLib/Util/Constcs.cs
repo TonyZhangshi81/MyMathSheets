@@ -203,6 +203,10 @@ namespace CommonLib.Util
 			/// </summary>
 			FindNearestNumber,
 			/// <summary>
+			/// 算式組合
+			/// </summary>
+			CombinatorialEquation,
+			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
 			Ready

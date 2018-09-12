@@ -49,12 +49,13 @@
 			this.flpPreview = new System.Windows.Forms.FlowLayoutPanel();
 			this.chkFruitsLinkage = new System.Windows.Forms.CheckBox();
 			this.chkFindNearestNumber = new System.Windows.Forms.CheckBox();
+			this.chkCombinatorialEquation = new System.Windows.Forms.CheckBox();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// btnSure
 			// 
-			this.btnSure.Location = new System.Drawing.Point(22, 232);
+			this.btnSure.Location = new System.Drawing.Point(22, 258);
 			this.btnSure.Name = "btnSure";
 			this.btnSure.Size = new System.Drawing.Size(354, 23);
 			this.btnSure.TabIndex = 0;
@@ -140,7 +141,7 @@
 			this.groupBox1.Controls.Add(this.chkMultiplication);
 			this.groupBox1.Controls.Add(this.chkAdition);
 			this.groupBox1.Controls.Add(this.chkSubtraction);
-			this.groupBox1.Location = new System.Drawing.Point(22, 150);
+			this.groupBox1.Location = new System.Drawing.Point(22, 176);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Size = new System.Drawing.Size(354, 66);
 			this.groupBox1.TabIndex = 7;
@@ -276,11 +277,23 @@
 			this.chkFindNearestNumber.UseVisualStyleBackColor = true;
 			this.chkFindNearestNumber.CheckedChanged += new System.EventHandler(this.FindNearestNumberCheckedChanged);
 			// 
+			// chkCombinatorialEquation
+			// 
+			this.chkCombinatorialEquation.AutoSize = true;
+			this.chkCombinatorialEquation.Location = new System.Drawing.Point(254, 154);
+			this.chkCombinatorialEquation.Name = "chkCombinatorialEquation";
+			this.chkCombinatorialEquation.Size = new System.Drawing.Size(72, 16);
+			this.chkCombinatorialEquation.TabIndex = 21;
+			this.chkCombinatorialEquation.Text = "算式組合";
+			this.chkCombinatorialEquation.UseVisualStyleBackColor = true;
+			this.chkCombinatorialEquation.CheckedChanged += new System.EventHandler(this.CombinatorialEquationCheckedChanged);
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(932, 405);
+			this.Controls.Add(this.chkCombinatorialEquation);
 			this.Controls.Add(this.chkFindNearestNumber);
 			this.Controls.Add(this.chkFruitsLinkage);
 			this.Controls.Add(this.flpPreview);
@@ -329,6 +342,7 @@
 		private System.Windows.Forms.FlowLayoutPanel flpPreview;
 		private System.Windows.Forms.CheckBox chkFruitsLinkage;
 		private System.Windows.Forms.CheckBox chkFindNearestNumber;
+		private System.Windows.Forms.CheckBox chkCombinatorialEquation;
 	}
 }
 

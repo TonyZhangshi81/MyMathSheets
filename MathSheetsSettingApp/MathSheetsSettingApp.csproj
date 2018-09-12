@@ -91,6 +91,7 @@
     <Content Include="App_Data\Work\Content\image\char-less.png" />
     <Content Include="App_Data\Work\Content\image\char-more.png" />
     <None Include="App_Data\Work\Content\image\ComputingConnection.png" />
+    <Content Include="App_Data\Work\Content\image\CombinatorialEquation.png" />
     <Content Include="App_Data\Work\Content\image\correct.png" />
     <Content Include="App_Data\Work\Content\image\Division.png" />
     <None Include="App_Data\Work\Content\image\EqualityComparison.png" />

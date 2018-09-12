@@ -6,4 +6,5 @@
 	<object id="MathWordProblems" type="TheFormulaShows.Support.MathWordProblemsHtmlSupport"></object>
 	<object id="FruitsLinkage" type="TheFormulaShows.Support.FruitsLinkageHtmlSupport"></object>
 	<object id="FindNearestNumber" type="TheFormulaShows.Support.FindNearestNumberHtmlSupport"></object>
+	<object id="CombinatorialEquation" type="TheFormulaShows.Support.CombinatorialEquationHtmlSupport"></object>
 </objects>
