@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using MyMathSheets.TheFormulaShows;
 using MyMathSheets.TheFormulaShows.Attributes;
 using MyMathSheets.TheFormulaShows.Support;
+using MyMathSheets.CommonLib.Main.Item;
 
 namespace MyMathSheets.MathSheetsSettingApp
 {

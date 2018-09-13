@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.ComputationalStrategy.Item
 {

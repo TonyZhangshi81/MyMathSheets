@@ -1,7 +1,8 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Main.ArithmeticStrategy;
+using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Main.Operation;
+using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy;
-using MyMathSheets.ComputationalStrategy.Main.Util;
 using System.Collections.Generic;
 using System.Linq;
 

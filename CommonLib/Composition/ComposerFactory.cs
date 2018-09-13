@@ -66,7 +66,7 @@ namespace MyMathSheets.CommonLib.Composition
             DirectoryInfo directory = new DirectoryInfo(basePath);
             var files = directory.GetFiles("Tony.*.dll");
 
-            files.Where(f => !f.Name.Contains("ComposerApplication")).ToList().ForEach(f => action(f));
+            files.Where(f => !f.Name.Contains("App")).ToList().ForEach(f => action(f));
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace MyMathSheets.CommonLib.Composition
             DirectoryInfo directory = new DirectoryInfo(basePath);
             var files = directory.GetFiles("Tony.*.dll");
 
-            files.Where(f => !f.Name.Contains("ComposerApplication")).ToList().ForEach(f => action(f));
+            files.Where(f => !f.Name.Contains("App")).ToList().ForEach(f => action(f));
             if(TempAssembly == null)
             {
                 var sb = new StringBuilder();

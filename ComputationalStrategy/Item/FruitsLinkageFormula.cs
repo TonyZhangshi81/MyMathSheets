@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MyMathSheets.CommonLib.Main.Item;
+using System.Collections.Generic;
 
 namespace MyMathSheets.ComputationalStrategy.Item
 {

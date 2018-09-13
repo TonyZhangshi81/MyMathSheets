@@ -40,7 +40,7 @@ namespace MyMathSheets.CommonLib.Util
         /// <returns></returns>
         public static Assembly GetAssembly(AssemblyName assemblyName)
         {
-            if(!assemblyName.FullName.StartsWith("Tony."))
+            if(!assemblyName.FullName.StartsWith("MyMathSheets."))
             {
                 return null;
             }

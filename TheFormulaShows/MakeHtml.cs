@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Main.Operation;
+using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Main.Operation;
 using MyMathSheets.TheFormulaShows.Support;
 using Spring.Core.IO;
@@ -47,7 +48,6 @@ namespace MyMathSheets.TheFormulaShows
 		/// 
 		/// </summary>
 		private SetThemeBase<T> main;
-
 		/// <summary>
 		/// 
 		/// </summary>

@@ -1,6 +1,6 @@
-﻿using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.Util;
+﻿using MyMathSheets.CommonLib.Main.ArithmeticStrategy;
+using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy
 {

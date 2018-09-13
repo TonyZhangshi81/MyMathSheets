@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System;
 using System.Linq;

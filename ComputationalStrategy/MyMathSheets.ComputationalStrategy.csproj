@@ -57,7 +57,6 @@
     <Compile Include="Item\FruitsLinkageFormula.cs" />
     <Compile Include="Item\MathWordProblemsFormula.cs" />
     <Compile Include="Main\Operation\Arithmetic.cs" />
-    <Compile Include="Main\ArithmeticStrategy\CalculatePatternBase.cs" />
     <Compile Include="Main\ArithmeticStrategy\Division.cs" />
     <Compile Include="Main\Operation\CombinatorialEquation.cs" />
     <Compile Include="Main\Operation\ComputingConnection.cs" />
@@ -66,12 +65,8 @@
     <Compile Include="Main\Operation\FindNearestNumber.cs" />
     <Compile Include="Main\Operation\FruitsLinkage.cs" />
     <Compile Include="Main\Operation\MathWordProblems.cs" />
-    <Compile Include="Main\Util\RandomNumberComposition.cs" />
-    <Compile Include="Main\Operation\SetThemeBase.cs" />
     <Compile Include="Main\ArithmeticStrategy\Subtraction.cs" />
     <Compile Include="Main\ArithmeticStrategy\Adition.cs" />
-    <Compile Include="Main\ArithmeticStrategy\ICalculatePattern.cs" />
-    <Compile Include="Item\Formula.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
