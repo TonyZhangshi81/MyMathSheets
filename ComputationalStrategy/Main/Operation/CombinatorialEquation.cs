@@ -28,11 +28,11 @@ namespace MyMathSheets.ComputationalStrategy.Main.Operation
 		/// </summary>
 		public override void MarkFormulaList()
 		{
-			ICalculatePattern strategy = null;
+			ICalculate strategy = null;
 			for (var i = 0; i < _numberOfQuestions; i++)
 			{
 				// 對四則運算符實例進行cache管理
-				strategy = GetPatternInstance(SignOfOperation.Plus);
+				strategy = CalculateManager.CreateCalculateInstance(SignOfOperation.Plus);
 				// 計算式作成
 				Formula formula = strategy.CreateFormula(_maximumLimit, QuestionType.Standard);
 				// 判定是否需要反推并重新作成計算式

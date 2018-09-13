@@ -46,10 +46,12 @@
     <Compile Include="Composition\Composer.cs" />
     <Compile Include="Composition\ComposerException.cs" />
     <Compile Include="Composition\ComposerFactory.cs" />
+    <Compile Include="Main\ArithmeticStrategy\CalculateFactory.cs" />
     <Compile Include="Main\ArithmeticStrategy\CalculatePatternBase.cs" />
     <Compile Include="Main\ArithmeticStrategy\CalculateAttribute.cs" />
+    <Compile Include="Main\ArithmeticStrategy\ICalculateFactory.cs" />
     <Compile Include="Main\ArithmeticStrategy\ICalculateMetadata.cs" />
-    <Compile Include="Main\ArithmeticStrategy\ICalculatePattern.cs" />
+    <Compile Include="Main\ArithmeticStrategy\ICalculate.cs" />
     <Compile Include="Main\Item\Formula.cs" />
     <Compile Include="Main\Operation\SetThemeBase.cs" />
     <Compile Include="Message\MessageUtil.cs" />

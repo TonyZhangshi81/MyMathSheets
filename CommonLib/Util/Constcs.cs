@@ -24,7 +24,7 @@
 	}
 
 	/// <summary>
-	/// 运算符
+	/// 运算符（加、減、乘、除）
 	/// </summary>
 	public enum SignOfOperation : int
 	{

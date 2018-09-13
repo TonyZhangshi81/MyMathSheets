@@ -6,7 +6,7 @@ namespace MyMathSheets.CommonLib.Main.ArithmeticStrategy
 	/// <summary>
 	/// 
 	/// </summary>
-	public interface ICalculatePattern
+	public interface ICalculate
 	{
 		/// <summary>
 		/// 

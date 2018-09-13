@@ -33,7 +33,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.Operation
 				return;
 			}
 
-			ICalculatePattern strategy = null;
+			ICalculate strategy = null;
 			// 標準題型（指定單個運算符）
 			if (_fourOperationsType == FourOperationsType.Standard)
 			{
@@ -44,7 +44,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.Operation
 				}
 
 				// 指定單個運算符實例
-				strategy = GetPatternInstance(_signs[0]);
+				strategy = CalculateManager.CreateCalculateInstance(_signs[0]);
 				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < _numberOfQuestions; i++)
 				{
@@ -78,7 +78,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.Operation
 						// 混合題型（加減運算符實例隨機抽取） 注意:考虑乘除法接龙答题结果会超出限制,所以只随机加减法策略
 						SignOfOperation sign = _signs[random.GetRandomNumber()];
 						// 對四則運算符實例進行cache管理
-						strategy = GetPatternInstance(sign);
+						strategy = CalculateManager.CreateCalculateInstance(sign);
 
 						Formula formula = strategy.CreateFormula(_maximumLimit, previousFormula, _questionType);
 						previousFormula = formula;

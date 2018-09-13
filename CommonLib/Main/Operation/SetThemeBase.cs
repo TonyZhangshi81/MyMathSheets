@@ -4,6 +4,7 @@ using MyMathSheets.CommonLib.Util;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 
 namespace MyMathSheets.CommonLib.Main.Operation
 {
@@ -17,14 +18,6 @@ namespace MyMathSheets.CommonLib.Main.Operation
 		/// 
 		/// </summary>
 		protected T _formulas;
-		/// <summary>
-		/// 
-		/// </summary>
-		//private IObjectFactory _operatorObjectFactory;
-		/// <summary>
-		/// 
-		/// </summary>
-		private readonly Dictionary<string, ICalculatePattern> _cacheStrategy;
 		/// <summary>
 		/// 题型（标准、随机填空）
 		/// </summary>
@@ -45,6 +38,28 @@ namespace MyMathSheets.CommonLib.Main.Operation
 		/// 出题数量
 		/// </summary>
 		protected int _numberOfQuestions;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private ICalculateFactory _calculateManager;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected ICalculateFactory CalculateManager
+		{
+			get
+			{
+				if (_calculateManager == null)
+				{
+					_calculateManager = new CalculateFactory();
+				}
+				return _calculateManager;
+			}
+			set => _calculateManager = value;
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -56,8 +71,6 @@ namespace MyMathSheets.CommonLib.Main.Operation
 		public SetThemeBase()
 		{
 			_formulas = new T();
-
-			_cacheStrategy = new Dictionary<string, ICalculatePattern>();
 		}
 
 		/// <summary>
@@ -76,24 +89,5 @@ namespace MyMathSheets.CommonLib.Main.Operation
 		/// 
 		/// </summary>
 		public abstract void MarkFormulaList();
-
-		/// <summary>
-		/// 指定运算符获得相应的运算处理对象（实例）
-		/// </summary>
-		/// <param name="sign">运算符</param>
-		/// <returns>运算处理对象（实例）</returns>
-		protected ICalculatePattern GetPatternInstance(SignOfOperation sign)
-		{
-			if (!_cacheStrategy.ContainsKey(sign.ToString()))
-			{
-				var operations = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy).GetExports<CalculatePatternBase, ICalculateMetadata>().Where(d => d.Metadata.Sign == sign);
-				if (operations.Count() == 0)
-				{
-					throw new NullReferenceException();
-				}
-				_cacheStrategy.Add(sign.ToString(), (ICalculatePattern)Activator.CreateInstance(operations.First().Value.GetType()));
-			}
-			return _cacheStrategy[sign.ToString()];
-		}
 	}
 }

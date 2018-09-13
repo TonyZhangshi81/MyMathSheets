@@ -45,14 +45,14 @@ namespace MyMathSheets.ComputationalStrategy.Main.Operation
 			// 读取出题资料库
 			GetAllProblemsFromResource();
 
-			ICalculatePattern strategy = null;
+			ICalculate strategy = null;
 			// 標準題型（指定單個運算符）
 			if (_fourOperationsType == FourOperationsType.Standard)
 			{
 				List<Problems> signProblems = GetProblemsBySign(_signs[0]);
 
 				// 指定單個運算符實例
-				strategy = GetPatternInstance(_signs[0]);
+				strategy = CalculateManager.CreateCalculateInstance(_signs[0]);
 				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < _numberOfQuestions; i++)
 				{
@@ -69,7 +69,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.Operation
 					// 混合題型（加減乘除運算符實例隨機抽取）
 					SignOfOperation sign = _signs[random.GetRandomNumber()];
 					// 對四則運算符實例進行cache管理
-					strategy = GetPatternInstance(sign);
+					strategy = CalculateManager.CreateCalculateInstance(sign);
 
 					List<Problems> signProblems = GetProblemsBySign(sign);
 
@@ -84,7 +84,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.Operation
 		/// </summary>
 		/// <param name="strategy">四則運算符實例</param>
 		/// <param name="signProblems">指定运算符的出题资源库</param>
-		private void MarkFormulas(ICalculatePattern strategy, List<Problems> signProblems)
+		private void MarkFormulas(ICalculate strategy, List<Problems> signProblems)
 		{
 			// 题库中的数量比指定的出题数少的情况
 			if (signProblems.Count == 0)
