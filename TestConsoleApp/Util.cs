@@ -1,11 +1,10 @@
-﻿using CommonLib.Util;
-using ComputationalStrategy.Item;
+﻿using MyMathSheets.CommonLib.Util;
+using MyMathSheets.TestConsoleApp.Write;
 using Spring.Core.IO;
 using Spring.Objects.Factory;
 using Spring.Objects.Factory.Xml;
-using TestConsoleApp.Write;
 
-namespace TestConsoleApp
+namespace MyMathSheets.TestConsoleApp
 {
 	/// <summary>
 	/// 

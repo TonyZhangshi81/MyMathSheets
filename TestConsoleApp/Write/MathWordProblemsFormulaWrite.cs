@@ -1,11 +1,9 @@
-﻿using ComputationalStrategy.Item;
+﻿using MyMathSheets.ComputationalStrategy.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TestConsoleApp.Write
+namespace MyMathSheets.TestConsoleApp.Write
 {
 	/// <summary>
 	/// 

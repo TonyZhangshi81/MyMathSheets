@@ -1,10 +1,10 @@
-﻿using CommonLib.Util;
-using ComputationalStrategy.Item;
+﻿using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.TheFormulaShows.Attributes;
 using System.Collections.Generic;
 using System.Text;
-using TheFormulaShows.Attributes;
 
-namespace TheFormulaShows.Support
+namespace MyMathSheets.TheFormulaShows.Support
 {
 	/// <summary>
 	/// 

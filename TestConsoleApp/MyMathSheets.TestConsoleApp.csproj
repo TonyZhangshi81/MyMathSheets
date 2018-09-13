@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B0727C1F-9FE4-4E61-B559-3D67772EA24E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TestConsoleApp</RootNamespace>
-    <AssemblyName>TestConsoleApp</AssemblyName>
+    <RootNamespace>MyMathSheets.TestConsoleApp</RootNamespace>
+    <AssemblyName>MyMathSheets.TestConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -70,17 +70,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+    <ProjectReference Include="..\CommonLib\MyMathSheets.CommonLib.csproj">
       <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
-      <Name>CommonLib</Name>
+      <Name>MyMathSheets.CommonLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\ComputationalStrategy.csproj">
+    <ProjectReference Include="..\ComputationalStrategy\MyMathSheets.ComputationalStrategy.csproj">
       <Project>{3206E500-28D2-4055-A14F-3DE3CBD526E1}</Project>
-      <Name>ComputationalStrategy</Name>
+      <Name>MyMathSheets.ComputationalStrategy</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TheFormulaShows\TheFormulaShows.csproj">
+    <ProjectReference Include="..\TheFormulaShows\MyMathSheets.TheFormulaShows.csproj">
       <Project>{ed789079-5836-4377-b0a6-6cde453092c1}</Project>
-      <Name>TheFormulaShows</Name>
+      <Name>MyMathSheets.TheFormulaShows</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

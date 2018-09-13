@@ -1,10 +1,10 @@
-﻿using CommonLib.Util;
-using ComputationalStrategy.Item;
+﻿using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace TestConsoleApp.Write
+namespace MyMathSheets.TestConsoleApp.Write
 {
 	public class FormulaWrite : IConsoleWrite<List<Formula>>
 	{

@@ -1,11 +1,11 @@
-﻿using CommonLib.Util;
-using ComputationalStrategy.Item;
-using ComputationalStrategy.Main.ArithmeticStrategy;
-using ComputationalStrategy.Main.Util;
+﻿using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy;
+using MyMathSheets.ComputationalStrategy.Main.Util;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ComputationalStrategy.Main.Operation
+namespace MyMathSheets.ComputationalStrategy.Main.Operation
 {
 	/// <summary>
 	/// 

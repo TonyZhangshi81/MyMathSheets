@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace ComputationalStrategy.Item
+namespace MyMathSheets.ComputationalStrategy.Item
 {
 	public class MathWordProblemsFormula
 	{

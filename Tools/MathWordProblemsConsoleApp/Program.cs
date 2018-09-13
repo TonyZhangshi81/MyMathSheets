@@ -1,13 +1,8 @@
-﻿using MathWordProblemsConsoleApp.Ext;
-using MathWordProblemsConsoleApp.WorkProcess;
-using System;
-using System.Collections.Generic;
+﻿using MyMathSheets.MathWordProblemsConsoleApp.Ext;
+using MyMathSheets.MathWordProblemsConsoleApp.WorkProcess;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MathWordProblemsConsoleApp
+namespace MyMathSheets.MathWordProblemsConsoleApp
 {
 	public class Program
 	{

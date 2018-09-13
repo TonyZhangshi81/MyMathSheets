@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace ComputationalStrategy.Item
+namespace MyMathSheets.ComputationalStrategy.Item
 {
 	/// <summary>
 	/// 水果連連看

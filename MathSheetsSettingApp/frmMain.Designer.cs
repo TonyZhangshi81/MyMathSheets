@@ -1,4 +1,4 @@
-﻿namespace MathSheetsSettingApp
+﻿namespace MyMathSheets.MathSheetsSettingApp
 {
 	partial class FrmMain
 	{

@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputationalStrategy", "ComputationalStrategy\ComputationalStrategy.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy", "ComputationalStrategy\MyMathSheets.ComputationalStrategy.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheFormulaShows", "TheFormulaShows\TheFormulaShows.csproj", "{ED789079-5836-4377-B0A6-6CDE453092C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows", "TheFormulaShows\MyMathSheets.TheFormulaShows.csproj", "{ED789079-5836-4377-B0A6-6CDE453092C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsoleApp", "TestConsoleApp\TestConsoleApp.csproj", "{B0727C1F-9FE4-4E61-B559-3D67772EA24E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TestConsoleApp", "TestConsoleApp\MyMathSheets.TestConsoleApp.csproj", "{B0727C1F-9FE4-4E61-B559-3D67772EA24E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathSheetsSettingApp", "MathSheetsSettingApp\MathSheetsSettingApp.csproj", "{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.MathSheetsSettingApp", "MathSheetsSettingApp\MyMathSheets.MathSheetsSettingApp.csproj", "{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathWordProblemsConsoleApp", "Tools\MathWordProblemsConsoleApp\MathWordProblemsConsoleApp.csproj", "{C89B91C6-DB3A-4698-842D-4BA979C14AE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.MathWordProblemsConsoleApp", "Tools\MathWordProblemsConsoleApp\MyMathSheets.MathWordProblemsConsoleApp.csproj", "{C89B91C6-DB3A-4698-842D-4BA979C14AE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLib", "CommonLib\CommonLib.csproj", "{076E9C76-BEB2-4024-8A09-5183D0D65EC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLib", "CommonLib\MyMathSheets.CommonLib.csproj", "{076E9C76-BEB2-4024-8A09-5183D0D65EC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

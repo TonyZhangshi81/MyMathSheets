@@ -1,6 +1,6 @@
-﻿using CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Util;
 
-namespace ComputationalStrategy.Item
+namespace MyMathSheets.ComputationalStrategy.Item
 {
 
 	/// <summary>

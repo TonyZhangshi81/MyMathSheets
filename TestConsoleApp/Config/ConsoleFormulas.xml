@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <objects xmlns="http://www.springframework.net">
-	<object id="FormulaWrite" type="TestConsoleApp.Write.FormulaWrite"></object>
-	<object id="EqualityFormulaWrite" type="TestConsoleApp.Write.EqualityFormulaWrite"></object>
-	<object id="ComputingConnectionWrite" type="TestConsoleApp.Write.ComputingConnectionWrite"></object>
-	<object id="MathWordProblemsFormulaWrite" type="TestConsoleApp.Write.MathWordProblemsFormulaWrite"></object>
-	<object id="FruitsLinkageWrite" type="TestConsoleApp.Write.FruitsLinkageWrite"></object>
-	<object id="FindNearestNumberWrite" type="TestConsoleApp.Write.FindNearestNumberWrite"></object>
-	<object id="CombinatorialFormulaWrite" type="TestConsoleApp.Write.CombinatorialFormulaWrite"></object>
+	<object id="FormulaWrite" type="MyMathSheets.TestConsoleApp.Write.FormulaWrite"></object>
+	<object id="EqualityFormulaWrite" type="MyMathSheets.TestConsoleApp.Write.EqualityFormulaWrite"></object>
+	<object id="ComputingConnectionWrite" type="MyMathSheets.TestConsoleApp.Write.ComputingConnectionWrite"></object>
+	<object id="MathWordProblemsFormulaWrite" type="MyMathSheets.TestConsoleApp.Write.MathWordProblemsFormulaWrite"></object>
+	<object id="FruitsLinkageWrite" type="MyMathSheets.TestConsoleApp.Write.FruitsLinkageWrite"></object>
+	<object id="FindNearestNumberWrite" type="MyMathSheets.TestConsoleApp.Write.FindNearestNumberWrite"></object>
+	<object id="CombinatorialFormulaWrite" type="MyMathSheets.TestConsoleApp.Write.CombinatorialFormulaWrite"></object>
 	
 </objects>

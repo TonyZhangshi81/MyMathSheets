@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TheFormulaShows.Attributes
+namespace MyMathSheets.TheFormulaShows.Attributes
 {
 	/// <summary>
 	/// 

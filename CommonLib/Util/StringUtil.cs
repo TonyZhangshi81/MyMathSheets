@@ -1,4 +1,4 @@
-﻿namespace CommonLib.Util
+﻿namespace MyMathSheets.CommonLib.Util
 {
 	/// <summary>
 	/// 

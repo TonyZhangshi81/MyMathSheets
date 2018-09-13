@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C89B91C6-DB3A-4698-842D-4BA979C14AE1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MathWordProblemsConsoleApp</RootNamespace>
-    <AssemblyName>MathWordProblemsConsoleApp</AssemblyName>
+    <RootNamespace>MyMathSheets.MathWordProblemsConsoleApp</RootNamespace>
+    <AssemblyName>MyMathSheets.MathWordProblemsConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -50,6 +50,7 @@
     <Compile Include="Ext\SpireXls.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\JsonExtension.cs" />
     <Compile Include="WorkProcess\AttendanceManagement.cs" />
     <Compile Include="WorkProcess\Item\MathWordProblems.cs" />
   </ItemGroup>
@@ -57,12 +58,6 @@
     <None Include="App.config" />
     <None Include="App_Data\MathWordProblems.xlsx" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\CommonLib\CommonLib.csproj">
-      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
-      <Name>CommonLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

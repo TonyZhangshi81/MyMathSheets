@@ -7,8 +7,8 @@
     <ProjectGuid>{3206E500-28D2-4055-A14F-3DE3CBD526E1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ComputationalStrategy</RootNamespace>
-    <AssemblyName>ComputationalStrategy</AssemblyName>
+    <RootNamespace>MyMathSheets.ComputationalStrategy</RootNamespace>
+    <AssemblyName>MyMathSheets.ComputationalStrategy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -81,13 +81,11 @@
   <ItemGroup>
     <Content Include="Config\Operator.xml" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Main\EqualityStrategy\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CommonLib\CommonLib.csproj">
+    <ProjectReference Include="..\CommonLib\MyMathSheets.CommonLib.csproj">
       <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
-      <Name>CommonLib</Name>
+      <Name>MyMathSheets.CommonLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

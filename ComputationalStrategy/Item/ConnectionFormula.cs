@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputationalStrategy.Item
+namespace MyMathSheets.ComputationalStrategy.Item
 {
 	/// <summary>
 	/// 计算式接龙

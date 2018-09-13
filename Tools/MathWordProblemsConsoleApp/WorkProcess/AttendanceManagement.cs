@@ -1,10 +1,10 @@
-﻿using CommonLib.Util;
-using MathWordProblemsConsoleApp.Ext;
-using MathWordProblemsConsoleApp.WorkProcess.Item;
+﻿using MyMathSheets.MathWordProblemsConsoleApp.Ext;
+using MyMathSheets.MathWordProblemsConsoleApp.Util;
+using MyMathSheets.MathWordProblemsConsoleApp.WorkProcess.Item;
 using System.Collections.Generic;
 using System.IO;
 
-namespace MathWordProblemsConsoleApp.WorkProcess
+namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 {
 	/// <summary>
 	/// 

@@ -1,17 +1,17 @@
-﻿using CommonLib.Util;
-using ComputationalStrategy.Item;
-using ComputationalStrategy.Main.Operation;
+﻿using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.Main.Operation;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using TheFormulaShows;
-using TheFormulaShows.Attributes;
-using TheFormulaShows.Support;
+using MyMathSheets.TheFormulaShows;
+using MyMathSheets.TheFormulaShows.Attributes;
+using MyMathSheets.TheFormulaShows.Support;
 
-namespace MathSheetsSettingApp
+namespace MyMathSheets.MathSheetsSettingApp
 {
 	/// <summary>
 	/// 

@@ -1,8 +1,8 @@
-﻿using CommonLib.Util;
-using ComputationalStrategy.Item;
-using ComputationalStrategy.Main.Util;
+﻿using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.Main.Util;
 
-namespace ComputationalStrategy.Main.ArithmeticStrategy
+namespace MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy
 {
 	/// <summary>
 	/// 

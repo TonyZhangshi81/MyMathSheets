@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputationalStrategy.Item
+namespace MyMathSheets.ComputationalStrategy.Item
 {
 	/// <summary>
 	/// 組合算式的結構對象

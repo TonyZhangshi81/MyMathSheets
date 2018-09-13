@@ -1,12 +1,12 @@
-﻿using CommonLib.Util;
-using ComputationalStrategy.Item;
-using ComputationalStrategy.Main.Operation;
+﻿using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.Main.Operation;
+using MyMathSheets.TheFormulaShows;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TheFormulaShows;
 
-namespace TestConsoleApp
+namespace MyMathSheets.TestConsoleApp
 {
 	/// <summary>
 	/// 

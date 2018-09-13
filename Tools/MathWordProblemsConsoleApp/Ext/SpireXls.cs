@@ -1,13 +1,7 @@
 ﻿using Spire.Xls;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MathWordProblemsConsoleApp.Ext
+namespace MyMathSheets.MathWordProblemsConsoleApp.Ext
 {
 	/// <summary>
 	/// Excel read simple processing

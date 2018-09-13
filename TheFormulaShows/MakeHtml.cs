@@ -1,13 +1,13 @@
-﻿using CommonLib.Util;
-using ComputationalStrategy.Main.Operation;
+﻿using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.Main.Operation;
+using MyMathSheets.TheFormulaShows.Support;
 using Spring.Core.IO;
 using Spring.Objects.Factory;
 using Spring.Objects.Factory.Xml;
 using System;
 using System.Collections.Generic;
-using TheFormulaShows.Support;
 
-namespace TheFormulaShows
+namespace MyMathSheets.TheFormulaShows
 {
 	/// <summary>
 	/// 

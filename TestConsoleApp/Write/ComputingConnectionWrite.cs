@@ -1,11 +1,11 @@
-﻿using CommonLib.Util;
-using ComputationalStrategy.Item;
+﻿using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TestConsoleApp.Write
+namespace MyMathSheets.TestConsoleApp.Write
 {
 	/// <summary>
 	/// 

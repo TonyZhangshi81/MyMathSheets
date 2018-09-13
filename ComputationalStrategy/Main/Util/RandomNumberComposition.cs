@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ComputationalStrategy.Main.Util
+namespace MyMathSheets.ComputationalStrategy.Main.Util
 {
 	/// <summary>
 	/// 随机数取得机能对象

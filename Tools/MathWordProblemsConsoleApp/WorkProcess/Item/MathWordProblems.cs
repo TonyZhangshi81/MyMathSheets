@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace MathWordProblemsConsoleApp.WorkProcess.Item
+namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess.Item
 {
 	/// <summary>
 	/// 

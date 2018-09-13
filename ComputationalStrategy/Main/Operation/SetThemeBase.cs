@@ -1,11 +1,11 @@
-﻿using CommonLib.Util;
-using ComputationalStrategy.Main.ArithmeticStrategy;
+﻿using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy;
 using Spring.Core.IO;
 using Spring.Objects.Factory;
 using Spring.Objects.Factory.Xml;
 using System.Collections.Generic;
 
-namespace ComputationalStrategy.Main.Operation
+namespace MyMathSheets.ComputationalStrategy.Main.Operation
 {
 	/// <summary>
 	/// 

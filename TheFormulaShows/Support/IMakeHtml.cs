@@ -1,4 +1,4 @@
-﻿namespace TheFormulaShows.Support
+﻿namespace MyMathSheets.TheFormulaShows.Support
 {
 	/// <summary>
 	/// 
