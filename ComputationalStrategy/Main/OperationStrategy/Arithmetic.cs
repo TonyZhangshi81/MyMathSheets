@@ -3,6 +3,7 @@ using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
@@ -43,8 +44,14 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < _numberOfQuestions; i++)
 				{
+					Formula formula = strategy.CreateFormula(_maximumLimit, _questionType);
+					if (CheckIsNeedInverseMethod(_formulas, formula))
+					{
+						i--;
+						continue;
+					}
 					// 計算式作成
-					_formulas.Add(strategy.CreateFormula(_maximumLimit, _questionType));
+					_formulas.Add(formula);
 				}
 			}
 			else
@@ -57,10 +64,40 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					SignOfOperation sign = _signs[random.GetRandomNumber()];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager.CreateCalculateInstance(sign);
+
+					var formula = strategy.CreateFormula(_maximumLimit, _questionType);
+					if (CheckIsNeedInverseMethod(_formulas, formula))
+					{
+						i--;
+						continue;
+					}
+
 					// 計算式作成
-					_formulas.Add(strategy.CreateFormula(_maximumLimit, _questionType));
+					_formulas.Add(formula);
 				}
 			}
+		}
+
+		/// <summary>
+		/// 判定是否需要反推并重新作成計算式
+		/// </summary>
+		/// <remarks>
+		/// 情況1：算式式存在一致
+		/// </remarks>
+		/// <param name="preFormulas">已得到的算式</param>
+		/// <param name="currentFormula">當前算式</param>
+		/// <returns>需要反推：true  正常情況: false</returns>
+		private bool CheckIsNeedInverseMethod(List<Formula> preFormulas, Formula currentFormula)
+		{
+			// 判斷當前算式是否已經出現過
+			if (preFormulas.ToList().Any(d => d.LeftParameter == currentFormula.LeftParameter
+			&& d.RightParameter == currentFormula.RightParameter
+			&& d.Answer == currentFormula.Answer
+			&& d.Sign == currentFormula.Sign))
+			{
+				return true;
+			}
+			return false;
 		}
 	}
 }
