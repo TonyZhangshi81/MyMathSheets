@@ -1,17 +1,17 @@
-﻿using MyMathSheets.CommonLib.Main.ArithmeticStrategy;
+﻿using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.Operation;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyMathSheets.ComputationalStrategy.Main.Operation
+namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
 	/// <summary>
 	/// 組合計算式
 	/// </summary>
-	public class CombinatorialEquation : SetThemeBase<List<CombinatorialFormula>>
+	public class CombinatorialEquation : OperationBase<List<CombinatorialFormula>>
 	{
 		/// <summary>
 		/// 組合計算式題型構築對象初期化

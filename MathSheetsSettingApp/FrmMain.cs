@@ -1,6 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.Operation;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using System;
 using System.Collections.Generic;
 using System.IO;

@@ -48,17 +48,17 @@
     <Compile Include="Item\EqualityFormula.cs" />
     <Compile Include="Item\FruitsLinkageFormula.cs" />
     <Compile Include="Item\MathWordProblemsFormula.cs" />
-    <Compile Include="Main\Operation\Arithmetic.cs" />
-    <Compile Include="Main\ArithmeticStrategy\Division.cs" />
-    <Compile Include="Main\Operation\CombinatorialEquation.cs" />
-    <Compile Include="Main\Operation\ComputingConnection.cs" />
-    <Compile Include="Main\Operation\EqualityComparison.cs" />
-    <Compile Include="Main\ArithmeticStrategy\Multiplication.cs" />
-    <Compile Include="Main\Operation\FindNearestNumber.cs" />
-    <Compile Include="Main\Operation\FruitsLinkage.cs" />
-    <Compile Include="Main\Operation\MathWordProblems.cs" />
-    <Compile Include="Main\ArithmeticStrategy\Subtraction.cs" />
-    <Compile Include="Main\ArithmeticStrategy\Adition.cs" />
+    <Compile Include="Main\OperationStrategy\Arithmetic.cs" />
+    <Compile Include="Main\Arithmetic\Division.cs" />
+    <Compile Include="Main\OperationStrategy\CombinatorialEquation.cs" />
+    <Compile Include="Main\OperationStrategy\ComputingConnection.cs" />
+    <Compile Include="Main\OperationStrategy\EqualityComparison.cs" />
+    <Compile Include="Main\Arithmetic\Multiplication.cs" />
+    <Compile Include="Main\OperationStrategy\FindNearestNumber.cs" />
+    <Compile Include="Main\OperationStrategy\FruitsLinkage.cs" />
+    <Compile Include="Main\OperationStrategy\MathWordProblems.cs" />
+    <Compile Include="Main\Arithmetic\Subtraction.cs" />
+    <Compile Include="Main\Arithmetic\Adition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

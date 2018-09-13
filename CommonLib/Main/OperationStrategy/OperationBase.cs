@@ -1,18 +1,18 @@
 ﻿using MyMathSheets.CommonLib.Composition;
-using MyMathSheets.CommonLib.Main.ArithmeticStrategy;
+using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Util;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
-namespace MyMathSheets.CommonLib.Main.Operation
+namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
 	/// <summary>
 	/// 
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public abstract class SetThemeBase<T> where T : new()
+	public abstract class OperationBase<T> where T : new()
 	{
 		/// <summary>
 		/// 
@@ -68,7 +68,7 @@ namespace MyMathSheets.CommonLib.Main.Operation
 		/// <summary>
 		/// 
 		/// </summary>
-		public SetThemeBase()
+		public OperationBase()
 		{
 			_formulas = new T();
 		}
@@ -78,7 +78,7 @@ namespace MyMathSheets.CommonLib.Main.Operation
 		/// </summary>
 		/// <param name="maximumLimit">运算结果最大限度值</param>
 		/// <param name="numberOfQuestions">出题数量</param>
-		public SetThemeBase(int maximumLimit, int numberOfQuestions)
+		public OperationBase(int maximumLimit, int numberOfQuestions)
 			: this()
 		{
 			_maximumLimit = maximumLimit;

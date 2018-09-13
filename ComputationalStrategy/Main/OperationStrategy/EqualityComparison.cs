@@ -1,16 +1,16 @@
-﻿using MyMathSheets.CommonLib.Main.ArithmeticStrategy;
+﻿using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.Operation;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.Main.Operation
+namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
 	/// <summary>
 	/// 等式大小比较
 	/// </summary>
-	public class EqualityComparison : SetThemeBase<List<EqualityFormula>>
+	public class EqualityComparison : OperationBase<List<EqualityFormula>>
 	{
 		/// <summary>
 		/// 

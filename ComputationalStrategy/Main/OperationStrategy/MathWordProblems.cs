@@ -1,17 +1,17 @@
-﻿using MyMathSheets.CommonLib.Main.ArithmeticStrategy;
+﻿using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.Operation;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyMathSheets.ComputationalStrategy.Main.Operation
+namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	public class MathWordProblems : SetThemeBase<List<MathWordProblemsFormula>>
+	public class MathWordProblems : OperationBase<List<MathWordProblemsFormula>>
 	{
 		/// <summary>
 		/// 出题资料库

@@ -1,14 +1,14 @@
-﻿using MyMathSheets.CommonLib.Main.ArithmeticStrategy;
+﻿using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Util;
 
-namespace MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy
+namespace MyMathSheets.ComputationalStrategy.Main.Arithmetic
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	[Calculate(SignOfOperation.Plus)]
-	public class Adition : CalculateBase
+	[Calculate(SignOfOperation.Subtraction)]
+	public class Subtraction : CalculateBase
 	{
 		/// <summary>
 		/// 
@@ -23,8 +23,8 @@ namespace MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy
 			_formula = base.CreateFormula(maximumLimit, type, minimumLimit, gap);
 
 			_formula.LeftParameter = GetLeftParameter(maximumLimit);
-			_formula.Sign = SignOfOperation.Plus;
-			_formula.RightParameter = GetRightParameter(maximumLimit, _formula.LeftParameter);
+			_formula.Sign = SignOfOperation.Subtraction;
+			_formula.RightParameter = GetRightParameter(_formula.LeftParameter);
 			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
 
 			return _formula;
@@ -45,8 +45,8 @@ namespace MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy
 
 			// 如果当前是第一层计算式,需要随机获取计算式最左边的值
 			_formula.LeftParameter = (previousFormula == null) ? GetLeftParameter(maximumLimit) : previousFormula.Answer;
-			_formula.Sign = SignOfOperation.Plus;
-			_formula.RightParameter = GetRightParameter(maximumLimit, _formula.LeftParameter);
+			_formula.Sign = SignOfOperation.Subtraction;
+			_formula.RightParameter = GetRightParameter(_formula.LeftParameter);
 			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
 
 			return _formula;
@@ -55,7 +55,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="maximumLimit">加法运算的最大值就是算式的答案Answer值</param>
+		/// <param name="maximumLimit">用於限定被減數的取值範圍</param>
 		/// <param name="answer"></param>
 		/// <param name="type"></param>
 		/// <param name="minimumLimit"></param>
@@ -66,9 +66,11 @@ namespace MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy
 			_formula = base.CreateFormulaWithAnswer(maximumLimit, answer, type, minimumLimit, gap);
 
 			_formula.Answer = answer;
-			_formula.Sign = SignOfOperation.Plus;
-			_formula.LeftParameter = GetLeftParameter(answer);
-			_formula.RightParameter = _formula.Answer - _formula.LeftParameter;
+			_formula.Sign = SignOfOperation.Subtraction;
+			// 计算式左侧项目的取值范围（答案值至最大计算值）
+			_minimumLimit = answer;
+			_formula.LeftParameter = GetLeftParameter(maximumLimit);
+			_formula.RightParameter = _formula.LeftParameter - _formula.Answer;
 
 			return _formula;
 		}

@@ -1,6 +1,6 @@
-﻿using MyMathSheets.CommonLib.Main.Operation;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Main.Operation;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.TheFormulaShows.Support;
 using Spring.Core.IO;
 using Spring.Objects.Factory;
@@ -47,7 +47,7 @@ namespace MyMathSheets.TheFormulaShows
 		/// <summary>
 		/// 
 		/// </summary>
-		private SetThemeBase<T> main;
+		private OperationBase<T> main;
 		/// <summary>
 		/// 
 		/// </summary>
@@ -160,7 +160,7 @@ namespace MyMathSheets.TheFormulaShows
 		/// </summary>
 		public void Structure()
 		{
-			main = GetHtmlSupportInstance() as SetThemeBase<T>;
+			main = GetHtmlSupportInstance() as OperationBase<T>;
 			main.MarkFormulaList();
 			_formulas = main.Formulas;
 		}

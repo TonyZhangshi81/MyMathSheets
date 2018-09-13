@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyMathSheets.CommonLib.Main.ArithmeticStrategy
+namespace MyMathSheets.CommonLib.Main.Arithmetic
 {
 	/// <summary>
 	/// 運算符對象生產工廠接口類

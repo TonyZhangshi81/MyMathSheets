@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 
-namespace MyMathSheets.CommonLib.Main.ArithmeticStrategy
+namespace MyMathSheets.CommonLib.Main.Arithmetic
 {
 	/// <summary>
 	/// 運算符對象生產工廠

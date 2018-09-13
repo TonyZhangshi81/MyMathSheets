@@ -1,18 +1,18 @@
-﻿using MyMathSheets.CommonLib.Main.ArithmeticStrategy;
+﻿using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.Operation;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyMathSheets.ComputationalStrategy.Main.Operation
+namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
 	/// <summary>
 	/// 水果連連看題型構築
 	/// </summary>
-	public class FruitsLinkage : SetThemeBase<FruitsLinkageFormula>
+	public class FruitsLinkage : OperationBase<FruitsLinkageFormula>
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）

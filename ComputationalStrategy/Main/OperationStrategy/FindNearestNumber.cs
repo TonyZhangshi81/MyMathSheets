@@ -1,16 +1,16 @@
-﻿using MyMathSheets.CommonLib.Main.ArithmeticStrategy;
+﻿using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.Operation;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.Main.Operation
+namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
 	/// <summary>
 	/// 找最相近的数字題型構築
 	/// </summary>
-	public class FindNearestNumber : SetThemeBase<List<EqualityFormula>>
+	public class FindNearestNumber : OperationBase<List<EqualityFormula>>
 	{
 		/// <summary>
 		/// 關係運算符中隨機抽取一個(只限於大於和小於符號)

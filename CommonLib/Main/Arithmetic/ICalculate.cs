@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Main.Item;
 
-namespace MyMathSheets.CommonLib.Main.ArithmeticStrategy
+namespace MyMathSheets.CommonLib.Main.Arithmetic
 {
 	/// <summary>
 	/// 

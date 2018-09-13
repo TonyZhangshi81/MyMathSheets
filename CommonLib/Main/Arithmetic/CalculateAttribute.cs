@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.Composition;
 
-namespace MyMathSheets.CommonLib.Main.ArithmeticStrategy
+namespace MyMathSheets.CommonLib.Main.Arithmetic
 {
 	/// <summary>
 	/// 運算符自定義導出屬性
