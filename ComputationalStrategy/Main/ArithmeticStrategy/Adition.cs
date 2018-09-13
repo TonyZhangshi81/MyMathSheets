@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy
 	/// 
 	/// </summary>
 	[Calculate(SignOfOperation.Plus)]
-	public class Adition : CalculatePatternBase
+	public class Adition : CalculateBase
 	{
 		/// <summary>
 		/// 

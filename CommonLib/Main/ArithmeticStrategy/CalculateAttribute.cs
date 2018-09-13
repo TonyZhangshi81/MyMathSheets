@@ -11,7 +11,7 @@ namespace MyMathSheets.CommonLib.Main.ArithmeticStrategy
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 	public class CalculateAttribute : ExportAttribute
 	{
-		public CalculateAttribute(SignOfOperation sign) : base(typeof(CalculatePatternBase))
+		public CalculateAttribute(SignOfOperation sign) : base(typeof(CalculateBase))
 		{
 			Sign = sign;
 		}

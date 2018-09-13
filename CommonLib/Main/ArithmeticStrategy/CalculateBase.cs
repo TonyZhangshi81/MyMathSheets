@@ -7,7 +7,7 @@ namespace MyMathSheets.CommonLib.Main.ArithmeticStrategy
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class CalculatePatternBase : ICalculate
+	public abstract class CalculateBase : ICalculate
 	{
 		/// <summary>
 		/// 随机下限值取得（默认值为0）

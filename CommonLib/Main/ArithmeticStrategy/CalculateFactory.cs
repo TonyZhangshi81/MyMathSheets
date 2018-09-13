@@ -31,7 +31,7 @@ namespace MyMathSheets.CommonLib.Main.ArithmeticStrategy
 		/// <summary>
 		/// 
 		/// </summary>
-		public IEnumerable<Lazy<CalculatePatternBase, ICalculateMetadata>> Operations { get; set; }
+		public IEnumerable<Lazy<CalculateBase, ICalculateMetadata>> Operations { get; set; }
 
 		/// <summary>
 		/// 對指定運算符實例化
@@ -42,7 +42,7 @@ namespace MyMathSheets.CommonLib.Main.ArithmeticStrategy
 		{
 			if (!_cacheStrategy.ContainsKey(sign.ToString()))
 			{
-				Operations = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy).GetExports<CalculatePatternBase, ICalculateMetadata>();
+				Operations = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy).GetExports<CalculateBase, ICalculateMetadata>();
 
 				var operation = Operations.Where(d => d.Metadata.Sign == sign);
 				_cacheStrategy.Add(sign.ToString(), (ICalculate)Activator.CreateInstance(operation.First().Value.GetType()));
