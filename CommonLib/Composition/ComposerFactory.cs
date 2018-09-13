@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
+using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.CommonLib.Composition
 {
@@ -25,14 +26,14 @@ namespace MyMathSheets.CommonLib.Composition
         /// <summary>
         /// 
         /// </summary>
-        private static readonly ConcurrentDictionary<string, Composer> ComposerCache;
+        private static readonly ConcurrentDictionary<SystemModel, Composer> ComposerCache;
 
         /// <summary>
         /// 
         /// </summary>
         static ComposerFactory()
         {
-            ComposerCache = new ConcurrentDictionary<string, Composer>();
+            ComposerCache = new ConcurrentDictionary<SystemModel, Composer>();
         }
 
         /// <summary>
@@ -54,7 +55,7 @@ namespace MyMathSheets.CommonLib.Composition
                 {
                     throw new Exception();
                 }
-                var valueFunc = new Func<string, Composer>(c =>
+                var valueFunc = new Func<SystemModel, Composer>(c =>
                 {
                     lock(Sync)
                     {
@@ -67,9 +68,7 @@ namespace MyMathSheets.CommonLib.Composition
 
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
             DirectoryInfo directory = new DirectoryInfo(basePath);
-            var files = directory.GetFiles("MyMathSheets.*.dll");
-
-            files.Where(f => !f.Name.Contains("App")).ToList().ForEach(f => action(f));
+			directory.GetFiles("MyMathSheets.*.dll").ToList().ForEach(f => action(f));
         }
 
         /// <summary>
@@ -77,7 +76,7 @@ namespace MyMathSheets.CommonLib.Composition
         /// </summary>
         /// <param name="systemId"></param>
         /// <returns></returns>
-        public static Composer GetComporser(string systemId)
+        public static Composer GetComporser(SystemModel systemId)
         {
             if(ComposerCache.ContainsKey(systemId))
             {
@@ -87,7 +86,7 @@ namespace MyMathSheets.CommonLib.Composition
 				}
 			}
 
-            var valueFunc = new Func<string, Composer>(c =>
+            var valueFunc = new Func<SystemModel, Composer>(c =>
             {
                 lock(Sync)
                 {
@@ -103,7 +102,7 @@ namespace MyMathSheets.CommonLib.Composition
         /// </summary>
         /// <param name="systemId"></param>
         /// <returns></returns>
-        private static Assembly GetAssembly(string systemId)
+        private static Assembly GetAssembly(SystemModel systemId)
         {
             var action = new Action<FileInfo>(f =>
             {
@@ -117,10 +116,9 @@ namespace MyMathSheets.CommonLib.Composition
 
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
             DirectoryInfo directory = new DirectoryInfo(basePath);
-            var files = directory.GetFiles("MyMathSheets.*.dll");
+            directory.GetFiles("MyMathSheets.*.dll").ToList().ForEach(f => action(f));
 
-            files.Where(f => !f.Name.Contains("App")).ToList().ForEach(f => action(f));
-            if(TempAssembly == null)
+			if (TempAssembly == null)
             {
                 var sb = new StringBuilder();
                 sb.Append(MessageUtil.GetException(() => Resources.E51006S));
@@ -137,11 +135,9 @@ namespace MyMathSheets.CommonLib.Composition
 		public static IEnumerable<ComposablePartCatalog> GetCatalog(string path)
 		{
 			foreach (var fi in new DirectoryInfo(path)
-						.GetFiles("MyMathSheets.*")
-						.Where(_ => _.Name.ToLower().EndsWith(".dll") && !_.Name.Contains("App"))
+						.GetFiles("MyMathSheets.*.dll")
 						.OrderByDescending(_ => _.Name.Length))
 			{
-
 				yield return new DirectoryCatalog(path, fi.Name);
 			}
 		}

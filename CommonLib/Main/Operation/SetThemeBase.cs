@@ -86,7 +86,7 @@ namespace MyMathSheets.CommonLib.Main.Operation
 		{
 			if (!_cacheStrategy.ContainsKey(sign.ToString()))
 			{
-				var operations = ComposerFactory.GetComporser("ComputationalStrategy").GetExports<CalculatePatternBase, ICalculateMetadata>().Where(d => d.Metadata.Sign == sign);
+				var operations = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy).GetExports<CalculatePatternBase, ICalculateMetadata>().Where(d => d.Metadata.Sign == sign);
 				if (operations.Count() == 0)
 				{
 					throw new NullReferenceException();

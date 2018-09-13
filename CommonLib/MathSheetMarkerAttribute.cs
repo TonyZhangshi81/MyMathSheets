@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyMathSheets.CommonLib.Util;
+using System;
 
 namespace MyMathSheets.CommonLib
 {
@@ -12,7 +13,7 @@ namespace MyMathSheets.CommonLib
         /// 
         /// </summary>
         /// <param name="id"></param>
-        public MathSheetMarkerAttribute(string id)
+        public MathSheetMarkerAttribute(SystemModel id)
         {
             this.SystemId = id;
         }
@@ -20,7 +21,7 @@ namespace MyMathSheets.CommonLib
         /// <summary>
         /// 
         /// </summary>
-        public string SystemId
+        public SystemModel SystemId
         {
             get;
             set;

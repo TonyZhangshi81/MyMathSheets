@@ -5,6 +5,25 @@
 	}
 
 	/// <summary>
+	/// 系統模塊
+	/// </summary>
+	public enum SystemModel
+	{
+		/// <summary>
+		/// 共通定義模塊（含基類）
+		/// </summary>
+		Common,
+		/// <summary>
+		/// 計算式題型策略模塊
+		/// </summary>
+		ComputationalStrategy,
+		/// <summary>
+		/// HTML前台展示構築模塊
+		/// </summary>
+		TheFormulaShows
+	}
+
+	/// <summary>
 	/// 运算符
 	/// </summary>
 	public enum SignOfOperation : int

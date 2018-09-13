@@ -73,9 +73,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "..\Config\*.xml" "..\..\TestConsoleApp\Config\" /Y
-copy "..\Config\*.json" "..\..\TestConsoleApp\Config\" /Y
-copy "..\Config\*.xml" "..\..\MathSheetsSettingApp\Config\" /Y
+    <PostBuildEvent>copy "..\Config\*.json" "..\..\TestConsoleApp\Config\" /Y
 copy "..\Config\*.json" "..\..\MathSheetsSettingApp\Config\" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>
