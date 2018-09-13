@@ -7,6 +7,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy
 	/// <summary>
 	/// 
 	/// </summary>
+	[Calculate(SignOfOperation.Subtraction)]
 	public class Subtraction : CalculatePatternBase
 	{
 		/// <summary>

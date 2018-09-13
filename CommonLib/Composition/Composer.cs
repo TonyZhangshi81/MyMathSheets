@@ -102,13 +102,30 @@ namespace MyMathSheets.CommonLib.Composition
             return sb.ToString();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="contractName"></param>
-        /// <returns></returns>
-        public Lazy<T> GetExport<T>(string contractName)
+		/// <summary>
+		/// 指定された型のインスタンスを生成します。
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public Lazy<T> GetExport<T>()
+		{
+			try
+			{
+				return this._container.GetExport<T>();
+			}
+			catch (Exception ex)
+			{
+				throw this.CreateLogicComposerException(typeof(T), null, ex);
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="contractName"></param>
+		/// <returns></returns>
+		public Lazy<T> GetExport<T>(string contractName)
         {
             try
             {
@@ -120,13 +137,13 @@ namespace MyMathSheets.CommonLib.Composition
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="contractName"></param>
-        /// <returns></returns>
-        public T GetExportedValue<T>(string contractName)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="contractName"></param>
+		/// <returns></returns>
+		public T GetExportedValue<T>(string contractName)
         {
             try
             {
@@ -185,13 +202,23 @@ namespace MyMathSheets.CommonLib.Composition
             return this._container.GetExports(id);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TMetadataView"></typeparam>
-        /// <returns></returns>
-        public IEnumerable<Lazy<T, TMetadataView>> GetExports<T, TMetadataView>()
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public IEnumerable<Lazy<T>> GetExports<T>()
+		{
+			return this._container.GetExports<T>();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <typeparam name="TMetadataView"></typeparam>
+		/// <returns></returns>
+		public IEnumerable<Lazy<T, TMetadataView>> GetExports<T, TMetadataView>()
         {
             return this._container.GetExports<T, TMetadataView>();
         }
@@ -206,5 +233,41 @@ namespace MyMathSheets.CommonLib.Composition
                 this._container.Dispose();
             }
         }
-    }
+
+		/// <summary>
+		/// Exportオブジェクトをコンテナから開放します。
+		/// </summary>
+		/// <param name="export">解放するExport</param>
+		public void ReleaseExport(Export export)
+		{
+			this._container.ReleaseExport(export);
+		}
+
+		/// <summary>
+		/// Exportオブジェクトをコンテナから開放します。
+		/// </summary>
+		/// <param name="export">解放するExport</param>
+		public void ReleaseExport<T>(Lazy<T> export)
+		{
+			this._container.ReleaseExport<T>(export);
+		}
+
+		/// <summary>
+		/// Exportオブジェクトをコンテナから開放します。
+		/// </summary>
+		/// <param name="exports">解放するExport</param>
+		public void ReleaseExports(IEnumerable<Export> exports)
+		{
+			this._container.ReleaseExports(exports);
+		}
+
+		/// <summary>
+		/// Exportオブジェクトをコンテナから開放します。
+		/// </summary>
+		/// <param name="exports">解放するExport</param>
+		public void ReleaseExport<T>(IEnumerable<Lazy<T>> exports)
+		{
+			this._container.ReleaseExports<T>(exports);
+		}
+	}
 }

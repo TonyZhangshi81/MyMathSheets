@@ -7,6 +7,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy
 	/// <summary>
 	/// 
 	/// </summary>
+	[Calculate(SignOfOperation.Division)]
 	public class Division : CalculatePatternBase
 	{
 		/// <summary>

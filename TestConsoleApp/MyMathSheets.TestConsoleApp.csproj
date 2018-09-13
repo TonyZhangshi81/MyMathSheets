@@ -42,6 +42,7 @@
       <HintPath>..\packages\Spring.Core.2.0.1\lib\net45\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProgramBase.cs" />
     <Compile Include="Write\CombinatorialFormulaWrite.cs" />
     <Compile Include="Write\FindNearestNumberWrite.cs" />
     <Compile Include="Write\FruitsLinkageWrite.cs" />
@@ -85,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\ConsoleFormulas.xml" />
-    <Content Include="Config\Operator.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

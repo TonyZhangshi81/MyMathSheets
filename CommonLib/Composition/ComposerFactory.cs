@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.ComponentModel.Composition.Hosting;
+using System.ComponentModel.Composition.Primitives;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -64,7 +67,7 @@ namespace MyMathSheets.CommonLib.Composition
 
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
             DirectoryInfo directory = new DirectoryInfo(basePath);
-            var files = directory.GetFiles("Tony.*.dll");
+            var files = directory.GetFiles("MyMathSheets.*.dll");
 
             files.Where(f => !f.Name.Contains("App")).ToList().ForEach(f => action(f));
         }
@@ -78,12 +81,11 @@ namespace MyMathSheets.CommonLib.Composition
         {
             if(ComposerCache.ContainsKey(systemId))
             {
-                Composer composer = null;
-                if(ComposerCache.TryGetValue(systemId, out composer))
-                {
-                    return composer;
-                }
-            }
+				if (ComposerCache.TryGetValue(systemId, out Composer composer))
+				{
+					return composer;
+				}
+			}
 
             var valueFunc = new Func<string, Composer>(c =>
             {
@@ -115,7 +117,7 @@ namespace MyMathSheets.CommonLib.Composition
 
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
             DirectoryInfo directory = new DirectoryInfo(basePath);
-            var files = directory.GetFiles("Tony.*.dll");
+            var files = directory.GetFiles("MyMathSheets.*.dll");
 
             files.Where(f => !f.Name.Contains("App")).ToList().ForEach(f => action(f));
             if(TempAssembly == null)
@@ -126,5 +128,43 @@ namespace MyMathSheets.CommonLib.Composition
             }
             return TempAssembly;
         }
-    }
+
+		/// <summary>
+		/// アプリケーション基盤での優先順位付けされたアセンブリの順序で生成されたコンテナを返します。
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		public static IEnumerable<ComposablePartCatalog> GetCatalog(string path)
+		{
+			foreach (var fi in new DirectoryInfo(path)
+						.GetFiles("MyMathSheets.*")
+						.Where(_ => _.Name.ToLower().EndsWith(".dll") && !_.Name.Contains("App"))
+						.OrderByDescending(_ => _.Name.Length))
+			{
+
+				yield return new DirectoryCatalog(path, fi.Name);
+			}
+		}
+
+		/// <summary>
+		/// UT用にコンテナーをリセットします。
+		/// </summary>
+		/// <remarks>
+		/// UT以外では呼び出されることはありません。
+		/// </remarks>
+		internal static void Reset()
+		{
+			lock (Sync)
+			{
+				foreach (var keyValue in ComposerCache)
+				{
+					if (keyValue.Value is IDisposable value)
+					{
+						value.Dispose();
+					}
+				}
+				ComposerCache.Clear();
+			}
+		}
+	}
 }

@@ -7,6 +7,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.ArithmeticStrategy
 	/// <summary>
 	/// 
 	/// </summary>
+	[Calculate(SignOfOperation.Multiple)]
 	public class Multiplication : CalculatePatternBase
 	{
 		/// <summary>

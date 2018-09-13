@@ -1,8 +1,8 @@
-﻿using MyMathSheets.CommonLib.Main.ArithmeticStrategy;
+﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Main.ArithmeticStrategy;
 using MyMathSheets.CommonLib.Util;
-using Spring.Core.IO;
-using Spring.Objects.Factory;
-using Spring.Objects.Factory.Xml;
+using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace MyMathSheets.CommonLib.Main.Operation
@@ -20,7 +20,7 @@ namespace MyMathSheets.CommonLib.Main.Operation
 		/// <summary>
 		/// 
 		/// </summary>
-		private IObjectFactory _operatorObjectFactory;
+		//private IObjectFactory _operatorObjectFactory;
 		/// <summary>
 		/// 
 		/// </summary>
@@ -58,19 +58,6 @@ namespace MyMathSheets.CommonLib.Main.Operation
 			_formulas = new T();
 
 			_cacheStrategy = new Dictionary<string, ICalculatePattern>();
-
-			// spring对象工厂实例作成（设定文件导入）
-			CreateOperatorObjectFactory();
-		}
-
-		/// <summary>
-		/// spring对象工厂实例作成（设定文件导入）
-		/// </summary>
-		private void CreateOperatorObjectFactory()
-		{
-			// 设定文件导入
-			IResource input = new FileSystemResource(@"..\Config\Operator.xml");
-			_operatorObjectFactory = new XmlObjectFactory(input);
 		}
 
 		/// <summary>
@@ -97,10 +84,14 @@ namespace MyMathSheets.CommonLib.Main.Operation
 		/// <returns>运算处理对象（实例）</returns>
 		protected ICalculatePattern GetPatternInstance(SignOfOperation sign)
 		{
-			ICalculatePattern strategy = (ICalculatePattern)_operatorObjectFactory.GetObject(sign.ToString());
 			if (!_cacheStrategy.ContainsKey(sign.ToString()))
 			{
-				_cacheStrategy.Add(sign.ToString(), strategy);
+				var operations = ComposerFactory.GetComporser("ComputationalStrategy").GetExports<CalculatePatternBase, ICalculateMetadata>().Where(d => d.Metadata.Sign == sign);
+				if (operations.Count() == 0)
+				{
+					throw new NullReferenceException();
+				}
+				_cacheStrategy.Add(sign.ToString(), (ICalculatePattern)Activator.CreateInstance(operations.First().Value.GetType()));
 			}
 			return _cacheStrategy[sign.ToString()];
 		}
