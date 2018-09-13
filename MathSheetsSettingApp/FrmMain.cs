@@ -561,9 +561,9 @@ namespace MathSheetsSettingApp
 			if (chkCombinatorialEquation.Checked)
 			{
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>();
-				MakeHtml<List<CombinatorialFormula>, CombinatorialEquation> work = new MakeHtml<List<CombinatorialFormula>, CombinatorialEquation>(50, 8);
+				MakeHtml<List<CombinatorialFormula>, CombinatorialEquation> work = new MakeHtml<List<CombinatorialFormula>, CombinatorialEquation>(50, 2);
 				work.Structure();
-				htmlMaps.Add("<!--COMBINATORIALFORMULA-->", work.GetHtmlStatement());
+				htmlMaps.Add("<!--COMBINATORIALEQUATION-->", work.GetHtmlStatement());
 
 				Type type = typeof(CombinatorialEquationHtmlSupport);
 				object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);

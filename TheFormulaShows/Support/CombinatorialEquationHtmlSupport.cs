@@ -49,9 +49,9 @@ namespace TheFormulaShows.Support
 				listGroupHtml.AppendLine(string.Format("<span class=\"badge badge-warning\" style=\"width: 40px;\">{0}</span>", item.ParameterA));
 				listGroupHtml.AppendLine(string.Format("<span class=\"badge badge-success\" style=\"width: 40px;\">{0}</span>", item.ParameterB));
 				listGroupHtml.AppendLine(string.Format("<span class=\"badge badge-primary\" style=\"width: 40px;\">{0}</span>", item.ParameterC));
-				listGroupHtml.AppendLine("</h4>");
 				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKCombinatorial{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoCombinatorial{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
+				listGroupHtml.AppendLine("</h4>");
 				listGroupHtml.AppendLine(string.Format("<input id=\"hiddenCe{0}\" type=\"hidden\" value=\"{1}\" />", controlIndex, GetAnswer(item.CombinatorialFormulas)));
 				listGroupHtml.AppendLine("</li>");
 				listGroupHtml.AppendLine(GetHtml(item.CombinatorialFormulas, controlIndex));
@@ -102,18 +102,20 @@ namespace TheFormulaShows.Support
 		{
 			int controlIndex = 0;
 			StringBuilder html = new StringBuilder();
-			html.AppendLine("<li class=\"list-group-item\">");
-			html.AppendLine("<h4>");
 			items.ToList().ForEach(d =>
 			{
+				html.AppendLine("<li class=\"list-group-item\">");
+				html.AppendLine("<h4>");
 				html.AppendLine(string.Format("<input id=\"inputCe{0}L{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
 				html.AppendLine(string.Format("<img src=\"../Content/image/help.png\" width=\"30\" height=\"30\" id=\"imgCe{0}S{1}\" title=\"help\" />", parentControlIndex, controlIndex));
 				html.AppendLine(string.Format("<input id=\"inputCe{0}R{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
 				html.AppendLine("<img src=\"../Content/image/calculator.png\" style=\"width: 30px; height: 30px; \" />");
 				html.AppendLine(string.Format("<input id=\"inputCe{0}A{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
+				html.AppendLine("</h4>");
+				html.AppendLine("</li>");
+
+				controlIndex++;
 			});
-			html.AppendLine("</h4>");
-			html.AppendLine("</li>");
 
 			return html.ToString();
 		}

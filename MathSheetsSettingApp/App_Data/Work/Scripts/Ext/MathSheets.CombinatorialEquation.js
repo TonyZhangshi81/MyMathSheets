@@ -29,7 +29,7 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 	},
 
 		_toOperationString = function (title) {
-			switch (operation) {
+			switch (title) {
 				case "plus":
 					return "+";
 				case "subtraction":
@@ -53,7 +53,7 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 				var r = $('#inputCe' + index + 'R' + i).val();
 				var a = $('#inputCe' + index + 'A' + i).val();
 				var answer = l + s + r + "=" + a;
-				arr = $.grep(answers, function (value) {
+				answers = $.grep(answers, function (value) {
 					return value != answer;
 				});
 			}
@@ -124,7 +124,7 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 		// 订正(算式組合)
 		makeCorrections = function () {
 			var fault = 0;
-			$("input[id*='inputCe']").each(function (index, element) {
+			$("input[id*='hiddenCe']").each(function (index, element) {
 				// 答题验证
 				if (!_combinatorialCorrecting(index, element)) {
 					// 答题错误时,错误件数加一
@@ -136,7 +136,7 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 
 		// 算式組合交卷
 		theirPapers = function () {
-			$("input[id*='inputCe']").each(function (index, element) {
+			$("input[id*='hiddenCe']").each(function (index, element) {
 				// 答题验证
 				if (!_combinatorialCorrecting(index, element)) {
 					// 答题错误时,错误件数加一
