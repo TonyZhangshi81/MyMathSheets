@@ -49,8 +49,9 @@
     <Compile Include="Main\Arithmetic\CalculateFactory.cs" />
     <Compile Include="Main\Arithmetic\CalculateBase.cs" />
     <Compile Include="Main\Arithmetic\CalculateAttribute.cs" />
+    <Compile Include="Main\Arithmetic\CalculateHelper.cs" />
     <Compile Include="Main\Arithmetic\ICalculateFactory.cs" />
-    <Compile Include="Main\Arithmetic\ICalculateMetadata.cs" />
+    <Compile Include="Main\Arithmetic\ICalculateMetaDataView.cs" />
     <Compile Include="Main\Arithmetic\ICalculate.cs" />
     <Compile Include="Main\Item\Formula.cs" />
     <Compile Include="Main\OperationStrategy\OperationBase.cs" />

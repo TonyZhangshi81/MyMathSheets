@@ -32,7 +32,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 			for (var i = 0; i < _numberOfQuestions; i++)
 			{
 				// 對四則運算符實例進行cache管理
-				strategy = CalculateManager.CreateCalculateInstance(SignOfOperation.Plus);
+				strategy = CalculateManager(SignOfOperation.Plus);
 				// 計算式作成
 				Formula formula = strategy.CreateFormula(_maximumLimit, QuestionType.Standard);
 				// 判定是否需要反推并重新作成計算式

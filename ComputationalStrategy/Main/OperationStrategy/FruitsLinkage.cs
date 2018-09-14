@@ -61,7 +61,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 			if (_fourOperationsType == FourOperationsType.Standard)
 			{
 				// 指定單個運算符實例
-				strategy = CalculateManager.CreateCalculateInstance(_signs[0]);
+				strategy = CalculateManager(_signs[0]);
 				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < _numberOfQuestions; i++)
 				{
@@ -107,7 +107,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					// 混合題型（加減乘除運算符實例隨機抽取）
 					SignOfOperation sign = _signs[random.GetRandomNumber()];
 					// 對四則運算符實例進行cache管理
-					strategy = CalculateManager.CreateCalculateInstance(sign);
+					strategy = CalculateManager(sign);
 					// 計算式作成
 					Formula fruit = strategy.CreateFormula(_maximumLimit, QuestionType.Standard, 0, GapFilling.Default);
 					// 水果算式列表添加
@@ -117,7 +117,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					// 混合題型（加減乘除運算符實例隨機抽取）
 					sign = _signs[random.GetRandomNumber()];
 					// 對四則運算符實例進行cache管理
-					strategy = CalculateManager.CreateCalculateInstance(sign);
+					strategy = CalculateManager(sign);
 					// 計算式作成（依據水果算式的答案推算容器算式）
 					Formula container = strategy.CreateFormulaWithAnswer(_maximumLimit, fruit.Answer);
 					// 容器算式列表添加

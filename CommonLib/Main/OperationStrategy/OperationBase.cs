@@ -1,10 +1,6 @@
-﻿using MyMathSheets.CommonLib.Composition;
-using MyMathSheets.CommonLib.Main.Arithmetic;
+﻿using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Util;
-using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 
 namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
@@ -39,25 +35,25 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// </summary>
 		protected int _numberOfQuestions;
 
-		/// <summary>
-		/// 
-		/// </summary>
-		private ICalculateFactory _calculateManager;
 
 		/// <summary>
 		/// 
 		/// </summary>
-		protected ICalculateFactory CalculateManager
+		private CalculateHelper _helper;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		protected CalculateHelper Helper => _helper ?? (_helper = new CalculateHelper());
+
+		/// <summary>
+		/// 對指定運算符實例化
+		/// </summary>
+		/// <param name="sign">運算符</param>
+		/// <returns>運算符實例</returns>
+		protected ICalculate CalculateManager(SignOfOperation sign)
 		{
-			get
-			{
-				if (_calculateManager == null)
-				{
-					_calculateManager = new CalculateFactory();
-				}
-				return _calculateManager;
-			}
-			set => _calculateManager = value;
+			return Helper.CreateCalculateInstance(sign);
 		}
 
 		/// <summary>
