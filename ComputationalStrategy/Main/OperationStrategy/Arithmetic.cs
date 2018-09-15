@@ -82,13 +82,19 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// 判定是否需要反推并重新作成計算式
 		/// </summary>
 		/// <remarks>
-		/// 情況1：算式式存在一致
+		/// 情況1：算式存在一致
+		/// 情況2：全零的情況
 		/// </remarks>
 		/// <param name="preFormulas">已得到的算式</param>
 		/// <param name="currentFormula">當前算式</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
 		private bool CheckIsNeedInverseMethod(List<Formula> preFormulas, Formula currentFormula)
 		{
+			// 全零的情況
+			if(currentFormula.LeftParameter == 0 && currentFormula.RightParameter == 0 && currentFormula.Answer == 0)
+			{
+				return true;
+			}
 			// 判斷當前算式是否已經出現過
 			if (preFormulas.ToList().Any(d => d.LeftParameter == currentFormula.LeftParameter
 			&& d.RightParameter == currentFormula.RightParameter
