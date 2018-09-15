@@ -32,8 +32,11 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		public override void MarkFormulaList()
+		/// <param name="parameter"></param>
+		public override void MarkFormulaList(ParameterBase parameter)
 		{
+			ArithmeticParameter p = parameter as ArithmeticParameter;
+
 			if (_fourOperationsType == FourOperationsType.Default)
 			{
 				return;
@@ -80,6 +83,8 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					_formulas.Add(formula);
 				}
 			}
+
+			p.Formulas = _formulas;
 		}
 
 		/// <summary>

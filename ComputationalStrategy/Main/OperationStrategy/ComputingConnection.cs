@@ -27,7 +27,11 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 			_signs = signs;
 		}
 
-		public override void MarkFormulaList()
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="parameter"></param>
+		public override void MarkFormulaList(ParameterBase parameter)
 		{
 			if (_fourOperationsType == FourOperationsType.Default)
 			{

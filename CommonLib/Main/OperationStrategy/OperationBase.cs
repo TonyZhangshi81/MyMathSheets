@@ -84,6 +84,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 
 		/// </summary>
-		public abstract void MarkFormulaList();
+		/// <param name="parameter"></param>
+		public abstract void MarkFormulaList(ParameterBase parameter = null);
 	}
 }

@@ -36,7 +36,8 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// <summary>
 		/// 
 		/// </summary>
-		public override void MarkFormulaList()
+		/// <param name="parameter"></param>
+		public override void MarkFormulaList(ParameterBase parameter)
 		{
 			if (_fourOperationsType == FourOperationsType.Default)
 			{

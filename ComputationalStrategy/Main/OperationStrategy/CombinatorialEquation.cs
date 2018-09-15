@@ -27,7 +27,8 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// <summary>
 		/// 題型構築
 		/// </summary>
-		public override void MarkFormulaList()
+		/// <param name="parameter"></param>
+		public override void MarkFormulaList(ParameterBase parameter)
 		{
 			ICalculate strategy = null;
 			for (var i = 0; i < _numberOfQuestions; i++)

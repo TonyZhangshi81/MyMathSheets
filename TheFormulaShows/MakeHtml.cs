@@ -160,8 +160,16 @@ namespace MyMathSheets.TheFormulaShows
 		/// </summary>
 		public void Structure()
 		{
+
+			ArithmeticParameter parameter = new ArithmeticParameter();
+			parameter.FourOperationsType = FourOperationsType.Random;
+			parameter.MaximumLimit = 50;
+			parameter.NumberOfQuestions = 20;
+			parameter.QuestionType = QuestionType.GapFilling;
+			parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Plus, SignOfOperation.Subtraction };
+
 			main = GetHtmlSupportInstance() as OperationBase<T>;
-			main.MarkFormulaList();
+			main.MarkFormulaList(parameter);
 			_formulas = main.Formulas;
 		}
 

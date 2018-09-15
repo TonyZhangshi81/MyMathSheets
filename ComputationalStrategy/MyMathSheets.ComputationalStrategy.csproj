@@ -50,6 +50,7 @@
     <Compile Include="Item\MathWordProblemsFormula.cs" />
     <Compile Include="Main\OperationStrategy\Arithmetic.cs" />
     <Compile Include="Main\Arithmetic\Division.cs" />
+    <Compile Include="Main\OperationStrategy\ArithmeticParameter.cs" />
     <Compile Include="Main\OperationStrategy\CombinatorialEquation.cs" />
     <Compile Include="Main\OperationStrategy\ComputingConnection.cs" />
     <Compile Include="Main\OperationStrategy\EqualityComparison.cs" />
