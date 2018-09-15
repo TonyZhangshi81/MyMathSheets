@@ -9,11 +9,11 @@ MathSheets.EqualityComparison = MathSheets.EqualityComparison || (function () {
 			$(element).attr("title", 'char-less');
 			$(element).attr("src", '../Content/image/char-less.png');
 			return;
-		} else if ($(element).attr("title") == 'less') {
+		} else if ($(element).attr("title") == 'char-less') {
 			$(element).attr("title", 'char-more');
 			$(element).attr("src", '../Content/image/char-more.png');
 			return;
-		} else if ($(element).attr("title") == 'more') {
+		} else if ($(element).attr("title") == 'char-more') {
 			$(element).attr("title", 'calculator');
 			$(element).attr("src", '../Content/image/calculator.png');
 			return;
