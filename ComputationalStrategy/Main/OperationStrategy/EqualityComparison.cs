@@ -10,6 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// <summary>
 	/// 等式大小比较
 	/// </summary>
+	[Operation(LayoutSetting.Preview.EqualityComparison)]
 	public class EqualityComparison : OperationBase<List<EqualityFormula>>
 	{
 		/// <summary>

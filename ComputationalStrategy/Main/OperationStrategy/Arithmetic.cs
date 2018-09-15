@@ -7,10 +7,14 @@ using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
+	/// <summary>
+	/// 四則遠算題
+	/// </summary>
+	[Operation(LayoutSetting.Preview.Arithmetic)]
 	public class Arithmetic : OperationBase<List<Formula>>
 	{
 		/// <summary>
-		/// 
+		/// 構造函數
 		/// </summary>
 		/// <param name="fourOperationsType">四则运算类型（标准、随机出题）</param>
 		/// <param name="signs">在四则运算标准题下指定运算法（加减乘除）</param>
@@ -26,7 +30,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		}
 
 		/// <summary>
-		/// 
+		/// 算式作成
 		/// </summary>
 		public override void MarkFormulaList()
 		{

@@ -54,6 +54,8 @@
     <Compile Include="Main\Arithmetic\ICalculateMetaDataView.cs" />
     <Compile Include="Main\Arithmetic\ICalculate.cs" />
     <Compile Include="Main\Item\Formula.cs" />
+    <Compile Include="Main\OperationStrategy\IOperationMetaDataView.cs" />
+    <Compile Include="Main\OperationStrategy\OperationAttribute.cs" />
     <Compile Include="Main\OperationStrategy\OperationBase.cs" />
     <Compile Include="Message\MessageUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

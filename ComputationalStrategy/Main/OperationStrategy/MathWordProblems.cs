@@ -11,6 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// <summary>
 	/// 
 	/// </summary>
+	[Operation(LayoutSetting.Preview.MathWordProblems)]
 	public class MathWordProblems : OperationBase<List<MathWordProblemsFormula>>
 	{
 		/// <summary>

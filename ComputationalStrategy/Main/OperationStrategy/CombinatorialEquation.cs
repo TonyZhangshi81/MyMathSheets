@@ -11,6 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// <summary>
 	/// 組合計算式
 	/// </summary>
+	[Operation(LayoutSetting.Preview.CombinatorialEquation)]
 	public class CombinatorialEquation : OperationBase<List<CombinatorialFormula>>
 	{
 		/// <summary>

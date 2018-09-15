@@ -10,6 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// <summary>
 	/// 
 	/// </summary>
+	[Operation(LayoutSetting.Preview.ComputingConnection)]
 	public class ComputingConnection : OperationBase<List<ConnectionFormula>>
 	{
 		/// <summary>

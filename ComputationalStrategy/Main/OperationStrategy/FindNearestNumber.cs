@@ -10,6 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// <summary>
 	/// 找最相近的数字題型構築
 	/// </summary>
+	[Operation(LayoutSetting.Preview.FindNearestNumber)]
 	public class FindNearestNumber : OperationBase<List<EqualityFormula>>
 	{
 		/// <summary>
