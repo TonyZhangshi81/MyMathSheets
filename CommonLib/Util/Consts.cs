@@ -1,6 +1,9 @@
 ﻿namespace MyMathSheets.CommonLib.Util
 {
-	public class Constcs
+	/// <summary>
+	/// 
+	/// </summary>
+	public class Consts
 	{
 	}
 
