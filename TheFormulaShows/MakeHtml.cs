@@ -47,7 +47,7 @@ namespace MyMathSheets.TheFormulaShows
 		/// <summary>
 		/// 
 		/// </summary>
-		private OperationBase<T> main;
+		private IOperation<T> main;
 		/// <summary>
 		/// 
 		/// </summary>
@@ -168,7 +168,7 @@ namespace MyMathSheets.TheFormulaShows
 			parameter.QuestionType = QuestionType.GapFilling;
 			parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Plus, SignOfOperation.Subtraction };
 
-			main = GetHtmlSupportInstance() as OperationBase<T>;
+			main = GetHtmlSupportInstance() as IOperation<T>;
 			main.MarkFormulaList(parameter);
 			_formulas = main.Formulas;
 		}

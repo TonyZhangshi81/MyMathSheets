@@ -57,6 +57,7 @@
     <Compile Include="Main\OperationStrategy\IOperationMetaDataView.cs" />
     <Compile Include="Main\OperationStrategy\IParameter.cs" />
     <Compile Include="Main\OperationStrategy\OperationAttribute.cs" />
+    <Compile Include="Main\OperationStrategy\IOperation.cs" />
     <Compile Include="Main\OperationStrategy\OperationBase.cs" />
     <Compile Include="Main\OperationStrategy\ParameterBase.cs" />
     <Compile Include="Message\MessageUtil.cs" />

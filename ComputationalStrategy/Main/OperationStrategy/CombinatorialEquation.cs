@@ -12,39 +12,31 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// 組合計算式
 	/// </summary>
 	[Operation(LayoutSetting.Preview.CombinatorialEquation)]
-	public class CombinatorialEquation : OperationBase<List<CombinatorialFormula>>
+	public class CombinatorialEquation : OperationBase
 	{
-		/// <summary>
-		/// 組合計算式題型構築對象初期化
-		/// </summary>
-		/// <param name="maximumLimit">运算结果最大限度值</param>
-		/// <param name="numberOfQuestions">出题数量</param>
-		public CombinatorialEquation(int maximumLimit, int numberOfQuestions)
-			: base(maximumLimit, numberOfQuestions)
-		{
-		}
-
 		/// <summary>
 		/// 題型構築
 		/// </summary>
 		/// <param name="parameter"></param>
 		public override void MarkFormulaList(ParameterBase parameter)
 		{
+			CombinatorialEquationParameter p = parameter as CombinatorialEquationParameter;
+
 			ICalculate strategy = null;
-			for (var i = 0; i < _numberOfQuestions; i++)
+			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				// 對四則運算符實例進行cache管理
 				strategy = CalculateManager(SignOfOperation.Plus);
 				// 計算式作成
-				Formula formula = strategy.CreateFormula(_maximumLimit, QuestionType.Standard);
+				Formula formula = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard);
 				// 判定是否需要反推并重新作成計算式
-				if (CheckIsNeedInverseMethod(formula.LeftParameter, formula.RightParameter, formula.Answer))
+				if (CheckIsNeedInverseMethod(p, formula.LeftParameter, formula.RightParameter, formula.Answer))
 				{
 					i--;
 					continue;
 				}
 
-				_formulas.Add(new CombinatorialFormula()
+				p.Formulas.Add(new CombinatorialFormula()
 				{
 					ParameterA = formula.LeftParameter,
 					ParameterB = formula.Answer,
@@ -65,14 +57,15 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// <remarks>
 		/// 情況1：三個參數存在一致
 		/// </remarks>
+		/// <param name="p"></param>
 		/// <param name="parameterA">第一個參數</param>
 		/// <param name="parameterB">第二個參數</param>
 		/// <param name="parameterC">第三個參數</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
-		private bool CheckIsNeedInverseMethod(int parameterA, int parameterB, int parameterC)
+		private bool CheckIsNeedInverseMethod(CombinatorialEquationParameter p, int parameterA, int parameterB, int parameterC)
 		{
 			// 情況1
-			if (_formulas.ToList().Any(d =>
+			if (p.Formulas.ToList().Any(d =>
 			{
 				int[] ary = new int[3] { d.ParameterA, d.ParameterB, d.ParameterC };
 				int pAIndex = ary.ToList().IndexOf(parameterA);

@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// 水果連連看題型構築
 	/// </summary>
 	[Operation(LayoutSetting.Preview.FruitsLinkage)]
-	public class FruitsLinkage : OperationBase<FruitsLinkageFormula>
+	public class FruitsLinkage : OperationBase
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -21,29 +21,12 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		private const int INVERSE_NUMBER = 3;
 
 		/// <summary>
-		/// 水果連連看題型構築對象初期化
-		/// </summary>
-		/// <param name="fourOperationsType">四则运算类型（标准、随机出题）</param>
-		/// <param name="signs">在四则运算标准题下指定运算法（加减乘除）</param>
-		/// <param name="maximumLimit">运算结果最大限度值</param>
-		/// <param name="numberOfQuestions">出题数量</param>
-		public FruitsLinkage(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, int maximumLimit, int numberOfQuestions) :
-			base(maximumLimit, numberOfQuestions)
-		{
-			_fourOperationsType = fourOperationsType;
-			_signs = signs;
-		}
-
-		/// <summary>
 		/// 題型構築
 		/// </summary>
 		/// <param name="parameter"></param>
 		public override void MarkFormulaList(ParameterBase parameter)
 		{
-			if (_fourOperationsType == FourOperationsType.Default)
-			{
-				return;
-			}
+			FruitsLinkageParameter p = parameter as FruitsLinkageParameter;
 
 			ICalculate strategy = null;
 
@@ -60,18 +43,18 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
 			// 標準題型（指定單個運算符）
-			if (_fourOperationsType == FourOperationsType.Standard)
+			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
 				// 指定單個運算符實例
-				strategy = CalculateManager(_signs[0]);
+				strategy = CalculateManager(p.Signs[0]);
 				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < _numberOfQuestions; i++)
+				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
 					// 計算式作成
-					Formula fruit = strategy.CreateFormula(_maximumLimit, QuestionType.Standard, 0);
+					Formula fruit = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0);
 					fruitsFormulas.Add(fruit);
 					// 計算式作成（依據水果算式的答案推算容器算式）
-					Formula container = strategy.CreateFormulaWithAnswer(_maximumLimit, fruit.Answer);
+					Formula container = strategy.CreateFormulaWithAnswer(p.MaximumLimit, fruit.Answer);
 					containersFormulas.Add(container);
 					// 容器座位號
 					seats.Add(i);
@@ -103,25 +86,25 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 			{
 				RandomNumberComposition random = null;
 				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < _numberOfQuestions; i++)
+				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
-					random = new RandomNumberComposition(0, _signs.Count - 1);
+					random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
-					SignOfOperation sign = _signs[random.GetRandomNumber()];
+					SignOfOperation sign = p.Signs[random.GetRandomNumber()];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
 					// 計算式作成
-					Formula fruit = strategy.CreateFormula(_maximumLimit, QuestionType.Standard, 0, GapFilling.Default);
+					Formula fruit = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0, GapFilling.Default);
 					// 水果算式列表添加
 					fruitsFormulas.Add(fruit);
 
-					random = new RandomNumberComposition(0, _signs.Count - 1);
+					random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
-					sign = _signs[random.GetRandomNumber()];
+					sign = p.Signs[random.GetRandomNumber()];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
 					// 計算式作成（依據水果算式的答案推算容器算式）
-					Formula container = strategy.CreateFormulaWithAnswer(_maximumLimit, fruit.Answer);
+					Formula container = strategy.CreateFormulaWithAnswer(p.MaximumLimit, fruit.Answer);
 					// 容器算式列表添加
 					containersFormulas.Add(container);
 
@@ -162,7 +145,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 			fruitsLinkageFormula.Seats = GetNewSeats(fruitsLinkageFormula.Sort);
 
 			// 結果設定
-			_formulas = fruitsLinkageFormula;
+			p.Formulas = fruitsLinkageFormula;
 		}
 		/// <summary>
 		/// 

@@ -29,10 +29,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 出题数量
 		/// </summary>
 		public int NumberOfQuestions { get; set; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public IList<Formula> Formulas { get; set; }
+
 
 		/// <summary>
 		/// 

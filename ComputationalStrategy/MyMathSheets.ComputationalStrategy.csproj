@@ -50,6 +50,12 @@
     <Compile Include="Item\MathWordProblemsFormula.cs" />
     <Compile Include="Main\OperationStrategy\Arithmetic.cs" />
     <Compile Include="Main\Arithmetic\Division.cs" />
+    <Compile Include="Main\OperationStrategy\MathWordProblemsParameter.cs" />
+    <Compile Include="Main\OperationStrategy\FruitsLinkageParameter.cs" />
+    <Compile Include="Main\OperationStrategy\FindNearestNumberParameter.cs" />
+    <Compile Include="Main\OperationStrategy\EqualityComparisonParameter.cs" />
+    <Compile Include="Main\OperationStrategy\ComputingConnectionParameter.cs" />
+    <Compile Include="Main\OperationStrategy\CombinatorialEquationParameter.cs" />
     <Compile Include="Main\OperationStrategy\ArithmeticParameter.cs" />
     <Compile Include="Main\OperationStrategy\CombinatorialEquation.cs" />
     <Compile Include="Main\OperationStrategy\ComputingConnection.cs" />

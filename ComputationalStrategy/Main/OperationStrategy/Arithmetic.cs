@@ -11,24 +11,8 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// 四則遠算題
 	/// </summary>
 	[Operation(LayoutSetting.Preview.Arithmetic)]
-	public class Arithmetic : OperationBase<List<Formula>>
+	public class Arithmetic : OperationBase
 	{
-		/// <summary>
-		/// 構造函數
-		/// </summary>
-		/// <param name="fourOperationsType">四则运算类型（标准、随机出题）</param>
-		/// <param name="signs">在四则运算标准题下指定运算法（加减乘除）</param>
-		/// <param name="questionType">题型（标准、随机填空）</param>
-		/// <param name="maximumLimit">运算结果最大限度值</param>
-		/// <param name="numberOfQuestions">出题数量</param>
-		public Arithmetic(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
-			: base(maximumLimit, numberOfQuestions)
-		{
-			_fourOperationsType = fourOperationsType;
-			_signs = signs;
-			_questionType = questionType;
-		}
-
 		/// <summary>
 		/// 算式作成
 		/// </summary>
@@ -37,54 +21,47 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		{
 			ArithmeticParameter p = parameter as ArithmeticParameter;
 
-			if (_fourOperationsType == FourOperationsType.Default)
-			{
-				return;
-			}
-
 			ICalculate strategy = null;
 			// 標準題型（指定單個運算符）
-			if (_fourOperationsType == FourOperationsType.Standard)
+			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
 				// 指定單個運算符實例
-				strategy = CalculateManager(_signs[0]);
+				strategy = CalculateManager(p.Signs[0]);
 				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < _numberOfQuestions; i++)
+				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
-					Formula formula = strategy.CreateFormula(_maximumLimit, _questionType);
-					if (CheckIsNeedInverseMethod(_formulas, formula))
+					Formula formula = strategy.CreateFormula(p.MaximumLimit, p.QuestionType);
+					if (CheckIsNeedInverseMethod(p.Formulas, formula))
 					{
 						i--;
 						continue;
 					}
 					// 計算式作成
-					_formulas.Add(formula);
+					p.Formulas.Add(formula);
 				}
 			}
 			else
 			{
 				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < _numberOfQuestions; i++)
+				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
-					RandomNumberComposition random = new RandomNumberComposition(0, _signs.Count - 1);
+					RandomNumberComposition random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
-					SignOfOperation sign = _signs[random.GetRandomNumber()];
+					SignOfOperation sign = p.Signs[random.GetRandomNumber()];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
 
-					var formula = strategy.CreateFormula(_maximumLimit, _questionType);
-					if (CheckIsNeedInverseMethod(_formulas, formula))
+					var formula = strategy.CreateFormula(p.MaximumLimit, p.QuestionType);
+					if (CheckIsNeedInverseMethod(p.Formulas, formula))
 					{
 						i--;
 						continue;
 					}
 
 					// 計算式作成
-					_formulas.Add(formula);
+					p.Formulas.Add(formula);
 				}
 			}
-
-			p.Formulas = _formulas;
 		}
 
 		/// <summary>
@@ -97,7 +74,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// <param name="preFormulas">已得到的算式</param>
 		/// <param name="currentFormula">當前算式</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
-		private bool CheckIsNeedInverseMethod(List<Formula> preFormulas, Formula currentFormula)
+		private bool CheckIsNeedInverseMethod(IList<Formula> preFormulas, Formula currentFormula)
 		{
 			// 全零的情況
 			if(currentFormula.LeftParameter == 0 && currentFormula.RightParameter == 0 && currentFormula.Answer == 0)

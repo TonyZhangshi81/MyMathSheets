@@ -11,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// 找最相近的数字題型構築
 	/// </summary>
 	[Operation(LayoutSetting.Preview.FindNearestNumber)]
-	public class FindNearestNumber : OperationBase<List<EqualityFormula>>
+	public class FindNearestNumber : OperationBase
 	{
 		/// <summary>
 		/// 關係運算符中隨機抽取一個(只限於大於和小於符號)
@@ -40,47 +40,27 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		}
 
 		/// <summary>
-		/// 找最相近的数字題型構築對象初期化
-		/// </summary>
-		/// <param name="fourOperationsType">四则运算类型（标准、随机出题）</param>
-		/// <param name="signs">在四则运算标准题下指定运算法（加减乘除）</param>
-		/// <param name="questionType">题型（标准、随机填空）</param>
-		/// <param name="maximumLimit">运算结果最大限度值</param>
-		/// <param name="numberOfQuestions">出题数量</param>
-		public FindNearestNumber(FourOperationsType fourOperationsType, IList<SignOfOperation> signs, QuestionType questionType, int maximumLimit, int numberOfQuestions)
-			: base(maximumLimit, numberOfQuestions)
-		{
-			_fourOperationsType = fourOperationsType;
-			_signs = signs;
-			_questionType = questionType;
-		}
-
-		/// <summary>
 		/// 題型構築
 		/// </summary>
 		/// <param name="parameter"></param>
 		public override void MarkFormulaList(ParameterBase parameter)
 		{
-			if (_fourOperationsType == FourOperationsType.Default)
-			{
-				return;
-			}
+			FindNearestNumberParameter p = parameter as FindNearestNumberParameter;
 
 			ICalculate strategy = null;
-
 			// 標準題型（指定單個運算符）
-			if (_fourOperationsType == FourOperationsType.Standard)
+			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
 				// 指定單個運算符實例
-				strategy = CalculateManager(_signs[0]);
+				strategy = CalculateManager(p.Signs[0]);
 				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < _numberOfQuestions; i++)
+				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
 					// 填空項目選邊
 					GapFilling gapFilling = GetGapFilling;
 
 					// 关系符左边计算式
-					Formula leftFormula = strategy.CreateFormula(_maximumLimit, QuestionType.Standard);
+					Formula leftFormula = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard);
 					if (gapFilling == GapFilling.Left)
 					{
 						// 左邊算式隨機設定填空項目
@@ -92,14 +72,14 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					// 小於符號推算=》右邊等式結果：左邊等式運算結果加一:左邊等式運算結果減一
 					var rightAnswer = (randomSign == SignOfCompare.Less) ? leftFormula.Answer + 1 : leftFormula.Answer - 1;
 					// 判斷是否需要回滾當前算式
-					if (CheckIsNeedInverseMethod(randomSign, leftFormula))
+					if (CheckIsNeedInverseMethod(randomSign, leftFormula, p.MaximumLimit))
 					{
 						i--;
 						continue;
 					}
 
 					// 关系符右边计算式
-					Formula rightFormula = strategy.CreateFormulaWithAnswer(_maximumLimit, rightAnswer);
+					Formula rightFormula = strategy.CreateFormulaWithAnswer(p.MaximumLimit, rightAnswer);
 					if (gapFilling == GapFilling.Right)
 					{
 						// 右邊算式隨機設定填空項目
@@ -107,7 +87,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					}
 
 					// 計算式作成
-					_formulas.Add(new EqualityFormula()
+					p.Formulas.Add(new EqualityFormula()
 					{
 						LeftFormula = leftFormula,
 						RightFormula = rightFormula,
@@ -118,15 +98,15 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 			else
 			{
 				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < _numberOfQuestions; i++)
+				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
 					// 隨機取得運算式對象
-					strategy = GetRandomStrategy();
+					strategy = GetRandomStrategy(p.Signs);
 					// 填空項目選邊
 					GapFilling gapFilling = GetGapFilling;
 
 					// 关系符左边计算式
-					Formula leftFormula = strategy.CreateFormula(_maximumLimit, QuestionType.Standard);
+					Formula leftFormula = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard);
 					if (gapFilling == GapFilling.Left)
 					{
 						// 左邊算式隨機設定填空項目
@@ -138,16 +118,16 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					// 小於符號推算=》右邊等式結果：左邊等式運算結果加一:左邊等式運算結果減一
 					var rightAnswer = (randomSign == SignOfCompare.Less) ? leftFormula.Answer + 1 : leftFormula.Answer - 1;
 					// 判斷是否需要回滾當前算式
-					if (CheckIsNeedInverseMethod(randomSign, leftFormula))
+					if (CheckIsNeedInverseMethod(randomSign, leftFormula, p.MaximumLimit))
 					{
 						i--;
 						continue;
 					}
 
 					// 隨機取得運算式對象
-					strategy = GetRandomStrategy();
+					strategy = GetRandomStrategy(p.Signs);
 					// 关系符右边计算式
-					Formula rightFormula = strategy.CreateFormulaWithAnswer(_maximumLimit, rightAnswer);
+					Formula rightFormula = strategy.CreateFormulaWithAnswer(p.MaximumLimit, rightAnswer);
 					if (gapFilling == GapFilling.Right)
 					{
 						// 左邊算式隨機設定填空項目
@@ -155,7 +135,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					}
 
 					// 計算式作成
-					_formulas.Add(new EqualityFormula()
+					p.Formulas.Add(new EqualityFormula()
 					{
 						LeftFormula = leftFormula,
 						RightFormula = rightFormula,
@@ -168,12 +148,13 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// <summary>
 		/// 隨機取得運算式對象
 		/// </summary>
+		/// <param name="signs"></param>
 		/// <returns>運算式對象</returns>
-		private ICalculate GetRandomStrategy()
+		private ICalculate GetRandomStrategy(IList<SignOfOperation> signs)
 		{
-			RandomNumberComposition random = new RandomNumberComposition((int)SignOfOperation.Plus, _signs.Count - 1);
+			RandomNumberComposition random = new RandomNumberComposition((int)SignOfOperation.Plus, signs.Count - 1);
 			// 混合題型（加減乘除運算符實例隨機抽取）
-			SignOfOperation sign = _signs[random.GetRandomNumber()];
+			SignOfOperation sign = signs[random.GetRandomNumber()];
 			// 對四則運算符實例進行cache管理
 			return CalculateManager(sign);
 		}
@@ -185,13 +166,14 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// 情況1：左邊等式小於右邊等式時,左邊等式結果已經到達最大計算結果值
 		/// 情況2：左邊等式大於右邊等式時,左邊等式結果是0
 		/// </remarks>
-		/// <param name="fruitsFormulas">左側水果計算式集合</param>
-		/// <param name="answer">計算結果值</param>
+		/// <param name="sign">左側水果計算式集合</param>
+		/// <param name="leftFormula">計算結果值</param>
+		/// <param name="maximumLimit"></param>
 		/// <returns>需要反推：true  正常情況: false</returns>
-		private bool CheckIsNeedInverseMethod(SignOfCompare sign, Formula leftFormula)
+		private bool CheckIsNeedInverseMethod(SignOfCompare sign, Formula leftFormula, int maximumLimit)
 		{
 			// 情況1
-			if (sign == SignOfCompare.Less && leftFormula.Answer == _maximumLimit)
+			if (sign == SignOfCompare.Less && leftFormula.Answer == maximumLimit)
 			{
 				return true;
 			}
