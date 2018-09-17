@@ -1,0 +1,18 @@
+[
+	{
+		"Identifier": "AC001",
+		"FourOperationsType": 2,
+		"MaximumLimit": 50,
+		"NumberOfQuestions": 20,
+		"QuestionType": 2,
+		"Signs": [ 0, 1 ]
+	},
+	{
+		"Identifier": "AC002",
+		"FourOperationsType": 2,
+		"MaximumLimit": 50,
+		"NumberOfQuestions": 20,
+		"QuestionType": 2,
+		"Signs": [ 0, 1 ]
+	}
+]

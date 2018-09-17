@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Config\ParameterSetting.json" />
     <None Include="Config\Problems.json" />
     <None Include="packages.config" />
   </ItemGroup>

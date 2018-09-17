@@ -5,6 +5,7 @@ using MyMathSheets.ComputationalStrategy.Item;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.TheFormulaShows;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -22,13 +23,14 @@ namespace MyMathSheets.TestConsoleApp
 		{
 			Console.OutputEncoding = Encoding.Unicode;
 
-			MakeHtml<List<Formula>, Arithmetic> work = null;
-			MakeHtml<List<EqualityFormula>, EqualityComparison> work1 = null;
-			MakeHtml<List<ConnectionFormula>, ComputingConnection> work2 = null;
-			MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work3 = null;
-			MakeHtml<FruitsLinkageFormula, FruitsLinkage> work4 = null;
-			MakeHtml<List<EqualityFormula>, FindNearestNumber> work5 = null;
-			MakeHtml<List<CombinatorialFormula>, CombinatorialEquation> work6 = null;
+			MakeHtml<ArithmeticParameter> work = new MakeHtml<ArithmeticParameter>();
+			ArithmeticParameter parameter = null;
+			//MakeHtml<List<EqualityFormula>, EqualityComparison> work1 = null;
+			//MakeHtml<List<ConnectionFormula>, ComputingConnection> work2 = null;
+			//MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work3 = null;
+			//MakeHtml<FruitsLinkageFormula, FruitsLinkage> work4 = null;
+			//MakeHtml<List<EqualityFormula>, FindNearestNumber> work5 = null;
+			//MakeHtml<List<CombinatorialFormula>, CombinatorialEquation> work6 = null;
 
 			bool isShowMenu = true;
 
@@ -87,43 +89,83 @@ namespace MyMathSheets.TestConsoleApp
 
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算填空");
-						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Random, signs, QuestionType.GapFilling, 100, 35);
-						work.Structure();
-						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
+
+						parameter = new ArithmeticParameter();
+						parameter.FourOperationsType = FourOperationsType.Random;
+						parameter.MaximumLimit = 50;
+						parameter.NumberOfQuestions = 20;
+						parameter.QuestionType = QuestionType.GapFilling;
+						parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Plus, SignOfOperation.Subtraction };
+						parameter.InitParameter();
+
+						work.Structure(parameter);
+						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.B:
 						Console.WriteLine();
 						Console.WriteLine("標準加法填空");
-						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Standard, 50, 20);
-						work.Structure();
-						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
+
+						parameter = new ArithmeticParameter();
+						parameter.FourOperationsType = FourOperationsType.Standard;
+						parameter.MaximumLimit = 30;
+						parameter.NumberOfQuestions = 10;
+						parameter.QuestionType = QuestionType.Standard;
+						parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Plus };
+						parameter.InitParameter();
+
+						work.Structure(parameter);
+						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.C:
 						Console.WriteLine();
 						Console.WriteLine("標準減法填空");
-						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Standard, 200, 15);
-						work.Structure();
-						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
+
+						parameter = new ArithmeticParameter();
+						parameter.FourOperationsType = FourOperationsType.Standard;
+						parameter.MaximumLimit = 40;
+						parameter.NumberOfQuestions = 15;
+						parameter.QuestionType = QuestionType.GapFilling;
+						parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Subtraction };
+						parameter.InitParameter();
+
+						work.Structure(parameter);
+						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.D:
 						Console.WriteLine();
 						Console.WriteLine("標準乘法填空");
-						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Multiple, QuestionType.Standard, 81, 20);
-						work.Structure();
-						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
+
+						parameter = new ArithmeticParameter();
+						parameter.FourOperationsType = FourOperationsType.Standard;
+						parameter.MaximumLimit = 81;
+						parameter.NumberOfQuestions = 10;
+						parameter.QuestionType = QuestionType.GapFilling;
+						parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Multiple };
+						parameter.InitParameter();
+
+						work.Structure(parameter);
+						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.E:
 						Console.WriteLine();
 						Console.WriteLine("標準除法填空");
-						work = new MakeHtml<List<Formula>, Arithmetic>(FourOperationsType.Standard, SignOfOperation.Division, QuestionType.Standard, 81, 20);
-						work.Structure();
-						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", work.Formulas);
-						break;
 
+						parameter = new ArithmeticParameter();
+						parameter.FourOperationsType = FourOperationsType.Standard;
+						parameter.MaximumLimit = 81;
+						parameter.NumberOfQuestions = 10;
+						parameter.QuestionType = QuestionType.Standard;
+						parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Division };
+						parameter.InitParameter();
+
+						work.Structure(parameter);
+						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
+						break;
+						/*
 					case ConsoleKey.F:
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算比較");
@@ -268,6 +310,7 @@ namespace MyMathSheets.TestConsoleApp
 						work6.Structure();
 						Util.CreateOperatorObjectFactory<List<CombinatorialFormula>>("CombinatorialFormulaWrite", work6.Formulas);
 						break;
+						*/
 
 					case ConsoleKey.D9:
 						isShowMenu = true;

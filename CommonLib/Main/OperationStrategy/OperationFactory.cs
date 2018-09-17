@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 
-namespace MyMathSheets.CommonLib.Main.Arithmetic
+namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
 	/// <summary>
 	/// 運算符對象生產工廠
 	/// </summary>
 	[PartCreationPolicy(CreationPolicy.NonShared)]
-	[Export(typeof(ICalculateFactory))]
-	public class CalculateFactory : ICalculateFactory
+	[Export(typeof(IOperationFactory))]
+	public class OperationFactory : IOperationFactory
 	{
 		/// <summary>
 		/// 以防止重複注入（減少損耗）
@@ -28,13 +28,13 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <summary>
 		/// 運算符處理類型緩存區
 		/// </summary>
-		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<SignOfOperation, ICalculate>> ComposerCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<SignOfOperation, ICalculate>>();
+		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<LayoutSetting.Preview, IOperation>> ComposerCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<LayoutSetting.Preview, IOperation>>();
 
 		/// <summary>
 		/// 構造函數
 		/// </summary>
 		[ImportingConstructor]
-		public CalculateFactory()
+		public OperationFactory()
 		{
 			// 獲取計算式策略模塊Composer
 			_composer = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy);
@@ -60,26 +60,27 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// 運算符屬性注入點
 		/// </summary>
 		[ImportMany(RequiredCreationPolicy = CreationPolicy.NonShared)]
-		public IEnumerable<Lazy<CalculateBase, ICalculateMetaDataView>> _calculate { get; set; }
+		public IEnumerable<Lazy<OperationBase, IOperationMetaDataView>> _operations { get; set; }
 
 		/// <summary>
-		/// 對指定運算符實例化
+		/// 對指定計算式策略實例化
 		/// </summary>
-		/// <param name="sign">運算符</param>
-		/// <returns>運算符實例</returns>
-		public ICalculate CreateCalculateInstance(SignOfOperation sign)
+		/// <param name="preview">策略種類</param>
+		/// <returns>策略實例</returns>
+		public IOperation CreateOperationInstance(LayoutSetting.Preview preview)
 		{
 			// 運算符對象緩存區管理
-			ConcurrentDictionary<SignOfOperation, ICalculate> cacheStrategy = ComposerCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<SignOfOperation, ICalculate>());
+			ConcurrentDictionary<LayoutSetting.Preview, IOperation> cacheStrategy = ComposerCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, IOperation>());
 			// 返回緩衝區中的運算符對象
-			return cacheStrategy.GetOrAdd(sign, (c) =>
+			return cacheStrategy.GetOrAdd(preview, (o) =>
 			{
 				// 在MEF容器中收集本類的屬性信息（實際情況屬性只注入一次）
 				ComposeThis();
+
 				// 指定運算符并獲取處理類型
-				CalculateBase calculate = _calculate.Where(d => d.Metadata.Sign == sign).First().Value;
+				OperationBase operation = _operations.Where(d => d.Metadata.Layout == preview).First().Value;
 				// 返回該運算符處理類型的實例
-				return (ICalculate)Activator.CreateInstance(calculate.GetType());
+				return (IOperation)Activator.CreateInstance(operation.GetType());
 			});
 		}
 	}

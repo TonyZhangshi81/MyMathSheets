@@ -5,16 +5,16 @@ using System.ComponentModel.Composition;
 namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
 	/// <summary>
-	/// 運算符自定義導出屬性
+	/// 運算符參數自定義導出屬性
 	/// </summary>
 	[MetadataAttribute]
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
-	public class OperationAttribute : ExportAttribute, IOperationMetaDataView
+	public class OperationParameterAttribute : ExportAttribute, IOperationMetaDataView
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		public OperationAttribute(LayoutSetting.Preview layout) : base()
+		public OperationParameterAttribute(LayoutSetting.Preview layout) : base()
 		{
 			Layout = layout;
 		}
