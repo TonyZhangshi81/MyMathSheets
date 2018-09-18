@@ -79,23 +79,11 @@ namespace MyMathSheets.TestConsoleApp
 				switch (key)
 				{
 					case ConsoleKey.A:
-						IList<SignOfOperation> signs = new List<SignOfOperation>
-						{
-							SignOfOperation.Plus,
-							SignOfOperation.Subtraction,
-							SignOfOperation.Multiple,
-							SignOfOperation.Division
-						};
-
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算填空");
 
 						parameter = new ArithmeticParameter();
-						parameter.FourOperationsType = FourOperationsType.Random;
-						parameter.MaximumLimit = 50;
-						parameter.NumberOfQuestions = 20;
-						parameter.QuestionType = QuestionType.GapFilling;
-						parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Plus, SignOfOperation.Subtraction };
+						parameter.Identifier = "AC001";
 						parameter.InitParameter();
 
 						work.Structure(parameter);
@@ -107,11 +95,7 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("標準加法填空");
 
 						parameter = new ArithmeticParameter();
-						parameter.FourOperationsType = FourOperationsType.Standard;
-						parameter.MaximumLimit = 30;
-						parameter.NumberOfQuestions = 10;
-						parameter.QuestionType = QuestionType.Standard;
-						parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Plus };
+						parameter.Identifier = "AC002";
 						parameter.InitParameter();
 
 						work.Structure(parameter);

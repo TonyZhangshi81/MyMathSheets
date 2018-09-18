@@ -11,14 +11,18 @@ namespace MyMathSheets.CommonLib.Provider
 	/// <summary>
 	/// 
 	/// </summary>
-	public abstract class OperationParameterProvider : ProviderBase
+	public abstract class OperationParameterProvider
 	{
 		/// <summary>
-		/// 获得Parameter
+		/// 共通參數
 		/// </summary>
-		/// <param name="parameter"></param>
+		public object Argument { get; set; }
+
+		/// <summary>
+		/// 獲得Parameter
+		/// </summary>
 		/// <param name="identifier"></param>
 		/// <returns></returns>
-		public abstract void Set(ParameterBase parameter, string identifier);
+		public abstract ParameterBase Initialize(string identifier);
 	}
 }

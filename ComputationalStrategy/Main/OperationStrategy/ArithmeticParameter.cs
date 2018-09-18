@@ -19,6 +19,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		public override void InitParameter()
 		{
 			base.InitParameter();
+
 			// 四則運算結合實例化
 			Formulas = new List<Formula>();
 		}

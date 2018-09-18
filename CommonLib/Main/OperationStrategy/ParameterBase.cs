@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Provider;
 using MyMathSheets.CommonLib.Util;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 
@@ -11,19 +12,6 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 	/// </summary>
 	public class ParameterBase : IParameter
 	{
-		/// <summary>
-		/// 
-		/// </summary>
-		private ProviderConfigurationSection config = null;
-		/// <summary>
-		/// 
-		/// </summary>
-		private OperationParameterProvider _provider;
-		/// <summary>
-		/// 
-		/// </summary>
-		private OperationParameterProviderCollection _providerCollection;
-
 		/// <summary>
 		/// 識別號
 		/// </summary>
@@ -55,22 +43,14 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// </summary>
 		public virtual void InitParameter()
 		{
-		}
+			var hepler = new ParameterHepler();
+			ParameterBase parameter = hepler.CreateParameterProvider().Initialize(Identifier);
 
-		private void LoadProvider()
-		{
-			if (_provider == null)
-			{
-				// 获得blogProvider节点信息
-				config = (ProviderConfigurationSection)ConfigurationManager.GetSection("OperationParameterProvider");
-
-				_providerCollection = new OperationParameterProviderCollection();
-				//下面这个方法是系统提供的，位于System.web下。如果编写的是form程序则需要自己实现这个providhelper
-				//有兴趣的 可以查看一下他的源码
-				ProvidersHelper.InstantiateProviders(config.Providers, _providerCollection, typeof(OperationParameterProvider));
-				//上面那个方法已经加载了providerCollection，这里我们只要DefaultProvider的provider即可
-				_provider = _providerCollection[config.DefaultProvider];
-			}
+			QuestionType = parameter.QuestionType;
+			Signs = parameter.Signs;
+			FourOperationsType = parameter.FourOperationsType;
+			MaximumLimit = parameter.MaximumLimit;
+			NumberOfQuestions = parameter.NumberOfQuestions;
 		}
 	}
 }
