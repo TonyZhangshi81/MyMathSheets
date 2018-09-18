@@ -82,11 +82,11 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算填空");
 
-						parameter = new ArithmeticParameter();
-						parameter.Identifier = "AC001";
-						parameter.InitParameter();
+						//parameter = new ArithmeticParameter();
+						//parameter.Identifier = "AC001";
+						//parameter.InitParameter();
 
-						work.Structure(parameter);
+						parameter = work.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
 						break;
 
@@ -94,11 +94,11 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準加法填空");
 
-						parameter = new ArithmeticParameter();
-						parameter.Identifier = "AC002";
-						parameter.InitParameter();
+						//parameter = new ArithmeticParameter();
+						//parameter.Identifier = "AC002";
+						//parameter.InitParameter();
 
-						work.Structure(parameter);
+						parameter = work.Structure(LayoutSetting.Preview.Arithmetic, "AC002");
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
 						break;
 
@@ -106,15 +106,15 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準減法填空");
 
-						parameter = new ArithmeticParameter();
-						parameter.FourOperationsType = FourOperationsType.Standard;
-						parameter.MaximumLimit = 40;
-						parameter.NumberOfQuestions = 15;
-						parameter.QuestionType = QuestionType.GapFilling;
-						parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Subtraction };
-						parameter.InitParameter();
+						//parameter = new ArithmeticParameter();
+						//parameter.FourOperationsType = FourOperationsType.Standard;
+						//parameter.MaximumLimit = 40;
+						//parameter.NumberOfQuestions = 15;
+						//parameter.QuestionType = QuestionType.GapFilling;
+						//parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Subtraction };
+						//parameter.InitParameter();
 
-						work.Structure(parameter);
+						parameter = work.Structure(LayoutSetting.Preview.Arithmetic, "AC003");
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
 						break;
 
@@ -122,15 +122,15 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準乘法填空");
 
-						parameter = new ArithmeticParameter();
-						parameter.FourOperationsType = FourOperationsType.Standard;
-						parameter.MaximumLimit = 81;
-						parameter.NumberOfQuestions = 10;
-						parameter.QuestionType = QuestionType.GapFilling;
-						parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Multiple };
-						parameter.InitParameter();
+						//parameter = new ArithmeticParameter();
+						//parameter.FourOperationsType = FourOperationsType.Standard;
+						//parameter.MaximumLimit = 81;
+						//parameter.NumberOfQuestions = 10;
+						//parameter.QuestionType = QuestionType.GapFilling;
+						//parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Multiple };
+						//parameter.InitParameter();
 
-						work.Structure(parameter);
+						parameter = work.Structure(LayoutSetting.Preview.Arithmetic, "AC004");
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
 						break;
 
@@ -138,15 +138,15 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("標準除法填空");
 
-						parameter = new ArithmeticParameter();
-						parameter.FourOperationsType = FourOperationsType.Standard;
-						parameter.MaximumLimit = 81;
-						parameter.NumberOfQuestions = 10;
-						parameter.QuestionType = QuestionType.Standard;
-						parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Division };
-						parameter.InitParameter();
+						//parameter = new ArithmeticParameter();
+						//parameter.FourOperationsType = FourOperationsType.Standard;
+						//parameter.MaximumLimit = 81;
+						//parameter.NumberOfQuestions = 10;
+						//parameter.QuestionType = QuestionType.Standard;
+						//parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Division };
+						//parameter.InitParameter();
 
-						work.Structure(parameter);
+						parameter = work.Structure(LayoutSetting.Preview.Arithmetic, "AC005");
 						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
 						break;
 						/*

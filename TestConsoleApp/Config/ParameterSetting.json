@@ -14,5 +14,29 @@
 		"NumberOfQuestions": 10,
 		"QuestionType": 1,
 		"Signs": [ 0 ]
+	},
+	{
+		"Identifier": "AC003",
+		"FourOperationsType": 1,
+		"MaximumLimit": 40,
+		"NumberOfQuestions": 15,
+		"QuestionType": 2,
+		"Signs": [ 1 ]
+	},
+	{
+		"Identifier": "AC004",
+		"FourOperationsType": 1,
+		"MaximumLimit": 81,
+		"NumberOfQuestions": 10,
+		"QuestionType": 1,
+		"Signs": [ 2 ]
+	},
+	{
+		"Identifier": "AC005",
+		"FourOperationsType": 1,
+		"MaximumLimit": 81,
+		"NumberOfQuestions": 10,
+		"QuestionType": 1,
+		"Signs": [ 3 ]
 	}
 ]

@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
 
@@ -8,6 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// <summary>
 	/// 組合計算式參數類
 	/// </summary>
+	[OperationParameter(LayoutSetting.Preview.CombinatorialEquation)]
 	public class CombinatorialEquationParameter : ParameterBase
 	{
 		/// <summary>

@@ -12,6 +12,9 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 	/// </summary>
 	public interface ICalculateMetaDataView
 	{
+		/// <summary>
+		/// 運算符種類
+		/// </summary>
 		SignOfOperation Sign { get; }
 	}
 }

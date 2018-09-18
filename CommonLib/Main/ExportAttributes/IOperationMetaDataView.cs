@@ -7,6 +7,13 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 	/// </summary>
 	public interface IOperationMetaDataView
 	{
+		/// <summary>
+		/// 題型類別
+		/// </summary>
 		LayoutSetting.Preview Layout { get; }
+		/// <summary>
+		/// 識別ID
+		/// </summary>
+		string Identifiers { get; }
 	}
 }

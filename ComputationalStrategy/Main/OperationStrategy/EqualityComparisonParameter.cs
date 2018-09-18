@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
 
@@ -8,6 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// <summary>
 	/// 等式大小比较參數類
 	/// </summary>
+	[OperationParameter(LayoutSetting.Preview.EqualityComparison)]
 	public class EqualityComparisonParameter : ParameterBase
 	{
 		/// <summary>

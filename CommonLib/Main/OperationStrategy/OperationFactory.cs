@@ -63,12 +63,19 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		public IEnumerable<Lazy<OperationBase, IOperationMetaDataView>> _operations { get; set; }
 
 		/// <summary>
+		/// 運算符參數屬性注入點
+		/// </summary>
+		[ImportMany(RequiredCreationPolicy = CreationPolicy.NonShared)]
+		public IEnumerable<Lazy<ParameterBase, IOperationMetaDataView>> _parameters { get; set; }
+
+		/// <summary>
 		/// 對指定計算式策略實例化
 		/// </summary>
 		/// <param name="preview">策略種類</param>
 		/// <returns>策略實例</returns>
 		public IOperation CreateOperationInstance(LayoutSetting.Preview preview)
 		{
+			_currentPreview = preview;
 			// 運算符對象緩存區管理
 			ConcurrentDictionary<LayoutSetting.Preview, IOperation> cacheStrategy = ComposerCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, IOperation>());
 			// 返回緩衝區中的運算符對象
@@ -79,9 +86,35 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 
 				// 指定運算符并獲取處理類型
 				OperationBase operation = _operations.Where(d => d.Metadata.Layout == preview).First().Value;
+
+
+				ParameterBase parameter = _composer.GetExports<ParameterBase, IOperationMetaDataView>().Where(s => s.Metadata.Identifiers.IndexOf("AC001") >= 0).First().Value;
+
+
 				// 返回該運算符處理類型的實例
 				return (IOperation)Activator.CreateInstance(operation.GetType());
 			});
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="identifiers"></param>
+		/// <returns></returns>
+		public ParameterBase CreateParameterInstance(string identifier)
+		{
+			ParameterBase parameter = _composer.GetExports<ParameterBase, IOperationMetaDataView>().Where(s => s.Metadata.Identifiers.IndexOf(identifier) >= 0).First().Value;
+
+			//ParameterBase parameter = _parameters.Where(d => d.Metadata.Layout == _currentPreview && d.Metadata.Identifiers.IndexOf(identifier) > 0).First().Value;
+			parameter.Identifier = identifier;
+			parameter.InitParameter();
+
+			return parameter;
+		}
+
+		/// <summary>
+		/// 當前計算式識別ID
+		/// </summary>
+		private LayoutSetting.Preview _currentPreview;
 	}
 }

@@ -21,10 +21,16 @@ namespace MyMathSheets.TheFormulaShows
 		/// <summary>
 		/// 
 		/// </summary>
-		public void Structure(T parameter)
+		/// <param name="parameter"></param>
+		public T Structure(LayoutSetting.Preview preview, string identifier)
 		{
-			IOperation instance = Helper.CreateOperationInstance(LayoutSetting.Preview.Arithmetic);
+			IOperation instance = Helper.CreateOperationInstance(preview);
+
+			ParameterBase parameter = Helper.CreateParameterInstance(identifier);
+
 			instance.MarkFormulaList(parameter);
+
+			return parameter as T;
 		}
 
 		/// <summary>

@@ -18,5 +18,11 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <param name="preview">策略種類</param>
 		/// <returns>策略實例</returns>
 		IOperation CreateOperationInstance(LayoutSetting.Preview preview);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="identifier"></param>
+		/// <returns></returns>
+		ParameterBase CreateParameterInstance(string identifier);
 	}
 }

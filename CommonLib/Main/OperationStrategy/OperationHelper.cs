@@ -67,5 +67,15 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			// 計算式策略工廠實例化
 			return OperationFactory.CreateOperationInstance(preview);
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="identifiers"></param>
+		/// <returns></returns>
+		public ParameterBase CreateParameterInstance(string identifier)
+		{
+			return OperationFactory.CreateParameterInstance(identifier);
+		}
 	}
 }
