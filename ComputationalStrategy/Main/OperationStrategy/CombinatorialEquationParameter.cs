@@ -9,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// <summary>
 	/// 組合計算式參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.CombinatorialEquation)]
+	[OperationParameter(LayoutSetting.Preview.CombinatorialEquation, "CE001")]
 	public class CombinatorialEquationParameter : ParameterBase
 	{
 		/// <summary>

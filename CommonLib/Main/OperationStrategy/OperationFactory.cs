@@ -19,6 +19,14 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 以防止重複注入（減少損耗）
 		/// </summary>
 		private bool _composed = false;
+		/// <summary>
+		/// 計算式參數
+		/// </summary>
+		private ParameterBase _operationParameter;
+		/// <summary>
+		/// 當前計算式策略名
+		/// </summary>
+		private LayoutSetting.Preview _currentPreview;
 
 		/// <summary>
 		/// 運算符檢索用的composer
@@ -72,10 +80,12 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 對指定計算式策略實例化
 		/// </summary>
 		/// <param name="preview">策略種類</param>
+		/// <param name="identifier">計算式參數識別ID</param>
 		/// <returns>策略實例</returns>
 		public IOperation CreateOperationInstance(LayoutSetting.Preview preview)
 		{
 			_currentPreview = preview;
+
 			// 運算符對象緩存區管理
 			ConcurrentDictionary<LayoutSetting.Preview, IOperation> cacheStrategy = ComposerCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, IOperation>());
 			// 返回緩衝區中的運算符對象
@@ -87,34 +97,25 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 				// 指定運算符并獲取處理類型
 				OperationBase operation = _operations.Where(d => d.Metadata.Layout == preview).First().Value;
 
-
-				ParameterBase parameter = _composer.GetExports<ParameterBase, IOperationMetaDataView>().Where(s => s.Metadata.Identifiers.IndexOf("AC001") >= 0).First().Value;
-
-
 				// 返回該運算符處理類型的實例
 				return (IOperation)Activator.CreateInstance(operation.GetType());
 			});
 		}
 
 		/// <summary>
-		/// 
+		/// 對指定計算式策略所需參數的對象實例化
 		/// </summary>
-		/// <param name="identifiers"></param>
-		/// <returns></returns>
-		public ParameterBase CreateParameterInstance(string identifier)
+		/// <param name="identifier">參數識別ID</param>
+		/// <returns>對象實例</returns>
+		public ParameterBase CreateOperationParameterInstance(string identifier)
 		{
-			ParameterBase parameter = _composer.GetExports<ParameterBase, IOperationMetaDataView>().Where(s => s.Metadata.Identifiers.IndexOf(identifier) >= 0).First().Value;
+			// 以運算符處理類型和參數識別ID取得相應的參數對象實例
+			_operationParameter = _parameters.Where(d => d.Metadata.Layout == _currentPreview && d.Metadata.Identifiers.IndexOf(identifier) >= 0).First().Value;
+			_operationParameter.Identifier = identifier;
+			// 參數初期化處理（依據Provider配置）
+			_operationParameter.InitParameter();
 
-			//ParameterBase parameter = _parameters.Where(d => d.Metadata.Layout == _currentPreview && d.Metadata.Identifiers.IndexOf(identifier) > 0).First().Value;
-			parameter.Identifier = identifier;
-			parameter.InitParameter();
-
-			return parameter;
+			return _operationParameter;
 		}
-
-		/// <summary>
-		/// 當前計算式識別ID
-		/// </summary>
-		private LayoutSetting.Preview _currentPreview;
 	}
 }

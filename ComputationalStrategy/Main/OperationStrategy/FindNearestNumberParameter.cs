@@ -1,5 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
@@ -7,13 +6,13 @@ using System.Collections.Generic;
 namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
 	/// <summary>
-	/// 等式大小比较參數類
+	/// 尋找最近的數字參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.FindNearestNumber)]
+	[OperationParameter(LayoutSetting.Preview.FindNearestNumber, "FN001|FN002|FN003")]
 	public class FindNearestNumberParameter : ParameterBase
 	{
 		/// <summary>
-		/// 等式大小比较作成并輸出
+		/// 尋找最近的數字作成并輸出
 		/// </summary>
 		public IList<EqualityFormula> Formulas { get; set; }
 		/// <summary>

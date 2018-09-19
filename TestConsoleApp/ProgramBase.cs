@@ -1,12 +1,9 @@
-﻿using MyMathSheets.CommonLib.Composition;
-using MyMathSheets.CommonLib.Main.Item;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.TheFormulaShows;
 using System;
 using System.Linq;
-using System.Collections.Generic;
 using System.Text;
 
 namespace MyMathSheets.TestConsoleApp
@@ -23,14 +20,14 @@ namespace MyMathSheets.TestConsoleApp
 		{
 			Console.OutputEncoding = Encoding.Unicode;
 
-			MakeHtml<ArithmeticParameter> work = new MakeHtml<ArithmeticParameter>();
-			ArithmeticParameter parameter = null;
-			//MakeHtml<List<EqualityFormula>, EqualityComparison> work1 = null;
-			//MakeHtml<List<ConnectionFormula>, ComputingConnection> work2 = null;
-			//MakeHtml<List<MathWordProblemsFormula>, MathWordProblems> work3 = null;
-			//MakeHtml<FruitsLinkageFormula, FruitsLinkage> work4 = null;
-			//MakeHtml<List<EqualityFormula>, FindNearestNumber> work5 = null;
-			//MakeHtml<List<CombinatorialFormula>, CombinatorialEquation> work6 = null;
+			MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
+			ArithmeticParameter acParameter = null;
+			EqualityComparisonParameter ecParameter = null;
+			ComputingConnectionParameter ccParameter = null;
+			MathWordProblemsParameter mpParameter = null;
+			FruitsLinkageParameter flParameter = null;
+			FindNearestNumberParameter fnParameter = null;
+			CombinatorialEquationParameter ceParameter = null;
 
 			bool isShowMenu = true;
 
@@ -82,219 +79,153 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算填空");
 
-						//parameter = new ArithmeticParameter();
-						//parameter.Identifier = "AC001";
-						//parameter.InitParameter();
-
-						parameter = work.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
-						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
+						acParameter = (ArithmeticParameter)work.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
+						Util.CreateOperatorObjectFactory("FormulaWrite", acParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.B:
 						Console.WriteLine();
 						Console.WriteLine("標準加法填空");
 
-						//parameter = new ArithmeticParameter();
-						//parameter.Identifier = "AC002";
-						//parameter.InitParameter();
-
-						parameter = work.Structure(LayoutSetting.Preview.Arithmetic, "AC002");
-						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
+						acParameter = (ArithmeticParameter)work.Structure(LayoutSetting.Preview.Arithmetic, "AC002");
+						Util.CreateOperatorObjectFactory("FormulaWrite", acParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.C:
 						Console.WriteLine();
 						Console.WriteLine("標準減法填空");
 
-						//parameter = new ArithmeticParameter();
-						//parameter.FourOperationsType = FourOperationsType.Standard;
-						//parameter.MaximumLimit = 40;
-						//parameter.NumberOfQuestions = 15;
-						//parameter.QuestionType = QuestionType.GapFilling;
-						//parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Subtraction };
-						//parameter.InitParameter();
-
-						parameter = work.Structure(LayoutSetting.Preview.Arithmetic, "AC003");
-						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
+						acParameter = (ArithmeticParameter)work.Structure(LayoutSetting.Preview.Arithmetic, "AC003");
+						Util.CreateOperatorObjectFactory("FormulaWrite", acParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.D:
 						Console.WriteLine();
 						Console.WriteLine("標準乘法填空");
 
-						//parameter = new ArithmeticParameter();
-						//parameter.FourOperationsType = FourOperationsType.Standard;
-						//parameter.MaximumLimit = 81;
-						//parameter.NumberOfQuestions = 10;
-						//parameter.QuestionType = QuestionType.GapFilling;
-						//parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Multiple };
-						//parameter.InitParameter();
-
-						parameter = work.Structure(LayoutSetting.Preview.Arithmetic, "AC004");
-						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
+						acParameter = (ArithmeticParameter)work.Structure(LayoutSetting.Preview.Arithmetic, "AC004");
+						Util.CreateOperatorObjectFactory("FormulaWrite", acParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.E:
 						Console.WriteLine();
 						Console.WriteLine("標準除法填空");
 
-						//parameter = new ArithmeticParameter();
-						//parameter.FourOperationsType = FourOperationsType.Standard;
-						//parameter.MaximumLimit = 81;
-						//parameter.NumberOfQuestions = 10;
-						//parameter.QuestionType = QuestionType.Standard;
-						//parameter.Signs = new List<SignOfOperation>() { SignOfOperation.Division };
-						//parameter.InitParameter();
-
-						parameter = work.Structure(LayoutSetting.Preview.Arithmetic, "AC005");
-						Util.CreateOperatorObjectFactory<List<Formula>>("FormulaWrite", parameter.Formulas.ToList());
+						acParameter = (ArithmeticParameter)work.Structure(LayoutSetting.Preview.Arithmetic, "AC005");
+						Util.CreateOperatorObjectFactory("FormulaWrite", acParameter.Formulas.ToList());
 						break;
-						/*
 					case ConsoleKey.F:
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算比較");
-						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Random, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.Default, 81, 20);
-						work1.Structure();
-						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
+
+						ecParameter = (EqualityComparisonParameter)work.Structure(LayoutSetting.Preview.EqualityComparison, "EC001");
+						Util.CreateOperatorObjectFactory("EqualityFormulaWrite", ecParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.G:
 						Console.WriteLine();
 						Console.WriteLine("標準加法比較");
-						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 81, 20);
-						work1.Structure();
-						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
+						ecParameter = (EqualityComparisonParameter)work.Structure(LayoutSetting.Preview.EqualityComparison, "EC002");
+						Util.CreateOperatorObjectFactory("EqualityFormulaWrite", ecParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.H:
 						Console.WriteLine();
 						Console.WriteLine("標準減法比較");
-						work1 = new MakeHtml<List<EqualityFormula>, EqualityComparison>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Default, 81, 20);
-						work1.Structure();
-						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("EqualityFormulaWrite", work1.Formulas);
+						ecParameter = (EqualityComparisonParameter)work.Structure(LayoutSetting.Preview.EqualityComparison, "EC003");
+						Util.CreateOperatorObjectFactory("EqualityFormulaWrite", ecParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.I:
 						Console.WriteLine();
 						Console.WriteLine("標準加法運算接龍");
-						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Random, new List<SignOfOperation> { SignOfOperation.Plus, SignOfOperation.Subtraction }, QuestionType.GapFilling, 100, 4);
-						work2.Structure();
-						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
+						ccParameter = (ComputingConnectionParameter)work.Structure(LayoutSetting.Preview.ComputingConnection, "CC001");
+						Util.CreateOperatorObjectFactory("ComputingConnectionWrite", ccParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.J:
 						Console.WriteLine();
 						Console.WriteLine("標準加法運算接龍");
-						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 100, 4);
-						work2.Structure();
-						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
+						ccParameter = (ComputingConnectionParameter)work.Structure(LayoutSetting.Preview.ComputingConnection, "CC002");
+						Util.CreateOperatorObjectFactory("ComputingConnectionWrite", ccParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.K:
 						Console.WriteLine();
 						Console.WriteLine("標準減法運算接龍");
-						work2 = new MakeHtml<List<ConnectionFormula>, ComputingConnection>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 100, 4);
-						work2.Structure();
-						Util.CreateOperatorObjectFactory<List<ConnectionFormula>>("ComputingConnectionWrite", work2.Formulas);
+						ccParameter = (ComputingConnectionParameter)work.Structure(LayoutSetting.Preview.ComputingConnection, "CC003");
+						Util.CreateOperatorObjectFactory("ComputingConnectionWrite", ccParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.L:
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算應用題");
-						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Random,
-																								new List<SignOfOperation>
-																								{
-																									SignOfOperation.Plus,
-																									SignOfOperation.Subtraction,
-																									SignOfOperation.Multiple,
-																									SignOfOperation.Division
-																								}, QuestionType.Default, 50, 10);
-						work3.Structure();
-						Util.CreateOperatorObjectFactory<List<MathWordProblemsFormula>>("MathWordProblemsFormulaWrite", work3.Formulas);
+						mpParameter = (MathWordProblemsParameter)work.Structure(LayoutSetting.Preview.MathWordProblems, "MP001");
+						Util.CreateOperatorObjectFactory("MathWordProblemsFormulaWrite", mpParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.M:
 						Console.WriteLine();
 						Console.WriteLine("加法應用題");
-						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Default, 20, 10);
-						work3.Structure();
-						Util.CreateOperatorObjectFactory<List<MathWordProblemsFormula>>("MathWordProblemsFormulaWrite", work3.Formulas);
+						mpParameter = (MathWordProblemsParameter)work.Structure(LayoutSetting.Preview.MathWordProblems, "MP002");
+						Util.CreateOperatorObjectFactory("MathWordProblemsFormulaWrite", mpParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.N:
 						Console.WriteLine();
 						Console.WriteLine("減法應用題");
-						work3 = new MakeHtml<List<MathWordProblemsFormula>, MathWordProblems>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 20, 10);
-						work3.Structure();
-						Util.CreateOperatorObjectFactory<List<MathWordProblemsFormula>>("MathWordProblemsFormulaWrite", work3.Formulas);
+						mpParameter = (MathWordProblemsParameter)work.Structure(LayoutSetting.Preview.MathWordProblems, "MP003");
+						Util.CreateOperatorObjectFactory("MathWordProblemsFormulaWrite", mpParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.O:
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算連連看");
-						work4 = new MakeHtml<FruitsLinkageFormula, FruitsLinkage>(FourOperationsType.Random,
-																								new List<SignOfOperation>
-																								{
-																									SignOfOperation.Plus,
-																									SignOfOperation.Subtraction
-																								}, QuestionType.Default, 50, 10);
-						work4.Structure();
-						Util.CreateOperatorObjectFactory<FruitsLinkageFormula>("FruitsLinkageWrite", work4.Formulas);
+						flParameter = (FruitsLinkageParameter)work.Structure(LayoutSetting.Preview.FruitsLinkage, "FL001");
+						Util.CreateOperatorObjectFactory("FruitsLinkageWrite", flParameter.Formulas);
 						break;
 
 					case ConsoleKey.P:
 						Console.WriteLine();
 						Console.WriteLine("加法連連看");
-						work4 = new MakeHtml<FruitsLinkageFormula, FruitsLinkage>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 50, 10);
-						work4.Structure();
-						Util.CreateOperatorObjectFactory<FruitsLinkageFormula>("FruitsLinkageWrite", work4.Formulas);
+						flParameter = (FruitsLinkageParameter)work.Structure(LayoutSetting.Preview.FruitsLinkage, "FL002");
+						Util.CreateOperatorObjectFactory("FruitsLinkageWrite", flParameter.Formulas);
 						break;
 
 					case ConsoleKey.Q:
 						Console.WriteLine();
 						Console.WriteLine("減法連連看");
-						work4 = new MakeHtml<FruitsLinkageFormula, FruitsLinkage>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.Default, 40, 5);
-						work4.Structure();
-						Util.CreateOperatorObjectFactory<FruitsLinkageFormula>("FruitsLinkageWrite", work4.Formulas);
+						flParameter = (FruitsLinkageParameter)work.Structure(LayoutSetting.Preview.FruitsLinkage, "FL003");
+						Util.CreateOperatorObjectFactory("FruitsLinkageWrite", flParameter.Formulas);
 						break;
 
 					case ConsoleKey.R:
 						Console.WriteLine();
 						Console.WriteLine("尋找最近的數字");
-						work5 = new MakeHtml<List<EqualityFormula>, FindNearestNumber>(FourOperationsType.Random,
-																								new List<SignOfOperation>
-																								{
-																									SignOfOperation.Plus,
-																									SignOfOperation.Subtraction
-																								}, QuestionType.GapFilling, 50, 6);
-						work5.Structure();
-						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("FindNearestNumberWrite", work5.Formulas);
+						fnParameter = (FindNearestNumberParameter)work.Structure(LayoutSetting.Preview.FindNearestNumber, "FN001");
+						Util.CreateOperatorObjectFactory("FindNearestNumberWrite", fnParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.S:
 						Console.WriteLine();
 						Console.WriteLine("加法");
-						work5 = new MakeHtml<List<EqualityFormula>, FindNearestNumber>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.GapFilling, 50, 3);
-						work5.Structure();
-						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("FindNearestNumberWrite", work5.Formulas);
+						fnParameter = (FindNearestNumberParameter)work.Structure(LayoutSetting.Preview.FindNearestNumber, "FN002");
+						Util.CreateOperatorObjectFactory("FindNearestNumberWrite", fnParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.T:
 						Console.WriteLine();
 						Console.WriteLine("減法");
-						work5 = new MakeHtml<List<EqualityFormula>, FindNearestNumber>(FourOperationsType.Standard, SignOfOperation.Subtraction, QuestionType.GapFilling, 40, 5);
-						work5.Structure();
-						Util.CreateOperatorObjectFactory<List<EqualityFormula>>("FindNearestNumberWrite", work5.Formulas);
+						fnParameter = (FindNearestNumberParameter)work.Structure(LayoutSetting.Preview.FindNearestNumber, "FN003");
+						Util.CreateOperatorObjectFactory("FindNearestNumberWrite", fnParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.U:
 						Console.WriteLine();
 						Console.WriteLine("算式組合");
-						work6 = new MakeHtml<List<CombinatorialFormula>, CombinatorialEquation>(FourOperationsType.Standard, SignOfOperation.Plus, QuestionType.Default, 40, 5);
-						work6.Structure();
-						Util.CreateOperatorObjectFactory<List<CombinatorialFormula>>("CombinatorialFormulaWrite", work6.Formulas);
+						ceParameter = (CombinatorialEquationParameter)work.Structure(LayoutSetting.Preview.CombinatorialEquation, "CE001");
+						Util.CreateOperatorObjectFactory("CombinatorialFormulaWrite", ceParameter.Formulas.ToList());
 						break;
-						*/
 
 					case ConsoleKey.D9:
 						isShowMenu = true;

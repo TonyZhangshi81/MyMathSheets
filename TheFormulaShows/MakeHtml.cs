@@ -24,13 +24,7 @@ namespace MyMathSheets.TheFormulaShows
 		/// <param name="parameter"></param>
 		public T Structure(LayoutSetting.Preview preview, string identifier)
 		{
-			IOperation instance = Helper.CreateOperationInstance(preview);
-
-			ParameterBase parameter = Helper.CreateParameterInstance(identifier);
-
-			instance.MarkFormulaList(parameter);
-
-			return parameter as T;
+			return Helper.Structure(preview, identifier) as T;
 		}
 
 		/// <summary>

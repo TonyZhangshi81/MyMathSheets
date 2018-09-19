@@ -55,27 +55,35 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		}
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="preview">策略種類</param>
+		/// <param name="identifier">參數識別ID</param>
+		/// <returns></returns>
+		public ParameterBase Structure(LayoutSetting.Preview preview, string identifier)
+		{
+			// 計算式策略
+			IOperation instance = CreateOperationInstance(preview);
+			// 計算式所需參數
+			ParameterBase parameter = OperationFactory.CreateOperationParameterInstance(identifier);
+			// 構築計算式集合
+			instance.MarkFormulaList(parameter);
+
+			return parameter;
+		}
+
+		/// <summary>
 		/// 對指定計算式策略實例化
 		/// </summary>
 		/// <param name="preview">策略種類</param>
 		/// <returns>策略實例</returns>
-		public IOperation CreateOperationInstance(LayoutSetting.Preview preview)
+		private IOperation CreateOperationInstance(LayoutSetting.Preview preview)
 		{
 			// 本類中的屬性注入執行
 			ComposeThis();
 
 			// 計算式策略工廠實例化
 			return OperationFactory.CreateOperationInstance(preview);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="identifiers"></param>
-		/// <returns></returns>
-		public ParameterBase CreateParameterInstance(string identifier)
-		{
-			return OperationFactory.CreateParameterInstance(identifier);
 		}
 	}
 }

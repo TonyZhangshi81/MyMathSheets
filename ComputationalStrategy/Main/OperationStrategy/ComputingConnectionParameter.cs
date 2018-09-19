@@ -9,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// <summary>
 	/// 等式接龍參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.ComputingConnection)]
+	[OperationParameter(LayoutSetting.Preview.ComputingConnection, "CC001|CC002|CC003")]
 	public class ComputingConnectionParameter : ParameterBase
 	{
 		/// <summary>

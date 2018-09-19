@@ -1,15 +1,13 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
-using System.Collections.Generic;
 
 namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
 	/// <summary>
 	/// 水果連連看參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.FruitsLinkage)]
+	[OperationParameter(LayoutSetting.Preview.FruitsLinkage, "FL001|FL002|FL003")]
 	public class FruitsLinkageParameter : ParameterBase
 	{
 		/// <summary>

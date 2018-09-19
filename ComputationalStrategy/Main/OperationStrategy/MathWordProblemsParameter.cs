@@ -1,5 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
@@ -7,15 +6,15 @@ using System.Collections.Generic;
 namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
 	/// <summary>
-	/// 水果連連看參數類
+	/// 應用題參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.MathWordProblems)]
+	[OperationParameter(LayoutSetting.Preview.MathWordProblems, "MP001|MP002|MP003")]
 	public class MathWordProblemsParameter : ParameterBase
 	{
 		/// <summary>
-		/// 水果連連看作成并輸出
+		/// 應用題作成并輸出
 		/// </summary>
-		public List<MathWordProblemsFormula> Formulas { get; set; }
+		public IList<MathWordProblemsFormula> Formulas { get; set; }
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

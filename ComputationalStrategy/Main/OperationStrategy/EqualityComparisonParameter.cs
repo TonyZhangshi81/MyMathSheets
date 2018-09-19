@@ -9,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	/// <summary>
 	/// 等式大小比较參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.EqualityComparison)]
+	[OperationParameter(LayoutSetting.Preview.EqualityComparison, "EC001|EC002|EC003")]
 	public class EqualityComparisonParameter : ParameterBase
 	{
 		/// <summary>
