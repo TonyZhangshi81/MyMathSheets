@@ -9,8 +9,8 @@
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="formulas"></param>
+		/// <param name="parameter"></param>
 		/// <returns></returns>
-		string MakeHtml(T formulas);
+		string MakeHtml(T parameter);
 	}
 }

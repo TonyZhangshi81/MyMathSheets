@@ -1,8 +1,9 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.TheFormulaShows.Attributes;
-using System.Collections.Generic;
 using System.Text;
 
 namespace MyMathSheets.TheFormulaShows.Support
@@ -16,16 +17,18 @@ namespace MyMathSheets.TheFormulaShows.Support
 	[Substitute("//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->", "MathSheets.ComputingConnection.theirPapers();")]
 	[Substitute("//<!--COMPUTINGCONNECTIONPRINTSETTING-->", "MathSheets.ComputingConnection.printSetting();")]
 	[Substitute("//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->", "MathSheets.ComputingConnection.printAfterSetting();")]
-	public class ComputingConnectionHtmlSupport : IMakeHtml<List<ConnectionFormula>>
+	public class ComputingConnectionHtmlSupport : IMakeHtml<ParameterBase>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="formulas"></param>
 		/// <returns></returns>
-		public string MakeHtml(List<ConnectionFormula> formulas)
+		public string MakeHtml(ParameterBase parameter)
 		{
-			if (formulas.Count == 0)
+			ComputingConnectionParameter p = parameter as ComputingConnectionParameter;
+
+			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;
 			}
@@ -33,7 +36,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 			int controlIndex = 0;
 			int parentControlIndex = 0;
 			StringBuilder html = new StringBuilder();
-			foreach (ConnectionFormula items in formulas)
+			foreach (ConnectionFormula items in p.Formulas)
 			{
 				html.AppendLine("<div class=\"row text-center row-margin-top\">");
 				html.AppendLine("<div class=\"col-md-10 form-inline\">");

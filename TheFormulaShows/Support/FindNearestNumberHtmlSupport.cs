@@ -1,7 +1,8 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.TheFormulaShows.Attributes;
-using System.Collections.Generic;
 using System.Text;
 
 namespace MyMathSheets.TheFormulaShows.Support
@@ -15,16 +16,18 @@ namespace MyMathSheets.TheFormulaShows.Support
 	[Substitute("//<!--FINDNEARESTNUMBERTHEIRPAPERS-->", "MathSheets.FindNearestNumber.theirPapers();")]
 	[Substitute("//<!--FINDNEARESTNUMBERPRINTSETTING-->", "MathSheets.FindNearestNumber.printSetting();")]
 	[Substitute("//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->", "MathSheets.FindNearestNumber.printAfterSetting();")]
-	public class FindNearestNumberHtmlSupport : IMakeHtml<List<EqualityFormula>>
+	public class FindNearestNumberHtmlSupport : IMakeHtml<ParameterBase>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="formulas"></param>
 		/// <returns></returns>
-		public string MakeHtml(List<EqualityFormula> formulas)
+		public string MakeHtml(ParameterBase parameter)
 		{
-			if (formulas.Count == 0)
+			FindNearestNumberParameter p = parameter as FindNearestNumberParameter;
+
+			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;
 			}
@@ -36,7 +39,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 			StringBuilder html = new StringBuilder();
 			StringBuilder rowHtml = new StringBuilder();
 			StringBuilder colHtml = new StringBuilder();
-			foreach (EqualityFormula item in formulas)
+			foreach (EqualityFormula item in p.Formulas)
 			{
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-4 form-inline\">");

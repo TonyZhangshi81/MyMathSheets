@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 	[Substitute("//<!--FRUITSLINKAGEREADY-->", "__fruitsArrayHiddenControlId = 'hidFruitsArray';MathSheets.FruitsLinkage.ready('divFruitDrag', 'divContainer');")]
 	[Substitute("//<!--FRUITSLINKAGEMAKECORRECTIONS-->", "fault += MathSheets.FruitsLinkage.makeCorrections();")]
 	[Substitute("//<!--FRUITSLINKAGETHEIRPAPERS-->", "MathSheets.FruitsLinkage.theirPapers();")]
-	public class FruitsLinkageHtmlSupport : IMakeHtml<FruitsLinkageFormula>
+	public class FruitsLinkageHtmlSupport : IMakeHtml<ParameterBase>
 	{
 		/// <summary>
 		/// 水果序號列表
@@ -83,11 +84,13 @@ namespace MyMathSheets.TheFormulaShows.Support
 		/// <summary>
 		/// 水果連連看HTML作成
 		/// </summary>
-		/// <param name="formulas">相關計算式</param>
+		/// <param name="parameter">相關計算式</param>
 		/// <returns>HTML語句</returns>
-		public string MakeHtml(FruitsLinkageFormula formulas)
+		public string MakeHtml(ParameterBase parameter)
 		{
-			if (formulas.FruitsFormulas.Count == 0)
+			FruitsLinkageParameter p = parameter as FruitsLinkageParameter;
+
+			if (p.Formulas.FruitsFormulas.Count == 0)
 			{
 				return string.Empty;
 			}
@@ -101,7 +104,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 
 			int index = 0;
 			// 繪製水果算是區
-			formulas.FruitsFormulas.ToList().ForEach(d =>
+			p.Formulas.FruitsFormulas.ToList().ForEach(d =>
 			{
 				if (index >= 5)
 				{
@@ -142,10 +145,10 @@ namespace MyMathSheets.TheFormulaShows.Support
 			}
 
 			int seat = 0;
-			formulas.Sort.ToList().ForEach(d =>
+			p.Formulas.Sort.ToList().ForEach(d =>
 			{
 				// 容器對象
-				Formula container = formulas.ContainersFormulas[d];
+				Formula container = p.Formulas.ContainersFormulas[d];
 				// 容器Div區域
 				divContainerHtml.AppendLine(string.Format("<div id=\"divContainer{0}\" class=\"divContainer divSeat{1}\">", seat, seat));
 				divContainerHtml.AppendLine("<h5>");
@@ -168,7 +171,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 			easyuiPanelHtml.AppendLine("</div>");
 
 			// 放置範圍上下限值設定
-			html.AppendFormat("<input id=\"hidFruitsArray\" type=\"hidden\" value=\"{0}\"/>", GetFruitsArray(formulas.Seats));
+			html.AppendFormat("<input id=\"hidFruitsArray\" type=\"hidden\" value=\"{0}\"/>", GetFruitsArray(p.Formulas.Seats));
 			// 繪製水果算式區
 			html.Append(fruitsFormulasLeftHtml.ToString());
 			html.Append(fruitsFormulasRightHtml.ToString());

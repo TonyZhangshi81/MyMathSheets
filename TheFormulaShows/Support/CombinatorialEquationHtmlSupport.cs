@@ -1,6 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,16 +19,18 @@ namespace MyMathSheets.TheFormulaShows.Support
 	[Substitute("//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->", "MathSheets.CombinatorialEquation.theirPapers();")]
 	[Substitute("//<!--COMBINATORIALEQUATIONPRINTSETTING-->", "MathSheets.CombinatorialEquation.printSetting();")]
 	[Substitute("//<!--COMBINATORIALEQUATIONPRINTAFTERSETTING-->", "MathSheets.CombinatorialEquation.printAfterSetting();")]
-	public class CombinatorialEquationHtmlSupport : IMakeHtml<List<CombinatorialFormula>>
+	public class CombinatorialEquationHtmlSupport : IMakeHtml<ParameterBase>
 	{
 		/// <summary>
 		/// 算式組合HTML作成
 		/// </summary>
-		/// <param name="formulas">相關計算式</param>
+		/// <param name="parameter">相關計算式</param>
 		/// <returns>HTML語句</returns>
-		public string MakeHtml(List<CombinatorialFormula> formulas)
+		public string MakeHtml(ParameterBase parameter)
 		{
-			if (formulas.Count == 0)
+			CombinatorialEquationParameter p = parameter as CombinatorialEquationParameter;
+
+			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;
 			}
@@ -39,7 +43,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 			StringBuilder rowHtml = new StringBuilder();
 			StringBuilder listGroupHtml = new StringBuilder();
 
-			foreach (CombinatorialFormula item in formulas)
+			foreach (CombinatorialFormula item in p.Formulas)
 			{
 				isRowHtmlClosed = false;
 

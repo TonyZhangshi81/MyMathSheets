@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.TheFormulaShows.Attributes;
-using System.Collections.Generic;
 using System.Text;
 
 namespace MyMathSheets.TheFormulaShows.Support
@@ -15,16 +15,18 @@ namespace MyMathSheets.TheFormulaShows.Support
 	[Substitute("//<!--MATHWORDPROBLEMSTHEIRPAPERS-->", "MathSheets.MathWordProblems.theirPapers();")]
 	[Substitute("//<!--MATHWORDPROBLEMSPRINTSETTING-->", "MathSheets.MathWordProblems.printSetting();")]
 	[Substitute("//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->", "MathSheets.MathWordProblems.printAfterSetting();")]
-	public class MathWordProblemsHtmlSupport : IMakeHtml<List<MathWordProblemsFormula>>
+	public class MathWordProblemsHtmlSupport : IMakeHtml<ParameterBase>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="formulas"></param>
+		/// <param name="parameter"></param>
 		/// <returns></returns>
-		public string MakeHtml(List<MathWordProblemsFormula> formulas)
+		public string MakeHtml(ParameterBase parameter)
 		{
-			if (formulas.Count == 0)
+			MathWordProblemsParameter p = parameter as MathWordProblemsParameter;
+
+			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;
 			}
@@ -32,7 +34,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 			int parentControlIndex = 0;
 			StringBuilder html = new StringBuilder();
 			StringBuilder rowHtml = new StringBuilder();
-			foreach (MathWordProblemsFormula item in formulas)
+			foreach (MathWordProblemsFormula item in p.Formulas)
 			{
 				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
 				rowHtml.AppendLine("<h5>");
@@ -57,7 +59,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 				parentControlIndex++;
 			}
 
-			if(formulas.Count > 0)
+			if (p.Formulas.Count > 0)
 			{
 				html.AppendLine("<div class=\"row text-center row-margin-top\">");
 				html.Append(rowHtml.ToString());

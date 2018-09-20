@@ -1,8 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.TheFormulaShows.Attributes;
-using System.Collections.Generic;
 using System.Text;
 
 namespace MyMathSheets.TheFormulaShows.Support
@@ -16,16 +16,18 @@ namespace MyMathSheets.TheFormulaShows.Support
 	[Substitute("//<!--ARITHMETICTHEIRPAPERS-->", "MathSheets.Arithmetic.theirPapers();")]
 	[Substitute("//<!--ARITHMETICPRINTSETTING-->", "MathSheets.Arithmetic.printSetting();")]
 	[Substitute("//<!--ARITHMETICPRINTAFTERSETTING-->", "MathSheets.Arithmetic.printAfterSetting();")]
-	public class ArithmeticHtmlSupport : IMakeHtml<List<Formula>>
+	public class ArithmeticHtmlSupport : IMakeHtml<ParameterBase>
 	{
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="formulas"></param>
+		/// <param name="parameter"></param>
 		/// <returns></returns>
-		public string MakeHtml(List<Formula> formulas)
+		public string MakeHtml(ParameterBase parameter)
 		{
-			if (formulas.Count == 0)
+			ArithmeticParameter p = parameter as ArithmeticParameter;
+
+			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;
 			}
@@ -37,7 +39,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 			StringBuilder html = new StringBuilder();
 			StringBuilder rowHtml = new StringBuilder();
 			StringBuilder colHtml = new StringBuilder();
-			foreach (Formula item in formulas)
+			foreach (Formula item in p.Formulas)
 			{
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-3 form-inline\">");
