@@ -36,7 +36,11 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 運算符處理類型緩存區
 		/// </summary>
-		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<LayoutSetting.Preview, IOperation>> ComposerCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<LayoutSetting.Preview, IOperation>>();
+		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<LayoutSetting.Preview, IOperation>> OperationCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<LayoutSetting.Preview, IOperation>>();
+		/// <summary>
+		/// 運算符參數對象類型緩存區
+		/// </summary>
+		private static readonly ConcurrentDictionary<LayoutSetting.Preview, ConcurrentDictionary<string, ParameterBase>> ParameterCache = new ConcurrentDictionary<LayoutSetting.Preview, ConcurrentDictionary<string, ParameterBase>>();
 
 		/// <summary>
 		/// 構造函數
@@ -87,9 +91,9 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			_currentPreview = preview;
 
 			// 運算符對象緩存區管理
-			ConcurrentDictionary<LayoutSetting.Preview, IOperation> cacheStrategy = ComposerCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, IOperation>());
+			ConcurrentDictionary<LayoutSetting.Preview, IOperation> cache = OperationCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, IOperation>());
 			// 返回緩衝區中的運算符對象
-			return cacheStrategy.GetOrAdd(preview, (o) =>
+			return cache.GetOrAdd(preview, (o) =>
 			{
 				// 在MEF容器中收集本類的屬性信息（實際情況屬性只注入一次）
 				ComposeThis();
@@ -109,9 +113,19 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <returns>對象實例</returns>
 		public ParameterBase CreateOperationParameterInstance(string identifier)
 		{
-			// 以運算符處理類型和參數識別ID取得相應的參數對象實例
-			_operationParameter = _parameters.Where(d => d.Metadata.Layout == _currentPreview && d.Metadata.Identifiers.IndexOf(identifier) >= 0).First().Value;
-			_operationParameter.Identifier = identifier;
+			// 運算符參數對象緩存區管理
+			ConcurrentDictionary<string, ParameterBase> cache = ParameterCache.GetOrAdd(_currentPreview, _ => new ConcurrentDictionary<string, ParameterBase>());
+
+			string key = string.Format(_currentPreview.ToString() + "." + identifier);
+			// 返回緩衝區中的運算符參數對象
+			_operationParameter = cache.GetOrAdd(key, (o) =>
+			{
+				// 以運算符處理類型和參數識別ID取得相應的參數對象實例
+				ParameterBase parameter = _parameters.Where(d => d.Metadata.Layout == _currentPreview && d.Metadata.Identifiers.IndexOf(identifier) >= 0).First().Value;
+				parameter.Identifier = identifier;
+				return parameter;
+			});
+
 			// 參數初期化處理（依據Provider配置）
 			_operationParameter.InitParameter();
 
