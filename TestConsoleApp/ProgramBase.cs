@@ -80,7 +80,7 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("隨機四則運算填空");
 
 						acParameter = (ArithmeticParameter)work.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
-						Util.CreateOperatorObjectFactory("FormulaWrite", acParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.B:
@@ -88,7 +88,7 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("標準加法填空");
 
 						acParameter = (ArithmeticParameter)work.Structure(LayoutSetting.Preview.Arithmetic, "AC002");
-						Util.CreateOperatorObjectFactory("FormulaWrite", acParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.C:
@@ -96,7 +96,7 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("標準減法填空");
 
 						acParameter = (ArithmeticParameter)work.Structure(LayoutSetting.Preview.Arithmetic, "AC003");
-						Util.CreateOperatorObjectFactory("FormulaWrite", acParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.D:
@@ -104,7 +104,7 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("標準乘法填空");
 
 						acParameter = (ArithmeticParameter)work.Structure(LayoutSetting.Preview.Arithmetic, "AC004");
-						Util.CreateOperatorObjectFactory("FormulaWrite", acParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.E:
@@ -112,119 +112,119 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("標準除法填空");
 
 						acParameter = (ArithmeticParameter)work.Structure(LayoutSetting.Preview.Arithmetic, "AC005");
-						Util.CreateOperatorObjectFactory("FormulaWrite", acParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 					case ConsoleKey.F:
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算比較");
 
 						ecParameter = (EqualityComparisonParameter)work.Structure(LayoutSetting.Preview.EqualityComparison, "EC001");
-						Util.CreateOperatorObjectFactory("EqualityFormulaWrite", ecParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.G:
 						Console.WriteLine();
 						Console.WriteLine("標準加法比較");
 						ecParameter = (EqualityComparisonParameter)work.Structure(LayoutSetting.Preview.EqualityComparison, "EC002");
-						Util.CreateOperatorObjectFactory("EqualityFormulaWrite", ecParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.H:
 						Console.WriteLine();
 						Console.WriteLine("標準減法比較");
 						ecParameter = (EqualityComparisonParameter)work.Structure(LayoutSetting.Preview.EqualityComparison, "EC003");
-						Util.CreateOperatorObjectFactory("EqualityFormulaWrite", ecParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.I:
 						Console.WriteLine();
 						Console.WriteLine("標準加法運算接龍");
 						ccParameter = (ComputingConnectionParameter)work.Structure(LayoutSetting.Preview.ComputingConnection, "CC001");
-						Util.CreateOperatorObjectFactory("ComputingConnectionWrite", ccParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.J:
 						Console.WriteLine();
 						Console.WriteLine("標準加法運算接龍");
 						ccParameter = (ComputingConnectionParameter)work.Structure(LayoutSetting.Preview.ComputingConnection, "CC002");
-						Util.CreateOperatorObjectFactory("ComputingConnectionWrite", ccParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.K:
 						Console.WriteLine();
 						Console.WriteLine("標準減法運算接龍");
 						ccParameter = (ComputingConnectionParameter)work.Structure(LayoutSetting.Preview.ComputingConnection, "CC003");
-						Util.CreateOperatorObjectFactory("ComputingConnectionWrite", ccParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.L:
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算應用題");
 						mpParameter = (MathWordProblemsParameter)work.Structure(LayoutSetting.Preview.MathWordProblems, "MP001");
-						Util.CreateOperatorObjectFactory("MathWordProblemsFormulaWrite", mpParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.MathWordProblems, mpParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.M:
 						Console.WriteLine();
 						Console.WriteLine("加法應用題");
 						mpParameter = (MathWordProblemsParameter)work.Structure(LayoutSetting.Preview.MathWordProblems, "MP002");
-						Util.CreateOperatorObjectFactory("MathWordProblemsFormulaWrite", mpParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.MathWordProblems, mpParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.N:
 						Console.WriteLine();
 						Console.WriteLine("減法應用題");
 						mpParameter = (MathWordProblemsParameter)work.Structure(LayoutSetting.Preview.MathWordProblems, "MP003");
-						Util.CreateOperatorObjectFactory("MathWordProblemsFormulaWrite", mpParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.MathWordProblems, mpParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.O:
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算連連看");
 						flParameter = (FruitsLinkageParameter)work.Structure(LayoutSetting.Preview.FruitsLinkage, "FL001");
-						Util.CreateOperatorObjectFactory("FruitsLinkageWrite", flParameter.Formulas);
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
 						break;
 
 					case ConsoleKey.P:
 						Console.WriteLine();
 						Console.WriteLine("加法連連看");
 						flParameter = (FruitsLinkageParameter)work.Structure(LayoutSetting.Preview.FruitsLinkage, "FL002");
-						Util.CreateOperatorObjectFactory("FruitsLinkageWrite", flParameter.Formulas);
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
 						break;
 
 					case ConsoleKey.Q:
 						Console.WriteLine();
 						Console.WriteLine("減法連連看");
 						flParameter = (FruitsLinkageParameter)work.Structure(LayoutSetting.Preview.FruitsLinkage, "FL003");
-						Util.CreateOperatorObjectFactory("FruitsLinkageWrite", flParameter.Formulas);
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
 						break;
 
 					case ConsoleKey.R:
 						Console.WriteLine();
 						Console.WriteLine("尋找最近的數字");
 						fnParameter = (FindNearestNumberParameter)work.Structure(LayoutSetting.Preview.FindNearestNumber, "FN001");
-						Util.CreateOperatorObjectFactory("FindNearestNumberWrite", fnParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.FindNearestNumber, fnParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.S:
 						Console.WriteLine();
 						Console.WriteLine("加法");
 						fnParameter = (FindNearestNumberParameter)work.Structure(LayoutSetting.Preview.FindNearestNumber, "FN002");
-						Util.CreateOperatorObjectFactory("FindNearestNumberWrite", fnParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.FindNearestNumber, fnParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.T:
 						Console.WriteLine();
 						Console.WriteLine("減法");
 						fnParameter = (FindNearestNumberParameter)work.Structure(LayoutSetting.Preview.FindNearestNumber, "FN003");
-						Util.CreateOperatorObjectFactory("FindNearestNumberWrite", fnParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.FindNearestNumber, fnParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.U:
 						Console.WriteLine();
 						Console.WriteLine("算式組合");
 						ceParameter = (CombinatorialEquationParameter)work.Structure(LayoutSetting.Preview.CombinatorialEquation, "CE001");
-						Util.CreateOperatorObjectFactory("CombinatorialFormulaWrite", ceParameter.Formulas.ToList());
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.CombinatorialEquation, ceParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.D9:

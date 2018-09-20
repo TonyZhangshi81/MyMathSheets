@@ -30,9 +30,9 @@ namespace MyMathSheets.TestConsoleApp
 		/// <summary>
 		/// spring对象工厂实例作成（设定文件导入）
 		/// </summary>
-		/// <param name="name"></param>
+		/// <param name="preview"></param>
 		/// <param name="formulas"></param>
-		public static void CreateOperatorObjectFactory<T>(string name, T formulas)
+		public static void CreateOperatorObjectFactory<T>(LayoutSetting.Preview preview, T formulas)
 		{
 			if (_objectFactory == null)
 			{
@@ -41,7 +41,7 @@ namespace MyMathSheets.TestConsoleApp
 				_objectFactory = new XmlObjectFactory(input);
 			}
 
-			IConsoleWrite<T> instance = _objectFactory.GetObject(name) as IConsoleWrite<T>;
+			IConsoleWrite<T> instance = _objectFactory.GetObject(preview.ToString()) as IConsoleWrite<T>;
 			instance.ConsoleFormulas(formulas);
 		}
 	}

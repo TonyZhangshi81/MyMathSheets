@@ -70,6 +70,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Config\ParameterSetting.json" />
     <None Include="Config\Problems.json" />
     <None Include="HtmlTemplate\HTMLPage" />
     <None Include="Properties\Settings.settings">
