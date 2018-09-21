@@ -5,11 +5,12 @@ using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
 	/// <summary>
-	/// 
+	/// 等式接龍題型
 	/// </summary>
 	[Operation(LayoutSetting.Preview.ComputingConnection)]
 	public class ComputingConnection : OperationBase
@@ -44,6 +45,11 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					for (var j = 0; j < sectionNumber; j++)
 					{
 						Formula formula = strategy.CreateFormula(p.MaximumLimit, previousFormula, p.QuestionType);
+						if (CheckIsNeedInverseMethod(p.Formulas, formula))
+						{
+							i--;
+							continue;
+						}
 						previousFormula = formula;
 
 						formulas.Add(formula);
@@ -70,6 +76,13 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 						strategy = CalculateManager(sign);
 
 						Formula formula = strategy.CreateFormula(p.MaximumLimit, previousFormula, p.QuestionType);
+
+						if (CheckIsNeedInverseMethod(p.Formulas, formula))
+						{
+							i--;
+							continue;
+						}
+
 						previousFormula = formula;
 
 						formulas.Add(formula);
@@ -87,6 +100,37 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		{
 			RandomNumberComposition number = new RandomNumberComposition(3, 5);
 			return number.GetRandomNumber();
+		}
+
+		/// <summary>
+		/// 判定是否需要反推并重新作成計算式
+		/// </summary>
+		/// <remarks>
+		/// 情況1：算式存在一致
+		/// 情況2：全零的情況
+		/// </remarks>
+		/// <param name="preFormulas">已得到的算式</param>
+		/// <param name="currentFormula">當前算式</param>
+		/// <returns>需要反推：true  正常情況: false</returns>
+		private bool CheckIsNeedInverseMethod(IList<ConnectionFormula> preFormulas, Formula currentFormula)
+		{
+			// 全零的情況
+			if (currentFormula.LeftParameter == 0 && currentFormula.RightParameter == 0 && currentFormula.Answer == 0)
+			{
+				return true;
+			}
+			// 算式存在一致
+			preFormulas.ToList().Any(d => {
+				if (d.ConfixFormulas.ToList().Any(m => m.LeftParameter == currentFormula.LeftParameter
+					&& m.RightParameter == currentFormula.RightParameter
+					&& m.Answer == currentFormula.Answer
+					&& m.Sign == currentFormula.Sign))
+				{
+					return true;
+				};
+				return false;
+			});			
+			return false;
 		}
 	}
 }

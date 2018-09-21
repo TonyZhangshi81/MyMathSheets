@@ -35,6 +35,14 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					Formula leftFormula = strategy.CreateFormula(p.MaximumLimit, p.QuestionType);
 					// 关系符右边计算式
 					Formula rightFormula = strategy.CreateFormula(p.MaximumLimit, p.QuestionType);
+
+					// 判定是否需要反推并重新作成計算式
+					if (CheckIsNeedInverseMethod(leftFormula, rightFormula))
+					{
+						i--;
+						continue;
+					}
+
 					// 計算式作成
 					PushFormulas(p, leftFormula, rightFormula);
 				}
@@ -48,6 +56,14 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					Formula leftFormula = GetFormulaForRandomNumber(p.Signs, p.MaximumLimit, p.QuestionType);
 					// 关系符右边计算式
 					Formula rightFormula = GetFormulaForRandomNumber(p.Signs, p.MaximumLimit, p.QuestionType);
+
+					// 判定是否需要反推并重新作成計算式
+					if (CheckIsNeedInverseMethod(leftFormula, rightFormula))
+					{
+						i--;
+						continue;
+					}
+
 					// 計算式作成
 					PushFormulas(p, leftFormula, rightFormula);
 				}
@@ -63,12 +79,12 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		private void PushFormulas(EqualityComparisonParameter p, Formula leftFormula, Formula rightFormula)
 		{
 			// 計算式作成
-		p.Formulas.Add(new EqualityFormula()
+			p.Formulas.Add(new EqualityFormula()
 			{
 				LeftFormula = leftFormula,
 				RightFormula = rightFormula,
 				Answer = leftFormula.Answer > rightFormula.Answer ? SignOfCompare.Greater :
-							leftFormula.Answer < rightFormula.Answer ? SignOfCompare.Less : SignOfCompare.Equal
+								leftFormula.Answer < rightFormula.Answer ? SignOfCompare.Less : SignOfCompare.Equal
 			});
 		}
 
@@ -85,6 +101,30 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 			ICalculate strategy = CalculateManager(sign);
 
 			return strategy.CreateFormula(maximumLimit, questionType);
+		}
+
+		/// <summary>
+		/// 判定是否需要反推并重新作成計算式
+		/// </summary>
+		/// <remarks>
+		/// 情況1：全零的情況
+		/// </remarks>
+		/// <param name="leftFormula">左邊算式</param>
+		/// <param name="rightFormula">右邊算式</param>
+		/// <returns>需要反推：true  正常情況: false</returns>
+		private bool CheckIsNeedInverseMethod(Formula leftFormula, Formula rightFormula)
+		{
+			// 全零的情況
+			if (leftFormula.LeftParameter == 0 && leftFormula.RightParameter == 0 && leftFormula.Answer == 0)
+			{
+				return true;
+			}
+			// 全零的情況
+			if (rightFormula.LeftParameter == 0 && rightFormula.RightParameter == 0 && rightFormula.Answer == 0)
+			{
+				return true;
+			}
+			return false;
 		}
 	}
 }
