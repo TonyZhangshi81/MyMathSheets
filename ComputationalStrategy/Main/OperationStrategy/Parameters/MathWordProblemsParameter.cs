@@ -3,18 +3,18 @@ using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
+namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter
 {
 	/// <summary>
-	/// 尋找最近的數字參數類
+	/// 應用題參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.FindNearestNumber, "FN001|FN002|FN003")]
-	public class FindNearestNumberParameter : ParameterBase
+	[OperationParameter(LayoutSetting.Preview.MathWordProblems, "MP001|MP002|MP003")]
+	public class MathWordProblemsParameter : ParameterBase
 	{
 		/// <summary>
-		/// 尋找最近的數字作成并輸出
+		/// 應用題作成并輸出
 		/// </summary>
-		public IList<EqualityFormula> Formulas { get; set; }
+		public IList<MathWordProblemsFormula> Formulas { get; set; }
 		/// <summary>
 		/// 初期化參數
 		/// </summary>
@@ -23,7 +23,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 			base.InitParameter();
 
 			// 集合實例化
-			Formulas = new List<EqualityFormula>();
+			Formulas = new List<MathWordProblemsFormula>();
 		}
 	}
 }

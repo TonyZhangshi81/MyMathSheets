@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System.Text;
 

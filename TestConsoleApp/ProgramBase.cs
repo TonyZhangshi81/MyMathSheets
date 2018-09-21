@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter;
 using MyMathSheets.TheFormulaShows;
 using System;
 using System.Linq;

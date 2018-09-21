@@ -4,7 +4,7 @@ using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
+namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter
 {
 	/// <summary>
 	/// 等式接龍參數類

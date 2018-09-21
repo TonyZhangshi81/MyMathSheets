@@ -4,7 +4,7 @@ using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
+namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter
 {
 	/// <summary>
 	/// 等式大小比较參數類
