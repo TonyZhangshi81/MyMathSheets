@@ -44,6 +44,13 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 				{
 					// 計算式作成
 					MarkFormulas(p, strategy, signProblems);
+					// 判定是否需要反推并重新作成計算式
+					if (CheckIsNeedInverseMethod(p.Formulas.Last().ProblemFormula))
+					{
+						i--;
+						p.Formulas.Remove(p.Formulas.Last());
+						continue;
+					}
 				}
 			}
 			else
@@ -61,8 +68,34 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 
 					// 計算式作成
 					MarkFormulas(p, strategy, signProblems);
+
+					// 判定是否需要反推并重新作成計算式
+					if (CheckIsNeedInverseMethod(p.Formulas.Last().ProblemFormula))
+					{
+						i--;
+						p.Formulas.Remove(p.Formulas.Last());
+						continue;
+					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// 判定是否需要反推并重新作成計算式
+		/// </summary>
+		/// <remarks>
+		/// 情況1：x或y參數為0
+		/// </remarks>
+		/// <param name="currentFormula">當前算式</param>
+		/// <returns>需要反推：true  正常情況: false</returns>
+		private bool CheckIsNeedInverseMethod(Formula currentFormula)
+		{
+			// x或y參數為0
+			if (currentFormula.LeftParameter == 0 || currentFormula.RightParameter == 0)
+			{
+				return true;
+			}
+			return false;
 		}
 
 		/// <summary>
