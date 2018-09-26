@@ -13,6 +13,11 @@ namespace MyMathSheets.TheFormulaShows
 	public class MakeHtml<T> where T : ParameterBase
 	{
 		/// <summary>
+		/// HTML支援類注入配置文件所在路徑
+		/// </summary>
+		private const string HTML_SUPPORT_RESOURCE_NAME = @"..\Config\HtmlSupport.xml";
+
+		/// <summary>
 		/// 
 		/// </summary>
 		private OperationHelper _helper;
@@ -39,7 +44,7 @@ namespace MyMathSheets.TheFormulaShows
 		protected IMakeHtml<T> GetHtmlSupportInstance(LayoutSetting.Preview preview)
 		{
 			// spring对象工厂实例作成（设定文件导入）
-			IResource input = new FileSystemResource(@"..\Config\HtmlSupport.xml");
+			IResource input = new FileSystemResource(HTML_SUPPORT_RESOURCE_NAME);
 			IObjectFactory supportObjectFactory = new XmlObjectFactory(input);
 
 			IMakeHtml<T> support = (IMakeHtml<T>)supportObjectFactory.GetObject(preview.ToString());

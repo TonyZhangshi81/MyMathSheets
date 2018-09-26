@@ -223,6 +223,10 @@
 			/// </summary>
 			CombinatorialEquation,
 			/// <summary>
+			/// 射門得分
+			/// </summary>
+			ScoreGoal,
+			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
 			Ready

@@ -48,6 +48,7 @@
     <Compile Include="Item\EqualityFormula.cs" />
     <Compile Include="Item\FruitsLinkageFormula.cs" />
     <Compile Include="Item\MathWordProblemsFormula.cs" />
+    <Compile Include="Item\ScoreGoalFormula.cs" />
     <Compile Include="Main\OperationStrategy\Arithmetic.cs" />
     <Compile Include="Main\Arithmetic\Division.cs" />
     <Compile Include="Main\OperationStrategy\Parameters\MathWordProblemsParameter.cs" />
@@ -66,6 +67,8 @@
     <Compile Include="Main\OperationStrategy\MathWordProblems.cs" />
     <Compile Include="Main\Arithmetic\Subtraction.cs" />
     <Compile Include="Main\Arithmetic\Adition.cs" />
+    <Compile Include="Main\OperationStrategy\Parameters\ScoreGoalParameter.cs" />
+    <Compile Include="Main\OperationStrategy\ScoreGoal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
