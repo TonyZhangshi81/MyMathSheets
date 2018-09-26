@@ -36,6 +36,11 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
 				List<Problems> signProblems = GetProblemsBySign(p.Signs[0]);
+				// 题库中的数量比指定的出题数少的情况
+				if (signProblems.Count == 0)
+				{
+					return;
+				}
 
 				// 指定單個運算符實例
 				strategy = CalculateManager(p.Signs[0]);
@@ -65,6 +70,12 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					strategy = CalculateManager(sign);
 
 					List<Problems> signProblems = GetProblemsBySign(sign);
+					// 题库中的数量比指定的出题数少的情况
+					if (signProblems.Count == 0)
+					{
+						i--;
+						continue;
+					}
 
 					// 計算式作成
 					MarkFormulas(p, strategy, signProblems);
@@ -105,12 +116,6 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// <param name="signProblems">指定运算符的出题资源库</param>
 		private void MarkFormulas(MathWordProblemsParameter p, ICalculate strategy, List<Problems> signProblems)
 		{
-			// 题库中的数量比指定的出题数少的情况
-			if (signProblems.Count == 0)
-			{
-				return;
-			}
-
 			// 资料库中应用题随机取得（不重复）
 			Problems problem = GetRandomProblemsIndex(signProblems);
 			// 計算式作成
@@ -143,7 +148,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		private void AnswerCorrect(Problems problem, Formula formula)
 		{
 			// 答題結果中不存在x參數
-			if(problem.Verify.IndexOf("x") < 0)
+			if (problem.Verify.IndexOf("x") < 0)
 			{
 				formula.LeftParameter = formula.RightParameter;
 				formula.Answer = formula.RightParameter * 2;
