@@ -10,11 +10,16 @@ using System.Linq;
 namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 {
 	/// <summary>
-	/// 
+	/// 應用題策略
 	/// </summary>
 	[Operation(LayoutSetting.Preview.MathWordProblems)]
 	public class MathWordProblems : OperationBase
 	{
+		/// <summary>
+		/// 應用題庫文件所在路徑
+		/// </summary>
+		private const string PROBLEMS_JSON_FILE_PATH = @"..\Config\Problems.json";
+
 		/// <summary>
 		/// 出题资料库
 		/// </summary>
@@ -167,7 +172,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		private void GetAllProblemsFromResource()
 		{
 			// 读取资料库
-			using (System.IO.StreamReader file = System.IO.File.OpenText(@"..\Config\Problems.json"))
+			using (System.IO.StreamReader file = System.IO.File.OpenText(PROBLEMS_JSON_FILE_PATH))
 			{
 				_allProblems = JsonExtension.GetObjectByJson<List<Problems>>(file.ReadToEnd());
 			};

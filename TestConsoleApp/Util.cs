@@ -12,6 +12,11 @@ namespace MyMathSheets.TestConsoleApp
 	public static class Util
 	{
 		/// <summary>
+		/// 輸出類注入配置文件所在路徑
+		/// </summary>
+		private const string CONSOLE_FORMULAS_XML_RESOURCE_NAME = @"..\Config\ConsoleFormulas.xml";
+
+		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="item"></param>
@@ -37,7 +42,7 @@ namespace MyMathSheets.TestConsoleApp
 			if (_objectFactory == null)
 			{
 				// 设定文件导入
-				IResource input = new FileSystemResource(@"..\Config\ConsoleFormulas.xml");
+				IResource input = new FileSystemResource(CONSOLE_FORMULAS_XML_RESOURCE_NAME);
 				_objectFactory = new XmlObjectFactory(input);
 			}
 
