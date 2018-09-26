@@ -70,7 +70,7 @@
     <Compile Include="Message\MessageUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs" />
-    <Compile Include="MathSheetMarkerAttribute.cs" />
+    <Compile Include="Main\ExportAttributes\MathSheetMarkerAttribute.cs" />
     <Compile Include="Provider\FormOperationParameterProvider.cs" />
     <Compile Include="Provider\OperationParameterProvider.cs" />
     <Compile Include="Provider\JsonOperationParameterProvider.cs" />
