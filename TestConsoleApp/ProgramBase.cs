@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows;
 using System;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace MyMathSheets.TestConsoleApp
 			FruitsLinkageParameter flParameter = null;
 			FindNearestNumberParameter fnParameter = null;
 			CombinatorialEquationParameter ceParameter = null;
+			ScoreGoalParameter sgParameter = null;
 
 			bool isShowMenu = true;
 
@@ -65,6 +67,10 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    t-減法");
 					Console.WriteLine("************************* 算式組合 ***********************");
 					Console.WriteLine("    u-算式組合");
+					Console.WriteLine("************************* 射門得分 ***********************");
+					Console.WriteLine("    v-隨機四則運算");
+					Console.WriteLine("    w-加法");
+					Console.WriteLine("    x-減法");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -226,6 +232,27 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("算式組合");
 						ceParameter = (CombinatorialEquationParameter)work.Structure(LayoutSetting.Preview.CombinatorialEquation, "CE001");
 						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.CombinatorialEquation, ceParameter.Formulas.ToList());
+						break;
+
+					case ConsoleKey.V:
+						Console.WriteLine();
+						Console.WriteLine("隨機足球射門");
+						sgParameter = (ScoreGoalParameter)work.Structure(LayoutSetting.Preview.ScoreGoal, "SG001");
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
+						break;
+
+					case ConsoleKey.W:
+						Console.WriteLine();
+						Console.WriteLine("加法足球射門");
+						sgParameter = (ScoreGoalParameter)work.Structure(LayoutSetting.Preview.ScoreGoal, "SG002");
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
+						break;
+
+					case ConsoleKey.X:
+						Console.WriteLine();
+						Console.WriteLine("減法足球射門");
+						sgParameter = (ScoreGoalParameter)work.Structure(LayoutSetting.Preview.ScoreGoal, "SG003");
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
 						break;
 
 					case ConsoleKey.D9:

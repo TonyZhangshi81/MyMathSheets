@@ -130,6 +130,49 @@
 	}
 
 	/// <summary>
+	/// 球類
+	/// </summary>
+	public enum Balls : int
+	{
+		/// <summary>
+		/// 棒球
+		/// </summary>
+		Ball = 0,
+		/// <summary>
+		/// 足球
+		/// </summary>
+		Basketball,
+		/// <summary>
+		/// 皮球
+		/// </summary>
+		BeachBall,
+		/// <summary>
+		/// 保齡球
+		/// </summary>
+		Bowling,
+		/// <summary>
+		/// 足球
+		/// </summary>
+		Football,
+		/// <summary>
+		/// 高爾夫球
+		/// </summary>
+		Golf,
+		/// <summary>
+		/// 橄欖球
+		/// </summary>
+		Rugby,
+		/// <summary>
+		/// 網球
+		/// </summary>
+		Tennis,
+		/// <summary>
+		/// 排球
+		/// </summary>
+		Volleyball
+	}
+
+	/// <summary>
 	/// 水果
 	/// </summary>
 	public enum Fruits : int

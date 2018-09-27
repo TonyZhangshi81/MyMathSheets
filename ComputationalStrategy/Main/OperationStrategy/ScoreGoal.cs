@@ -16,9 +16,9 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 	public class ScoreGoal : OperationBase
 	{
 		/// <summary>
-		/// 
+		/// 計算式作成處理
 		/// </summary>
-		/// <param name="parameter"></param>
+		/// <param name="parameter">參數</param>
 		public override void MarkFormulaList(ParameterBase parameter)
 		{
 			ScoreGoalParameter p = parameter as ScoreGoalParameter;
@@ -46,7 +46,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					// 計算式作成
 					Formula goal = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0);
 					// 判定是否需要反推并重新作成計算式
-					if (CheckIsNeedInverseMethod(goal, goalsFormulas))
+					if (CheckIsNeedInverseMethodForGoals(goal, goalsFormulas))
 					{
 						i--;
 						continue;
@@ -56,28 +56,119 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 				// 按照指定數量作成相應的數學計算式(足球的個數最多10個)
 				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
+					int seat = 0;
 					// 選取球門
-					int answer = GetGoal(goalsFormulas);
+					int answer = GetGoal(goalsFormulas, ref seat);
 					// 足球计算式
 					Formula ballFormula = strategy.CreateFormulaWithAnswer(p.MaximumLimit, answer);
-
-					
+					// 判定是否需要反推并重新作成計算式
+					if (CheckIsNeedInverseMethodForBalls(ballFormula, ballsFormulas))
+					{
+						i--;
+						continue;
+					}
+					// 足球計算式
+					ballsFormulas.Add(ballFormula);
+					// 容器編號 (0號球門或者1號球門)
+					seats.Add(seat);
 				}
+				p.Formulas.GoalsFormulas = goalsFormulas;
+				p.Formulas.BallsFormulas = ballsFormulas;
+				p.Formulas.Seats = seats;
 			}
 			else
 			{
+				RandomNumberComposition random;
+				// 按照指定數量作成相應的球門數學計算式(兩個球門)
+				for (var i = 0; i < 2; i++)
+				{
+					random = new RandomNumberComposition(0, p.Signs.Count - 1);
+					// 混合題型（加減乘除運算符實例隨機抽取）
+					SignOfOperation sign = p.Signs[random.GetRandomNumber()];
+					// 對四則運算符實例進行cache管理
+					strategy = CalculateManager(sign);
+					// 計算式作成
+					Formula goal = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0);
+					// 判定是否需要反推并重新作成計算式
+					if (CheckIsNeedInverseMethodForGoals(goal, goalsFormulas))
+					{
+						i--;
+						continue;
+					}
+					goalsFormulas.Add(goal);
+				}
+				// 按照指定數量作成相應的數學計算式(足球的個數最多10個)
+				for (var i = 0; i < p.NumberOfQuestions; i++)
+				{
+					int seat = 0;
+					random = new RandomNumberComposition(0, p.Signs.Count - 1);
+					// 混合題型（加減乘除運算符實例隨機抽取）
+					SignOfOperation sign = p.Signs[random.GetRandomNumber()];
+					// 對四則運算符實例進行cache管理
+					strategy = CalculateManager(sign);
+
+					// 選取球門
+					int answer = GetGoal(goalsFormulas, ref seat);
+					// 足球计算式
+					Formula ballFormula = strategy.CreateFormulaWithAnswer(p.MaximumLimit, answer);
+					// 判定是否需要反推并重新作成計算式
+					if (CheckIsNeedInverseMethodForBalls(ballFormula, ballsFormulas))
+					{
+						i--;
+						continue;
+					}
+					// 足球計算式
+					ballsFormulas.Add(ballFormula);
+					// 容器編號 (0號球門或者1號球門)
+					seats.Add(seat);
+				}
+				p.Formulas.GoalsFormulas = goalsFormulas;
+				p.Formulas.BallsFormulas = ballsFormulas;
+				p.Formulas.Seats = seats;
 			}
 		}
 
 		/// <summary>
 		/// 選取球門
 		/// </summary>
+		/// <param name="goalsFormulas">球門算式集合</param>
+		/// <param name="seat">球門號(1號球門或者0號球門)</param>
 		/// <returns>被選擇的計算結果</returns>
-		private int GetGoal(IList<Formula> goalsFormulas)
+		private int GetGoal(IList<Formula> goalsFormulas, ref int seat)
 		{
 			// 在兩個球門之間隨機選擇
 			RandomNumberComposition random = new RandomNumberComposition(0, 2);
-			return goalsFormulas[random.GetRandomNumber()].Answer;
+			// 選擇的球門號
+			seat = random.GetRandomNumber();
+			return goalsFormulas[seat].Answer;
+		}
+
+		/// <summary>
+		/// 判定是否需要反推并重新作成計算式
+		/// </summary>
+		/// <remarks>
+		/// 情況1：計算式中三個數值都為零
+		/// 情況3：算式一致的計算式
+		/// </remarks>
+		/// <param name="currentFormula">當前算式</param>
+		/// <param name="ballsFormulas">已有的算式集合</param>
+		/// <returns>需要反推：true  正常情況: false</returns>
+		private bool CheckIsNeedInverseMethodForBalls(Formula currentFormula, IList<Formula> ballsFormulas)
+		{
+			// 等式左邊參數都是零的情況
+			if (currentFormula.RightParameter == 0 && currentFormula.LeftParameter == 0)
+			{
+				return true;
+			}
+			// 算式存在一致
+			if (ballsFormulas.ToList().Any(d => d.RightParameter == currentFormula.RightParameter
+											&& d.LeftParameter == currentFormula.LeftParameter
+											&& d.Answer == currentFormula.Answer
+											&& d.Sign == currentFormula.Sign))
+			{
+				return true;
+			}
+			return false;
 		}
 
 		/// <summary>
@@ -88,18 +179,18 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// 情況3：答案一致的兩個球門不允許
 		/// </remarks>
 		/// <param name="currentFormula">球門A</param>
-		/// <param name="goalsFormulaB">球門B</param>
+		/// <param name="goalsFormulas">球門B</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
-		private bool CheckIsNeedInverseMethod(Formula currentFormula, IList<Formula> goalsFormulas)
+		private bool CheckIsNeedInverseMethodForGoals(Formula currentFormula, IList<Formula> goalsFormulas)
 		{
 			// 等式左邊參數都是零的情況
-			if(currentFormula.RightParameter ==0 && currentFormula.LeftParameter == 0)
+			if (currentFormula.RightParameter == 0 && currentFormula.LeftParameter == 0)
 			{
 				return true;
 			}
 
 			// 兩個球門算式
-			if(goalsFormulas.Count() == 2)
+			if (goalsFormulas.Count() == 2)
 			{
 				// 答案一致的兩個球門不允許
 				if (goalsFormulas[0].Answer == currentFormula.Answer)
