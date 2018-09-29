@@ -118,6 +118,16 @@
     <Content Include="App_Data\Work\Content\image\Multiple.png" />
     <Content Include="App_Data\Work\Content\image\Plus.png" />
     <None Include="App_Data\Work\Content\image\ready.png" />
+    <Content Include="App_Data\Work\Content\image\sport\Ball.png" />
+    <Content Include="App_Data\Work\Content\image\sport\Basketball.png" />
+    <Content Include="App_Data\Work\Content\image\sport\BeachBall.png" />
+    <Content Include="App_Data\Work\Content\image\sport\Bowling.png" />
+    <Content Include="App_Data\Work\Content\image\sport\Football.png" />
+    <Content Include="App_Data\Work\Content\image\sport\goalkeeper.png" />
+    <Content Include="App_Data\Work\Content\image\sport\Golf.png" />
+    <Content Include="App_Data\Work\Content\image\sport\Rugby.png" />
+    <Content Include="App_Data\Work\Content\image\sport\Tennis.png" />
+    <Content Include="App_Data\Work\Content\image\sport\Volleyball.png" />
     <Content Include="App_Data\Work\Content\image\Subtraction.png" />
     <None Include="App_Data\Work\Content\image\title.png" />
     <Content Include="App_Data\Work\Content\image\timg.png" />
