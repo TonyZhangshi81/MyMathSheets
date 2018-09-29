@@ -245,14 +245,14 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("加法足球射門");
 						sgParameter = (ScoreGoalParameter)work.Structure(LayoutSetting.Preview.ScoreGoal, "SG002");
-						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
 						break;
 
 					case ConsoleKey.X:
 						Console.WriteLine();
 						Console.WriteLine("減法足球射門");
 						sgParameter = (ScoreGoalParameter)work.Structure(LayoutSetting.Preview.ScoreGoal, "SG003");
-						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
 						break;
 
 					case ConsoleKey.D9:

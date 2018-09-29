@@ -29,12 +29,9 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 			ScoreGoalFormula fruitsLinkageFormula = new ScoreGoalFormula();
 
 			// 球類算式實例
-			IList<Formula> ballsFormulas = new List<Formula>();
+			Dictionary<Formula, int> ballsFormulas = new Dictionary<Formula, int>();
 			// 球門算式實例
 			IList<Formula> goalsFormulas = new List<Formula>();
-			// 容器座位號
-			IList<int> seats = new List<int>();
-
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
@@ -60,21 +57,18 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					// 選取球門
 					int answer = GetGoal(goalsFormulas, ref seat);
 					// 足球计算式
-					Formula ballFormula = strategy.CreateFormulaWithAnswer(p.MaximumLimit, answer);
+					Formula formula = strategy.CreateFormulaWithAnswer(p.MaximumLimit, answer);
 					// 判定是否需要反推并重新作成計算式
-					if (CheckIsNeedInverseMethodForBalls(ballFormula, ballsFormulas))
+					if (CheckIsNeedInverseMethodForBalls(formula, ballsFormulas))
 					{
 						i--;
 						continue;
 					}
 					// 足球計算式
-					ballsFormulas.Add(ballFormula);
-					// 容器編號 (0號球門或者1號球門)
-					seats.Add(seat);
+					ballsFormulas.Add(formula, seat);
 				}
 				p.Formulas.GoalsFormulas = goalsFormulas;
 				p.Formulas.BallsFormulas = ballsFormulas;
-				p.Formulas.Seats = seats;
 			}
 			else
 			{
@@ -101,30 +95,27 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
 					int seat = 0;
-					random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
+					random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					SignOfOperation sign = p.Signs[random.GetRandomNumber()];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
 
-					// 選取球門
+					// 隨機挑選球門
 					int answer = GetGoal(goalsFormulas, ref seat);
 					// 足球计算式
-					Formula ballFormula = strategy.CreateFormulaWithAnswer(p.MaximumLimit, answer);
+					Formula formula = strategy.CreateFormulaWithAnswer(p.MaximumLimit, answer);
 					// 判定是否需要反推并重新作成計算式
-					if (CheckIsNeedInverseMethodForBalls(ballFormula, ballsFormulas))
+					if (CheckIsNeedInverseMethodForBalls(formula, ballsFormulas))
 					{
 						i--;
 						continue;
 					}
 					// 足球計算式
-					ballsFormulas.Add(ballFormula);
-					// 容器編號 (0號球門或者1號球門)
-					seats.Add(seat);
+					ballsFormulas.Add(formula, seat);
 				}
 				p.Formulas.GoalsFormulas = goalsFormulas;
 				p.Formulas.BallsFormulas = ballsFormulas;
-				p.Formulas.Seats = seats;
 			}
 		}
 
@@ -137,7 +128,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		private int GetGoal(IList<Formula> goalsFormulas, ref int seat)
 		{
 			// 在兩個球門之間隨機選擇
-			RandomNumberComposition random = new RandomNumberComposition(0, 2);
+			RandomNumberComposition random = new RandomNumberComposition(0, 1);
 			// 選擇的球門號
 			seat = random.GetRandomNumber();
 			return goalsFormulas[seat].Answer;
@@ -153,7 +144,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// <param name="currentFormula">當前算式</param>
 		/// <param name="ballsFormulas">已有的算式集合</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
-		private bool CheckIsNeedInverseMethodForBalls(Formula currentFormula, IList<Formula> ballsFormulas)
+		private bool CheckIsNeedInverseMethodForBalls(Formula currentFormula, Dictionary<Formula, int> ballsFormulas)
 		{
 			// 等式左邊參數都是零的情況
 			if (currentFormula.RightParameter == 0 && currentFormula.LeftParameter == 0)
@@ -161,10 +152,10 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 				return true;
 			}
 			// 算式存在一致
-			if (ballsFormulas.ToList().Any(d => d.RightParameter == currentFormula.RightParameter
-											&& d.LeftParameter == currentFormula.LeftParameter
-											&& d.Answer == currentFormula.Answer
-											&& d.Sign == currentFormula.Sign))
+			if (ballsFormulas.ToList().Any(d => d.Key.RightParameter == currentFormula.RightParameter
+											&& d.Key.LeftParameter == currentFormula.LeftParameter
+											&& d.Key.Answer == currentFormula.Answer
+											&& d.Key.Sign == currentFormula.Sign))
 			{
 				return true;
 			}
@@ -184,7 +175,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		private bool CheckIsNeedInverseMethodForGoals(Formula currentFormula, IList<Formula> goalsFormulas)
 		{
 			// 等式左邊參數都是零的情況
-			if (currentFormula.RightParameter == 0 && currentFormula.LeftParameter == 0)
+			if ((currentFormula.RightParameter == 0 && currentFormula.LeftParameter == 0) || currentFormula.Answer == 0)
 			{
 				return true;
 			}

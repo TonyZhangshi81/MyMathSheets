@@ -7,5 +7,6 @@
 	<object id="FruitsLinkage" type="MyMathSheets.TestConsoleApp.Write.FruitsLinkageWrite"></object>
 	<object id="FindNearestNumber" type="MyMathSheets.TestConsoleApp.Write.FindNearestNumberWrite"></object>
 	<object id="CombinatorialEquation" type="MyMathSheets.TestConsoleApp.Write.CombinatorialFormulaWrite"></object>
-	
+	<object id="ScoreGoal" type="MyMathSheets.TestConsoleApp.Write.ScoreGoalWrite"></object>
+
 </objects>
