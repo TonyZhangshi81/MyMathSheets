@@ -12,6 +12,7 @@
 	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
 	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
@@ -23,6 +24,7 @@
 	<script src="../Scripts/Ext/MathSheets.FruitsLinkage.js" charset="utf-8"></script>
 	<script src="../Scripts/Ext/MathSheets.FindNearestNumber.js" charset="utf-8"></script>
 	<!--COMBINATORIALEQUATIONSCRIPT-->
+	<script src="../Scripts/Ext/MathSheets.ScoreGoal.js" charset="utf-8"></script>
 	<title>題庫</title>
 
 	<script>
@@ -41,6 +43,8 @@
 
 			// 還原上一次答題結果
 			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
+
+			$(function () { $("[data-toggle='tooltip']").tooltip(); });
 		});
 
 		// 打印
@@ -83,6 +87,7 @@
 			MathSheets.FindNearestNumber.ready();
 			// 設定頁面所有輸入域為可用狀態(算式組合)
 			//<!--COMBINATORIALEQUATIONREADY-->
+			__goalsArrayHiddenControlId = 'hidBallsArray'; MathSheets.ScoreGoal.ready('divBall', 'divGoaler');
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -111,6 +116,8 @@
 			// 算式組合
 			//<!--COMBINATORIALEQUATIONMAKECORRECTIONS-->
 
+			fault += MathSheets.ScoreGoal.makeCorrections();
+
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
 		}
@@ -131,6 +138,7 @@
 			MathSheets.FindNearestNumber.theirPapers();
 			// 算式組合
 			//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->
+			MathSheets.ScoreGoal.theirPapers();
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -750,76 +758,79 @@
 				</h4>
 			</div>
 			<hr />
+			<input id="hidBallsArray" type="hidden" value="0,1,1,1,0,0,0,1,1" />
 			<div class="easyui-panel easyui-panel-ScoreGoal-ext">
-				<div id="divBall0" class="divBall" style="position: absolute; left: 115px; top: 130px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
-					<img src="../Content/image/sport/Ball.png" width=40 height=40>
-					<input id="divScoreGoal0Input" type="hidden" />
-					<input id="divScoreGoal0Result" type="hidden" value="ERROR" />
+				<div id="divBall0" class="divBall" style="position: absolute; left: 115px; top: 130px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+					<img src="../Content/image/sport/Ball.png" width=40 height=40 data-toggle="tooltip" title="默認的 Tooltip">
+					<input id="divBall0Input" type="hidden" />
+					<input id="divBall0Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall1" class="divBall" style="position: absolute; left: 170px; top: 90px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+				<div id="divBall1" class="divBall" style="position: absolute; left: 170px; top: 90px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
 					<img src="../Content/image/sport/Basketball.png" width=40 height=40>
-					<input id="divScoreGoal1Input" type="hidden" />
-					<input id="divScoreGoal1Result" type="hidden" value="ERROR" />
+					<input id="divBall1Input" type="hidden" />
+					<input id="divBall1Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall2" class="divBall" style="position: absolute; left: 140px; top: 230px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+				<div id="divBall2" class="divBall" style="position: absolute; left: 140px; top: 230px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
 					<img src="../Content/image/sport/BeachBall.png" width=40 height=40>
-					<input id="divScoreGoal2Input" type="hidden" />
-					<input id="divScoreGoal2Result" type="hidden" value="ERROR" />
+					<input id="divBall2Input" type="hidden" />
+					<input id="divBall2Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall3" class="divBall" style="position: absolute; left: 15px; top: 20px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+				<div id="divBall3" class="divBall" style="position: absolute; left: 15px; top: 20px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
 					<img src="../Content/image/sport/Bowling.png" width=40 height=40>
-					<input id="divScoreGoal3Input" type="hidden" />
-					<input id="divScoreGoal3Result" type="hidden" value="ERROR" />
+					<input id="divBall3Input" type="hidden" />
+					<input id="divBall3Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall4" class="divBall" style="position: absolute; left: 185px; top: 165px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+				<div id="divBall4" class="divBall" style="position: absolute; left: 185px; top: 165px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
 					<img src="../Content/image/sport/Football.png" width=40 height=40>
-					<input id="divScoreGoal4Input" type="hidden" />
-					<input id="divScoreGoal4Result" type="hidden" value="ERROR" />
+					<input id="divBall4Input" type="hidden" />
+					<input id="divBall4Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall5" class="divBall" style="position: absolute; left: 70px; top: 175px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+				<div id="divBall5" class="divBall" style="position: absolute; left: 70px; top: 175px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
 					<img src="../Content/image/sport/Golf.png" width=40 height=40>
-					<input id="divScoreGoal5Input" type="hidden" />
-					<input id="divScoreGoal5Result" type="hidden" value="ERROR" />
+					<input id="divBall5Input" type="hidden" />
+					<input id="divBall5Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall6" class="divBall" style="position: absolute; left: 10px; top: 90px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+				<div id="divBall6" class="divBall" style="position: absolute; left: 10px; top: 90px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
 					<img src="../Content/image/sport/Rugby.png" width=40 height=40>
-					<input id="divScoreGoal6Input" type="hidden" />
-					<input id="divScoreGoal6Result" type="hidden" value="ERROR" />
+					<input id="divBall6Input" type="hidden" />
+					<input id="divBall6Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall7" class="divBall" style="position: absolute; left: 130px; top: 35px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+				<div id="divBall7" class="divBall" style="position: absolute; left: 130px; top: 35px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
 					<img src="../Content/image/sport/Tennis.png" width=40 height=40>
-					<input id="divScoreGoal7Input" type="hidden" />
-					<input id="divScoreGoal7Result" type="hidden" value="ERROR" />
+					<input id="divBall7Input" type="hidden" />
+					<input id="divBall7Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall8" class="divBall" style="position: absolute; left: 80px; top: 75px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+				<div id="divBall8" class="divBall" style="position: absolute; left: 80px; top: 75px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
 					<img src="../Content/image/sport/Volleyball.png" width=40 height=40>
-					<input id="divScoreGoal8Input" type="hidden" />
-					<input id="divScoreGoal8Result" type="hidden" value="ERROR" />
+					<input id="divBall8Input" type="hidden" />
+					<input id="divBall8Result" type="hidden" value="ERROR" />
 				</div>
 				<div id="divGoaler0" class="divGoaler divGoaler0">
 					<h5>
 						<span class="label">28+20</span>
-						<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:35px;">
-						<img id="imgOKScoreGoal0" src="../Content/image/correct.png" style="width: 20px; height: 20px; display: none; " />
-						<img id="imgNoScoreGoal0" src="../Content/image/fault.png" style="width: 20px; height: 20px; display: none; " />
+						<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;">
 					</h5>
 				</div>
 				<div id="divScore0" class="divScore divScore0">
-					<h2><span>3</span></h2>
+					<h2><span id="spanHomeScore"></span></h2>
 				</div>
 				<div id="divScore1" class="divScore divScore1">
-					<h2><span>:</span></h2>
+					<h2>
+						<span>:</span>
+					</h2>
 				</div>
 				<div id="divScore2" class="divScore divScore2">
-					<h2><span>4</span></h2>
+					<h2><span id="spanAwayScore"></span></h2>
 				</div>
-				<div id="divGoaler0" class="divGoaler divGoaler1">
+				<div id="divGoaler1" class="divGoaler divGoaler1">
 					<h5>
-						<span class="label">0+0</span>
-						<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:35px;">
-						<img id="imgOKScoreGoal1" src="../Content/image/correct.png" style="width: 20px; height: 20px; display: none; " />
-						<img id="imgNoScoreGoal1" src="../Content/image/fault.png" style="width: 20px; height: 20px; display: none; " />
+						<span class="label">20+20</span>
+						<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;">
 					</h5>
+				</div>
+				<div class="divScoreGoalResultImg">
+					<img id="imgOKScoreGoal" src="../Content/image/correct.png" style="width: 60px; height: 60px; display: none; " />
+					<img id="imgNoScoreGoal" src="../Content/image/fault.png" style="width: 60px; height: 60px; display: none; " />
 				</div>
 
 				<!--COMBINATORIALEQUATION-->
@@ -828,7 +839,7 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
 					<p class="text-right">
-						<button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
+						<button id="btnReady" type="button" class="btn btn-lg btn-success" data-toggle="tooltip" data-placement="top" title="20+10">準備</button>
 						<button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
 						<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
 						<button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
@@ -847,5 +858,6 @@
 				</p>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

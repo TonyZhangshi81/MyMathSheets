@@ -131,6 +131,7 @@
     <Content Include="Scripts\Ext\MathSheets.ComputingConnection.js" />
     <Content Include="Scripts\Ext\MathSheets.EqualityComparison.js" />
     <Content Include="Scripts\Ext\MathSheets.MathWordProblems.js" />
+    <Content Include="Scripts\Ext\MathSheets.ScoreGoal.js" />
     <Content Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -181,7 +182,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "..\Template\HTMLPage" "..\..\MathSheetsSettingApp\HtmlTemplate\" /Y

@@ -84,7 +84,7 @@
 .divGoaler {
 	z-index: 1;
 	width: 200px;
-	height: 100px;
+	height: 140px;
 	background: aliceblue;
 	position: absolute;
 	border: 1px solid #ccc;
@@ -95,6 +95,15 @@
 	background: aliceblue;
 	position: absolute;
 	border: none;
+}
+
+.divScoreGoalResultImg {
+	z-index: 1;
+	background: aliceblue;
+	position: absolute;
+	border: none;
+	left: 530px;
+	top: 200px;
 }
 
 .divScore0 {
