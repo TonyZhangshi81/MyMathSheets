@@ -7,4 +7,5 @@
 	<object id="FruitsLinkage" type="MyMathSheets.TheFormulaShows.Support.FruitsLinkageHtmlSupport"></object>
 	<object id="FindNearestNumber" type="MyMathSheets.TheFormulaShows.Support.FindNearestNumberHtmlSupport"></object>
 	<object id="CombinatorialEquation" type="MyMathSheets.TheFormulaShows.Support.CombinatorialEquationHtmlSupport"></object>
+	<object id="ScoreGoal" type="MyMathSheets.TheFormulaShows.Support.ScoreGoalHtmlSupport"></object>
 </objects>

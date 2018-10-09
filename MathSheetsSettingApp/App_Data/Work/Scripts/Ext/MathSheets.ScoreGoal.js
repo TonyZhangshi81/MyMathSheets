@@ -114,10 +114,7 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 			$(this).attr("data-toggle", "tooltip");
 			$(this).attr("title", data.left + "," + data.top);
 
-
 			_setScore($(this).attr('id'), data.left, data.top);
-
-
 		},
 
 		_setScore = function (ballId, left, top) {
@@ -139,7 +136,6 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 
 			$("#spanHomeScore").text(__goalsHomeScoreArray.length);
 			$("#spanAwayScore").text(__goalsAwayScoreArray.length);
-
 		},
 
 		// 订正(射門得分)

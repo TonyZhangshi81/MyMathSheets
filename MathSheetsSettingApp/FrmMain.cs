@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows;
 using MyMathSheets.TheFormulaShows.Attributes;
 using MyMathSheets.TheFormulaShows.Support;
@@ -161,6 +162,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			// 運算組合
 			if (chkCombinatorialEquation.Checked)
+			{
+				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.CombinatorialEquation);
+			}
+			// 射門得分
+			if (chkScoreGoal.Checked)
 			{
 				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.CombinatorialEquation);
 			}
@@ -432,6 +438,40 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.CombinatorialEquation.ToString());
+				_selectedTopic--;
+			}
+			// 刷新題型預覽區域
+			PreviewReflash();
+		}
+
+		/// <summary>
+		/// 射門得分題型選擇事件
+		/// </summary>
+		/// <param name="sender">選擇框</param>
+		/// <param name="e">選擇事件</param>
+		private void ScoreGoalCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkScoreGoal.Checked)
+			{
+				// 添加題型
+				_selectedTopic++;
+
+				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
+				ScoreGoalParameter sgParameter = (ScoreGoalParameter)work.Structure(LayoutSetting.Preview.ScoreGoal, "SG001");
+
+				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
+				{
+					{ "<!--SCOREGOAL-->", work.GetHtmlStatement(LayoutSetting.Preview.ScoreGoal, sgParameter) }
+				};
+				// JS模板內容替換
+				MarkJavaScriptReplaceContent(typeof(ScoreGoalHtmlSupport), htmlMaps);
+				// 按照題型將所有替換內容裝箱子
+				_htmlMaps.Add(LayoutSetting.Preview.ScoreGoal.ToString(), htmlMaps);
+			}
+			else
+			{
+				// 題型移除
+				_htmlMaps.Remove(LayoutSetting.Preview.ScoreGoal.ToString());
 				_selectedTopic--;
 			}
 			// 刷新題型預覽區域

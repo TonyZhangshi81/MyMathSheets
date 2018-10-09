@@ -38,6 +38,7 @@
 			this.chkFindNearestNumber = new System.Windows.Forms.CheckBox();
 			this.chkCombinatorialEquation = new System.Windows.Forms.CheckBox();
 			this.button1 = new System.Windows.Forms.Button();
+			this.chkScoreGoal = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// btnSure
@@ -146,11 +147,23 @@
 			this.button1.Text = "設置";
 			this.button1.UseVisualStyleBackColor = true;
 			// 
+			// chkScoreGoal
+			// 
+			this.chkScoreGoal.AutoSize = true;
+			this.chkScoreGoal.Location = new System.Drawing.Point(132, 80);
+			this.chkScoreGoal.Name = "chkScoreGoal";
+			this.chkScoreGoal.Size = new System.Drawing.Size(72, 16);
+			this.chkScoreGoal.TabIndex = 23;
+			this.chkScoreGoal.Text = "射門得分";
+			this.chkScoreGoal.UseVisualStyleBackColor = true;
+			this.chkScoreGoal.CheckedChanged += new System.EventHandler(this.ScoreGoalCheckedChanged);
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(932, 405);
+			this.Controls.Add(this.chkScoreGoal);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.chkCombinatorialEquation);
 			this.Controls.Add(this.chkFindNearestNumber);
@@ -181,6 +194,7 @@
 		private System.Windows.Forms.CheckBox chkFindNearestNumber;
 		private System.Windows.Forms.CheckBox chkCombinatorialEquation;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.CheckBox chkScoreGoal;
 	}
 }
 

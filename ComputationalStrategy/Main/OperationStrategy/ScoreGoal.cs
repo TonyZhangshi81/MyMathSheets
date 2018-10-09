@@ -25,9 +25,6 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 
 			ICalculate strategy = null;
 
-			// 射門得分對象實例
-			ScoreGoalFormula fruitsLinkageFormula = new ScoreGoalFormula();
-
 			// 球類算式實例
 			Dictionary<Formula, int> ballsFormulas = new Dictionary<Formula, int>();
 			// 球門算式實例

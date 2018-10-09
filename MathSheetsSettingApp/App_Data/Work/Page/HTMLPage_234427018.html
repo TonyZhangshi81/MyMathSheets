@@ -24,7 +24,7 @@
 	<!--FRUITSLINKAGESCRIPT-->
 	<!--FINDNEARESTNUMBERSCRIPT-->
 	<!--COMBINATORIALEQUATIONSCRIPT-->
-	<!--SCOREGOALSCRIPT-->
+	<script src="../Scripts/Ext/MathSheets.ScoreGoal.js" charset="utf-8"></script>
 	<title>題庫</title>
 
 	<script>
@@ -43,8 +43,6 @@
 
 			// 還原上一次答題結果
 			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
-			// 計算式提示
-			$(function () { $("[data-toggle='tooltip']").tooltip(); });
 		});
 
 		// 打印
@@ -88,7 +86,7 @@
 			// 設定頁面所有輸入域為可用狀態(算式組合)
 			//<!--COMBINATORIALEQUATIONREADY-->
 			// 設定頁面所有輸入域為可用狀態(射門得分)
-			//<!--SCOREGOALREADY-->
+			__goalsArrayHiddenControlId = 'hidBallsArray';MathSheets.ScoreGoal.ready('divBall', 'divGoaler');
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -117,7 +115,7 @@
 			// 算式組合
 			//<!--COMBINATORIALEQUATIONMAKECORRECTIONS-->
 			// 射門得分
-			//<!--SCOREGOALMAKECORRECTIONS-->
+			fault += MathSheets.ScoreGoal.makeCorrections();
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -140,7 +138,7 @@
 			// 算式組合
 			//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->
 			// 射門得分
-			//<!--SCOREGOALTHEIRPAPERS-->
+			MathSheets.ScoreGoal.theirPapers();
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -177,7 +175,78 @@
 		<!--FRUITSLINKAGE-->
 		<!--FINDNEARESTNUMBER-->
 		<!--COMBINATORIALEQUATION-->
-		<!--SCOREGOAL-->
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">射門得分</span></h4></div><hr /><input id="hidBallsArray" type="hidden" value="1,1,1,0,1,0,1,1"/><div class="easyui-panel easyui-panel-ext" >
+<div id="divBall0" class="divBall" style="position: absolute; left: 130px; top: 35px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/fruits/Tennis.png" width=40 height=40 data-toggle="tooltip" title="48-28">
+<input id="divBall0Input" type="hidden" />
+<input id="divBall0Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall1" class="divBall" style="position: absolute; left: 70px; top: 175px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/fruits/Rugby.png" width=40 height=40 data-toggle="tooltip" title="11+9">
+<input id="divBall1Input" type="hidden" />
+<input id="divBall1Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall2" class="divBall" style="position: absolute; left: 80px; top: 75px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/fruits/Volleyball.png" width=40 height=40 data-toggle="tooltip" title="44-24">
+<input id="divBall2Input" type="hidden" />
+<input id="divBall2Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall3" class="divBall" style="position: absolute; left: 5px; top: 180px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/fruits/Basketball.png" width=40 height=40 data-toggle="tooltip" title="50-7">
+<input id="divBall3Input" type="hidden" />
+<input id="divBall3Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall4" class="divBall" style="position: absolute; left: 15px; top: 20px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/fruits/Ball.png" width=40 height=40 data-toggle="tooltip" title="20+0">
+<input id="divBall4Input" type="hidden" />
+<input id="divBall4Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall5" class="divBall" style="position: absolute; left: 10px; top: 90px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/fruits/BeachBall.png" width=40 height=40 data-toggle="tooltip" title="9+34">
+<input id="divBall5Input" type="hidden" />
+<input id="divBall5Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall6" class="divBall" style="position: absolute; left: 115px; top: 130px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/fruits/Football.png" width=40 height=40 data-toggle="tooltip" title="27-7">
+<input id="divBall6Input" type="hidden" />
+<input id="divBall6Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall7" class="divBall" style="position: absolute; left: 170px; top: 90px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/fruits/Golf.png" width=40 height=40 data-toggle="tooltip" title="1+19">
+<input id="divBall7Input" type="hidden" />
+<input id="divBall7Result" type="hidden" value="ERROR" />
+</div>
+
+<div id="divGoaler0" class="divGoaler divGoaler0">
+<h5>
+<span class="label">21+22</span>
+<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;" >
+</h5>
+</div>
+<div id="divScore0" class="divScore divScore0">
+<h2><span id="spanHomeScore"></span></h2>
+</div>
+<div id="divScore1" class="divScore divScore1">
+<h2>
+<span>:</span>
+</h2>
+</div>
+<div id="divScore2" class="divScore divScore2">
+<h2><span id="spanAwayScore"></span></h2>
+</div>
+<div id="divGoaler1" class="divGoaler divGoaler1">
+<h5>
+<span class="label">2+18</span>
+<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;" >
+</h5>
+</div>
+<div class="divScoreGoalResultImg">
+<img id="imgOKScoreGoal" src="../Content/image/correct.png" style="width: 60px; height: 60px; display: none; " />
+<img id="imgNoScoreGoal" src="../Content/image/fault.png" style="width: 60px; height: 60px; display: none; " />
+</div>
+
+</div>
+
 		</div>
 		<HR>
 		<div class="row">

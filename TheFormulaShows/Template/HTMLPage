@@ -12,6 +12,7 @@
 	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
 	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
@@ -23,6 +24,7 @@
 	<!--FRUITSLINKAGESCRIPT-->
 	<!--FINDNEARESTNUMBERSCRIPT-->
 	<!--COMBINATORIALEQUATIONSCRIPT-->
+	<!--SCOREGOALSCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -41,6 +43,8 @@
 
 			// 還原上一次答題結果
 			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
+			// 計算式提示
+			$(function () { $("[data-toggle='tooltip']").tooltip(); });
 		});
 
 		// 打印
@@ -83,6 +87,8 @@
 			//<!--FINDNEARESTNUMBERREADY-->
 			// 設定頁面所有輸入域為可用狀態(算式組合)
 			//<!--COMBINATORIALEQUATIONREADY-->
+			// 設定頁面所有輸入域為可用狀態(射門得分)
+			//<!--SCOREGOALREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -110,7 +116,9 @@
 			//<!--FINDNEARESTNUMBERMAKECORRECTIONS-->
 			// 算式組合
 			//<!--COMBINATORIALEQUATIONMAKECORRECTIONS-->
-			
+			// 射門得分
+			//<!--SCOREGOALMAKECORRECTIONS-->
+
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
 		}
@@ -131,6 +139,8 @@
 			//<!--FINDNEARESTNUMBERTHEIRPAPERS-->
 			// 算式組合
 			//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->
+			// 射門得分
+			//<!--SCOREGOALTHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -167,6 +177,7 @@
 		<!--FRUITSLINKAGE-->
 		<!--FINDNEARESTNUMBER-->
 		<!--COMBINATORIALEQUATION-->
+		<!--SCOREGOAL-->
 		</div>
 		<HR>
 		<div class="row">
