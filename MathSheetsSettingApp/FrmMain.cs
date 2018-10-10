@@ -168,7 +168,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 射門得分
 			if (chkScoreGoal.Checked)
 			{
-				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.CombinatorialEquation);
+				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.ScoreGoal);
 			}
 			// 答題結束瀏覽
 			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Ready);

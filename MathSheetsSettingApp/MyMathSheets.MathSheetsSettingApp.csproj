@@ -118,6 +118,7 @@
     <Content Include="App_Data\Work\Content\image\Multiple.png" />
     <Content Include="App_Data\Work\Content\image\Plus.png" />
     <None Include="App_Data\Work\Content\image\ready.png" />
+    <None Include="App_Data\Work\Content\image\ScoreGoal.png" />
     <Content Include="App_Data\Work\Content\image\sport\Ball.png" />
     <Content Include="App_Data\Work\Content\image\sport\Basketball.png" />
     <Content Include="App_Data\Work\Content\image\sport\BeachBall.png" />

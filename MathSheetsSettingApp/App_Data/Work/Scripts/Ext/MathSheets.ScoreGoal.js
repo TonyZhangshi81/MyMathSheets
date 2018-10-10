@@ -4,11 +4,11 @@ var __goalsCoordinateArray = new Array();
 var __goalsHomeScoreArray = new Array();
 var __goalsAwayScoreArray = new Array();
 // 放置範圍上下限值(Left邊距上下限)
-var __containerLeftUp = 0;
-var __containerLeftDown = 0;
+var __goalsContainerLeftUp = 0;
+var __goalsContainerLeftDown = 0;
 // 放置範圍上下限值(Top邊距上下限)
-var __containerTopUp = 0;
-var __containerTopDown = 0;
+var __goalsContainerTopUp = 0;
+var __goalsContainerTopDown = 0;
 // 放置範圍上下限值的控件Id
 var __goalsArrayHiddenControlId = '';
 
@@ -98,13 +98,13 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 			// 放置範圍上下限值取得
 			var array = ($("#" + $(this).attr('id') + "Input").val() || "").split(',');
 			// 放置範圍上下限值(Left邊距上下限)
-			__containerLeftUp = parseInt(array[0]);
-			__containerLeftDown = parseInt(array[1]);
+			__goalsContainerLeftUp = parseInt(array[0]);
+			__goalsContainerLeftDown = parseInt(array[1]);
 			// 放置範圍上下限值(Top邊距上下限)
-			__containerTopUp = parseInt(array[2]);
-			__containerTopDown = parseInt(array[3]);
+			__goalsContainerTopUp = parseInt(array[2]);
+			__goalsContainerTopDown = parseInt(array[3]);
 			// 如果拖放對象的相對位置在容器放置範圍上下限內
-			if (data.left >= __containerLeftUp && data.left <= __containerLeftDown && data.top >= __containerTopUp && data.top <= __containerTopDown) {
+			if (data.left >= __goalsContainerLeftUp && data.left <= __goalsContainerLeftDown && data.top >= __goalsContainerTopUp && data.top <= __goalsContainerTopDown) {
 				$("#" + $(this).attr('id') + "Result").val('OK');
 			} else {
 				$("#" + $(this).attr('id') + "Result").val('ERROR');
