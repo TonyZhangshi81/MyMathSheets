@@ -8,4 +8,5 @@
 	<object id="FindNearestNumber" type="MyMathSheets.TestConsoleApp.Write.FindNearestNumberWrite"></object>
 	<object id="CombinatorialEquation" type="MyMathSheets.TestConsoleApp.Write.CombinatorialFormulaWrite"></object>
 	<object id="ScoreGoal" type="MyMathSheets.TestConsoleApp.Write.ScoreGoalWrite"></object>
+	<object id="HowMuchMore" type="MyMathSheets.TestConsoleApp.Write.HowMuchMoreWrite"></object>
 </objects>

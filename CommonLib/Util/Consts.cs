@@ -111,6 +111,22 @@
 	}
 
 	/// <summary>
+	/// 比多少（選擇項目：left為多的一方  Right為少的一方）
+	/// </summary>
+	/// <remarks>只適用於減法運算符</remarks>
+	public enum HowMuchMoreType : int
+	{
+		/// <summary>
+		/// 多的一方
+		/// </summary>
+		Left = 0,
+		/// <summary>
+		/// 少的一方
+		/// </summary>
+		Right
+	}
+
+	/// <summary>
 	/// 比较运算符
 	/// </summary>
 	public enum SignOfCompare : int
@@ -269,6 +285,10 @@
 			/// 射門得分
 			/// </summary>
 			ScoreGoal,
+			/// <summary>
+			/// 比多少
+			/// </summary>
+			HowMuchMore,
 			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>

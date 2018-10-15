@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Item\CombinatorialFormula.cs" />
+    <Compile Include="Item\HowMuchMoreFormula.cs" />
     <Compile Include="Item\ConnectionFormula.cs" />
     <Compile Include="Item\EqualityFormula.cs" />
     <Compile Include="Item\FruitsLinkageFormula.cs" />
@@ -51,6 +52,8 @@
     <Compile Include="Item\ScoreGoalFormula.cs" />
     <Compile Include="Main\OperationStrategy\Arithmetic.cs" />
     <Compile Include="Main\Arithmetic\Division.cs" />
+    <Compile Include="Main\OperationStrategy\HowMuchMore.cs" />
+    <Compile Include="Main\OperationStrategy\Parameters\HowMuchMoreParameter.cs" />
     <Compile Include="Main\OperationStrategy\Parameters\MathWordProblemsParameter.cs" />
     <Compile Include="Main\OperationStrategy\Parameters\FruitsLinkageParameter.cs" />
     <Compile Include="Main\OperationStrategy\Parameters\FindNearestNumberParameter.cs" />

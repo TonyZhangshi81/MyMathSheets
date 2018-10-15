@@ -3,7 +3,7 @@ using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter
+namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters
 {
 	/// <summary>
 	/// 四則運算參數類

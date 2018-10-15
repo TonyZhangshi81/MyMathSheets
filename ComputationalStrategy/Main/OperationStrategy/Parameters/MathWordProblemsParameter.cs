@@ -3,7 +3,7 @@ using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter
+namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters
 {
 	/// <summary>
 	/// 應用題參數類

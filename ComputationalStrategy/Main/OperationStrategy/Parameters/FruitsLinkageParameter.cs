@@ -2,7 +2,7 @@
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 
-namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter
+namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters
 {
 	/// <summary>
 	/// 水果連連看參數類

@@ -7,15 +7,15 @@ using System.Collections.Generic;
 namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters
 {
 	/// <summary>
-	/// 組合計算式參數類
+	/// 比多少參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.CombinatorialEquation, "CE001")]
-	public class CombinatorialEquationParameter : ParameterBase
+	[OperationParameter(LayoutSetting.Preview.HowMuchMore, "HMM001")]
+	public class HowMuchMoreParameter : ParameterBase
 	{
 		/// <summary>
-		/// 組合計算式作成并輸出
+		/// 比多少作成并輸出
 		/// </summary>
-		public IList<CombinatorialFormula> Formulas { get; set; }
+		public IList<HowMuchMoreFormula> Formulas { get; set; }
 		/// <summary>
 		/// 初期化參數
 		/// </summary>
@@ -23,8 +23,8 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters
 		{
 			base.InitParameter();
 
-			// 組合計算式集合實例化
-			Formulas = new List<CombinatorialFormula>();
+			// 集合實例化
+			Formulas = new List<HowMuchMoreFormula>();
 		}
 	}
 }

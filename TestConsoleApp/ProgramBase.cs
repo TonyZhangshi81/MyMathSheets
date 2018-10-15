@@ -1,7 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows;
 using System;
@@ -31,6 +29,7 @@ namespace MyMathSheets.TestConsoleApp
 			FindNearestNumberParameter fnParameter = null;
 			CombinatorialEquationParameter ceParameter = null;
 			ScoreGoalParameter sgParameter = null;
+			HowMuchMoreParameter hmmParameter = null;
 
 			bool isShowMenu = true;
 
@@ -71,6 +70,8 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    v-隨機四則運算");
 					Console.WriteLine("    w-加法");
 					Console.WriteLine("    x-減法");
+					Console.WriteLine("************************* 比多少 ***********************");
+					Console.WriteLine("    y-比多少");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -253,6 +254,13 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("減法足球射門");
 						sgParameter = (ScoreGoalParameter)work.Structure(LayoutSetting.Preview.ScoreGoal, "SG003");
 						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
+						break;
+
+					case ConsoleKey.Y:
+						Console.WriteLine();
+						Console.WriteLine("比多少");
+						hmmParameter = (HowMuchMoreParameter)work.Structure(LayoutSetting.Preview.HowMuchMore, "HMM001");
+						Util.CreateOperatorObjectFactory(LayoutSetting.Preview.HowMuchMore, hmmParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.D9:

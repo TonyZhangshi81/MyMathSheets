@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameter;
+using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows;
 using MyMathSheets.TheFormulaShows.Attributes;
