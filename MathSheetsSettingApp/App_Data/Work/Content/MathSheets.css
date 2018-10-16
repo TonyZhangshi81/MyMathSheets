@@ -231,3 +231,7 @@
 	display: inline-block;
 	left: 100px;
 }
+
+.list-group-ext{
+	width: 100%;
+}

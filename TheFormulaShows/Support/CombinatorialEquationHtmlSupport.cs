@@ -49,7 +49,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 				isRowHtmlClosed = false;
 
 				listGroupHtml.AppendLine("<div class=\"col-md-4 form-inline\">");
-				listGroupHtml.AppendLine("<ul class=\"list-group\">");
+				listGroupHtml.AppendLine("<ul class=\"list-group list-group-ext\">");
 				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
 				listGroupHtml.AppendLine("<h4>");
 				listGroupHtml.AppendLine(string.Format("<span class=\"badge badge-warning\" style=\"width: 40px;\">{0}</span>", item.ParameterA));

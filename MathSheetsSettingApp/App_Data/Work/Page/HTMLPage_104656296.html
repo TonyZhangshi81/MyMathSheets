@@ -1,0 +1,414 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="../Content/favicon.ico">
+	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
+	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
+	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
+	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
+	<!--ARITHMETICSCRIPT-->
+	<!--EQUALITYCOMPARISONSCRIPT-->
+	<!--COMPUTINGCONNECTIONSCRIPT-->
+	<!--MATHWORDPROBLEMSSCRIPT-->
+	<!--FRUITSLINKAGESCRIPT-->
+	<!--FINDNEARESTNUMBERSCRIPT-->
+	<script src="../Scripts/Ext/MathSheets.CombinatorialEquation.js" charset="utf-8"></script>
+	<!--SCOREGOALSCRIPT-->
+	<title>題庫</title>
+
+	<script>
+		// 頁面啟動后加載
+		$(document).ready(function () {
+			// 準備
+			$('#btnReady').click(function () { btnReadyClick(); });
+			// 提交答題
+			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
+			// 訂正錯題
+			$('#btnMakeCorrections').click(function () { btnMakeCorrectionsClick(); });
+			// 完成
+			$('#btnOver').click(function () { btnOverClick(); });
+			// 打印
+			$('#btnPrint').click(function () { btnPrintClick(); });
+
+			// 還原上一次答題結果
+			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
+			// 計算式提示
+			$(function () { $("[data-toggle='tooltip']").tooltip(); });
+		});
+
+		// 打印
+		function btnPrintClick() {
+			//<!--ARITHMETICPRINTSETTING-->
+			//<!--EQUALITYCOMPARISONPRINTSETTING-->
+			//<!--COMPUTINGCONNECTIONPRINTSETTING-->
+			//<!--MATHWORDPROBLEMSPRINTSETTING-->
+			//<!--FINDNEARESTNUMBERPRINTSETTING-->
+			MathSheets.CombinatorialEquation.printSetting();
+
+			// 頁面答應處理
+			MathSheets.Common.pagePrint('divPrintContent');
+			// 打印后恢復頁面最初狀態設置
+			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
+			// 打印后頁面設定
+			//<!--ARITHMETICPRINTAFTERSETTING-->
+			//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->
+			//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->
+			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
+			//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->
+			MathSheets.CombinatorialEquation.printAfterSetting();
+		}
+
+		// 答題準備按鍵
+		function btnReadyClick() {
+			// 設定頁面所有輸入域為可用狀態(共通)-交卷按鈕顯示,準備按鈕隱藏,打印按鈕隱藏
+			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
+			// 設定頁面所有輸入域為可用狀態（四則運算）
+			//<!--ARITHMETICREADY-->
+			// 設定頁面所有輸入域為可用狀態(運算比大小)
+			//<!--EQUALITYCOMPARISONREADY-->
+			// 設定頁面所有輸入域為可用狀態(等式接龍)
+			//<!--COMPUTINGCONNECTIONREADY-->
+			// 設定頁面所有輸入域為可用狀態(算數應用題)
+			//<!--MATHWORDPROBLEMSREADY-->
+			// 設定頁面所有輸入域為可用狀態(水果連連看)
+			//<!--FRUITSLINKAGEREADY-->
+			// 設定頁面所有輸入域為可用狀態(找到最近的數字)
+			//<!--FINDNEARESTNUMBERREADY-->
+			// 設定頁面所有輸入域為可用狀態(算式組合)
+			MathSheets.CombinatorialEquation.ready();
+			// 設定頁面所有輸入域為可用狀態(射門得分)
+			//<!--SCOREGOALREADY-->
+
+			// 計時開始
+			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
+		}
+
+		// 完成(關閉頁面)
+		function btnOverClick() {
+			MathSheets.Common.windowClose();
+		}
+
+		// 訂正按鈕(不計入答題情況信息)
+		function btnMakeCorrectionsClick() {
+			var fault = 0;
+			// 四則運算題
+			//<!--ARITHMETICMAKECORRECTIONS-->
+			// 算式比較大小
+			//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->
+			// 等式接龍
+			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
+			// 算數應用題
+			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
+			// 水果連連看
+			//<!--FRUITSLINKAGEMAKECORRECTIONS-->
+			// 找到最近的數字
+			//<!--FINDNEARESTNUMBERMAKECORRECTIONS-->
+			// 算式組合
+			fault += MathSheets.CombinatorialEquation.makeCorrections();
+			// 射門得分
+			//<!--SCOREGOALMAKECORRECTIONS-->
+
+			// 訂正按鈕處理
+			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
+		}
+
+		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
+		function btnTheirPapersClick() {
+			// 四則運算交卷
+			//<!--ARITHMETICTHEIRPAPERS-->
+			// 算式比大小交卷
+			//<!--EQUALITYCOMPARISONTHEIRPAPERS-->
+			// 等式接龍交卷
+			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
+			// 算數應用題交卷
+			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
+			// 水果連連看
+			//<!--FRUITSLINKAGETHEIRPAPERS-->
+			// 找到最近的數字
+			//<!--FINDNEARESTNUMBERTHEIRPAPERS-->
+			// 算式組合
+			MathSheets.CombinatorialEquation.theirPapers();
+			// 射門得分
+			//<!--SCOREGOALTHEIRPAPERS-->
+
+			// 交卷按鈕處理
+			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
+			// 計時停止（答題結果設定）
+			MathSheets.Common.timeStop('spanSS', 'spanMM', 'spanHH');
+		}
+	</script>
+</head>
+<body>
+	<div class="container theme-showcase main-ext" role="main">
+		<div class="jumbotron-ext">
+			<div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
+			<div class="div-famousPeople">
+				<h6>
+					<span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+					<br />
+					<span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+					<br />
+					<span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+				</h6>
+			</div>
+			<hr class="hr-Ext" />
+			<div class="text-info-ext">
+				前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
+				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
+			</div>
+		</div>
+		<div id="divPrintContent">
+		<!--ARITHMETIC-->
+		<!--EQUALITYCOMPARISON-->
+		<!--COMPUTINGCONNECTION-->
+		<!--MATHWORDPROBLEMS-->
+		<!--FRUITSLINKAGE-->
+		<!--FINDNEARESTNUMBER-->
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">運算組合</span></h4></div><hr /><div class="row text-center row-margin-top">
+<div class="col-md-4 form-inline">
+<ul class="list-group">
+<li class="list-group-item">
+<h4>
+<span class="badge badge-warning" style="width: 40px;">17</span>
+<span class="badge badge-success" style="width: 40px;">29</span>
+<span class="badge badge-primary" style="width: 40px;">12</span>
+<img id="imgOKCombinatorial0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoCombinatorial0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h4>
+<input id="hiddenCe0" type="hidden" value="17+12=29,12+17=29,29-17=12,29-12=17" />
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe0L0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe0S0" title="help" />
+<input id="inputCe0R0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe0A0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe0L1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe0S1" title="help" />
+<input id="inputCe0R1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe0A1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe0L2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe0S2" title="help" />
+<input id="inputCe0R2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe0A2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe0L3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe0S3" title="help" />
+<input id="inputCe0R3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe0A3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+
+</ul>
+</div>
+<div class="col-md-4 form-inline">
+<ul class="list-group">
+<li class="list-group-item">
+<h4>
+<span class="badge badge-warning" style="width: 40px;">17</span>
+<span class="badge badge-success" style="width: 40px;">29</span>
+<span class="badge badge-primary" style="width: 40px;">12</span>
+<img id="imgOKCombinatorial1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoCombinatorial1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h4>
+<input id="hiddenCe1" type="hidden" value="17+12=29,12+17=29,29-17=12,29-12=17" />
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe1L0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe1S0" title="help" />
+<input id="inputCe1R0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe1A0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe1L1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe1S1" title="help" />
+<input id="inputCe1R1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe1A1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe1L2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe1S2" title="help" />
+<input id="inputCe1R2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe1A2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe1L3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe1S3" title="help" />
+<input id="inputCe1R3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe1A3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+
+</ul>
+</div>
+<div class="col-md-4 form-inline">
+<ul class="list-group">
+<li class="list-group-item">
+<h4>
+<span class="badge badge-warning" style="width: 40px;">17</span>
+<span class="badge badge-success" style="width: 40px;">30</span>
+<span class="badge badge-primary" style="width: 40px;">13</span>
+<img id="imgOKCombinatorial2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoCombinatorial2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h4>
+<input id="hiddenCe2" type="hidden" value="17+13=30,13+17=30,30-17=13,30-13=17" />
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe2L0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe2S0" title="help" />
+<input id="inputCe2R0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe2A0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe2L1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe2S1" title="help" />
+<input id="inputCe2R1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe2A1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe2L2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe2S2" title="help" />
+<input id="inputCe2R2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe2A2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe2L3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe2S3" title="help" />
+<input id="inputCe2R3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe2A3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+
+</ul>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-4 form-inline">
+<ul class="list-group">
+<li class="list-group-item">
+<h4>
+<span class="badge badge-warning" style="width: 40px;">17</span>
+<span class="badge badge-success" style="width: 40px;">46</span>
+<span class="badge badge-primary" style="width: 40px;">29</span>
+<img id="imgOKCombinatorial3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoCombinatorial3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h4>
+<input id="hiddenCe3" type="hidden" value="17+29=46,29+17=46,46-17=29,46-29=17" />
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe3L0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe3S0" title="help" />
+<input id="inputCe3R0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe3A0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe3L1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe3S1" title="help" />
+<input id="inputCe3R1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe3A1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe3L2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe3S2" title="help" />
+<input id="inputCe3R2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe3A2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe3L3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe3S3" title="help" />
+<input id="inputCe3R3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe3A3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+
+</ul>
+</div>
+</div>
+
+		<!--SCOREGOAL-->
+		</div>
+		<HR>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<p class="text-right">
+					<button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
+					<button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
+					<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
+					<button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
+					<button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
+				</p>
+			</div>
+		</div>
+		<div class="page-header">
+			<h4>練習情況</h4>
+		</div>
+		<div class="well">
+			<p>
+				做題用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+				<br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
+				<br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
+			</p>
+		</div>
+	</div>
+</body>
+</html>
