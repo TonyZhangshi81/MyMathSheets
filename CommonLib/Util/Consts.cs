@@ -240,12 +240,12 @@
 	}
 
 	/// <summary>
-	/// 
+	/// 題型類型
 	/// </summary>
 	public class LayoutSetting
 	{
 		/// <summary>
-		/// 瀏覽設定
+		/// 題型類型/瀏覽設定
 		/// </summary>
 		public enum Preview : int
 		{

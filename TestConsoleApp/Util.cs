@@ -1,8 +1,4 @@
 ﻿using MyMathSheets.CommonLib.Util;
-using MyMathSheets.TestConsoleApp.Write;
-using Spring.Core.IO;
-using Spring.Objects.Factory;
-using Spring.Objects.Factory.Xml;
 
 namespace MyMathSheets.TestConsoleApp
 {
@@ -11,11 +7,6 @@ namespace MyMathSheets.TestConsoleApp
 	/// </summary>
 	public static class Util
 	{
-		/// <summary>
-		/// 輸出類注入配置文件所在路徑
-		/// </summary>
-		private const string CONSOLE_FORMULAS_XML_RESOURCE_NAME = @"..\Config\ConsoleFormulas.xml";
-
 		/// <summary>
 		/// 
 		/// </summary>
@@ -29,25 +20,15 @@ namespace MyMathSheets.TestConsoleApp
 		}
 
 		/// <summary>
-		/// 
+		/// 題型測試結果輸出
 		/// </summary>
-		static IObjectFactory _objectFactory;
-		/// <summary>
-		/// spring对象工厂实例作成（设定文件导入）
-		/// </summary>
-		/// <param name="preview"></param>
-		/// <param name="formulas"></param>
-		public static void CreateOperatorObjectFactory<T>(LayoutSetting.Preview preview, T formulas)
+		/// <typeparam name="T">各題型類的輸出結果類型參數</typeparam>
+		/// <param name="preview">題型種類</param>
+		/// <param name="formulas">各題型類的輸出結果對象</param>
+		public static void ConsoleFormulas<T>(LayoutSetting.Preview preview, T formulas)
 		{
-			if (_objectFactory == null)
-			{
-				// 设定文件导入
-				IResource input = new FileSystemResource(CONSOLE_FORMULAS_XML_RESOURCE_NAME);
-				_objectFactory = new XmlObjectFactory(input);
-			}
-
-			IConsoleWrite<T> instance = _objectFactory.GetObject(preview.ToString()) as IConsoleWrite<T>;
-			instance.ConsoleFormulas(formulas);
+			var writer = FormulasConsolerFactory.Instance.CreateConsoleWriter(preview, formulas);
+			writer.ConsoleFormulas(formulas);
 		}
 	}
 }

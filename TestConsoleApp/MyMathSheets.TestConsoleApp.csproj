@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormulasConsolerFactory.cs" />
     <Compile Include="ProgramBase.cs" />
     <Compile Include="Write\CombinatorialFormulaWrite.cs" />
     <Compile Include="Write\FindNearestNumberWrite.cs" />
