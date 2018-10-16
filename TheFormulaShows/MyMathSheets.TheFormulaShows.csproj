@@ -99,6 +99,13 @@
     <Content Include="Content\image\help.png" />
     <Content Include="Content\image\correct.png" />
     <Content Include="Content\image\homework.png" />
+    <Content Include="Content\image\more\Circle.png" />
+    <Content Include="Content\image\more\Diamond.png" />
+    <Content Include="Content\image\more\Fish.png" />
+    <Content Include="Content\image\more\HappyFace.png" />
+    <Content Include="Content\image\more\Humburger.png" />
+    <Content Include="Content\image\more\Like.png" />
+    <Content Include="Content\image\more\Square.png" />
     <Content Include="Content\image\Multiple.png" />
     <Content Include="Content\image\Plus.png" />
     <Content Include="Content\image\sport\Ball.png" />
