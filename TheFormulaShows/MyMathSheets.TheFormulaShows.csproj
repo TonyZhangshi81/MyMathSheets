@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\SubstituteAttribute.cs" />
+    <Compile Include="Support\HowMuchMoreHtmlSupport.cs" />
     <Compile Include="Support\CombinatorialEquationHtmlSupport.cs" />
     <Compile Include="Support\FindNearestNumberHtmlSupport.cs" />
     <Compile Include="Support\FruitsLinkageHtmlSupport.cs" />

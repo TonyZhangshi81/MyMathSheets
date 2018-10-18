@@ -16,7 +16,7 @@ namespace MyMathSheets.ComputationalStrategy.Item
 		/// <summary>
 		/// 當前顯示的項目
 		/// </summary>
-		public HowMuchMoreType LeftOrRightParameter { get; set; }
+		public MuchMoreSideType LeftOrRightParameter { get; set; }
 
 		/// <summary>
 		/// 比多少題型的文字表述部分(eg:左邊項目比右邊項目多1個)

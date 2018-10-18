@@ -114,7 +114,7 @@
 	/// 比多少（選擇項目：left為多的一方  Right為少的一方）
 	/// </summary>
 	/// <remarks>只適用於減法運算符</remarks>
-	public enum HowMuchMoreType : int
+	public enum MuchMoreSideType : int
 	{
 		/// <summary>
 		/// 多的一方
@@ -124,6 +124,40 @@
 		/// 少的一方
 		/// </summary>
 		Right
+	}
+	/// <summary>
+	/// 比多少題型的圖片名稱
+	/// </summary>
+	public enum HowMuchMoreType : int
+	{
+		/// <summary>
+		/// 圓的
+		/// </summary>
+		Circle = 0,
+		/// <summary>
+		/// 菱形格
+		/// </summary>
+		Diamond,
+		/// <summary>
+		/// 魚形
+		/// </summary>
+		Fish,
+		/// <summary>
+		/// 笑臉
+		/// </summary>
+		HappyFace,
+		/// <summary>
+		/// 漢堡
+		/// </summary>
+		Humburger,
+		/// <summary>
+		/// 愛心
+		/// </summary>
+		Like,
+		/// <summary>
+		/// 方形
+		/// </summary>
+		Square
 	}
 
 	/// <summary>
