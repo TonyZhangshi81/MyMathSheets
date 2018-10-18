@@ -131,6 +131,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\Ext\MathSheets.HowMuchMore.js" />
     <Content Include="Scripts\Ext\MathSheets.Arithmetic.js" />
     <Content Include="Scripts\Ext\MathSheets.CombinatorialEquation.js" />
     <Content Include="Scripts\Ext\MathSheets.FindNearestNumber.js" />

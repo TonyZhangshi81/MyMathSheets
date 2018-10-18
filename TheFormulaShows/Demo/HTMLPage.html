@@ -25,6 +25,7 @@
 	<!--FINDNEARESTNUMBERSCRIPT-->
 	<script src="../Scripts/Ext/MathSheets.CombinatorialEquation.js" charset="utf-8"></script>
 	<!--SCOREGOALSCRIPT-->
+	<script src="../Scripts/Ext/MathSheets.HowMuchMore.js" charset="utf-8"></script>
 	<title>題庫</title>
 
 	<script>
@@ -55,6 +56,7 @@
 			//<!--MATHWORDPROBLEMSPRINTSETTING-->
 			//<!--FINDNEARESTNUMBERPRINTSETTING-->
 			MathSheets.CombinatorialEquation.printSetting();
+			MathSheets.HowMuchMore.printSetting();
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -67,6 +69,7 @@
 			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
 			//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->
 			MathSheets.CombinatorialEquation.printAfterSetting();
+			MathSheets.HowMuchMore.printAfterSetting();
 		}
 
 		// 答題準備按鍵
@@ -89,6 +92,8 @@
 			MathSheets.CombinatorialEquation.ready();
 			// 設定頁面所有輸入域為可用狀態(射門得分)
 			//<!--SCOREGOALREADY-->
+			// 設定頁面所有輸入域為可用狀態(比多少)
+			MathSheets.HowMuchMore.ready();
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -118,6 +123,8 @@
 			fault += MathSheets.CombinatorialEquation.makeCorrections();
 			// 射門得分
 			//<!--SCOREGOALMAKECORRECTIONS-->
+			// 比多少
+			fault += MathSheets.HowMuchMore.makeCorrections();
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -141,6 +148,8 @@
 			MathSheets.CombinatorialEquation.theirPapers();
 			// 射門得分
 			//<!--SCOREGOALTHEIRPAPERS-->
+			// 比多少
+			MathSheets.HowMuchMore.theirPapers();
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -396,6 +405,7 @@
 				<h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">比多少</span></h4>
 			</div>
 			<hr />
+			<input type="hidden" id="hidImgHmmHelpArray" value="Humburger,Humburger" />
 			<div class="row text-center row-margin-top">
 				<div class="col-md-6 form-inline">
 					<ul class="list-group list-group-ext">
@@ -406,6 +416,8 @@
 								<img src="../Content/image/more/Humburger.png" width="30" height="30" />
 								<span>多</span>
 								<span>3個</span>
+								<img id="imgOKHmm0" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
+								<img id="imgNoHmm0" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
 							</h4>
 						</li>
 						<li class="list-group-item">
@@ -418,20 +430,21 @@
 						</li>
 						<li class="list-group-item">
 							<h4>
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
+								<img src="../Content/image/help.png" id="imgHmmHelp00" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp01" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp02" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp03" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp04" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp05" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp06" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp07" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp08" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp09" width="30" height="30" title="help" />
 							</h4>
 						</li>
 					</ul>
 				</div>
+				<input type="hidden" id="hidHmmAnswer0" value="1" />
 				<div class="col-md-6 form-inline">
 					<ul class="list-group list-group-ext">
 						<li class="list-group-item">
@@ -439,8 +452,10 @@
 								<img src="../Content/image/more/Circle.png" width="30" height="30" />
 								<span>比</span>
 								<img src="../Content/image/more/Humburger.png" width="30" height="30" />
-								<span>多</span>
+								<span>少</span>
 								<span>3個</span>
+								<img id="imgOKHmm1" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
+								<img id="imgNoHmm1" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
 							</h4>
 						</li>
 						<li class="list-group-item">
@@ -453,20 +468,21 @@
 						</li>
 						<li class="list-group-item">
 							<h4>
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
-								<img src="../Content/image/help.png" width="30" height="30" />
+								<img src="../Content/image/help.png" id="imgHmmHelp10" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp11" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp12" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp13" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp14" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp15" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp16" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp17" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp18" width="30" height="30" title="help" />
+								<img src="../Content/image/help.png" id="imgHmmHelp19" width="30" height="30" title="help" />
 							</h4>
 						</li>
 					</ul>
 				</div>
+				<input type="hidden" id="hidHmmAnswer1" value="7" />
 			</div>
 			<!--SCOREGOAL-->
 		</div>

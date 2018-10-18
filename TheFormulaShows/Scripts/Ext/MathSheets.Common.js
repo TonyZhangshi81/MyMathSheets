@@ -220,3 +220,37 @@ $(document).ready(function () {
 		return false;
 	});
 });
+
+String.prototype.PadLeft = function (totalWidth, paddingChar) {
+	if (paddingChar != null) {
+		return this.PadHelper(totalWidth, paddingChar, false);
+	} else {
+		return this.PadHelper(totalWidth, ' ', false);
+	}
+}
+
+String.prototype.PadRight = function (totalWidth, paddingChar) {
+	if (paddingChar != null) {
+		return this.PadHelper(totalWidth, paddingChar, true);
+	} else {
+		return this.PadHelper(totalWidth, ' ', true);
+	}
+}
+
+String.prototype.PadHelper = function (totalWidth, paddingChar, isRightPadded) {
+
+	if (this.length < totalWidth) {
+		var paddingString = new String();
+		for (i = 1; i <= (totalWidth - this.length); i++) {
+			paddingString += paddingChar;
+		}
+
+		if (isRightPadded) {
+			return (this + paddingString);
+		} else {
+			return (paddingString + this);
+		}
+	} else {
+		return this;
+	}
+}
