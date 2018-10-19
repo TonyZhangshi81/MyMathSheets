@@ -1,5 +1,4 @@
-﻿using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
+﻿using MyMathSheets.ComputationalStrategy.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +27,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 				var right = "#".PadLeft(formula.RightParameter, '#');
 				Console.WriteLine("{0}   {1}", left, right);
 
-				Console.WriteLine(string.Format("顯示項目：{0}", (d.ChooseLeftOrRight == LeftOrRight.Left) ? left : right));
-				Console.WriteLine(string.Format("顯示答案：{0}", (d.ChooseLeftOrRight == LeftOrRight.Left) ? right : left));
+				Console.WriteLine(string.Format("顯示項目：{0}", d.DisplayLeft ? left : right));
+				Console.WriteLine(string.Format("顯示答案：{0}", d.DisplayLeft ? right : left));
 			});
 		}
 	}
