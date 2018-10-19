@@ -117,7 +117,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkIsPreview.Checked)
 			{
 				// 使用IE打開已作成的靜態頁面
-				System.Diagnostics.Process.Start(@"chrome.exe", Path.GetFullPath(destFileName));
+				System.Diagnostics.Process.Start(@"chrome.exe", "\"" + Path.GetFullPath(@destFileName) + "\"");
 			}
 			// 退出系統
 			Environment.Exit(0);
