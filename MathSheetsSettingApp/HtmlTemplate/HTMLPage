@@ -25,6 +25,7 @@
 	<!--FINDNEARESTNUMBERSCRIPT-->
 	<!--COMBINATORIALEQUATIONSCRIPT-->
 	<!--SCOREGOALSCRIPT-->
+	<!--HOWMUCHMORESCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -55,6 +56,7 @@
 			//<!--MATHWORDPROBLEMSPRINTSETTING-->
 			//<!--FINDNEARESTNUMBERPRINTSETTING-->
 			//<!--COMBINATORIALEQUATIONPRINTSETTING-->
+			//<!--HOWMUCHMOREPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -67,6 +69,7 @@
 			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
 			//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->
 			//<!--COMBINATORIALEQUATIONPRINTAFTERSETTING-->
+			//<!--HOWMUCHMOREPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -89,6 +92,8 @@
 			//<!--COMBINATORIALEQUATIONREADY-->
 			// 設定頁面所有輸入域為可用狀態(射門得分)
 			//<!--SCOREGOALREADY-->
+			// 設定頁面所有輸入域為可用狀態(比多少)
+			//<!--HOWMUCHMOREREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -118,6 +123,8 @@
 			//<!--COMBINATORIALEQUATIONMAKECORRECTIONS-->
 			// 射門得分
 			//<!--SCOREGOALMAKECORRECTIONS-->
+			// 比多少
+			//<!--HOWMUCHMOREMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -141,6 +148,8 @@
 			//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->
 			// 射門得分
 			//<!--SCOREGOALTHEIRPAPERS-->
+			// 比多少
+			//<!--HOWMUCHMORETHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -178,6 +187,7 @@
 		<!--FINDNEARESTNUMBER-->
 		<!--COMBINATORIALEQUATION-->
 		<!--SCOREGOAL-->
+		<!--HOWMUCHMORE-->
 		</div>
 		<HR>
 		<div class="row">

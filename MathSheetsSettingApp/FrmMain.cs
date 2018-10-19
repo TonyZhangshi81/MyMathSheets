@@ -1,7 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows;
 using MyMathSheets.TheFormulaShows.Attributes;
@@ -96,8 +94,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			// HTML模板存放路徑
 			string sourceFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("Template"));
-			// 靜態頁面作成后存放的路徑
-			string destFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("HTMLPage_{0}.html", DateTime.Now.ToString("HHmmssfff")));
+			// 靜態頁面作成后存放的路徑（文件名：日期時間形式）
+			string destFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("{0}.html", DateTime.Now.ToString("yyyyMMddHHmmssfff")));
 			// 文件移動
 			File.Copy(sourceFileName, destFileName);
 
@@ -115,8 +113,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			// 保存至靜態頁面
 			File.WriteAllText(destFileName, htmlTemplate.ToString(), Encoding.UTF8);
-			// 使用IE打開已作成的靜態頁面
-			System.Diagnostics.Process.Start(@"IExplore.exe", Path.GetFullPath(destFileName));
+
+			if (chkIsPreview.Checked)
+			{
+				// 使用IE打開已作成的靜態頁面
+				System.Diagnostics.Process.Start(@"chrome.exe", Path.GetFullPath(destFileName));
+			}
 			// 退出系統
 			Environment.Exit(0);
 		}
@@ -169,6 +171,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkScoreGoal.Checked)
 			{
 				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.ScoreGoal);
+			}
+			// 比多少
+			if (chkHowMuchMore.Checked)
+			{
+				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.HowMuchMore);
 			}
 			// 答題結束瀏覽
 			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Ready);
@@ -472,6 +479,40 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.ScoreGoal.ToString());
+				_selectedTopic--;
+			}
+			// 刷新題型預覽區域
+			PreviewReflash();
+		}
+
+		/// <summary>
+		/// 比多少題型選擇事件
+		/// </summary>
+		/// <param name="sender">選擇框</param>
+		/// <param name="e">選擇事件</param>
+		private void HowMuchMoreCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkHowMuchMore.Checked)
+			{
+				// 添加題型
+				_selectedTopic++;
+
+				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
+				HowMuchMoreParameter hmmParameter = (HowMuchMoreParameter)work.Structure(LayoutSetting.Preview.HowMuchMore, "HMM001");
+
+				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
+				{
+					{ "<!--HOWMUCHMORE-->", work.GetHtmlStatement(LayoutSetting.Preview.HowMuchMore, hmmParameter) }
+				};
+				// JS模板內容替換
+				MarkJavaScriptReplaceContent(typeof(HowMuchMoreHtmlSupport), htmlMaps);
+				// 按照題型將所有替換內容裝箱子
+				_htmlMaps.Add(LayoutSetting.Preview.HowMuchMore.ToString(), htmlMaps);
+			}
+			else
+			{
+				// 題型移除
+				_htmlMaps.Remove(LayoutSetting.Preview.HowMuchMore.ToString());
 				_selectedTopic--;
 			}
 			// 刷新題型預覽區域

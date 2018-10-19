@@ -1,14 +1,12 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows.Attributes;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace MyMathSheets.TheFormulaShows.Support
 {
@@ -26,7 +24,11 @@ namespace MyMathSheets.TheFormulaShows.Support
 		/// <summary>
 		/// 可選圖片列表
 		/// </summary>
-		private readonly List<HowMuchMoreType> MoreTypeArray;
+		private List<HowMuchMoreType> _moreTypeArray;
+		/// <summary>
+		/// 填空題中可以選擇的圖片集合
+		/// </summary>
+		private StringBuilder _gapFillingItems;
 
 		/// <summary>
 		/// 構造體
@@ -34,7 +36,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 		public HowMuchMoreHtmlSupport()
 		{
 			// 可選圖片列表
-			MoreTypeArray = new List<HowMuchMoreType>()
+			_moreTypeArray = new List<HowMuchMoreType>()
 			{
 				HowMuchMoreType.Circle,
 				HowMuchMoreType.Diamond,
@@ -44,9 +46,6 @@ namespace MyMathSheets.TheFormulaShows.Support
 				HowMuchMoreType.Like,
 				HowMuchMoreType.Square
 			};
-
-			// 隨機排序
-			MoreTypeArray = MoreTypeArray.OrderBy(x => Guid.NewGuid()).ToList();
 		}
 
 		/// <summary>
@@ -71,38 +70,157 @@ namespace MyMathSheets.TheFormulaShows.Support
 			StringBuilder html = new StringBuilder();
 			StringBuilder rowHtml = new StringBuilder();
 			StringBuilder listGroupHtml = new StringBuilder();
+			_gapFillingItems = new StringBuilder();
 
 			foreach (HowMuchMoreFormula item in p.Formulas)
 			{
+				// 隨機排序（個體顯示圖片是隨機的）
+				_moreTypeArray = _moreTypeArray.OrderBy(x => Guid.NewGuid()).ToList();
+
 				isRowHtmlClosed = false;
 
 				listGroupHtml.AppendLine("<div class=\"col-md-6 form-inline\">");
 				listGroupHtml.AppendLine("<ul class=\"list-group list-group-ext\">");
 				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
 				listGroupHtml.AppendLine("<h4>");
-				listGroupHtml.AppendLine(string.Format("<img src=\"../Content/image/more/{0}.png\" width=\"30\" height=\"30\" />", MoreTypeArray[0]));
-				listGroupHtml.AppendLine("<span>比</span>");
-				listGroupHtml.AppendLine(string.Format("<img src=\"../Content/image/more/{0}.png\" width=\"30\" height=\"30\" />", MoreTypeArray[1]));
-				listGroupHtml.AppendLine(string.Format("<span>比</span>", item.LeftOrRightParameter == MuchMoreSideType.Left ? "多" : "少"));
-				listGroupHtml.AppendLine(string.Format("<span>{0}個</span>", item.Answer));
+				listGroupHtml.AppendLine(GetProblemHtml(item));
 				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKHmm{0}\" src=\"../Content/image/correct.png\" style=\"width: 30px; height: 30px; display: none; \" />", controlIndex));
-				listGroupHtml.AppendLine(string.Format("<img id=\"imgNOHmm{0}\" src=\"../Content/image/fault.png\" style=\"width: 30px; height: 30px; display: none; \" />", controlIndex));
+				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoHmm{0}\" src=\"../Content/image/fault.png\" style=\"width: 30px; height: 30px; display: none; \" />", controlIndex));
 				listGroupHtml.AppendLine("</h4>");
+				listGroupHtml.AppendLine("</li>");
 
+				// 表示項目顯示
 				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
 				listGroupHtml.AppendLine("<h4>");
-
+				listGroupHtml.AppendLine(SetDisplayItem(item));
 				listGroupHtml.AppendLine("</h4>");
+				listGroupHtml.AppendLine("</li>");
+
+				// 填空項目顯示
+				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
+				listGroupHtml.AppendLine("<h4>");
+				listGroupHtml.AppendLine(SetDisplayGapFillingItem(item, controlIndex));
+				listGroupHtml.AppendLine("</h4>");
+				listGroupHtml.AppendLine("</li>");
+
+				// 結束符
+				listGroupHtml.AppendLine("</ul>");
+				listGroupHtml.AppendLine("</div>");
+
+				// 答案項目
+				listGroupHtml.AppendLine(string.Format("<input type=\"hidden\" id=\"hidHmmAnswer{0}\" value=\"{1}\" />", controlIndex, item.Answer));
 
 				controlIndex++;
+				numberOfColumns++;
+				if (numberOfColumns == 2)
+				{
+					rowHtml.AppendLine("<div class=\"row text-center row-margin-top\">");
+					rowHtml.Append(listGroupHtml.ToString());
+					rowHtml.AppendLine("</div>");
 
+					html.Append(rowHtml);
 
+					isRowHtmlClosed = true;
+					numberOfColumns = 0;
+					rowHtml.Length = 0;
+					listGroupHtml.Length = 0;
+				}
+			}
+
+			if (!isRowHtmlClosed)
+			{
+				rowHtml.AppendLine("<div class=\"row text-center row-margin-top\">");
+				rowHtml.Append(listGroupHtml.ToString());
+				rowHtml.AppendLine("</div>");
+
+				html.Append(rowHtml);
 			}
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">比多少</span></h4></div><hr />");
+				StringBuilder head = new StringBuilder();
+				// 題目標題顯示
+				head.AppendLine("<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">比多少</span></h4></div><hr />");
+				// 答案項目
+				_gapFillingItems.Length -= 1;
+				head.AppendLine(string.Format("<input type=\"hidden\" id=\"hidImgHmmHelpArray\" value=\"{0}\" />", _gapFillingItems.ToString()));
+
+				html.Insert(0, head);
 			}
+			return html.ToString();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <returns></returns>
+		private string GetProblemHtml(HowMuchMoreFormula item)
+		{
+			StringBuilder html = new StringBuilder();
+
+			// 如果條件顯示是“多”
+			if (item.ChooseMore)
+			{
+				html.AppendLine(string.Format("<img src=\"../Content/image/more/{0}.png\" width=\"30\" height=\"30\" />", _moreTypeArray[0].ToString()));
+				html.AppendLine("<span>比</span>");
+				html.AppendLine(string.Format("<img src=\"../Content/image/more/{0}.png\" width=\"30\" height=\"30\" />", _moreTypeArray[1].ToString()));
+				html.AppendLine("<span>多</span>");
+			}
+			else
+			{
+				html.AppendLine(string.Format("<img src=\"../Content/image/more/{0}.png\" width=\"30\" height=\"30\" />", _moreTypeArray[1].ToString()));
+				html.AppendLine("<span>比</span>");
+				html.AppendLine(string.Format("<img src=\"../Content/image/more/{0}.png\" width=\"30\" height=\"30\" />", _moreTypeArray[0].ToString()));
+				html.AppendLine("<span>少</span>");
+			}
+			html.AppendLine(string.Format("<span>{0}個</span>", item.DefaultFormula.Answer));
+
+			return html.ToString();
+		}
+
+		/// <summary>
+		/// 填空項目顯示
+		/// </summary>
+		/// <param name="item">比多少算式</param>
+		/// <param name="controlIndex">題目編號</param>
+		/// <returns>HTML</returns>
+		private string SetDisplayGapFillingItem(HowMuchMoreFormula item, int controlIndex)
+		{
+			StringBuilder html = new StringBuilder();
+
+			// 填空項目個數（最多10個）
+			var displayItemCount = 10;
+			for (var index = 0; index < displayItemCount; index++)
+			{
+				// HTML作成
+				html.AppendLine(string.Format("<img src=\"../Content/image/help.png\" id=\"imgHmmHelp{0}{1}\" width=\"30\" height=\"30\" title=\"help\" />", controlIndex, index));
+			}
+
+			// 填空題中可以選擇的圖片集合
+			_gapFillingItems.AppendFormat("{0},", item.DisplayLeft ? _moreTypeArray[1].ToString() : _moreTypeArray[0].ToString());
+
+			return html.ToString();
+		}
+
+		/// <summary>
+		/// 已知項目的個數并表示
+		/// </summary>
+		/// <param name="item">比多少算式</param>
+		/// <returns>HTML</returns>
+		private string SetDisplayItem(HowMuchMoreFormula item)
+		{
+			StringBuilder html = new StringBuilder();
+			// 顯示個數
+			var displayItemCount = item.DisplayLeft ? item.DefaultFormula.LeftParameter : item.DefaultFormula.RightParameter;
+			// 顯示項目（圖片顯示）
+			var displayItem = item.DisplayLeft ? _moreTypeArray[0] : _moreTypeArray[1];
+			for (var index = 0; index < displayItemCount; index++)
+			{
+				// HTML作成
+				html.AppendLine(string.Format("<img src=\"../Content/image/more/{0}.png\" width=\"30\" height=\"30\" />", displayItem.ToString()));
+			}
+
 			return html.ToString();
 		}
 

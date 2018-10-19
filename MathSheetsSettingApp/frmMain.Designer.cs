@@ -39,13 +39,15 @@
 			this.chkCombinatorialEquation = new System.Windows.Forms.CheckBox();
 			this.button1 = new System.Windows.Forms.Button();
 			this.chkScoreGoal = new System.Windows.Forms.CheckBox();
+			this.chkHowMuchMore = new System.Windows.Forms.CheckBox();
+			this.chkIsPreview = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// btnSure
 			// 
-			this.btnSure.Location = new System.Drawing.Point(27, 370);
+			this.btnSure.Location = new System.Drawing.Point(76, 370);
 			this.btnSure.Name = "btnSure";
-			this.btnSure.Size = new System.Drawing.Size(354, 23);
+			this.btnSure.Size = new System.Drawing.Size(305, 23);
 			this.btnSure.TabIndex = 0;
 			this.btnSure.Text = "出題";
 			this.btnSure.UseVisualStyleBackColor = true;
@@ -158,11 +160,34 @@
 			this.chkScoreGoal.UseVisualStyleBackColor = true;
 			this.chkScoreGoal.CheckedChanged += new System.EventHandler(this.ScoreGoalCheckedChanged);
 			// 
+			// chkHowMuchMore
+			// 
+			this.chkHowMuchMore.AutoSize = true;
+			this.chkHowMuchMore.Location = new System.Drawing.Point(254, 80);
+			this.chkHowMuchMore.Name = "chkHowMuchMore";
+			this.chkHowMuchMore.Size = new System.Drawing.Size(60, 16);
+			this.chkHowMuchMore.TabIndex = 24;
+			this.chkHowMuchMore.Text = "比多少";
+			this.chkHowMuchMore.UseVisualStyleBackColor = true;
+			this.chkHowMuchMore.CheckedChanged += new System.EventHandler(this.HowMuchMoreCheckedChanged);
+			// 
+			// chkIsPreview
+			// 
+			this.chkIsPreview.AutoSize = true;
+			this.chkIsPreview.Location = new System.Drawing.Point(27, 374);
+			this.chkIsPreview.Name = "chkIsPreview";
+			this.chkIsPreview.Size = new System.Drawing.Size(48, 16);
+			this.chkIsPreview.TabIndex = 25;
+			this.chkIsPreview.Text = "瀏覽";
+			this.chkIsPreview.UseVisualStyleBackColor = true;
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(932, 405);
+			this.Controls.Add(this.chkIsPreview);
+			this.Controls.Add(this.chkHowMuchMore);
 			this.Controls.Add(this.chkScoreGoal);
 			this.Controls.Add(this.button1);
 			this.Controls.Add(this.chkCombinatorialEquation);
@@ -195,6 +220,8 @@
 		private System.Windows.Forms.CheckBox chkCombinatorialEquation;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.CheckBox chkScoreGoal;
+		private System.Windows.Forms.CheckBox chkHowMuchMore;
+		private System.Windows.Forms.CheckBox chkIsPreview;
 	}
 }
 

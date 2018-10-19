@@ -27,6 +27,36 @@
 	}
 
 	/// <summary>
+	/// 比多少題中條件顯示（左邊還是右邊）
+	/// </summary>
+	public enum LeftOrRight : int
+	{
+		/// <summary>
+		/// 左邊
+		/// </summary>
+		Left = 0,
+		/// <summary>
+		/// 右邊
+		/// </summary>
+		Right
+	}
+
+	/// <summary>
+	/// 比多少題中條件顯示（多的還是少的）
+	/// </summary>
+	public enum MoreOrLess : int
+	{
+		/// <summary>
+		/// 多的
+		/// </summary>
+		More = 0,
+		/// <summary>
+		/// 少的
+		/// </summary>
+		Less,
+	}
+
+	/// <summary>
 	/// 运算符（加、減、乘、除）
 	/// </summary>
 	public enum SignOfOperation : int
@@ -110,21 +140,6 @@
 		Random
 	}
 
-	/// <summary>
-	/// 比多少（選擇項目：left為多的一方  Right為少的一方）
-	/// </summary>
-	/// <remarks>只適用於減法運算符</remarks>
-	public enum MuchMoreSideType : int
-	{
-		/// <summary>
-		/// 多的一方
-		/// </summary>
-		Left = 0,
-		/// <summary>
-		/// 少的一方
-		/// </summary>
-		Right
-	}
 	/// <summary>
 	/// 比多少題型的圖片名稱
 	/// </summary>

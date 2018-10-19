@@ -8,4 +8,5 @@
 	<object id="FindNearestNumber" type="MyMathSheets.TheFormulaShows.Support.FindNearestNumberHtmlSupport"></object>
 	<object id="CombinatorialEquation" type="MyMathSheets.TheFormulaShows.Support.CombinatorialEquationHtmlSupport"></object>
 	<object id="ScoreGoal" type="MyMathSheets.TheFormulaShows.Support.ScoreGoalHtmlSupport"></object>
+	<object id="HowMuchMore" type="MyMathSheets.TheFormulaShows.Support.HowMuchMoreHtmlSupport"></object>
 </objects>

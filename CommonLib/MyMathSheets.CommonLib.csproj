@@ -76,6 +76,7 @@
     <Compile Include="Provider\JsonOperationParameterProvider.cs" />
     <Compile Include="Provider\OperationProviderConfigurationSection.cs" />
     <Compile Include="Provider\ParameterHepler.cs" />
+    <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="Util\Consts.cs" />
     <Compile Include="Util\JsonExtension.cs" />
     <Compile Include="Util\RandomNumberComposition.cs" />

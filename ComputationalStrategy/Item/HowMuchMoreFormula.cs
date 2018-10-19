@@ -14,9 +14,14 @@ namespace MyMathSheets.ComputationalStrategy.Item
 		public Formula DefaultFormula { get; set; }
 
 		/// <summary>
-		/// 當前顯示的項目
+		/// 選左還是右
 		/// </summary>
-		public MuchMoreSideType LeftOrRightParameter { get; set; }
+		public bool DisplayLeft { get; set; }
+
+		/// <summary>
+		/// 選多還是少
+		/// </summary>
+		public bool ChooseMore { get; set; }
 
 		/// <summary>
 		/// 比多少題型的文字表述部分(eg:左邊項目比右邊項目多1個)

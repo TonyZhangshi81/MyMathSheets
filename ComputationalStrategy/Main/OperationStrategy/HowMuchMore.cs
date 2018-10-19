@@ -33,7 +33,6 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					return;
 				}
 
-				RandomNumberComposition random;
 				// 指定單個運算符實例
 				strategy = CalculateManager(p.Signs[0]);
 				// 按照指定數量作成相應的數學計算式
@@ -46,22 +45,22 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 						continue;
 					}
 
-					// 在多少一方中隨機選擇一個用於顯示默認出現的圖形
-					random = new RandomNumberComposition(0, (int)MuchMoreSideType.Right);
-
 					// 運算式作成
-					HowMuchMoreFormula defaultFormula = new HowMuchMoreFormula()
+					HowMuchMoreFormula howMuchMoreFormula = new HowMuchMoreFormula()
 					{
 						DefaultFormula = formula,
-						// 被選擇顯示的一方
-						LeftOrRightParameter = (MuchMoreSideType)random.GetRandomNumber(),
-						// 文字表述部分內容作成
-						MathWordProblem = CreateMathWordProblem(formula.Answer)
+						// 選擇左邊作為題目的條件還是右邊（隨機獲取）
+						DisplayLeft = (LeftOrRight)CommonUtil.GetRandomNumber(0, (int)LeftOrRight.Right) == LeftOrRight.Left,
+						// 題型選擇：是表示多的題還是少的題（隨機獲取）
+						ChooseMore = (MoreOrLess)CommonUtil.GetRandomNumber(0, (int)MoreOrLess.Less) == MoreOrLess.More
 					};
-					defaultFormula.Answer = (defaultFormula.LeftOrRightParameter == MuchMoreSideType.Left) ? defaultFormula.DefaultFormula.RightParameter : defaultFormula.DefaultFormula.LeftParameter;
+					// 文字表述部分內容作成
+					howMuchMoreFormula.MathWordProblem = CreateMathWordProblem(howMuchMoreFormula);
+					// 答案值（如果顯示的是左邊值，那麼答案就是右邊的值）
+					howMuchMoreFormula.Answer = ((howMuchMoreFormula.DisplayLeft) ? howMuchMoreFormula.DefaultFormula.RightParameter : howMuchMoreFormula.DefaultFormula.LeftParameter);
 
 					// 計算式作成
-					p.Formulas.Add(defaultFormula);
+					p.Formulas.Add(howMuchMoreFormula);
 				}
 			}
 		}
@@ -69,22 +68,18 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// <summary>
 		/// 比較多少的文字表述部分內容
 		/// </summary>
-		/// <param name="answer">兩個值之間的差額</param>
+		/// <param name="formula">當前算式</param>
 		/// <returns>文字表述部分內容</returns>
-		private string CreateMathWordProblem(int answer)
+		private string CreateMathWordProblem(HowMuchMoreFormula formula)
 		{
-			// 選多還是少（左邊多；右邊少；）
-			RandomNumberComposition random = new RandomNumberComposition(0, (int)MuchMoreSideType.Right);
-			var param = (MuchMoreSideType)random.GetRandomNumber();
-
 			StringBuilder content = new StringBuilder();
-			if(param == MuchMoreSideType.Left)
+			if (formula.ChooseMore)
 			{
-				content.AppendFormat("{0}比{1}多{2}個", "Left", "Right", answer);
+				content.AppendFormat("{0}比{1}多{2}個", "Left", "Right", formula.DefaultFormula.Answer);
 			}
-			else if (param == MuchMoreSideType.Right)
+			else
 			{
-				content.AppendFormat("{0}比{1}少{2}個", "Right", "Left", answer);
+				content.AppendFormat("{0}比{1}少{2}個", "Right", "Left", formula.DefaultFormula.Answer);
 			}
 
 			return content.ToString();
