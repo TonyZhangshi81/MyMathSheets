@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Util;
 using System;
 using System.Collections.Concurrent;
@@ -76,6 +77,9 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 			{
 				// 在MEF容器中收集本類的屬性信息（實際情況屬性只注入一次）
 				ComposeThis();
+
+				//Log4NetHelper.WriteInfoLog("指定運算符實例準備作成");
+
 				// 指定運算符并獲取處理類型
 				CalculateBase calculate = _calculate.Where(d => d.Metadata.Sign == sign).First().Value;
 				// 返回該運算符處理類型的實例
