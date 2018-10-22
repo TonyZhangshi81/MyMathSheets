@@ -1,5 +1,4 @@
 ﻿using MyMathSheets.CommonLib.Composition;
-using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Util;
 using System;
 using System.Collections.Concurrent;
