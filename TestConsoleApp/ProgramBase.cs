@@ -1,6 +1,9 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
+using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TheFormulaShows;
 using System;
 using System.Linq;
@@ -13,6 +16,8 @@ namespace MyMathSheets.TestConsoleApp
 	/// </summary>
 	public class ProgramBase
 	{
+		private static Log log = Log.LogReady(typeof(ProgramBase));
+
 		/// <summary>
 		/// 啟動時所使用的函數
 		/// </summary>
@@ -294,6 +299,9 @@ namespace MyMathSheets.TestConsoleApp
 		private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
 		{
 			var exception = (Exception)e.ExceptionObject;
+
+			log.Debug(MessageUtil.GetException(() => Resources.E0001T), exception);
+
 			Console.WriteLine(exception.Message);
 			Console.ReadKey();
 			Environment.Exit(-1);

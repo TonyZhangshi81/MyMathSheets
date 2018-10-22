@@ -1,4 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using System;
 using System.Collections.Concurrent;
@@ -15,6 +18,8 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 	[Export(typeof(ICalculateFactory))]
 	public class CalculateFactory : ICalculateFactory
 	{
+		private static Log log = Log.LogReady(typeof(CalculateFactory));
+
 		/// <summary>
 		/// 以防止重複注入（減少損耗）
 		/// </summary>
@@ -60,7 +65,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// 運算符屬性注入點
 		/// </summary>
 		[ImportMany(RequiredCreationPolicy = CreationPolicy.NonShared)]
-		public IEnumerable<Lazy<CalculateBase, ICalculateMetaDataView>> _calculate { get; set; }
+		public IEnumerable<Lazy<CalculateBase, ICalculateMetaDataView>> _calculates { get; set; }
 
 		/// <summary>
 		/// 對指定運算符實例化
@@ -77,12 +82,20 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 				// 在MEF容器中收集本類的屬性信息（實際情況屬性只注入一次）
 				ComposeThis();
 
-				//Log4NetHelper.WriteInfoLog("指定運算符實例準備作成");
+				log.Debug(MessageUtil.GetException(() => Resources.I0001L));
 
 				// 指定運算符并獲取處理類型
-				CalculateBase calculate = _calculate.Where(d => d.Metadata.Sign == sign).First().Value;
+				CalculateBase calculate = _calculates.Where(d =>
+				{
+					return d.Metadata.Sign == sign;
+				}).First().Value;
+
 				// 返回該運算符處理類型的實例
-				return (ICalculate)Activator.CreateInstance(calculate.GetType());
+				ICalculate calculater = (ICalculate)Activator.CreateInstance(calculate.GetType());
+
+				log.Debug(MessageUtil.GetException(() => Resources.I0002L, calculate.GetType().ToString()));
+
+				return calculater;
 			});
 		}
 	}

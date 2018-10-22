@@ -31,11 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -56,6 +53,8 @@
     <Compile Include="Composition\Composer.cs" />
     <Compile Include="Composition\ComposerException.cs" />
     <Compile Include="Composition\ComposerFactory.cs" />
+    <Compile Include="Logging\ILogging.cs" />
+    <Compile Include="Logging\Log.cs" />
     <Compile Include="Main\Arithmetic\CalculateFactory.cs" />
     <Compile Include="Main\Arithmetic\CalculateBase.cs" />
     <Compile Include="Main\ExportAttributes\CalculateAttribute.cs" />
@@ -78,13 +77,17 @@
     <Compile Include="Main\OperationStrategy\ParameterBase.cs" />
     <Compile Include="Message\MessageUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs" />
     <Compile Include="Main\ExportAttributes\MathSheetMarkerAttribute.cs" />
     <Compile Include="Provider\FormOperationParameterProvider.cs" />
     <Compile Include="Provider\OperationParameterProvider.cs" />
     <Compile Include="Provider\JsonOperationParameterProvider.cs" />
     <Compile Include="Provider\OperationProviderConfigurationSection.cs" />
     <Compile Include="Provider\ParameterHepler.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="Util\Consts.cs" />
     <Compile Include="Util\JsonExtension.cs" />
@@ -93,13 +96,13 @@
     <Compile Include="Util\StringUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyMathSheets.CommonLib.Properties {
+namespace MyMathSheets.TestConsoleApp.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MyMathSheets.CommonLib.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyMathSheets.CommonLib.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyMathSheets.TestConsoleApp.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,11 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
-        ///   指定的信息與ExportAttribute不一致或者發現多個 に類似しているローカライズされた文字列を検索します。
+        ///   系統異常 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string E0001L {
+        internal static string E0001T {
             get {
-                return ResourceManager.GetString("E0001L", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   指定運算符實例準備作成 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string I0001L {
-            get {
-                return ResourceManager.GetString("I0001L", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   {0}運算符實例作成完畢 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string I0002L {
-            get {
-                return ResourceManager.GetString("I0002L", resourceCulture);
+                return ResourceManager.GetString("E0001T", resourceCulture);
             }
         }
     }

@@ -8,6 +8,33 @@
 	}
 
 	/// <summary>
+	/// Message消息級別
+	/// </summary>
+	public enum MessageLevel
+	{
+		/// <summary>
+		/// 調試信息
+		/// </summary>
+		Debug,
+		/// <summary>
+		/// 業務異常信息
+		/// </summary>
+		Error,
+		/// <summary>
+		/// 系統異常信息
+		/// </summary>
+		Fatal,
+		/// <summary>
+		/// 一般消息
+		/// </summary>
+		Info,
+		/// <summary>
+		/// 警告信息
+		/// </summary>
+		Warn
+	}
+
+	/// <summary>
 	/// 系統模塊
 	/// </summary>
 	public enum SystemModel

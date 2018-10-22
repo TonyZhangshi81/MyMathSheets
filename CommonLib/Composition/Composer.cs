@@ -68,7 +68,7 @@ namespace MyMathSheets.CommonLib.Composition
         public Exception CreateLogicComposerException(Type type, string contractName, Exception innerException)
         {
             var sb = new StringBuilder();
-            sb.Append(MessageUtil.GetException(() => Resources.E51006S));
+            sb.Append(MessageUtil.GetException(() => Resources.E0001L));
             sb.Append(this.GetInnerExportedInfo(type, contractName));
             return new ComposerException(sb.ToString(), innerException);
         }

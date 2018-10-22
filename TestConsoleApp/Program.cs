@@ -1,13 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
-using MyMathSheets.TheFormulaShows;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MyMathSheets.TestConsoleApp
+﻿namespace MyMathSheets.TestConsoleApp
 {
 	/// <summary>
 	/// 
@@ -20,6 +11,10 @@ namespace MyMathSheets.TestConsoleApp
 		/// <param name="args"></param>
 		static void Main(string[] args)
 		{
+			// 日誌配置初期化
+			log4net.Config.XmlConfigurator.Configure(new System.IO.FileInfo(@"log4net.config"));
+
+			// 主程序啟動
 			var program = new Program();
 			program.Start();
 		}

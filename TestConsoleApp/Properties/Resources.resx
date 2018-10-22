@@ -117,13 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="E0001L" xml:space="preserve">
-    <value>指定的信息與ExportAttribute不一致或者發現多個</value>
-  </data>
-  <data name="I0001L" xml:space="preserve">
-    <value>指定運算符實例準備作成</value>
-  </data>
-  <data name="I0002L" xml:space="preserve">
-    <value>{0}運算符實例作成完畢</value>
+  <data name="E0001T" xml:space="preserve">
+    <value>系統異常</value>
   </data>
 </root>
