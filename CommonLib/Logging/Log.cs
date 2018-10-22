@@ -47,7 +47,7 @@ namespace MyMathSheets.CommonLib.Logging
 		/// <param name="exception"></param>
 		public void Debug(string message, Exception exception)
 		{
-			this.Output(message, MessageLevel.Debug, exception);
+			this.Output(message, MessageLevel.Error, exception);
 		}
 
 		/// <summary>
