@@ -83,17 +83,14 @@ namespace MyMathSheets.MathSheetsSettingApp
 		}
 
 		/// <summary>
-		/// 選題情況
-		/// </summary>
-		private int _selectedTopic = 0;
-		/// <summary>
 		/// 出題按鍵點擊事件
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void SureClick(object sender, EventArgs e)
 		{
-			if (_selectedTopic == 0)
+			// 選題情況
+			if (_layoutSettingPreviewList == null || _layoutSettingPreviewList.Count == 2)
 			{
 				MessageBox.Show(this, "運算符未指定");
 				return;
@@ -152,11 +149,13 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 初期化
 			if(_layoutSettingPreviewList == null)
 			{
-				_layoutSettingPreviewList = new List<LayoutSetting.Preview>();
-				// 標題區
-				_layoutSettingPreviewList.Add(LayoutSetting.Preview.Title);
-				// 答題區
-				_layoutSettingPreviewList.Add(LayoutSetting.Preview.Ready);
+				_layoutSettingPreviewList = new List<LayoutSetting.Preview>
+				{
+					// 標題區
+					LayoutSetting.Preview.Title,
+					// 答題區
+					LayoutSetting.Preview.Ready
+				};
 			}
 			// 如果列表中不存在，則添加在答題區之前
 			if (!_layoutSettingPreviewList.Any(d => d == name))
@@ -177,25 +176,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 		}
 
 		/// <summary>
-		/// 獲取指定題型的瀏覽所在位置
-		/// </summary>
-		/// <param name="viewName">題型種類</param>
-		/// <returns></returns>
-		private int GetPreviewItemIndexof(LayoutSetting.Preview viewName)
-		{
-			int index = 0;
-			foreach (PictureBox pictureBox in flpPreview.Controls)
-			{
-				if (pictureBox.Tag.ToString().Equals(viewName.ToString()))
-				{
-					index = flpPreview.Controls.GetChildIndex(pictureBox);
-					break;
-				}
-			}
-			return index;
-		}
-
-		/// <summary>
 		/// 四則運算題型選擇事件
 		/// </summary>
 		/// <param name="sender">選擇框</param>
@@ -208,9 +188,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.Arithmetic);
-
-				// 添加題型
-				_selectedTopic++;
 
 				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
 				ArithmeticParameter acParameter = (ArithmeticParameter)work.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
@@ -233,7 +210,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.Arithmetic.ToString());
-				_selectedTopic--;
 			}
 			// 刷新題型預覽區域
 			PreviewReflash();
@@ -268,8 +244,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.EqualityComparison);
 
-				// 添加題型
-				_selectedTopic++;
 				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
 				EqualityComparisonParameter ecParameter = (EqualityComparisonParameter)work.Structure(LayoutSetting.Preview.EqualityComparison, "EC001");
 
@@ -291,7 +265,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.EqualityComparison.ToString());
-				_selectedTopic--;
 			}
 			// 刷新題型預覽區域
 			PreviewReflash();
@@ -310,9 +283,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.ComputingConnection);
-
-				// 添加題型
-				_selectedTopic++;
 
 				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
 				ComputingConnectionParameter ccParameter = (ComputingConnectionParameter)work.Structure(LayoutSetting.Preview.ComputingConnection, "CC001");
@@ -335,7 +305,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.ComputingConnection.ToString());
-				_selectedTopic--;
 			}
 			// 刷新題型預覽區域
 			PreviewReflash();
@@ -354,9 +323,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.MathWordProblems);
-
-				// 添加題型
-				_selectedTopic++;
 
 				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
 				MathWordProblemsParameter mpParameter = (MathWordProblemsParameter)work.Structure(LayoutSetting.Preview.MathWordProblems, "MP001");
@@ -379,7 +345,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.MathWordProblems.ToString());
-				_selectedTopic--;
 			}
 			// 刷新題型預覽區域
 			PreviewReflash();
@@ -398,9 +363,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.FruitsLinkage);
-
-				// 添加題型
-				_selectedTopic++;
 
 				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
 				FruitsLinkageParameter flParameter = (FruitsLinkageParameter)work.Structure(LayoutSetting.Preview.FruitsLinkage, "FL001");
@@ -423,7 +385,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.FruitsLinkage.ToString());
-				_selectedTopic--;
 			}
 			// 刷新題型預覽區域
 			PreviewReflash();
@@ -442,9 +403,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.FindNearestNumber);
-
-				// 添加題型
-				_selectedTopic++;
 
 				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
 				FindNearestNumberParameter fnParameter = (FindNearestNumberParameter)work.Structure(LayoutSetting.Preview.FindNearestNumber, "FN001");
@@ -467,7 +425,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.FindNearestNumber.ToString());
-				_selectedTopic--;
 			}
 			// 刷新題型預覽區域
 			PreviewReflash();
@@ -486,9 +443,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.CombinatorialEquation);
-
-				// 添加題型
-				_selectedTopic++;
 
 				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
 				CombinatorialEquationParameter ceParameter = (CombinatorialEquationParameter)work.Structure(LayoutSetting.Preview.CombinatorialEquation, "CE001");
@@ -511,7 +465,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.CombinatorialEquation.ToString());
-				_selectedTopic--;
 			}
 			// 刷新題型預覽區域
 			PreviewReflash();
@@ -530,9 +483,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.ScoreGoal);
-
-				// 添加題型
-				_selectedTopic++;
 
 				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
 				ScoreGoalParameter sgParameter = (ScoreGoalParameter)work.Structure(LayoutSetting.Preview.ScoreGoal, "SG001");
@@ -555,7 +505,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.ScoreGoal.ToString());
-				_selectedTopic--;
 			}
 			// 刷新題型預覽區域
 			PreviewReflash();
@@ -574,9 +523,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.HowMuchMore);
-
-				// 添加題型
-				_selectedTopic++;
 
 				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
 				HowMuchMoreParameter hmmParameter = (HowMuchMoreParameter)work.Structure(LayoutSetting.Preview.HowMuchMore, "HMM001");
@@ -599,7 +545,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.HowMuchMore.ToString());
-				_selectedTopic--;
 			}
 			// 刷新題型預覽區域
 			PreviewReflash();
