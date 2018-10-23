@@ -140,6 +140,7 @@
     <Content Include="App_Data\Work\Content\image\more\Like.png" />
     <Content Include="App_Data\Work\Content\image\more\Square.png" />
     <Content Include="App_Data\Work\Content\image\Multiple.png" />
+    <Content Include="App_Data\Work\Content\image\navigate-up.png" />
     <Content Include="App_Data\Work\Content\image\Plus.png" />
     <None Include="App_Data\Work\Content\image\ready.png" />
     <None Include="App_Data\Work\Content\image\ScoreGoal.png" />

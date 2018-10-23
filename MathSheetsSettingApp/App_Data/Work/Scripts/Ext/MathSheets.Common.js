@@ -14,7 +14,8 @@ var __isFault = 0;
 
 var MathSheets = MathSheets || {};
 MathSheets.Common = MathSheets.Common || (function () {
-	// 取得ID(eg: #Control)
+
+		// 取得ID(eg: #Control)
 	_getId = function (id) {
 		return '#' + id;
 	},
@@ -48,8 +49,6 @@ MathSheets.Common = MathSheets.Common || (function () {
 			window.print();
 			$("body *").show();
 			$("body " + _getId(printDivId) + ":last").remove();
-
-
 		},
 
 		// 打印后恢復頁面最初狀態設置
@@ -158,6 +157,20 @@ MathSheets.Common = MathSheets.Common || (function () {
 			store.set('result', { time: timeStr, right: __isRight, fault: __isFault });
 		},
 
+		overShow = function (e) {
+			$(e).css('background-color', 'crimson');
+		},
+
+		outHide = function (e) {
+			$(e).css('background-color', 'darkred');
+		},
+
+		totopClick = function () {
+			$('html,body').animate({
+				scrollTop: 0
+			})
+		},
+
 		// 按鍵屏蔽防止刷新頁面
 		forbidKeyDown = function () {
 			$(document).bind("keydown", function (e) {
@@ -207,6 +220,9 @@ MathSheets.Common = MathSheets.Common || (function () {
 		forbidKeyDown: forbidKeyDown,
 		windowClose: windowClose,
 		startTime: startTime,
+		overShow: overShow,
+		outHide: outHide,
+		totopClick: totopClick,
 		ready: ready
 	};
 }());
@@ -219,6 +235,21 @@ $(document).ready(function () {
 	$(document).bind("contextmenu", function (e) {
 		return false;
 	});
+
+	$('.totop').bind("mouseover", function () { MathSheets.Common.overShow(this); });
+	$('.totop').bind("mouseout", function () { MathSheets.Common.outHide(this); });
+	$('.totop').bind("click", function () { MathSheets.Common.totopClick(); });
+
+	// 置頂導航功能
+	$(window).scroll(function () {
+		var nowTop = $(document).scrollTop();
+		if (nowTop > 200) {
+			$('.totop').show()
+		} else {
+			$('.totop').hide()
+		}
+	});
+
 });
 
 String.prototype.PadLeft = function (totalWidth, paddingChar) {
