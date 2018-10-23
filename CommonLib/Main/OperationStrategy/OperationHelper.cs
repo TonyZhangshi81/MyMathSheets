@@ -67,7 +67,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			// 計算式所需參數
 			ParameterBase parameter = OperationFactory.CreateOperationParameterInstance(identifier);
 			// 構築計算式集合
-			instance.MarkFormulaList(parameter);
+			instance.Build(parameter);
 
 			return parameter;
 		}

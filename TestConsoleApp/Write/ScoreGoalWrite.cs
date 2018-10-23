@@ -1,21 +1,28 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Linq;
 
 namespace MyMathSheets.TestConsoleApp.Write
 {
 	/// <summary>
-	/// 射門得分調試信息打印
+	/// 射門得分题型计算式结果显示输出
 	/// </summary>
 	public class ScoreGoalWrite : IConsoleWrite<ScoreGoalFormula>
 	{
+		private static Log log = Log.LogReady(typeof(ScoreGoalWrite));
+
 		/// <summary>
-		/// 測試并顯示結果
+		/// 计算式结果显示输出
 		/// </summary>
-		/// <param name="formulas">等式集合</param>
+		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(ScoreGoalFormula formulas)
 		{
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "射門得分"));
+
 			int seat = 0;
 			// 信息打印
 			formulas.GoalsFormulas.ToList().ForEach(d =>

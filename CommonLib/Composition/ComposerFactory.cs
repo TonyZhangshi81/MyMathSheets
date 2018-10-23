@@ -121,7 +121,7 @@ namespace MyMathSheets.CommonLib.Composition
 			if (TempAssembly == null)
             {
                 var sb = new StringBuilder();
-                sb.Append(MessageUtil.GetException(() => Resources.E0001L));
+                sb.Append(MessageUtil.GetException(() => MsgResources.E0001L));
                 throw new ComposerException(sb.ToString());
             }
             return TempAssembly;

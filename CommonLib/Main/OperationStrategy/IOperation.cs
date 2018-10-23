@@ -13,6 +13,6 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 
 		/// </summary>
 		/// <param name="parameter"></param>
-		void MarkFormulaList(ParameterBase parameter);
+		void Build(ParameterBase parameter);
 	}
 }

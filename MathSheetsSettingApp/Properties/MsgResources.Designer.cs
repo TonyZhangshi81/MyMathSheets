@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyMathSheets.CommonLib.Properties {
+namespace MyMathSheets.MathSheetsSettingApp.Properties {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace MyMathSheets.CommonLib.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class MsgResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal MsgResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MyMathSheets.CommonLib.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyMathSheets.CommonLib.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyMathSheets.MathSheetsSettingApp.Properties.MsgResources", typeof(MsgResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,74 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
-        ///   指定的信息與ExportAttribute不一致或者發現多個 に類似しているローカライズされた文字列を検索します。
+        ///   E0001A:系統異常 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string E0001L {
+        internal static string E0001A {
             get {
-                return ResourceManager.GetString("E0001L", resourceCulture);
+                return ResourceManager.GetString("E0001A", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   指定運算符實例準備作成 に類似しているローカライズされた文字列を検索します。
+        ///   I0001A:畫面初期化 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string I0001L {
+        internal static string I0001A {
             get {
-                return ResourceManager.GetString("I0001L", resourceCulture);
+                return ResourceManager.GetString("I0001A", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   {0}運算符實例作成完畢 に類似しているローカライズされた文字列を検索します。
+        ///   I0002A:開始出題 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string I0002L {
+        internal static string I0002A {
             get {
-                return ResourceManager.GetString("I0002L", resourceCulture);
+                return ResourceManager.GetString("I0002A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0003A:{0}題型HTML模板注入開始 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0003A {
+            get {
+                return ResourceManager.GetString("I0003A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0004A:替換HTML模板中{0}的注入點信息 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0004A {
+            get {
+                return ResourceManager.GetString("I0004A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0005A:靜態HTML文件作成 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0005A {
+            get {
+                return ResourceManager.GetString("I0005A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0006A:{0}題型選擇 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0006A {
+            get {
+                return ResourceManager.GetString("I0006A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0007A:{0}題型移除 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0007A {
+            get {
+                return ResourceManager.GetString("I0007A", resourceCulture);
             }
         }
     }

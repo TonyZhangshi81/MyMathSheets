@@ -1,4 +1,7 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Util;
+using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Write;
 using Spring.Core.IO;
 using Spring.Objects.Factory;
@@ -11,6 +14,8 @@ namespace MyMathSheets.TestConsoleApp
 	/// </summary>
 	public class FormulasConsolerFactory
 	{
+		private static Log log = Log.LogReady(typeof(FormulasConsolerFactory));
+
 		/// <summary>
 		/// 輸出類注入配置文件所在路徑
 		/// </summary>
@@ -76,9 +81,17 @@ namespace MyMathSheets.TestConsoleApp
 				// 設定文件導入
 				IResource input = new FileSystemResource(CONSOLE_FORMULAS_XML_RESOURCE_NAME);
 				_objectFactory = new XmlObjectFactory(input);
+
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0001T));
 			}
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0002T, preview.ToString()));
+
 			// 創建對象實例并返回
 			IConsoleWrite<T> writer = _objectFactory.GetObject(preview.ToString()) as IConsoleWrite<T>;
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0003T, preview.ToString()));
+
 			return writer;
 		}
 	}

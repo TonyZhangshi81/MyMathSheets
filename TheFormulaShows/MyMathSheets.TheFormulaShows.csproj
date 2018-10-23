@@ -54,6 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\SubstituteAttribute.cs" />
+    <Compile Include="Properties\MsgResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MsgResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Support\HowMuchMoreHtmlSupport.cs" />
     <Compile Include="Support\CombinatorialEquationHtmlSupport.cs" />
     <Compile Include="Support\FindNearestNumberHtmlSupport.cs" />
@@ -195,6 +200,12 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\MsgResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

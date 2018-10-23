@@ -117,13 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="E0001L" xml:space="preserve">
-    <value>指定的信息與ExportAttribute不一致或者發現多個</value>
+  <data name="E0001T" xml:space="preserve">
+    <value>E0001T:系統異常</value>
   </data>
-  <data name="I0001L" xml:space="preserve">
-    <value>指定運算符實例準備作成</value>
+  <data name="I0001T" xml:space="preserve">
+    <value>I0001T:計算式輸出類spring對象工廠配置導入操作已經完成</value>
   </data>
-  <data name="I0002L" xml:space="preserve">
-    <value>{0}運算符實例作成完畢</value>
+  <data name="I0002T" xml:space="preserve">
+    <value>I0002T:{0}題型的計算式輸出類對象注入準備</value>
+  </data>
+  <data name="I0003T" xml:space="preserve">
+    <value>I0003T:{0}題型的計算式輸出類對象實例化完畢</value>
+  </data>
+  <data name="I0004T" xml:space="preserve">
+    <value>I0004T:{0}題型的計算式結果輸出</value>
   </data>
 </root>

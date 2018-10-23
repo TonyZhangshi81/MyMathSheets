@@ -1,4 +1,7 @@
-﻿using MyMathSheets.ComputationalStrategy.Item;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Message;
+using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,16 +9,20 @@ using System.Linq;
 namespace MyMathSheets.TestConsoleApp.Write
 {
 	/// <summary>
-	/// 
+	/// 比多少题型计算式结果显示输出
 	/// </summary>
 	public class HowMuchMoreWrite : IConsoleWrite<List<HowMuchMoreFormula>>
 	{
+		private static Log log = Log.LogReady(typeof(HowMuchMoreWrite));
+
 		/// <summary>
-		/// 
+		/// 计算式结果显示输出
 		/// </summary>
-		/// <param name="formulas"></param>
+		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<HowMuchMoreFormula> formulas)
 		{
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "比多少"));
+
 			formulas.ToList().ForEach(d =>
 			{
 				var formula = d.DefaultFormula;

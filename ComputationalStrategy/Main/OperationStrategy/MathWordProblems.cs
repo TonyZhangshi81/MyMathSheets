@@ -29,7 +29,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// 
 		/// </summary>
 		/// <param name="parameter"></param>
-		public override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(ParameterBase parameter)
 		{
 			MathWordProblemsParameter p = parameter as MathWordProblemsParameter;
 

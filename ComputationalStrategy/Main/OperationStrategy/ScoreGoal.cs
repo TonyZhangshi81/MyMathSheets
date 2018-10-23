@@ -19,7 +19,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// 計算式作成處理
 		/// </summary>
 		/// <param name="parameter">參數</param>
-		public override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(ParameterBase parameter)
 		{
 			ScoreGoalParameter p = parameter as ScoreGoalParameter;
 

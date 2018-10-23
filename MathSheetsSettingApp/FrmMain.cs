@@ -1,6 +1,9 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
+using MyMathSheets.MathSheetsSettingApp.Properties;
 using MyMathSheets.TheFormulaShows;
 using MyMathSheets.TheFormulaShows.Attributes;
 using MyMathSheets.TheFormulaShows.Support;
@@ -18,6 +21,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 	/// </summary>
 	public partial class FrmMain : Form
 	{
+		private static Log log = Log.LogReady(typeof(FrmMain));
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -37,6 +42,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <param name="e"></param>
 		private void Form1_Load(object sender, EventArgs e)
 		{
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0001A));
+
 			// 題型縮略瀏覽初期化
 			PreviewInit();
 		}
@@ -61,7 +68,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			PictureBox picBox = new PictureBox
 			{
 				// 獲取題型項目的縮略圖
-				Image = (System.Drawing.Bitmap)Properties.Resources.ResourceManager.GetObject(name.ToString()),
+				Image = (System.Drawing.Bitmap)ImgResources.ResourceManager.GetObject(name.ToString()),
 				Tag = name.ToString(),
 				SizeMode = PictureBoxSizeMode.StretchImage,
 				Width = flpPreview.Width - 20,
@@ -92,6 +99,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 				return;
 			}
 
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0002A));
+
 			// HTML模板存放路徑
 			string sourceFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("Template"));
 			// 靜態頁面作成后存放的路徑（文件名：日期時間形式）
@@ -105,12 +114,19 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 遍歷已選擇的題型
 			foreach (KeyValuePair<string, Dictionary<string, string>> d in _htmlMaps)
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0003A, d.Key));
+
 				// 替換HTML模板中的預留內容（HTML、JS注入操作）
 				foreach (KeyValuePair<string, string> m in d.Value)
 				{
+					log.Debug(MessageUtil.GetException(() => MsgResources.I0004A, m.Key));
+
 					htmlTemplate.Replace(m.Key, m.Value);
 				}
 			}
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0005A));
+
 			// 保存至靜態頁面
 			File.WriteAllText(destFileName, htmlTemplate.ToString(), Encoding.UTF8);
 
@@ -209,6 +225,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			if (chkArithmetic.Checked)
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "四則運算"));
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -226,6 +244,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			else
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "四則運算"));
+
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.Arithmetic.ToString());
 				_selectedTopic--;
@@ -258,6 +278,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			if (chkEqualityComparison.Checked)
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "等式比大小"));
+
 				// 添加題型
 				_selectedTopic++;
 				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
@@ -274,8 +296,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			else
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "等式比大小"));
+
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.EqualityComparison.ToString());
+				_selectedTopic--;
 			}
 			// 刷新題型預覽區域
 			PreviewReflash();
@@ -290,6 +315,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			if (chkComputingConnection.Checked)
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "等式接龍"));
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -307,6 +334,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			else
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "等式接龍"));
+
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.ComputingConnection.ToString());
 				_selectedTopic--;
@@ -324,6 +353,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			if (chkMathWordProblems.Checked)
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "算式應用題"));
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -341,6 +372,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			else
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "算式應用題"));
+
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.MathWordProblems.ToString());
 				_selectedTopic--;
@@ -358,6 +391,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			if (chkFruitsLinkage.Checked)
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "水果連連看"));
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -375,6 +410,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			else
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "水果連連看"));
+
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.FruitsLinkage.ToString());
 				_selectedTopic--;
@@ -392,6 +429,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			if (chkFindNearestNumber.Checked)
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "找出最近的數字"));
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -409,6 +448,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			else
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "找出最近的數字"));
+
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.FindNearestNumber.ToString());
 				_selectedTopic--;
@@ -426,6 +467,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			if (chkCombinatorialEquation.Checked)
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "算式組合"));
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -443,6 +486,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			else
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "算式組合"));
+
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.CombinatorialEquation.ToString());
 				_selectedTopic--;
@@ -460,6 +505,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			if (chkScoreGoal.Checked)
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "射門得分"));
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -477,6 +524,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			else
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "射門得分"));
+
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.ScoreGoal.ToString());
 				_selectedTopic--;
@@ -494,6 +543,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			if (chkHowMuchMore.Checked)
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "比多少"));
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -511,6 +562,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			else
 			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "比多少"));
+
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.HowMuchMore.ToString());
 				_selectedTopic--;

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyMathSheets.TestConsoleApp.Properties {
+namespace MyMathSheets.TheFormulaShows.Properties {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace MyMathSheets.TestConsoleApp.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class MsgResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal MsgResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MyMathSheets.TestConsoleApp.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyMathSheets.TestConsoleApp.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyMathSheets.TheFormulaShows.Properties.MsgResources", typeof(MsgResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,11 +61,38 @@ namespace MyMathSheets.TestConsoleApp.Properties {
         }
         
         /// <summary>
-        ///   系統異常 に類似しているローカライズされた文字列を検索します。
+        ///   I0001F:題型HTML支援類spring對象工廠配置導入操作已經完成 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string E0001T {
+        internal static string I0001F {
             get {
-                return ResourceManager.GetString("E0001T", resourceCulture);
+                return ResourceManager.GetString("I0001F", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0002F:{0}題型的HTML支援類對象注入準備 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0002F {
+            get {
+                return ResourceManager.GetString("I0002F", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0003F:{0}題型的HTML支援類對象實例化完成 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0003F {
+            get {
+                return ResourceManager.GetString("I0003F", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0004F:指定題型的HTML模板作成 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0004F {
+            get {
+                return ResourceManager.GetString("I0004F", resourceCulture);
             }
         }
     }

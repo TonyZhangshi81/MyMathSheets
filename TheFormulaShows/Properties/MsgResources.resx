@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="E0001T" xml:space="preserve">
-    <value>系統異常</value>
+  <data name="I0001F" xml:space="preserve">
+    <value>I0001F:題型HTML支援類spring對象工廠配置導入操作已經完成</value>
+  </data>
+  <data name="I0002F" xml:space="preserve">
+    <value>I0002F:{0}題型的HTML支援類對象注入準備</value>
+  </data>
+  <data name="I0003F" xml:space="preserve">
+    <value>I0003F:{0}題型的HTML支援類對象實例化完成</value>
+  </data>
+  <data name="I0004F" xml:space="preserve">
+    <value>I0004F:指定題型的HTML模板作成</value>
   </data>
 </root>

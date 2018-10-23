@@ -82,7 +82,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 				// 在MEF容器中收集本類的屬性信息（實際情況屬性只注入一次）
 				ComposeThis();
 
-				log.Debug(MessageUtil.GetException(() => Resources.I0001L));
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0001L));
 
 				// 指定運算符并獲取處理類型
 				CalculateBase calculate = _calculates.Where(d =>
@@ -93,7 +93,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 				// 返回該運算符處理類型的實例
 				ICalculate calculater = (ICalculate)Activator.CreateInstance(calculate.GetType());
 
-				log.Debug(MessageUtil.GetException(() => Resources.I0002L, calculate.GetType().ToString()));
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0002L, calculate.GetType().ToString()));
 
 				return calculater;
 			});

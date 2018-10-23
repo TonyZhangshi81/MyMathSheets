@@ -1,4 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using System;
 using System.Collections.Generic;
@@ -13,6 +16,8 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 	/// </summary>
 	public abstract class OperationBase : IOperation
 	{
+		private static Log log = Log.LogReady(typeof(OperationBase));
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -37,6 +42,19 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 
 		/// </summary>
 		/// <param name="parameter"></param>
-		public abstract void MarkFormulaList(ParameterBase parameter);
+		public virtual void Build(ParameterBase parameter)
+		{
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0006L));
+
+			MarkFormulaList(parameter);
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0007L));
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="parameter"></param>
+		protected abstract void MarkFormulaList(ParameterBase parameter);
 	}
 }

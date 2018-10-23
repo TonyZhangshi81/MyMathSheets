@@ -1,5 +1,8 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.TheFormulaShows.Properties;
 using MyMathSheets.TheFormulaShows.Support;
 using Spring.Core.IO;
 using Spring.Objects.Factory;
@@ -12,6 +15,8 @@ namespace MyMathSheets.TheFormulaShows
 	/// </summary>
 	public class MakeHtml<T> where T : ParameterBase
 	{
+		private static Log log = Log.LogReady(typeof(T));
+
 		/// <summary>
 		/// HTML支援類注入配置文件所在路徑
 		/// </summary>
@@ -36,6 +41,8 @@ namespace MyMathSheets.TheFormulaShows
 			return Helper.Structure(preview, identifier) as T;
 		}
 
+		IObjectFactory _supportObjectFactory;
+
 		/// <summary>
 		/// 指定题型大分类获得相应的题型HTML处理对象（实例）
 		/// </summary>
@@ -43,11 +50,21 @@ namespace MyMathSheets.TheFormulaShows
 		/// <returns>题型HTML处理对象（实例）</returns>
 		protected IMakeHtml<T> GetHtmlSupportInstance(LayoutSetting.Preview preview)
 		{
-			// spring对象工厂实例作成（设定文件导入）
-			IResource input = new FileSystemResource(HTML_SUPPORT_RESOURCE_NAME);
-			IObjectFactory supportObjectFactory = new XmlObjectFactory(input);
+			if (_supportObjectFactory == null)
+			{
+				// spring对象工厂实例作成（设定文件导入）
+				IResource input = new FileSystemResource(HTML_SUPPORT_RESOURCE_NAME);
+				_supportObjectFactory = new XmlObjectFactory(input);
 
-			IMakeHtml<T> support = (IMakeHtml<T>)supportObjectFactory.GetObject(preview.ToString());
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0001F));
+			}
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0002F, preview.ToString()));
+
+			IMakeHtml<T> support = (IMakeHtml<T>)_supportObjectFactory.GetObject(preview.ToString());
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0003F, preview.ToString()));
+
 			return support;
 		}
 
@@ -57,6 +74,8 @@ namespace MyMathSheets.TheFormulaShows
 		/// <returns>模板替換內容</returns>
 		public string GetHtmlStatement(LayoutSetting.Preview preview, T formulas)
 		{
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0004F));
+
 			IMakeHtml<T> support = GetHtmlSupportInstance(preview);
 
 			return support.MakeHtml(formulas);

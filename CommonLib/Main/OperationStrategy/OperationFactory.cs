@@ -1,4 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using System;
 using System.Collections.Concurrent;
@@ -15,6 +18,8 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 	[Export(typeof(IOperationFactory))]
 	public class OperationFactory : IOperationFactory
 	{
+		private static Log log = Log.LogReady(typeof(OperationFactory));
+
 		/// <summary>
 		/// 以防止重複注入（減少損耗）
 		/// </summary>
@@ -101,6 +106,8 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 				// 指定運算符并獲取處理類型
 				OperationBase operation = _operations.Where(d => d.Metadata.Layout == preview).First().Value;
 
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0003L));
+
 				// 返回該運算符處理類型的實例
 				return (IOperation)Activator.CreateInstance(operation.GetType());
 			});
@@ -123,11 +130,16 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 				// 以運算符處理類型和參數識別ID取得相應的參數對象實例
 				ParameterBase parameter = _parameters.Where(d => d.Metadata.Layout == _currentPreview && d.Metadata.Identifiers.IndexOf(identifier) >= 0).First().Value;
 				parameter.Identifier = identifier;
+
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0004L));
+
 				return parameter;
 			});
 
 			// 參數初期化處理（依據Provider配置）
 			_operationParameter.InitParameter();
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0005L, key));
 
 			return _operationParameter;
 		}

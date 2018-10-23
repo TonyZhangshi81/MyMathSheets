@@ -25,7 +25,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 		/// 題型構築
 		/// </summary>
 		/// <param name="parameter"></param>
-		public override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(ParameterBase parameter)
 		{
 			FruitsLinkageParameter p = parameter as FruitsLinkageParameter;
 
