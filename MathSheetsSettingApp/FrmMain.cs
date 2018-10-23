@@ -74,10 +74,10 @@ namespace MyMathSheets.MathSheetsSettingApp
 				Width = flpPreview.Width - 20,
 				Height = 100
 			};
-			// 將題型縮略圖添加至瀏覽框
-			flpPreview.Controls.Add(picBox);
 			// 防止閃爍
 			flpPreview.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(picBox, true, null);
+			// 將題型縮略圖添加至瀏覽框
+			flpPreview.Controls.Add(picBox);
 
 			picBox.Margin = new Padding(0);
 		}
@@ -140,61 +140,40 @@ namespace MyMathSheets.MathSheetsSettingApp
 		}
 
 		/// <summary>
+		/// 題型預覽列表
+		/// </summary>
+		List<LayoutSetting.Preview> _layoutSettingPreviewList;
+		/// <summary>
+		/// 題型預覽列表設置
+		/// </summary>
+		/// <param name="name">題型名稱</param>
+		private void SetLayoutSettingPreviewList(LayoutSetting.Preview name)
+		{
+			// 初期化
+			if(_layoutSettingPreviewList == null)
+			{
+				_layoutSettingPreviewList = new List<LayoutSetting.Preview>();
+				// 標題區
+				_layoutSettingPreviewList.Add(LayoutSetting.Preview.Title);
+				// 答題區
+				_layoutSettingPreviewList.Add(LayoutSetting.Preview.Ready);
+			}
+			// 如果列表中不存在，則添加在答題區之前
+			if (!_layoutSettingPreviewList.Any(d => d == name))
+			{
+				_layoutSettingPreviewList.Insert(_layoutSettingPreviewList.Count - 1, name);
+			}
+		}
+
+		/// <summary>
 		/// 題型縮略瀏覽初期化
 		/// </summary>
 		private void PreviewReflash()
 		{
 			flpPreview.Controls.Clear();
 
-			// 標題瀏覽
-			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Title);
-			// 四則運算瀏覽
-			if (chkArithmetic.Checked)
-			{
-				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Arithmetic);
-			}
-			// 運算比大小瀏覽
-			if (chkEqualityComparison.Checked)
-			{
-				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.EqualityComparison);
-			}
-			// 等式接龍瀏覽
-			if (chkComputingConnection.Checked)
-			{
-				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.ComputingConnection);
-			}
-			// 算式應用題瀏覽
-			if (chkMathWordProblems.Checked)
-			{
-				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.MathWordProblems);
-			}
-			// 水果連連看
-			if (chkFruitsLinkage.Checked)
-			{
-				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.FruitsLinkage);
-			}
-			// 水果連連看
-			if (chkFindNearestNumber.Checked)
-			{
-				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.FindNearestNumber);
-			}
-			// 運算組合
-			if (chkCombinatorialEquation.Checked)
-			{
-				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.CombinatorialEquation);
-			}
-			// 射門得分
-			if (chkScoreGoal.Checked)
-			{
-				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.ScoreGoal);
-			}
-			// 比多少
-			if (chkHowMuchMore.Checked)
-			{
-				PictureIntoFlowLayoutPanel(LayoutSetting.Preview.HowMuchMore);
-			}
-			// 答題結束瀏覽
-			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Ready);
+			// 瀏覽區域顯示
+			_layoutSettingPreviewList.ForEach(d => PictureIntoFlowLayoutPanel(d));
 		}
 
 		/// <summary>
@@ -227,6 +206,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "四則運算"));
 
+				// 題型預覽添加
+				SetLayoutSettingPreviewList(LayoutSetting.Preview.Arithmetic);
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -245,6 +227,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "四則運算"));
+
+				// 題型預覽移除
+				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.Arithmetic);
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.Arithmetic.ToString());
@@ -280,6 +265,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "等式比大小"));
 
+				// 題型預覽添加
+				SetLayoutSettingPreviewList(LayoutSetting.Preview.EqualityComparison);
+
 				// 添加題型
 				_selectedTopic++;
 				MakeHtml<ParameterBase> work = new MakeHtml<ParameterBase>();
@@ -297,6 +285,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "等式比大小"));
+
+				// 題型預覽移除
+				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.EqualityComparison);
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.EqualityComparison.ToString());
@@ -317,6 +308,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "等式接龍"));
 
+				// 題型預覽添加
+				SetLayoutSettingPreviewList(LayoutSetting.Preview.ComputingConnection);
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -335,6 +329,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "等式接龍"));
+
+				// 題型預覽移除
+				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.ComputingConnection);
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.ComputingConnection.ToString());
@@ -355,6 +352,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "算式應用題"));
 
+				// 題型預覽添加
+				SetLayoutSettingPreviewList(LayoutSetting.Preview.MathWordProblems);
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -373,6 +373,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "算式應用題"));
+
+				// 題型預覽移除
+				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.MathWordProblems);
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.MathWordProblems.ToString());
@@ -393,6 +396,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "水果連連看"));
 
+				// 題型預覽添加
+				SetLayoutSettingPreviewList(LayoutSetting.Preview.FruitsLinkage);
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -411,6 +417,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "水果連連看"));
+
+				// 題型預覽移除
+				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.FruitsLinkage);
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.FruitsLinkage.ToString());
@@ -431,6 +440,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "找出最近的數字"));
 
+				// 題型預覽添加
+				SetLayoutSettingPreviewList(LayoutSetting.Preview.FindNearestNumber);
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -449,6 +461,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "找出最近的數字"));
+
+				// 題型預覽移除
+				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.FindNearestNumber);
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.FindNearestNumber.ToString());
@@ -469,6 +484,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "算式組合"));
 
+				// 題型預覽添加
+				SetLayoutSettingPreviewList(LayoutSetting.Preview.CombinatorialEquation);
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -487,6 +505,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "算式組合"));
+
+				// 題型預覽移除
+				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.CombinatorialEquation);
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.CombinatorialEquation.ToString());
@@ -507,6 +528,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "射門得分"));
 
+				// 題型預覽添加
+				SetLayoutSettingPreviewList(LayoutSetting.Preview.ScoreGoal);
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -525,6 +549,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "射門得分"));
+
+				// 題型預覽移除
+				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.ScoreGoal);
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.ScoreGoal.ToString());
@@ -545,6 +572,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "比多少"));
 
+				// 題型預覽添加
+				SetLayoutSettingPreviewList(LayoutSetting.Preview.HowMuchMore);
+
 				// 添加題型
 				_selectedTopic++;
 
@@ -563,6 +593,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "比多少"));
+
+				// 題型預覽移除
+				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.HowMuchMore);
 
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.HowMuchMore.ToString());
