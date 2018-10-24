@@ -9,14 +9,16 @@ namespace MyMathSheets.CommonLib
 	[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = false, Inherited = false)]
     public sealed class MathSheetMarkerAttribute : Attribute
     {
-        /// <summary>
-        /// 構造函數
-        /// </summary>
-        /// <param name="id">模塊識別號</param>
-        public MathSheetMarkerAttribute(SystemModel id)
+		/// <summary>
+		/// 構造函數
+		/// </summary>
+		/// <param name="id">模塊識別號</param>
+		/// <param name="preview">子模塊識別號（題型模塊化對應）</param>
+		public MathSheetMarkerAttribute(SystemModel id, SubSystemModel sub = SubSystemModel.Null)
         {
             this.SystemId = id;
-        }
+			this.SubSystemId = sub;
+		}
 
         /// <summary>
         /// 識別號
@@ -26,5 +28,14 @@ namespace MyMathSheets.CommonLib
             get;
             set;
         }
-    }
+
+		/// <summary>
+		/// 子模塊識別號（題型模塊化對應）
+		/// </summary>
+		public SubSystemModel SubSystemId
+		{
+			get;
+			set;
+		}
+	}
 }
