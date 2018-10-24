@@ -95,10 +95,6 @@
       <Project>{3206E500-28D2-4055-A14F-3DE3CBD526E1}</Project>
       <Name>MyMathSheets.ComputationalStrategy</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TheFormulaShows\MyMathSheets.TheFormulaShows.csproj">
-      <Project>{ed789079-5836-4377-b0a6-6cde453092c1}</Project>
-      <Name>MyMathSheets.TheFormulaShows</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\ConsoleFormulas.xml" />

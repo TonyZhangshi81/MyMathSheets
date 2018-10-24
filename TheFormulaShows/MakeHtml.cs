@@ -18,32 +18,12 @@ namespace MyMathSheets.TheFormulaShows
 		/// <summary>
 		/// 
 		/// </summary>
-		private OperationHelper _operationHelper;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		protected OperationHelper OptHelper => _operationHelper ?? (_operationHelper = new OperationHelper());
-
-		/// <summary>
-		/// 
-		/// </summary>
 		private HtmlSupprtHelper _supprtHelper;
 
 		/// <summary>
 		/// 
 		/// </summary>
 		protected HtmlSupprtHelper SupprtHelper => _supprtHelper ?? (_supprtHelper = new HtmlSupprtHelper());
-
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="parameter"></param>
-		public T Structure(LayoutSetting.Preview preview, string identifier)
-		{
-			return OptHelper.Structure(preview, identifier) as T;
-		}
 
 		/// <summary>
 		/// HTML模板替換內容作成

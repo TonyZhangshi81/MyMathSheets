@@ -53,6 +53,7 @@
     <Compile Include="Item\FruitsLinkageFormula.cs" />
     <Compile Include="Item\MathWordProblemsFormula.cs" />
     <Compile Include="Item\ScoreGoalFormula.cs" />
+    <Compile Include="Main\OperationStrategyHelper.cs" />
     <Compile Include="Main\OperationStrategy\Arithmetic.cs" />
     <Compile Include="Main\Arithmetic\Division.cs" />
     <Compile Include="Main\OperationStrategy\HowMuchMore.cs" />
