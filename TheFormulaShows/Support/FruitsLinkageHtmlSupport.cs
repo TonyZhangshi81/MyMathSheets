@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
+﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
+using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System;
@@ -14,11 +14,12 @@ namespace MyMathSheets.TheFormulaShows.Support
 	/// <summary>
 	/// 
 	/// </summary>
+	[HtmlSupport(LayoutSetting.Preview.FruitsLinkage)]
 	[Substitute("<!--FRUITSLINKAGESCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.FruitsLinkage.js\" charset=\"utf-8\"></script>")]
 	[Substitute("//<!--FRUITSLINKAGEREADY-->", "__fruitsArrayHiddenControlId = 'hidFruitsArray';MathSheets.FruitsLinkage.ready('divFruitDrag', 'divContainer');")]
 	[Substitute("//<!--FRUITSLINKAGEMAKECORRECTIONS-->", "fault += MathSheets.FruitsLinkage.makeCorrections();")]
 	[Substitute("//<!--FRUITSLINKAGETHEIRPAPERS-->", "MathSheets.FruitsLinkage.theirPapers();")]
-	public class FruitsLinkageHtmlSupport : IMakeHtml<ParameterBase>
+	public class FruitsLinkageHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
 		/// 水果序號列表
@@ -87,7 +88,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 		/// </summary>
 		/// <param name="parameter">相關計算式</param>
 		/// <returns>HTML語句</returns>
-		public string MakeHtml(ParameterBase parameter)
+		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			FruitsLinkageParameter p = parameter as FruitsLinkageParameter;
 

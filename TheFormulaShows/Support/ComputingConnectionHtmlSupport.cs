@@ -1,8 +1,8 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
+﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
+using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System.Text;
@@ -12,20 +12,21 @@ namespace MyMathSheets.TheFormulaShows.Support
 	/// <summary>
 	/// 
 	/// </summary>
+	[HtmlSupport(LayoutSetting.Preview.ComputingConnection)]
 	[Substitute("<!--COMPUTINGCONNECTIONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.ComputingConnection.js\" charset=\"utf-8\"></script>")]
 	[Substitute("//<!--COMPUTINGCONNECTIONREADY-->", "MathSheets.ComputingConnection.ready();")]
 	[Substitute("//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->", "fault += MathSheets.ComputingConnection.makeCorrections();")]
 	[Substitute("//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->", "MathSheets.ComputingConnection.theirPapers();")]
 	[Substitute("//<!--COMPUTINGCONNECTIONPRINTSETTING-->", "MathSheets.ComputingConnection.printSetting();")]
 	[Substitute("//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->", "MathSheets.ComputingConnection.printAfterSetting();")]
-	public class ComputingConnectionHtmlSupport : IMakeHtml<ParameterBase>
+	public class ComputingConnectionHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="formulas"></param>
 		/// <returns></returns>
-		public string MakeHtml(ParameterBase parameter)
+		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			ComputingConnectionParameter p = parameter as ComputingConnectionParameter;
 

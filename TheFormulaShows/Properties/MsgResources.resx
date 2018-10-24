@@ -119,6 +119,7 @@
   </resheader>
   <data name="I0001F" xml:space="preserve">
     <value>I0001F:題型HTML支援類spring對象工廠配置導入操作已經完成</value>
+    <comment>（不使用）保留</comment>
   </data>
   <data name="I0002F" xml:space="preserve">
     <value>I0002F:{0}題型的HTML支援類對象注入準備</value>

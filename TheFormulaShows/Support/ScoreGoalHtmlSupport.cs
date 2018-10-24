@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
+﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
+using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
@@ -7,18 +8,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MyMathSheets.TheFormulaShows.Support
 {
 	/// <summary>
 	/// 
 	/// </summary>
+	[HtmlSupport(LayoutSetting.Preview.ScoreGoal)]
 	[Substitute("<!--SCOREGOALSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.ScoreGoal.js\" charset=\"utf-8\"></script>")]
 	[Substitute("//<!--SCOREGOALREADY-->", "__goalsArrayHiddenControlId = 'hidBallsArray';MathSheets.ScoreGoal.ready('divBall', 'divGoaler');")]
 	[Substitute("//<!--SCOREGOALMAKECORRECTIONS-->", "fault += MathSheets.ScoreGoal.makeCorrections();")]
 	[Substitute("//<!--SCOREGOALTHEIRPAPERS-->", "MathSheets.ScoreGoal.theirPapers();")]
-	public class ScoreGoalHtmlSupport : IMakeHtml<ParameterBase>
+	public class ScoreGoalHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
 		/// 球類列表
@@ -84,7 +85,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 		/// </summary>
 		/// <param name="parameter">相關計算式</param>
 		/// <returns>HTML語句</returns>
-		public string MakeHtml(ParameterBase parameter)
+		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			ScoreGoalParameter p = parameter as ScoreGoalParameter;
 

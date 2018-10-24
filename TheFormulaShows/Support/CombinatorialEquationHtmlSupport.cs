@@ -1,8 +1,8 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
+﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
+using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System.Collections.Generic;
@@ -14,20 +14,21 @@ namespace MyMathSheets.TheFormulaShows.Support
 	/// <summary>
 	/// 
 	/// </summary>
+	[HtmlSupport(LayoutSetting.Preview.CombinatorialEquation)]
 	[Substitute("<!--COMBINATORIALEQUATIONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.CombinatorialEquation.js\" charset=\"utf-8\"></script>")]
 	[Substitute("//<!--COMBINATORIALEQUATIONREADY-->", "MathSheets.CombinatorialEquation.ready();")]
 	[Substitute("//<!--COMBINATORIALEQUATIONMAKECORRECTIONS-->", "fault += MathSheets.CombinatorialEquation.makeCorrections();")]
 	[Substitute("//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->", "MathSheets.CombinatorialEquation.theirPapers();")]
 	[Substitute("//<!--COMBINATORIALEQUATIONPRINTSETTING-->", "MathSheets.CombinatorialEquation.printSetting();")]
 	[Substitute("//<!--COMBINATORIALEQUATIONPRINTAFTERSETTING-->", "MathSheets.CombinatorialEquation.printAfterSetting();")]
-	public class CombinatorialEquationHtmlSupport : IMakeHtml<ParameterBase>
+	public class CombinatorialEquationHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
 		/// 算式組合HTML作成
 		/// </summary>
 		/// <param name="parameter">相關計算式</param>
 		/// <returns>HTML語句</returns>
-		public string MakeHtml(ParameterBase parameter)
+		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			CombinatorialEquationParameter p = parameter as CombinatorialEquationParameter;
 

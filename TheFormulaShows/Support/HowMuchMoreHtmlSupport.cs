@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
@@ -13,13 +14,14 @@ namespace MyMathSheets.TheFormulaShows.Support
 	/// <summary>
 	/// 比多少題型HTML支援類,動態作成html并按照一定的格式注入html模板中
 	/// </summary>
+	[HtmlSupport(LayoutSetting.Preview.HowMuchMore)]
 	[Substitute("<!--HOWMUCHMORESCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.HowMuchMore.js\" charset=\"utf-8\"></script>")]
 	[Substitute("//<!--HOWMUCHMOREREADY-->", "MathSheets.HowMuchMore.ready();")]
 	[Substitute("//<!--HOWMUCHMOREMAKECORRECTIONS-->", "fault += MathSheets.HowMuchMore.makeCorrections();")]
 	[Substitute("//<!--HOWMUCHMORETHEIRPAPERS-->", "MathSheets.HowMuchMore.theirPapers();")]
 	[Substitute("//<!--HOWMUCHMOREPRINTSETTING-->", "MathSheets.HowMuchMore.printSetting();")]
 	[Substitute("//<!--HOWMUCHMOREPRINTAFTERSETTING-->", "MathSheets.HowMuchMore.printAfterSetting();")]
-	public class HowMuchMoreHtmlSupport : IMakeHtml<ParameterBase>
+	public class HowMuchMoreHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
 		/// 可選圖片列表
@@ -53,7 +55,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 		/// </summary>
 		/// <param name="parameter">通用參數類</param>
 		/// <returns>html文言</returns>
-		public string MakeHtml(ParameterBase parameter)
+		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			// 比多少題型的參數類
 			HowMuchMoreParameter p = parameter as HowMuchMoreParameter;

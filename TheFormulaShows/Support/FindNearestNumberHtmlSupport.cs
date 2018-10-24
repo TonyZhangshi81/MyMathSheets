@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System.Text;
@@ -11,20 +11,21 @@ namespace MyMathSheets.TheFormulaShows.Support
 	/// <summary>
 	/// 
 	/// </summary>
+	[HtmlSupport(LayoutSetting.Preview.FindNearestNumber)]
 	[Substitute("<!--FINDNEARESTNUMBERSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.FindNearestNumber.js\" charset=\"utf-8\"></script>")]
 	[Substitute("//<!--FINDNEARESTNUMBERREADY-->", "MathSheets.FindNearestNumber.ready();")]
 	[Substitute("//<!--FINDNEARESTNUMBERMAKECORRECTIONS-->", "fault += MathSheets.FindNearestNumber.makeCorrections();")]
 	[Substitute("//<!--FINDNEARESTNUMBERTHEIRPAPERS-->", "MathSheets.FindNearestNumber.theirPapers();")]
 	[Substitute("//<!--FINDNEARESTNUMBERPRINTSETTING-->", "MathSheets.FindNearestNumber.printSetting();")]
 	[Substitute("//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->", "MathSheets.FindNearestNumber.printAfterSetting();")]
-	public class FindNearestNumberHtmlSupport : IMakeHtml<ParameterBase>
+	public class FindNearestNumberHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="formulas"></param>
 		/// <returns></returns>
-		public string MakeHtml(ParameterBase parameter)
+		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			FindNearestNumberParameter p = parameter as FindNearestNumberParameter;
 

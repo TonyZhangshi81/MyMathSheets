@@ -60,10 +60,17 @@
     <Compile Include="Main\ExportAttributes\CalculateAttribute.cs" />
     <Compile Include="Main\Arithmetic\CalculateHelper.cs" />
     <Compile Include="Main\Arithmetic\ICalculateFactory.cs" />
+    <Compile Include="Main\ExportAttributes\IHtmlSupportMetaDataView.cs" />
     <Compile Include="Main\ExportAttributes\IParameterProviderMetaDataView.cs" />
     <Compile Include="Main\ExportAttributes\ICalculateMetaDataView.cs" />
     <Compile Include="Main\Arithmetic\ICalculate.cs" />
+    <Compile Include="Main\ExportAttributes\HtmlSupportAttribute.cs" />
     <Compile Include="Main\ExportAttributes\ParameterProviderAttribute.cs" />
+    <Compile Include="Main\HtmlSupport\HtmlSupprtHelper.cs" />
+    <Compile Include="Main\HtmlSupport\HtmlSupportBase.cs" />
+    <Compile Include="Main\HtmlSupport\HtmlSupportFactory.cs" />
+    <Compile Include="Main\HtmlSupport\IHtmlSupport.cs" />
+    <Compile Include="Main\HtmlSupport\IHtmlSupportFactory.cs" />
     <Compile Include="Main\Item\Formula.cs" />
     <Compile Include="Main\OperationStrategy\OperationHelper.cs" />
     <Compile Include="Main\OperationStrategy\OperationFactory.cs" />

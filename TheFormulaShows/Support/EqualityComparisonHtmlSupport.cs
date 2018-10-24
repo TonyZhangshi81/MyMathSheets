@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System.Text;
@@ -11,20 +11,21 @@ namespace MyMathSheets.TheFormulaShows.Support
 	/// <summary>
 	/// 
 	/// </summary>
+	[HtmlSupport(LayoutSetting.Preview.EqualityComparison)]
 	[Substitute("<!--EQUALITYCOMPARISONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.EqualityComparison.js\" charset=\"utf-8\"></script>")]
 	[Substitute("//<!--EQUALITYCOMPARISONREADY-->", "MathSheets.EqualityComparison.ready();")]
 	[Substitute("//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->", "fault += MathSheets.EqualityComparison.makeCorrections();")]
 	[Substitute("//<!--EQUALITYCOMPARISONTHEIRPAPERS-->", "MathSheets.EqualityComparison.theirPapers();")]
 	[Substitute("//<!--EQUALITYCOMPARISONPRINTSETTING-->", "MathSheets.EqualityComparison.printSetting();")]
 	[Substitute("//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->", "MathSheets.EqualityComparison.printAfterSetting();")]
-	public class EqualityComparisonHtmlSupport : IMakeHtml<ParameterBase>
+	public class EqualityComparisonHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="formulas"></param>
 		/// <returns></returns>
-		public string MakeHtml(ParameterBase parameter)
+		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			EqualityComparisonParameter p = parameter as EqualityComparisonParameter;
 

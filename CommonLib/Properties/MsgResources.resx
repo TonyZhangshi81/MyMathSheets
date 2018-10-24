@@ -141,4 +141,13 @@
   <data name="I0007L" xml:space="preserve">
     <value>I0007L:指定類型的運算符計算式構築完畢</value>
   </data>
+  <data name="I0008L" xml:space="preserve">
+    <value>I0008L:MEF容器中已經收集到指定類型的HTML支援類類型并準備實例化</value>
+  </data>
+  <data name="I0009L" xml:space="preserve">
+    <value>I0009L:指定類型的HTML支援類開始繪製HTML</value>
+  </data>
+  <data name="I0010L" xml:space="preserve">
+    <value>I0010L:指定類型的支援類HTML繪製完畢</value>
+  </data>
 </root>

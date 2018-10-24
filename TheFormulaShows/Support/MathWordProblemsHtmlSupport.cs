@@ -1,6 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System.Text;
@@ -10,20 +11,21 @@ namespace MyMathSheets.TheFormulaShows.Support
 	/// <summary>
 	/// 
 	/// </summary>
+	[HtmlSupport(LayoutSetting.Preview.MathWordProblems)]
 	[Substitute("<!--MATHWORDPROBLEMSSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.MathWordProblems.js\" charset=\"utf-8\"></script>")]
 	[Substitute("//<!--MATHWORDPROBLEMSREADY-->", "MathSheets.MathWordProblems.ready();")]
 	[Substitute("//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->", "fault += MathSheets.MathWordProblems.makeCorrections();")]
 	[Substitute("//<!--MATHWORDPROBLEMSTHEIRPAPERS-->", "MathSheets.MathWordProblems.theirPapers();")]
 	[Substitute("//<!--MATHWORDPROBLEMSPRINTSETTING-->", "MathSheets.MathWordProblems.printSetting();")]
 	[Substitute("//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->", "MathSheets.MathWordProblems.printAfterSetting();")]
-	public class MathWordProblemsHtmlSupport : IMakeHtml<ParameterBase>
+	public class MathWordProblemsHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="parameter"></param>
 		/// <returns></returns>
-		public string MakeHtml(ParameterBase parameter)
+		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			MathWordProblemsParameter p = parameter as MathWordProblemsParameter;
 
