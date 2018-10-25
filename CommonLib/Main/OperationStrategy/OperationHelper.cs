@@ -25,7 +25,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		private void ComposeThis()
 		{
 			// Helper實例后只需要收集一次
-			if (this._composed)
+			if (_composed)
 			{
 				return;
 			}
@@ -65,7 +65,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			// 計算式策略
 			IOperation instance = CreateOperationInstance(preview);
 			// 計算式所需參數
-			ParameterBase parameter = OperationFactory.CreateOperationParameterInstance(identifier);
+			ParameterBase parameter = OperationFactory.CreateOperationParameterInstance(preview, identifier);
 			// 構築計算式集合
 			instance.Build(parameter);
 

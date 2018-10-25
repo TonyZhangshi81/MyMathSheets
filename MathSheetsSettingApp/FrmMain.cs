@@ -2,7 +2,6 @@
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Main;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.MathSheetsSettingApp.Properties;
 using MyMathSheets.TheFormulaShows;
@@ -194,11 +193,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.Arithmetic);
 
-				ArithmeticParameter acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
+				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
 
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--ARITHMETIC-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.Arithmetic, acParameter) }
+					{ "<!--ARITHMETIC-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.Arithmetic, parameter) }
 				};
 				// JS模板內容替換
 				MarkJavaScriptReplaceContent(typeof(ArithmeticHtmlSupport), htmlMaps);

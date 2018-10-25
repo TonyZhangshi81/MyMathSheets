@@ -81,6 +81,7 @@
     <Compile Include="Main\ExportAttributes\OperationAttribute.cs" />
     <Compile Include="Main\OperationStrategy\IOperation.cs" />
     <Compile Include="Main\OperationStrategy\OperationBase.cs" />
+    <Compile Include="Main\OperationStrategy\OperationStrategyHelper.cs" />
     <Compile Include="Main\OperationStrategy\ParameterBase.cs" />
     <Compile Include="Message\MessageUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,5 +112,6 @@
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

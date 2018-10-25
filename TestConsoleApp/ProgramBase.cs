@@ -1,7 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Main;
+using MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;

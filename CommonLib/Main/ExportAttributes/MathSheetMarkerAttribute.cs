@@ -14,10 +14,10 @@ namespace MyMathSheets.CommonLib
 		/// </summary>
 		/// <param name="id">模塊識別號</param>
 		/// <param name="preview">子模塊識別號（題型模塊化對應）</param>
-		public MathSheetMarkerAttribute(SystemModel id, SubSystemModel sub = SubSystemModel.Null)
+		public MathSheetMarkerAttribute(SystemModel id, LayoutSetting.Preview preview = LayoutSetting.Preview.Null)
         {
             this.SystemId = id;
-			this.SubSystemId = sub;
+			this.Preview = preview;
 		}
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace MyMathSheets.CommonLib
 		/// <summary>
 		/// 子模塊識別號（題型模塊化對應）
 		/// </summary>
-		public SubSystemModel SubSystemId
+		public LayoutSetting.Preview Preview
 		{
 			get;
 			set;

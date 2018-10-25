@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 
-namespace MyMathSheets.ComputationalStrategy.Main
+namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
 	/// <summary>
 	/// 

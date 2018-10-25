@@ -54,53 +54,6 @@
 	}
 
 	/// <summary>
-	/// 子系統模塊（題型模塊對應）
-	/// </summary>
-	public enum SubSystemModel
-	{
-		/// <summary>
-		/// 四則運算瀏覽
-		/// </summary>
-		Arithmetic,
-		/// <summary>
-		/// 運算比大小瀏覽
-		/// </summary>
-		EqualityComparison,
-		/// <summary>
-		/// 等式接龍瀏覽
-		/// </summary>
-		ComputingConnection,
-		/// <summary>
-		/// 算式應用題瀏覽
-		/// </summary>
-		MathWordProblems,
-		/// <summary>
-		/// 水果連連看瀏覽
-		/// </summary>
-		FruitsLinkage,
-		/// <summary>
-		/// 找到最近的數字瀏覽
-		/// </summary>
-		FindNearestNumber,
-		/// <summary>
-		/// 算式組合
-		/// </summary>
-		CombinatorialEquation,
-		/// <summary>
-		/// 射門得分
-		/// </summary>
-		ScoreGoal,
-		/// <summary>
-		/// 比多少
-		/// </summary>
-		HowMuchMore,
-		/// <summary>
-		/// 未設定（默認設定）
-		/// </summary>
-		Null
-	}
-
-	/// <summary>
 	/// 比多少題中條件顯示（左邊還是右邊）
 	/// </summary>
 	public enum LeftOrRight : int
@@ -415,7 +368,11 @@
 			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
-			Ready
+			Ready, 
+			/// <summary>
+			/// 未設定
+			/// </summary>
+			Null
 		}
 	}
 }

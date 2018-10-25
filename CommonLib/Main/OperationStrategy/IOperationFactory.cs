@@ -19,6 +19,6 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// </summary>
 		/// <param name="identifier">參數識別ID</param>
 		/// <returns>對象實例</returns>
-		ParameterBase CreateOperationParameterInstance(string identifier);
+		ParameterBase CreateOperationParameterInstance(LayoutSetting.Preview preview, string identifier);
 	}
 }

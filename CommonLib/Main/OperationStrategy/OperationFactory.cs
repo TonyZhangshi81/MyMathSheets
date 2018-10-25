@@ -36,7 +36,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 運算符檢索用的composer
 		/// </summary>
-		private readonly Composer _composer;
+		private Composer _composer;
 
 		/// <summary>
 		/// 運算符處理類型緩存區
@@ -46,15 +46,13 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 運算符參數對象類型緩存區
 		/// </summary>
 		private static readonly ConcurrentDictionary<LayoutSetting.Preview, ConcurrentDictionary<string, ParameterBase>> ParameterCache = new ConcurrentDictionary<LayoutSetting.Preview, ConcurrentDictionary<string, ParameterBase>>();
-
+		
 		/// <summary>
 		/// 構造函數
 		/// </summary>
 		[ImportingConstructor]
 		public OperationFactory()
 		{
-			// 獲取計算式策略模塊Composer
-			_composer = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy);
 		}
 
 		/// <summary>
@@ -63,14 +61,14 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		private void ComposeThis()
 		{
 			// 工廠實例后只需要收集一次
-			if (this._composed)
+			if (_composed)
 			{
 				return;
 			}
 			// 從MEF容器中注入本類的屬性信息（注入運算符屬性）
-			this._composer.Compose(this);
+			_composer.Compose(this);
 			// 以防止重複注入（減少損耗）
-			this._composed = true;
+			_composed = true;
 		}
 
 		/// <summary>
@@ -93,8 +91,13 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <returns>策略實例</returns>
 		public IOperation CreateOperationInstance(LayoutSetting.Preview preview)
 		{
-			_currentPreview = preview;
+			// 獲取計算式策略模塊Compsero
+			if(_composer == null)
+			{
+				_composer = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy, preview);
+			}
 
+			_currentPreview = preview;
 			// 運算符對象緩存區管理
 			ConcurrentDictionary<LayoutSetting.Preview, IOperation> cache = OperationCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, IOperation>());
 			// 返回緩衝區中的運算符對象
@@ -116,26 +119,28 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 對指定計算式策略所需參數的對象實例化
 		/// </summary>
+		/// <param name="preview"></param>
 		/// <param name="identifier">參數識別ID</param>
 		/// <returns>對象實例</returns>
-		public ParameterBase CreateOperationParameterInstance(string identifier)
+		public ParameterBase CreateOperationParameterInstance(LayoutSetting.Preview preview, string identifier)
 		{
 			// 運算符參數對象緩存區管理
-			ConcurrentDictionary<string, ParameterBase> cache = ParameterCache.GetOrAdd(_currentPreview, _ => new ConcurrentDictionary<string, ParameterBase>());
+			ConcurrentDictionary<string, ParameterBase> cache = ParameterCache.GetOrAdd(preview, _ => new ConcurrentDictionary<string, ParameterBase>());
 
-			string key = string.Format(_currentPreview.ToString() + "." + identifier);
+			string key = string.Format(preview.ToString() + "::" + identifier);
 			// 返回緩衝區中的運算符參數對象
 			_operationParameter = cache.GetOrAdd(key, (o) =>
 			{
 				// 以運算符處理類型和參數識別ID取得相應的參數對象實例
-				ParameterBase parameter = _parameters.Where(d => d.Metadata.Layout == _currentPreview && d.Metadata.Identifiers.IndexOf(identifier) >= 0).First().Value;
-				parameter.Identifier = identifier;
+				ParameterBase parameter = _parameters.Where(d => d.Metadata.Layout == preview && d.Metadata.Identifiers.IndexOf(identifier) >= 0).First().Value;
 
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0004L));
 
-				return parameter;
+				// 返回該運算符處理類型的實例
+				return (ParameterBase)Activator.CreateInstance(parameter.GetType());
 			});
 
+			_operationParameter.Identifier = identifier;
 			// 參數初期化處理（依據Provider配置）
 			_operationParameter.InitParameter();
 

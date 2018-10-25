@@ -26,14 +26,14 @@ namespace MyMathSheets.CommonLib.Composition
         /// <summary>
         /// 
         /// </summary>
-        private static readonly ConcurrentDictionary<SystemModel, Composer> ComposerCache;
+        private static readonly ConcurrentDictionary<string, Composer> ComposerCache;
 
         /// <summary>
         /// 
         /// </summary>
         static ComposerFactory()
         {
-            ComposerCache = new ConcurrentDictionary<SystemModel, Composer>();
+            ComposerCache = new ConcurrentDictionary<string, Composer>();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace MyMathSheets.CommonLib.Composition
                 {
                     throw new Exception();
                 }
-                var valueFunc = new Func<SystemModel, Composer>(c =>
+                var valueFunc = new Func<string, Composer>(c =>
                 {
                     lock(Sync)
                     {
@@ -63,7 +63,9 @@ namespace MyMathSheets.CommonLib.Composition
                     }
                 });
 
-                ComposerCache.GetOrAdd(attr.SystemId, valueFunc);
+				string composerKey = (attr.Preview == LayoutSetting.Preview.Null) ? attr.SystemId.ToString() : string.Format("{0}-{1}", attr.SystemId, attr.Preview);
+
+				ComposerCache.GetOrAdd(composerKey, valueFunc);
             });
 
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -71,44 +73,49 @@ namespace MyMathSheets.CommonLib.Composition
 			directory.GetFiles("MyMathSheets.*.dll").ToList().ForEach(f => action(f));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="systemId"></param>
-        /// <returns></returns>
-        public static Composer GetComporser(SystemModel systemId)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="systemId"></param>
+		/// <param name="preview"></param>
+		/// <returns></returns>
+		public static Composer GetComporser(SystemModel systemId, LayoutSetting.Preview preview = LayoutSetting.Preview.Null)
         {
-            if(ComposerCache.ContainsKey(systemId))
+			string composerKey = (preview == LayoutSetting.Preview.Null) ? systemId.ToString() : string.Format("{0}::{1}", systemId, preview);
+
+			if (ComposerCache.ContainsKey(composerKey))
             {
-				if (ComposerCache.TryGetValue(systemId, out Composer composer))
+				if (ComposerCache.TryGetValue(composerKey, out Composer composer))
 				{
 					return composer;
 				}
 			}
 
-            var valueFunc = new Func<SystemModel, Composer>(c =>
+            var valueFunc = new Func<string, Composer>(c =>
             {
                 lock(Sync)
                 {
-                    return new Composer(GetAssembly(systemId));
+                    return new Composer(GetAssembly(systemId, preview));
                 }
             });
 
-            return ComposerCache.GetOrAdd(systemId, valueFunc);
+            return ComposerCache.GetOrAdd(composerKey, valueFunc);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="systemId"></param>
-        /// <returns></returns>
-        private static Assembly GetAssembly(SystemModel systemId)
-        {
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="systemId"></param>
+		/// <param name="preview"></param>
+		/// <returns></returns>
+		private static Assembly GetAssembly(SystemModel systemId, LayoutSetting.Preview preview = LayoutSetting.Preview.Null)
+		{
             var action = new Action<FileInfo>(f =>
             {
                 var assembly = Assembly.LoadFile(f.FullName);
                 var attr = assembly.GetCustomAttributes(typeof(MathSheetMarkerAttribute), true).Cast<MathSheetMarkerAttribute>().FirstOrDefault();
-                if(attr != null && systemId.Equals(attr.SystemId))
+                if(attr != null && ((preview == LayoutSetting.Preview.Null && systemId.Equals(attr.SystemId)) 
+									|| (preview != LayoutSetting.Preview.Null && systemId.Equals(attr.SystemId) && preview.Equals(attr.Preview))))
                 {
                     TempAssembly = assembly;
                 }
