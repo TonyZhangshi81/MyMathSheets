@@ -286,11 +286,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.ComputingConnection);
 
-				ComputingConnectionParameter ccParameter = (ComputingConnectionParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ComputingConnection, "CC001");
+				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ComputingConnection, "CC001");
 
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--COMPUTINGCONNECTION-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.ComputingConnection, ccParameter) }
+					{ "<!--COMPUTINGCONNECTION-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.ComputingConnection, parameter) }
 				};
 				// JS模板內容替換
 				MarkJavaScriptReplaceContent(typeof(ComputingConnectionHtmlSupport), htmlMaps);

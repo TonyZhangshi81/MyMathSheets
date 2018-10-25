@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.Item
+namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Item
 {
 	/// <summary>
 	/// 计算式接龙

@@ -2,12 +2,12 @@
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
+using MyMathSheets.ComputationalStrategy.ComputingConnection.Item;
+using MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
+namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 {
 	/// <summary>
 	/// 等式接龍題型
@@ -120,7 +120,8 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 				return true;
 			}
 			// 算式存在一致
-			preFormulas.ToList().Any(d => {
+			preFormulas.ToList().Any(d =>
+			{
 				if (d.ConfixFormulas.ToList().Any(m => m.LeftParameter == currentFormula.LeftParameter
 					&& m.RightParameter == currentFormula.RightParameter
 					&& m.Answer == currentFormula.Answer
@@ -129,7 +130,7 @@ namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
 					return true;
 				};
 				return false;
-			});			
+			});
 			return false;
 		}
 	}

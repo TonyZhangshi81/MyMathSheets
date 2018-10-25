@@ -99,6 +99,10 @@
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e3}</Project>
       <Name>MyMathSheets.ComputationalStrategy.CombinatorialEquation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ComputationalStrategy\ComputingConnection\MyMathSheets.ComputationalStrategy.ComputingConnection.csproj">
+      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e4}</Project>
+      <Name>MyMathSheets.ComputationalStrategy.ComputingConnection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ComputationalStrategy\MyMathSheets.ComputationalStrategy.csproj">
       <Project>{3206E500-28D2-4055-A14F-3DE3CBD526E1}</Project>
       <Name>MyMathSheets.ComputationalStrategy</Name>
