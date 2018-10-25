@@ -1,10 +1,9 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters
+namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters
 {
 	/// <summary>
 	/// 組合計算式參數類

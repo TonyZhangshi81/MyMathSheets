@@ -2,8 +2,8 @@
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
+using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item;
+using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System.Collections.Generic;
 using System.Linq;

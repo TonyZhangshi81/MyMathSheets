@@ -46,7 +46,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 運算符參數對象類型緩存區
 		/// </summary>
 		private static readonly ConcurrentDictionary<LayoutSetting.Preview, ConcurrentDictionary<string, ParameterBase>> ParameterCache = new ConcurrentDictionary<LayoutSetting.Preview, ConcurrentDictionary<string, ParameterBase>>();
-		
+
 		/// <summary>
 		/// 構造函數
 		/// </summary>
@@ -92,14 +92,17 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		public IOperation CreateOperationInstance(LayoutSetting.Preview preview)
 		{
 			// 獲取計算式策略模塊Compsero
-			if(_composer == null)
-			{
-				_composer = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy, preview);
-			}
+			_composer = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy, preview);
 
 			_currentPreview = preview;
 			// 運算符對象緩存區管理
 			ConcurrentDictionary<LayoutSetting.Preview, IOperation> cache = OperationCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, IOperation>());
+			// 題型模塊是否已經注入
+			if (cache.ContainsKey(preview))
+			{
+				// 初次注入允許MEF容器注入本類的屬性信息（注入運算符屬性）
+				_composed = false;
+			}
 			// 返回緩衝區中的運算符對象
 			return cache.GetOrAdd(preview, (o) =>
 			{

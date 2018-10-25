@@ -442,11 +442,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.CombinatorialEquation);
 
-				CombinatorialEquationParameter ceParameter = (CombinatorialEquationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CombinatorialEquation, "CE001");
+				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CombinatorialEquation, "CE001");
 
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--COMBINATORIALEQUATION-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.CombinatorialEquation, ceParameter) }
+					{ "<!--COMBINATORIALEQUATION-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.CombinatorialEquation, parameter) }
 				};
 				// JS模板內容替換
 				MarkJavaScriptReplaceContent(typeof(CombinatorialEquationHtmlSupport), htmlMaps);

@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.Item
+namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item
 {
 	/// <summary>
 	/// 組合算式的結構對象
