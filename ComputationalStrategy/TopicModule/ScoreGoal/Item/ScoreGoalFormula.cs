@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.Item
+namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Item
 {
 	/// <summary>
 	/// 射門得分

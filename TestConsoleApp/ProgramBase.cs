@@ -6,6 +6,7 @@ using MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
+using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Linq;

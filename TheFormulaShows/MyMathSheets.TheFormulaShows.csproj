@@ -84,6 +84,10 @@
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e1}</Project>
       <Name>MyMathSheets.ComputationalStrategy</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ComputationalStrategy\TopicModule\ScoreGoal\MyMathSheets.ComputationalStrategy.ScoreGoal.csproj">
+      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e5}</Project>
+      <Name>MyMathSheets.ComputationalStrategy.ScoreGoal</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />

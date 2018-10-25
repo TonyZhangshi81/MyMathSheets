@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\CommonLib\MyMathSheets.CommonLib.csproj">
+    <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">
       <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
       <Name>MyMathSheets.CommonLib</Name>
     </ProjectReference>

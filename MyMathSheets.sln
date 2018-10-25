@@ -17,13 +17,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLib", "C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{F9B5A9D1-8C95-4161-8708-65789BA74FC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.Arithmetic", "ComputationalStrategy\Arithmetic\MyMathSheets.ComputationalStrategy.Arithmetic.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.Arithmetic", "ComputationalStrategy\TopicModule\Arithmetic\MyMathSheets.ComputationalStrategy.Arithmetic.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopicModule", "TopicModule", "{8BCE20EF-6C56-439F-B641-AF994D9A63FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.CombinatorialEquation", "ComputationalStrategy\CombinatorialEquation\MyMathSheets.ComputationalStrategy.CombinatorialEquation.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.CombinatorialEquation", "ComputationalStrategy\TopicModule\CombinatorialEquation\MyMathSheets.ComputationalStrategy.CombinatorialEquation.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.ComputingConnection", "ComputationalStrategy\ComputingConnection\MyMathSheets.ComputationalStrategy.ComputingConnection.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.ComputingConnection", "ComputationalStrategy\TopicModule\ComputingConnection\MyMathSheets.ComputationalStrategy.ComputingConnection.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.ScoreGoal", "ComputationalStrategy\TopicModule\ScoreGoal\MyMathSheets.ComputationalStrategy.ScoreGoal.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{3206E500-28D2-4055-A14F-3DE3CBD526E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3206E500-28D2-4055-A14F-3DE3CBD526E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3206E500-28D2-4055-A14F-3DE3CBD526E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{3206E500-28D2-4055-A14F-3DE3CBD526E2} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E3} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E4} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
+		{3206E500-28D2-4055-A14F-3DE3CBD526E5} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D308C80E-F93A-4F56-89CD-5A89344949B1}

@@ -481,11 +481,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.ScoreGoal);
 
-				ScoreGoalParameter sgParameter = (ScoreGoalParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ScoreGoal, "SG001");
+				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ScoreGoal, "SG001");
 
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--SCOREGOAL-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.ScoreGoal, sgParameter) }
+					{ "<!--SCOREGOAL-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.ScoreGoal, parameter) }
 				};
 				// JS模板內容替換
 				MarkJavaScriptReplaceContent(typeof(ScoreGoalHtmlSupport), htmlMaps);

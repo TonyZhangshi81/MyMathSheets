@@ -2,12 +2,11 @@
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
+using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy
+namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 {
 	/// <summary>
 	/// 射門得分題型構築

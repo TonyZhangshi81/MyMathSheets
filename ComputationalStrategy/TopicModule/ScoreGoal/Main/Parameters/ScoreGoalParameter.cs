@@ -1,8 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.ScoreGoal.Item;
 
-namespace MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters
+namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters
 {
 	/// <summary>
 	/// 射門得分參數類
