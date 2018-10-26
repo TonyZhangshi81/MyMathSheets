@@ -190,16 +190,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.Arithmetic);
-
-				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
-
-				Type supportType;
-				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
-				{
-					{ "<!--ARITHMETIC-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.Arithmetic, parameter, out supportType) }
-				};
-				// JS模板內容替換
-				MarkJavaScriptReplaceContent(supportType, htmlMaps);
+				// 取得HTML和JS的替換內容
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.Arithmetic, "AC001");
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.Arithmetic.ToString(), htmlMaps);
 			}
@@ -215,6 +207,27 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			// 刷新題型預覽區域
 			PreviewReflash();
+		}
+
+		/// <summary>
+		/// 取得HTML和JS的替換內容
+		/// </summary>
+		/// <param name="preview">題型種類</param>
+		/// <param name="identifier">參數構造識別號</param>
+		/// <returns>替換內容</returns>
+		private Dictionary<string, string> GetHtmlReplaceContentMaps(LayoutSetting.Preview preview, string identifier)
+		{
+			// 構造題型并取得結果
+			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview, identifier);
+			// HTML替換內容
+			Dictionary<string, string> htmlMaps = new Dictionary<string, string>
+			{
+				// 題型HTML信息作成并對指定的HTML模板標識進行替換
+				{ string.Format("<!--{0}-->", preview.ToString().ToUpper()), _makeHtml.GetHtmlStatement(preview, parameter, out Type supportType) }
+			};
+			// JS模板內容替換
+			MarkJavaScriptReplaceContent(supportType, htmlMaps);
+			return htmlMaps;
 		}
 
 		/// <summary>
@@ -245,16 +258,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.EqualityComparison);
-
-				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityComparison, "EC001");
-
-				Type supportType;
-				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
-				{
-					{ "<!--EQUALITYCOMPARISON-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.EqualityComparison, parameter, out supportType) }
-				};
-				// JS模板內容替換
-				MarkJavaScriptReplaceContent(supportType, htmlMaps);
+				// 取得HTML和JS的替換內容
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.EqualityComparison, "EC001");
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.EqualityComparison.ToString(), htmlMaps);
 			}
@@ -264,7 +269,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽移除
 				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.EqualityComparison);
-
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.EqualityComparison.ToString());
 			}
@@ -285,16 +289,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.ComputingConnection);
-
-				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ComputingConnection, "CC001");
-
-				Type supportType;
-				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
-				{
-					{ "<!--COMPUTINGCONNECTION-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.ComputingConnection, parameter, out supportType) }
-				};
-				// JS模板內容替換
-				MarkJavaScriptReplaceContent(supportType, htmlMaps);
+				// 取得HTML和JS的替換內容
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.ComputingConnection, "CC001");
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.ComputingConnection.ToString(), htmlMaps);
 			}
@@ -304,7 +300,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽移除
 				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.ComputingConnection);
-
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.ComputingConnection.ToString());
 			}
@@ -325,16 +320,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.MathWordProblems);
-
-				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.MathWordProblems, "MP001");
-
-				Type supportType;
-				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
-				{
-					{ "<!--MATHWORDPROBLEMS-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.MathWordProblems, parameter, out supportType) }
-				};
-				// JS模板內容替換
-				MarkJavaScriptReplaceContent(supportType, htmlMaps);
+				// 取得HTML和JS的替換內容
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.MathWordProblems, "MP001");
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.MathWordProblems.ToString(), htmlMaps);
 			}
@@ -344,7 +331,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽移除
 				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.MathWordProblems);
-
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.MathWordProblems.ToString());
 			}
@@ -365,16 +351,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.FruitsLinkage);
-
-				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FruitsLinkage, "FL001");
-
-				Type supportType;
-				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
-				{
-					{ "<!--FRUITSLINKAGE-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.FruitsLinkage, parameter, out supportType) }
-				};
-				// JS模板內容替換
-				MarkJavaScriptReplaceContent(supportType, htmlMaps);
+				// 取得HTML和JS的替換內容
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.FruitsLinkage, "FL001");
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.FruitsLinkage.ToString(), htmlMaps);
 			}
@@ -384,7 +362,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽移除
 				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.FruitsLinkage);
-
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.FruitsLinkage.ToString());
 			}
@@ -405,16 +382,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.FindNearestNumber);
-
-				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindNearestNumber, "FN001");
-
-				Type supportType;
-				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
-				{
-					{ "<!--FINDNEARESTNUMBER-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.FindNearestNumber, parameter, out supportType) }
-				};
-				// JS模板內容替換
-				MarkJavaScriptReplaceContent(supportType, htmlMaps);
+				// 取得HTML和JS的替換內容
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.FindNearestNumber, "FN001");
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.FindNearestNumber.ToString(), htmlMaps);
 			}
@@ -424,7 +393,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽移除
 				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.FindNearestNumber);
-
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.FindNearestNumber.ToString());
 			}
@@ -445,16 +413,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.CombinatorialEquation);
-
-				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CombinatorialEquation, "CE001");
-
-				Type supportType;
-				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
-				{
-					{ "<!--COMBINATORIALEQUATION-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.CombinatorialEquation, parameter, out supportType) }
-				};
-				// JS模板內容替換
-				MarkJavaScriptReplaceContent(supportType, htmlMaps);
+				// 取得HTML和JS的替換內容
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.CombinatorialEquation, "CE001");
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.CombinatorialEquation.ToString(), htmlMaps);
 			}
@@ -464,7 +424,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽移除
 				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.CombinatorialEquation);
-
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.CombinatorialEquation.ToString());
 			}
@@ -485,16 +444,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.ScoreGoal);
-
-				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ScoreGoal, "SG001");
-
-				Type supportType;
-				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
-				{
-					{ "<!--SCOREGOAL-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.ScoreGoal, parameter, out supportType) }
-				};
-				// JS模板內容替換
-				MarkJavaScriptReplaceContent(supportType, htmlMaps);
+				// 取得HTML和JS的替換內容
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.ScoreGoal, "SG001");
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.ScoreGoal.ToString(), htmlMaps);
 			}
@@ -504,7 +455,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽移除
 				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.ScoreGoal);
-
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.ScoreGoal.ToString());
 			}
@@ -525,16 +475,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.HowMuchMore);
-
-				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.HowMuchMore, "HMM001");
-
-				Type supportType;
-				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
-				{
-					{ "<!--HOWMUCHMORE-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.HowMuchMore, parameter, out supportType) }
-				};
-				// JS模板內容替換
-				MarkJavaScriptReplaceContent(supportType, htmlMaps);
+				// 取得HTML和JS的替換內容
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.HowMuchMore, "HMM001");
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.HowMuchMore.ToString(), htmlMaps);
 			}
@@ -544,7 +486,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				// 題型預覽移除
 				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.HowMuchMore);
-
 				// 題型移除
 				_htmlMaps.Remove(LayoutSetting.Preview.HowMuchMore.ToString());
 			}
