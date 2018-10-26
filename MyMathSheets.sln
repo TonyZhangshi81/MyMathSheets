@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy", "ComputationalStrategy\MyMathSheets.ComputationalStrategy.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.BasicOperationsLib", "ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows", "TheFormulaShows\MyMathSheets.TheFormulaShows.csproj", "{ED789079-5836-4377-B0A6-6CDE453092C1}"
 EndProject

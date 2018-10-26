@@ -2,7 +2,7 @@
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Util;
 
-namespace MyMathSheets.ComputationalStrategy.Main.Arithmetic
+namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 {
 	/// <summary>
 	/// 

@@ -44,6 +44,10 @@
 		/// </summary>
 		Common,
 		/// <summary>
+		/// 基本運算處理模塊（加減乘除）
+		/// </summary>
+		BasicOperations,
+		/// <summary>
 		/// 計算式題型策略模塊
 		/// </summary>
 		ComputationalStrategy,

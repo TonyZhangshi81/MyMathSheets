@@ -80,10 +80,6 @@
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e4}</Project>
       <Name>MyMathSheets.ComputationalStrategy.ComputingConnection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\MyMathSheets.ComputationalStrategy.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e1}</Project>
-      <Name>MyMathSheets.ComputationalStrategy</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ComputationalStrategy\TopicModule\EqualityComparison\MyMathSheets.ComputationalStrategy.EqualityComparison.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e6}</Project>
       <Name>MyMathSheets.ComputationalStrategy.EqualityComparison</Name>

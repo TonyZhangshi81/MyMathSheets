@@ -42,7 +42,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		public CalculateFactory()
 		{
 			// 獲取計算式策略模塊Composer
-			_composer = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy);
+			_composer = ComposerFactory.GetComporser(SystemModel.BasicOperations);
 		}
 
 		/// <summary>

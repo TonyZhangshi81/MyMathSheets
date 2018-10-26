@@ -170,9 +170,9 @@
       <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
       <Name>MyMathSheets.CommonLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\MyMathSheets.ComputationalStrategy.csproj">
+    <ProjectReference Include="..\ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e1}</Project>
-      <Name>MyMathSheets.ComputationalStrategy</Name>
+      <Name>MyMathSheets.BasicOperationsLib</Name>
     </ProjectReference>
     <ProjectReference Include="..\TheFormulaShows\MyMathSheets.TheFormulaShows.csproj">
       <Project>{ed789079-5836-4377-b0a6-6cde453092c1}</Project>

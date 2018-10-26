@@ -7,8 +7,8 @@
     <ProjectGuid>{3206E500-28D2-4055-A14F-3DE3CBD526E1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MyMathSheets.ComputationalStrategy</RootNamespace>
-    <AssemblyName>MyMathSheets.ComputationalStrategy</AssemblyName>
+    <RootNamespace>MyMathSheets.BasicOperationsLib</RootNamespace>
+    <AssemblyName>MyMathSheets.BasicOperationsLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
