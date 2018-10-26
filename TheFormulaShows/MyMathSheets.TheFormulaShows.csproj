@@ -68,15 +68,15 @@
       <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
       <Name>MyMathSheets.CommonLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\Arithmetic\MyMathSheets.ComputationalStrategy.Arithmetic.csproj">
+    <ProjectReference Include="..\ComputationalStrategy\TopicModule\Arithmetic\MyMathSheets.ComputationalStrategy.Arithmetic.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e2}</Project>
       <Name>MyMathSheets.ComputationalStrategy.Arithmetic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\CombinatorialEquation\MyMathSheets.ComputationalStrategy.CombinatorialEquation.csproj">
+    <ProjectReference Include="..\ComputationalStrategy\TopicModule\CombinatorialEquation\MyMathSheets.ComputationalStrategy.CombinatorialEquation.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e3}</Project>
       <Name>MyMathSheets.ComputationalStrategy.CombinatorialEquation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\ComputingConnection\MyMathSheets.ComputationalStrategy.ComputingConnection.csproj">
+    <ProjectReference Include="..\ComputationalStrategy\TopicModule\ComputingConnection\MyMathSheets.ComputationalStrategy.ComputingConnection.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e4}</Project>
       <Name>MyMathSheets.ComputationalStrategy.ComputingConnection</Name>
     </ProjectReference>

@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.ScoreGoal.Item;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Linq;

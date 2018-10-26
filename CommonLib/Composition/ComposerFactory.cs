@@ -114,8 +114,7 @@ namespace MyMathSheets.CommonLib.Composition
             {
                 var assembly = Assembly.LoadFile(f.FullName);
                 var attr = assembly.GetCustomAttributes(typeof(MathSheetMarkerAttribute), true).Cast<MathSheetMarkerAttribute>().FirstOrDefault();
-                if(attr != null && ((preview == LayoutSetting.Preview.Null && systemId.Equals(attr.SystemId)) 
-									|| (preview != LayoutSetting.Preview.Null && systemId.Equals(attr.SystemId) && preview.Equals(attr.Preview))))
+                if(attr != null && preview == attr.Preview && systemId.Equals(attr.SystemId))
                 {
                     TempAssembly = assembly;
                 }
