@@ -132,6 +132,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(SolutionDir)\Lib\*.dll $(TargetDir) /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(SolutionDir)Lib\*.dll" "$(TargetDir)" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -140,20 +140,20 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetFileName) $(SolutionDir)\Lib /Y
-rem copy $(SolutionDir)\Lib\*.dll $(SolutionDir)\Lib\Release\ /Y
-copy "..\Template\HTMLPage" $(SolutionDir)\MathSheetsSettingApp\HtmlTemplate /Y
-xcopy "..\Scripts\Ext" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\Ext /C /E /H /K /R /Y
-copy "..\Scripts\bootstrap.min.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts /Y
-copy "..\Scripts\jquery.easyui.min.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts /Y
-copy "..\Scripts\jquery-3.3.1.min.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts /Y
-copy "..\Scripts\json2.min.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts /Y
-copy "..\Scripts\store.legacy.min.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts /Y
-copy "..\Scripts\umd\popper.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd /Y
-copy "..\Content\bootstrap.min.css" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content /Y
-copy "..\Content\favicon.ico" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content /Y
-copy "..\Content\MathSheets.css" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content /Y
-xcopy "..\Content\image" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\image /C /E /H /K /R /Y
+    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)\Lib" /Y
+rem copy "$(SolutionDir)\Lib\*.dll" "$(SolutionDir)\Lib\Release\" /Y
+copy "..\Template\HTMLPage" "$(SolutionDir)\MathSheetsSettingApp\HtmlTemplate" /Y
+xcopy "..\Scripts\Ext" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\Ext" /C /E /H /K /R /Y
+copy "..\Scripts\bootstrap.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\jquery.easyui.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\jquery-3.3.1.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\json2.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\store.legacy.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\umd\popper.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd" /Y
+copy "..\Content\bootstrap.min.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\favicon.ico" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\MathSheets.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
+xcopy "..\Content\image" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\image" /C /E /H /K /R /Y
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

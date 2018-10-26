@@ -75,7 +75,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetFileName) $(SolutionDir)\Lib /y
+    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)\Lib" /y
 copy "..\Scripts\Ext\*.js" "..\..\..\Scripts\Ext\" /Y
 xcopy "..\Content\image" "..\..\..\Content\image" /C /E /H /K /R /Y</PostBuildEvent>
   </PropertyGroup>

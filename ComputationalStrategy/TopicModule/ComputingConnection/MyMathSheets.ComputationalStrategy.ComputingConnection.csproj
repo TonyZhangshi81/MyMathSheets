@@ -65,6 +65,6 @@
   <PropertyGroup>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetFileName) $(SolutionDir)\Lib /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)\Lib" /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
