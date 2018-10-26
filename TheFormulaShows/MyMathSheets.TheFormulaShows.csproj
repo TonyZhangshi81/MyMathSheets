@@ -231,6 +231,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(TargetFileName) $(SolutionDir)\Lib /y
+copy $(SolutionDir)\Lib\*.dll $(SolutionDir)\Lib\Release\ /y
 copy "..\Template\HTMLPage" "..\..\MathSheetsSettingApp\HtmlTemplate\" /Y
 copy "..\Scripts\Ext\*.js" "..\..\MathSheetsSettingApp\App_Data\Work\Scripts\Ext\" /Y
 copy "..\Content\MathSheets.css" "..\..\MathSheetsSettingApp\App_Data\Work\Content\" /Y

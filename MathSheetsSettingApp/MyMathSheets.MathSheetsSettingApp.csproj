@@ -40,11 +40,11 @@
     </Reference>
     <Reference Include="MyMathSheets.CommonLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.CommonLib.dll</HintPath>
+      <HintPath>..\Lib\Release\MyMathSheets.CommonLib.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.TheFormulaShows, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.TheFormulaShows.dll</HintPath>
+      <HintPath>..\Lib\Release\MyMathSheets.TheFormulaShows.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -179,6 +179,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(SolutionDir)\Lib\*.dll $(TargetDir) /y</PostBuildEvent>
+    <PostBuildEvent>copy $(SolutionDir)\Lib\Release\*.dll $(TargetDir) /y</PostBuildEvent>
   </PropertyGroup>
 </Project>
