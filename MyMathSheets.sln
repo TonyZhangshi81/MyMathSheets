@@ -27,6 +27,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.ScoreGoal", "ComputationalStrategy\TopicModule\ScoreGoal\MyMathSheets.ComputationalStrategy.ScoreGoal.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.EqualityComparison", "ComputationalStrategy\TopicModule\EqualityComparison\MyMathSheets.ComputationalStrategy.EqualityComparison.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.FindNearestNumber", "ComputationalStrategy\TopicModule\FindNearestNumber\MyMathSheets.ComputationalStrategy.FindNearestNumber.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.FruitsLinkage", "ComputationalStrategy\TopicModule\FruitsLinkage\MyMathSheets.ComputationalStrategy.FruitsLinkage.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.HowMuchMore", "ComputationalStrategy\TopicModule\HowMuchMore\MyMathSheets.ComputationalStrategy.HowMuchMore.csproj", "{18D1E434-D1C1-4634-B969-7FF11FECA3EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.MathWordProblems", "ComputationalStrategy\TopicModule\MathWordProblems\MyMathSheets.ComputationalStrategy.MathWordProblems.csproj", "{3BFFE851-482C-43D6-9661-C32D20AF334D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +83,26 @@ Global
 		{3206E500-28D2-4055-A14F-3DE3CBD526E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3206E500-28D2-4055-A14F-3DE3CBD526E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3206E500-28D2-4055-A14F-3DE3CBD526E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18D1E434-D1C1-4634-B969-7FF11FECA3EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18D1E434-D1C1-4634-B969-7FF11FECA3EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18D1E434-D1C1-4634-B969-7FF11FECA3EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18D1E434-D1C1-4634-B969-7FF11FECA3EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BFFE851-482C-43D6-9661-C32D20AF334D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BFFE851-482C-43D6-9661-C32D20AF334D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BFFE851-482C-43D6-9661-C32D20AF334D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BFFE851-482C-43D6-9661-C32D20AF334D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +113,11 @@ Global
 		{3206E500-28D2-4055-A14F-3DE3CBD526E3} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E4} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E5} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
+		{3206E500-28D2-4055-A14F-3DE3CBD526E6} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
+		{3206E500-28D2-4055-A14F-3DE3CBD526E7} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
+		{3206E500-28D2-4055-A14F-3DE3CBD526E8} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
+		{18D1E434-D1C1-4634-B969-7FF11FECA3EF} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
+		{3BFFE851-482C-43D6-9661-C32D20AF334D} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D308C80E-F93A-4F56-89CD-5A89344949B1}

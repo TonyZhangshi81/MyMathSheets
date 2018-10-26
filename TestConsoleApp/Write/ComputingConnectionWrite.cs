@@ -2,7 +2,6 @@
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Item;
-using MyMathSheets.ComputationalStrategy.Item;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;

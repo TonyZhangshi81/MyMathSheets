@@ -2,7 +2,6 @@
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
 using MyMathSheets.MathSheetsSettingApp.Properties;
 using MyMathSheets.TheFormulaShows;
 using MyMathSheets.TheFormulaShows.Attributes;
@@ -247,11 +246,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.EqualityComparison);
 
-				EqualityComparisonParameter ecParameter = (EqualityComparisonParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityComparison, "EC001");
+				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityComparison, "EC001");
 
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--EQUALITYCOMPARISON-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.EqualityComparison, ecParameter) }
+					{ "<!--EQUALITYCOMPARISON-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.EqualityComparison, parameter) }
 				};
 				// JS模板內容替換
 				MarkJavaScriptReplaceContent(typeof(EqualityComparisonHtmlSupport), htmlMaps);
@@ -325,11 +324,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.MathWordProblems);
 
-				MathWordProblemsParameter mpParameter = (MathWordProblemsParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.MathWordProblems, "MP001");
+				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.MathWordProblems, "MP001");
 
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--MATHWORDPROBLEMS-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.MathWordProblems, mpParameter) }
+					{ "<!--MATHWORDPROBLEMS-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.MathWordProblems, parameter) }
 				};
 				// JS模板內容替換
 				MarkJavaScriptReplaceContent(typeof(MathWordProblemsHtmlSupport), htmlMaps);
@@ -364,11 +363,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.FruitsLinkage);
 
-				FruitsLinkageParameter flParameter = (FruitsLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FruitsLinkage, "FL001");
+				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FruitsLinkage, "FL001");
 
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--FRUITSLINKAGE-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.FruitsLinkage, flParameter) }
+					{ "<!--FRUITSLINKAGE-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.FruitsLinkage, parameter) }
 				};
 				// JS模板內容替換
 				MarkJavaScriptReplaceContent(typeof(FruitsLinkageHtmlSupport), htmlMaps);
@@ -403,11 +402,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.FindNearestNumber);
 
-				FindNearestNumberParameter fnParameter = (FindNearestNumberParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindNearestNumber, "FN001");
+				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindNearestNumber, "FN001");
 
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--FINDNEARESTNUMBER-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.FindNearestNumber, fnParameter) }
+					{ "<!--FINDNEARESTNUMBER-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.FindNearestNumber, parameter) }
 				};
 				// JS模板內容替換
 				MarkJavaScriptReplaceContent(typeof(FindNearestNumberHtmlSupport), htmlMaps);
@@ -520,11 +519,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(LayoutSetting.Preview.HowMuchMore);
 
-				HowMuchMoreParameter hmmParameter = (HowMuchMoreParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.HowMuchMore, "HMM001");
+				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.HowMuchMore, "HMM001");
 
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--HOWMUCHMORE-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.HowMuchMore, hmmParameter) }
+					{ "<!--HOWMUCHMORE-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.HowMuchMore, parameter) }
 				};
 				// JS模板內容替換
 				MarkJavaScriptReplaceContent(typeof(HowMuchMoreHtmlSupport), htmlMaps);

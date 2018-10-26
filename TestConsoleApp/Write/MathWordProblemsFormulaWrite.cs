@@ -1,6 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.MathWordProblems.Item;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;

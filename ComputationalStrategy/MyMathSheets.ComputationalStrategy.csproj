@@ -46,31 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Item\HowMuchMoreFormula.cs" />
-    <Compile Include="Item\EqualityFormula.cs" />
-    <Compile Include="Item\FruitsLinkageFormula.cs" />
-    <Compile Include="Item\MathWordProblemsFormula.cs" />
     <Compile Include="Main\Arithmetic\Division.cs" />
-    <Compile Include="Main\OperationStrategy\HowMuchMore.cs" />
-    <Compile Include="Main\OperationStrategy\Parameters\HowMuchMoreParameter.cs" />
-    <Compile Include="Main\OperationStrategy\Parameters\MathWordProblemsParameter.cs" />
-    <Compile Include="Main\OperationStrategy\Parameters\FruitsLinkageParameter.cs" />
-    <Compile Include="Main\OperationStrategy\Parameters\FindNearestNumberParameter.cs" />
-    <Compile Include="Main\OperationStrategy\Parameters\EqualityComparisonParameter.cs" />
-    <Compile Include="Main\OperationStrategy\EqualityComparison.cs" />
     <Compile Include="Main\Arithmetic\Multiplication.cs" />
-    <Compile Include="Main\OperationStrategy\FindNearestNumber.cs" />
-    <Compile Include="Main\OperationStrategy\FruitsLinkage.cs" />
-    <Compile Include="Main\OperationStrategy\MathWordProblems.cs" />
     <Compile Include="Main\Arithmetic\Subtraction.cs" />
     <Compile Include="Main\Arithmetic\Adition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\Problems.json" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Item\" />
+    <Folder Include="Main\OperationStrategy\Parameters\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonLib\MyMathSheets.CommonLib.csproj">
       <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
@@ -79,7 +67,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "..\Config\*.json" "..\..\TestConsoleApp\Config\" /Y
-copy "..\Config\*.json" "..\..\MathSheetsSettingApp\Config\" /Y</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

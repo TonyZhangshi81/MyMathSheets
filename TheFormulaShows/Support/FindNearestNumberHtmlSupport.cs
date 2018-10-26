@@ -1,8 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
+using MyMathSheets.ComputationalStrategy.FindNearestNumber.Item;
+using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System.Text;
 
@@ -41,7 +41,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 			StringBuilder html = new StringBuilder();
 			StringBuilder rowHtml = new StringBuilder();
 			StringBuilder colHtml = new StringBuilder();
-			foreach (EqualityFormula item in p.Formulas)
+			foreach (NearestNumberFormula item in p.Formulas)
 			{
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-4 form-inline\">");

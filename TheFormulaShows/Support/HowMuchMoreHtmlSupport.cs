@@ -1,8 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
+using MyMathSheets.ComputationalStrategy.HowMuchMore.Item;
+using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System;
 using System.Collections.Generic;

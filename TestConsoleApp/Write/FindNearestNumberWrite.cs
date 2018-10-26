@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Item;
+using MyMathSheets.ComputationalStrategy.FindNearestNumber.Item;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 等式比大小题型计算式结果显示输出
 	/// </summary>
-	public class FindNearestNumberWrite : IConsoleWrite<List<EqualityFormula>>
+	public class FindNearestNumberWrite : IConsoleWrite<List<NearestNumberFormula>>
 	{
 		private static Log log = Log.LogReady(typeof(FindNearestNumberWrite));
 
@@ -20,7 +20,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
-		public void ConsoleFormulas(List<EqualityFormula> formulas)
+		public void ConsoleFormulas(List<NearestNumberFormula> formulas)
 		{
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "等式比大小"));
 

@@ -2,7 +2,7 @@
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Main.OperationStrategy.Parameters;
+using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
 using MyMathSheets.TheFormulaShows.Attributes;
 using System;
 using System.Collections.Generic;

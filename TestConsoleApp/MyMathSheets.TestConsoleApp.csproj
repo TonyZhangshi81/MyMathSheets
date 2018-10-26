@@ -107,6 +107,26 @@
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e4}</Project>
       <Name>MyMathSheets.ComputationalStrategy.ComputingConnection</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ComputationalStrategy\TopicModule\EqualityComparison\MyMathSheets.ComputationalStrategy.EqualityComparison.csproj">
+      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e6}</Project>
+      <Name>MyMathSheets.ComputationalStrategy.EqualityComparison</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComputationalStrategy\TopicModule\FindNearestNumber\MyMathSheets.ComputationalStrategy.FindNearestNumber.csproj">
+      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e7}</Project>
+      <Name>MyMathSheets.ComputationalStrategy.FindNearestNumber</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComputationalStrategy\TopicModule\FruitsLinkage\MyMathSheets.ComputationalStrategy.FruitsLinkage.csproj">
+      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e8}</Project>
+      <Name>MyMathSheets.ComputationalStrategy.FruitsLinkage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComputationalStrategy\TopicModule\HowMuchMore\MyMathSheets.ComputationalStrategy.HowMuchMore.csproj">
+      <Project>{18d1e434-d1c1-4634-b969-7ff11feca3ef}</Project>
+      <Name>MyMathSheets.ComputationalStrategy.HowMuchMore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComputationalStrategy\TopicModule\MathWordProblems\MyMathSheets.ComputationalStrategy.MathWordProblems.csproj">
+      <Project>{3bffe851-482c-43d6-9661-c32d20af334d}</Project>
+      <Name>MyMathSheets.ComputationalStrategy.MathWordProblems</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ComputationalStrategy\TopicModule\ScoreGoal\MyMathSheets.ComputationalStrategy.ScoreGoal.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e5}</Project>
       <Name>MyMathSheets.ComputationalStrategy.ScoreGoal</Name>
