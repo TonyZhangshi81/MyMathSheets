@@ -17,6 +17,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 對指定計算式策略所需參數的對象實例化
 		/// </summary>
+		/// <param name="preview"></param>
 		/// <param name="identifier">參數識別ID</param>
 		/// <returns>對象實例</returns>
 		ParameterBase CreateOperationParameterInstance(LayoutSetting.Preview preview, string identifier);

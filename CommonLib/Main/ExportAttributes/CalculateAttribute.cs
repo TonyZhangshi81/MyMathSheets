@@ -11,6 +11,10 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
 	public class CalculateAttribute : ExportAttribute
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sign"></param>
 		public CalculateAttribute(SignOfOperation sign) : base(typeof(CalculateBase))
 		{
 			Sign = sign;

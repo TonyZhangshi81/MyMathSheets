@@ -87,7 +87,6 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 對指定計算式策略實例化
 		/// </summary>
 		/// <param name="preview">策略種類</param>
-		/// <param name="identifier">計算式參數識別ID</param>
 		/// <returns>策略實例</returns>
 		public IOperation CreateOperationInstance(LayoutSetting.Preview preview)
 		{
@@ -97,12 +96,8 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			_currentPreview = preview;
 			// 運算符對象緩存區管理
 			ConcurrentDictionary<LayoutSetting.Preview, IOperation> cache = OperationCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, IOperation>());
-			// 題型模塊是否已經注入
-			if (cache.ContainsKey(preview))
-			{
-				// 初次注入允許MEF容器注入本類的屬性信息（注入運算符屬性）
-				_composed = false;
-			}
+			// 題型模塊是否已經注入 <- 初次注入允許MEF容器注入本類的屬性信息（注入運算符屬性）
+			_composed = cache.ContainsKey(preview);
 			// 返回緩衝區中的運算符對象
 			return cache.GetOrAdd(preview, (o) =>
 			{

@@ -117,6 +117,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// <summary>
 		/// 計算式作成
 		/// </summary>
+		/// <param name="p"></param>
 		/// <param name="strategy">四則運算符實例</param>
 		/// <param name="signProblems">指定运算符的出题资源库</param>
 		private void MarkFormulas(MathWordProblemsParameter p, ICalculate strategy, List<Problems> signProblems)

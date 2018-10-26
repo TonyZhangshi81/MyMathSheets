@@ -20,7 +20,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Item
 		/// <summary>
 		/// 运算符（比较结果）
 		/// </summary>
-		/// <see cref="Item.SignOfOperation"/>
+		/// <see cref="SignOfOperation"/>
 		public SignOfCompare Answer { get; set; }
 	}
 

@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\MyMathSheets.TheFormulaShows.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,46 @@
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.CommonLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.CommonLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.Arithmetic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.Arithmetic.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.CombinatorialEquation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.CombinatorialEquation.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.ComputingConnection, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.ComputingConnection.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.EqualityComparison, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.EqualityComparison.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.FindNearestNumber, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FindNearestNumber.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.FruitsLinkage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FruitsLinkage.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.HowMuchMore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.HowMuchMore.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.MathWordProblems, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.MathWordProblems.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.ScoreGoal, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.ScoreGoal.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -62,48 +103,6 @@
     <Compile Include="Support\ComputingConnectionHtmlSupport.cs" />
     <Compile Include="Support\EqualityComparisonHtmlSupport.cs" />
     <Compile Include="Support\ScoreGoalHtmlSupport.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CommonLib\MyMathSheets.CommonLib.csproj">
-      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
-      <Name>MyMathSheets.CommonLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\TopicModule\Arithmetic\MyMathSheets.ComputationalStrategy.Arithmetic.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e2}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.Arithmetic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\TopicModule\CombinatorialEquation\MyMathSheets.ComputationalStrategy.CombinatorialEquation.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e3}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.CombinatorialEquation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\TopicModule\ComputingConnection\MyMathSheets.ComputationalStrategy.ComputingConnection.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e4}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.ComputingConnection</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\TopicModule\EqualityComparison\MyMathSheets.ComputationalStrategy.EqualityComparison.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e6}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.EqualityComparison</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\TopicModule\FindNearestNumber\MyMathSheets.ComputationalStrategy.FindNearestNumber.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e7}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.FindNearestNumber</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\TopicModule\FruitsLinkage\MyMathSheets.ComputationalStrategy.FruitsLinkage.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e8}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.FruitsLinkage</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\TopicModule\HowMuchMore\MyMathSheets.ComputationalStrategy.HowMuchMore.csproj">
-      <Project>{18d1e434-d1c1-4634-b969-7ff11feca3ef}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.HowMuchMore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\TopicModule\MathWordProblems\MyMathSheets.ComputationalStrategy.MathWordProblems.csproj">
-      <Project>{3bffe851-482c-43d6-9661-c32d20af334d}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.MathWordProblems</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\TopicModule\ScoreGoal\MyMathSheets.ComputationalStrategy.ScoreGoal.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e5}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.ScoreGoal</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -231,7 +230,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "..\Template\HTMLPage" "..\..\MathSheetsSettingApp\HtmlTemplate\" /Y
+    <PostBuildEvent>copy $(TargetFileName) $(SolutionDir)\Lib /y
+copy "..\Template\HTMLPage" "..\..\MathSheetsSettingApp\HtmlTemplate\" /Y
 copy "..\Scripts\Ext\*.js" "..\..\MathSheetsSettingApp\App_Data\Work\Scripts\Ext\" /Y
 copy "..\Content\MathSheets.css" "..\..\MathSheetsSettingApp\App_Data\Work\Content\" /Y
 </PostBuildEvent>

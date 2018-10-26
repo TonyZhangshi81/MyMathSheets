@@ -210,7 +210,13 @@ namespace MyMathSheets.TheFormulaShows.Support
 	/// </summary>
 	public sealed class Coordinate
 	{
+		/// <summary>
+		/// 
+		/// </summary>
 		public int Left { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
 		public int Top { get; set; }
 	}
 }

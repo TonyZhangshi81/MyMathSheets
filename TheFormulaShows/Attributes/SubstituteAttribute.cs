@@ -42,10 +42,18 @@ namespace MyMathSheets.TheFormulaShows.Attributes
 		}
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
 	public class Substitute
 	{
+		/// <summary>
+		/// 
+		/// </summary>
 		public string Souce { get; set; }
-
+		/// <summary>
+		/// 
+		/// </summary>
 		public string Target { get; set; }
 	}
 }

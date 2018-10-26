@@ -65,7 +65,8 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="parameter"></param>
+		/// <param name="preview"></param>
+		/// <param name="identifier"></param>
 		public ParameterBase Structure(LayoutSetting.Preview preview, string identifier)
 		{
 			return Helper.Structure(preview, identifier);

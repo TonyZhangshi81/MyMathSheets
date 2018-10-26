@@ -23,7 +23,7 @@ namespace MyMathSheets.CommonLib.Main.Item
 		/// <summary>
 		/// 运算符
 		/// </summary>
-		/// <see cref="Item.SignOfOperation"/>
+		/// <see cref="SignOfOperation"/>
 		public SignOfOperation Sign { get; set; }
 		/// <summary>
 		/// 等式结果

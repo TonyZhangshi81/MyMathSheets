@@ -23,7 +23,7 @@ namespace MyMathSheets.TheFormulaShows.Support
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="formulas"></param>
+		/// <param name="parameter"></param>
 		/// <returns></returns>
 		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{

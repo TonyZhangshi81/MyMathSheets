@@ -24,7 +24,11 @@ namespace MyMathSheets.CommonLib.Logging
 			get;
 			private set;
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="type"></param>
+		/// <returns></returns>
 		public static Log LogReady(Type type)
 		{
 			Instance = LogManager.GetLogger(type);

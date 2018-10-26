@@ -15,7 +15,6 @@ namespace MyMathSheets.CommonLib.Provider
 		/// <summary>
 		/// 參數Provider實例化
 		/// </summary>
-		/// <param name="name">Provider名</param>
 		/// <returns>Provider實例</returns>
 		public OperationParameterProvider CreateParameterProvider()
 		{

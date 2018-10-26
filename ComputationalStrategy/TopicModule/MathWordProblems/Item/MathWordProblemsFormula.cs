@@ -3,6 +3,9 @@ using System.Runtime.Serialization;
 
 namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Item
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class MathWordProblemsFormula
 	{
 		/// <summary>
@@ -19,6 +22,9 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Item
 		public string Verify { get; set; }
 	}
 
+	/// <summary>
+	/// 
+	/// </summary>
 	[DataContract]
 	public class Problems
 	{

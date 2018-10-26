@@ -172,6 +172,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 		/// 情況3：水果計算式與容器計算式完全一致
 		/// </remarks>
 		/// <param name="fruitsFormulas">左側水果計算式集合</param>
+		/// <param name="containersFormulas"></param>
 		/// <param name="answer">計算結果值</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
 		private bool CheckIsNeedInverseMethod(IList<Formula> fruitsFormulas, IList<Formula> containersFormulas, int answer)
