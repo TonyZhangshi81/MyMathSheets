@@ -38,14 +38,6 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.CommonLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Release\MyMathSheets.CommonLib.dll</HintPath>
-    </Reference>
-    <Reference Include="MyMathSheets.TheFormulaShows, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Release\MyMathSheets.TheFormulaShows.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -92,7 +84,6 @@
     </EmbeddedResource>
     <None Include="Config\ParameterSetting.json" />
     <None Include="Config\Problems.json" />
-    <None Include="HtmlTemplate\HTMLPage" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -114,71 +105,33 @@
     <Content Include="App_Data\Work\Content\bootstrap.min.css" />
     <Content Include="App_Data\Work\Content\favicon.ico" />
     <None Include="App_Data\Work\Content\image\Arithmetic.png" />
-    <Content Include="App_Data\Work\Content\image\calculator.png" />
-    <Content Include="App_Data\Work\Content\image\char-less.png" />
-    <Content Include="App_Data\Work\Content\image\char-more.png" />
     <None Include="App_Data\Work\Content\image\ComputingConnection.png" />
     <Content Include="App_Data\Work\Content\image\CombinatorialEquation.png" />
-    <Content Include="App_Data\Work\Content\image\correct.png" />
-    <Content Include="App_Data\Work\Content\image\Division.png" />
     <None Include="App_Data\Work\Content\image\EqualityComparison.png" />
-    <Content Include="App_Data\Work\Content\image\fault.png" />
     <Content Include="App_Data\Work\Content\image\FindNearestNumber.png" />
     <Content Include="App_Data\Work\Content\image\FruitsLinkage.png" />
-    <Content Include="App_Data\Work\Content\image\fruits\Apple.png" />
-    <Content Include="App_Data\Work\Content\image\fruits\Apricot.png" />
-    <Content Include="App_Data\Work\Content\image\fruits\Banana.png" />
-    <Content Include="App_Data\Work\Content\image\fruits\Cherry.png" />
-    <Content Include="App_Data\Work\Content\image\fruits\Grape.png" />
-    <Content Include="App_Data\Work\Content\image\fruits\Hamimelon.png" />
-    <Content Include="App_Data\Work\Content\image\fruits\Orange.png" />
-    <Content Include="App_Data\Work\Content\image\fruits\Peach.png" />
-    <Content Include="App_Data\Work\Content\image\fruits\Pear.png" />
-    <Content Include="App_Data\Work\Content\image\fruits\Strawberry.png" />
-    <Content Include="App_Data\Work\Content\image\fruits\Watermelon.png" />
-    <Content Include="App_Data\Work\Content\image\help.png" />
-    <Content Include="App_Data\Work\Content\image\homework.png" />
     <None Include="App_Data\Work\Content\image\MathWordProblems.png" />
     <None Include="App_Data\Work\Content\image\HowMuchMore.png" />
-    <Content Include="App_Data\Work\Content\image\more\Circle.png" />
-    <Content Include="App_Data\Work\Content\image\more\Diamond.png" />
-    <Content Include="App_Data\Work\Content\image\more\Fish.png" />
-    <Content Include="App_Data\Work\Content\image\more\HappyFace.png" />
-    <Content Include="App_Data\Work\Content\image\more\Humburger.png" />
-    <Content Include="App_Data\Work\Content\image\more\Like.png" />
-    <Content Include="App_Data\Work\Content\image\more\Square.png" />
-    <Content Include="App_Data\Work\Content\image\Multiple.png" />
-    <Content Include="App_Data\Work\Content\image\navigate-up.png" />
-    <Content Include="App_Data\Work\Content\image\Plus.png" />
     <None Include="App_Data\Work\Content\image\ready.png" />
     <None Include="App_Data\Work\Content\image\ScoreGoal.png" />
-    <Content Include="App_Data\Work\Content\image\sport\Ball.png" />
-    <Content Include="App_Data\Work\Content\image\sport\Basketball.png" />
-    <Content Include="App_Data\Work\Content\image\sport\BeachBall.png" />
-    <Content Include="App_Data\Work\Content\image\sport\Bowling.png" />
-    <Content Include="App_Data\Work\Content\image\sport\Football.png" />
-    <Content Include="App_Data\Work\Content\image\sport\goalkeeper.png" />
-    <Content Include="App_Data\Work\Content\image\sport\Golf.png" />
-    <Content Include="App_Data\Work\Content\image\sport\Rugby.png" />
-    <Content Include="App_Data\Work\Content\image\sport\Tennis.png" />
-    <Content Include="App_Data\Work\Content\image\sport\Volleyball.png" />
-    <Content Include="App_Data\Work\Content\image\Subtraction.png" />
     <None Include="App_Data\Work\Content\image\title.png" />
-    <Content Include="App_Data\Work\Content\image\table.png" />
     <Content Include="App_Data\Work\Content\image\timg.png" />
     <Content Include="App_Data\Work\Content\MathSheets.css" />
-    <Content Include="App_Data\Work\Scripts\bootstrap.min.js" />
-    <Content Include="App_Data\Work\Scripts\jquery-3.3.1.min.js" />
-    <Content Include="App_Data\Work\Scripts\jquery.easyui.min.js" />
-    <Content Include="App_Data\Work\Scripts\json2.min.js" />
-    <Content Include="App_Data\Work\Scripts\store.legacy.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Work\Page\" />
     <Folder Include="App_Data\Work\Scripts\Ext\" />
+    <Folder Include="App_Data\Work\Scripts\umd\" />
+    <Folder Include="HtmlTemplate\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\MyMathSheets.CommonLib.csproj">
+      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
+      <Name>MyMathSheets.CommonLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(SolutionDir)\Lib\Release\*.dll $(TargetDir) /y</PostBuildEvent>
+    <PostBuildEvent>copy $(SolutionDir)\Lib\*.dll $(TargetDir) /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

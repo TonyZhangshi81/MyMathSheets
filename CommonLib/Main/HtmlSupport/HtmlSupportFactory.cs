@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Composition;
 using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
@@ -28,7 +27,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <summary>
 		/// HTML支援類檢索用的composer
 		/// </summary>
-		private readonly Composer _composer;
+		private Composer _composer;
 
 		/// <summary>
 		/// HTML支援類對象緩存區
@@ -41,8 +40,6 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		[ImportingConstructor]
 		public HtmlSupportFactory()
 		{
-			// 獲取HTML支援類Composer
-			_composer = ComposerFactory.GetComporser(SystemModel.TheFormulaShows);
 		}
 
 		/// <summary>
@@ -74,8 +71,13 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <returns>HTML支援類實例</returns>
 		public IHtmlSupport CreateHtmlSupportInstance(LayoutSetting.Preview preview)
 		{
+			// 獲取HTML支援類Composer
+			_composer = ComposerFactory.GetComporser(SystemModel.TheFormulaShows, preview);
+
 			// HTML支援類對象緩存區管理
 			ConcurrentDictionary<LayoutSetting.Preview, IHtmlSupport> cache = HtmlSupportCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, IHtmlSupport>());
+			// HTML支援模塊是否已經注入 <- 初次注入允許MEF容器注入本類的屬性信息（注入HTML支援類屬性）
+			_composed = cache.ContainsKey(preview);
 			// 返回緩衝區中的支援類對象
 			return cache.GetOrAdd(preview, (o) =>
 			{

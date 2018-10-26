@@ -158,5 +158,41 @@ namespace MyMathSheets.CommonLib.Properties {
                 return ResourceManager.GetString("I0010L", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   I0011L:題型HTML支援類spring對象工廠配置導入操作已經完成 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0011L {
+            get {
+                return ResourceManager.GetString("I0011L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0012L:{0}題型的HTML支援類對象注入準備 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0012L {
+            get {
+                return ResourceManager.GetString("I0012L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0013L:{0}題型的HTML支援類對象實例化完成 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0013L {
+            get {
+                return ResourceManager.GetString("I0013L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0014L:指定題型的HTML模板作成 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0014L {
+            get {
+                return ResourceManager.GetString("I0014L", resourceCulture);
+            }
+        }
     }
 }

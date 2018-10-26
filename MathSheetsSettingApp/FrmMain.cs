@@ -1,11 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.HtmlSupport;
+using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.MathSheetsSettingApp.Properties;
-using MyMathSheets.TheFormulaShows;
-using MyMathSheets.TheFormulaShows.Attributes;
-using MyMathSheets.TheFormulaShows.Support;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -194,12 +193,13 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
 
+				Type supportType;
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--ARITHMETIC-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.Arithmetic, parameter) }
+					{ "<!--ARITHMETIC-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.Arithmetic, parameter, out supportType) }
 				};
 				// JS模板內容替換
-				MarkJavaScriptReplaceContent(typeof(ArithmeticHtmlSupport), htmlMaps);
+				MarkJavaScriptReplaceContent(supportType, htmlMaps);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.Arithmetic.ToString(), htmlMaps);
 			}
@@ -248,12 +248,13 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityComparison, "EC001");
 
+				Type supportType;
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--EQUALITYCOMPARISON-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.EqualityComparison, parameter) }
+					{ "<!--EQUALITYCOMPARISON-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.EqualityComparison, parameter, out supportType) }
 				};
 				// JS模板內容替換
-				MarkJavaScriptReplaceContent(typeof(EqualityComparisonHtmlSupport), htmlMaps);
+				MarkJavaScriptReplaceContent(supportType, htmlMaps);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.EqualityComparison.ToString(), htmlMaps);
 			}
@@ -287,12 +288,13 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ComputingConnection, "CC001");
 
+				Type supportType;
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--COMPUTINGCONNECTION-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.ComputingConnection, parameter) }
+					{ "<!--COMPUTINGCONNECTION-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.ComputingConnection, parameter, out supportType) }
 				};
 				// JS模板內容替換
-				MarkJavaScriptReplaceContent(typeof(ComputingConnectionHtmlSupport), htmlMaps);
+				MarkJavaScriptReplaceContent(supportType, htmlMaps);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.ComputingConnection.ToString(), htmlMaps);
 			}
@@ -326,12 +328,13 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.MathWordProblems, "MP001");
 
+				Type supportType;
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--MATHWORDPROBLEMS-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.MathWordProblems, parameter) }
+					{ "<!--MATHWORDPROBLEMS-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.MathWordProblems, parameter, out supportType) }
 				};
 				// JS模板內容替換
-				MarkJavaScriptReplaceContent(typeof(MathWordProblemsHtmlSupport), htmlMaps);
+				MarkJavaScriptReplaceContent(supportType, htmlMaps);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.MathWordProblems.ToString(), htmlMaps);
 			}
@@ -365,12 +368,13 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FruitsLinkage, "FL001");
 
+				Type supportType;
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--FRUITSLINKAGE-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.FruitsLinkage, parameter) }
+					{ "<!--FRUITSLINKAGE-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.FruitsLinkage, parameter, out supportType) }
 				};
 				// JS模板內容替換
-				MarkJavaScriptReplaceContent(typeof(FruitsLinkageHtmlSupport), htmlMaps);
+				MarkJavaScriptReplaceContent(supportType, htmlMaps);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.FruitsLinkage.ToString(), htmlMaps);
 			}
@@ -404,12 +408,13 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindNearestNumber, "FN001");
 
+				Type supportType;
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--FINDNEARESTNUMBER-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.FindNearestNumber, parameter) }
+					{ "<!--FINDNEARESTNUMBER-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.FindNearestNumber, parameter, out supportType) }
 				};
 				// JS模板內容替換
-				MarkJavaScriptReplaceContent(typeof(FindNearestNumberHtmlSupport), htmlMaps);
+				MarkJavaScriptReplaceContent(supportType, htmlMaps);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.FindNearestNumber.ToString(), htmlMaps);
 			}
@@ -443,12 +448,13 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CombinatorialEquation, "CE001");
 
+				Type supportType;
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--COMBINATORIALEQUATION-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.CombinatorialEquation, parameter) }
+					{ "<!--COMBINATORIALEQUATION-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.CombinatorialEquation, parameter, out supportType) }
 				};
 				// JS模板內容替換
-				MarkJavaScriptReplaceContent(typeof(CombinatorialEquationHtmlSupport), htmlMaps);
+				MarkJavaScriptReplaceContent(supportType, htmlMaps);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.CombinatorialEquation.ToString(), htmlMaps);
 			}
@@ -482,12 +488,13 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ScoreGoal, "SG001");
 
+				Type supportType;
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--SCOREGOAL-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.ScoreGoal, parameter) }
+					{ "<!--SCOREGOAL-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.ScoreGoal, parameter, out supportType) }
 				};
 				// JS模板內容替換
-				MarkJavaScriptReplaceContent(typeof(ScoreGoalHtmlSupport), htmlMaps);
+				MarkJavaScriptReplaceContent(supportType, htmlMaps);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.ScoreGoal.ToString(), htmlMaps);
 			}
@@ -521,12 +528,13 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 				ParameterBase parameter = OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.HowMuchMore, "HMM001");
 
+				Type supportType;
 				Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 				{
-					{ "<!--HOWMUCHMORE-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.HowMuchMore, parameter) }
+					{ "<!--HOWMUCHMORE-->", _makeHtml.GetHtmlStatement(LayoutSetting.Preview.HowMuchMore, parameter, out supportType) }
 				};
 				// JS模板內容替換
-				MarkJavaScriptReplaceContent(typeof(HowMuchMoreHtmlSupport), htmlMaps);
+				MarkJavaScriptReplaceContent(supportType, htmlMaps);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(LayoutSetting.Preview.HowMuchMore.ToString(), htmlMaps);
 			}

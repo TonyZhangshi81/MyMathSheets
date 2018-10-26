@@ -35,46 +35,6 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.CommonLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.CommonLib.dll</HintPath>
-    </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.Arithmetic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.Arithmetic.dll</HintPath>
-    </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.CombinatorialEquation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.CombinatorialEquation.dll</HintPath>
-    </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.ComputingConnection, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.ComputingConnection.dll</HintPath>
-    </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.EqualityComparison, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.EqualityComparison.dll</HintPath>
-    </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.FindNearestNumber, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FindNearestNumber.dll</HintPath>
-    </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.FruitsLinkage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FruitsLinkage.dll</HintPath>
-    </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.HowMuchMore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.HowMuchMore.dll</HintPath>
-    </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.MathWordProblems, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.MathWordProblems.dll</HintPath>
-    </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.ScoreGoal, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.ScoreGoal.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -86,23 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\SubstituteAttribute.cs" />
-    <Compile Include="Properties\MsgResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MsgResources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Support\HowMuchMoreHtmlSupport.cs" />
-    <Compile Include="Support\CombinatorialEquationHtmlSupport.cs" />
-    <Compile Include="Support\FindNearestNumberHtmlSupport.cs" />
-    <Compile Include="Support\FruitsLinkageHtmlSupport.cs" />
-    <Compile Include="Support\MathWordProblemsHtmlSupport.cs" />
-    <Compile Include="Support\ArithmeticHtmlSupport.cs" />
-    <Compile Include="MakeHtml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Support\ComputingConnectionHtmlSupport.cs" />
-    <Compile Include="Support\EqualityComparisonHtmlSupport.cs" />
-    <Compile Include="Support\ScoreGoalHtmlSupport.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -116,41 +60,13 @@
     <Content Include="Content\image\char-more.png" />
     <Content Include="Content\image\Division.png" />
     <Content Include="Content\image\fault.png" />
-    <Content Include="Content\image\fruits\Apple.png" />
-    <Content Include="Content\image\fruits\Apricot.png" />
-    <Content Include="Content\image\fruits\Banana.png" />
-    <Content Include="Content\image\fruits\Cherry.png" />
-    <Content Include="Content\image\fruits\Grape.png" />
-    <Content Include="Content\image\fruits\Hamimelon.png" />
-    <Content Include="Content\image\fruits\Orange.png" />
-    <Content Include="Content\image\fruits\Peach.png" />
-    <Content Include="Content\image\fruits\Pear.png" />
-    <Content Include="Content\image\fruits\Strawberry.png" />
-    <Content Include="Content\image\fruits\Watermelon.png" />
     <Content Include="Content\image\help.png" />
     <Content Include="Content\image\correct.png" />
     <Content Include="Content\image\homework.png" />
-    <Content Include="Content\image\more\Circle.png" />
-    <Content Include="Content\image\more\Diamond.png" />
-    <Content Include="Content\image\more\Fish.png" />
-    <Content Include="Content\image\more\HappyFace.png" />
-    <Content Include="Content\image\more\Humburger.png" />
-    <Content Include="Content\image\more\Like.png" />
-    <Content Include="Content\image\more\Square.png" />
     <Content Include="Content\image\Multiple.png" />
+    <Content Include="Content\image\navigate-up.png" />
     <Content Include="Content\image\Plus.png" />
-    <Content Include="Content\image\sport\Ball.png" />
-    <Content Include="Content\image\sport\Basketball.png" />
-    <Content Include="Content\image\sport\BeachBall.png" />
-    <Content Include="Content\image\sport\Bowling.png" />
-    <Content Include="Content\image\sport\Football.png" />
-    <Content Include="Content\image\sport\goalkeeper.png" />
-    <Content Include="Content\image\sport\Golf.png" />
-    <Content Include="Content\image\sport\Rugby.png" />
-    <Content Include="Content\image\sport\Tennis.png" />
-    <Content Include="Content\image\sport\Volleyball.png" />
     <Content Include="Content\image\Subtraction.png" />
-    <Content Include="Content\image\table.png" />
     <Content Include="Content\image\timg.png" />
     <Content Include="Content\MathSheets.css" />
     <Content Include="Demo\HTMLPage.html" />
@@ -162,16 +78,7 @@
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
-    <Content Include="Scripts\Ext\MathSheets.HowMuchMore.js" />
-    <Content Include="Scripts\Ext\MathSheets.Arithmetic.js" />
-    <Content Include="Scripts\Ext\MathSheets.CombinatorialEquation.js" />
-    <Content Include="Scripts\Ext\MathSheets.FindNearestNumber.js" />
-    <Content Include="Scripts\Ext\MathSheets.FruitsLinkage.js" />
     <Content Include="Scripts\Ext\MathSheets.Common.js" />
-    <Content Include="Scripts\Ext\MathSheets.ComputingConnection.js" />
-    <Content Include="Scripts\Ext\MathSheets.EqualityComparison.js" />
-    <Content Include="Scripts\Ext\MathSheets.MathWordProblems.js" />
-    <Content Include="Scripts\Ext\MathSheets.ScoreGoal.js" />
     <Content Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -223,18 +130,30 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\MsgResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Folder Include="Support\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\MyMathSheets.CommonLib.csproj">
+      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
+      <Name>MyMathSheets.CommonLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetFileName) $(SolutionDir)\Lib /y
-copy $(SolutionDir)\Lib\*.dll $(SolutionDir)\Lib\Release\ /y
-copy "..\Template\HTMLPage" "..\..\MathSheetsSettingApp\HtmlTemplate\" /Y
-copy "..\Scripts\Ext\*.js" "..\..\MathSheetsSettingApp\App_Data\Work\Scripts\Ext\" /Y
-copy "..\Content\MathSheets.css" "..\..\MathSheetsSettingApp\App_Data\Work\Content\" /Y
+    <PostBuildEvent>copy $(TargetFileName) $(SolutionDir)\Lib /Y
+rem copy $(SolutionDir)\Lib\*.dll $(SolutionDir)\Lib\Release\ /Y
+copy "..\Template\HTMLPage" $(SolutionDir)\MathSheetsSettingApp\HtmlTemplate /Y
+xcopy "..\Scripts\Ext" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\Ext /C /E /H /K /R /Y
+copy "..\Scripts\bootstrap.min.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts /Y
+copy "..\Scripts\jquery.easyui.min.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts /Y
+copy "..\Scripts\jquery-3.3.1.min.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts /Y
+copy "..\Scripts\json2.min.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts /Y
+copy "..\Scripts\store.legacy.min.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts /Y
+copy "..\Scripts\umd\popper.js" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd /Y
+copy "..\Content\bootstrap.min.css" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content /Y
+copy "..\Content\favicon.ico" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content /Y
+copy "..\Content\MathSheets.css" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content /Y
+xcopy "..\Content\image" $(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\image /C /E /H /K /R /Y
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

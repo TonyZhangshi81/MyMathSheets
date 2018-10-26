@@ -67,11 +67,13 @@
     <Compile Include="Main\Arithmetic\ICalculate.cs" />
     <Compile Include="Main\ExportAttributes\HtmlSupportAttribute.cs" />
     <Compile Include="Main\ExportAttributes\ParameterProviderAttribute.cs" />
+    <Compile Include="Main\HtmlSupport\Attributes\SubstituteAttribute.cs" />
     <Compile Include="Main\HtmlSupport\HtmlSupprtHelper.cs" />
     <Compile Include="Main\HtmlSupport\HtmlSupportBase.cs" />
     <Compile Include="Main\HtmlSupport\HtmlSupportFactory.cs" />
     <Compile Include="Main\HtmlSupport\IHtmlSupport.cs" />
     <Compile Include="Main\HtmlSupport\IHtmlSupportFactory.cs" />
+    <Compile Include="Main\HtmlSupport\MakeHtml.cs" />
     <Compile Include="Main\Item\Formula.cs" />
     <Compile Include="Main\OperationStrategy\OperationHelper.cs" />
     <Compile Include="Main\OperationStrategy\OperationFactory.cs" />

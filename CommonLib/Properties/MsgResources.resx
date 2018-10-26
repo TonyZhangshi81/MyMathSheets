@@ -150,4 +150,17 @@
   <data name="I0010L" xml:space="preserve">
     <value>I0010L:指定類型的支援類HTML繪製完畢</value>
   </data>
+  <data name="I0011L" xml:space="preserve">
+    <value>I0011L:題型HTML支援類spring對象工廠配置導入操作已經完成</value>
+    <comment>（不使用）保留</comment>
+  </data>
+  <data name="I0012L" xml:space="preserve">
+    <value>I0012L:{0}題型的HTML支援類對象注入準備</value>
+  </data>
+  <data name="I0013L" xml:space="preserve">
+    <value>I0013L:{0}題型的HTML支援類對象實例化完成</value>
+  </data>
+  <data name="I0014L" xml:space="preserve">
+    <value>I0014L:指定題型的HTML模板作成</value>
+  </data>
 </root>
