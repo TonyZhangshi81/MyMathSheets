@@ -41,16 +41,29 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 			StringBuilder html = new StringBuilder();
 			StringBuilder rowHtml = new StringBuilder();
 			StringBuilder colHtml = new StringBuilder();
-			foreach (Formula item in p.Formulas)
+			foreach (ArithmeticFormula item in p.Formulas)
 			{
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-3 form-inline\">");
 				colHtml.AppendLine("<h5>");
-				colHtml.AppendLine(GetHtml(item.Gap, item.LeftParameter, GapFilling.Left, controlIndex));
-				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.Sign.ToOperationString()));
-				colHtml.AppendLine(GetHtml(item.Gap, item.RightParameter, GapFilling.Right, controlIndex));
-				colHtml.AppendLine("<span class=\"label\">=</span>");
-				colHtml.AppendLine(GetHtml(item.Gap, item.Answer, GapFilling.Answer, controlIndex));
+
+				if (item.AnswerIsRight)
+				{
+					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.LeftParameter, GapFilling.Left, controlIndex));
+					colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.Arithmetic.Sign.ToOperationString()));
+					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
+					colHtml.AppendLine("<span class=\"label\">=</span>");
+					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.Answer, GapFilling.Answer, controlIndex));
+				}
+				else
+				{
+					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.Answer, GapFilling.Answer, controlIndex));
+					colHtml.AppendLine("<span class=\"label\">=</span>");
+					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.LeftParameter, GapFilling.Left, controlIndex));
+					colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.Arithmetic.Sign.ToOperationString()));
+					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
+				}
+
 				colHtml.AppendLine(string.Format("<img id=\"imgOKArithmetic{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine(string.Format("<img id=\"imgNoArithmetic{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine("</h5>");

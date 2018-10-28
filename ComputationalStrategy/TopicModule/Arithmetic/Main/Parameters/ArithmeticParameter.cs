@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters
 		/// <summary>
 		/// 四則運算作成并輸出
 		/// </summary>
-		public IList<Formula> Formulas { get; set; }
+		public IList<ArithmeticFormula> Formulas { get; set; }
 		/// <summary>
 		/// 初期化參數
 		/// </summary>
@@ -23,7 +23,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters
 			base.InitParameter();
 
 			// 四則運算結合實例化
-			Formulas = new List<Formula>();
+			Formulas = new List<ArithmeticFormula>();
 		}
 	}
 }

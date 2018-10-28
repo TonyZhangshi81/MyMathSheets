@@ -38,7 +38,13 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 						continue;
 					}
 					// 計算式作成
-					p.Formulas.Add(formula);
+					p.Formulas.Add(new ArithmeticFormula
+					{
+						// 四則運算式
+						Arithmetic = formula,
+						// 等式值是不是出現在右邊
+						AnswerIsRight = IsRight
+					});
 				}
 			}
 			else
@@ -60,8 +66,26 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 					}
 
 					// 計算式作成
-					p.Formulas.Add(formula);
+					p.Formulas.Add(new ArithmeticFormula
+					{
+						// 四則運算式
+						Arithmetic = formula,
+						// 等式值是不是出現在右邊
+						AnswerIsRight = IsRight
+					});
 				}
+			}
+		}
+
+		/// <summary>
+		/// 等式值是不是出现在右边
+		/// </summary>
+		public bool IsRight
+		{
+			get
+			{
+				RandomNumberComposition random = new RandomNumberComposition(0, (int)LeftOrRight.Right);
+				return ((int)random.GetRandomNumber() == 1);
 			}
 		}
 
@@ -75,18 +99,18 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 		/// <param name="preFormulas">已得到的算式</param>
 		/// <param name="currentFormula">當前算式</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
-		private bool CheckIsNeedInverseMethod(IList<Formula> preFormulas, Formula currentFormula)
+		private bool CheckIsNeedInverseMethod(IList<ArithmeticFormula> preFormulas, Formula currentFormula)
 		{
 			// 全零的情況
-			if(currentFormula.LeftParameter == 0 && currentFormula.RightParameter == 0 && currentFormula.Answer == 0)
+			if (currentFormula.LeftParameter == 0 && currentFormula.RightParameter == 0 && currentFormula.Answer == 0)
 			{
 				return true;
 			}
 			// 判斷當前算式是否已經出現過
-			if (preFormulas.ToList().Any(d => d.LeftParameter == currentFormula.LeftParameter
-			&& d.RightParameter == currentFormula.RightParameter
-			&& d.Answer == currentFormula.Answer
-			&& d.Sign == currentFormula.Sign))
+			if (preFormulas.ToList().Any(d => d.Arithmetic.LeftParameter == currentFormula.LeftParameter
+			&& d.Arithmetic.RightParameter == currentFormula.RightParameter
+			&& d.Arithmetic.Answer == currentFormula.Answer
+			&& d.Arithmetic.Sign == currentFormula.Sign))
 			{
 				return true;
 			}
