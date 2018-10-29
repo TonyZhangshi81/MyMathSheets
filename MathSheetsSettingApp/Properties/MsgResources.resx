@@ -128,12 +128,15 @@
   </data>
   <data name="I0003A" xml:space="preserve">
     <value>I0003A:{0}題型HTML模板注入開始</value>
+    <comment>暫停使用</comment>
   </data>
   <data name="I0004A" xml:space="preserve">
     <value>I0004A:替換HTML模板中{0}的注入點信息</value>
+    <comment>暫停使用</comment>
   </data>
   <data name="I0005A" xml:space="preserve">
     <value>I0005A:靜態HTML文件作成</value>
+    <comment>暫停使用</comment>
   </data>
   <data name="I0006A" xml:space="preserve">
     <value>I0006A:{0}題型選擇</value>

@@ -54,7 +54,11 @@
 		/// <summary>
 		/// HTML前台展示構築模塊
 		/// </summary>
-		TheFormulaShows
+		TheFormulaShows,
+		/// <summary>
+		/// 應用程序窗體
+		/// </summary>
+		MathSheetsSettingApp
 	}
 
 	/// <summary>

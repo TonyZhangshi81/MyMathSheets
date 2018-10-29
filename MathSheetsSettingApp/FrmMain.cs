@@ -1,15 +1,12 @@
-﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.HtmlSupport;
-using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.FromProcess;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.MathSheetsSettingApp.Properties;
 using System;
-using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace MyMathSheets.MathSheetsSettingApp
@@ -22,24 +19,28 @@ namespace MyMathSheets.MathSheetsSettingApp
 		private static Log log = Log.LogReady(typeof(FrmMain));
 
 		/// <summary>
-		/// 
+		/// 畫面處理類
+		/// </summary>
+		[Import(typeof(IMainProcess))]
+		private IMainProcess _process { get; set; }
+
+		/// <summary>
+		/// 畫面構造函數
 		/// </summary>
 		public FrmMain()
 		{
 			InitializeComponent();
 
-			_makeHtml = new MakeHtml<ParameterBase>();
+			// 獲取HTML支援類Composer
+			var composer = ComposerFactory.GetComporser(SystemModel.Common);
+			composer.Compose(this);
 		}
 
 		/// <summary>
-		/// 
+		/// 畫面初期化處理
 		/// </summary>
-		private Dictionary<string, Dictionary<string, string>> _htmlMaps = new Dictionary<string, Dictionary<string, string>>();
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">事件發生者</param>
+		/// <param name="e">事件處理</param>
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0001A));
@@ -85,48 +86,21 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <summary>
 		/// 出題按鍵點擊事件
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender">事件發生者</param>
+		/// <param name="e">事件處理</param>
 		private void SureClick(object sender, EventArgs e)
 		{
 			// 選題情況
-			if (_layoutSettingPreviewList == null || _layoutSettingPreviewList.Count == 2)
+			if (!_process.ChooseCheck())
 			{
 				MessageBox.Show(this, "運算符未指定");
 				return;
 			}
 
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0002A));
-
-			// HTML模板存放路徑
-			string sourceFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("Template"));
-			// 靜態頁面作成后存放的路徑（文件名：日期時間形式）
-			string destFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("{0}.html", DateTime.Now.ToString("yyyyMMddHHmmssfff")));
-			// 文件移動
-			File.Copy(sourceFileName, destFileName);
-
-			StringBuilder htmlTemplate = new StringBuilder();
-			// 讀取HTML模板內容
-			htmlTemplate.Append(File.ReadAllText(destFileName, Encoding.UTF8));
-			// 遍歷已選擇的題型
-			foreach (KeyValuePair<string, Dictionary<string, string>> d in _htmlMaps)
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0003A, d.Key));
-
-				// 替換HTML模板中的預留內容（HTML、JS注入操作）
-				foreach (KeyValuePair<string, string> m in d.Value)
-				{
-					log.Debug(MessageUtil.GetException(() => MsgResources.I0004A, m.Key));
-
-					htmlTemplate.Replace(m.Key, m.Value);
-				}
-			}
-
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0005A));
-
-			// 保存至靜態頁面
-			File.WriteAllText(destFileName, htmlTemplate.ToString(), Encoding.UTF8);
-
+			// 出題按鍵點擊事件
+			var destFileName = _process.SureClick();
+			// 是否瀏覽
 			if (chkIsPreview.Checked)
 			{
 				// 使用IE打開已作成的靜態頁面
@@ -137,34 +111,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 		}
 
 		/// <summary>
-		/// 題型預覽列表
-		/// </summary>
-		List<LayoutSetting.Preview> _layoutSettingPreviewList;
-		/// <summary>
-		/// 題型預覽列表設置
-		/// </summary>
-		/// <param name="name">題型名稱</param>
-		private void SetLayoutSettingPreviewList(LayoutSetting.Preview name)
-		{
-			// 初期化
-			if (_layoutSettingPreviewList == null)
-			{
-				_layoutSettingPreviewList = new List<LayoutSetting.Preview>
-				{
-					// 標題區
-					LayoutSetting.Preview.Title,
-					// 答題區
-					LayoutSetting.Preview.Ready
-				};
-			}
-			// 如果列表中不存在，則添加在答題區之前
-			if (!_layoutSettingPreviewList.Any(d => d == name))
-			{
-				_layoutSettingPreviewList.Insert(_layoutSettingPreviewList.Count - 1, name);
-			}
-		}
-
-		/// <summary>
 		/// 題型縮略瀏覽初期化
 		/// </summary>
 		private void PreviewReflash()
@@ -172,10 +118,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			flpPreview.Controls.Clear();
 
 			// 瀏覽區域顯示
-			_layoutSettingPreviewList.ForEach(d => PictureIntoFlowLayoutPanel(d));
+			_process.LayoutSettingPreviewList.ForEach(d => PictureIntoFlowLayoutPanel(d));
 		}
-
-		private MakeHtml<ParameterBase> _makeHtml;
 
 		/// <summary>
 		/// 四則運算題型選擇事件
@@ -187,62 +131,15 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkArithmetic.Checked)
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "四則運算"));
-
-				// 題型預覽添加
-				SetLayoutSettingPreviewList(LayoutSetting.Preview.Arithmetic);
-				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.Arithmetic, "AC001");
-				// 按照題型將所有替換內容裝箱子
-				_htmlMaps.Add(LayoutSetting.Preview.Arithmetic.ToString(), htmlMaps);
 			}
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "四則運算"));
-
-				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.Arithmetic);
-
-				// 題型移除
-				_htmlMaps.Remove(LayoutSetting.Preview.Arithmetic.ToString());
 			}
+			_process.TopicCheckedChanged(chkArithmetic.Checked, LayoutSetting.Preview.Arithmetic, "AC001");
+
 			// 刷新題型預覽區域
 			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 取得HTML和JS的替換內容
-		/// </summary>
-		/// <param name="preview">題型種類</param>
-		/// <param name="identifier">參數構造識別號</param>
-		/// <returns>替換內容</returns>
-		private Dictionary<string, string> GetHtmlReplaceContentMaps(LayoutSetting.Preview preview, string identifier)
-		{
-			// 構造題型并取得結果
-			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview, identifier);
-			// HTML替換內容
-			Dictionary<string, string> htmlMaps = new Dictionary<string, string>
-			{
-				// 題型HTML信息作成并對指定的HTML模板標識進行替換
-				{ string.Format("<!--{0}-->", preview.ToString().ToUpper()), _makeHtml.GetHtmlStatement(preview, parameter, out Type supportType) }
-			};
-			// JS模板內容替換
-			MarkJavaScriptReplaceContent(supportType, htmlMaps);
-			return htmlMaps;
-		}
-
-		/// <summary>
-		/// JS模板內容替換
-		/// </summary>
-		/// <param name="type">題型HTML支持類(類型)</param>
-		/// <param name="htmlMaps">替換標籤以及喜歡內容</param>
-		private void MarkJavaScriptReplaceContent(Type type, Dictionary<string, string> htmlMaps)
-		{
-			object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
-			attribute.ToList().ForEach(d =>
-			{
-				var attr = (SubstituteAttribute)d;
-				htmlMaps.Add(attr.Source, attr.Target);
-			});
 		}
 
 		/// <summary>
@@ -255,23 +152,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkEqualityComparison.Checked)
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "等式比大小"));
-
-				// 題型預覽添加
-				SetLayoutSettingPreviewList(LayoutSetting.Preview.EqualityComparison);
-				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.EqualityComparison, "EC001");
-				// 按照題型將所有替換內容裝箱子
-				_htmlMaps.Add(LayoutSetting.Preview.EqualityComparison.ToString(), htmlMaps);
 			}
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "等式比大小"));
-
-				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.EqualityComparison);
-				// 題型移除
-				_htmlMaps.Remove(LayoutSetting.Preview.EqualityComparison.ToString());
 			}
+			_process.TopicCheckedChanged(chkEqualityComparison.Checked, LayoutSetting.Preview.EqualityComparison, "EC001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -286,23 +172,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkComputingConnection.Checked)
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "等式接龍"));
-
-				// 題型預覽添加
-				SetLayoutSettingPreviewList(LayoutSetting.Preview.ComputingConnection);
-				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.ComputingConnection, "CC001");
-				// 按照題型將所有替換內容裝箱子
-				_htmlMaps.Add(LayoutSetting.Preview.ComputingConnection.ToString(), htmlMaps);
 			}
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "等式接龍"));
-
-				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.ComputingConnection);
-				// 題型移除
-				_htmlMaps.Remove(LayoutSetting.Preview.ComputingConnection.ToString());
 			}
+			_process.TopicCheckedChanged(chkComputingConnection.Checked, LayoutSetting.Preview.ComputingConnection, "CC001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -317,23 +192,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkMathWordProblems.Checked)
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "算式應用題"));
-
-				// 題型預覽添加
-				SetLayoutSettingPreviewList(LayoutSetting.Preview.MathWordProblems);
-				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.MathWordProblems, "MP001");
-				// 按照題型將所有替換內容裝箱子
-				_htmlMaps.Add(LayoutSetting.Preview.MathWordProblems.ToString(), htmlMaps);
 			}
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "算式應用題"));
-
-				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.MathWordProblems);
-				// 題型移除
-				_htmlMaps.Remove(LayoutSetting.Preview.MathWordProblems.ToString());
 			}
+			_process.TopicCheckedChanged(chkMathWordProblems.Checked, LayoutSetting.Preview.MathWordProblems, "MP001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -348,23 +212,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkFruitsLinkage.Checked)
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "水果連連看"));
-
-				// 題型預覽添加
-				SetLayoutSettingPreviewList(LayoutSetting.Preview.FruitsLinkage);
-				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.FruitsLinkage, "FL001");
-				// 按照題型將所有替換內容裝箱子
-				_htmlMaps.Add(LayoutSetting.Preview.FruitsLinkage.ToString(), htmlMaps);
 			}
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "水果連連看"));
-
-				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.FruitsLinkage);
-				// 題型移除
-				_htmlMaps.Remove(LayoutSetting.Preview.FruitsLinkage.ToString());
 			}
+			_process.TopicCheckedChanged(chkFruitsLinkage.Checked, LayoutSetting.Preview.FruitsLinkage, "FL001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -379,23 +232,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkFindNearestNumber.Checked)
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "找出最近的數字"));
-
-				// 題型預覽添加
-				SetLayoutSettingPreviewList(LayoutSetting.Preview.FindNearestNumber);
-				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.FindNearestNumber, "FN001");
-				// 按照題型將所有替換內容裝箱子
-				_htmlMaps.Add(LayoutSetting.Preview.FindNearestNumber.ToString(), htmlMaps);
 			}
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "找出最近的數字"));
-
-				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.FindNearestNumber);
-				// 題型移除
-				_htmlMaps.Remove(LayoutSetting.Preview.FindNearestNumber.ToString());
 			}
+			_process.TopicCheckedChanged(chkFindNearestNumber.Checked, LayoutSetting.Preview.FindNearestNumber, "FN001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -410,23 +252,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkCombinatorialEquation.Checked)
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "算式組合"));
-
-				// 題型預覽添加
-				SetLayoutSettingPreviewList(LayoutSetting.Preview.CombinatorialEquation);
-				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.CombinatorialEquation, "CE001");
-				// 按照題型將所有替換內容裝箱子
-				_htmlMaps.Add(LayoutSetting.Preview.CombinatorialEquation.ToString(), htmlMaps);
 			}
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "算式組合"));
-
-				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.CombinatorialEquation);
-				// 題型移除
-				_htmlMaps.Remove(LayoutSetting.Preview.CombinatorialEquation.ToString());
 			}
+			_process.TopicCheckedChanged(chkCombinatorialEquation.Checked, LayoutSetting.Preview.CombinatorialEquation, "CE001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -441,23 +272,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkScoreGoal.Checked)
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "射門得分"));
-
-				// 題型預覽添加
-				SetLayoutSettingPreviewList(LayoutSetting.Preview.ScoreGoal);
-				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.ScoreGoal, "SG001");
-				// 按照題型將所有替換內容裝箱子
-				_htmlMaps.Add(LayoutSetting.Preview.ScoreGoal.ToString(), htmlMaps);
 			}
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "射門得分"));
-
-				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.ScoreGoal);
-				// 題型移除
-				_htmlMaps.Remove(LayoutSetting.Preview.ScoreGoal.ToString());
 			}
+			_process.TopicCheckedChanged(chkScoreGoal.Checked, LayoutSetting.Preview.ScoreGoal, "SG001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -472,23 +292,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkHowMuchMore.Checked)
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "比多少"));
-
-				// 題型預覽添加
-				SetLayoutSettingPreviewList(LayoutSetting.Preview.HowMuchMore);
-				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(LayoutSetting.Preview.HowMuchMore, "HMM001");
-				// 按照題型將所有替換內容裝箱子
-				_htmlMaps.Add(LayoutSetting.Preview.HowMuchMore.ToString(), htmlMaps);
 			}
 			else
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "比多少"));
-
-				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(LayoutSetting.Preview.HowMuchMore);
-				// 題型移除
-				_htmlMaps.Remove(LayoutSetting.Preview.HowMuchMore.ToString());
 			}
+			_process.TopicCheckedChanged(chkHowMuchMore.Checked, LayoutSetting.Preview.HowMuchMore, "HMM001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}

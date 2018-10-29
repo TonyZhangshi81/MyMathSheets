@@ -163,4 +163,13 @@
   <data name="I0014L" xml:space="preserve">
     <value>I0014L:指定題型的HTML模板作成</value>
   </data>
+  <data name="I0015L" xml:space="preserve">
+    <value>I0015L:替換HTML模板中{0}的注入點信息</value>
+  </data>
+  <data name="I0016L" xml:space="preserve">
+    <value>I0016L:{0}題型HTML模板注入開始</value>
+  </data>
+  <data name="I0017L" xml:space="preserve">
+    <value>I0017L:靜態HTML文件作成</value>
+  </data>
 </root>
