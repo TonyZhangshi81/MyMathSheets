@@ -51,10 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\Ext\MathSheets.Arithmetic.js" />
+    <Content Include="Template\Arithmetic.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\image\" />
-    <Folder Include="Template\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

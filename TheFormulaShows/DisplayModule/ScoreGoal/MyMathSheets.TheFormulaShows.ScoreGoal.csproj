@@ -49,9 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\ScoreGoalHtmlSupport.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Template\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
@@ -67,6 +65,7 @@
     <Content Include="Content\image\sport\tennis.png" />
     <Content Include="Content\image\sport\Volleyball.png" />
     <Content Include="Scripts\Ext\MathSheets.ScoreGoal.js" />
+    <Content Include="Template\ScoreGoal.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">

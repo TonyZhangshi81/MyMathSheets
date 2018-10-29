@@ -51,13 +51,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\image\" />
-    <Folder Include="Template\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\Ext\MathSheets.FindNearestNumber.js" />
+    <Content Include="Template\FindNearestNumber.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">

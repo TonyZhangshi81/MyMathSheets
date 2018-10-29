@@ -49,9 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\FruitsLinkageHtmlSupport.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Template\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
@@ -69,6 +67,7 @@
     <Content Include="Content\image\fruits\table.png" />
     <Content Include="Content\image\fruits\Watermelon.png" />
     <Content Include="Scripts\Ext\MathSheets.FruitsLinkage.js" />
+    <Content Include="Template\FruitsLinkage.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">

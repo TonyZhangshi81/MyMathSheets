@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("MyMathSheets.TheFormulaShows.FruitsLinkage")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("水果連連看")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MyMathSheets.TheFormulaShows.FruitsLinkage")]
