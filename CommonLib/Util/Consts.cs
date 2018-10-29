@@ -324,6 +324,27 @@
 	}
 
 	/// <summary>
+	/// 找規律相關的枚舉類
+	/// </summary>
+	public class FindTheLaw
+	{
+		/// <summary>
+		/// 
+		/// </summary>
+		public enum Level : int
+		{
+			/// <summary>
+			/// 定值逐漸增大型
+			/// </summary>
+			Crescent,
+			/// <summary>
+			/// 逐漸減小型
+			/// </summary>
+			Diminishingly,
+		}
+	}
+
+	/// <summary>
 	/// 題型類型
 	/// </summary>
 	public class LayoutSetting
@@ -374,9 +395,13 @@
 			/// </summary>
 			HowMuchMore,
 			/// <summary>
+			/// 找規律
+			/// </summary>
+			FindTheLaw,
+			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
-			Ready, 
+			Ready,
 			/// <summary>
 			/// 未設定
 			/// </summary>
