@@ -10,7 +10,7 @@ using System.ComponentModel.Composition;
 namespace MyMathSheets.CommonLib.Main.HtmlSupport
 {
 	/// <summary>
-	/// 
+	/// HTML支援類接口
 	/// </summary>
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	[Export(typeof(IMakeHtml))]
@@ -22,19 +22,17 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// 
 		/// </summary>
 		private HtmlSupprtHelper _supprtHelper;
-
 		/// <summary>
-		/// 
+		/// 用於HTML支援類實例取得的HEPLER類
 		/// </summary>
 		protected HtmlSupprtHelper SupprtHelper => _supprtHelper ?? (_supprtHelper = new HtmlSupprtHelper());
-
 
 		/// <summary>
 		/// HTML模板替換內容作成
 		/// </summary>
-		/// <param name="formulas"></param>
-		/// <param name="preview"></param>
-		/// <param name="supportType"></param>
+		/// <param name="preview">題型類型</param>
+		/// <param name="formulas">題型參數對象</param>
+		/// <param name="supportType">HTML支援類對象類型</param>
 		/// <returns>模板替換內容</returns>
 		public string GetHtmlStatement<T>(LayoutSetting.Preview preview, T formulas, out Type supportType) where T : ParameterBase
 		{
@@ -46,8 +44,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0013L, preview.ToString()));
 
-			var html = support.Make(formulas);
-			return html;
+			return support.Make(formulas);
 		}
 	}
 }
