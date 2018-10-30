@@ -341,6 +341,10 @@
 			/// 逐漸減小型
 			/// </summary>
 			Diminishingly,
+			/// <summary>
+			/// 疊加型
+			/// </summary>
+			Superposition,
 		}
 	}
 

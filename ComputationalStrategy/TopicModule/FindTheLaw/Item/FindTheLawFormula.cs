@@ -1,19 +1,20 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
+using System.Collections.Generic;
 
 namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Item
 {
 	/// <summary>
-	/// 计算式对象构成
+	/// 題型計算式對象構成
 	/// </summary>
 	public class FindTheLawFormula
 	{
 		/// <summary>
-		/// 默認情況計算式有解
+		/// 自然數列表
 		/// </summary>
-		public Formula Arithmetic { get; set; }
+		public List<int> NumberList { get; set; }
 		/// <summary>
-		/// 
+		/// 隨機項目編號(填空項目)
 		/// </summary>
-		public bool AnswerIsRight { get; set; }
+		public List<int> RandomIndexList { get; set; }
 	}
 }
