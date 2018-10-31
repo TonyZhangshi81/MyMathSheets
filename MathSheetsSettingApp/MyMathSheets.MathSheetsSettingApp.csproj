@@ -110,6 +110,7 @@
     <Content Include="App_Data\Work\Content\image\CombinatorialEquation.png" />
     <None Include="App_Data\Work\Content\image\EqualityComparison.png" />
     <Content Include="App_Data\Work\Content\image\FindNearestNumber.png" />
+    <Content Include="App_Data\Work\Content\image\FindTheLaw.png" />
     <Content Include="App_Data\Work\Content\image\FruitsLinkage.png" />
     <None Include="App_Data\Work\Content\image\MathWordProblems.png" />
     <None Include="App_Data\Work\Content\image\HowMuchMore.png" />

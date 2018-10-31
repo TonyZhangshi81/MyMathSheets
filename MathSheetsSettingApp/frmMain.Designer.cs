@@ -41,6 +41,7 @@
 			this.chkScoreGoal = new System.Windows.Forms.CheckBox();
 			this.chkHowMuchMore = new System.Windows.Forms.CheckBox();
 			this.chkIsPreview = new System.Windows.Forms.CheckBox();
+			this.chkFindTheLaw = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// btnSure
@@ -181,11 +182,23 @@
 			this.chkIsPreview.Text = "瀏覽";
 			this.chkIsPreview.UseVisualStyleBackColor = true;
 			// 
+			// chkFindTheLaw
+			// 
+			this.chkFindTheLaw.AutoSize = true;
+			this.chkFindTheLaw.Location = new System.Drawing.Point(27, 114);
+			this.chkFindTheLaw.Name = "chkFindTheLaw";
+			this.chkFindTheLaw.Size = new System.Drawing.Size(60, 16);
+			this.chkFindTheLaw.TabIndex = 26;
+			this.chkFindTheLaw.Text = "找規律";
+			this.chkFindTheLaw.UseVisualStyleBackColor = true;
+			this.chkFindTheLaw.CheckedChanged += new System.EventHandler(this.FindTheLawCheckedChanged);
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(932, 405);
+			this.Controls.Add(this.chkFindTheLaw);
 			this.Controls.Add(this.chkIsPreview);
 			this.Controls.Add(this.chkHowMuchMore);
 			this.Controls.Add(this.chkScoreGoal);
@@ -222,6 +235,7 @@
 		private System.Windows.Forms.CheckBox chkScoreGoal;
 		private System.Windows.Forms.CheckBox chkHowMuchMore;
 		private System.Windows.Forms.CheckBox chkIsPreview;
+		private System.Windows.Forms.CheckBox chkFindTheLaw;
 	}
 }
 

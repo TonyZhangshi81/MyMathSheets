@@ -26,6 +26,7 @@
 	<script src="../Scripts/Ext/MathSheets.CombinatorialEquation.js" charset="utf-8"></script>
 	<!--SCOREGOALSCRIPT-->
 	<script src="../Scripts/Ext/MathSheets.HowMuchMore.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.FindTheLaw.js" charset="utf-8"></script>
 	<title>題庫</title>
 
 	<script>
@@ -57,6 +58,7 @@
 			//<!--FINDNEARESTNUMBERPRINTSETTING-->
 			MathSheets.CombinatorialEquation.printSetting();
 			MathSheets.HowMuchMore.printSetting();
+			MathSheets.FindTheLaw.printSetting();
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -70,6 +72,7 @@
 			//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->
 			MathSheets.CombinatorialEquation.printAfterSetting();
 			MathSheets.HowMuchMore.printAfterSetting();
+			MathSheets.FindTheLaw.printAfterSetting();
 		}
 
 		// 答題準備按鍵
@@ -94,6 +97,7 @@
 			//<!--SCOREGOALREADY-->
 			// 設定頁面所有輸入域為可用狀態(比多少)
 			MathSheets.HowMuchMore.ready();
+			MathSheets.FindTheLaw.ready();
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -125,6 +129,7 @@
 			//<!--SCOREGOALMAKECORRECTIONS-->
 			// 比多少
 			fault += MathSheets.HowMuchMore.makeCorrections();
+			fault += MathSheets.FindTheLaw.makeCorrections();
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -150,6 +155,7 @@
 			//<!--SCOREGOALTHEIRPAPERS-->
 			// 比多少
 			MathSheets.HowMuchMore.theirPapers();
+			MathSheets.FindTheLaw.theirPapers();
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -497,17 +503,17 @@
 					<ul class="list-group list-group-ext">
 						<li class="list-group-item">
 							<h5>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<img id="imgOKCombinatorial0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoCombinatorial0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+								<span class="badge badge-warning" style="width: 30px;">1</span>
+								<span class="badge badge-warning" style="width: 30px;">3</span>
+								<span class="badge badge-warning" style="width: 30px;">5</span>
+								<span class="badge badge-warning" style="width: 30px;">7</span>
+								<input id="inputFtl0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<input id="inputFtl0L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<input id="inputFtl0L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<img id="imgOKFindTheLaw0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+								<img id="imgNoFindTheLaw0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
 							</h5>
-							<input id="hiddenCe0" type="hidden" value="4,5,6,7" />
+							<input id="hiddenFtl0" type="hidden" value="9,11,13" />
 						</li>
 					</ul>
 				</div>
@@ -515,17 +521,17 @@
 					<ul class="list-group list-group-ext">
 						<li class="list-group-item">
 							<h5>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<img id="imgOKCombinatorial0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoCombinatorial0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+								<span class="badge badge-warning" style="width: 30px;">1</span>
+								<span class="badge badge-warning" style="width: 30px;">3</span>
+								<span class="badge badge-warning" style="width: 30px;">5</span>
+								<span class="badge badge-warning" style="width: 30px;">7</span>
+								<input id="inputFtl0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<input id="inputFtl0L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<input id="inputFtl0L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<img id="imgOKFindTheLaw0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+								<img id="imgNoFindTheLaw0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
 							</h5>
-							<input id="hiddenCe0" type="hidden" value="4,5,6,7" />
+							<input id="hiddenFtl0" type="hidden" value="9,11,13" />
 						</li>
 					</ul>
 				</div>
@@ -533,17 +539,17 @@
 					<ul class="list-group list-group-ext">
 						<li class="list-group-item">
 							<h5>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<img id="imgOKCombinatorial0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoCombinatorial0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+								<span class="badge badge-warning" style="width: 30px;">1</span>
+								<span class="badge badge-warning" style="width: 30px;">3</span>
+								<span class="badge badge-warning" style="width: 30px;">5</span>
+								<span class="badge badge-warning" style="width: 30px;">7</span>
+								<input id="inputFtl0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<input id="inputFtl0L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<input id="inputFtl0L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<img id="imgOKFindTheLaw0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+								<img id="imgNoFindTheLaw0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
 							</h5>
-							<input id="hiddenCe0" type="hidden" value="4,5,6,7" />
+							<input id="hiddenFtl0" type="hidden" value="9,11,13" />
 						</li>
 					</ul>
 				</div>
@@ -553,53 +559,17 @@
 					<ul class="list-group list-group-ext">
 						<li class="list-group-item">
 							<h5>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<img id="imgOKCombinatorial0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoCombinatorial0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+								<span class="badge badge-warning" style="width: 30px;">1</span>
+								<span class="badge badge-warning" style="width: 30px;">3</span>
+								<span class="badge badge-warning" style="width: 30px;">5</span>
+								<span class="badge badge-warning" style="width: 30px;">7</span>
+								<input id="inputFtl0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<input id="inputFtl0L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<input id="inputFtl0L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+								<img id="imgOKFindTheLaw0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+								<img id="imgNoFindTheLaw0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
 							</h5>
-							<input id="hiddenCe0" type="hidden" value="4,5,6,7" />
-						</li>
-					</ul>
-				</div>
-				<div class="col-md-4 form-inline">
-					<ul class="list-group list-group-ext">
-						<li class="list-group-item">
-							<h5>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<img id="imgOKCombinatorial0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoCombinatorial0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-							</h5>
-							<input id="hiddenCe0" type="hidden" value="4,5,6,7" />
-						</li>
-					</ul>
-				</div>
-				<div class="col-md-4 form-inline">
-					<ul class="list-group list-group-ext">
-						<li class="list-group-item">
-							<h5>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputCe0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<img id="imgOKCombinatorial0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoCombinatorial0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-							</h5>
-							<input id="hiddenCe0" type="hidden" value="4,5,6,7" />
+							<input id="hiddenFtl0" type="hidden" value="9,11,13" />
 						</li>
 					</ul>
 				</div>
@@ -627,6 +597,7 @@
 				</p>
 			</div>
 		</div>
-		<a href="javascript:" class="totop"></a>
+	</div>
+	<a href="javascript:" class="totop"></a>
 </body>
 </html>

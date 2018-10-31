@@ -301,5 +301,25 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
+
+		/// <summary>
+		/// 找規律題型選擇事件
+		/// </summary>
+		/// <param name="sender">選擇框</param>
+		/// <param name="e">選擇事件</param>
+		private void FindTheLawCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkFindTheLaw.Checked)
+			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "找規律"));
+			}
+			else
+			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "找規律"));
+			}
+			_process.TopicCheckedChanged(chkFindTheLaw.Checked, LayoutSetting.Preview.FindTheLaw, "FTL001");
+			// 刷新題型預覽區域
+			PreviewReflash();
+		}
 	}
 }

@@ -113,6 +113,16 @@ namespace MyMathSheets.MathSheetsSettingApp.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap FindTheLaw {
+            get {
+                object obj = ResourceManager.GetObject("FindTheLaw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap FruitsLinkage {
             get {
                 object obj = ResourceManager.GetObject("FruitsLinkage", resourceCulture);

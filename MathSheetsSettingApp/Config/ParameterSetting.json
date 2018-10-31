@@ -70,5 +70,13 @@
 		"NumberOfQuestions": 4,
 		"QuestionType": 1,
 		"Signs": [ 1 ]
+	},
+	{
+		"Identifier": "FTL001",
+		"FourOperationsType": 1,
+		"MaximumLimit": 50,
+		"NumberOfQuestions": 6,
+		"QuestionType": 1,
+		"Signs": [ 0 ]
 	}
 ]
