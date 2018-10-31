@@ -131,7 +131,6 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 		private string GetAnswer(List<int> numberList, List<int> randomIndexList)
 		{
 			StringBuilder answer = new StringBuilder();
-			randomIndexList.Sort();
 			randomIndexList.ForEach(d =>
 			{
 				answer.AppendFormat("{0},", numberList[d]);

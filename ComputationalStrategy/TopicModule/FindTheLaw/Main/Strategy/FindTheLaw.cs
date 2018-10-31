@@ -76,22 +76,17 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 			{
 				start += lessenValue;
 				numberList.Add(start);
-
 				randomIndexList.Add(index);
 			}
-			// 隨機填空項目
-			randomIndexList = randomIndexList.OrderBy(x => Guid.NewGuid()).ToList();
 
 			FindTheLawFormula formula = new FindTheLawFormula()
 			{
 				// 自然數列表
 				NumberList = numberList,
 				// 隨機項目編號(填空項目)
-				RandomIndexList = new List<int>()
-				{
-					randomIndexList[0], randomIndexList[1], randomIndexList[2]
-				}
+				RandomIndexList = RandomIndexListOrder(randomIndexList)
 			};
+			formula.RandomIndexList.Sort();
 
 			// 遞歸次數初期化
 			_superpositionThreshold = 0;
@@ -129,27 +124,47 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 			{
 				start -= lessenValue;
 				numberList.Add(start);
-
 				randomIndexList.Add(index);
 			}
-			// 隨機填空項目
-			randomIndexList = randomIndexList.OrderBy(x => Guid.NewGuid()).ToList();
 
 			FindTheLawFormula formula = new FindTheLawFormula()
 			{
 				// 自然數列表
 				NumberList = numberList,
 				// 隨機項目編號(填空項目)
-				RandomIndexList = new List<int>()
-				{
-					randomIndexList[0], randomIndexList[1], randomIndexList[2]
-				}
+				RandomIndexList = RandomIndexListOrder(randomIndexList)
 			};
+			formula.RandomIndexList.Sort();
 
 			// 遞歸次數初期化
 			_diminishinglyThreshold = 0;
 			// 結果返回
 			return formula;
+		}
+
+		/// <summary>
+		/// 新處理隨機填空項目
+		/// </summary>
+		/// <param name="list">所有項目的序號列表</param>
+		/// <returns></returns>
+		private List<int> RandomIndexListOrder(List<int> list)
+		{
+			// 隨機填空項目
+			list = list.OrderBy(x => Guid.NewGuid()).ToList();
+			// 取得前三個序號
+			List<int> randomIndexList = new List<int>() { list[0], list[1], list[2] };
+			// 并排序
+			randomIndexList.Sort();
+
+			// index: 0,1,2,3,4,5,6
+			if(randomIndexList[0] >= 3 || randomIndexList[2] < 4 || randomIndexList[1] - randomIndexList[0] > 3 || randomIndexList[2] - randomIndexList[1] > 3)
+			{
+				randomIndexList.Sort();
+				// 隨機填空項目的順次原則是保證至少有3個已知數是連續的(便於題型解答)
+				return randomIndexList;
+			}
+			// 如果為滿足上述條件則遞歸處理(重新處理隨機填空項目)
+			return RandomIndexListOrder(list);
 		}
 
 		/// <summary>
@@ -181,22 +196,18 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 			{
 				start += addValue;
 				numberList.Add(start);
-
 				randomIndexList.Add(index);
 			}
-			// 隨機填空項目
-			randomIndexList = randomIndexList.OrderBy(x => Guid.NewGuid()).ToList();
-
+			
 			FindTheLawFormula formula = new FindTheLawFormula()
 			{
 				// 自然數列表
 				NumberList = numberList,
 				// 隨機項目編號(填空項目)
-				RandomIndexList = new List<int>()
-				{
-					randomIndexList[0], randomIndexList[1], randomIndexList[2]
-				}
+				RandomIndexList = RandomIndexListOrder(randomIndexList)
 			};
+			formula.RandomIndexList.Sort();
+
 			// 遞歸次數初期化
 			_crescentThreshold = 0;
 			// 結果返回
