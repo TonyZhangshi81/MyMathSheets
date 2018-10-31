@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Item
 {
 	/// <summary>
-	/// 題型計算式對象構成
+	/// 題型計算式對象構成（暫定標準：7個數字，其中3個為填空項目）
 	/// </summary>
 	public class FindTheLawFormula
 	{

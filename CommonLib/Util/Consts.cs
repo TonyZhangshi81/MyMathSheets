@@ -326,26 +326,20 @@
 	/// <summary>
 	/// 找規律相關的枚舉類
 	/// </summary>
-	public class FindTheLaw
+	public enum FindTheLawLevel : int
 	{
 		/// <summary>
-		/// 
+		/// 定值逐漸增大型
 		/// </summary>
-		public enum Level : int
-		{
-			/// <summary>
-			/// 定值逐漸增大型
-			/// </summary>
-			Crescent,
-			/// <summary>
-			/// 逐漸減小型
-			/// </summary>
-			Diminishingly,
-			/// <summary>
-			/// 疊加型
-			/// </summary>
-			Superposition,
-		}
+		Crescent,
+		/// <summary>
+		/// 逐漸減小型
+		/// </summary>
+		Diminishingly,
+		/// <summary>
+		/// 疊加型
+		/// </summary>
+		Superposition,
 	}
 
 	/// <summary>

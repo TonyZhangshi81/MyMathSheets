@@ -106,6 +106,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MsgResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Write\FindTheLawFormulaWrite.cs" />
     <Compile Include="Write\CombinatorialFormulaWrite.cs" />
     <Compile Include="Write\FindNearestNumberWrite.cs" />
     <Compile Include="Write\HowMuchMoreWrite.cs" />
@@ -137,6 +138,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComputationalStrategy\TopicModule\FindTheLaw\MyMathSheets.ComputationalStrategy.FindTheLaw.csproj">
+      <Project>{a4afcd1e-6872-4643-9728-e5e6dff85387}</Project>
+      <Name>MyMathSheets.ComputationalStrategy.FindTheLaw</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,7 @@ using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
@@ -41,6 +42,7 @@ namespace MyMathSheets.TestConsoleApp
 			CombinatorialEquationParameter ceParameter = null;
 			ScoreGoalParameter sgParameter = null;
 			HowMuchMoreParameter hmmParameter = null;
+			FindTheLawParameter ftlParameter = null;
 
 			bool isShowMenu = true;
 
@@ -83,6 +85,8 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    x-減法");
 					Console.WriteLine("************************* 比多少 ***********************");
 					Console.WriteLine("    y-比多少");
+					Console.WriteLine("************************* 找規律 ***********************");
+					Console.WriteLine("    z-找規律");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -272,6 +276,13 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("比多少");
 						hmmParameter = (HowMuchMoreParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.HowMuchMore, "HMM001");
 						Util.ConsoleFormulas(LayoutSetting.Preview.HowMuchMore, hmmParameter.Formulas.ToList());
+						break;
+
+					case ConsoleKey.Z:
+						Console.WriteLine();
+						Console.WriteLine("找規律");
+						ftlParameter = (FindTheLawParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindTheLaw, "FTL001");
+						Util.ConsoleFormulas(LayoutSetting.Preview.FindTheLaw, ftlParameter.Formulas.ToList());
 						break;
 
 					case ConsoleKey.D9:
