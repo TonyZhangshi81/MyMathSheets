@@ -2,64 +2,64 @@
 	{
 		"Identifier": "AC001",
 		"FourOperationsType": 2,
-		"MaximumLimit": 50,
-		"NumberOfQuestions": 20,
+		"MaximumLimit": 10,
+		"NumberOfQuestions": 30,
 		"QuestionType": 2,
-		"Signs": [ 0, 1, 2, 3 ]
+		"Signs": [ 0, 1 ]
 	},
 	{
 		"Identifier": "EC001",
 		"FourOperationsType": 2,
-		"MaximumLimit": 50,
-		"NumberOfQuestions": 12,
+		"MaximumLimit": 10,
+		"NumberOfQuestions": 10,
 		"QuestionType": 3,
 		"Signs": [ 0, 1 ]
 	},
 	{
 		"Identifier": "CC001",
 		"FourOperationsType": 2,
-		"MaximumLimit": 50,
-		"NumberOfQuestions": 5,
+		"MaximumLimit": 10,
+		"NumberOfQuestions": 3,
 		"QuestionType": 3,
 		"Signs": [ 0, 1 ]
 	},
 	{
 		"Identifier": "MP001",
 		"FourOperationsType": 2,
-		"MaximumLimit": 50,
+		"MaximumLimit": 10,
 		"NumberOfQuestions": 5,
 		"QuestionType": 3,
-		"Signs": [ 0, 1, 2, 3 ]
+		"Signs": [ 0, 1 ]
 	},
 	{
 		"Identifier": "FL001",
 		"FourOperationsType": 2,
-		"MaximumLimit": 50,
-		"NumberOfQuestions": 10,
+		"MaximumLimit": 10,
+		"NumberOfQuestions": 6,
 		"QuestionType": 3,
 		"Signs": [ 0, 1 ]
 	},
 	{
 		"Identifier": "FN001",
 		"FourOperationsType": 2,
-		"MaximumLimit": 50,
-		"NumberOfQuestions": 10,
+		"MaximumLimit": 10,
+		"NumberOfQuestions": 6,
 		"QuestionType": 2,
 		"Signs": [ 0, 1 ]
 	},
 	{
 		"Identifier": "CE001",
 		"FourOperationsType": 1,
-		"MaximumLimit": 50,
-		"NumberOfQuestions": 4,
+		"MaximumLimit": 10,
+		"NumberOfQuestions": 3,
 		"QuestionType": 2,
 		"Signs": [ 0 ]
 	},
 	{
 		"Identifier": "SG001",
 		"FourOperationsType": 2,
-		"MaximumLimit": 50,
-		"NumberOfQuestions": 8,
+		"MaximumLimit": 10,
+		"NumberOfQuestions": 7,
 		"QuestionType": 2,
 		"Signs": [ 0, 1 ]
 	},
@@ -74,8 +74,8 @@
 	{
 		"Identifier": "FTL001",
 		"FourOperationsType": 1,
-		"MaximumLimit": 50,
-		"NumberOfQuestions": 6,
+		"MaximumLimit": 40,
+		"NumberOfQuestions": 4,
 		"QuestionType": 1,
 		"Signs": [ 0 ]
 	}
