@@ -397,6 +397,10 @@
 			/// </summary>
 			FindTheLaw,
 			/// <summary>
+			/// 數字排序
+			/// </summary>
+			NumericSorting,
+			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
 			Ready,
