@@ -10,4 +10,5 @@
 	<object id="ScoreGoal" type="MyMathSheets.TestConsoleApp.Write.ScoreGoalWrite"></object>
 	<object id="HowMuchMore" type="MyMathSheets.TestConsoleApp.Write.HowMuchMoreWrite"></object>
 	<object id="FindTheLaw" type="MyMathSheets.TestConsoleApp.Write.FindTheLawFormulaWrite"></object>
+	<object id="NumericSorting" type="MyMathSheets.TestConsoleApp.Write.NumericSortingWrite"></object>
 </objects>

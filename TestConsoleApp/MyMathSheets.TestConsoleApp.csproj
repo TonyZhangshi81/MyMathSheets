@@ -68,6 +68,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FindNearestNumber.dll</HintPath>
     </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.FindTheLaw">
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FindTheLaw.dll</HintPath>
+    </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.FruitsLinkage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FruitsLinkage.dll</HintPath>
@@ -113,6 +116,7 @@
     <Compile Include="Write\CombinatorialFormulaWrite.cs" />
     <Compile Include="Write\FindNearestNumberWrite.cs" />
     <Compile Include="Write\HowMuchMoreWrite.cs" />
+    <Compile Include="Write\NumericSortingWrite.cs" />
     <Compile Include="Write\ScoreGoalWrite.cs" />
     <Compile Include="Write\FruitsLinkageWrite.cs" />
     <Compile Include="Write\MathWordProblemsFormulaWrite.cs" />
