@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Logging;
+﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.MathSheetsSettingApp.Properties;
 using System;
@@ -29,6 +30,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
 			Thread.GetDomain().UnhandledException += new UnhandledExceptionEventHandler(ConsoleMain_UnhandledException);
 
+			ComposerFactory.Init();
 			Application.Run(new FrmMain());
 		}
 

@@ -65,7 +65,7 @@ namespace MyMathSheets.CommonLib.Composition
                     }
                 });
 
-				string composerKey = (attr.Preview == LayoutSetting.Preview.Null) ? attr.SystemId.ToString() : string.Format("{0}-{1}", attr.SystemId, attr.Preview);
+				string composerKey = (attr.Preview == LayoutSetting.Preview.Null) ? attr.SystemId.ToString() : string.Format("{0}::{1}", attr.SystemId, attr.Preview);
 
 				ComposerCache.GetOrAdd(composerKey, valueFunc);
             });
