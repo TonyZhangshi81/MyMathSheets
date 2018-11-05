@@ -5,9 +5,7 @@ using MyMathSheets.ComputationalStrategy.FindTheLaw.Item;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace MyMathSheets.TestConsoleApp.Write
 {
@@ -26,36 +24,30 @@ namespace MyMathSheets.TestConsoleApp.Write
 		{
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "數字排序"));
 
-			formulas.ForEach(d => {
-				Console.WriteLine("關係運算符:{0}", d.Sign.ToSignOfCompareString());
+			formulas.ForEach(d =>
+			{
 				StringBuilder str = new StringBuilder();
-				d.NumberList.ForEach(n => {
-					
+
+				// 關係運算符輸出
+				Console.WriteLine("關係運算符:{0}", d.Sign.ToSignOfCompareString());
+				// 無序字符串輸出
+				d.NumberList.ForEach(n =>
+				{
 					str.AppendFormat("{0},", n);
 				});
 				str.Length -= 1;
 				Console.WriteLine("題目:{0}", str);
 
-				
-				if (d.Sign == SignOfCompare.Greater)
-				{
-					d.NumberList.Sort((x, y) => -x.CompareTo(y));
-				}
-				else
-				{
-					d.NumberList.Sort();
-				}
-
 				str.Length = 0;
-				d.NumberList.ForEach(n => {
+				// 有序字符串輸出
+				d.AnswerList.ForEach(n =>
+				{
 
-					str.AppendFormat("{0}{1}", n, d.Sign.ToSignOfCompareEnString());
+					str.AppendFormat("{0}{1}", n, d.Sign.ToSignOfCompareString());
 				});
 				str.Length -= 1;
-				Console.WriteLine("題目:{0}", str);
+				Console.WriteLine("答案:{0}", str);
 			});
-
-			
 		}
 	}
 }

@@ -68,11 +68,9 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 			// 情況1
 			if (p.Formulas.ToList().Any(d =>
 			{
-				int[] ary = new int[3] { d.ParameterA, d.ParameterB, d.ParameterC };
-				int pAIndex = ary.ToList().IndexOf(parameterA);
-				int pBIndex = ary.ToList().IndexOf(parameterB);
-				int pCIndex = ary.ToList().IndexOf(parameterC);
-				if (pAIndex == pBIndex && pBIndex == pCIndex)
+				if ((d.ParameterA == parameterA || d.ParameterA == parameterB || d.ParameterA == parameterC)
+					&& (d.ParameterB == parameterA || d.ParameterB == parameterB || d.ParameterB == parameterC)
+					&& (d.ParameterC == parameterA || d.ParameterC == parameterB || d.ParameterC == parameterC))
 				{
 					return true;
 				}

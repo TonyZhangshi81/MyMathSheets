@@ -13,6 +13,10 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Item
 		/// </summary>
 		public List<int> NumberList { get; set; }
 		/// <summary>
+		/// 答案數列
+		/// </summary>
+		public List<int> AnswerList { get; set; }
+		/// <summary>
 		/// 大於小於符號
 		/// </summary>
 		public SignOfCompare Sign { get; set; }
