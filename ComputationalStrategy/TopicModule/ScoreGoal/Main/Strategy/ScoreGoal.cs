@@ -28,6 +28,8 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 			Dictionary<Formula, int> ballsFormulas = new Dictionary<Formula, int>();
 			// 球門算式實例
 			IList<Formula> goalsFormulas = new List<Formula>();
+			// (足球的個數最多10個)
+			p.Amount = (p.Amount > 10) ? 10 : p.Amount;
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
@@ -47,7 +49,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 					goalsFormulas.Add(goal);
 				}
 				// 按照指定數量作成相應的數學計算式(足球的個數最多10個)
-				for (var i = 0; i < p.NumberOfQuestions; i++)
+				for (var i = 0; i < p.Amount; i++)
 				{
 					int seat = 0;
 					// 選取球門
@@ -88,7 +90,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 					goalsFormulas.Add(goal);
 				}
 				// 按照指定數量作成相應的數學計算式(足球的個數最多10個)
-				for (var i = 0; i < p.NumberOfQuestions; i++)
+				for (var i = 0; i < p.Amount; i++)
 				{
 					int seat = 0;
 					// 混合題型（加減乘除運算符實例隨機抽取）
