@@ -78,5 +78,14 @@
 		"NumberOfQuestions": 4,
 		"QuestionType": 1,
 		"Signs": [ 0 ]
+	},
+	{
+		"Identifier": "NS001",
+		"FourOperationsType": 1,
+		"MaximumLimit": 50,
+		"NumberOfQuestions": 4,
+		"QuestionType": 1,
+		"Signs": [ 0 ],
+		"Reserve": "{\"Amount\" : 8}"
 	}
 ]

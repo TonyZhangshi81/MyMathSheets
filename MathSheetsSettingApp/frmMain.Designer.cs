@@ -42,6 +42,7 @@
 			this.chkHowMuchMore = new System.Windows.Forms.CheckBox();
 			this.chkIsPreview = new System.Windows.Forms.CheckBox();
 			this.chkFindTheLaw = new System.Windows.Forms.CheckBox();
+			this.chkNumericSorting = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// btnSure
@@ -193,11 +194,23 @@
 			this.chkFindTheLaw.UseVisualStyleBackColor = true;
 			this.chkFindTheLaw.CheckedChanged += new System.EventHandler(this.FindTheLawCheckedChanged);
 			// 
+			// chkNumericSorting
+			// 
+			this.chkNumericSorting.AutoSize = true;
+			this.chkNumericSorting.Location = new System.Drawing.Point(132, 114);
+			this.chkNumericSorting.Name = "chkNumericSorting";
+			this.chkNumericSorting.Size = new System.Drawing.Size(72, 16);
+			this.chkNumericSorting.TabIndex = 27;
+			this.chkNumericSorting.Text = "數字排序";
+			this.chkNumericSorting.UseVisualStyleBackColor = true;
+			this.chkNumericSorting.CheckedChanged += new System.EventHandler(this.NumericSortingCheckedChanged);
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(932, 405);
+			this.Controls.Add(this.chkNumericSorting);
 			this.Controls.Add(this.chkFindTheLaw);
 			this.Controls.Add(this.chkIsPreview);
 			this.Controls.Add(this.chkHowMuchMore);
@@ -236,6 +249,7 @@
 		private System.Windows.Forms.CheckBox chkHowMuchMore;
 		private System.Windows.Forms.CheckBox chkIsPreview;
 		private System.Windows.Forms.CheckBox chkFindTheLaw;
+		private System.Windows.Forms.CheckBox chkNumericSorting;
 	}
 }
 

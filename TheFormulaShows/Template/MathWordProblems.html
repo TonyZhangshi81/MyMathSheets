@@ -20,14 +20,12 @@
 	<!--ARITHMETICSCRIPT-->
 	<!--EQUALITYCOMPARISONSCRIPT-->
 	<!--COMPUTINGCONNECTIONSCRIPT-->
-	<!--MATHWORDPROBLEMSSCRIPT-->
+	<script src="../Scripts/Ext/MathSheets.MathWordProblems.js" charset="utf-8"></script>
 	<!--FRUITSLINKAGESCRIPT-->
 	<!--FINDNEARESTNUMBERSCRIPT-->
 	<!--COMBINATORIALEQUATIONSCRIPT-->
 	<!--SCOREGOALSCRIPT-->
 	<!--HOWMUCHMORESCRIPT-->
-	<!--FINDTHELAWSCRIPT-->
-	<!--NUMERICSORTINGSCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -55,12 +53,10 @@
 			//<!--ARITHMETICPRINTSETTING-->
 			//<!--EQUALITYCOMPARISONPRINTSETTING-->
 			//<!--COMPUTINGCONNECTIONPRINTSETTING-->
-			//<!--MATHWORDPROBLEMSPRINTSETTING-->
+			MathSheets.MathWordProblems.printSetting();
 			//<!--FINDNEARESTNUMBERPRINTSETTING-->
 			//<!--COMBINATORIALEQUATIONPRINTSETTING-->
 			//<!--HOWMUCHMOREPRINTSETTING-->
-			//<!--FINDTHELAWPRINTSETTING-->
-			//<!--NUMERICSORTINGPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -70,12 +66,10 @@
 			//<!--ARITHMETICPRINTAFTERSETTING-->
 			//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->
 			//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->
-			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
+			MathSheets.MathWordProblems.printAfterSetting();
 			//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->
 			//<!--COMBINATORIALEQUATIONPRINTAFTERSETTING-->
 			//<!--HOWMUCHMOREPRINTAFTERSETTING-->
-			//<!--FINDTHELAWPRINTAFTERSETTING-->
-			//<!--NUMERICSORTINGPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -89,7 +83,7 @@
 			// 設定頁面所有輸入域為可用狀態(等式接龍)
 			//<!--COMPUTINGCONNECTIONREADY-->
 			// 設定頁面所有輸入域為可用狀態(算數應用題)
-			//<!--MATHWORDPROBLEMSREADY-->
+			MathSheets.MathWordProblems.ready();
 			// 設定頁面所有輸入域為可用狀態(水果連連看)
 			//<!--FRUITSLINKAGEREADY-->
 			// 設定頁面所有輸入域為可用狀態(找到最近的數字)
@@ -100,10 +94,6 @@
 			//<!--SCOREGOALREADY-->
 			// 設定頁面所有輸入域為可用狀態(比多少)
 			//<!--HOWMUCHMOREREADY-->
-			// 設定頁面所有輸入域為可用狀態(找規律)
-			//<!--FINDTHELAWREADY-->
-			// 設定頁面所有輸入域為可用狀態(數字排序)
-			//<!--NUMERICSORTINGREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -124,7 +114,7 @@
 			// 等式接龍
 			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
 			// 算數應用題
-			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
+			fault += MathSheets.MathWordProblems.makeCorrections();
 			// 水果連連看
 			//<!--FRUITSLINKAGEMAKECORRECTIONS-->
 			// 找到最近的數字
@@ -135,10 +125,6 @@
 			//<!--SCOREGOALMAKECORRECTIONS-->
 			// 比多少
 			//<!--HOWMUCHMOREMAKECORRECTIONS-->
-			// 找規律
-			//<!--FINDTHELAWMAKECORRECTIONS-->
-			// 數字排序
-			//<!--NUMERICSORTINGMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -153,7 +139,7 @@
 			// 等式接龍交卷
 			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
 			// 算數應用題交卷
-			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
+			MathSheets.MathWordProblems.theirPapers();
 			// 水果連連看
 			//<!--FRUITSLINKAGETHEIRPAPERS-->
 			// 找到最近的數字
@@ -164,10 +150,6 @@
 			//<!--SCOREGOALTHEIRPAPERS-->
 			// 比多少
 			//<!--HOWMUCHMORETHEIRPAPERS-->
-			// 找規律
-			//<!--FINDTHELAWTHEIRPAPERS-->
-			// 數字排序
-			//<!--NUMERICSORTINGTHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -200,14 +182,109 @@
 		<!--ARITHMETIC-->
 		<!--EQUALITYCOMPARISON-->
 		<!--COMPUTINGCONNECTION-->
-		<!--MATHWORDPROBLEMS-->
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">算數應用題</span></h4></div><hr /><div class="row text-center row-margin-top">
+<div class="col-md-12 form-inline">
+<h5>
+<p class="text-info">
+<span class="label">红气球有49个，黄气球有8个，蓝气球有27个。红气球比蓝气球多多少个？</span>
+</p>
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<input id="inputMwp00" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" id="imgMwp0" style="width: 30px; height: 30px;" title="help" />
+<input id="inputMwp01" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+<input id="inputMwp02" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="hiddenMwp0" type="hidden" value="49-27=22" />
+<img id="imgOKProblems0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoProblems0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<p class="text-info">
+<span class="label">学校数学兴趣组有45人，美术兴趣组人数与数学兴趣组同样多。这两个兴趣组一共有多少人？ </span>
+</p>
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<input id="inputMwp10" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" id="imgMwp1" style="width: 30px; height: 30px;" title="help" />
+<input id="inputMwp11" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+<input id="inputMwp12" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="hiddenMwp1" type="hidden" value="45+45=90" />
+<img id="imgOKProblems1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoProblems1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<p class="text-info">
+<span class="label">马场上有41匹马，又来了1匹，现在马场上有多少匹?</span>
+</p>
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<input id="inputMwp20" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" id="imgMwp2" style="width: 30px; height: 30px;" title="help" />
+<input id="inputMwp21" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+<input id="inputMwp22" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="hiddenMwp2" type="hidden" value="41+1=42,1+41=42" />
+<img id="imgOKProblems2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoProblems2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<p class="text-info">
+<span class="label">小明现在身高44厘米，比去年长高了38厘米，小明去年身高多少厘米?</span>
+</p>
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<input id="inputMwp30" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" id="imgMwp3" style="width: 30px; height: 30px;" title="help" />
+<input id="inputMwp31" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+<input id="inputMwp32" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="hiddenMwp3" type="hidden" value="44-38=6" />
+<img id="imgOKProblems3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoProblems3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<p class="text-info">
+<span class="label">林林已经写好46个生字，还有4个生字没写，他一共要写多少个生字? </span>
+</p>
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<input id="inputMwp40" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" id="imgMwp4" style="width: 30px; height: 30px;" title="help" />
+<input id="inputMwp41" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+<input id="inputMwp42" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="hiddenMwp4" type="hidden" value="46+4=50,4+46=50" />
+<img id="imgOKProblems4" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoProblems4" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+
 		<!--FRUITSLINKAGE-->
 		<!--FINDNEARESTNUMBER-->
 		<!--COMBINATORIALEQUATION-->
 		<!--SCOREGOAL-->
 		<!--HOWMUCHMORE-->
-		<!--FINDTHELAW-->
-		<!--NUMERICSORTING-->
 		</div>
 		<HR>
 		<div class="row">

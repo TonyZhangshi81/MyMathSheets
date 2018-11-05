@@ -27,6 +27,7 @@
 	<!--SCOREGOALSCRIPT-->
 	<!--HOWMUCHMORESCRIPT-->
 	<!--FINDTHELAWSCRIPT-->
+	<!--NUMERICSORTINGSCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -59,6 +60,7 @@
 			//<!--COMBINATORIALEQUATIONPRINTSETTING-->
 			//<!--HOWMUCHMOREPRINTSETTING-->
 			//<!--FINDTHELAWPRINTSETTING-->
+			//<!--NUMERICSORTINGPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -73,6 +75,7 @@
 			//<!--COMBINATORIALEQUATIONPRINTAFTERSETTING-->
 			//<!--HOWMUCHMOREPRINTAFTERSETTING-->
 			//<!--FINDTHELAWPRINTAFTERSETTING-->
+			//<!--NUMERICSORTINGPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -99,6 +102,8 @@
 			//<!--HOWMUCHMOREREADY-->
 			// 設定頁面所有輸入域為可用狀態(找規律)
 			//<!--FINDTHELAWREADY-->
+			// 設定頁面所有輸入域為可用狀態(數字排序)
+			//<!--NUMERICSORTINGREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -132,6 +137,8 @@
 			//<!--HOWMUCHMOREMAKECORRECTIONS-->
 			// 找規律
 			//<!--FINDTHELAWMAKECORRECTIONS-->
+			// 數字排序
+			//<!--NUMERICSORTINGMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -159,6 +166,8 @@
 			//<!--HOWMUCHMORETHEIRPAPERS-->
 			// 找規律
 			//<!--FINDTHELAWTHEIRPAPERS-->
+			// 數字排序
+			//<!--NUMERICSORTINGTHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -198,6 +207,7 @@
 		<!--SCOREGOAL-->
 		<!--HOWMUCHMORE-->
 		<!--FINDTHELAW-->
+		<!--NUMERICSORTING-->
 		</div>
 		<HR>
 		<div class="row">

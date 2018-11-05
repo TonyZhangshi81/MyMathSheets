@@ -321,5 +321,25 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
+
+		/// <summary>
+		/// 數字排序題型選擇事件
+		/// </summary>
+		/// <param name="sender">選擇框</param>
+		/// <param name="e">選擇事件</param>
+		private void NumericSortingCheckedChanged(object sender, EventArgs e)
+		{
+			if (chkNumericSorting.Checked)
+			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "數字排序"));
+			}
+			else
+			{
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "數字排序"));
+			}
+			_process.TopicCheckedChanged(chkNumericSorting.Checked, LayoutSetting.Preview.NumericSorting, "NS001");
+			// 刷新題型預覽區域
+			PreviewReflash();
+		}
 	}
 }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5F879B95-C458-48ED-A7C2-889347DB2591}</ProjectGuid>
+    <ProjectGuid>{5F879B95-C458-48ED-A7C2-889F47DB7497}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MyMathSheets.TheFormulaShows.HowMuchMore</RootNamespace>
-    <AssemblyName>MyMathSheets.TheFormulaShows.HowMuchMore</AssemblyName>
+    <RootNamespace>MyMathSheets.TheFormulaShows.NumericSorting</RootNamespace>
+    <AssemblyName>MyMathSheets.TheFormulaShows.NumericSorting</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\MyMathSheets.TheFormulaShows.HowMuchMore.xml</DocumentationFile>
+    <DocumentationFile>bin\MyMathSheets.TheFormulaShows.NumericSorting.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,22 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Support\HowMuchMoreHtmlSupport.cs" />
+    <Compile Include="Support\NumericSortingHtmlSupport.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\image\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\image\more\Circle.png" />
-    <Content Include="Content\image\more\Diamond.png" />
-    <Content Include="Content\image\more\Fish.png" />
-    <Content Include="Content\image\more\HappyFace.png" />
-    <Content Include="Content\image\more\Humburger.png" />
-    <Content Include="Content\image\more\Like.png" />
-    <Content Include="Content\image\more\Square.png" />
-    <Content Include="Scripts\Ext\MathSheets.HowMuchMore.js" />
-    <Content Include="Template\HowMuchMore.html" />
+    <Content Include="Scripts\Ext\MathSheets.NumericSorting.js" />
+    <Content Include="Template\NumericSorting.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">
@@ -73,9 +68,9 @@
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e1}</Project>
       <Name>MyMathSheets.BasicOperationsLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\HowMuchMore\MyMathSheets.ComputationalStrategy.HowMuchMore.csproj">
-      <Project>{18d1e434-d1c1-4634-b969-7ff11feca3ef}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.HowMuchMore</Name>
+    <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\NumericSorting\MyMathSheets.ComputationalStrategy.NumericSorting.csproj">
+      <Project>{a4afcd1e-6872-4643-9728-e5e6dff95387}</Project>
+      <Name>MyMathSheets.ComputationalStrategy.NumericSorting</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -38,6 +38,9 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -117,6 +120,7 @@
     <None Include="App_Data\Work\Content\image\ready.png" />
     <None Include="App_Data\Work\Content\image\ScoreGoal.png" />
     <None Include="App_Data\Work\Content\image\title.png" />
+    <None Include="App_Data\Work\Content\image\NumericSorting.png" />
     <Content Include="App_Data\Work\Content\image\timg.png" />
     <Content Include="App_Data\Work\Content\MathSheets.css" />
   </ItemGroup>
