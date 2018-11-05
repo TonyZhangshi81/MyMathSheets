@@ -43,13 +43,15 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
+			// (水果個數的個數最多10個)
+			p.Amount = (p.Amount > 10) ? 10 : p.Amount;
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
 				// 指定單個運算符實例
 				strategy = CalculateManager(p.Signs[0]);
 				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.NumberOfQuestions; i++)
+				for (var i = 0; i < p.Amount; i++)
 				{
 					// 計算式作成
 					Formula fruit = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0);
@@ -87,7 +89,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 			{
 				RandomNumberComposition random = null;
 				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.NumberOfQuestions; i++)
+				for (var i = 0; i < p.Amount; i++)
 				{
 					random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
