@@ -18,10 +18,12 @@ namespace MyMathSheets.CommonLib.Composition
     /// </summary>
     public static class ComposerFactory
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        private static Assembly TempAssembly;
+		const string SEARCH_PATTERN = "MyMathSheets.*.dll";
+
+		/// <summary>
+		/// 
+		/// </summary>
+		private static Assembly TempAssembly;
 
         /// <summary>
         /// 
@@ -70,7 +72,7 @@ namespace MyMathSheets.CommonLib.Composition
 
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
             DirectoryInfo directory = new DirectoryInfo(basePath);
-			directory.GetFiles("MyMathSheets.*.dll").ToList().ForEach(f => action(f));
+			directory.GetFiles(SEARCH_PATTERN).ToList().ForEach(f => action(f));
         }
 
 		/// <summary>
@@ -122,7 +124,7 @@ namespace MyMathSheets.CommonLib.Composition
 
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
             DirectoryInfo directory = new DirectoryInfo(basePath);
-            directory.GetFiles("MyMathSheets.*.dll").ToList().ForEach(f => action(f));
+            directory.GetFiles(SEARCH_PATTERN).ToList().ForEach(f => action(f));
 
 			if (TempAssembly == null)
             {
@@ -141,7 +143,7 @@ namespace MyMathSheets.CommonLib.Composition
 		public static IEnumerable<ComposablePartCatalog> GetCatalog(string path)
 		{
 			foreach (var fi in new DirectoryInfo(path)
-						.GetFiles("MyMathSheets.*.dll")
+						.GetFiles(SEARCH_PATTERN)
 						.OrderByDescending(_ => _.Name.Length))
 			{
 				yield return new DirectoryCatalog(path, fi.Name);

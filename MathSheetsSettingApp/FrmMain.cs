@@ -32,7 +32,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			InitializeComponent();
 
 			// 獲取HTML支援類Composer
-			var composer = ComposerFactory.GetComporser(SystemModel.Common);
+			Composer composer = ComposerFactory.GetComporser(SystemModel.Common);
 			composer.Compose(this);
 		}
 
