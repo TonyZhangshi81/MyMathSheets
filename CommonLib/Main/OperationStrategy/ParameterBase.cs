@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Provider;
 using MyMathSheets.CommonLib.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -36,7 +37,10 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 出题数量
 		/// </summary>
 		public int NumberOfQuestions { get; set; }
-
+		/// <summary>
+		/// 參數保留字段
+		/// </summary>
+		public string Reserve { get; set; }
 
 		/// <summary>
 		/// 
@@ -51,6 +55,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			FourOperationsType = parameter.FourOperationsType;
 			MaximumLimit = parameter.MaximumLimit;
 			NumberOfQuestions = parameter.NumberOfQuestions;
+			Reserve = parameter.Reserve;
 		}
 	}
 }

@@ -86,7 +86,7 @@
 		}
 
 		/// <summary>
-		/// 
+		/// 關係運算符enum轉圖片名稱（HTML圖片顯示使用）
 		/// </summary>
 		/// <param name="operation"></param>
 		/// <returns></returns>

@@ -1,12 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
-using MyMathSheets.CommonLib.Util;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Configuration;
-using System.Configuration.Provider;
 using MyMathSheets.CommonLib.Main.Provider;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MyMathSheets.CommonLib.Provider
 {
@@ -26,7 +22,8 @@ namespace MyMathSheets.CommonLib.Provider
 			// 读取资料库
 			using (System.IO.StreamReader file = System.IO.File.OpenText(Argument.ToString()))
 			{
-				allProblems = JsonExtension.GetObjectByJson<List<ParameterBase>>(file.ReadToEnd());
+				allProblems = JsonConvert.DeserializeObject<List<ParameterBase>>(file.ReadToEnd());
+				//allProblems = JsonExtension.GetObjectByJson<List<ParameterBase>>(file.ReadToEnd());
 			};
 
 			return allProblems.ToList().Where(d => d.Identifier.Equals(identifier)).First();

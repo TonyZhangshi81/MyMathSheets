@@ -1,21 +1,19 @@
-﻿using System;
-using System.IO;
-using System.Runtime.Serialization.Json;
-using System.Text;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MyMathSheets.CommonLib.Util
 {
 	/// <summary>
-	/// 
+	/// JSON公共處理類(Newtonsoft類庫)
 	/// </summary>
 	public static class JsonExtension
 	{
 		/// <summary>
-		/// 
+		/// 將指定對象轉換為JSON字符串
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="obj"></param>
-		/// <returns></returns>
+		/// <typeparam name="T">指定參數對象類型</typeparam>
+		/// <param name="obj">指定參數對象</param>
+		/// <returns>JSON字符串</returns>
 		public static string GetJsonByObject<T>(this T obj)
 		{
 			if (null == obj)
@@ -23,50 +21,30 @@ namespace MyMathSheets.CommonLib.Util
 				return string.Empty;
 			}
 
-			// Instantiation DataContractJsonSerializer object, needs to be serialized object type
-			DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-
-			// Instantiate a memory stream, used to store the serialized data
-			using (MemoryStream stream = new MemoryStream())
-			{
-				// Using WriteObject serialized objects
-				serializer.WriteObject(stream, obj);
-
-				// Write the memory stream
-				byte[] dataBytes = new byte[stream.Length];
-				stream.Position = 0;
-				stream.Read(dataBytes, 0, (int)stream.Length);
-
-				// Through the UTF8 format is converted to a string
-				return Encoding.UTF8.GetString(dataBytes);
-			}
+			return JsonConvert.SerializeObject(obj, typeof(T), null);
 		}
 
 		/// <summary>
-		/// 
+		/// 取得JSON字符串中指定的屬性值
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="jsonString"></param>
-		/// <returns></returns>
+		/// <param name="jsonString">JSON字符串</param>
+		/// <param name="propertyName">屬性名稱</param>
+		/// <returns>屬性值</returns>
+		public static object GetPropertyByJson(this string jsonString, string propertyName)
+		{
+			JObject jObj = JObject.Parse(jsonString);
+			return jObj[propertyName];
+		}
+
+		/// <summary>
+		/// 將JSON字符串轉換為對象
+		/// </summary>
+		/// <typeparam name="T">轉換後的對象類型</typeparam>
+		/// <param name="jsonString">JSON字符串</param>
+		/// <returns>轉換後的對象</returns>
 		public static T GetObjectByJson<T>(this string jsonString)
 		{
-			try
-			{
-				// Instantiation DataContractJsonSerializer object, needs to be serialized object type
-				DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-
-				// Keep the Json into the memory stream
-				using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(jsonString)))
-				{
-					// Use the ReadObject methods deserialized into objects
-					return (T)serializer.ReadObject(stream);
-				}
-			}
-			catch (Exception)
-			{
-				return default(T);
-			}
-
+			return JsonConvert.DeserializeObject<T>(jsonString);
 		}
 	}
 }
