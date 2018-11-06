@@ -28,7 +28,7 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Strategy
 				List<int> numberList = new List<int>();
 				List<int> answerList = new List<int>();
 				// 參與數字排序的對象個數
-				for (var j = 0; j < p.Amount; j++)
+				for (var j = 0; j < p.Numbers; j++)
 				{
 					numberList.Add(GetNumberWithSort(numberList, p.MaximumLimit));
 				}

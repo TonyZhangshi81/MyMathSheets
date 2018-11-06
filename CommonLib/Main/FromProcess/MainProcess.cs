@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Logging;
+﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
@@ -59,6 +60,8 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		public MainProcess()
 		{
 		}
+
+
 
 		/// <summary>
 		/// 出題按鍵點擊事件
@@ -140,7 +143,33 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 題型項目選擇事件
 		/// </summary>
 		/// <param name="isChecked">是否選擇</param>
-		/// <param name="preview">題型種類</param>
+		/// <param name="controlId">控件ID</param>
+		public void TopicCheckedChanged(bool isChecked, string controlId)
+		{
+			ControlInfo item = _controlList.Where(d => d.ControlId.Equals(controlId)).First();
+			if (isChecked)
+			{
+				// 題型預覽添加
+				SetLayoutSettingPreviewList(item.Preview);
+				// 取得HTML和JS的替換內容
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(item.Preview, item.Identifier);
+				// 按照題型將所有替換內容裝箱子
+				_htmlMaps.Add(controlId, htmlMaps);
+			}
+			else
+			{
+				// 題型預覽移除
+				_layoutSettingPreviewList.Remove(item.Preview);
+				// 題型移除
+				_htmlMaps.Remove(controlId);
+			}
+		}
+
+		/// <summary>
+		/// 題型項目選擇事件
+		/// </summary>
+		/// <param name="isChecked">是否選擇</param>
+		/// <param name="preview">控件ID</param>
 		/// <param name="identifier">題型參數識別號</param>
 		public void TopicCheckedChanged(bool isChecked, LayoutSetting.Preview preview, string identifier)
 		{
@@ -197,5 +226,79 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 				htmlMaps.Add(attr.Source, attr.Target);
 			});
 		}
+
+		private List<ControlInfo> _controlList;
+		/// <summary>
+		/// 控件基本屬性取得
+		/// </summary>
+		public List<ControlInfo> ControlList
+		{
+			get
+			{
+				if(_controlList == null)
+				{
+					_controlList = new List<ControlInfo>();
+
+					int indexX = 1, indexY = 1;
+					ComposerFactory.AssemblyInfoCache.ToList().ForEach(d => {
+
+						_controlList.Add(new ControlInfo() {
+							IndexX = indexX,
+							IndexY = indexY,
+							// 控件ID設定
+							ControlId = d.Value.Preview.ToString(),
+							// 控件標題設定
+							Title = d.Value.Description,
+							// 題型類型
+							Preview = d.Value.Preview,
+							// 題型參數書別號
+							Identifier = d.Value.Identifier
+						});
+
+						if (indexX == 3)
+						{
+							indexY++;
+							indexX = 0;
+						}
+						indexX++;
+					});
+				}
+				return _controlList;
+			}
+		}
+	}
+
+	/// <summary>
+	/// 控件基本信息
+	/// </summary>
+	public class ControlInfo
+	{
+		/// <summary>
+		/// 坐標X
+		/// </summary>
+		public int IndexX { get; set; }
+		/// <summary>
+		/// 坐標Y
+		/// </summary>
+		public int IndexY { get; set; }
+		/// <summary>
+		/// 控件ID
+		/// </summary>
+		public string ControlId { get; set; }
+
+		/// <summary>
+		/// 控件標題
+		/// </summary>
+		public string Title { get; set; }
+
+		/// <summary>
+		/// 題型類型
+		/// </summary>
+		public LayoutSetting.Preview Preview { get; set; }
+
+		/// <summary>
+		/// 題型參數書別號
+		/// </summary>
+		public string Identifier{ get; set; }
 	}
 }

@@ -71,7 +71,6 @@
     <Compile Include="Main\ExportAttributes\HtmlSupportAttribute.cs" />
     <Compile Include="Main\ExportAttributes\ParameterProviderAttribute.cs" />
     <Compile Include="Main\FromProcess\IMainProcess.cs" />
-    <Compile Include="Main\FromProcess\Item\CheckObjectArgument.cs" />
     <Compile Include="Main\FromProcess\MainProcess.cs" />
     <Compile Include="Main\HtmlSupport\Attributes\SubstituteAttribute.cs" />
     <Compile Include="Main\HtmlSupport\HtmlSupprtHelper.cs" />

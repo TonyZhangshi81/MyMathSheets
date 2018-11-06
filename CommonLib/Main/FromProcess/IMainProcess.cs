@@ -9,7 +9,12 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 	public interface IMainProcess
 	{
 		/// <summary>
-		/// 
+		/// 控件基本屬性取得
+		/// </summary>
+		List<ControlInfo> ControlList { get; }
+
+		/// <summary>
+		/// 題型瀏覽內容列表
 		/// </summary>
 		List<LayoutSetting.Preview> LayoutSettingPreviewList { get; set; }
 
@@ -35,8 +40,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 題型項目選擇事件
 		/// </summary>
 		/// <param name="isChecked">是否選擇</param>
-		/// <param name="preview">題型種類</param>
-		/// <param name="identifier">題型參數識別號</param>
-		void TopicCheckedChanged(bool isChecked, LayoutSetting.Preview preview, string identifier);
+		/// <param name="controlId">控件ID</param>
+		void TopicCheckedChanged(bool isChecked, string controlId);
 	}
 }

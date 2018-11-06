@@ -138,7 +138,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 				return (ParameterBase)Activator.CreateInstance(parameter.GetType());
 			});
 
-			_operationParameter.Identifier = identifier;
+			_operationParameter.Identifier = key;
 			// 參數初期化處理（依據Provider配置）
 			_operationParameter.InitParameter();
 

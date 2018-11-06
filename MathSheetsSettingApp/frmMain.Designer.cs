@@ -43,6 +43,7 @@
 			this.chkIsPreview = new System.Windows.Forms.CheckBox();
 			this.chkFindTheLaw = new System.Windows.Forms.CheckBox();
 			this.chkNumericSorting = new System.Windows.Forms.CheckBox();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this.SuspendLayout();
 			// 
 			// btnSure
@@ -64,7 +65,6 @@
 			this.chkArithmetic.TabIndex = 14;
 			this.chkArithmetic.Text = "四則運算";
 			this.chkArithmetic.UseVisualStyleBackColor = true;
-			this.chkArithmetic.CheckedChanged += new System.EventHandler(this.ArithmeticCheckedChanged);
 			// 
 			// chkEqualityComparison
 			// 
@@ -75,7 +75,6 @@
 			this.chkEqualityComparison.TabIndex = 15;
 			this.chkEqualityComparison.Text = "算式比大小";
 			this.chkEqualityComparison.UseVisualStyleBackColor = true;
-			this.chkEqualityComparison.CheckedChanged += new System.EventHandler(this.EqualityComparisonCheckedChanged);
 			// 
 			// chkComputingConnection
 			// 
@@ -86,7 +85,6 @@
 			this.chkComputingConnection.TabIndex = 16;
 			this.chkComputingConnection.Text = "等式接龍";
 			this.chkComputingConnection.UseVisualStyleBackColor = true;
-			this.chkComputingConnection.CheckedChanged += new System.EventHandler(this.ComputingConnectionCheckedChanged);
 			// 
 			// chkMathWordProblems
 			// 
@@ -97,7 +95,6 @@
 			this.chkMathWordProblems.TabIndex = 17;
 			this.chkMathWordProblems.Text = "算式應用題";
 			this.chkMathWordProblems.UseVisualStyleBackColor = true;
-			this.chkMathWordProblems.CheckedChanged += new System.EventHandler(this.MathWordProblemsCheckedChanged);
 			// 
 			// flpPreview
 			// 
@@ -118,7 +115,6 @@
 			this.chkFruitsLinkage.TabIndex = 19;
 			this.chkFruitsLinkage.Text = "水果連連看";
 			this.chkFruitsLinkage.UseVisualStyleBackColor = true;
-			this.chkFruitsLinkage.CheckedChanged += new System.EventHandler(this.FruitsLinkageCheckedChanged);
 			// 
 			// chkFindNearestNumber
 			// 
@@ -129,7 +125,6 @@
 			this.chkFindNearestNumber.TabIndex = 20;
 			this.chkFindNearestNumber.Text = "找出最近的數字";
 			this.chkFindNearestNumber.UseVisualStyleBackColor = true;
-			this.chkFindNearestNumber.CheckedChanged += new System.EventHandler(this.FindNearestNumberCheckedChanged);
 			// 
 			// chkCombinatorialEquation
 			// 
@@ -140,7 +135,6 @@
 			this.chkCombinatorialEquation.TabIndex = 21;
 			this.chkCombinatorialEquation.Text = "算式組合";
 			this.chkCombinatorialEquation.UseVisualStyleBackColor = true;
-			this.chkCombinatorialEquation.CheckedChanged += new System.EventHandler(this.CombinatorialEquationCheckedChanged);
 			// 
 			// button1
 			// 
@@ -160,7 +154,6 @@
 			this.chkScoreGoal.TabIndex = 23;
 			this.chkScoreGoal.Text = "射門得分";
 			this.chkScoreGoal.UseVisualStyleBackColor = true;
-			this.chkScoreGoal.CheckedChanged += new System.EventHandler(this.ScoreGoalCheckedChanged);
 			// 
 			// chkHowMuchMore
 			// 
@@ -171,7 +164,6 @@
 			this.chkHowMuchMore.TabIndex = 24;
 			this.chkHowMuchMore.Text = "比多少";
 			this.chkHowMuchMore.UseVisualStyleBackColor = true;
-			this.chkHowMuchMore.CheckedChanged += new System.EventHandler(this.HowMuchMoreCheckedChanged);
 			// 
 			// chkIsPreview
 			// 
@@ -192,7 +184,6 @@
 			this.chkFindTheLaw.TabIndex = 26;
 			this.chkFindTheLaw.Text = "找規律";
 			this.chkFindTheLaw.UseVisualStyleBackColor = true;
-			this.chkFindTheLaw.CheckedChanged += new System.EventHandler(this.FindTheLawCheckedChanged);
 			// 
 			// chkNumericSorting
 			// 
@@ -203,13 +194,20 @@
 			this.chkNumericSorting.TabIndex = 27;
 			this.chkNumericSorting.Text = "數字排序";
 			this.chkNumericSorting.UseVisualStyleBackColor = true;
-			this.chkNumericSorting.CheckedChanged += new System.EventHandler(this.NumericSortingCheckedChanged);
+			// 
+			// panel1
+			// 
+			this.panel1.Location = new System.Drawing.Point(27, 144);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(354, 178);
+			this.panel1.TabIndex = 28;
 			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(932, 405);
+			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.chkNumericSorting);
 			this.Controls.Add(this.chkFindTheLaw);
 			this.Controls.Add(this.chkIsPreview);
@@ -250,6 +248,7 @@
 		private System.Windows.Forms.CheckBox chkIsPreview;
 		private System.Windows.Forms.CheckBox chkFindTheLaw;
 		private System.Windows.Forms.CheckBox chkNumericSorting;
+		private System.Windows.Forms.Panel panel1;
 	}
 }
 

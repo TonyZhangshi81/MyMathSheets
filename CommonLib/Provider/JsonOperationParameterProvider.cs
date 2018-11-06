@@ -23,7 +23,6 @@ namespace MyMathSheets.CommonLib.Provider
 			using (System.IO.StreamReader file = System.IO.File.OpenText(Argument.ToString()))
 			{
 				allProblems = JsonConvert.DeserializeObject<List<ParameterBase>>(file.ReadToEnd());
-				//allProblems = JsonExtension.GetObjectByJson<List<ParameterBase>>(file.ReadToEnd());
 			};
 
 			return allProblems.ToList().Where(d => d.Identifier.Equals(identifier)).First();

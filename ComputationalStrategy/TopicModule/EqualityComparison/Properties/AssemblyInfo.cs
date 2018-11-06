@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("MyMathSheets.ComputationalStrategy.EqualityComparison")]
-[assembly: AssemblyDescription("運算比大小")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MyMathSheets.ComputationalStrategy.EqualityComparison")]
@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MathSheetMarker(SystemModel.ComputationalStrategy, LayoutSetting.Preview.EqualityComparison)]
+[assembly: MathSheetMarker(SystemModel.ComputationalStrategy, LayoutSetting.Preview.EqualityComparison, "運算比大小", "EC001")]

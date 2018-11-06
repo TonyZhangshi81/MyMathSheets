@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Config\FindNearestNumber.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +66,7 @@
   <PropertyGroup>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)\Lib" /y</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)\Lib" /Y
+copy "..\Config\*.json" "$(SolutionDir)MathSheetsSettingApp\Config" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -1,0 +1,1838 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="../Content/favicon.ico">
+	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
+	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
+	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
+	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.Arithmetic.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.EqualityComparison.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.ComputingConnection.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.MathWordProblems.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.FruitsLinkage.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.FindNearestNumber.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.CombinatorialEquation.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.ScoreGoal.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.HowMuchMore.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.FindTheLaw.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.NumericSorting.js" charset="utf-8"></script>
+	<title>題庫</title>
+
+	<script>
+		// 頁面啟動后加載
+		$(document).ready(function () {
+			// 準備
+			$('#btnReady').click(function () { btnReadyClick(); });
+			// 提交答題
+			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
+			// 訂正錯題
+			$('#btnMakeCorrections').click(function () { btnMakeCorrectionsClick(); });
+			// 完成
+			$('#btnOver').click(function () { btnOverClick(); });
+			// 打印
+			$('#btnPrint').click(function () { btnPrintClick(); });
+
+			// 還原上一次答題結果
+			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
+			// 計算式提示
+			$(function () { $("[data-toggle='tooltip']").tooltip(); });
+		});
+
+		// 打印
+		function btnPrintClick() {
+			MathSheets.Arithmetic.printSetting();
+			MathSheets.EqualityComparison.printSetting();
+			MathSheets.ComputingConnection.printSetting();
+			MathSheets.MathWordProblems.printSetting();
+			MathSheets.FindNearestNumber.printSetting();
+			MathSheets.CombinatorialEquation.printSetting();
+			MathSheets.HowMuchMore.printSetting();
+			MathSheets.FindTheLaw.printSetting();
+			MathSheets.NumericSorting.printSetting();
+
+			// 頁面答應處理
+			MathSheets.Common.pagePrint('divPrintContent');
+			// 打印后恢復頁面最初狀態設置
+			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
+			// 打印后頁面設定
+			MathSheets.Arithmetic.printAfterSetting();
+			MathSheets.EqualityComparison.printAfterSetting();
+			MathSheets.ComputingConnection.printAfterSetting();
+			MathSheets.MathWordProblems.printAfterSetting();
+			MathSheets.FindNearestNumber.printAfterSetting();
+			MathSheets.CombinatorialEquation.printAfterSetting();
+			MathSheets.HowMuchMore.printAfterSetting();
+			MathSheets.FindTheLaw.printAfterSetting();
+			MathSheets.NumericSorting.printAfterSetting();
+		}
+
+		// 答題準備按鍵
+		function btnReadyClick() {
+			// 設定頁面所有輸入域為可用狀態(共通)-交卷按鈕顯示,準備按鈕隱藏,打印按鈕隱藏
+			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
+			// 設定頁面所有輸入域為可用狀態（四則運算）
+			MathSheets.Arithmetic.ready();
+			// 設定頁面所有輸入域為可用狀態(運算比大小)
+			MathSheets.EqualityComparison.ready();
+			// 設定頁面所有輸入域為可用狀態(等式接龍)
+			MathSheets.ComputingConnection.ready();
+			// 設定頁面所有輸入域為可用狀態(算數應用題)
+			MathSheets.MathWordProblems.ready();
+			// 設定頁面所有輸入域為可用狀態(水果連連看)
+			__fruitsArrayHiddenControlId = 'hidFruitsArray';MathSheets.FruitsLinkage.ready('divFruitDrag', 'divContainer');
+			// 設定頁面所有輸入域為可用狀態(找到最近的數字)
+			MathSheets.FindNearestNumber.ready();
+			// 設定頁面所有輸入域為可用狀態(算式組合)
+			MathSheets.CombinatorialEquation.ready();
+			// 設定頁面所有輸入域為可用狀態(射門得分)
+			__goalsArrayHiddenControlId = 'hidBallsArray';MathSheets.ScoreGoal.ready('divBall', 'divGoaler');
+			// 設定頁面所有輸入域為可用狀態(比多少)
+			MathSheets.HowMuchMore.ready();
+			// 設定頁面所有輸入域為可用狀態(找規律)
+			MathSheets.FindTheLaw.ready();
+			// 設定頁面所有輸入域為可用狀態(數字排序)
+			MathSheets.NumericSorting.ready();
+
+			// 計時開始
+			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
+		}
+
+		// 完成(關閉頁面)
+		function btnOverClick() {
+			MathSheets.Common.windowClose();
+		}
+
+		// 訂正按鈕(不計入答題情況信息)
+		function btnMakeCorrectionsClick() {
+			var fault = 0;
+			// 四則運算題
+			fault += MathSheets.Arithmetic.makeCorrections();
+			// 算式比較大小
+			fault += MathSheets.EqualityComparison.makeCorrections();
+			// 等式接龍
+			fault += MathSheets.ComputingConnection.makeCorrections();
+			// 算數應用題
+			fault += MathSheets.MathWordProblems.makeCorrections();
+			// 水果連連看
+			fault += MathSheets.FruitsLinkage.makeCorrections();
+			// 找到最近的數字
+			fault += MathSheets.FindNearestNumber.makeCorrections();
+			// 算式組合
+			fault += MathSheets.CombinatorialEquation.makeCorrections();
+			// 射門得分
+			fault += MathSheets.ScoreGoal.makeCorrections();
+			// 比多少
+			fault += MathSheets.HowMuchMore.makeCorrections();
+			// 找規律
+			fault += MathSheets.FindTheLaw.makeCorrections();
+			// 數字排序
+			fault += MathSheets.NumericSorting.makeCorrections();
+
+			// 訂正按鈕處理
+			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
+		}
+
+		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
+		function btnTheirPapersClick() {
+			// 四則運算交卷
+			MathSheets.Arithmetic.theirPapers();
+			// 算式比大小交卷
+			MathSheets.EqualityComparison.theirPapers();
+			// 等式接龍交卷
+			MathSheets.ComputingConnection.theirPapers();
+			// 算數應用題交卷
+			MathSheets.MathWordProblems.theirPapers();
+			// 水果連連看
+			MathSheets.FruitsLinkage.theirPapers();
+			// 找到最近的數字
+			MathSheets.FindNearestNumber.theirPapers();
+			// 算式組合
+			MathSheets.CombinatorialEquation.theirPapers();
+			// 射門得分
+			MathSheets.ScoreGoal.theirPapers();
+			// 比多少
+			MathSheets.HowMuchMore.theirPapers();
+			// 找規律
+			MathSheets.FindTheLaw.theirPapers();
+			// 數字排序
+			MathSheets.NumericSorting.theirPapers();
+
+			// 交卷按鈕處理
+			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
+			// 計時停止（答題結果設定）
+			MathSheets.Common.timeStop('spanSS', 'spanMM', 'spanHH');
+		}
+	</script>
+</head>
+<body>
+	<div class="container theme-showcase main-ext" role="main">
+		<div class="jumbotron-ext">
+			<div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
+			<div class="div-famousPeople">
+				<h6>
+					<span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+					<br />
+					<span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+					<br />
+					<span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+				</h6>
+			</div>
+			<hr class="hr-Ext" />
+			<div class="text-info-ext">
+				前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
+				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
+			</div>
+		</div>
+		<div id="divPrintContent">
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">四則運算</span></h4></div><hr /><div class="row text-center row-margin-top">
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">8</span>
+<span class="label">+</span>
+<span class="label">1</span>
+<span class="label">=</span>
+<input id="inputAc0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc0" type="hidden" value="9"/>
+<img id="imgOKArithmetic0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">5</span>
+<span class="label">+</span>
+<input id="inputAc1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc1" type="hidden" value="3"/>
+<span class="label">=</span>
+<span class="label">8</span>
+<img id="imgOKArithmetic1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">5</span>
+<span class="label">+</span>
+<input id="inputAc2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc2" type="hidden" value="0"/>
+<span class="label">=</span>
+<span class="label">5</span>
+<img id="imgOKArithmetic2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<input id="inputAc3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc3" type="hidden" value="8"/>
+<span class="label">=</span>
+<span class="label">8</span>
+<span class="label">+</span>
+<span class="label">0</span>
+<img id="imgOKArithmetic3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">9</span>
+<span class="label">-</span>
+<input id="inputAc4" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc4" type="hidden" value="5"/>
+<span class="label">=</span>
+<span class="label">4</span>
+<img id="imgOKArithmetic4" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic4" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">4</span>
+<span class="label">=</span>
+<input id="inputAc5" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc5" type="hidden" value="6"/>
+<span class="label">-</span>
+<span class="label">2</span>
+<img id="imgOKArithmetic5" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic5" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">6</span>
+<span class="label">-</span>
+<span class="label">5</span>
+<span class="label">=</span>
+<input id="inputAc6" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc6" type="hidden" value="1"/>
+<img id="imgOKArithmetic6" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic6" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">1</span>
+<span class="label">+</span>
+<input id="inputAc7" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc7" type="hidden" value="9"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<img id="imgOKArithmetic7" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic7" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">4</span>
+<span class="label">=</span>
+<input id="inputAc8" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc8" type="hidden" value="4"/>
+<span class="label">-</span>
+<span class="label">0</span>
+<img id="imgOKArithmetic8" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic8" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">8</span>
+<span class="label">=</span>
+<span class="label">2</span>
+<span class="label">+</span>
+<input id="inputAc9" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc9" type="hidden" value="6"/>
+<img id="imgOKArithmetic9" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic9" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<input id="inputAc10" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc10" type="hidden" value="7"/>
+<span class="label">-</span>
+<span class="label">3</span>
+<span class="label">=</span>
+<span class="label">4</span>
+<img id="imgOKArithmetic10" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic10" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">8</span>
+<span class="label">-</span>
+<span class="label">4</span>
+<span class="label">=</span>
+<input id="inputAc11" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc11" type="hidden" value="4"/>
+<img id="imgOKArithmetic11" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic11" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">7</span>
+<span class="label">=</span>
+<input id="inputAc12" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc12" type="hidden" value="5"/>
+<span class="label">+</span>
+<span class="label">2</span>
+<img id="imgOKArithmetic12" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic12" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">0</span>
+<span class="label">+</span>
+<span class="label">6</span>
+<span class="label">=</span>
+<input id="inputAc13" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc13" type="hidden" value="6"/>
+<img id="imgOKArithmetic13" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic13" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">2</span>
+<span class="label">=</span>
+<span class="label">2</span>
+<span class="label">-</span>
+<input id="inputAc14" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc14" type="hidden" value="0"/>
+<img id="imgOKArithmetic14" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic14" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<input id="inputAc15" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc15" type="hidden" value="4"/>
+<span class="label">=</span>
+<span class="label">0</span>
+<span class="label">+</span>
+<span class="label">4</span>
+<img id="imgOKArithmetic15" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic15" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">5</span>
+<span class="label">=</span>
+<input id="inputAc16" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc16" type="hidden" value="5"/>
+<span class="label">-</span>
+<span class="label">0</span>
+<img id="imgOKArithmetic16" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic16" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">5</span>
+<span class="label">+</span>
+<input id="inputAc17" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc17" type="hidden" value="5"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<img id="imgOKArithmetic17" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic17" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<input id="inputAc18" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc18" type="hidden" value="10"/>
+<span class="label">+</span>
+<span class="label">0</span>
+<span class="label">=</span>
+<span class="label">10</span>
+<img id="imgOKArithmetic18" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic18" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">7</span>
+<span class="label">-</span>
+<input id="inputAc19" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc19" type="hidden" value="5"/>
+<span class="label">=</span>
+<span class="label">2</span>
+<img id="imgOKArithmetic19" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic19" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">4</span>
+<span class="label">=</span>
+<input id="inputAc20" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc20" type="hidden" value="4"/>
+<span class="label">+</span>
+<span class="label">0</span>
+<img id="imgOKArithmetic20" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic20" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">6</span>
+<span class="label">=</span>
+<input id="inputAc21" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc21" type="hidden" value="7"/>
+<span class="label">-</span>
+<span class="label">1</span>
+<img id="imgOKArithmetic21" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic21" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">2</span>
+<span class="label">+</span>
+<input id="inputAc22" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc22" type="hidden" value="8"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<img id="imgOKArithmetic22" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic22" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">5</span>
+<span class="label">-</span>
+<input id="inputAc23" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc23" type="hidden" value="4"/>
+<span class="label">=</span>
+<span class="label">1</span>
+<img id="imgOKArithmetic23" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic23" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">8</span>
+<span class="label">-</span>
+<span class="label">1</span>
+<span class="label">=</span>
+<input id="inputAc24" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc24" type="hidden" value="7"/>
+<img id="imgOKArithmetic24" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic24" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">10</span>
+<span class="label">=</span>
+<span class="label">7</span>
+<span class="label">+</span>
+<input id="inputAc25" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc25" type="hidden" value="3"/>
+<img id="imgOKArithmetic25" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic25" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">1</span>
+<span class="label">=</span>
+<input id="inputAc26" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc26" type="hidden" value="10"/>
+<span class="label">-</span>
+<span class="label">9</span>
+<img id="imgOKArithmetic26" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic26" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<input id="inputAc27" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc27" type="hidden" value="6"/>
+<span class="label">=</span>
+<span class="label">3</span>
+<span class="label">+</span>
+<span class="label">3</span>
+<img id="imgOKArithmetic27" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic27" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-3 form-inline">
+<h5>
+<input id="inputAc28" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc28" type="hidden" value="7"/>
+<span class="label">-</span>
+<span class="label">6</span>
+<span class="label">=</span>
+<span class="label">1</span>
+<img id="imgOKArithmetic28" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic28" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-3 form-inline">
+<h5>
+<span class="label">10</span>
+<span class="label">=</span>
+<span class="label">9</span>
+<span class="label">+</span>
+<input id="inputAc29" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenAc29" type="hidden" value="1"/>
+<img id="imgOKArithmetic29" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoArithmetic29" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">運算比大小</span></h4></div><hr /><div class="row text-center row-margin-top">
+<div class="col-md-4 form-inline">
+<h5>
+<span class="label">1</span>
+<span class="label">+</span>
+<span class="label">0</span>
+<img src="../Content/image/help.png" width="30" height="30" id="imgEc0" title="help" />
+<input id="hiddenEc0" type="hidden" value="char-more" />
+<span class="label">6</span>
+<span class="label">-</span>
+<span class="label">6</span>
+<img id="imgOKEquality0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoEquality0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-4 form-inline">
+<h5>
+<span class="label">2</span>
+<span class="label">-</span>
+<span class="label">2</span>
+<img src="../Content/image/help.png" width="30" height="30" id="imgEc1" title="help" />
+<input id="hiddenEc1" type="hidden" value="char-less" />
+<span class="label">6</span>
+<span class="label">-</span>
+<span class="label">1</span>
+<img id="imgOKEquality1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoEquality1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-4 form-inline">
+<h5>
+<span class="label">4</span>
+<span class="label">-</span>
+<span class="label">4</span>
+<img src="../Content/image/help.png" width="30" height="30" id="imgEc2" title="help" />
+<input id="hiddenEc2" type="hidden" value="char-less" />
+<span class="label">1</span>
+<span class="label">-</span>
+<span class="label">0</span>
+<img id="imgOKEquality2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoEquality2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-4 form-inline">
+<h5>
+<span class="label">8</span>
+<span class="label">-</span>
+<span class="label">6</span>
+<img src="../Content/image/help.png" width="30" height="30" id="imgEc3" title="help" />
+<input id="hiddenEc3" type="hidden" value="char-more" />
+<span class="label">1</span>
+<span class="label">-</span>
+<span class="label">1</span>
+<img id="imgOKEquality3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoEquality3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-4 form-inline">
+<h5>
+<span class="label">6</span>
+<span class="label">-</span>
+<span class="label">4</span>
+<img src="../Content/image/help.png" width="30" height="30" id="imgEc4" title="help" />
+<input id="hiddenEc4" type="hidden" value="calculator" />
+<span class="label">8</span>
+<span class="label">-</span>
+<span class="label">6</span>
+<img id="imgOKEquality4" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoEquality4" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-4 form-inline">
+<h5>
+<span class="label">8</span>
+<span class="label">-</span>
+<span class="label">5</span>
+<img src="../Content/image/help.png" width="30" height="30" id="imgEc5" title="help" />
+<input id="hiddenEc5" type="hidden" value="char-more" />
+<span class="label">5</span>
+<span class="label">-</span>
+<span class="label">3</span>
+<img id="imgOKEquality5" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoEquality5" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-4 form-inline">
+<h5>
+<span class="label">8</span>
+<span class="label">-</span>
+<span class="label">0</span>
+<img src="../Content/image/help.png" width="30" height="30" id="imgEc6" title="help" />
+<input id="hiddenEc6" type="hidden" value="char-more" />
+<span class="label">7</span>
+<span class="label">-</span>
+<span class="label">2</span>
+<img id="imgOKEquality6" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoEquality6" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-4 form-inline">
+<h5>
+<span class="label">3</span>
+<span class="label">+</span>
+<span class="label">0</span>
+<img src="../Content/image/help.png" width="30" height="30" id="imgEc7" title="help" />
+<input id="hiddenEc7" type="hidden" value="char-less" />
+<span class="label">8</span>
+<span class="label">+</span>
+<span class="label">0</span>
+<img id="imgOKEquality7" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoEquality7" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-4 form-inline">
+<h5>
+<span class="label">9</span>
+<span class="label">-</span>
+<span class="label">5</span>
+<img src="../Content/image/help.png" width="30" height="30" id="imgEc8" title="help" />
+<input id="hiddenEc8" type="hidden" value="char-less" />
+<span class="label">5</span>
+<span class="label">-</span>
+<span class="label">0</span>
+<img id="imgOKEquality8" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoEquality8" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-4 form-inline">
+<h5>
+<span class="label">8</span>
+<span class="label">+</span>
+<span class="label">0</span>
+<img src="../Content/image/help.png" width="30" height="30" id="imgEc9" title="help" />
+<input id="hiddenEc9" type="hidden" value="char-less" />
+<span class="label">6</span>
+<span class="label">+</span>
+<span class="label">3</span>
+<img id="imgOKEquality9" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoEquality9" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">等式接龍</span></h4></div><hr /><div class="row text-center row-margin-top">
+<div class="col-md-10 form-inline">
+<h5>
+<span class="label">10</span>
+<span class="label">+</span>
+<input id="inputCc00" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc00" type="hidden" value="0"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<span class="label">-</span>
+<input id="inputCc01" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc01" type="hidden" value="9"/>
+<span class="label">=</span>
+<span class="label">1</span>
+<span class="label">-</span>
+<input id="inputCc02" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc02" type="hidden" value="0"/>
+<span class="label">=</span>
+<span class="label">1</span>
+<span class="label">-</span>
+<input id="inputCc03" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc03" type="hidden" value="1"/>
+<span class="label">=</span>
+<span class="label">0</span>
+<img id="imgOKComputingConnection0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoComputingConnection0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+<input id="hiddenAllCc0" type="hidden" value="4"/>
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-10 form-inline">
+<h5>
+<span class="label">5</span>
+<span class="label">-</span>
+<input id="inputCc10" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc10" type="hidden" value="4"/>
+<span class="label">=</span>
+<span class="label">1</span>
+<img id="imgOKComputingConnection1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoComputingConnection1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+<input id="hiddenAllCc1" type="hidden" value="1"/>
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-10 form-inline">
+<h5>
+<span class="label">8</span>
+<span class="label">+</span>
+<input id="inputCc20" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc20" type="hidden" value="1"/>
+<span class="label">=</span>
+<span class="label">9</span>
+<span class="label">-</span>
+<input id="inputCc21" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc21" type="hidden" value="0"/>
+<span class="label">=</span>
+<span class="label">9</span>
+<span class="label">+</span>
+<input id="inputCc22" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc22" type="hidden" value="1"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<span class="label">-</span>
+<input id="inputCc23" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc23" type="hidden" value="10"/>
+<span class="label">=</span>
+<span class="label">0</span>
+<span class="label">+</span>
+<input id="inputCc24" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc24" type="hidden" value="8"/>
+<span class="label">=</span>
+<span class="label">8</span>
+<img id="imgOKComputingConnection2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoComputingConnection2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+<input id="hiddenAllCc2" type="hidden" value="5"/>
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-10 form-inline">
+<h5>
+<span class="label">5</span>
+<span class="label">+</span>
+<input id="inputCc30" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc30" type="hidden" value="4"/>
+<span class="label">=</span>
+<span class="label">9</span>
+<span class="label">+</span>
+<input id="inputCc31" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc31" type="hidden" value="0"/>
+<span class="label">=</span>
+<span class="label">9</span>
+<span class="label">-</span>
+<input id="inputCc32" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc32" type="hidden" value="9"/>
+<span class="label">=</span>
+<span class="label">0</span>
+<img id="imgOKComputingConnection3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoComputingConnection3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+<input id="hiddenAllCc3" type="hidden" value="3"/>
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-10 form-inline">
+<h5>
+<span class="label">1</span>
+<span class="label">-</span>
+<input id="inputCc40" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc40" type="hidden" value="0"/>
+<span class="label">=</span>
+<span class="label">1</span>
+<span class="label">+</span>
+<input id="inputCc41" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc41" type="hidden" value="4"/>
+<span class="label">=</span>
+<span class="label">5</span>
+<span class="label">+</span>
+<input id="inputCc42" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc42" type="hidden" value="1"/>
+<span class="label">=</span>
+<span class="label">6</span>
+<span class="label">+</span>
+<input id="inputCc43" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc43" type="hidden" value="3"/>
+<span class="label">=</span>
+<span class="label">9</span>
+<span class="label">+</span>
+<input id="inputCc44" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc44" type="hidden" value="1"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<img id="imgOKComputingConnection4" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoComputingConnection4" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+<input id="hiddenAllCc4" type="hidden" value="5"/>
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-10 form-inline">
+<h5>
+<span class="label">7</span>
+<span class="label">+</span>
+<input id="inputCc50" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc50" type="hidden" value="2"/>
+<span class="label">=</span>
+<span class="label">9</span>
+<span class="label">-</span>
+<input id="inputCc51" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc51" type="hidden" value="4"/>
+<span class="label">=</span>
+<span class="label">5</span>
+<span class="label">-</span>
+<input id="inputCc52" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc52" type="hidden" value="5"/>
+<span class="label">=</span>
+<span class="label">0</span>
+<img id="imgOKComputingConnection5" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoComputingConnection5" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+<input id="hiddenAllCc5" type="hidden" value="3"/>
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-10 form-inline">
+<h5>
+<span class="label">6</span>
+<span class="label">-</span>
+<input id="inputCc60" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc60" type="hidden" value="4"/>
+<span class="label">=</span>
+<span class="label">2</span>
+<span class="label">+</span>
+<input id="inputCc61" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc61" type="hidden" value="8"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<span class="label">+</span>
+<input id="inputCc62" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc62" type="hidden" value="0"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<span class="label">+</span>
+<input id="inputCc63" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc63" type="hidden" value="0"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<span class="label">+</span>
+<input id="inputCc64" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc64" type="hidden" value="0"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<img id="imgOKComputingConnection6" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoComputingConnection6" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+<input id="hiddenAllCc6" type="hidden" value="5"/>
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-10 form-inline">
+<h5>
+<span class="label">10</span>
+<span class="label">-</span>
+<input id="inputCc70" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc70" type="hidden" value="8"/>
+<span class="label">=</span>
+<span class="label">2</span>
+<span class="label">+</span>
+<input id="inputCc71" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc71" type="hidden" value="1"/>
+<span class="label">=</span>
+<span class="label">3</span>
+<span class="label">-</span>
+<input id="inputCc72" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc72" type="hidden" value="1"/>
+<span class="label">=</span>
+<span class="label">2</span>
+<img id="imgOKComputingConnection7" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoComputingConnection7" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+<input id="hiddenAllCc7" type="hidden" value="3"/>
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-10 form-inline">
+<h5>
+<span class="label">3</span>
+<span class="label">+</span>
+<input id="inputCc80" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc80" type="hidden" value="1"/>
+<span class="label">=</span>
+<span class="label">4</span>
+<span class="label">-</span>
+<input id="inputCc81" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc81" type="hidden" value="4"/>
+<span class="label">=</span>
+<span class="label">0</span>
+<span class="label">+</span>
+<input id="inputCc82" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc82" type="hidden" value="10"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<span class="label">+</span>
+<input id="inputCc83" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc83" type="hidden" value="0"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<span class="label">+</span>
+<input id="inputCc84" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenCc84" type="hidden" value="0"/>
+<span class="label">=</span>
+<span class="label">10</span>
+<img id="imgOKComputingConnection8" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoComputingConnection8" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+<input id="hiddenAllCc8" type="hidden" value="5"/>
+</h5>
+</div>
+</div>
+
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">算數應用題</span></h4></div><hr /><div class="row text-center row-margin-top">
+<div class="col-md-12 form-inline">
+<h5>
+<p class="text-info">
+<span class="label">小红今年1岁，爸爸今年4岁，小红比爸爸小多少岁？</span>
+</p>
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<input id="inputMwp00" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" id="imgMwp0" style="width: 30px; height: 30px;" title="help" />
+<input id="inputMwp01" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+<input id="inputMwp02" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="hiddenMwp0" type="hidden" value="4-1=3" />
+<img id="imgOKProblems0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoProblems0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<p class="text-info">
+<span class="label">一辆2座的客车数还有1个座位空着，车上共坐了多少人？</span>
+</p>
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<input id="inputMwp10" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" id="imgMwp1" style="width: 30px; height: 30px;" title="help" />
+<input id="inputMwp11" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+<input id="inputMwp12" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="hiddenMwp1" type="hidden" value="2-1=1" />
+<img id="imgOKProblems1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoProblems1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<p class="text-info">
+<span class="label">同学们要做7个灯笼,已做好4个，还要做多少个? </span>
+</p>
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<input id="inputMwp20" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" id="imgMwp2" style="width: 30px; height: 30px;" title="help" />
+<input id="inputMwp21" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+<input id="inputMwp22" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="hiddenMwp2" type="hidden" value="7-4=3" />
+<img id="imgOKProblems2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoProblems2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<p class="text-info">
+<span class="label">大客车：1辆  中巴：45辆  小轿车：3辆   小轿车比大客车多多少辆?</span>
+</p>
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<input id="inputMwp30" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" id="imgMwp3" style="width: 30px; height: 30px;" title="help" />
+<input id="inputMwp31" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+<input id="inputMwp32" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="hiddenMwp3" type="hidden" value="3-1=2" />
+<img id="imgOKProblems3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoProblems3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<p class="text-info">
+<span class="label">妈妈买上衣和裤子共用去10元，买上衣用去5元，买裤子用去多少元? </span>
+</p>
+</h5>
+</div>
+<div class="col-md-12 form-inline">
+<h5>
+<input id="inputMwp40" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" id="imgMwp4" style="width: 30px; height: 30px;" title="help" />
+<input id="inputMwp41" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px;" />
+<input id="inputMwp42" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="hiddenMwp4" type="hidden" value="10-5=5" />
+<img id="imgOKProblems4" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoProblems4" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">水果連連看</span></h4></div><hr /><input id="hidFruitsArray" type="hidden" value="6,0,3,4,1,5,2"/><div class="row text-center row-margin-top fruitsFormula-left" >
+<div class="form-inline-ext">
+<h5>
+<img src="../Content/image/fruits/Apricot.png" class="fruitsImg" width=25 height=25>
+<span class="label">11+0</span>
+</h5>
+</div>
+<div class="form-inline-ext">
+<h5>
+<img src="../Content/image/fruits/Peach.png" class="fruitsImg" width=25 height=25>
+<span class="label">8+15</span>
+</h5>
+</div>
+<div class="form-inline-ext">
+<h5>
+<img src="../Content/image/fruits/Grape.png" class="fruitsImg" width=25 height=25>
+<span class="label">21-12</span>
+</h5>
+</div>
+<div class="form-inline-ext">
+<h5>
+<img src="../Content/image/fruits/Apple.png" class="fruitsImg" width=25 height=25>
+<span class="label">3-0</span>
+</h5>
+</div>
+<div class="form-inline-ext">
+<h5>
+<img src="../Content/image/fruits/Strawberry.png" class="fruitsImg" width=25 height=25>
+<span class="label">26-21</span>
+</h5>
+</div>
+</div>
+<div class="row text-center row-margin-top fruitsFormula-right" >
+<div class="form-inline-ext">
+<h5>
+<img src="../Content/image/fruits/Banana.png" class="fruitsImg" width=25 height=25>
+<span class="label">11+11</span>
+</h5>
+</div>
+<div class="form-inline-ext">
+<h5>
+<img src="../Content/image/fruits/Pear.png" class="fruitsImg" width=25 height=25>
+<span class="label">27+3</span>
+</h5>
+</div>
+</div>
+<div class="easyui-panel easyui-panel-ext" >
+<div id="divFruitDrag0" class="divFruitDrag" style="position: absolute; left: 170px; top: 90px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+<img src="../Content/image/fruits/Apricot.png" width=40 height=40>
+<input id="divFruitDrag0Input" type="hidden" />
+<input id="divFruitDrag0Result" type="hidden" value="ERROR" />
+</div>
+<div id="divFruitDrag1" class="divFruitDrag" style="position: absolute; left: 5px; top: 180px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+<img src="../Content/image/fruits/Peach.png" width=40 height=40>
+<input id="divFruitDrag1Input" type="hidden" />
+<input id="divFruitDrag1Result" type="hidden" value="ERROR" />
+</div>
+<div id="divFruitDrag2" class="divFruitDrag" style="position: absolute; left: 130px; top: 35px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+<img src="../Content/image/fruits/Grape.png" width=40 height=40>
+<input id="divFruitDrag2Input" type="hidden" />
+<input id="divFruitDrag2Result" type="hidden" value="ERROR" />
+</div>
+<div id="divFruitDrag3" class="divFruitDrag" style="position: absolute; left: 185px; top: 165px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+<img src="../Content/image/fruits/Apple.png" width=40 height=40>
+<input id="divFruitDrag3Input" type="hidden" />
+<input id="divFruitDrag3Result" type="hidden" value="ERROR" />
+</div>
+<div id="divFruitDrag4" class="divFruitDrag" style="position: absolute; left: 10px; top: 90px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+<img src="../Content/image/fruits/Strawberry.png" width=40 height=40>
+<input id="divFruitDrag4Input" type="hidden" />
+<input id="divFruitDrag4Result" type="hidden" value="ERROR" />
+</div>
+<div id="divFruitDrag5" class="divFruitDrag" style="position: absolute; left: 80px; top: 75px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+<img src="../Content/image/fruits/Banana.png" width=40 height=40>
+<input id="divFruitDrag5Input" type="hidden" />
+<input id="divFruitDrag5Result" type="hidden" value="ERROR" />
+</div>
+<div id="divFruitDrag6" class="divFruitDrag" style="position: absolute; left: 70px; top: 175px;" data-options="onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag">
+<img src="../Content/image/fruits/Pear.png" width=40 height=40>
+<input id="divFruitDrag6Input" type="hidden" />
+<input id="divFruitDrag6Result" type="hidden" value="ERROR" />
+</div>
+
+<div id="divContainer0" class="divContainer divSeat0">
+<h5>
+<span class="label">29-6</span>
+<img src="../Content/image/fruits/table.png" width=78 height=20 style="margin-top:35px;">
+<img id="imgOKFruitsLinkage0" src="../Content/image/correct.png" style="width: 20px; height: 20px; display: none; " />
+<img id="imgNoFruitsLinkage0" src="../Content/image/fault.png" style="width: 20px; height: 20px; display: none; " />
+</h5>
+</div>
+<div id="divContainer1" class="divContainer divSeat1">
+<h5>
+<span class="label">0+5</span>
+<img src="../Content/image/fruits/table.png" width=78 height=20 style="margin-top:35px;">
+<img id="imgOKFruitsLinkage1" src="../Content/image/correct.png" style="width: 20px; height: 20px; display: none; " />
+<img id="imgNoFruitsLinkage1" src="../Content/image/fault.png" style="width: 20px; height: 20px; display: none; " />
+</h5>
+</div>
+<div id="divContainer2" class="divContainer divSeat2">
+<h5>
+<span class="label">30-0</span>
+<img src="../Content/image/fruits/table.png" width=78 height=20 style="margin-top:35px;">
+<img id="imgOKFruitsLinkage2" src="../Content/image/correct.png" style="width: 20px; height: 20px; display: none; " />
+<img id="imgNoFruitsLinkage2" src="../Content/image/fault.png" style="width: 20px; height: 20px; display: none; " />
+</h5>
+</div>
+<div id="divContainer3" class="divContainer divSeat3">
+<h5>
+<span class="label">8+1</span>
+<img src="../Content/image/fruits/table.png" width=78 height=20 style="margin-top:35px;">
+<img id="imgOKFruitsLinkage3" src="../Content/image/correct.png" style="width: 20px; height: 20px; display: none; " />
+<img id="imgNoFruitsLinkage3" src="../Content/image/fault.png" style="width: 20px; height: 20px; display: none; " />
+</h5>
+</div>
+<div id="divContainer4" class="divContainer divSeat4">
+<h5>
+<span class="label">1+2</span>
+<img src="../Content/image/fruits/table.png" width=78 height=20 style="margin-top:35px;">
+<img id="imgOKFruitsLinkage4" src="../Content/image/correct.png" style="width: 20px; height: 20px; display: none; " />
+<img id="imgNoFruitsLinkage4" src="../Content/image/fault.png" style="width: 20px; height: 20px; display: none; " />
+</h5>
+</div>
+<div id="divContainer5" class="divContainer divSeat5">
+<h5>
+<span class="label">13+9</span>
+<img src="../Content/image/fruits/table.png" width=78 height=20 style="margin-top:35px;">
+<img id="imgOKFruitsLinkage5" src="../Content/image/correct.png" style="width: 20px; height: 20px; display: none; " />
+<img id="imgNoFruitsLinkage5" src="../Content/image/fault.png" style="width: 20px; height: 20px; display: none; " />
+</h5>
+</div>
+<div id="divContainer6" class="divContainer divSeat6">
+<h5>
+<span class="label">3+8</span>
+<img src="../Content/image/fruits/table.png" width=78 height=20 style="margin-top:35px;">
+<img id="imgOKFruitsLinkage6" src="../Content/image/correct.png" style="width: 20px; height: 20px; display: none; " />
+<img id="imgNoFruitsLinkage6" src="../Content/image/fault.png" style="width: 20px; height: 20px; display: none; " />
+</h5>
+</div>
+
+</div>
+
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">找出最近的數字</span></h4></div><hr /><div class="row text-center row-margin-top">
+<div class="col-md-4 form-inline">
+<h5>
+<span class="label">9</span>
+<span class="label">+</span>
+<span class="label">0</span>
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<span class="label">9</span>
+<span class="label">-</span>
+<input id="inputFnn0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><input id="hiddenFnn0" type="hidden" value="1"/>
+<img id="imgOKFindNearestNumber0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoFindNearestNumber0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</div>
+</div>
+
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">算式組合</span></h4></div><hr /><div class="row text-center row-margin-top">
+<div class="col-md-4 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h4>
+<span class="badge badge-warning" style="width: 40px;">9</span>
+<span class="badge badge-success" style="width: 40px;">10</span>
+<span class="badge badge-primary" style="width: 40px;">1</span>
+<img id="imgOKCombinatorial0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoCombinatorial0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h4>
+<input id="hiddenCe0" type="hidden" value="9+1=10,1+9=10,10-9=1,10-1=9" />
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe0L0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe0S0" title="help" />
+<input id="inputCe0R0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe0A0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe0L1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe0S1" title="help" />
+<input id="inputCe0R1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe0A1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe0L2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe0S2" title="help" />
+<input id="inputCe0R2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe0A2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe0L3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe0S3" title="help" />
+<input id="inputCe0R3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe0A3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+
+</ul>
+</div>
+<div class="col-md-4 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h4>
+<span class="badge badge-warning" style="width: 40px;">6</span>
+<span class="badge badge-success" style="width: 40px;">9</span>
+<span class="badge badge-primary" style="width: 40px;">3</span>
+<img id="imgOKCombinatorial1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoCombinatorial1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h4>
+<input id="hiddenCe1" type="hidden" value="6+3=9,3+6=9,9-6=3,9-3=6" />
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe1L0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe1S0" title="help" />
+<input id="inputCe1R0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe1A0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe1L1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe1S1" title="help" />
+<input id="inputCe1R1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe1A1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe1L2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe1S2" title="help" />
+<input id="inputCe1R2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe1A2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe1L3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe1S3" title="help" />
+<input id="inputCe1R3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe1A3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+
+</ul>
+</div>
+<div class="col-md-4 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h4>
+<span class="badge badge-warning" style="width: 40px;">0</span>
+<span class="badge badge-success" style="width: 40px;">0</span>
+<span class="badge badge-primary" style="width: 40px;">0</span>
+<img id="imgOKCombinatorial2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoCombinatorial2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h4>
+<input id="hiddenCe2" type="hidden" value="0+0=0,0+0=0,0-0=0,0-0=0" />
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe2L0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe2S0" title="help" />
+<input id="inputCe2R0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe2A0" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe2L1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe2S1" title="help" />
+<input id="inputCe2R1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe2A1" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe2L2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe2S2" title="help" />
+<input id="inputCe2R2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe2A2" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<input id="inputCe2L3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/help.png" width="30" height="30" id="imgCe2S3" title="help" />
+<input id="inputCe2R3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/calculator.png" style="width: 30px; height: 30px; " />
+<input id="inputCe2A3" type = "text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h4>
+</li>
+
+</ul>
+</div>
+</div>
+
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">射門得分</span></h4></div><hr /><input id="hidBallsArray" type="hidden" value="1,1,1,1,0,0"/><div class="easyui-panel easyui-panel-ScoreGoal-ext" >
+<div id="divBall0" class="divBall" style="position: absolute; left: 15px; top: 20px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/sport/BeachBall.png" width=40 height=40 data-toggle="tooltip" title="1+2">
+<input id="divBall0Input" type="hidden" />
+<input id="divBall0Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall1" class="divBall" style="position: absolute; left: 140px; top: 230px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/sport/Football.png" width=40 height=40 data-toggle="tooltip" title="0+3">
+<input id="divBall1Input" type="hidden" />
+<input id="divBall1Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall2" class="divBall" style="position: absolute; left: 10px; top: 90px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/sport/Tennis.png" width=40 height=40 data-toggle="tooltip" title="17-14">
+<input id="divBall2Input" type="hidden" />
+<input id="divBall2Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall3" class="divBall" style="position: absolute; left: 5px; top: 180px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/sport/Volleyball.png" width=40 height=40 data-toggle="tooltip" title="13-10">
+<input id="divBall3Input" type="hidden" />
+<input id="divBall3Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall4" class="divBall" style="position: absolute; left: 80px; top: 75px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/sport/Basketball.png" width=40 height=40 data-toggle="tooltip" title="6+2">
+<input id="divBall4Input" type="hidden" />
+<input id="divBall4Result" type="hidden" value="ERROR" />
+</div>
+<div id="divBall5" class="divBall" style="position: absolute; left: 170px; top: 90px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+<img src="../Content/image/sport/Ball.png" width=40 height=40 data-toggle="tooltip" title="5+3">
+<input id="divBall5Input" type="hidden" />
+<input id="divBall5Result" type="hidden" value="ERROR" />
+</div>
+
+<div id="divGoaler0" class="divGoaler divGoaler0">
+<h5>
+<span class="label">8+0</span>
+<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;" >
+</h5>
+</div>
+<div id="divScore0" class="divScore divScore0">
+<h2><span id="spanHomeScore"></span></h2>
+</div>
+<div id="divScore1" class="divScore divScore1">
+<h2>
+<span>:</span>
+</h2>
+</div>
+<div id="divScore2" class="divScore divScore2">
+<h2><span id="spanAwayScore"></span></h2>
+</div>
+<div id="divGoaler1" class="divGoaler divGoaler1">
+<h5>
+<span class="label">3-0</span>
+<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;" >
+</h5>
+</div>
+<div class="divScoreGoalResultImg">
+<img id="imgOKScoreGoal" src="../Content/image/correct.png" style="width: 60px; height: 60px; display: none; " />
+<img id="imgNoScoreGoal" src="../Content/image/fault.png" style="width: 60px; height: 60px; display: none; " />
+</div>
+
+</div>
+
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">比多少</span></h4></div><hr />
+<input type="hidden" id="hidImgHmmHelpArray" value="HappyFace,Fish,Fish,Fish" />
+<div class="row text-center row-margin-top">
+<div class="col-md-6 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<span>比</span>
+<img src="../Content/image/more/HappyFace.png" width="30" height="30" />
+<span>多</span>
+<span>5個</span>
+
+<img id="imgOKHmm0" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
+<img id="imgNoHmm0" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/help.png" id="imgHmmHelp00" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp01" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp02" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp03" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp04" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp05" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp06" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp07" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp08" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp09" width="30" height="30" title="help" />
+
+</h4>
+</li>
+</ul>
+</div>
+<input type="hidden" id="hidHmmAnswer0" value="4" />
+<div class="col-md-6 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<span>比</span>
+<img src="../Content/image/more/Circle.png" width="30" height="30" />
+<span>少</span>
+<span>2個</span>
+
+<img id="imgOKHmm1" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
+<img id="imgNoHmm1" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/more/Circle.png" width="30" height="30" />
+<img src="../Content/image/more/Circle.png" width="30" height="30" />
+<img src="../Content/image/more/Circle.png" width="30" height="30" />
+<img src="../Content/image/more/Circle.png" width="30" height="30" />
+<img src="../Content/image/more/Circle.png" width="30" height="30" />
+<img src="../Content/image/more/Circle.png" width="30" height="30" />
+<img src="../Content/image/more/Circle.png" width="30" height="30" />
+<img src="../Content/image/more/Circle.png" width="30" height="30" />
+
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/help.png" id="imgHmmHelp10" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp11" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp12" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp13" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp14" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp15" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp16" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp17" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp18" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp19" width="30" height="30" title="help" />
+
+</h4>
+</li>
+</ul>
+</div>
+<input type="hidden" id="hidHmmAnswer1" value="6" />
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-6 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/more/HappyFace.png" width="30" height="30" />
+<span>比</span>
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<span>少</span>
+<span>1個</span>
+
+<img id="imgOKHmm2" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
+<img id="imgNoHmm2" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/more/HappyFace.png" width="30" height="30" />
+<img src="../Content/image/more/HappyFace.png" width="30" height="30" />
+<img src="../Content/image/more/HappyFace.png" width="30" height="30" />
+<img src="../Content/image/more/HappyFace.png" width="30" height="30" />
+<img src="../Content/image/more/HappyFace.png" width="30" height="30" />
+
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/help.png" id="imgHmmHelp20" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp21" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp22" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp23" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp24" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp25" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp26" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp27" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp28" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp29" width="30" height="30" title="help" />
+
+</h4>
+</li>
+</ul>
+</div>
+<input type="hidden" id="hidHmmAnswer2" value="6" />
+<div class="col-md-6 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/more/Square.png" width="30" height="30" />
+<span>比</span>
+<img src="../Content/image/more/Fish.png" width="30" height="30" />
+<span>少</span>
+<span>4個</span>
+
+<img id="imgOKHmm3" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
+<img id="imgNoHmm3" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/more/Square.png" width="30" height="30" />
+<img src="../Content/image/more/Square.png" width="30" height="30" />
+
+</h4>
+</li>
+<li class="list-group-item">
+<h4>
+<img src="../Content/image/help.png" id="imgHmmHelp30" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp31" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp32" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp33" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp34" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp35" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp36" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp37" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp38" width="30" height="30" title="help" />
+<img src="../Content/image/help.png" id="imgHmmHelp39" width="30" height="30" title="help" />
+
+</h4>
+</li>
+</ul>
+</div>
+<input type="hidden" id="hidHmmAnswer3" value="6" />
+</div>
+
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">找規律</span></h4></div><hr /><div class="row text-center row-margin-top">
+<div class="col-md-4 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h5>
+<input id="inputFtl0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<span class="badge badge-warning" style="width: 30px;">28</span>
+<input id="inputFtl0L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="inputFtl0L3" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<span class="badge badge-warning" style="width: 30px;">16</span>
+<span class="badge badge-warning" style="width: 30px;">12</span>
+<span class="badge badge-warning" style="width: 30px;">8</span>
+
+<img id="imgOKFindTheLaw0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoFindTheLaw0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+<input id="hiddenFtl0" type="hidden" value="32,24,20" />
+</li>
+</ul>
+</div>
+<div class="col-md-4 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h5>
+<input id="inputFtl1L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<span class="badge badge-warning" style="width: 30px;">28</span>
+<span class="badge badge-warning" style="width: 30px;">23</span>
+<span class="badge badge-warning" style="width: 30px;">18</span>
+<input id="inputFtl1L4" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="inputFtl1L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<span class="badge badge-warning" style="width: 30px;">3</span>
+
+<img id="imgOKFindTheLaw1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoFindTheLaw1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+<input id="hiddenFtl1" type="hidden" value="33,13,8" />
+</li>
+</ul>
+</div>
+<div class="col-md-4 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h5>
+<span class="badge badge-warning" style="width: 30px;">32</span>
+<span class="badge badge-warning" style="width: 30px;">28</span>
+<span class="badge badge-warning" style="width: 30px;">24</span>
+<span class="badge badge-warning" style="width: 30px;">20</span>
+<input id="inputFtl2L4" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="inputFtl2L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="inputFtl2L6" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+
+<img id="imgOKFindTheLaw2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoFindTheLaw2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+<input id="hiddenFtl2" type="hidden" value="16,12,8" />
+</li>
+</ul>
+</div>
+</div>
+<div class="row text-center row-margin-top">
+<div class="col-md-4 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h5>
+<span class="badge badge-warning" style="width: 30px;">31</span>
+<input id="inputFtl3L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="inputFtl3L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<input id="inputFtl3L3" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<span class="badge badge-warning" style="width: 30px;">51</span>
+<span class="badge badge-warning" style="width: 30px;">56</span>
+<span class="badge badge-warning" style="width: 30px;">61</span>
+
+<img id="imgOKFindTheLaw3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoFindTheLaw3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+<input id="hiddenFtl3" type="hidden" value="36,41,46" />
+</li>
+</ul>
+</div>
+</div>
+
+		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">數字排序</span></h4></div><hr /><div class="row text-center row-margin-top">
+<div class="col-md-12 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h5>
+<span class="badge badge-warning" style="width: 30px;">14</span>
+<span class="badge badge-warning" style="width: 30px;">29</span>
+<span class="badge badge-warning" style="width: 30px;">6</span>
+<span class="badge badge-warning" style="width: 30px;">36</span>
+<span class="badge badge-warning" style="width: 30px;">23</span>
+<span class="badge badge-warning" style="width: 30px;">45</span>
+<span class="badge badge-warning" style="width: 30px;">49</span>
+<span class="badge badge-warning" style="width: 30px;">50</span>
+<input type="hidden" id="hidNsAnswer0" value="System.Collections.Generic.List`1[System.Int32]" />
+<img id="imgOKNumericSorting0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoNumericSorting0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</li>
+<li class="list-group-item">
+<h5>
+<input id="inputNs0L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs0L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs0L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs0L3" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs0L4" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs0L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs0L6" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs0L7" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h5>
+</li>
+</ul>
+</div>
+<div class="col-md-12 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h5>
+<span class="badge badge-warning" style="width: 30px;">14</span>
+<span class="badge badge-warning" style="width: 30px;">34</span>
+<span class="badge badge-warning" style="width: 30px;">38</span>
+<span class="badge badge-warning" style="width: 30px;">18</span>
+<span class="badge badge-warning" style="width: 30px;">49</span>
+<span class="badge badge-warning" style="width: 30px;">15</span>
+<span class="badge badge-warning" style="width: 30px;">5</span>
+<span class="badge badge-warning" style="width: 30px;">36</span>
+<input type="hidden" id="hidNsAnswer1" value="System.Collections.Generic.List`1[System.Int32]" />
+<img id="imgOKNumericSorting1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoNumericSorting1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</li>
+<li class="list-group-item">
+<h5>
+<input id="inputNs1L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs1L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs1L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs1L3" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs1L4" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs1L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs1L6" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-less.png" width="30" height="30" />
+<input id="inputNs1L7" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h5>
+</li>
+</ul>
+</div>
+<div class="col-md-12 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h5>
+<span class="badge badge-warning" style="width: 30px;">11</span>
+<span class="badge badge-warning" style="width: 30px;">18</span>
+<span class="badge badge-warning" style="width: 30px;">3</span>
+<span class="badge badge-warning" style="width: 30px;">21</span>
+<span class="badge badge-warning" style="width: 30px;">29</span>
+<span class="badge badge-warning" style="width: 30px;">41</span>
+<span class="badge badge-warning" style="width: 30px;">6</span>
+<span class="badge badge-warning" style="width: 30px;">43</span>
+<input type="hidden" id="hidNsAnswer2" value="System.Collections.Generic.List`1[System.Int32]" />
+<img id="imgOKNumericSorting2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoNumericSorting2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</li>
+<li class="list-group-item">
+<h5>
+<input id="inputNs2L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs2L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs2L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs2L3" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs2L4" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs2L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs2L6" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs2L7" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h5>
+</li>
+</ul>
+</div>
+<div class="col-md-12 form-inline">
+<ul class="list-group list-group-ext">
+<li class="list-group-item">
+<h5>
+<span class="badge badge-warning" style="width: 30px;">43</span>
+<span class="badge badge-warning" style="width: 30px;">17</span>
+<span class="badge badge-warning" style="width: 30px;">36</span>
+<span class="badge badge-warning" style="width: 30px;">5</span>
+<span class="badge badge-warning" style="width: 30px;">16</span>
+<span class="badge badge-warning" style="width: 30px;">37</span>
+<span class="badge badge-warning" style="width: 30px;">33</span>
+<span class="badge badge-warning" style="width: 30px;">28</span>
+<input type="hidden" id="hidNsAnswer3" value="System.Collections.Generic.List`1[System.Int32]" />
+<img id="imgOKNumericSorting3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+<img id="imgNoNumericSorting3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+</h5>
+</li>
+<li class="list-group-item">
+<h5>
+<input id="inputNs3L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs3L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs3L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs3L3" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs3L4" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs3L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs3L6" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+<img src="../Content/image/char-more.png" width="30" height="30" />
+<input id="inputNs3L7" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+</h5>
+</li>
+</ul>
+</div>
+</div>
+
+		</div>
+		<HR>
+		<div class="row">
+			<div class="col-md-12 col-md-offset-3">
+				<p class="text-center">
+					<button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
+					<button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
+					<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
+					<button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
+					<button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
+				</p>
+			</div>
+		</div>
+		<div class="page-header">
+			<h4>練習情況</h4>
+		</div>
+		<div class="well">
+			<p>
+				做題用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+				<br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
+				<br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
+			</p>
+		</div>
+	</div>
+	<a href="javascript:" class="totop"></a>
+</body>
+</html>

@@ -1,0 +1,10 @@
+[
+	{
+		"Identifier": "HMM001",
+		"FourOperationsType": 1,
+		"MaximumLimit": 10,
+		"NumberOfQuestions": 4,
+		"QuestionType": 1,
+		"Signs": [ 1 ]
+	}
+]

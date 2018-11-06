@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("MyMathSheets.ComputationalStrategy.Arithmetic")]
-[assembly: AssemblyDescription("四則運算")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MyMathSheets.ComputationalStrategy.Arithmetic")]
@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MathSheetMarker(SystemModel.ComputationalStrategy, LayoutSetting.Preview.Arithmetic)]
+[assembly: MathSheetMarker(SystemModel.ComputationalStrategy, LayoutSetting.Preview.Arithmetic, "四則運算", "AC001")]

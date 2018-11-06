@@ -20,7 +20,7 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters
 		/// <summary>
 		/// 數字排序個數設置
 		/// </summary>
-		public int Amount { get; set; }
+		public int Numbers { get; set; }
 
 		/// <summary>
 		/// 初期化參數
@@ -29,7 +29,7 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters
 		{
 			base.InitParameter();
 
-			Amount = Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "Amount"));
+			Numbers = Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "Numbers"));
 
 			// 數字排序集合實例化
 			Formulas = new List<NumericSortingFormula>();

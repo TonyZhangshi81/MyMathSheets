@@ -47,6 +47,33 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			// 題型縮略瀏覽初期化
 			PreviewInit();
+			// 創建題型選擇控件
+			CreateQuestionCheckBoxList();
+		}
+
+		/// <summary>
+		/// 創建題型選擇控件
+		/// </summary>
+		private void CreateQuestionCheckBoxList()
+		{
+			int controlIndex = 0;
+			_process.ControlList.ForEach(d => {
+				CheckBox checkBox = new CheckBox
+				{
+					AutoSize = true,
+					Location = new System.Drawing.Point((10 + ((d.IndexX - 1) * 120)), ((12 + (d.IndexY - 1) * 33))),
+					Name = d.ControlId,
+					Size = new System.Drawing.Size(72, 16),
+					Text = d.Title,
+					TabIndex = controlIndex,
+					UseVisualStyleBackColor = true
+				};
+				checkBox.CheckedChanged += new System.EventHandler(QuestionCheckedChanged);
+
+				this.panel1.Controls.Add(checkBox);
+
+				controlIndex++;
+			});
 		}
 
 		/// <summary>
@@ -126,17 +153,18 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// </summary>
 		/// <param name="sender">選擇框</param>
 		/// <param name="e">選擇事件</param>
-		private void ArithmeticCheckedChanged(object sender, EventArgs e)
+		private void QuestionCheckedChanged(object sender, EventArgs e)
 		{
-			if (chkArithmetic.Checked)
+			CheckBox checkBox = (CheckBox)sender;
+			if (checkBox.Checked)
 			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "四則運算"));
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, checkBox.Text));
 			}
 			else
 			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "四則運算"));
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, checkBox.Text));
 			}
-			_process.TopicCheckedChanged(chkArithmetic.Checked, LayoutSetting.Preview.Arithmetic, "AC001");
+			_process.TopicCheckedChanged(checkBox.Checked, checkBox.Name);
 
 			// 刷新題型預覽區域
 			PreviewReflash();
@@ -157,7 +185,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "等式比大小"));
 			}
-			_process.TopicCheckedChanged(chkEqualityComparison.Checked, LayoutSetting.Preview.EqualityComparison, "EC001");
+			//_process.TopicCheckedChanged(chkEqualityComparison.Checked, LayoutSetting.Preview.EqualityComparison, "EC001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -177,7 +205,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "等式接龍"));
 			}
-			_process.TopicCheckedChanged(chkComputingConnection.Checked, LayoutSetting.Preview.ComputingConnection, "CC001");
+			//_process.TopicCheckedChanged(chkComputingConnection.Checked, LayoutSetting.Preview.ComputingConnection, "CC001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -197,7 +225,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "算式應用題"));
 			}
-			_process.TopicCheckedChanged(chkMathWordProblems.Checked, LayoutSetting.Preview.MathWordProblems, "MP001");
+			//_process.TopicCheckedChanged(chkMathWordProblems.Checked, LayoutSetting.Preview.MathWordProblems, "MP001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -217,7 +245,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "水果連連看"));
 			}
-			_process.TopicCheckedChanged(chkFruitsLinkage.Checked, LayoutSetting.Preview.FruitsLinkage, "FL001");
+			//_process.TopicCheckedChanged(chkFruitsLinkage.Checked, LayoutSetting.Preview.FruitsLinkage, "FL001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -237,7 +265,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "找出最近的數字"));
 			}
-			_process.TopicCheckedChanged(chkFindNearestNumber.Checked, LayoutSetting.Preview.FindNearestNumber, "FN001");
+			//_process.TopicCheckedChanged(chkFindNearestNumber.Checked, LayoutSetting.Preview.FindNearestNumber, "FN001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -257,7 +285,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "算式組合"));
 			}
-			_process.TopicCheckedChanged(chkCombinatorialEquation.Checked, LayoutSetting.Preview.CombinatorialEquation, "CE001");
+			//_process.TopicCheckedChanged(chkCombinatorialEquation.Checked, LayoutSetting.Preview.CombinatorialEquation, "CE001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -277,7 +305,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "射門得分"));
 			}
-			_process.TopicCheckedChanged(chkScoreGoal.Checked, LayoutSetting.Preview.ScoreGoal, "SG001");
+			//_process.TopicCheckedChanged(chkScoreGoal.Checked, LayoutSetting.Preview.ScoreGoal, "SG001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -297,7 +325,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "比多少"));
 			}
-			_process.TopicCheckedChanged(chkHowMuchMore.Checked, LayoutSetting.Preview.HowMuchMore, "HMM001");
+			//_process.TopicCheckedChanged(chkHowMuchMore.Checked, LayoutSetting.Preview.HowMuchMore, "HMM001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -317,7 +345,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "找規律"));
 			}
-			_process.TopicCheckedChanged(chkFindTheLaw.Checked, LayoutSetting.Preview.FindTheLaw, "FTL001");
+			//_process.TopicCheckedChanged(chkFindTheLaw.Checked, LayoutSetting.Preview.FindTheLaw, "FTL001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
@@ -337,7 +365,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "數字排序"));
 			}
-			_process.TopicCheckedChanged(chkNumericSorting.Checked, LayoutSetting.Preview.NumericSorting, "NS001");
+			//_process.TopicCheckedChanged(chkNumericSorting.Checked, LayoutSetting.Preview.NumericSorting, "NS001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}

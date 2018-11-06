@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("MyMathSheets.TheFormulaShows.ScoreGoal")]
-[assembly: AssemblyDescription("射門得分")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MyMathSheets.TheFormulaShows.ScoreGoal")]
@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MathSheetMarker(SystemModel.TheFormulaShows, LayoutSetting.Preview.ScoreGoal)]
+[assembly: MathSheetMarker(SystemModel.TheFormulaShows, LayoutSetting.Preview.ScoreGoal, "射門得分")]

@@ -14,7 +14,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 	public class ParameterBase : IParameter
 	{
 		/// <summary>
-		/// 識別號
+		/// 識別號(preview + "::" + identifier)
 		/// </summary>
 		public string Identifier { get; set; }
 		/// <summary>
@@ -47,8 +47,11 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// </summary>
 		public virtual void InitParameter()
 		{
+			// 識別號(preview + "::" + identifier)
+			var identifiers = Identifier.Split(':');
+
 			var hepler = new ParameterHepler();
-			ParameterBase parameter = hepler.CreateParameterProvider().Initialize(Identifier);
+			ParameterBase parameter = hepler.CreateParameterProvider(identifiers[0]).Initialize(identifiers[2]);
 
 			QuestionType = parameter.QuestionType;
 			Signs = parameter.Signs;

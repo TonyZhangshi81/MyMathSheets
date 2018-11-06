@@ -1,0 +1,10 @@
+[
+	{
+		"Identifier": "FTL001",
+		"FourOperationsType": 1,
+		"MaximumLimit": 40,
+		"NumberOfQuestions": 4,
+		"QuestionType": 1,
+		"Signs": [ 0 ]
+	}
+]
