@@ -11,9 +11,5 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 題型類別
 		/// </summary>
 		LayoutSetting.Preview Layout { get; }
-		/// <summary>
-		/// 識別ID
-		/// </summary>
-		string Identifiers { get; }
 	}
 }

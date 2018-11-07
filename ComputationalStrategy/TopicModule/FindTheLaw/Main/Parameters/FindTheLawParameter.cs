@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters
 	/// <summary>
 	/// 找規律參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.FindTheLaw, "FTL001")]
+	[OperationParameter(LayoutSetting.Preview.FindTheLaw)]
 	public class FindTheLawParameter : ParameterBase
 	{
 		/// <summary>

@@ -18,8 +18,8 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 對指定計算式策略所需參數的對象實例化
 		/// </summary>
 		/// <param name="preview"></param>
-		/// <param name="identifier">參數識別ID</param>
+		/// <param name="identifier">參數識別ID（如果沒有指定參數標識，則默認返回當前參數序列的第一個參數項目）</param>
 		/// <returns>對象實例</returns>
-		ParameterBase CreateOperationParameterInstance(LayoutSetting.Preview preview, string identifier);
+		ParameterBase CreateOperationParameterInstance(LayoutSetting.Preview preview, string identifier = "");
 	}
 }

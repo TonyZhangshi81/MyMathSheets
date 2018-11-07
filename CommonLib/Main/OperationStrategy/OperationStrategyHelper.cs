@@ -63,11 +63,11 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		}
 
 		/// <summary>
-		/// 
+		/// 題型構築并返回結果
 		/// </summary>
-		/// <param name="preview"></param>
-		/// <param name="identifier"></param>
-		public ParameterBase Structure(LayoutSetting.Preview preview, string identifier)
+		/// <param name="preview">題型種類</param>
+		/// <param name="identifier">參數識別ID（如果沒有指定參數標識，則默認返回當前參數序列的第一個參數項目）</param>
+		public ParameterBase Structure(LayoutSetting.Preview preview, string identifier = "")
 		{
 			return Helper.Structure(preview, identifier);
 		}

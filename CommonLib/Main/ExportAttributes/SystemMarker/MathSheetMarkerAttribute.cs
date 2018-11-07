@@ -15,21 +15,11 @@ namespace MyMathSheets.CommonLib
 		/// <param name="id">模塊識別號</param>
 		/// <param name="preview">子模塊識別號（題型模塊化對應）</param>
 		/// <param name="description">程序集描述</param>
-		/// <param name="identifier">題型參數書別號</param>
-		public MathSheetMarkerAttribute(SystemModel id, LayoutSetting.Preview preview = LayoutSetting.Preview.Null, string description = "", string identifier = "")
+		public MathSheetMarkerAttribute(SystemModel id, LayoutSetting.Preview preview = LayoutSetting.Preview.Null, string description = "")
         {
             this.SystemId = id;
 			this.Preview = preview;
 			this.Description = description;
-			this.Identifier = identifier;
-		}
-
-		/// <summary>
-		/// 題型參數書別號
-		/// </summary>
-		public string Identifier
-		{
-			get; set;
 		}
 
 		/// <summary>

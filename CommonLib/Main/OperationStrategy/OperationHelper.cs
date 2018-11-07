@@ -58,9 +58,9 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 
 		/// </summary>
 		/// <param name="preview">策略種類</param>
-		/// <param name="identifier">參數識別ID</param>
+		/// <param name="identifier">參數識別ID（如果沒有指定參數標識，則默認返回當前參數序列的第一個參數項目）</param>
 		/// <returns></returns>
-		public ParameterBase Structure(LayoutSetting.Preview preview, string identifier)
+		public ParameterBase Structure(LayoutSetting.Preview preview, string identifier = "")
 		{
 			// 計算式策略
 			IOperation instance = CreateOperationInstance(preview);

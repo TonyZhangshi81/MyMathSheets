@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters
 	/// <summary>
 	/// 水果連連看參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.FruitsLinkage, "FL001|FL002|FL003")]
+	[OperationParameter(LayoutSetting.Preview.FruitsLinkage)]
 	public class FruitsLinkageParameter : ParameterBase
 	{
 		/// <summary>

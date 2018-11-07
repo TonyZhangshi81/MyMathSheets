@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters
 	/// <summary>
 	/// 等式接龍參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.ComputingConnection, "CC001|CC002|CC003")]
+	[OperationParameter(LayoutSetting.Preview.ComputingConnection)]
 	public class ComputingConnectionParameter : ParameterBase
 	{
 		/// <summary>

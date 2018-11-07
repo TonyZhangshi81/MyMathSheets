@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters
 	/// <summary>
 	/// 應用題參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.MathWordProblems, "MP001|MP002|MP003")]
+	[OperationParameter(LayoutSetting.Preview.MathWordProblems)]
 	public class MathWordProblemsParameter : ParameterBase
 	{
 		/// <summary>

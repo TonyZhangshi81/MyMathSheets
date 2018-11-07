@@ -152,7 +152,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(item.Preview);
 				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(item.Preview, item.Identifier);
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(item.Preview);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(controlId, htmlMaps);
 			}
@@ -170,15 +170,14 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// </summary>
 		/// <param name="isChecked">是否選擇</param>
 		/// <param name="preview">控件ID</param>
-		/// <param name="identifier">題型參數識別號</param>
-		public void TopicCheckedChanged(bool isChecked, LayoutSetting.Preview preview, string identifier)
+		public void TopicCheckedChanged(bool isChecked, LayoutSetting.Preview preview)
 		{
 			if (isChecked)
 			{
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(preview);
 				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(preview, identifier);
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(preview);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(preview.ToString(), htmlMaps);
 			}
@@ -195,12 +194,11 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 取得HTML和JS的替換內容
 		/// </summary>
 		/// <param name="preview">題型種類</param>
-		/// <param name="identifier">參數構造識別號</param>
 		/// <returns>替換內容</returns>
-		private Dictionary<string, string> GetHtmlReplaceContentMaps(LayoutSetting.Preview preview, string identifier)
+		private Dictionary<string, string> GetHtmlReplaceContentMaps(LayoutSetting.Preview preview)
 		{
 			// 構造題型并取得結果
-			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview, identifier);
+			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview);
 			// HTML替換內容
 			Dictionary<string, string> htmlMaps = new Dictionary<string, string>
 			{
@@ -250,9 +248,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 							// 控件標題設定
 							Title = d.Value.Description,
 							// 題型類型
-							Preview = d.Value.Preview,
-							// 題型參數書別號
-							Identifier = d.Value.Identifier
+							Preview = d.Value.Preview
 						});
 
 						if (indexX == 3)
@@ -295,10 +291,5 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 題型類型
 		/// </summary>
 		public LayoutSetting.Preview Preview { get; set; }
-
-		/// <summary>
-		/// 題型參數書別號
-		/// </summary>
-		public string Identifier{ get; set; }
 	}
 }

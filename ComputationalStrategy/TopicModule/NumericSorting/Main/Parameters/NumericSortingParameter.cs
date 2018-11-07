@@ -9,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters
 	/// <summary>
 	/// 數字排序參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.NumericSorting, "NS001")]
+	[OperationParameter(LayoutSetting.Preview.NumericSorting)]
 	public class NumericSortingParameter : ParameterBase
 	{
 		/// <summary>

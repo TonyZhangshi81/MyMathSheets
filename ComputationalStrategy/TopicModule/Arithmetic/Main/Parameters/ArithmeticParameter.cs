@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters
 	/// <summary>
 	/// 四則運算參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.Arithmetic, "AC001|AC002|AC003|AC004|AC005")]
+	[OperationParameter(LayoutSetting.Preview.Arithmetic)]
 	public class ArithmeticParameter : ParameterBase
 	{
 		/// <summary>

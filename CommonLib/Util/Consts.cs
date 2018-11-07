@@ -357,47 +357,47 @@
 			/// </summary>
 			Title = 0,
 			/// <summary>
-			/// 四則運算瀏覽
+			/// 四則運算 AC
 			/// </summary>
 			Arithmetic,
 			/// <summary>
-			/// 運算比大小瀏覽
+			/// 運算比大小 EC
 			/// </summary>
 			EqualityComparison,
 			/// <summary>
-			/// 等式接龍瀏覽
+			/// 等式接龍 CC
 			/// </summary>
 			ComputingConnection,
 			/// <summary>
-			/// 算式應用題瀏覽
+			/// 算式應用題 MP
 			/// </summary>
 			MathWordProblems,
 			/// <summary>
-			/// 水果連連看瀏覽
+			/// 水果連連看 FL
 			/// </summary>
 			FruitsLinkage,
 			/// <summary>
-			/// 找到最近的數字瀏覽
+			/// 找到最近的數字 FN
 			/// </summary>
 			FindNearestNumber,
 			/// <summary>
-			/// 算式組合
+			/// 算式組合 CE
 			/// </summary>
 			CombinatorialEquation,
 			/// <summary>
-			/// 射門得分
+			/// 射門得分 SG
 			/// </summary>
 			ScoreGoal,
 			/// <summary>
-			/// 比多少
+			/// 比多少 HMM
 			/// </summary>
 			HowMuchMore,
 			/// <summary>
-			/// 找規律
+			/// 找規律 FTL
 			/// </summary>
 			FindTheLaw,
 			/// <summary>
-			/// 數字排序
+			/// 數字排序 NS
 			/// </summary>
 			NumericSorting,
 			/// <summary>

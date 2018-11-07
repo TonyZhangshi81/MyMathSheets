@@ -13,10 +13,10 @@ namespace MyMathSheets.CommonLib.Provider
 	public class JsonOperationParameterProvider : OperationParameterProvider
 	{
 		/// <summary>
-		/// 
+		/// 參數初期化
 		/// </summary>
-		/// <param name="identifier"></param>
-		public override ParameterBase Initialize(string identifier)
+		/// <param name="identifier">參數標識ID（如果沒有指定參數標識，則默認返回當前參數序列的第一個參數項目）</param>
+		public override ParameterBase Initialize(string identifier = "")
 		{
 			List<ParameterBase> allProblems = null;
 			// 读取资料库
@@ -24,7 +24,12 @@ namespace MyMathSheets.CommonLib.Provider
 			{
 				allProblems = JsonConvert.DeserializeObject<List<ParameterBase>>(file.ReadToEnd());
 			};
-
+			// 如果沒有指定參數標識，則默認返回當前參數序列的第一個參數項目
+			if (string.IsNullOrEmpty(identifier))
+			{
+				return allProblems[0];
+			}
+			// 按照指定參數標識返回相應的參數項目
 			return allProblems.ToList().Where(d => d.Identifier.Equals(identifier)).First();
 		}
 	}

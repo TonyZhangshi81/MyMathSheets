@@ -15,25 +15,14 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 自定義導出屬性
 		/// </summary>
 		/// <param name="layout">題型類別</param>
-		/// <param name="identifiers">識別ID</param>
-		public OperationParameterAttribute(LayoutSetting.Preview layout, string identifiers = "") : base(typeof(ParameterBase))
+		public OperationParameterAttribute(LayoutSetting.Preview layout) : base(typeof(ParameterBase))
 		{
 			Layout = layout;
-			Identifiers = identifiers;
 		}
-
 		/// <summary>
-		/// 
+		/// 題型種類
 		/// </summary>
 		public LayoutSetting.Preview Layout
-		{
-			get;
-			set;
-		}
-		/// <summary>
-		/// 識別ID
-		/// </summary>
-		public string Identifiers
 		{
 			get;
 			set;

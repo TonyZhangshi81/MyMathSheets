@@ -117,7 +117,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 對指定計算式策略所需參數的對象實例化
 		/// </summary>
-		/// <param name="preview"></param>
+		/// <param name="preview">題型種類</param>
 		/// <param name="identifier">參數識別ID</param>
 		/// <returns>對象實例</returns>
 		public ParameterBase CreateOperationParameterInstance(LayoutSetting.Preview preview, string identifier)
@@ -130,7 +130,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			_operationParameter = cache.GetOrAdd(key, (o) =>
 			{
 				// 以運算符處理類型和參數識別ID取得相應的參數對象實例
-				ParameterBase parameter = _parameters.Where(d => d.Metadata.Layout == preview && d.Metadata.Identifiers.IndexOf(identifier) >= 0).First().Value;
+				ParameterBase parameter = _parameters.Where(d => d.Metadata.Layout == preview).First().Value;
 
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0004L));
 

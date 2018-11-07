@@ -53,6 +53,9 @@ namespace MyMathSheets.CommonLib.Composition
 		/// </summary>
 		public static void Init()
 		{
+			// 用於檢查題型注入的完整性（具備策略模塊和展示模塊）
+			List<LayoutSetting.Preview> checkCache = new List<LayoutSetting.Preview>();
+
 			var action = new Action<FileInfo>(f =>
 			{
 				var assembly = Assembly.LoadFile(f.FullName);
@@ -75,16 +78,18 @@ namespace MyMathSheets.CommonLib.Composition
 
 				ComposerCache.GetOrAdd(composerKey, valueFunc);
 
-				if((attr.SystemId == SystemModel.TheFormulaShows || attr.SystemId == SystemModel.ComputationalStrategy) && !string.IsNullOrEmpty(attr.Description))
+				// （為確保模塊的完成性，規定同一個題型必須具備策略模塊和展示模塊）
+				if (checkCache.Any(d => d == attr.Preview))
 				{
-					if (AssemblyInfoCache.ContainsKey(attr.Preview.ToString()) && !string.IsNullOrEmpty(attr.Identifier))
-					{
-						AssemblyInfoCache[attr.Preview.ToString()].Identifier = attr.Identifier;
-					}
-					else
+					// 獲取題型模塊信息并保存
+					if ((attr.SystemId == SystemModel.TheFormulaShows || attr.SystemId == SystemModel.ComputationalStrategy) && !string.IsNullOrEmpty(attr.Description))
 					{
 						AssemblyInfoCache.GetOrAdd(attr.Preview.ToString(), attr);
 					}
+				}
+				else
+				{
+					checkCache.Add(attr.Preview);
 				}
 			});
 

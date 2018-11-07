@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters
 	/// <summary>
 	/// 比多少參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.HowMuchMore, "HMM001")]
+	[OperationParameter(LayoutSetting.Preview.HowMuchMore)]
 	public class HowMuchMoreParameter : ParameterBase
 	{
 		/// <summary>
