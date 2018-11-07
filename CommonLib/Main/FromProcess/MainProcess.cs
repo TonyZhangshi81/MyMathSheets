@@ -9,6 +9,7 @@ using MyMathSheets.CommonLib.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -61,8 +62,6 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		{
 		}
 
-
-
 		/// <summary>
 		/// 出題按鍵點擊事件
 		/// </summary>
@@ -70,9 +69,9 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		public string SureClick()
 		{
 			// HTML模板存放路徑
-			string sourceFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("Template"));
+			string sourceFileName = Path.GetFullPath(ConfigurationManager.AppSettings.Get("Template"));
 			// 靜態頁面作成后存放的路徑（文件名：日期時間形式）
-			string destFileName = Path.GetFullPath(System.Configuration.ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("{0}.html", DateTime.Now.ToString("yyyyMMddHHmmssfff")));
+			string destFileName = Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("{0}.html", DateTime.Now.ToString("yyyyMMddHHmmssfff")));
 			// 文件移動
 			File.Copy(sourceFileName, destFileName);
 
@@ -233,14 +232,16 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		{
 			get
 			{
-				if(_controlList == null)
+				if (_controlList == null)
 				{
 					_controlList = new List<ControlInfo>();
 
 					int indexX = 1, indexY = 1;
-					ComposerFactory.AssemblyInfoCache.ToList().ForEach(d => {
+					ComposerFactory.AssemblyInfoCache.ToList().ForEach(d =>
+					{
 
-						_controlList.Add(new ControlInfo() {
+						_controlList.Add(new ControlInfo()
+						{
 							IndexX = indexX,
 							IndexY = indexY,
 							// 控件ID設定

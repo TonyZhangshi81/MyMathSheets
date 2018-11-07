@@ -6,6 +6,7 @@ using MyMathSheets.CommonLib.Util;
 using MyMathSheets.MathSheetsSettingApp.Properties;
 using System;
 using System.ComponentModel.Composition;
+using System.Configuration;
 using System.IO;
 using System.Windows.Forms;
 
@@ -57,7 +58,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		private void CreateQuestionCheckBoxList()
 		{
 			int controlIndex = 0;
-			_process.ControlList.ForEach(d => {
+			_process.ControlList.ForEach(d =>
+			{
 				CheckBox checkBox = new CheckBox
 				{
 					AutoSize = true,
@@ -131,7 +133,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (chkIsPreview.Checked)
 			{
 				// 使用IE打開已作成的靜態頁面
-				System.Diagnostics.Process.Start(@"chrome.exe", "\"" + Path.GetFullPath(@destFileName) + "\"");
+				System.Diagnostics.Process.Start(ConfigurationManager.AppSettings.Get("Preview"), "\"" + Path.GetFullPath(@destFileName) + "\"");
 			}
 			// 退出系統
 			Environment.Exit(0);
@@ -166,206 +168,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 			_process.TopicCheckedChanged(checkBox.Checked, checkBox.Name);
 
-			// 刷新題型預覽區域
-			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 等式比大小題型選擇事件
-		/// </summary>
-		/// <param name="sender">選擇框</param>
-		/// <param name="e">選擇事件</param>
-		private void EqualityComparisonCheckedChanged(object sender, EventArgs e)
-		{
-			if (chkEqualityComparison.Checked)
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "等式比大小"));
-			}
-			else
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "等式比大小"));
-			}
-			//_process.TopicCheckedChanged(chkEqualityComparison.Checked, LayoutSetting.Preview.EqualityComparison, "EC001");
-			// 刷新題型預覽區域
-			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 等式接龍題型選擇事件
-		/// </summary>
-		/// <param name="sender">選擇框</param>
-		/// <param name="e">選擇事件</param>
-		private void ComputingConnectionCheckedChanged(object sender, EventArgs e)
-		{
-			if (chkComputingConnection.Checked)
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "等式接龍"));
-			}
-			else
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "等式接龍"));
-			}
-			//_process.TopicCheckedChanged(chkComputingConnection.Checked, LayoutSetting.Preview.ComputingConnection, "CC001");
-			// 刷新題型預覽區域
-			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 算式應用題題型選擇事件
-		/// </summary>
-		/// <param name="sender">選擇框</param>
-		/// <param name="e">選擇事件</param>
-		private void MathWordProblemsCheckedChanged(object sender, EventArgs e)
-		{
-			if (chkMathWordProblems.Checked)
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "算式應用題"));
-			}
-			else
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "算式應用題"));
-			}
-			//_process.TopicCheckedChanged(chkMathWordProblems.Checked, LayoutSetting.Preview.MathWordProblems, "MP001");
-			// 刷新題型預覽區域
-			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 水果連連看題型選擇事件
-		/// </summary>
-		/// <param name="sender">選擇框</param>
-		/// <param name="e">選擇事件</param>
-		private void FruitsLinkageCheckedChanged(object sender, EventArgs e)
-		{
-			if (chkFruitsLinkage.Checked)
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "水果連連看"));
-			}
-			else
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "水果連連看"));
-			}
-			//_process.TopicCheckedChanged(chkFruitsLinkage.Checked, LayoutSetting.Preview.FruitsLinkage, "FL001");
-			// 刷新題型預覽區域
-			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 找出最近的數字題型選擇事件
-		/// </summary>
-		/// <param name="sender">選擇框</param>
-		/// <param name="e">選擇事件</param>
-		private void FindNearestNumberCheckedChanged(object sender, EventArgs e)
-		{
-			if (chkFindNearestNumber.Checked)
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "找出最近的數字"));
-			}
-			else
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "找出最近的數字"));
-			}
-			//_process.TopicCheckedChanged(chkFindNearestNumber.Checked, LayoutSetting.Preview.FindNearestNumber, "FN001");
-			// 刷新題型預覽區域
-			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 算式組合題型選擇事件
-		/// </summary>
-		/// <param name="sender">選擇框</param>
-		/// <param name="e">選擇事件</param>
-		private void CombinatorialEquationCheckedChanged(object sender, EventArgs e)
-		{
-			if (chkCombinatorialEquation.Checked)
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "算式組合"));
-			}
-			else
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "算式組合"));
-			}
-			//_process.TopicCheckedChanged(chkCombinatorialEquation.Checked, LayoutSetting.Preview.CombinatorialEquation, "CE001");
-			// 刷新題型預覽區域
-			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 射門得分題型選擇事件
-		/// </summary>
-		/// <param name="sender">選擇框</param>
-		/// <param name="e">選擇事件</param>
-		private void ScoreGoalCheckedChanged(object sender, EventArgs e)
-		{
-			if (chkScoreGoal.Checked)
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "射門得分"));
-			}
-			else
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "射門得分"));
-			}
-			//_process.TopicCheckedChanged(chkScoreGoal.Checked, LayoutSetting.Preview.ScoreGoal, "SG001");
-			// 刷新題型預覽區域
-			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 比多少題型選擇事件
-		/// </summary>
-		/// <param name="sender">選擇框</param>
-		/// <param name="e">選擇事件</param>
-		private void HowMuchMoreCheckedChanged(object sender, EventArgs e)
-		{
-			if (chkHowMuchMore.Checked)
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "比多少"));
-			}
-			else
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "比多少"));
-			}
-			//_process.TopicCheckedChanged(chkHowMuchMore.Checked, LayoutSetting.Preview.HowMuchMore, "HMM001");
-			// 刷新題型預覽區域
-			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 找規律題型選擇事件
-		/// </summary>
-		/// <param name="sender">選擇框</param>
-		/// <param name="e">選擇事件</param>
-		private void FindTheLawCheckedChanged(object sender, EventArgs e)
-		{
-			if (chkFindTheLaw.Checked)
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "找規律"));
-			}
-			else
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "找規律"));
-			}
-			//_process.TopicCheckedChanged(chkFindTheLaw.Checked, LayoutSetting.Preview.FindTheLaw, "FTL001");
-			// 刷新題型預覽區域
-			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 數字排序題型選擇事件
-		/// </summary>
-		/// <param name="sender">選擇框</param>
-		/// <param name="e">選擇事件</param>
-		private void NumericSortingCheckedChanged(object sender, EventArgs e)
-		{
-			if (chkNumericSorting.Checked)
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, "數字排序"));
-			}
-			else
-			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, "數字排序"));
-			}
-			//_process.TopicCheckedChanged(chkNumericSorting.Checked, LayoutSetting.Preview.NumericSorting, "NS001");
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
