@@ -401,6 +401,10 @@
 			/// </summary>
 			NumericSorting,
 			/// <summary>
+			/// 認識貨幣
+			/// </summary>
+			LearnCurrency,
+			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
 			Ready,

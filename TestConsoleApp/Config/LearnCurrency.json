@@ -1,0 +1,20 @@
+[
+	{
+		"Identifier": "NS002",
+		"FourOperationsType": 1,
+		"MaximumLimit": 50,
+		"NumberOfQuestions": 4,
+		"QuestionType": 1,
+		"Signs": [ 0 ],
+		"Reserve": "{\"Numbers\" : 8}"
+	},
+	{
+		"Identifier": "NS001",
+		"FourOperationsType": 1,
+		"MaximumLimit": 50,
+		"NumberOfQuestions": 4,
+		"QuestionType": 1,
+		"Signs": [ 0 ],
+		"Reserve": "{\"Amount\" : 5}"
+	}
+]

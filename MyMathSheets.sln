@@ -165,6 +165,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.NumericSorting", "TheFormulaShows\DisplayModule\NumericSorting\MyMathSheets.TheFormulaShows.NumericSorting.csproj", "{5F879B95-C458-48ED-A7C2-889F47DB7497}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.LearnCurrency", "ComputationalStrategy\TopicModule\LearnCurrency\MyMathSheets.ComputationalStrategy.LearnCurrency.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF55387}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -282,6 +284,10 @@ Global
 		{5F879B95-C458-48ED-A7C2-889F47DB7497}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F879B95-C458-48ED-A7C2-889F47DB7497}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F879B95-C458-48ED-A7C2-889F47DB7497}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4AFCD1E-6872-4643-9728-E5E6DFF55387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4AFCD1E-6872-4643-9728-E5E6DFF55387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4AFCD1E-6872-4643-9728-E5E6DFF55387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4AFCD1E-6872-4643-9728-E5E6DFF55387}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -310,6 +316,7 @@ Global
 		{41486B43-37E3-406A-A032-824BAED36747} = {3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}
 		{A4AFCD1E-6872-4643-9728-E5E6DFF95387} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 		{5F879B95-C458-48ED-A7C2-889F47DB7497} = {3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}
+		{A4AFCD1E-6872-4643-9728-E5E6DFF55387} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D308C80E-F93A-4F56-89CD-5A89344949B1}
