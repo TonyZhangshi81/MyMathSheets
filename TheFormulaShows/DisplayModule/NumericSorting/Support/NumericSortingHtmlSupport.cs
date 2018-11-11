@@ -99,7 +99,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityComparison.Support
 			StringBuilder result = new StringBuilder();
 			anwsers.ForEach(d => result.AppendFormat("{0},", d));
 			result.Length -= 1;
-			return anwsers.ToString();
+			return result.ToString();
 		}
 	}
 }

@@ -8,8 +8,8 @@ MathSheets.NumericSorting = MathSheets.NumericSorting || (function () {
 			var inputAry = new Array();
 			// 答案數組
 			var answerAry = ($(pelement).val() || '').split(',');
-			var isOK = true;
-			$("input[id*='inputNs']").each(function (index, element) {
+            var isOK = true;
+            $("input[id*='inputNs" + pindex + "']").each(function (index, element) {
 				inputAry.push($(element));
 				if (parseInt($(element).val()) != answerAry[index]) {
 					isOK = false;
@@ -17,7 +17,7 @@ MathSheets.NumericSorting = MathSheets.NumericSorting || (function () {
 			});
 
 			// 验证输入值是否与答案一致
-			if (!isOK) {
+			if (isOK) {
 				// 对错图片显示和隐藏
 				$('#imgOKNumericSorting' + pindex).show();
 				$('#imgNoNumericSorting' + pindex).hide();
