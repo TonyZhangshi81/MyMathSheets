@@ -12,6 +12,7 @@ using System.ComponentModel.Composition;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Main.FromProcess
@@ -142,50 +143,25 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 題型項目選擇事件
 		/// </summary>
 		/// <param name="isChecked">是否選擇</param>
-		/// <param name="controlId">控件ID</param>
-		public void TopicCheckedChanged(bool isChecked, string controlId)
+		/// <param name="expression">用以獲取控件基本信息對象</param>
+		public void TopicCheckedChanged(bool isChecked, Expression<Func<ControlInfo>> expression)
 		{
-			ControlInfo item = _controlList.Where(d => d.ControlId.Equals(controlId)).First();
+			ControlInfo info = expression.Compile()();
 			if (isChecked)
 			{
 				// 題型預覽添加
-				SetLayoutSettingPreviewList(item.Preview);
+				SetLayoutSettingPreviewList(info.Preview);
 				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(item.Preview);
+				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(info.Preview);
 				// 按照題型將所有替換內容裝箱子
-				_htmlMaps.Add(controlId, htmlMaps);
+				_htmlMaps.Add(info.ControlId, htmlMaps);
 			}
 			else
 			{
 				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(item.Preview);
+				_layoutSettingPreviewList.Remove(info.Preview);
 				// 題型移除
-				_htmlMaps.Remove(controlId);
-			}
-		}
-
-		/// <summary>
-		/// 題型項目選擇事件
-		/// </summary>
-		/// <param name="isChecked">是否選擇</param>
-		/// <param name="preview">控件ID</param>
-		public void TopicCheckedChanged(bool isChecked, LayoutSetting.Preview preview)
-		{
-			if (isChecked)
-			{
-				// 題型預覽添加
-				SetLayoutSettingPreviewList(preview);
-				// 取得HTML和JS的替換內容
-				Dictionary<string, string> htmlMaps = GetHtmlReplaceContentMaps(preview);
-				// 按照題型將所有替換內容裝箱子
-				_htmlMaps.Add(preview.ToString(), htmlMaps);
-			}
-			else
-			{
-				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(preview);
-				// 題型移除
-				_htmlMaps.Remove(preview.ToString());
+				_htmlMaps.Remove(info.ControlId);
 			}
 		}
 

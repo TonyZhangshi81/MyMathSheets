@@ -1,5 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Util;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace MyMathSheets.CommonLib.Main.FromProcess
 {
@@ -40,7 +42,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 題型項目選擇事件
 		/// </summary>
 		/// <param name="isChecked">是否選擇</param>
-		/// <param name="controlId">控件ID</param>
-		void TopicCheckedChanged(bool isChecked, string controlId);
+		/// <param name="expression">用以獲取控件基本信息對象</param>
+		void TopicCheckedChanged(bool isChecked, Expression<Func<ControlInfo>> expression);
 	}
 }

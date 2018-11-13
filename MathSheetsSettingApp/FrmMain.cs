@@ -8,6 +8,7 @@ using System;
 using System.ComponentModel.Composition;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MyMathSheets.MathSheetsSettingApp
@@ -166,7 +167,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, checkBox.Text));
 			}
-			_process.TopicCheckedChanged(checkBox.Checked, checkBox.Name);
+			_process.TopicCheckedChanged(checkBox.Checked, () => _process.ControlList.Where(d => d.ControlId.Equals(checkBox.Name)).First());
 
 			// 刷新題型預覽區域
 			PreviewReflash();
