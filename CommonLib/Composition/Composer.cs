@@ -213,6 +213,17 @@ namespace MyMathSheets.CommonLib.Composition
 		}
 
 		/// <summary>
+		/// 指定された型のインスタンスを生成します。
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="contractName">コントラクト名</param>
+		/// <returns></returns>
+		public IEnumerable<Lazy<T>> GetExports<T>(string contractName)
+		{
+			return this._container.GetExports<T>(contractName);
+		}
+
+		/// <summary>
 		/// 
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
