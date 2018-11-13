@@ -1,7 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Composition;
 using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.HtmlSupport;
-using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
@@ -174,30 +173,9 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		{
 			// 構造題型并取得結果
 			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview);
-			// HTML替換內容
-			Dictionary<string, string> htmlMaps = new Dictionary<string, string>
-			{
-				// 題型HTML信息作成并對指定的HTML模板標識進行替換
-				{ string.Format("<!--{0}-->", preview.ToString().ToUpper()), MakeHtml.GetHtmlStatement(preview, parameter, out Type supportType) }
-			};
-			// JS模板內容替換
-			MarkJavaScriptReplaceContent(supportType, htmlMaps);
+			// 題型HTML信息作成并對指定的HTML模板標識進行替換
+			Dictionary<string, string> htmlMaps = MakeHtml.GetHtmlStatement(preview, parameter);
 			return htmlMaps;
-		}
-
-		/// <summary>
-		/// JS模板內容替換
-		/// </summary>
-		/// <param name="type">題型HTML支持類(類型)</param>
-		/// <param name="htmlMaps">替換標籤以及喜歡內容</param>
-		private void MarkJavaScriptReplaceContent(Type type, Dictionary<string, string> htmlMaps)
-		{
-			object[] attribute = type.GetCustomAttributes(typeof(SubstituteAttribute), false);
-			attribute.ToList().ForEach(d =>
-			{
-				var attr = (SubstituteAttribute)d;
-				htmlMaps.Add(attr.Source, attr.Target);
-			});
 		}
 
 		private List<ControlInfo> _controlList;

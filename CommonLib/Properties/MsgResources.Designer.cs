@@ -106,6 +106,15 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
+        ///   E0022L:指定的{0}題型HTML替換標籤未找到 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0022L {
+            get {
+                return ResourceManager.GetString("E0022L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   I0001L:指定運算符實例準備作成 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string I0001L {

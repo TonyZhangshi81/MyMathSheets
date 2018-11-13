@@ -4,7 +4,7 @@ using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
-using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
 namespace MyMathSheets.CommonLib.Main.HtmlSupport
@@ -32,15 +32,13 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// </summary>
 		/// <param name="preview">題型類型</param>
 		/// <param name="formulas">題型參數對象</param>
-		/// <param name="supportType">HTML支援類對象類型</param>
 		/// <returns>模板替換內容</returns>
-		public string GetHtmlStatement<T>(LayoutSetting.Preview preview, T formulas, out Type supportType) where T : ParameterBase
+		public Dictionary<string, string> GetHtmlStatement<T>(LayoutSetting.Preview preview, T formulas) where T : ParameterBase
 		{
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0012L, preview.ToString()));
 
 			// 指定题型大分类获得相应的题型HTML处理对象（实例）
 			IHtmlSupport support = SupprtHelper.CreateHtmlSupportInstance(preview);
-			supportType = support.GetType();
 
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0013L, preview.ToString()));
 

@@ -132,6 +132,9 @@
   <data name="E0021L" xml:space="preserve">
     <value>E0021L:指定的{0}題型HTML支援類對象未找到</value>
   </data>
+  <data name="E0022L" xml:space="preserve">
+    <value>E0022L:指定的{0}題型HTML替換標籤未找到</value>
+  </data>
   <data name="I0001L" xml:space="preserve">
     <value>I0001L:指定運算符實例準備作成</value>
   </data>
