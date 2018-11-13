@@ -10,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
 	/// 認識貨幣參數類
 	/// </summary>
 	[OperationParameter(LayoutSetting.Preview.LearnCurrency)]
-	public class NumericSortingParameter : ParameterBase
+	public class LearnCurrencyParameter : ParameterBase
 	{
 		/// <summary>
 		/// 認識貨幣作成并輸出
@@ -20,7 +20,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
 		/// <summary>
 		/// 認識貨幣個數設置
 		/// </summary>
-		public int Numbers { get; set; }
+		public int[] Types { get; set; }
 
 		/// <summary>
 		/// 初期化參數
@@ -29,7 +29,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
 		{
 			base.InitParameter();
 
-			Numbers = Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "Numbers"));
+			Types = (int[])JsonExtension.GetPropertyByJson(Reserve, "Type");
 
 			// 認識貨幣集合實例化
 			Formulas = new List<LearnCurrencyFormula>();

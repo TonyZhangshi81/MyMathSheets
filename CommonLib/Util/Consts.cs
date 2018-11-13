@@ -8,6 +8,46 @@
 	}
 
 	/// <summary>
+	/// 貨幣轉換題型種類
+	/// </summary>
+	/// <remarks>轉換的前提不出現小數點</remarks>
+	public enum CurrencyTransform : int
+	{
+		/// <summary>
+		/// 元到角(eg:1元=>10角)
+		/// </summary>
+		Y2J = 0,
+		/// <summary>
+		/// 元到分(eg:1元=>100分)
+		/// </summary>
+		Y2F,
+		/// <summary>
+		/// 角轉元(eg:20角=>2元)
+		/// </summary>
+		J2Y,
+		/// <summary>
+		/// 角轉分(eg:2角=>20分)
+		/// </summary>
+		J2F,
+		/// <summary>
+		/// 角轉元分(eg:34角=>3元4分)
+		/// </summary>
+		J2YF,
+		/// <summary>
+		/// 分轉元(eg:200分=>2元)
+		/// </summary>
+		F2Y,
+		/// <summary>
+		/// 分轉角(eg:20分=>2角)
+		/// </summary>
+		F2J,
+		/// <summary>
+		/// 分轉元角(eg:230分=>2元3角)
+		/// </summary>
+		F2YJ,
+	}
+
+	/// <summary>
 	/// Message消息級別
 	/// </summary>
 	public enum MessageLevel
