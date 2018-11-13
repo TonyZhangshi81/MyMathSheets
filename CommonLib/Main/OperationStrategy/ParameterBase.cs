@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Provider;
+using MyMathSheets.CommonLib.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using Newtonsoft.Json;
 using System;

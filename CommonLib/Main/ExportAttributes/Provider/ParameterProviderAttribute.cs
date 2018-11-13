@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Provider;
+﻿using MyMathSheets.CommonLib.OperationStrategy;
+using MyMathSheets.CommonLib.Provider;
 using System;
 using System.ComponentModel.Composition;
 

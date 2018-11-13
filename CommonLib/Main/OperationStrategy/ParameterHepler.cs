@@ -1,11 +1,12 @@
 ﻿using MyMathSheets.CommonLib.Composition;
 using MyMathSheets.CommonLib.Main.Provider;
+using MyMathSheets.CommonLib.Provider;
 using MyMathSheets.CommonLib.Util;
 using System;
 using System.Configuration;
 using System.Linq;
 
-namespace MyMathSheets.CommonLib.Provider
+namespace MyMathSheets.CommonLib.OperationStrategy
 {
 	/// <summary>
 	/// 

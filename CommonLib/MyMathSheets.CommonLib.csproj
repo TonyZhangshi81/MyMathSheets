@@ -102,7 +102,7 @@
     <Compile Include="Provider\OperationParameterProvider.cs" />
     <Compile Include="Provider\JsonOperationParameterProvider.cs" />
     <Compile Include="Provider\OperationProviderConfigurationSection.cs" />
-    <Compile Include="Provider\ParameterHepler.cs" />
+    <Compile Include="Main\OperationStrategy\ParameterHepler.cs" />
     <Compile Include="Properties\MsgResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -111,7 +111,7 @@
     <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="Util\Consts.cs" />
     <Compile Include="Util\JsonExtension.cs" />
-    <Compile Include="Util\RandomNumberComposition.cs" />
+    <Compile Include="Util\RandomNumber\RandomNumberComposition.cs" />
     <Compile Include="Util\ReflectionUtil.cs" />
     <Compile Include="Util\StringUtil.cs" />
   </ItemGroup>
