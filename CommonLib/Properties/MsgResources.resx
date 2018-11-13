@@ -126,6 +126,9 @@
   <data name="E0019L" xml:space="preserve">
     <value>E0019L:指定的{0}題型參數對象未找到</value>
   </data>
+  <data name="E0020L" xml:space="preserve">
+    <value>E0020L:指定的{0}計算式對象未找到</value>
+  </data>
   <data name="I0001L" xml:space="preserve">
     <value>I0001L:指定運算符實例準備作成</value>
   </data>

@@ -88,6 +88,15 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
+        ///   E0020L:指定的{0}計算式對象未找到 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0020L {
+            get {
+                return ResourceManager.GetString("E0020L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   I0001L:指定運算符實例準備作成 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string I0001L {

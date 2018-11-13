@@ -25,11 +25,6 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// </summary>
 		private bool _composed = false;
 		/// <summary>
-		/// 當前計算式策略名
-		/// </summary>
-		private LayoutSetting.Preview _currentPreview;
-
-		/// <summary>
 		/// 運算符檢索用的composer
 		/// </summary>
 		private Composer _composer;
@@ -67,7 +62,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 運算符屬性注入點
 		/// </summary>
 		[ImportMany(RequiredCreationPolicy = CreationPolicy.NonShared)]
-		public IEnumerable<Lazy<OperationBase, IOperationMetaDataView>> _operations { get; set; }
+		public IEnumerable<Lazy<OperationBase, IOperationMetaDataView>> Operations { get; set; }
 
 		/// <summary>
 		/// 對指定計算式策略實例化
@@ -79,7 +74,6 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			// 獲取計算式策略模塊Compsero
 			_composer = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy, preview);
 
-			_currentPreview = preview;
 			// 運算符對象緩存區管理
 			ConcurrentDictionary<LayoutSetting.Preview, Type> cache = OperationCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, Type>());
 			// 題型模塊是否已經注入 <- 初次注入允許MEF容器注入本類的屬性信息（注入運算符屬性）
@@ -91,7 +85,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 				ComposeThis();
 
 				// 指定運算符并獲取處理類型
-				IEnumerable<Lazy<OperationBase, IOperationMetaDataView>> operations = _operations.Where(d => d.Metadata.Layout == preview);
+				IEnumerable<Lazy<OperationBase, IOperationMetaDataView>> operations = Operations.Where(d => d.Metadata.Layout == preview);
 				if (operations.Count() == 0)
 				{
 					// 指定的題型策略對象未找到
@@ -122,7 +116,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			string key = string.Format(preview.ToString() + "::" + identifier);
 
 			// 注入運算符參數對象
-			var parameters = _composer.GetExports<ParameterBase, IOperationMetaDataView>();
+			IEnumerable<Lazy<ParameterBase, IOperationMetaDataView>> parameters = _composer.GetExports<ParameterBase, IOperationMetaDataView>();
 			if (parameters.Count() == 0)
 			{
 				// 指定的題型參數對象未找到
@@ -130,7 +124,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			}
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0004L));
 
-			var parameter = parameters.First().Value;
+			ParameterBase parameter = parameters.First().Value;
 			parameter.Identifier = key;
 			// 參數初期化處理（依據Provider配置）
 			parameter.InitParameter();

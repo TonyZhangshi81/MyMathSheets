@@ -33,7 +33,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <summary>
 		/// 運算符處理類型緩存區
 		/// </summary>
-		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<SignOfOperation, ICalculate>> ComposerCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<SignOfOperation, ICalculate>>();
+		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<SignOfOperation, Type>> ComposerCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<SignOfOperation, Type>>();
 
 		/// <summary>
 		/// 構造函數
@@ -51,21 +51,21 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		private void ComposeThis()
 		{
 			// 工廠實例后只需要收集一次
-			if (this._composed)
+			if (_composed)
 			{
 				return;
 			}
 			// 從MEF容器中注入本類的屬性信息（注入運算符屬性）
-			this._composer.Compose(this);
+			_composer.Compose(this);
 			// 以防止重複注入（減少損耗）
-			this._composed = true;
+			_composed = true;
 		}
 
 		/// <summary>
 		/// 運算符屬性注入點
 		/// </summary>
 		[ImportMany(RequiredCreationPolicy = CreationPolicy.NonShared)]
-		public IEnumerable<Lazy<CalculateBase, ICalculateMetaDataView>> _calculates { get; set; }
+		public IEnumerable<Lazy<CalculateBase, ICalculateMetaDataView>> Calculates { get; set; }
 
 		/// <summary>
 		/// 對指定運算符實例化
@@ -75,9 +75,9 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		public ICalculate CreateCalculateInstance(SignOfOperation sign)
 		{
 			// 運算符對象緩存區管理
-			ConcurrentDictionary<SignOfOperation, ICalculate> cacheStrategy = ComposerCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<SignOfOperation, ICalculate>());
+			ConcurrentDictionary<SignOfOperation, Type> cacheStrategy = ComposerCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<SignOfOperation, Type>());
 			// 返回緩衝區中的運算符對象
-			return cacheStrategy.GetOrAdd(sign, (c) =>
+			var calculater = cacheStrategy.GetOrAdd(sign, (c) =>
 			{
 				// 在MEF容器中收集本類的屬性信息（實際情況屬性只注入一次）
 				ComposeThis();
@@ -85,18 +85,20 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0001L));
 
 				// 指定運算符并獲取處理類型
-				CalculateBase calculate = _calculates.Where(d =>
+				IEnumerable<Lazy<CalculateBase, ICalculateMetaDataView>> calculates = Calculates.Where(d => { return d.Metadata.Sign == sign; });
+				if (Calculates.Count() == 0)
 				{
-					return d.Metadata.Sign == sign;
-				}).First().Value;
+					// 指定的題型參數對象未找到
+					throw new CalculateNotFoundException(MessageUtil.GetException(() => MsgResources.E0020L, sign.ToString()));
+				}
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0002L, sign.ToString()));
 
-				// 返回該運算符處理類型的實例
-				ICalculate calculater = (ICalculate)Activator.CreateInstance(calculate.GetType());
-
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0002L, calculate.GetType().ToString()));
-
-				return calculater;
+				return calculates.First().Value.GetType();
 			});
+
+			// 返回該運算符處理類型的實例
+			ICalculate instance = (ICalculate)Activator.CreateInstance(calculater);
+			return instance;
 		}
 	}
 }

@@ -61,6 +61,7 @@
     <Compile Include="Logging\Log.cs" />
     <Compile Include="Main\Arithmetic\CalculateFactory.cs" />
     <Compile Include="Main\Arithmetic\CalculateBase.cs" />
+    <Compile Include="Main\Arithmetic\CalculateNotFoundException.cs" />
     <Compile Include="Main\ExportAttributes\Calculate\CalculateAttribute.cs" />
     <Compile Include="Main\Arithmetic\CalculateHelper.cs" />
     <Compile Include="Main\Arithmetic\ICalculateFactory.cs" />
