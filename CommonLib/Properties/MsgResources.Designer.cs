@@ -70,6 +70,24 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
+        ///   E0018L:指定的{0}題型策略對象未找到 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0018L {
+            get {
+                return ResourceManager.GetString("E0018L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   E0019L:指定的{0}題型參數對象未找到 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0019L {
+            get {
+                return ResourceManager.GetString("E0019L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   I0001L:指定運算符實例準備作成 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string I0001L {

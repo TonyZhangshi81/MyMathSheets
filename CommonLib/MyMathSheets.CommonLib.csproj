@@ -90,6 +90,7 @@
     <Compile Include="Main\ExportAttributes\Operation\OperationAttribute.cs" />
     <Compile Include="Main\OperationStrategy\IOperation.cs" />
     <Compile Include="Main\OperationStrategy\OperationBase.cs" />
+    <Compile Include="Main\OperationStrategy\OperationNotFoundException.cs" />
     <Compile Include="Main\OperationStrategy\OperationStrategyHelper.cs" />
     <Compile Include="Main\OperationStrategy\ParameterBase.cs" />
     <Compile Include="Message\MessageUtil.cs" />

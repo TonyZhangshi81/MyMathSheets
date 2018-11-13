@@ -91,12 +91,17 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 				ComposeThis();
 
 				// 指定運算符并獲取處理類型
-				OperationBase operation = _operations.Where(d => d.Metadata.Layout == preview).First().Value;
+				IEnumerable<Lazy<OperationBase, IOperationMetaDataView>> operations = _operations.Where(d => d.Metadata.Layout == preview);
+				if (operations.Count() == 0)
+				{
+					// 指定的題型策略對象未找到
+					throw new OperationNotFoundException(MessageUtil.GetException(() => MsgResources.E0018L, preview.ToString()));
+				}
 
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0003L));
 
 				// 運算符處理類型返回
-				return operation.GetType();
+				return operations.First().Value.GetType();
 			});
 
 			// 返回該運算符處理類型的實例
@@ -117,9 +122,15 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			string key = string.Format(preview.ToString() + "::" + identifier);
 
 			// 注入運算符參數對象
-			ParameterBase parameter = _composer.GetExports<ParameterBase, IOperationMetaDataView>().First().Value;
+			var parameters = _composer.GetExports<ParameterBase, IOperationMetaDataView>();
+			if (parameters.Count() == 0)
+			{
+				// 指定的題型參數對象未找到
+				throw new OperationNotFoundException(MessageUtil.GetException(() => MsgResources.E0019L, preview.ToString()));
+			}
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0004L));
 
+			var parameter = parameters.First().Value;
 			parameter.Identifier = key;
 			// 參數初期化處理（依據Provider配置）
 			parameter.InitParameter();
