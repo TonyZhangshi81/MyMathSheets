@@ -97,6 +97,15 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
+        ///   E0021L:指定的{0}題型HTML支援類對象未找到 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0021L {
+            get {
+                return ResourceManager.GetString("E0021L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   I0001L:指定運算符實例準備作成 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string I0001L {

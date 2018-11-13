@@ -74,6 +74,7 @@
     <Compile Include="Main\FromProcess\IMainProcess.cs" />
     <Compile Include="Main\FromProcess\MainProcess.cs" />
     <Compile Include="Main\HtmlSupport\Attributes\SubstituteAttribute.cs" />
+    <Compile Include="Main\HtmlSupport\HtmlSupportNotFoundException.cs" />
     <Compile Include="Main\HtmlSupport\HtmlSupprtHelper.cs" />
     <Compile Include="Main\HtmlSupport\HtmlSupportBase.cs" />
     <Compile Include="Main\HtmlSupport\HtmlSupportFactory.cs" />

@@ -48,21 +48,21 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		private void ComposeThis()
 		{
 			// 工廠實例后只需要收集一次
-			if (this._composed)
+			if (_composed)
 			{
 				return;
 			}
 			// 從MEF容器中注入本類的屬性信息（注入HTML支援類屬性）
-			this._composer.Compose(this);
+			_composer.Compose(this);
 			// 以防止重複注入（減少損耗）
-			this._composed = true;
+			_composed = true;
 		}
 
 		/// <summary>
 		/// HTML支援類屬性注入點
 		/// </summary>
 		[ImportMany(RequiredCreationPolicy = CreationPolicy.NonShared)]
-		public IEnumerable<Lazy<HtmlSupportBase, IHtmlSupportMetaDataView>> _supports { get; set; }
+		public IEnumerable<Lazy<HtmlSupportBase, IHtmlSupportMetaDataView>> Supports { get; set; }
 
 		/// <summary>
 		/// 題型指定獲取HTML支援類實例
@@ -79,19 +79,25 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 			// HTML支援模塊是否已經注入 <- 初次注入允許MEF容器注入本類的屬性信息（注入HTML支援類屬性）
 			_composed = cache.ContainsKey(preview);
 			// 返回緩衝區中的支援類對象
-			return cache.GetOrAdd(preview, (o) =>
+			IHtmlSupport instance = cache.GetOrAdd(preview, (o) =>
 			{
 				// 在MEF容器中收集本類的屬性信息（實際情況屬性只注入一次）
 				ComposeThis();
 
 				// 取得指定類型下的支援類類型參數
-				HtmlSupportBase support = _supports.Where(d => d.Metadata.Layout == preview).First().Value;
+				IEnumerable<Lazy<HtmlSupportBase, IHtmlSupportMetaDataView>> supports = Supports.Where(d => d.Metadata.Layout == preview);
+				if(supports.Count() == 0)
+				{
+					throw new HtmlSupportNotFoundException(MessageUtil.GetException(() => MsgResources.E0021L, preview.ToString()));
+				}
 
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0008L));
 
-				// 返回該運算符處理類型的實例
-				return (IHtmlSupport)Activator.CreateInstance(support.GetType());
+				return supports.First().Value;
 			});
+
+			// 返回該運算符處理類型的實例
+			return instance;
 		}
 	}
 }

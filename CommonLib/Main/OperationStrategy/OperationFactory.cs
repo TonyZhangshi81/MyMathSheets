@@ -79,7 +79,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			// 題型模塊是否已經注入 <- 初次注入允許MEF容器注入本類的屬性信息（注入運算符屬性）
 			_composed = cache.ContainsKey(preview);
 			// 返回緩衝區中的運算符對象
-			var type = cache.GetOrAdd(preview, (o) =>
+			Type type = cache.GetOrAdd(preview, (o) =>
 			{
 				// 在MEF容器中收集本類的屬性信息（實際情況屬性只注入一次）
 				ComposeThis();

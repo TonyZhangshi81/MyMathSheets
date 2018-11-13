@@ -33,7 +33,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <summary>
 		/// 運算符處理類型緩存區
 		/// </summary>
-		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<SignOfOperation, Type>> ComposerCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<SignOfOperation, Type>>();
+		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<SignOfOperation, ICalculate>> ComposerCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<SignOfOperation, ICalculate>>();
 
 		/// <summary>
 		/// 構造函數
@@ -75,9 +75,9 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		public ICalculate CreateCalculateInstance(SignOfOperation sign)
 		{
 			// 運算符對象緩存區管理
-			ConcurrentDictionary<SignOfOperation, Type> cacheStrategy = ComposerCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<SignOfOperation, Type>());
+			ConcurrentDictionary<SignOfOperation, ICalculate> cacheStrategy = ComposerCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<SignOfOperation, ICalculate>());
 			// 返回緩衝區中的運算符對象
-			var calculater = cacheStrategy.GetOrAdd(sign, (c) =>
+			ICalculate calculater = cacheStrategy.GetOrAdd(sign, (c) =>
 			{
 				// 在MEF容器中收集本類的屬性信息（實際情況屬性只注入一次）
 				ComposeThis();
@@ -93,12 +93,11 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 				}
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0002L, sign.ToString()));
 
-				return calculates.First().Value.GetType();
+				return calculates.First().Value;
 			});
 
 			// 返回該運算符處理類型的實例
-			ICalculate instance = (ICalculate)Activator.CreateInstance(calculater);
-			return instance;
+			return calculater;
 		}
 	}
 }
