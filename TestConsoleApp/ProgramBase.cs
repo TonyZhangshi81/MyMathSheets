@@ -94,7 +94,8 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("************************* 數字排序 ***********************");
 					Console.WriteLine("    AA-數字排序");
 					Console.WriteLine("************************* 認識貨幣 ***********************");
-					Console.WriteLine("    BB-認識貨幣");
+					Console.WriteLine("    B1-認識貨幣(標準/元轉角)");
+					Console.WriteLine("    B2-認識貨幣(隨機/元轉角/元轉分)");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -300,10 +301,16 @@ namespace MyMathSheets.TestConsoleApp
 						Util.ConsoleFormulas(LayoutSetting.Preview.NumericSorting, nsParameter.Formulas.ToList());
 						break;
 
-					case "BB":
+					case "B1":
 						Console.WriteLine();
-						Console.WriteLine("認識貨幣");
+						Console.WriteLine("B1-認識貨幣(標準/元轉角)");
 						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC001");
+						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
+						break;
+					case "B2":
+						Console.WriteLine();
+						Console.WriteLine("B2-認識貨幣(隨機/元轉角/元轉分)");
+						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC002");
 						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
 						break;
 

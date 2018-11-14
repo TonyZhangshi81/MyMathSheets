@@ -41,7 +41,8 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.BasicOperationsLib">
+    <Reference Include="MyMathSheets.BasicOperationsLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.BasicOperationsLib.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.CommonLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -68,7 +69,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FindNearestNumber.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.FindTheLaw">
+    <Reference Include="MyMathSheets.ComputationalStrategy.FindTheLaw, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FindTheLaw.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.FruitsLinkage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -79,14 +81,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.HowMuchMore.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.LearnCurrency">
+    <Reference Include="MyMathSheets.ComputationalStrategy.LearnCurrency, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.LearnCurrency.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.MathWordProblems, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.MathWordProblems.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.NumericSorting">
+    <Reference Include="MyMathSheets.ComputationalStrategy.NumericSorting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.NumericSorting.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.ScoreGoal, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
