@@ -1,20 +1,20 @@
 [
 	{
 		"Identifier": "LC002",
-		"FourOperationsType": 1,
+		"FourOperationsType": 2,
 		"MaximumLimit": 0,
 		"NumberOfQuestions": 4,
 		"QuestionType": 1,
 		"Signs": [ 0 ],
-		"Reserve": "{\"Type\" : [0,1,2,3,4]}"
+		"Reserve": "{\"Type\" : '0,1,2,3,4'}"
 	},
-  {
-    "Identifier": "LC001",
-    "FourOperationsType": 1,
-    "MaximumLimit": 0,
-    "NumberOfQuestions": 8,
-    "QuestionType": 1,
-    "Signs": [ 0 ],
-    "Reserve": "{\"Type\" : [3,5,6]}"
-  }
+	{
+		"Identifier": "LC001",
+		"FourOperationsType": 1,
+		"MaximumLimit": 0,
+		"NumberOfQuestions": 8,
+		"QuestionType": 1,
+		"Signs": [ 0 ],
+		"Reserve": "{\"Type\" : '0,1'}"
+	}
 ]

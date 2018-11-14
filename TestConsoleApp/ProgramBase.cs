@@ -10,6 +10,7 @@ using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
@@ -45,6 +46,7 @@ namespace MyMathSheets.TestConsoleApp
 			HowMuchMoreParameter hmmParameter = null;
 			FindTheLawParameter ftlParameter = null;
 			NumericSortingParameter nsParameter = null;
+			LearnCurrencyParameter lcParameter = null;
 
 			bool isShowMenu = true;
 
@@ -91,6 +93,8 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    Z-找規律");
 					Console.WriteLine("************************* 數字排序 ***********************");
 					Console.WriteLine("    AA-數字排序");
+					Console.WriteLine("************************* 認識貨幣 ***********************");
+					Console.WriteLine("    BB-認識貨幣");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -294,6 +298,13 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("數字排序");
 						nsParameter = (NumericSortingParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.NumericSorting, "NS001");
 						Util.ConsoleFormulas(LayoutSetting.Preview.NumericSorting, nsParameter.Formulas.ToList());
+						break;
+
+					case "BB":
+						Console.WriteLine();
+						Console.WriteLine("認識貨幣");
+						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC001");
+						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
 						break;
 
 					case "D9":

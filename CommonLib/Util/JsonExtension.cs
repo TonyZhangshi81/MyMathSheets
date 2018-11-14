@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 
 namespace MyMathSheets.CommonLib.Util
 {
@@ -33,6 +34,7 @@ namespace MyMathSheets.CommonLib.Util
 		public static object GetPropertyByJson(this string jsonString, string propertyName)
 		{
 			JObject jObj = JObject.Parse(jsonString);
+
 			return jObj[propertyName];
 		}
 

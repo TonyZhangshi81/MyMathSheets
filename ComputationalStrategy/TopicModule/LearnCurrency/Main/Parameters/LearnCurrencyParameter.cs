@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Item;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
@@ -29,7 +30,8 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
 		{
 			base.InitParameter();
 
-			Types = (int[])JsonExtension.GetPropertyByJson(Reserve, "Type");
+			object value = JsonExtension.GetPropertyByJson(Reserve, "Type");
+			Types = Convert.ToString(value).Split(',').Select(s => int.Parse(s)).ToArray();
 
 			// 認識貨幣集合實例化
 			Formulas = new List<LearnCurrencyFormula>();

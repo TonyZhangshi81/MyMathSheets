@@ -51,12 +51,22 @@
     <Compile Include="Main\Parameters\LearnCurrencyParameter.cs" />
     <Compile Include="Main\Strategy\LearnCurrency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\MsgResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MsgResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\LearnCurrency.json" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\MsgResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">
       <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
