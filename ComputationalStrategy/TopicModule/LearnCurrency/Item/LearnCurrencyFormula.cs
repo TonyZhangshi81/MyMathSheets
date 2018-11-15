@@ -25,6 +25,15 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Item
 		public GapFilling Gap { get; set; }
 
 		/// <summary>
+		/// 剩下的角
+		/// </summary>
+		public int? RemainderJiao { get; set; }
+		/// <summary>
+		/// 剩下的角
+		/// </summary>
+		public int? RemainderFen { get; set; }
+
+		/// <summary>
 		/// 貨幣轉換題型種類
 		/// </summary>
 		public CurrencyTransform CurrencyTransformType { get; set; }

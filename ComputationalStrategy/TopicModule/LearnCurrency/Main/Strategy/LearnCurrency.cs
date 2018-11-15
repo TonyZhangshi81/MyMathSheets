@@ -42,6 +42,17 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			_currencys[CurrencyTransform.J2F] = JiaoConvertToFen;
 			// 角轉換為元分
 			_currencys[CurrencyTransform.J2YF] = JiaoConvertToYuanFen;
+			// 分轉換為元
+			_currencys[CurrencyTransform.F2Y] = FenConvertToYuan;
+			// 分轉換為角
+			_currencys[CurrencyTransform.F2J] = FenConvertToJiao;
+			// 分轉換為元角
+			_currencys[CurrencyTransform.F2YJ] = FenConvertToYuanJiao;
+
+			// 角轉換為元（有剩餘）
+			_currencys[CurrencyTransform.J2YExt] = JiaoConvertToYuanExt;
+			// 分轉換為元角（有剩餘）
+			_currencys[CurrencyTransform.F2YJExt] = FenConvertToYuanJiaoExt;
 		}
 		/// <summary>
 		/// 算式作成
@@ -157,6 +168,122 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		}
 
 		/// <summary>
+		/// 分轉換為元角（有剩餘）
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(分或者元角)</param>
+		protected virtual void FenConvertToYuanJiaoExt(LearnCurrencyFormula formula, QuestionType type)
+		{
+			// 隨機取得分數量級
+			int fen = CommonUtil.GetRandomNumber(1, 1000);
+			// 如果沒有產生分的餘量，那麼變換題型為分轉元角
+			if (fen % 10 == 0)
+			{
+				// 題型變換
+				formula.CurrencyTransformType = CurrencyTransform.F2YJ;
+				// 分轉換為元角
+				FenConvertToYuanJiao(formula, type);
+				return;
+			}
+			else if (fen % 100 == 0)
+			{
+				// 題型變換
+				formula.CurrencyTransformType = CurrencyTransform.F2Y;
+				// 分轉換為元
+				FenConvertToYuan(formula, type);
+				return;
+			}
+
+			// 轉換為元的換算
+			int yuan = fen / 100;
+			// 轉換為角的換算
+			int jiao = fen % 100 / 10;
+			// 隨機編排填空項目(是角還是分)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			// 元單位
+			formula.YuanUnit = yuan;
+			// 角單位
+			formula.JiaoUnit = jiao;
+			// 分單位
+			formula.FenUnit = fen;
+			// 剩餘的分
+			formula.RemainderFen = fen % 10;
+			// 填空項目(分或者角)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 分轉換為元角
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(分或者元角)</param>
+		protected virtual void FenConvertToYuanJiao(LearnCurrencyFormula formula, QuestionType type)
+		{
+			// 隨機取得分數量級
+			int fen = CommonUtil.GetRandomNumber(1, 100) * 10;
+			// 轉換為元的換算
+			int yuan = fen / 100;
+			// 轉換為角的換算
+			int jiao = fen % 100 / 10;
+			// 隨機編排填空項目(是角還是分)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			// 元單位
+			formula.YuanUnit = yuan;
+			// 角單位
+			formula.JiaoUnit = jiao;
+			// 分單位
+			formula.FenUnit = fen;
+			// 填空項目(分或者角)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 分轉換為角
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(分或者角)</param>
+		protected virtual void FenConvertToJiao(LearnCurrencyFormula formula, QuestionType type)
+		{
+			// 隨機取得分數量級
+			int fen = CommonUtil.GetRandomNumber(1, 10) * 10;
+			// 轉換為角的換算
+			int jiao = fen / 10;
+			// 隨機編排填空項目(是角還是分)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			// 角單位
+			formula.JiaoUnit = jiao;
+			// 分單位
+			formula.FenUnit = fen;
+			// 填空項目(分或者角)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 分轉換為元
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(分或者元)</param>
+		protected virtual void FenConvertToYuan(LearnCurrencyFormula formula, QuestionType type)
+		{
+			// 隨機取得分數量級
+			int fen = CommonUtil.GetRandomNumber(1, 10) * 100;
+			// 轉換為元的換算
+			int yuan = fen / 100;
+			// 隨機編排填空項目(是角還是分)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			// 分單位
+			formula.YuanUnit = yuan;
+			// 分單位
+			formula.FenUnit = fen;
+			// 填空項目(分或者元)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
 		/// 角轉換為元分
 		/// </summary>
 		/// <param name="formula">計算式作成</param>
@@ -205,6 +332,40 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		}
 
 		/// <summary>
+		/// 角轉換為元（有剩餘）
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(元或者角)</param>
+		protected virtual void JiaoConvertToYuanExt(LearnCurrencyFormula formula, QuestionType type)
+		{
+			// 隨機取得角數量級
+			int jiao = CommonUtil.GetRandomNumber(10, 100);
+			// 如果沒有產生角的餘量，那麼變換題型為角轉元
+			if (jiao % 10 == 0)
+			{
+				// 題型變換
+				formula.CurrencyTransformType = CurrencyTransform.J2Y;
+				// 角轉換為元
+				JiaoConvertToYuan(formula, type);
+				return;
+			}
+
+			// 轉換為元的換算
+			int yuan = jiao / 10;
+			// 隨機編排填空項目(是角還是元)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			// 元單位
+			formula.YuanUnit = yuan;
+			// 角單位
+			formula.JiaoUnit = jiao;
+			// 剩餘的角
+			formula.RemainderJiao = jiao % 10;
+			// 填空項目(角或者元、角)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
 		/// 角轉換為元
 		/// </summary>
 		/// <param name="formula">計算式作成</param>
@@ -222,7 +383,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			formula.YuanUnit = yuan;
 			// 角單位
 			formula.JiaoUnit = jiao;
-			// 填空項目(元或者角)
+			// 填空項目(角或者元)
 			formula.Gap = gap;
 		}
 

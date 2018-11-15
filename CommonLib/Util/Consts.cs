@@ -45,6 +45,14 @@
 		/// 分轉元角(eg:230分=>2元3角)
 		/// </summary>
 		F2YJ,
+		/// <summary>
+		/// 角轉元(有剩餘 eg:23角=>2元3角)
+		/// </summary>
+		J2YExt,
+		/// <summary>
+		/// 分轉元角(有剩餘 eg:234分=>2元3角4分)
+		/// </summary>
+		F2YJExt,
 	}
 
 	/// <summary>

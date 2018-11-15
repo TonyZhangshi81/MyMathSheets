@@ -44,7 +44,33 @@ namespace MyMathSheets.TestConsoleApp.Write
 						break;
 					// 角轉分
 					case CurrencyTransform.J2F:
-						format.AppendFormat("角({0}) = 分({1})  填空項目:{2}", d.JiaoUnit, d.YuanUnit, (d.Gap == GapFilling.Left) ? "角" : "分");
+						format.AppendFormat("角({0}) = 分({1})  填空項目:{2}", d.JiaoUnit, d.FenUnit, (d.Gap == GapFilling.Left) ? "角" : "分");
+						break;
+					// 角轉元分
+					case CurrencyTransform.J2YF:
+						format.AppendFormat("角({0}) = 元({1})分({2})  填空項目:{3}", d.JiaoUnit, d.YuanUnit, d.FenUnit, (d.Gap == GapFilling.Left) ? "角" : "元、分");
+						break;
+					// 元轉分
+					case CurrencyTransform.F2Y:
+						format.AppendFormat("分({0}) = 元({1})  填空項目:{2}", d.FenUnit, d.YuanUnit, (d.Gap == GapFilling.Left) ? "分" : "元");
+						break;
+					// 元轉角
+					case CurrencyTransform.F2J:
+						format.AppendFormat("分({0}) = 角({1})  填空項目:{2}", d.FenUnit, d.JiaoUnit, (d.Gap == GapFilling.Left) ? "分" : "角");
+						break;
+					// 分轉元角
+					case CurrencyTransform.F2YJ:
+						format.AppendFormat("分({0}) = 元({1})角({2})  填空項目:{3}", d.FenUnit, d.YuanUnit, d.JiaoUnit, (d.Gap == GapFilling.Left) ? "分" : "元、角");
+						break;
+					// 角轉元（有剩餘）
+					case CurrencyTransform.J2YExt:
+						format.AppendFormat("角({0}) = 元({1})角({2})  填空項目:{3}", d.JiaoUnit, d.YuanUnit, d.RemainderJiao.Value, 
+											(d.Gap == GapFilling.Left) ? "角" : "元角");
+						break;
+					// 分轉元角（有剩餘）
+					case CurrencyTransform.F2YJExt:
+						format.AppendFormat("分({0}) = 元({1})角({2})分({3})  填空項目:{4}", d.FenUnit, d.YuanUnit, d.JiaoUnit, d.RemainderFen.Value,
+											(d.Gap == GapFilling.Left) ? "分" : "元角分");
 						break;
 				}
 

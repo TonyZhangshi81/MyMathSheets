@@ -95,7 +95,10 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    AA-數字排序");
 					Console.WriteLine("************************* 認識貨幣 ***********************");
 					Console.WriteLine("    B1-認識貨幣(標準/元轉角)");
-					Console.WriteLine("    B2-認識貨幣(隨機/元轉角/元轉分)");
+					Console.WriteLine("    B2-認識貨幣(隨機)");
+					Console.WriteLine("    B3-認識貨幣(標準/元轉分)");
+					Console.WriteLine("    B4-認識貨幣(隨機/角轉元分/分轉元角)");
+					Console.WriteLine("    B5-認識貨幣(隨機/元角分擴展)");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -303,14 +306,32 @@ namespace MyMathSheets.TestConsoleApp
 
 					case "B1":
 						Console.WriteLine();
-						Console.WriteLine("B1-認識貨幣(標準/元轉角)");
+						Console.WriteLine("B1-認識貨幣(標準/元轉角、標準填空)");
 						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC001");
 						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
 						break;
 					case "B2":
 						Console.WriteLine();
-						Console.WriteLine("B2-認識貨幣(隨機/元轉角/元轉分)");
+						Console.WriteLine("B2-認識貨幣(隨機)");
 						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC002");
+						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
+						break;
+					case "B3":
+						Console.WriteLine();
+						Console.WriteLine("B3-認識貨幣(標準/元轉分、隨機填空)");
+						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC003");
+						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
+						break;
+					case "B4":
+						Console.WriteLine();
+						Console.WriteLine("B4-認識貨幣(隨機/角轉元分/分轉元角)");
+						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC004");
+						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
+						break;
+					case "B5":
+						Console.WriteLine();
+						Console.WriteLine("B5-認識貨幣(隨機/元角分擴展)");
+						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC005");
 						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
 						break;
 
