@@ -143,6 +143,16 @@ namespace MyMathSheets.MathSheetsSettingApp.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap LearnCurrency {
+            get {
+                object obj = ResourceManager.GetObject("LearnCurrency", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap MathWordProblems {
             get {
                 object obj = ResourceManager.GetObject("MathWordProblems", resourceCulture);

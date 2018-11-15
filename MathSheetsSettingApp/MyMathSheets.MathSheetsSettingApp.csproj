@@ -123,6 +123,7 @@
     <None Include="App_Data\Work\Content\image\ScoreGoal.png" />
     <None Include="App_Data\Work\Content\image\title.png" />
     <None Include="App_Data\Work\Content\image\NumericSorting.png" />
+    <Content Include="App_Data\Work\Content\image\LearnCurrency.png" />
     <Content Include="App_Data\Work\Content\image\timg.png" />
     <Content Include="App_Data\Work\Content\MathSheets.css" />
   </ItemGroup>

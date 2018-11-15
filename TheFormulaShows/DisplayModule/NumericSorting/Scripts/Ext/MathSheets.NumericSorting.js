@@ -9,7 +9,7 @@ MathSheets.NumericSorting = MathSheets.NumericSorting || (function () {
 			// 答案數組
 			var answerAry = ($(pelement).val() || '').split(',');
             var isOK = true;
-            $("input[id*='inputNs" + pindex + "']").each(function (index, element) {
+            $("input[id*='inputNs" + pindex + "L']").each(function (index, element) {
 				inputAry.push($(element));
 				if (parseInt($(element).val()) != answerAry[index]) {
 					isOK = false;

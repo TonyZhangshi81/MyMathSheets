@@ -28,6 +28,7 @@
 	<!--HOWMUCHMORESCRIPT-->
 	<!--FINDTHELAWSCRIPT-->
 	<!--NUMERICSORTINGSCRIPT-->
+	<!--LEARNCURRENCYSCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -61,6 +62,7 @@
 			//<!--HOWMUCHMOREPRINTSETTING-->
 			//<!--FINDTHELAWPRINTSETTING-->
 			//<!--NUMERICSORTINGPRINTSETTING-->
+			//<!--LEARNCURRENCYPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -76,6 +78,7 @@
 			//<!--HOWMUCHMOREPRINTAFTERSETTING-->
 			//<!--FINDTHELAWPRINTAFTERSETTING-->
 			//<!--NUMERICSORTINGPRINTAFTERSETTING-->
+			//<!--LEARNCURRENCYPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -104,6 +107,8 @@
 			//<!--FINDTHELAWREADY-->
 			// 設定頁面所有輸入域為可用狀態(數字排序)
 			//<!--NUMERICSORTINGREADY-->
+			// 設定頁面所有輸入域為可用狀態(認識貨幣)
+			//<!--LEARNCURRENCYREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -139,6 +144,8 @@
 			//<!--FINDTHELAWMAKECORRECTIONS-->
 			// 數字排序
 			//<!--NUMERICSORTINGMAKECORRECTIONS-->
+			// 認識貨幣
+			//<!--LEARNCURRENCYMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -168,6 +175,8 @@
 			//<!--FINDTHELAWTHEIRPAPERS-->
 			// 數字排序
 			//<!--NUMERICSORTINGTHEIRPAPERS-->
+			// 認識貨幣
+			//<!--LEARNCURRENCYTHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -208,6 +217,7 @@
 		<!--HOWMUCHMORE-->
 		<!--FINDTHELAW-->
 		<!--NUMERICSORTING-->
+		<!--LEARNCURRENCY-->
 		</div>
 		<HR>
 		<div class="row">
