@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+	<script src="../Scripts/jquery.linq.min.js" charset="utf-8"></script>
 	<title>JS Bin</title>
 
 	<style>
@@ -24,7 +25,7 @@
 
 	<script>
 		$(document).ready(function () {
-	
+
 			svaAreaInit("#hidInitSettings");
 
 			relativeLocationPointInit("#hidInitSettings");
@@ -50,155 +51,210 @@
 			$(chk).is(':checked') ? parent.css('background-color', '#00ff90') : parent.css('background-color', '#4800ff');
 		}
 
+		// 開始隊列DIV點擊事件
 		function btnDivSClick(div) {
-
+			// 設定當前DIV被選中狀態
 			chkBoxClick($(div).find(':checkbox'));
-			line = "#" + $(div).find('input[type=hidden]').val();
+
+			// 線狀態列表查詢
+			var result = $.Enumerable.From(arrDrawLines).Where(function (d) { return d.startPoint.name == $(div).attr("id") }).ToArray();
+			if (result.lenght != 0) {
+				// DIV選擇狀態還原
+				$("#hidSelectedS").val(result.startPoint.name);
+				$("#hidSelectedE").val(result.endPoint.name)
+			}
 
 			if ($("#hidSelectedS").val() == "") {
+				// 記錄當前被選擇的DIV
 				$("#hidSelectedS").val("#" + $(div).attr("id"));
 			} else {
-				$("#hidSelectedS").val("");
+				// 開始隊列中同時被選擇兩項的情況
+				if ($("#hidSelectedS").val() != ("#" + $(div).attr("id"))) {
+					// 將前一次的選擇狀態取消
+					chkBoxClick($($("#hidSelectedS").val()).find(':checkbox'));
+					// 記錄當前被選擇的DIV
+					$("#hidSelectedS").val("#" + $(div).attr("id"));
+				} else {
+					// 取消當前選擇狀態
+					$("#hidSelectedS").val("");
+				}
 			}
 			drawLine();
-
 		}
 
+		// 結束隊列DIV點擊事件
 		function btnDivEClick(div) {
-
+			// 設定當前DIV被選中狀態
 			chkBoxClick($(div).find(':checkbox'));
 
+			// 線狀態列表查詢
+			var result = $.Enumerable.From(arrDrawLines).Where(function (d) { return d.endPoint.name == $(div).attr("id") }).ToArray();
+			if (result.lenght != 0) {
+				// DIV選擇狀態還原
+				$("#hidSelectedS").val(result.startPoint.name);
+				$("#hidSelectedE").val(result.endPoint.name)
+			}
+
 			if ($("#hidSelectedE").val() == "") {
+				// 記錄當前被選擇的DIV
 				$("#hidSelectedE").val("#" + $(div).attr("id"));
 			} else {
-				$("#hidSelectedE").val("");
+				// 結束隊列中同時被選擇兩項的情況
+				if ($("#hidSelectedE").val() != ("#" + $(div).attr("id"))) {
+					// 將前一次的選擇狀態取消
+					chkBoxClick($($("#hidSelectedE").val()).find(':checkbox'));
+					// 記錄當前被選擇的DIV
+					$("#hidSelectedE").val("#" + $(div).attr("id"));
+				} else {
+					// 取消當前選擇狀態
+					$("#hidSelectedE").val("");
+				}
 			}
 			drawLine();
 		}
 
-
-		var line = "";
 		function drawLine() {
+			// 起始點狀態取得(被選擇的DIV ID)
 			var s = $("#hidSelectedS").val();
+			// 結束點狀態取得(被選擇的DIV ID)
 			var e = $("#hidSelectedE").val();
 
-			var x1 = 0;
-			var y1 = 0;
-			var x2 = 0;
-			var y2 = 0;
-			var draw = false;
+			var x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+			// 線型
+			var line = "";
 			if (s != '' && e != '') {
+				// 當前畫線狀態對象
+				var drawLine = new Object();
+				// 遍歷每一個畫線坐標點
 				$.each(arrDivPoints, function (index, value) {
+					// 找到當前被選擇的起始點坐標
 					if (value.name == s) {
 						x1 = value.x;
 						y1 = value.y;
+						// 取得對應的線型對象
+						line = "#" + $(s).find('input[type=hidden]').val();
+
+						// 起始點對象
+						drawLine.startPoint = value;
+						drawLine.name = line;
 					}
+					// 找到當前被選擇的結束點坐標
 					if (value.name == e) {
 						x2 = value.x;
 						y2 = value.y;
+
+						// 結束點對象
+						drawLine.endPoint = value;
 					}
 				});
+				arrDrawLines.push(drawLine);
+				// 畫線處理
+				$(line).attr({ "x1": x1, "y1": y1, "x2": x2, "y2": y2 });
+
+				// 起始點狀態清除
 				$("#hidSelectedS").val("");
+				// 結束點狀態清除
 				$("#hidSelectedE").val("");
-				draw = true;
-			}
-
-			$(line).attr("x1", x1);
-			$(line).attr("y1", y1);
-			$(line).attr("x2", x2);
-			$(line).attr("y2", y2);
-
-			if (draw) {
-				line = "";
-				draw = false;
+			} else {
+				// 畫線清除
+				$(line).attr({ "x1": x1, "y1": y1, "x2": x2, "y2": y2 });
 			}
 		}
 
+		
+
+		// DIV畫線點坐標列表
 		var arrDivPoints = new Array();
+		// DIV連線狀態列表
+		var arrDrawLines = new Array();
 		function relativeLocationPointInit(hidInitSettings) {
+			// 畫線區域的參數取得
 			var settings = ($(hidInitSettings).val() || "").split(',');
 
 			// 0:橫向 1:縱向
 			var isCrosswise = (settings[3] == 0);
+			// 第一排的左起第一個DIV ID
 			var div1First = settings[0];
+			// 第一排的右起第一個DIV ID
 			var div1Last = settings[1];
-			var divLastLast = settings[2];
+			// 畫線區域ID
 			var svg = settings[4];
-
+			// 遍歷所以DIV(連線對象)
 			$("div[id*='div']").each(function (index, element) {
+				// 取得DIV對象的控件ID
 				var id = "#" + $(element).attr("id");
-				if (div1First == id) {
-					var divPoint = new Object();
-					divPoint.name = id;
-					divPoint.x = 0;
-					divPoint.y = 0;
-					arrDivPoints.push(divPoint);
-				} else if (divLastLast == id) {
-					var divPoint = new Object();
-					divPoint.name = id;
-					divPoint.x = parseInt($(svg).attr("width"));
-					divPoint.y = parseInt($(svg).attr("height"));
-					arrDivPoints.push(divPoint);
-				} else {
-					var isS = (id.substring(id.length - 1) == 'S');
-					// 縱向排列的坐標算法
-					if (isCrosswise) {
-						// TODO
-					}
-					// 橫向排列的坐標算法
-					if (!isCrosswise) {
-						if (isS) {
-							var divPoint = new Object();
-							divPoint.name = id;
-							divPoint.x = 0
-							divPoint.y = $(id).offset().top - $(div1First).offset().top;
-							arrDivPoints.push(divPoint);
-						} else {
-							var divPoint = new Object();
-							divPoint.name = id;
-							divPoint.x = parseInt($(svg).attr("width"));
-							divPoint.y = $(id).offset().top - $(div1Last).offset().top;
-							arrDivPoints.push(divPoint);
-						}
+				// 判斷是否為開始隊列還是結束隊列
+				var isS = (id.substring(id.length - 1) == 'S');
+
+				// 縱向排列的坐標算法
+				if (isCrosswise) {
+					// TODO
+				}
+				// 橫向排列的坐標算法
+				if (!isCrosswise) {
+					if (isS) {
+						// DIV起始坐標點對象
+						var divPoint = new Object();
+						// 名稱(DIV ID)
+						divPoint.name = id;
+						// 橫坐標(畫線區域內的相對坐標)
+						divPoint.x = 0
+						// 縱坐標(畫線區域內的相對坐標)
+						divPoint.y = $(id).offset().top - $(div1First).offset().top;
+						arrDivPoints.push(divPoint);
+					} else {
+						// DIV結束坐標點對象
+						var divPoint = new Object();
+						// 名稱(DIV ID)
+						divPoint.name = id;
+						// 橫坐標(畫線區域內的相對坐標)
+						divPoint.x = parseInt($(svg).attr("width"));
+						// 縱坐標(畫線區域內的相對坐標)
+						divPoint.y = $(id).offset().top - $(div1Last).offset().top;
+						arrDivPoints.push(divPoint);
 					}
 				}
 			});
 		}
 
-
-
 		function svaAreaInit(hidInitSettings) {
-			
+			// 畫線區域的參數取得(注意: 所有控件ID均帶有#)
 			var settings = ($(hidInitSettings).val() || "").split(',');
-
+			// 第一排的左起第一個DIV ID
 			var div1First = settings[0];
+			// 第一排的右起第一個DIV ID
 			var div1Last = settings[1];
+			// 第二排的右起第一個DIV ID
 			var divLastLast = settings[2];
 			// 0:橫向 1:縱向
 			var isCrosswise = (settings[3] == 0);
+			// 畫線區域ID
 			var svg = settings[4];
-
-			var width = 0;
-			var height = 0;
-			var left = 0;
-			var top = 0;
+			// 初始化坐標點
+			var width = 0, height = 0, left = 0, top = 0;
 
 			// 如果是橫向排列
 			if (isCrosswise) {
+				// 畫線區域的寬度
 				width = $(div1Last).offset().left - $(div1First).offset().left;
+				// 畫線區域的高度
 				height = $(divLastLast).offset().top - $(div1Last).offset().top - $(div1Last).outerHeight(true);
+				// 畫線區域的相對位置
 				left = $(div1First).offset().left + $(div1First).outerWidth(true) / 2;
 				top = $(div1First).offset().top + $(div1First).outerHeight(true);
 			}
 
 			// 如果是縱向排列
 			if (!isCrosswise) {
+				// 畫線區域的寬度
 				width = $(div1Last).offset().left - $(div1First).offset().left - $(div1First).outerWidth(true);
+				// 畫線區域的高度
 				height = $(divLastLast).offset().top - $(div1Last).offset().top;
+				// 畫線區域的相對位置
 				left = $(div1First).offset().left + $(div1First).outerWidth(true);
 				top = $(div1First).offset().top + $(div1First).outerHeight(true) / 2;
 			}
-
+			// 畫線區域SVG屬性設定
 			$(svg).css({ "left": left, "top": top });
 			$(svg).attr("width", width);
 			$(svg).attr("height", height);
