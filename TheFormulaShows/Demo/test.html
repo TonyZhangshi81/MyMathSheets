@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+	<title>JS Bin</title>
+
+	<style>
+
+		div {
+			position: absolute;
+			background: #4800ff;
+			width: 100px;
+			height: 100px;
+		}
+
+		svg {
+			position: absolute;
+			z-index: 1;
+		}
+	</style>
+
+
+	<script>
+		$(document).ready(function () {
+	
+			svaAreaInit("#hidInitSettings");
+
+			relativeLocationPointInit("#hidInitSettings");
+
+
+
+			$('#div01S').click(function () { btnDivSClick(this); });
+			$('#div02S').click(function () { btnDivSClick(this); });
+			$('#div03S').click(function () { btnDivSClick(this); });
+			$('#div04S').click(function () { btnDivSClick(this); });
+			$('#div01E').click(function () { btnDivEClick(this); });
+			$('#div02E').click(function () { btnDivEClick(this); });
+			$('#div03E').click(function () { btnDivEClick(this); });
+			$('#div04E').click(function () { btnDivEClick(this); });
+
+
+		});
+
+		function chkBoxClick(chk) {
+
+			$(chk).is(':checked') ? $(chk).prop('checked', false) : $(chk).prop('checked', true);
+			var parent = $(chk).parent();
+			$(chk).is(':checked') ? parent.css('background-color', '#00ff90') : parent.css('background-color', '#4800ff');
+		}
+
+		function btnDivSClick(div) {
+
+			chkBoxClick($(div).find(':checkbox'));
+			line = "#" + $(div).find('input[type=hidden]').val();
+
+			if ($("#hidSelectedS").val() == "") {
+				$("#hidSelectedS").val("#" + $(div).attr("id"));
+			} else {
+				$("#hidSelectedS").val("");
+			}
+			drawLine();
+
+		}
+
+		function btnDivEClick(div) {
+
+			chkBoxClick($(div).find(':checkbox'));
+
+			if ($("#hidSelectedE").val() == "") {
+				$("#hidSelectedE").val("#" + $(div).attr("id"));
+			} else {
+				$("#hidSelectedE").val("");
+			}
+			drawLine();
+		}
+
+
+		var line = "";
+		function drawLine() {
+			var s = $("#hidSelectedS").val();
+			var e = $("#hidSelectedE").val();
+
+			var x1 = 0;
+			var y1 = 0;
+			var x2 = 0;
+			var y2 = 0;
+			var draw = false;
+			if (s != '' && e != '') {
+				$.each(arrDivPoints, function (index, value) {
+					if (value.name == s) {
+						x1 = value.x;
+						y1 = value.y;
+					}
+					if (value.name == e) {
+						x2 = value.x;
+						y2 = value.y;
+					}
+				});
+				$("#hidSelectedS").val("");
+				$("#hidSelectedE").val("");
+				draw = true;
+			}
+
+			$(line).attr("x1", x1);
+			$(line).attr("y1", y1);
+			$(line).attr("x2", x2);
+			$(line).attr("y2", y2);
+
+			if (draw) {
+				line = "";
+				draw = false;
+			}
+		}
+
+		var arrDivPoints = new Array();
+		function relativeLocationPointInit(hidInitSettings) {
+			var settings = ($(hidInitSettings).val() || "").split(',');
+
+			// 0:橫向 1:縱向
+			var isCrosswise = (settings[3] == 0);
+			var div1First = settings[0];
+			var div1Last = settings[1];
+			var divLastLast = settings[2];
+			var svg = settings[4];
+
+			$("div[id*='div']").each(function (index, element) {
+				var id = "#" + $(element).attr("id");
+				if (div1First == id) {
+					var divPoint = new Object();
+					divPoint.name = id;
+					divPoint.x = 0;
+					divPoint.y = 0;
+					arrDivPoints.push(divPoint);
+				} else if (divLastLast == id) {
+					var divPoint = new Object();
+					divPoint.name = id;
+					divPoint.x = parseInt($(svg).attr("width"));
+					divPoint.y = parseInt($(svg).attr("height"));
+					arrDivPoints.push(divPoint);
+				} else {
+					var isS = (id.substring(id.length - 1) == 'S');
+					// 縱向排列的坐標算法
+					if (isCrosswise) {
+						// TODO
+					}
+					// 橫向排列的坐標算法
+					if (!isCrosswise) {
+						if (isS) {
+							var divPoint = new Object();
+							divPoint.name = id;
+							divPoint.x = 0
+							divPoint.y = $(id).offset().top - $(div1First).offset().top;
+							arrDivPoints.push(divPoint);
+						} else {
+							var divPoint = new Object();
+							divPoint.name = id;
+							divPoint.x = parseInt($(svg).attr("width"));
+							divPoint.y = $(id).offset().top - $(div1Last).offset().top;
+							arrDivPoints.push(divPoint);
+						}
+					}
+				}
+			});
+		}
+
+
+
+		function svaAreaInit(hidInitSettings) {
+			
+			var settings = ($(hidInitSettings).val() || "").split(',');
+
+			var div1First = settings[0];
+			var div1Last = settings[1];
+			var divLastLast = settings[2];
+			// 0:橫向 1:縱向
+			var isCrosswise = (settings[3] == 0);
+			var svg = settings[4];
+
+			var width = 0;
+			var height = 0;
+			var left = 0;
+			var top = 0;
+
+			// 如果是橫向排列
+			if (isCrosswise) {
+				width = $(div1Last).offset().left - $(div1First).offset().left;
+				height = $(divLastLast).offset().top - $(div1Last).offset().top - $(div1Last).outerHeight(true);
+				left = $(div1First).offset().left + $(div1First).outerWidth(true) / 2;
+				top = $(div1First).offset().top + $(div1First).outerHeight(true);
+			}
+
+			// 如果是縱向排列
+			if (!isCrosswise) {
+				width = $(div1Last).offset().left - $(div1First).offset().left - $(div1First).outerWidth(true);
+				height = $(divLastLast).offset().top - $(div1Last).offset().top;
+				left = $(div1First).offset().left + $(div1First).outerWidth(true);
+				top = $(div1First).offset().top + $(div1First).outerHeight(true) / 2;
+			}
+
+			$(svg).css({ "left": left, "top": top });
+			$(svg).attr("width", width);
+			$(svg).attr("height", height);
+		}
+
+
+	</script>
+
+</head>
+
+<body>
+	<svg id="svg01" style="left: 300px; top: 300px;" width="100" height="250">
+		<line id="line01" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
+		<line id="line02" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
+		<line id="line03" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
+		<line id="line04" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
+	</svg>
+	<div style="left: 100px; top:100px;" id="div01S">
+		<input type="checkbox" id="chkdiv01S" style="display: none;" />
+		<input type="hidden" value="line01" />
+	</div>
+	<div style="left: 100px; top:250px;" id="div02S">
+		<input type="checkbox" id="chkdiv02S" style="display: none;" />
+		<input type="hidden" value="line02" />
+	</div>
+	<div style="left: 100px; top:400px;" id="div03S">
+		<input type="checkbox" id="chkdiv03S" style="display: none;" />
+		<input type="hidden" value="line03" />
+	</div>
+	<div style="left: 100px; top:550px;" id="div04S">
+		<input type="checkbox" id="chkdiv04S" style="display: none;" />
+		<input type="hidden" value="line04" />
+	</div>
+
+	<div style="left: 300px; top:100px;" id="div01E">
+		<input type="checkbox" id="chkdiv01E" style="display: none;" />
+	</div>
+	<div style="left: 300px; top:250px;" id="div02E">
+		<input type="checkbox" id="chkdiv02E" style="display: none;" />
+	</div>
+	<div style="left: 300px; top:400px;" id="div03E">
+		<input type="checkbox" id="chkdiv03E" style="display: none;" />
+	</div>
+	<div style="left: 300px; top:550px;" id="div04E">
+		<input type="checkbox" id="chkdiv04E" style="display: none;" />
+	</div>
+	<input type="hidden" id="hidSelectedS" />
+	<input type="hidden" id="hidSelectedE" />
+	<input type="hidden" id="hidInitSettings" value="#div01S,#div01E,#div04E,1,#svg01" />
+</body>
+</html>

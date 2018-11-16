@@ -67,6 +67,7 @@
     <Content Include="Content\image\timg.png" />
     <Content Include="Content\MathSheets.css" />
     <Content Include="Demo\HTMLPage.html" />
+    <Content Include="Demo\test.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
