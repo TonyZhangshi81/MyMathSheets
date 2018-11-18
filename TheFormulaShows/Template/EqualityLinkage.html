@@ -1,22 +1,43 @@
 ﻿<!DOCTYPE html>
-<html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="../Content/favicon.ico">
+	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
-	<script src="../Scripts/jquery.linq.min.js" charset="utf-8"></script>
+	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
+	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
+	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
+	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
 	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
-	<title>JS Bin</title>
+	<title>題庫</title>
 
 	<style>
 
-		div {
+		.drawLine-panel {
+			position: relative;
+			overflow: hidden;
+			width: 800px !important;
+			height: 300px !important;
+			display: inline-block;
+			left: 10px;
+		}
+
+		.divDrawLine {
 			position: absolute;
-			background: #ffffff;
-			width: 150px;
-			height: 50px;
+			background: #9fcfff;
+			width: 110px;
+			height: 30px;
 			border-radius: 10px;
 			-webkit-box-shadow: 0 0 6px;
+			cursor: pointer;
 		}
 
 		svg {
@@ -25,9 +46,26 @@
 		}
 	</style>
 
-
 	<script>
+		// 頁面啟動后加載
 		$(document).ready(function () {
+			// 準備
+			$('#btnReady').click(function () { btnReadyClick(); });
+			// 提交答題
+			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
+			// 訂正錯題
+			$('#btnMakeCorrections').click(function () { btnMakeCorrectionsClick(); });
+			// 完成
+			$('#btnOver').click(function () { btnOverClick(); });
+			// 打印
+			$('#btnPrint').click(function () { btnPrintClick(); });
+
+			// 還原上一次答題結果
+			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
+			// 計算式提示
+			$(function () { $("[data-toggle='tooltip']").tooltip(); });
+
+
 			// 畫線區域初期化
 			svaAreaInit("#hidInitSettings");
 			// 畫線坐標點初期化
@@ -41,11 +79,49 @@
 			});
 		});
 
+		// 打印
+		function btnPrintClick() {
+			// 頁面答應處理
+			MathSheets.Common.pagePrint('divPrintContent');
+			// 打印后恢復頁面最初狀態設置
+			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
+			// 打印后頁面設定
+		}
+
+		// 答題準備按鍵
+		function btnReadyClick() {
+			// 設定頁面所有輸入域為可用狀態(共通)-交卷按鈕顯示,準備按鈕隱藏,打印按鈕隱藏
+			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
+			// 計時開始
+			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
+		}
+
+		// 完成(關閉頁面)
+		function btnOverClick() {
+			MathSheets.Common.windowClose();
+		}
+
+		// 訂正按鈕(不計入答題情況信息)
+		function btnMakeCorrectionsClick() {
+			var fault = 0;
+
+			// 訂正按鈕處理
+			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
+		}
+
+		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
+		function btnTheirPapersClick() {
+			// 交卷按鈕處理
+			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
+			// 計時停止（答題結果設定）
+			MathSheets.Common.timeStop('spanSS', 'spanMM', 'spanHH');
+		}
+
 		function chkBoxClick(chk) {
 			var parent = $(chk).parent();
 			if ($(chk).is(':checked')) {
 				$(chk).prop('checked', false);
-				parent.css('background-color', '#ffffffff');
+				parent.css('background-color', '#9fcfff');
 			} else {
 				$(chk).prop('checked', true);
 				parent.css('background-color', '#00ff90');
@@ -227,7 +303,7 @@
 			// 畫線區域ID
 			var svg = settings[4];
 			// 遍歷所以DIV(連線對象)
-			$("div[id*='div']").each(function (index, element) {
+			$("div[class='divDrawLine']").each(function (index, element) {
 				// 取得DIV對象的控件ID
 				var id = "#" + $(element).attr("id");
 				// 判斷是否為開始隊列還是結束隊列
@@ -298,63 +374,146 @@
 			// 如果是縱向排列
 			if (!isCrosswise) {
 				// 畫線區域的寬度
-				width = $(div1Last).offset().left - $(div1First).offset().left - $(div1First).outerWidth(true);
+				width = $(div1Last).position().left - $(div1First).position().left - $(div1First).outerWidth(true);
 				// 畫線區域的高度
-				height = $(divLastLast).offset().top - $(div1Last).offset().top;
+				height = $(divLastLast).position().top - $(div1Last).position().top;
 				// 畫線區域的相對位置
-				left = $(div1First).offset().left + $(div1First).outerWidth(true);
-				top = $(div1First).offset().top + $(div1First).outerHeight(true) / 2;
+				left = $(div1First).position().left + $(div1First).outerWidth(true);
+				top = $(div1First).position().top + $(div1First).outerHeight(true) / 2;
 			}
 			// 畫線區域SVG屬性設定
 			$(svg).css({ "left": left, "top": top });
 			$(svg).attr("width", width);
 			$(svg).attr("height", height);
 		}
-
-
 	</script>
-
 </head>
-
 <body>
-	<svg id="svg01" style="left: 300px; top: 300px;" width="100" height="250">
-		<line id="line01" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
-		<line id="line02" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
-		<line id="line03" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
-		<line id="line04" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
-	</svg>
-	<div style="left: 100px; top:100px;" id="div01S">
-		<span>2 + 5 = 7</span>
-		<input type="checkbox" id="chkdiv01S" style="display: none;" />
-		<input type="hidden" value="line01" />
+	<div class="container theme-showcase main-ext" role="main">
+		<div class="jumbotron-ext">
+			<div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
+			<div class="div-famousPeople">
+				<h6>
+					<span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+					<br />
+					<span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+					<br />
+					<span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+				</h6>
+			</div>
+			<hr class="hr-Ext" />
+			<div class="text-info-ext">
+				前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
+				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
+			</div>
+		</div>
+		<div id="divPrintContent">
+			<!--ARITHMETIC-->
+			<br />
+			<div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">算式连一连</span></h4></div>
+			<hr />
+			<div class="row text-center row-margin-top drawLine-panel">
+				<svg id="svg01" style="left: 300px; top: 300px;" width="100" height="250">
+					<line id="line01" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
+					<line id="line02" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
+					<line id="line03" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
+					<line id="line04" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
+					<line id="line05" x1="0" y1="0" x2="0" y2="0" stroke="red" stroke-width="1" />
+				</svg>
+				<div class="divDrawLine" style="left: 30px; top:10px;" id="div01S">
+					<h5>
+						<span class="label">13 + 4</span>
+					</h5>
+					<input type="checkbox" id="chkdiv01S" style="display: none;" />
+					<input type="hidden" value="line01" />
+				</div>
+				<div class="divDrawLine" style="left: 30px; top:70px;" id="div02S">
+					<h5>
+						<span class="label">7 + 9</span>
+					</h5>
+					<input type="checkbox" id="chkdiv02S" style="display: none;" />
+					<input type="hidden" value="line02" />
+				</div>
+				<div class="divDrawLine" style="left: 30px; top:130px;" id="div03S">
+					<h5>
+						<span class="label">12 - 4</span>
+					</h5>
+					<input type="checkbox" id="chkdiv03S" style="display: none;" />
+					<input type="hidden" value="line03" />
+				</div>
+				<div class="divDrawLine" style="left: 30px; top:190px;" id="div04S">
+					<h5>
+						<span class="label">7 + 4</span>
+					</h5>
+					<input type="checkbox" id="chkdiv04S" style="display: none;" />
+					<input type="hidden" value="line04" />
+				</div>
+				<div class="divDrawLine" style="left: 30px; top:250px;" id="div05S">
+					<h5>
+						<span class="label">7 + 7</span>
+					</h5>
+					<input type="checkbox" id="chkdiv05S" style="display: none;" />
+					<input type="hidden" value="line05" />
+				</div>
+				<div class="divDrawLine" style="left: 250px; top:10px;" id="div01E">
+					<h5>
+						<span class="label">7 + 10</span>
+					</h5>
+					<input type="checkbox" id="chkdiv01E" style="display: none;" />
+				</div>
+				<div class="divDrawLine" style="left: 250px; top:70px;" id="div02E">
+					<h5>
+						<span class="label">6 + 8</span>
+					</h5>
+					<input type="checkbox" id="chkdiv02E" style="display: none;" />
+				</div>
+				<div class="divDrawLine" style="left: 250px; top:130px;" id="div03E">
+					<h5>
+						<span class="label">4 + 4</span>
+					</h5>
+					<input type="checkbox" id="chkdiv03E" style="display: none;" />
+				</div>
+				<div class="divDrawLine" style="left: 250px; top:190px;" id="div04E">
+					<h5>
+						<span class="label">3 + 8</span>
+					</h5>
+					<input type="checkbox" id="chkdiv04E" style="display: none;" />
+				</div>
+				<div class="divDrawLine" style="left: 250px; top:250px;" id="div05E">
+					<h5>
+						<span class="label">8 + 8</span>
+					</h5>
+					<input type="checkbox" id="chkdiv05E" style="display: none;" />
+				</div>
+				<input type="hidden" id="hidSelectedS" />
+				<input type="hidden" id="hidSelectedE" />
+				<input type="hidden" id="hidInitSettings" value="#div01S,#div01E,#div05E,1,#svg01" />
+			</div>
+		</div>
+		<HR>
+		<div class="row">
+			<div class="col-md-12 col-md-offset-3">
+				<p class="text-center">
+					<button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
+					<button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
+					<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
+					<button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
+					<button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
+				</p>
+			</div>
+		</div>
+		<div class="page-header">
+			<h4>練習情況</h4>
+		</div>
+		<div class="well">
+			<p>
+				做題用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+				<br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
+				<br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
+			</p>
+		</div>
 	</div>
-	<div style="left: 100px; top:250px;" id="div02S">
-		<input type="checkbox" id="chkdiv02S" style="display: none;" />
-		<input type="hidden" value="line02" />
-	</div>
-	<div style="left: 100px; top:400px;" id="div03S">
-		<input type="checkbox" id="chkdiv03S" style="display: none;" />
-		<input type="hidden" value="line03" />
-	</div>
-	<div style="left: 100px; top:550px;" id="div04S">
-		<input type="checkbox" id="chkdiv04S" style="display: none;" />
-		<input type="hidden" value="line04" />
-	</div>
-
-	<div style="left: 300px; top:100px;" id="div01E">
-		<input type="checkbox" id="chkdiv01E" style="display: none;" />
-	</div>
-	<div style="left: 300px; top:250px;" id="div02E">
-		<input type="checkbox" id="chkdiv02E" style="display: none;" />
-	</div>
-	<div style="left: 300px; top:400px;" id="div03E">
-		<input type="checkbox" id="chkdiv03E" style="display: none;" />
-	</div>
-	<div style="left: 300px; top:550px;" id="div04E">
-		<input type="checkbox" id="chkdiv04E" style="display: none;" />
-	</div>
-	<input type="hidden" id="hidSelectedS" />
-	<input type="hidden" id="hidSelectedE" />
-	<input type="hidden" id="hidInitSettings" value="#div01S,#div01E,#div04E,1,#svg01" />
+	<a href="javascript:" class="totop"></a>
 </body>
 </html>
