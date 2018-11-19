@@ -74,6 +74,11 @@
     <Content Include="Demo\html5-svg-clock\js\jquery.js" />
     <Content Include="Demo\html5-svg-clock\js\snap.svg-min.js" />
     <Content Include="Demo\HTMLPage.html" />
+    <Content Include="Demo\pure-css3-blue-butterfly\css\reset.min.css" />
+    <Content Include="Demo\pure-css3-blue-butterfly\css\style.css" />
+    <Content Include="Demo\pure-css3-blue-butterfly\index.html" />
+    <Content Include="Demo\pure-css3-blue-butterfly\index2.html" />
+    <Content Include="Demo\pure-css3-blue-butterfly\js\index.js" />
     <Content Include="Demo\test.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -114,6 +119,7 @@
     <None Include="Content\bootstrap.min.css.map" />
     <None Include="Demo\html5-svg-clock\config.rb" />
     <None Include="Demo\html5-svg-clock\scss\style.scss" />
+    <None Include="Demo\pure-css3-blue-butterfly\scss\style.scss" />
     <None Include="packages.config" />
     <None Include="Scripts\bootstrap.bundle.js.map" />
     <None Include="Scripts\bootstrap.bundle.min.js.map" />
