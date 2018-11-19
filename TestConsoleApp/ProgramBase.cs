@@ -6,6 +6,7 @@ using MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
@@ -47,6 +48,7 @@ namespace MyMathSheets.TestConsoleApp
 			FindTheLawParameter ftlParameter = null;
 			NumericSortingParameter nsParameter = null;
 			LearnCurrencyParameter lcParameter = null;
+			EqualityLinkageParameter elParameter = null;
 
 			bool isShowMenu = true;
 
@@ -99,6 +101,10 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    B3-認識貨幣(標準/元轉分)");
 					Console.WriteLine("    B4-認識貨幣(隨機/角轉元分/分轉元角)");
 					Console.WriteLine("    B5-認識貨幣(隨機/元角分擴展)");
+					Console.WriteLine("************************* 算式連一連 ***********************");
+					Console.WriteLine("    C1-隨機四則運算連一連");
+					Console.WriteLine("    C2-加法連一連");
+					Console.WriteLine("    C3-減法連一連");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -333,6 +339,25 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("B5-認識貨幣(隨機/元角分擴展)");
 						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC005");
 						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
+						break;
+
+					case "C1":
+						Console.WriteLine();
+						Console.WriteLine("隨機四則運算連一連");
+						elParameter = (EqualityLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityLinkage, "EL001");
+						Util.ConsoleFormulas(LayoutSetting.Preview.EqualityLinkage, elParameter.Formulas);
+						break;
+					case "C2":
+						Console.WriteLine();
+						Console.WriteLine("加法連一連");
+						elParameter = (EqualityLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityLinkage, "EL002");
+						Util.ConsoleFormulas(LayoutSetting.Preview.EqualityLinkage, elParameter.Formulas);
+						break;
+					case "C3":
+						Console.WriteLine();
+						Console.WriteLine("減法連一連");
+						elParameter = (EqualityLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityLinkage, "EL003");
+						Util.ConsoleFormulas(LayoutSetting.Preview.EqualityLinkage, elParameter.Formulas);
 						break;
 
 					case "D9":

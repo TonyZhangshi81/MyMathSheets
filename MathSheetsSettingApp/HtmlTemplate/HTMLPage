@@ -29,6 +29,7 @@
 	<!--FINDTHELAWSCRIPT-->
 	<!--NUMERICSORTINGSCRIPT-->
 	<!--LEARNCURRENCYSCRIPT-->
+	<!--EQUALITYLINKAGESCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -63,6 +64,7 @@
 			//<!--FINDTHELAWPRINTSETTING-->
 			//<!--NUMERICSORTINGPRINTSETTING-->
 			//<!--LEARNCURRENCYPRINTSETTING-->
+			//<!--EQUALITYLINKAGEPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -79,6 +81,7 @@
 			//<!--FINDTHELAWPRINTAFTERSETTING-->
 			//<!--NUMERICSORTINGPRINTAFTERSETTING-->
 			//<!--LEARNCURRENCYPRINTAFTERSETTING-->
+			//<!--EQUALITYLINKAGEPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -109,6 +112,8 @@
 			//<!--NUMERICSORTINGREADY-->
 			// 設定頁面所有輸入域為可用狀態(認識貨幣)
 			//<!--LEARNCURRENCYREADY-->
+			// 設定頁面所有輸入域為可用狀態(算式連一連)
+			//<!--EQUALITYLINKAGEREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -146,6 +151,8 @@
 			//<!--NUMERICSORTINGMAKECORRECTIONS-->
 			// 認識貨幣
 			//<!--LEARNCURRENCYMAKECORRECTIONS-->
+			// 算式連一連
+			//<!--EQUALITYLINKAGEMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -177,6 +184,8 @@
 			//<!--NUMERICSORTINGTHEIRPAPERS-->
 			// 認識貨幣
 			//<!--LEARNCURRENCYTHEIRPAPERS-->
+			// 算式連一連
+			//<!--EQUALITYLINKAGETHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -218,6 +227,7 @@
 		<!--FINDTHELAW-->
 		<!--NUMERICSORTING-->
 		<!--LEARNCURRENCY-->
+		<!--EQUALITYLINKAGE-->
 		</div>
 		<HR>
 		<div class="row">

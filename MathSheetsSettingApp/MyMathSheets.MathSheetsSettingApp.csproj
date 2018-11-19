@@ -114,6 +114,7 @@
     <None Include="App_Data\Work\Content\image\ComputingConnection.png" />
     <Content Include="App_Data\Work\Content\image\CombinatorialEquation.png" />
     <None Include="App_Data\Work\Content\image\EqualityComparison.png" />
+    <Content Include="App_Data\Work\Content\image\EqualityLinkage.png" />
     <Content Include="App_Data\Work\Content\image\FindNearestNumber.png" />
     <Content Include="App_Data\Work\Content\image\FindTheLaw.png" />
     <Content Include="App_Data\Work\Content\image\FruitsLinkage.png" />

@@ -269,7 +269,6 @@ String.prototype.PadRight = function (totalWidth, paddingChar) {
 }
 
 String.prototype.PadHelper = function (totalWidth, paddingChar, isRightPadded) {
-
 	if (this.length < totalWidth) {
 		var paddingString = new String();
 		for (i = 1; i <= (totalWidth - this.length); i++) {
@@ -283,5 +282,19 @@ String.prototype.PadHelper = function (totalWidth, paddingChar, isRightPadded) {
 		}
 	} else {
 		return this;
+	}
+}
+
+Array.prototype.indexOf = function(val) {
+	for (var i = 0; i < this.length; i++) {
+		if (this[i] == val) return i;
+	}
+	return -1;
+}
+
+Array.prototype.remove = function(val) {
+	var index = this.indexOf(val);
+	if (index > -1) {
+		this.splice(index, 1);
 	}
 }

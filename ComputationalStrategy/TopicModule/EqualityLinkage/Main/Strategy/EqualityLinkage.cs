@@ -2,19 +2,19 @@
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.FruitsLinkage.Item;
-using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.EqualityLinkage.Item;
+using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
+namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 {
 	/// <summary>
-	/// 水果連連看題型構築
+	/// 算式連一連題型構築
 	/// </summary>
-	[Operation(LayoutSetting.Preview.FruitsLinkage)]
-	public class FruitsLinkage : OperationBase
+	[Operation(LayoutSetting.Preview.EqualityLinkage)]
+	public class EqualityLinkage : OperationBase
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -27,23 +27,23 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 		/// <param name="parameter"></param>
 		protected override void MarkFormulaList(ParameterBase parameter)
 		{
-			FruitsLinkageParameter p = parameter as FruitsLinkageParameter;
+			EqualityLinkageParameter p = parameter as EqualityLinkageParameter;
 
 			ICalculate strategy = null;
 
-			// 水果連連看對象實例
-			FruitsLinkageFormula fruitsLinkageFormula = new FruitsLinkageFormula();
+			// 算式連一連對象實例
+			EqualityLinkageFormula EqualityLinkageFormula = new EqualityLinkageFormula();
 
-			// 左邊水果算式實例
-			IList<Formula> fruitsFormulas = new List<Formula>();
-			// 右邊容器算式實例
-			IList<Formula> containersFormulas = new List<Formula>();
+			// 左邊算式實例
+			IList<Formula> leftFormulas = new List<Formula>();
+			// 右邊算式實例
+			IList<Formula> rightFormulas = new List<Formula>();
 			// 容器座位號
 			IList<int> seats = new List<int>();
 
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
-			// (水果個數的個數最多10個)
+			// (算式個數的個數最多10個)
 			p.Amount = (p.Amount > 10) ? 10 : p.Amount;
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
@@ -55,20 +55,20 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 				for (var i = 0; i < p.Amount; i++, seatIndex++)
 				{
 					// 計算式作成
-					Formula fruit = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0);
-					fruitsFormulas.Add(fruit);
-					// 計算式作成（依據水果算式的答案推算容器算式）
-					Formula container = strategy.CreateFormulaWithAnswer(p.MaximumLimit, fruit.Answer);
-					containersFormulas.Add(container);
+					Formula formula = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0);
+					leftFormulas.Add(formula);
+					// 計算式作成（依據左邊算式的答案推算右邊的算式）
+					Formula container = strategy.CreateFormulaWithAnswer(p.MaximumLimit, formula.Answer);
+					rightFormulas.Add(container);
 					// 容器座位號
 					seats.Add(seatIndex);
 
-					if (CheckIsNeedInverseMethod(fruitsFormulas, containersFormulas, fruit.Answer))
+					if (CheckIsNeedInverseMethod(leftFormulas, rightFormulas, formula.Answer))
 					{
 						defeated++;
 						// 移除當前推算
-						fruitsFormulas.Remove(fruitsFormulas.Last());
-						containersFormulas.Remove(containersFormulas.Last());
+						leftFormulas.Remove(leftFormulas.Last());
+						rightFormulas.Remove(rightFormulas.Last());
 						seats.Remove(seats.Last());
 
 						// 如果大於兩次則認為此題無法作成繼續下一題
@@ -90,9 +90,10 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 			}
 			else
 			{
+				var seatIndex = 0;
 				RandomNumberComposition random = null;
 				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.Amount; i++)
+				for (var i = 0; i < p.Amount; i++, seatIndex++)
 				{
 					random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
@@ -100,29 +101,29 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
 					// 計算式作成
-					Formula fruit = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0, GapFilling.Default);
-					// 水果算式列表添加
-					fruitsFormulas.Add(fruit);
+					Formula formula = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0, GapFilling.Default);
+					// 左邊算式列表添加
+					leftFormulas.Add(formula);
 
 					random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
 					sign = p.Signs[random.GetRandomNumber()];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
-					// 計算式作成（依據水果算式的答案推算容器算式）
-					Formula container = strategy.CreateFormulaWithAnswer(p.MaximumLimit, fruit.Answer);
-					// 容器算式列表添加
-					containersFormulas.Add(container);
+					// 計算式作成（依據左邊算式的答案推算右邊的算式）
+					Formula container = strategy.CreateFormulaWithAnswer(p.MaximumLimit, formula.Answer);
+					// 右邊的算式列表添加
+					rightFormulas.Add(container);
 
 					// 容器座位號
-					seats.Add(i);
+					seats.Add(seatIndex);
 
-					if (CheckIsNeedInverseMethod(fruitsFormulas, containersFormulas, fruit.Answer))
+					if (CheckIsNeedInverseMethod(leftFormulas, rightFormulas, formula.Answer))
 					{
 						defeated++;
 						// 移除當前推算
-						fruitsFormulas.Remove(fruitsFormulas.Last());
-						containersFormulas.Remove(containersFormulas.Last());
+						leftFormulas.Remove(leftFormulas.Last());
+						rightFormulas.Remove(rightFormulas.Last());
 						seats.Remove(seats.Last());
 
 						// 如果大於兩次則認為此題無法作成繼續下一題
@@ -130,9 +131,11 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 						{
 							// 當前反推判定次數復原
 							defeated = 0;
+							seatIndex--;
 							continue;
 						}
 						i--;
+						seatIndex--;
 						continue;
 					}
 
@@ -141,17 +144,17 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 				}
 			}
 
-			// 左邊水果算式
-			fruitsLinkageFormula.FruitsFormulas = fruitsFormulas;
-			// 右側容器算式
-			fruitsLinkageFormula.ContainersFormulas = containersFormulas;
+			// 左邊算式
+			EqualityLinkageFormula.LeftFormulas = leftFormulas;
+			// 右側算式
+			EqualityLinkageFormula.RightFormulas = rightFormulas;
 			// 座位號隨機排序
-			fruitsLinkageFormula.Sort = seats.OrderBy(x => Guid.NewGuid()).ToList();
+			EqualityLinkageFormula.Sort = seats.OrderBy(x => Guid.NewGuid()).ToList();
 			// 容器的擺放位置
-			fruitsLinkageFormula.Seats = GetNewSeats(fruitsLinkageFormula.Sort);
+			EqualityLinkageFormula.Seats = GetNewSeats(EqualityLinkageFormula.Sort);
 
 			// 結果設定
-			p.Formulas = fruitsLinkageFormula;
+			p.Formulas = EqualityLinkageFormula;
 		}
 		/// <summary>
 		/// 
@@ -174,7 +177,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 		/// <remarks>
 		/// 情況1：算式結果存在一致
 		/// 情況2：無法根據當前計算式的結果推算下一個計算式（一般出現在無法被整除或者超過九九乘法口訣上限值【81】時）
-		/// 情況3：水果計算式與容器計算式完全一致
+		/// 情況3：兩邊的計算式完全一致
 		/// </remarks>
 		/// <param name="fruitsFormulas">左側水果計算式集合</param>
 		/// <param name="containersFormulas"></param>

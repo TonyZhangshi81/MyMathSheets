@@ -65,6 +65,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.EqualityComparison.dll</HintPath>
     </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.EqualityLinkage">
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.EqualityLinkage.dll</HintPath>
+    </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.FindNearestNumber, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FindNearestNumber.dll</HintPath>
@@ -125,6 +128,7 @@
     <Compile Include="Write\FindTheLawFormulaWrite.cs" />
     <Compile Include="Write\CombinatorialFormulaWrite.cs" />
     <Compile Include="Write\FindNearestNumberWrite.cs" />
+    <Compile Include="Write\EqualityLinkageWrite.cs" />
     <Compile Include="Write\LearnCurrencyWrite.cs" />
     <Compile Include="Write\HowMuchMoreWrite.cs" />
     <Compile Include="Write\NumericSortingWrite.cs" />

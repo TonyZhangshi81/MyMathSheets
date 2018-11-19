@@ -453,6 +453,10 @@
 			/// </summary>
 			LearnCurrency,
 			/// <summary>
+			/// 算式連一連
+			/// </summary>
+			EqualityLinkage, 
+			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
 			Ready,

@@ -1,0 +1,38 @@
+[
+	{
+		"Identifier": "EL004",
+		"FourOperationsType": 2,
+		"MaximumLimit": 30,
+		"NumberOfQuestions": 1,
+		"QuestionType": 3,
+		"Signs": [ 0, 1 ],
+		"Reserve": "{\"Amount\" : 5}"
+	},
+	{
+		"Identifier": "EL001",
+		"FourOperationsType": 1,
+		"MaximumLimit": 20,
+		"NumberOfQuestions": 1,
+		"QuestionType": 1,
+		"Signs": [ 1 ],
+		"Reserve": "{\"Amount\" : 10}"
+	},
+	{
+		"Identifier": "EL002",
+		"FourOperationsType": 1,
+		"MaximumLimit": 30,
+		"NumberOfQuestions": 1,
+		"QuestionType": 3,
+		"Signs": [ 0 ],
+		"Reserve": "{\"Amount\" : 4}"
+	},
+	{
+		"Identifier": "EL003",
+		"FourOperationsType": 1,
+		"MaximumLimit": 40,
+		"NumberOfQuestions": 1,
+		"QuestionType": 3,
+		"Signs": [ 1 ],
+		"Reserve": "{\"Amount\" : 3}"
+	}
+]
