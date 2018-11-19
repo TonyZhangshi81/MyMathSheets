@@ -56,6 +56,21 @@
 	}
 
 	/// <summary>
+	/// 連線題左右排列類型(橫向連線和縱向連線)
+	/// </summary>
+	public enum DivQueueType : int
+	{
+		/// <summary>
+		/// 橫向連線
+		/// </summary>
+		Crosswise = 0,
+		/// <summary>
+		/// 縱向連線
+		/// </summary>
+		Lengthways = 1
+	}
+
+	/// <summary>
 	/// Message消息級別
 	/// </summary>
 	public enum MessageLevel

@@ -258,13 +258,54 @@
 	width: 100%;
 }
 
-.drawLine-panel {
-	position: relative;
-	overflow: hidden;
-	width: 800px !important;
-	height: 300px !important;
-	display: inline-block;
-	left: 10px;
+.drawLine-panel-lengthways {
+    position: relative;
+    overflow: hidden;
+    width: 400px !important;
+    height: 300px !important;
+    display: inline-block;
+    left: 50px;
+}
+
+.OKEqualityLinkage-lengthways {
+    position: relative;
+    left: 50px;
+    top: -170px;
+    width: 80px;
+    height: 80px;
+}
+
+.OKEqualityLinkage-crosswise {
+    position: relative;
+    left: 50px;
+    top: -100px;
+    width: 80px;
+    height: 80px;
+}
+
+.NoEqualityLinkage-lengthways {
+    position: relative;
+    left: 50px;
+    top: -170px;
+    width: 80px;
+    height: 80px;
+}
+
+.NoEqualityLinkage-crosswise {
+    position: relative;
+    left: 50px;
+    top: -100px;
+    width: 80px;
+    height: 80px;
+}
+
+.drawLine-panel-crosswise {
+    position: relative;
+    overflow: hidden;
+    width: 700px !important;
+    height: 200px !important;
+    display: inline-block;
+    left: 50px;
 }
 
 .divDrawLine {

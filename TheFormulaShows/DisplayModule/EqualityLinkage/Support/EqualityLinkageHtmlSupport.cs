@@ -25,19 +25,20 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// <summary>
 		/// 左側計算式坐標列表（限定5個坐標）
 		/// </summary>
-		private readonly List<string> LeftFormulasArray;
+		private readonly Dictionary<DivQueueType, List<string>> LeftFormulasArray;
 		/// <summary>
 		/// 右側計算式坐標列表（限定5個坐標）
 		/// </summary>
-		private readonly List<string> RightFormulasArray;
+		private readonly Dictionary<DivQueueType, List<string>> RightFormulasArray;
 
 		/// <summary>
 		/// 構造體
 		/// </summary>
 		public EqualityLinkageHtmlSupport()
 		{
-			// 左側計算式坐標列表
-			LeftFormulasArray = new List<string>()
+			LeftFormulasArray = new Dictionary<DivQueueType, List<string>>();
+			// 左側計算式坐標列表(縱向連線)
+			LeftFormulasArray[DivQueueType.Lengthways] = new List<string>()
 			{
 				"left: 30px; top:10px;",
 				"left: 30px; top:70px;",
@@ -45,14 +46,34 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 				"left: 30px; top:190px;",
 				"left: 30px; top:250px;"
 			};
-			// 右側計算式坐標列表
-			RightFormulasArray = new List<string>()
+			// 上位計算式坐標列表(橫向連線)
+			LeftFormulasArray[DivQueueType.Crosswise] = new List<string>()
+			{
+				"left: 30px; top:10px;",
+				"left: 160px; top:10px;",
+				"left: 290px; top:10px;",
+				"left: 420px; top:10px;",
+				"left: 550px; top:10px;"
+			};
+
+			RightFormulasArray = new Dictionary<DivQueueType, List<string>>();
+			// 右側計算式坐標列表(縱向連線)
+			RightFormulasArray[DivQueueType.Lengthways] = new List<string>()
 			{
 				"left: 250px; top:10px;",
 				"left: 250px; top:70px;",
 				"left: 250px; top:130px;",
 				"left: 250px; top:190px;",
 				"left: 250px; top:250px;"
+			};
+			// 下位計算式坐標列表(橫向連線)
+			RightFormulasArray[DivQueueType.Crosswise] = new List<string>()
+			{
+				"left: 30px; top:150px;",
+				"left: 160px; top:150px;",
+				"left: 290px; top:150px;",
+				"left: 420px; top:150px;",
+				"left: 550px; top:150px;"
 			};
 
 			_answerString = new StringBuilder();
@@ -74,22 +95,20 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 			}
 
 			StringBuilder html = new StringBuilder();
+
+			html.AppendLine(string.Format("<div class=\"row text-center row-margin-top {0}\">", p.QueueType == DivQueueType.Lengthways ? "drawLine-panel-lengthways" : "drawLine-panel-crosswise"));
 			html.Append(GetSvgHtml(p));
 			html.Append(GetLeftFormulasHtml(p));
 			html.Append(GetRightFormulasHtml(p));
 			html.Append(GetInitSettingsHtml(p));
-			html.AppendLine("<img id=\"imgOKEqualityLinkage\" src=\"../Content/image/correct.png\" style=\"width: 60px; height: 60px; display: none; \" />");
-			html.AppendLine("<img id=\"imgNoEqualityLinkage\" src=\"../Content/image/fault.png\" style=\"width: 60px; height: 60px; display: none; \" />");
+			html.AppendLine("</div>");
+			html.AppendLine(string.Format("<img id=\"imgOKEqualityLinkage\" src=\"../Content/image/correct.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "OKEqualityLinkage-lengthways" : "OKEqualityLinkage-crosswise"));
+			html.AppendLine(string.Format("<img id=\"imgNoEqualityLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "NoEqualityLinkage-lengthways" : "NoEqualityLinkage-crosswise"));
 
 			html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">算式連一連</span></h4></div><hr />");
 
-			return string.Format(HTML_START, html.ToString());
+			return html.ToString();
 		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		private const string HTML_START = "<div class=\"row text-center row-margin-top drawLine-panel\">{0}</div>";
 
 		/// <summary>
 		/// 線型HTML模板
@@ -144,7 +163,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 				// 起始點（結束點）DIV的線型名稱模板
 				content.AppendLine(string.Format(DIV_LINE_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0')));
 				// 起始點（結束點）DIV的HTML模板
-				html.AppendLine(string.Format(DIVDRAWLINE_HTML_FORMAT, LeftFormulasArray[controlIndex], controlIndex.ToString().PadLeft(2, '0'), "E", content.ToString()));
+				html.AppendLine(string.Format(DIVDRAWLINE_HTML_FORMAT, RightFormulasArray[p.QueueType][controlIndex], controlIndex.ToString().PadLeft(2, '0'), "E", content.ToString()));
 
 				controlIndex++;
 			});
@@ -170,7 +189,16 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		{
 			StringBuilder html = new StringBuilder();
 
-			_hidInitSettings.AppendFormat("#div01S,#div01E,#div{0}E,1,#svg01", p.Formulas.RightFormulas.Count.ToString().PadLeft(2, '0'));
+			if(p.QueueType == DivQueueType.Lengthways)
+			{
+				int divLastLastIndex = p.Formulas.RightFormulas.Count - 1;
+				_hidInitSettings.AppendFormat("#div00S,#div00E,#div{0}E,{1},#svg01", divLastLastIndex.ToString().PadLeft(2, '0'), (int)p.QueueType);
+			}
+			else
+			{
+				int divLastIndex = p.Formulas.LeftFormulas.Count - 1;
+				_hidInitSettings.AppendFormat("#div00S,#div{0}S,#div00E,{1},#svg01", divLastIndex.ToString().PadLeft(2, '0'), (int)p.QueueType);
+			}
 
 			html.AppendLine("<input type=\"hidden\" id=\"hidSelectedS\" />");
 			html.AppendLine("<input type=\"hidden\" id=\"hidSelectedE\" />");
@@ -202,7 +230,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 				// 起始點（結束點）DIV的線型名稱模板
 				content.AppendLine(string.Format(DIV_LINE_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0')));
 				// 起始點（結束點）DIV的HTML模板
-				html.AppendLine(string.Format(DIVDRAWLINE_HTML_FORMAT, LeftFormulasArray[controlIndex], controlIndex.ToString().PadLeft(2, '0'), "S", content.ToString()));
+				html.AppendLine(string.Format(DIVDRAWLINE_HTML_FORMAT, LeftFormulasArray[p.QueueType][controlIndex], controlIndex.ToString().PadLeft(2, '0'), "S", content.ToString()));
 
 				int seat = p.Formulas.Seats[controlIndex];
 				_answerString.AppendFormat("div{0}S#div{1}E;", controlIndex.ToString().PadLeft(2, '0'), seat.ToString().PadLeft(2, '0'));
