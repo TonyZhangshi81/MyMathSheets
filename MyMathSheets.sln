@@ -173,6 +173,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShow
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.EqualityLinkage", "ComputationalStrategy\TopicModule\EqualityLinkage\MyMathSheets.ComputationalStrategy.EqualityLinkage.csproj", "{3206E500-28D2-4055-A14F-3DE8CBD526E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.SchoolClock", "TheFormulaShows\DisplayModule\SchoolClock\MyMathSheets.TheFormulaShows.SchoolClock.csproj", "{41486B43-37E3-406A-A032-974BAED36997}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -306,6 +308,10 @@ Global
 		{3206E500-28D2-4055-A14F-3DE8CBD526E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3206E500-28D2-4055-A14F-3DE8CBD526E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3206E500-28D2-4055-A14F-3DE8CBD526E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41486B43-37E3-406A-A032-974BAED36997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41486B43-37E3-406A-A032-974BAED36997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41486B43-37E3-406A-A032-974BAED36997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41486B43-37E3-406A-A032-974BAED36997}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -338,6 +344,7 @@ Global
 		{41486B43-37E3-406A-A032-974BAED36787} = {3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}
 		{41486B43-37E3-406A-A032-974BAED36767} = {3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}
 		{3206E500-28D2-4055-A14F-3DE8CBD526E8} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
+		{41486B43-37E3-406A-A032-974BAED36997} = {3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D308C80E-F93A-4F56-89CD-5A89344949B1}

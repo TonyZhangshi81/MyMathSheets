@@ -10,6 +10,9 @@
 	<link rel="icon" href="../Content/favicon.ico">
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+	<link rel="stylesheet" href="html5-svg-clock/css/normalize.css">
+	<link rel="stylesheet" href="html5-svg-clock/css/style.css" media="screen" type="text/css" />
+
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
 	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
@@ -17,6 +20,7 @@
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
 	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
+
 	<!--ARITHMETICSCRIPT-->
 	<!--<script src="../Scripts/Ext/MathSheets.EqualityComparison.js" charset="utf-8"></script>-->
 	<!--COMPUTINGCONNECTIONSCRIPT-->
@@ -283,6 +287,37 @@
 			<!--COMBINATORIALEQUATION-->
 			<!--SCOREGOAL-->
 			<!--HOWMUCHMORE-->
+			<br />
+			<div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">認識時間</span></h4></div><hr />
+			<div class="row text-center row-margin-top">
+				<div class="col-md-4 line-height">
+					<div class="watch-section">
+						<div class="watch-inner">
+							<div class="faces">
+								<div class="face face4">
+									<svg id="clock1" class="clock"></svg>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span>18:45:05</span>
+				</div>
+				<div class="col-md-4 form-inline">
+					<div class="watch-section">
+						<div class="watch-inner">
+							<div class="faces">
+								<div class="face face4">
+									<svg id="clock2" class="clock"></svg>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span>07:05:23</span>
+				</div>
+				<div class="col-md-4 form-inline">
+				</div>
+				<input type="hidden" id="hidClocksAnswer" value="20:30:00;07:15:00" />
+			</div>
 		</div>
 		<HR>
 		<div class="row">
@@ -308,5 +343,9 @@
 		</div>
 	</div>
 	<a href="javascript:" class="totop"></a>
+
+	<script src='html5-svg-clock/js/snap.svg-min.js'></script>
+	<script src="html5-svg-clock/js/index.js"></script>
+
 </body>
 </html>

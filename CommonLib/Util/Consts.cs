@@ -470,7 +470,11 @@
 			/// <summary>
 			/// 算式連一連
 			/// </summary>
-			EqualityLinkage, 
+			EqualityLinkage,
+			/// <summary>
+			/// 時鐘學習板
+			/// </summary>
+			SchoolClock,
 			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
