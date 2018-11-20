@@ -269,8 +269,8 @@
 
 .OKEqualityLinkage-lengthways {
     position: relative;
-    left: -50px;
-    top: -200px;
+    left: 50px;
+    top: -170px;
     width: 80px;
     height: 80px;
 }
@@ -285,8 +285,8 @@
 
 .NoEqualityLinkage-lengthways {
     position: relative;
-    left: -50px;
-    top: -200px;
+    left: 50px;
+    top: -170px;
     width: 80px;
     height: 80px;
 }

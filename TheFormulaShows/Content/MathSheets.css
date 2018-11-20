@@ -308,6 +308,10 @@
     left: 50px;
 }
 
+.divDrawLine-print {
+    border: 1px solid #0094ff;
+}
+
 .divDrawLine {
 	position: absolute;
 	background: #9fcfff;
