@@ -1,5 +1,4 @@
-﻿
-// 秒
+﻿// 秒
 var __second = 0;
 // 分
 var __minute = 0;
@@ -15,7 +14,7 @@ var __isFault = 0;
 var MathSheets = MathSheets || {};
 MathSheets.Common = MathSheets.Common || (function () {
 
-		// 取得ID(eg: #Control)
+	// 取得ID(eg: #Control)
 	_getId = function (id) {
 		return '#' + id;
 	},
@@ -43,12 +42,12 @@ MathSheets.Common = MathSheets.Common || (function () {
 
 		// 頁面答應處理
 		pagePrint = function (printDivId) {
-			var k = $(_getId(printDivId)).prop("outerHTML");
-			$("body *").hide();
-			$("body").append(k);
-			window.print();
-			$("body *").show();
-			$("body " + _getId(printDivId) + ":last").remove();
+			var keepAttr = (3)["class", "id", "style"];
+			var headElements = "<meta charset=\"utf-8\" />,<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />";
+			var options = {
+				mode: 'popup', popClose: false, extraCss: "", retainAttr: keepAttr, standard: 'html5', extraHead: headElements
+			};
+			$(_getId(printDivId)).printArea(options);
 		},
 
 		// 打印后恢復頁面最初狀態設置
@@ -285,14 +284,14 @@ String.prototype.PadHelper = function (totalWidth, paddingChar, isRightPadded) {
 	}
 }
 
-Array.prototype.indexOf = function(val) {
+Array.prototype.indexOf = function (val) {
 	for (var i = 0; i < this.length; i++) {
 		if (this[i] == val) return i;
 	}
 	return -1;
 }
 
-Array.prototype.remove = function(val) {
+Array.prototype.remove = function (val) {
 	var index = this.indexOf(val);
 	if (index > -1) {
 		this.splice(index, 1);

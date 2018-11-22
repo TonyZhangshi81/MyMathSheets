@@ -99,6 +99,7 @@
     <Content Include="Scripts\jquery.linq-vsdoc.js" />
     <Content Include="Scripts\jquery.linq.js" />
     <Content Include="Scripts\jquery.linq.min.js" />
+    <Content Include="Scripts\jquery.PrintArea.js" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\json2.min.js" />
     <Content Include="Scripts\popper-utils.js" />
@@ -160,6 +161,7 @@ xcopy "..\Scripts\Ext" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Script
 copy "..\Scripts\bootstrap.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.easyui.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery-3.3.1.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\jquery.PrintArea.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\json2.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\store.legacy.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\umd\popper.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd" /Y

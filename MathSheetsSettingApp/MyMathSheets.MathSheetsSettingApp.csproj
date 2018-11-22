@@ -89,7 +89,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Config\Problems.json" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -133,6 +132,7 @@
     <Folder Include="App_Data\Work\Scripts\Ext\" />
     <Folder Include="App_Data\Work\Scripts\snap\" />
     <Folder Include="App_Data\Work\Scripts\umd\" />
+    <Folder Include="Config\" />
     <Folder Include="HtmlTemplate\" />
   </ItemGroup>
   <ItemGroup>
