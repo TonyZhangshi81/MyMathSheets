@@ -5,7 +5,7 @@ namespace MyMathSheets.TestConsoleApp
 	/// <summary>
 	/// 
 	/// </summary>
-	public static class Util
+	public static class CommonUtil
 	{
 		/// <summary>
 		/// 

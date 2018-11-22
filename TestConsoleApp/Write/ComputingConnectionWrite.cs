@@ -32,9 +32,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 				d.ConfixFormulas.ToList().ForEach(dd =>
 				{
 					builder.AppendFormat("{0} {1} {2} = ",
-										Util.GetValue(GapFilling.Left, dd.LeftParameter, dd.Gap),
+										CommonUtil.GetValue(GapFilling.Left, dd.LeftParameter, dd.Gap),
 										dd.Sign.ToOperationString(),
-										Util.GetValue(GapFilling.Right, dd.RightParameter, dd.Gap));
+										CommonUtil.GetValue(GapFilling.Right, dd.RightParameter, dd.Gap));
 				});
 				if (builder.Length != 0)
 				{

@@ -13,4 +13,5 @@
 	<object id="NumericSorting" type="MyMathSheets.TestConsoleApp.Write.NumericSortingWrite"></object>
 	<object id="LearnCurrency" type="MyMathSheets.TestConsoleApp.Write.LearnCurrencyWrite"></object>
 	<object id="EqualityLinkage" type="MyMathSheets.TestConsoleApp.Write.EqualityLinkageWrite"></object>
+	<object id="SchoolClock" type="MyMathSheets.TestConsoleApp.Write.SchoolClockWrite"></object>
 </objects>

@@ -14,6 +14,7 @@ using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
@@ -49,6 +50,7 @@ namespace MyMathSheets.TestConsoleApp
 			NumericSortingParameter nsParameter = null;
 			LearnCurrencyParameter lcParameter = null;
 			EqualityLinkageParameter elParameter = null;
+			SchoolClockParameter scParameter = null;
 
 			bool isShowMenu = true;
 
@@ -105,6 +107,9 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    C1-隨機四則運算連一連");
 					Console.WriteLine("    C2-加法連一連");
 					Console.WriteLine("    C3-減法連一連");
+					Console.WriteLine("************************* 時鐘學習板 ***********************");
+					Console.WriteLine("    D1-指定分鐘");
+					Console.WriteLine("    D2-隨機時間");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -121,7 +126,7 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("隨機四則運算填空");
 
 						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 
 					case "B":
@@ -129,7 +134,7 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("標準加法填空");
 
 						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC002");
-						Util.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 
 					case "C":
@@ -137,7 +142,7 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("標準減法填空");
 
 						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC003");
-						Util.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 
 					case "D":
@@ -145,7 +150,7 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("標準乘法填空");
 
 						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC004");
-						Util.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 
 					case "E":
@@ -153,211 +158,223 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("標準除法填空");
 
 						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC005");
-						Util.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 					case "F":
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算比較");
 
 						ecParameter = (EqualityComparisonParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityComparison, "EC001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
 						break;
 
 					case "G":
 						Console.WriteLine();
 						Console.WriteLine("標準加法比較");
 						ecParameter = (EqualityComparisonParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityComparison, "EC002");
-						Util.ConsoleFormulas(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
 						break;
 
 					case "H":
 						Console.WriteLine();
 						Console.WriteLine("標準減法比較");
 						ecParameter = (EqualityComparisonParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityComparison, "EC003");
-						Util.ConsoleFormulas(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
 						break;
 
 					case "I":
 						Console.WriteLine();
 						Console.WriteLine("標準加法運算接龍");
 						ccParameter = (ComputingConnectionParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ComputingConnection, "CC001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
 						break;
 
 					case "J":
 						Console.WriteLine();
 						Console.WriteLine("標準加法運算接龍");
 						ccParameter = (ComputingConnectionParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ComputingConnection, "CC002");
-						Util.ConsoleFormulas(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
 						break;
 
 					case "K":
 						Console.WriteLine();
 						Console.WriteLine("標準減法運算接龍");
 						ccParameter = (ComputingConnectionParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ComputingConnection, "CC003");
-						Util.ConsoleFormulas(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
 						break;
 
 					case "L":
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算應用題");
 						mpParameter = (MathWordProblemsParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.MathWordProblems, "MP001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.MathWordProblems, mpParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.MathWordProblems, mpParameter.Formulas.ToList());
 						break;
 
 					case "M":
 						Console.WriteLine();
 						Console.WriteLine("加法應用題");
 						mpParameter = (MathWordProblemsParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.MathWordProblems, "MP002");
-						Util.ConsoleFormulas(LayoutSetting.Preview.MathWordProblems, mpParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.MathWordProblems, mpParameter.Formulas.ToList());
 						break;
 
 					case "N":
 						Console.WriteLine();
 						Console.WriteLine("減法應用題");
 						mpParameter = (MathWordProblemsParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.MathWordProblems, "MP003");
-						Util.ConsoleFormulas(LayoutSetting.Preview.MathWordProblems, mpParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.MathWordProblems, mpParameter.Formulas.ToList());
 						break;
 
 					case "O":
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算連連看");
 						flParameter = (FruitsLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FruitsLinkage, "FL001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
 						break;
 
 					case "P":
 						Console.WriteLine();
 						Console.WriteLine("加法連連看");
 						flParameter = (FruitsLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FruitsLinkage, "FL002");
-						Util.ConsoleFormulas(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
 						break;
 
 					case "Q":
 						Console.WriteLine();
 						Console.WriteLine("減法連連看");
 						flParameter = (FruitsLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FruitsLinkage, "FL003");
-						Util.ConsoleFormulas(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
 						break;
 
 					case "R":
 						Console.WriteLine();
 						Console.WriteLine("尋找最近的數字");
 						fnParameter = (FindNearestNumberParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindNearestNumber, "FN001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.FindNearestNumber, fnParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FindNearestNumber, fnParameter.Formulas.ToList());
 						break;
 
 					case "S":
 						Console.WriteLine();
 						Console.WriteLine("加法");
 						fnParameter = (FindNearestNumberParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindNearestNumber, "FN002");
-						Util.ConsoleFormulas(LayoutSetting.Preview.FindNearestNumber, fnParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FindNearestNumber, fnParameter.Formulas.ToList());
 						break;
 
 					case "T":
 						Console.WriteLine();
 						Console.WriteLine("減法");
 						fnParameter = (FindNearestNumberParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindNearestNumber, "FN003");
-						Util.ConsoleFormulas(LayoutSetting.Preview.FindNearestNumber, fnParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FindNearestNumber, fnParameter.Formulas.ToList());
 						break;
 
 					case "U":
 						Console.WriteLine();
 						Console.WriteLine("算式組合");
 						ceParameter = (CombinatorialEquationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CombinatorialEquation, "CE001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.CombinatorialEquation, ceParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CombinatorialEquation, ceParameter.Formulas.ToList());
 						break;
 
 					case "V":
 						Console.WriteLine();
 						Console.WriteLine("隨機足球射門");
 						sgParameter = (ScoreGoalParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ScoreGoal, "SG001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
 						break;
 
 					case "W":
 						Console.WriteLine();
 						Console.WriteLine("加法足球射門");
 						sgParameter = (ScoreGoalParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ScoreGoal, "SG002");
-						Util.ConsoleFormulas(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
 						break;
 
 					case "X":
 						Console.WriteLine();
 						Console.WriteLine("減法足球射門");
 						sgParameter = (ScoreGoalParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ScoreGoal, "SG003");
-						Util.ConsoleFormulas(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
 						break;
 
 					case "Y":
 						Console.WriteLine();
 						Console.WriteLine("比多少");
 						hmmParameter = (HowMuchMoreParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.HowMuchMore, "HMM001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.HowMuchMore, hmmParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.HowMuchMore, hmmParameter.Formulas.ToList());
 						break;
 
 					case "Z":
 						Console.WriteLine();
 						Console.WriteLine("找規律");
 						ftlParameter = (FindTheLawParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindTheLaw, "FTL001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.FindTheLaw, ftlParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FindTheLaw, ftlParameter.Formulas.ToList());
 						break;
 
 					case "AA":
 						Console.WriteLine();
 						Console.WriteLine("數字排序");
 						nsParameter = (NumericSortingParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.NumericSorting, "NS001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.NumericSorting, nsParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.NumericSorting, nsParameter.Formulas.ToList());
 						break;
 
 					case "B1":
 						Console.WriteLine();
 						Console.WriteLine("B1-認識貨幣(標準/元轉角、標準填空)");
 						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
 						break;
 					case "B2":
 						Console.WriteLine();
 						Console.WriteLine("B2-認識貨幣(隨機)");
 						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC002");
-						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
 						break;
 					case "B3":
 						Console.WriteLine();
 						Console.WriteLine("B3-認識貨幣(標準/元轉分、隨機填空)");
 						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC003");
-						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
 						break;
 					case "B4":
 						Console.WriteLine();
 						Console.WriteLine("B4-認識貨幣(隨機/角轉元分/分轉元角)");
 						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC004");
-						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
 						break;
 					case "B5":
 						Console.WriteLine();
 						Console.WriteLine("B5-認識貨幣(隨機/元角分擴展)");
 						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, "LC005");
-						Util.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
 						break;
 
 					case "C1":
 						Console.WriteLine();
 						Console.WriteLine("隨機四則運算連一連");
 						elParameter = (EqualityLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityLinkage, "EL001");
-						Util.ConsoleFormulas(LayoutSetting.Preview.EqualityLinkage, elParameter.Formulas);
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityLinkage, elParameter.Formulas);
 						break;
 					case "C2":
 						Console.WriteLine();
 						Console.WriteLine("加法連一連");
 						elParameter = (EqualityLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityLinkage, "EL002");
-						Util.ConsoleFormulas(LayoutSetting.Preview.EqualityLinkage, elParameter.Formulas);
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityLinkage, elParameter.Formulas);
 						break;
 					case "C3":
 						Console.WriteLine();
 						Console.WriteLine("減法連一連");
 						elParameter = (EqualityLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityLinkage, "EL003");
-						Util.ConsoleFormulas(LayoutSetting.Preview.EqualityLinkage, elParameter.Formulas);
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityLinkage, elParameter.Formulas);
+						break;
+					case "D1":
+						Console.WriteLine();
+						Console.WriteLine("指定分鐘");
+						scParameter = (SchoolClockParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.SchoolClock, "SC001");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.SchoolClock, scParameter.Formulas.ToList());
+						break;
+					case "D2":
+						Console.WriteLine();
+						Console.WriteLine("隨機時間");
+						scParameter = (SchoolClockParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.SchoolClock, "SC002");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.SchoolClock, scParameter.Formulas.ToList());
 						break;
 
 					case "D9":

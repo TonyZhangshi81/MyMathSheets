@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{41486B43-37E3-406A-A032-974BAED36997}</ProjectGuid>
+    <ProjectGuid>{3206E500-28D2-4055-A14F-3DE3CBD526E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MyMathSheets.TheFormulaShows.SchoolClock</RootNamespace>
-    <AssemblyName>MyMathSheets.TheFormulaShows.SchoolClock</AssemblyName>
+    <RootNamespace>MyMathSheets.ComputationalStrategy.SchoolClock</RootNamespace>
+    <AssemblyName>MyMathSheets.ComputationalStrategy.SchoolClock</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\MyMathSheets.TheFormulaShows.SchoolClock.xml</DocumentationFile>
+    <DocumentationFile>bin\MyMathSheets.ComputationalStrategy.SchoolClock.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,11 +33,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,42 +47,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Support\SchoolClockHtmlSupport.cs" />
+    <Compile Include="Item\SchoolClockFormula.cs" />
+    <Compile Include="Main\Parameters\SchoolClockParameter.cs" />
+    <Compile Include="Main\Strategy\SchoolClock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\MsgResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MsgResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\image\clock\faces.png" />
-    <Content Include="Content\image\clock\Moon.png" />
-    <Content Include="Content\image\clock\Sun.png" />
-    <Content Include="Content\SchoolClock.css" />
-    <Content Include="Scripts\Ext\MathSheets.SchoolClock.js" />
-    <Content Include="Scripts\snap\snap.svg-min.js" />
-    <Content Include="Scripts\snap\snap.svg.js" />
-    <Content Include="Template\SchoolClock.html" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
+    <None Include="Config\SchoolClock.json" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\MsgResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">
       <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
       <Name>MyMathSheets.CommonLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e1}</Project>
-      <Name>MyMathSheets.BasicOperationsLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\SchoolClock\MyMathSheets.ComputationalStrategy.SchoolClock.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e9}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.SchoolClock</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)Lib" /Y
-copy "..\Scripts\Ext\*.js" "..\..\..\Scripts\Ext\" /Y
-xcopy "..\Content" "..\..\..\Content" /C /E /H /K /R /Y
-copy "..\Template\*.html" "$(SolutionDir)TheFormulaShows\Template" /Y</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)\Lib" /y
+copy "..\Config\*.json" "$(SolutionDir)MathSheetsSettingApp\Config" /Y
+copy "..\Config\*.json" "$(SolutionDir)TestConsoleApp\Config" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

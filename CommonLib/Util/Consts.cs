@@ -56,6 +56,79 @@
 	}
 
 	/// <summary>
+	/// 小時分割（0、1/4、1/2、3/4小時）
+	/// </summary>
+	public enum HourDivision : int
+	{
+		/// <summary>
+		/// 小時整點(0分)
+		/// </summary>
+		IntegralPoint = 0,
+		/// <summary>
+		/// 四分之一小時(15分)
+		/// </summary>
+		Quarter = 1,
+		/// <summary>
+		/// 二分之一小時(30分)
+		/// </summary>
+		Half = 2,
+		/// <summary>
+		/// 四分之三小時(45分)
+		/// </summary>
+		ThreeQuarters = 3
+	}
+
+	/// <summary>
+	/// 計時制（AM/PM）
+	/// </summary>
+	public enum TimeSystem : int
+	{
+		/// <summary>
+		/// 上午[00:01~12:00]
+		/// </summary>
+		AM = 0,
+		/// <summary>
+		/// 下午[12:01~24:00]
+		/// </summary>
+		PM = 1
+	}
+
+	/// <summary>
+	/// 時間段類型（24小時制）
+	/// </summary>
+	public enum TimeIntervalType : int
+	{
+		/// <summary>
+		/// 午夜[0:XX]
+		/// </summary>
+		Midnight = 0,
+		/// <summary>
+		/// 凌晨[1:XX~5:XX]
+		/// </summary>
+		WeeHours = 1,
+		/// <summary>
+		/// 上午[6:XX~11:XX]
+		/// </summary>
+		Forenoon = 2,
+		/// <summary>
+		/// 中午[12:XX]
+		/// </summary>
+		Nooning = 3,
+		/// <summary>
+		/// 下午[13:XX~18:XX]
+		/// </summary>
+		Afternoon = 4,
+		/// <summary>
+		/// 晚上[19:XX~21:XX]
+		/// </summary>
+		Night = 5,
+		/// <summary>
+		/// 深夜[22:XX~23:XX]
+		/// </summary>
+		LateNight = 6
+	}
+
+	/// <summary>
 	/// 連線題左右排列類型(橫向連線和縱向連線)
 	/// </summary>
 	public enum DivQueueType : int
@@ -220,7 +293,7 @@
 	}
 
 	/// <summary>
-	/// 四则运算类型（标准：指定一種運算符、随机出题：隨機抽取一種運算符）
+	/// 四则运算类型（标准：指定一種運算符、随机出题：隨機抽取一種運算符、時鐘學習板是否指定分鐘）
 	/// </summary>
 	public enum FourOperationsType : int
 	{
