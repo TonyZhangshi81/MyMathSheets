@@ -56,6 +56,8 @@
     <Content Include="Scripts\Ext\index.js" />
     <Content Include="Scripts\Ext\MathSheets.SchoolClock.js" />
     <Content Include="Scripts\Ext\snap.svg-min.js" />
+    <Content Include="Scripts\snap\snap.svg-min.js" />
+    <Content Include="Scripts\snap\snap.svg.js" />
     <Content Include="Template\SchoolClock.html" />
   </ItemGroup>
   <ItemGroup />

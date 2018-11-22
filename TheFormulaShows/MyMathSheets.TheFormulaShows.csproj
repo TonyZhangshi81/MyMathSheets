@@ -104,6 +104,8 @@
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
     <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\snap\snap.svg-min.js" />
+    <Content Include="Scripts\snap\snap.svg.js" />
     <Content Include="Scripts\store.legacy.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
