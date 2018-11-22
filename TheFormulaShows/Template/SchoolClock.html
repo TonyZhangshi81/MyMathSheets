@@ -110,6 +110,7 @@
 			<div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">時鐘學習板</span></h4></div><hr />
 			<div class="row text-center row-margin-top">
 				<div class="col-md-4 line-height">
+					<img src="../Content/image/clock/Moon.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="上午" />
 					<div class="watch-section">
 						<div class="watch-inner">
 							<div class="faces">
@@ -119,9 +120,18 @@
 							</div>
 						</div>
 					</div>
-					<span>20:30:00</span>
+					<div class="form-inline clock-inline">
+						<input id="inputH00" type="text" placeholder="時" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputM00" type="text" placeholder="分" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputS00" type="text" placeholder="秒" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<img id="imgOKSchoolClock00" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoSchoolClock00" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					</div>
 				</div>
 				<div class="col-md-4 line-height">
+					<img src="../Content/image/clock/Sun.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="下午" />
 					<div class="watch-section">
 						<div class="watch-inner">
 							<div class="faces">
@@ -131,9 +141,18 @@
 							</div>
 						</div>
 					</div>
-					<span>07:15:00</span>
+					<div class="form-inline clock-inline">
+						<input id="inputH01" type="text" placeholder="時" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputM01" type="text" placeholder="分" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputS01" type="text" placeholder="秒" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<img id="imgOKSchoolClock01" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoSchoolClock01" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					</div>
 				</div>
 				<div class="col-md-4 line-height">
+					<img src="../Content/image/clock/Sun.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="凌晨" />
 					<div class="watch-section">
 						<div class="watch-inner">
 							<div class="faces">
@@ -143,7 +162,15 @@
 							</div>
 						</div>
 					</div>
-					<span>12:30:00</span>
+					<div class="form-inline clock-inline">
+						<input id="inputH02" type="text" placeholder="時" class="form-control input-addBorder" style="width: 50px; text-align:center; " disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputM02" type="text" placeholder="分" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputS02" type="text" placeholder="秒" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<img id="imgOKSchoolClock02" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoSchoolClock02" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					</div>
 				</div>
 				<input type="hidden" id="hidClocksAnswer" value="20:30:00;7:15:00;12:30:00" />
 			</div>

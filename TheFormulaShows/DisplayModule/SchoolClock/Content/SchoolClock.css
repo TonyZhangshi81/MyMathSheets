@@ -113,3 +113,7 @@
 	top: 0;
 	left: 0;
 }
+
+.clock-inline {
+	display: block !important;
+}
