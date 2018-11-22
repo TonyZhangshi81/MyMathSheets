@@ -51,18 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\image\clock\faces.png" />
-    <Content Include="Content\normalize.css" />
-    <Content Include="Content\style.css" />
-    <Content Include="Scripts\Ext\index.js" />
+    <Content Include="Content\SchoolClock.css" />
     <Content Include="Scripts\Ext\MathSheets.SchoolClock.js" />
-    <Content Include="Scripts\Ext\snap.svg-min.js" />
     <Content Include="Scripts\snap\snap.svg-min.js" />
     <Content Include="Scripts\snap\snap.svg.js" />
     <Content Include="Template\SchoolClock.html" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Content\scss\style.scss" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

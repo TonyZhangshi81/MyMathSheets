@@ -10,10 +10,22 @@ MathSheets.EqualityLinkage = MathSheets.EqualityLinkage || (function () {
 
     // 打印設置
     printSetting = function () {
+        // 遍歷所有DIV并設置打印樣式
+        $("div[class='divDrawLine']").each(function (index, element) {
+            $(element).addClass('divDrawLine-print');
+        });
     },
 
         // 打印后頁面設定
         printAfterSetting = function () {
+            // 遍歷所有checkbox并設置為隱藏
+            $("input[type='checkbox']").each(function (index, element) {
+                $(element).hide();
+            });
+            // 遍歷所有DIV并還原打印前樣式
+            $("div[class*='divDrawLine']").each(function (index, element) {
+                $(element).removeClass('divDrawLine-print')
+            });
         },
 
         // 答题验证(正确:true  错误:false)

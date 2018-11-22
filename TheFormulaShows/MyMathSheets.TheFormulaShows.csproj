@@ -52,6 +52,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\favicon.ico" />
     <Content Include="Content\image\calculator.png" />
     <Content Include="Content\image\char-less.png" />
     <Content Include="Content\image\char-more.png" />
@@ -162,6 +163,7 @@ copy "..\Scripts\jquery-3.3.1.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_D
 copy "..\Scripts\json2.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\store.legacy.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\umd\popper.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd" /Y
+copy "..\Scripts\snap\snap.svg-min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\snap" /Y
 copy "..\Content\bootstrap.min.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\favicon.ico" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\MathSheets.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y

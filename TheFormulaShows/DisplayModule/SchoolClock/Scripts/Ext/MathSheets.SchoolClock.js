@@ -46,8 +46,44 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 				var seconds = clock.rect(80, 10, 1, 80).attr({ fill: "#ff6400" });
 				var middle = clock.circle(81, 80, 3).attr({ fill: "#535353" });
 
-				updateTime(clock, hours, minutes, seconds, aryClocksAnswer[index]);
+				_updateTime(hours, minutes, seconds, aryClocksAnswer[index]);
 			});
+		},
+
+		_updateTime = function (clockHours, clockMinutes, clockSeconds, dateTime) {
+			var currentTime, hour, minute, second;
+
+			if (dateTime == '') {
+				// 取系統時間
+				currentTime = new Date();
+				second = currentTime.getSeconds();
+				minute = currentTime.getMinutes();
+				hour = currentTime.getHours();
+			} else {
+				// 指定時間
+				var ary = (dateTime || '').split(':');
+				second = parseInt(ary[2]);
+				minute = parseInt(ary[1]);
+				hour = parseInt(ary[0]);
+			}
+
+			// 顯示12小時制
+			if (hour > 12) {
+				hour = hour - 12;
+			}
+
+			// 6度表示一分鐘
+			var minangle = minute * 6;
+			// 30度表示一小時
+			var hourangle = (hour + (minute / 60.0)) * 30;
+			// 6度表示一秒鐘
+			var secrangel = second * 6;
+
+			clockHours.animate({ transform: "r" + hourangle + "," + 80 + "," + 80 }, 200, mina.elastic);
+			clockMinutes.animate({ transform: "r" + minangle + "," + 80 + "," + 80 }, 200, mina.elastic);
+			if (clockSeconds) {
+				clockSeconds.animate({ transform: "r" + secrangel + "," + 80 + "," + 80 }, 500, mina.elastic);
+			}
 		},
 
 		// 订正(時鐘學習板)

@@ -131,6 +131,7 @@
   <ItemGroup>
     <Folder Include="App_Data\Work\Page\" />
     <Folder Include="App_Data\Work\Scripts\Ext\" />
+    <Folder Include="App_Data\Work\Scripts\snap\" />
     <Folder Include="App_Data\Work\Scripts\umd\" />
     <Folder Include="HtmlTemplate\" />
   </ItemGroup>
