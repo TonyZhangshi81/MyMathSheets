@@ -111,13 +111,20 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// 判定是否需要反推并重新作成計算式
 		/// </summary>
 		/// <remarks>
-		/// 情況1：完全一致
+		/// 情況1:完全一致
+		/// 情況2:時分秒全零
 		/// </remarks>
 		/// <param name="preFormulas">已得到的算式</param>
 		/// <param name="currentFormula">當前算式</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
 		private bool CheckIsNeedInverseMethod(IList<SchoolClockFormula> preFormulas, SchoolClockFormula currentFormula)
 		{
+			// 防止出現全零的情況
+			if(currentFormula.Hours == 0 && currentFormula.Minutes == 0 && currentFormula.Seconds == 0)
+			{
+				return true;
+			}
+
 			// 判斷當前算式是否已經出現過
 			if (preFormulas.ToList().Any(d => d.Hours == currentFormula.Hours && d.Minutes == currentFormula.Minutes))
 			{
