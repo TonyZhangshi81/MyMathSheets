@@ -67,6 +67,7 @@
     <Content Include="Content\image\Subtraction.png" />
     <Content Include="Content\image\timg.png" />
     <Content Include="Content\MathSheets.css" />
+    <Content Include="Demo\ALL.html" />
     <Content Include="Demo\html5-svg-clock\css\faces.png" />
     <Content Include="Demo\html5-svg-clock\css\normalize.css" />
     <Content Include="Demo\html5-svg-clock\css\style.css" />

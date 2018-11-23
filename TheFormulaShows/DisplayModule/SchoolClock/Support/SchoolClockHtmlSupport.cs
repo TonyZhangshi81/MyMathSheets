@@ -24,7 +24,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 		/// <summary>
 		/// 時鐘答題輸出區域HTML作成
 		/// </summary>
-		private const string INPUT_HTML_FORMAT = "<input id=\"input{0}{1}\" type=\"text\" placeholder=\"{2}\" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputClock{0}{1}\" type=\"text\" placeholder=\"{2}\" class=\"form-control input-addBorder {3}\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
 		private const string SPAN_HTML = "<span class=\"label\">:</span>";
 
 		/// <summary>
@@ -153,13 +153,13 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 
 			html.AppendLine("<div class=\"form-inline clock-inline\">");
 			// 小時數輸入框
-			html.AppendLine(string.Format(INPUT_HTML_FORMAT, "H", controlIndex, "時"));
+			html.AppendLine(string.Format(INPUT_HTML_FORMAT, "H", controlIndex, "時", "hours"));
 			html.AppendLine(SPAN_HTML);
 			// 分鐘數輸入框
-			html.AppendLine(string.Format(INPUT_HTML_FORMAT, "M", controlIndex, "分"));
+			html.AppendLine(string.Format(INPUT_HTML_FORMAT, "M", controlIndex, "分", "minutes"));
 			html.AppendLine(SPAN_HTML);
 			// 秒數輸入框
-			html.AppendLine(string.Format(INPUT_HTML_FORMAT, "S", controlIndex, "秒"));
+			html.AppendLine(string.Format(INPUT_HTML_FORMAT, "S", controlIndex, "秒", "seconds"));
 			// 答題對錯顯示
 			html.AppendLine(string.Format("<img id=\"imgOKSchoolClock{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 			html.AppendLine(string.Format("<img id=\"imgNoSchoolClock{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));

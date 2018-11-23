@@ -12,14 +12,28 @@
 	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/SchoolClock.css" rel="stylesheet" type="text/css" />
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+	<script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
 	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
 	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
-	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
-	<script src="../Scripts/Ext/MathSheets.SchoolClock.js" charset="utf-8"></script>
 	<script src="../Scripts/snap/snap.svg-min.js"></script>
+	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
+	<!--ARITHMETICSCRIPT-->
+	<!--EQUALITYCOMPARISONSCRIPT-->
+	<!--COMPUTINGCONNECTIONSCRIPT-->
+	<!--MATHWORDPROBLEMSSCRIPT-->
+	<!--FRUITSLINKAGESCRIPT-->
+	<!--FINDNEARESTNUMBERSCRIPT-->
+	<!--COMBINATORIALEQUATIONSCRIPT-->
+	<!--SCOREGOALSCRIPT-->
+	<!--HOWMUCHMORESCRIPT-->
+	<!--FINDTHELAWSCRIPT-->
+	<!--NUMERICSORTINGSCRIPT-->
+	<!--LEARNCURRENCYSCRIPT-->
+	<!--EQUALITYLINKAGESCRIPT-->
+	<script src="../Scripts/Ext/MathSheets.SchoolClock.js" charset="utf-8"></script>
 	<title>題庫</title>
 
 	<script>
@@ -44,18 +58,69 @@
 
 		// 打印
 		function btnPrintClick() {
+			//<!--ARITHMETICPRINTSETTING-->
+			//<!--EQUALITYCOMPARISONPRINTSETTING-->
+			//<!--COMPUTINGCONNECTIONPRINTSETTING-->
+			//<!--MATHWORDPROBLEMSPRINTSETTING-->
+			//<!--FINDNEARESTNUMBERPRINTSETTING-->
+			//<!--COMBINATORIALEQUATIONPRINTSETTING-->
+			//<!--HOWMUCHMOREPRINTSETTING-->
+			//<!--FINDTHELAWPRINTSETTING-->
+			//<!--NUMERICSORTINGPRINTSETTING-->
+			//<!--LEARNCURRENCYPRINTSETTING-->
+			//<!--EQUALITYLINKAGEPRINTSETTING-->
+			MathSheets.SchoolClock.printSetting();
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
 			// 打印后恢復頁面最初狀態設置
 			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
+			// 打印后頁面設定
+			//<!--ARITHMETICPRINTAFTERSETTING-->
+			//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->
+			//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->
+			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
+			//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->
+			//<!--COMBINATORIALEQUATIONPRINTAFTERSETTING-->
+			//<!--HOWMUCHMOREPRINTAFTERSETTING-->
+			//<!--FINDTHELAWPRINTAFTERSETTING-->
+			//<!--NUMERICSORTINGPRINTAFTERSETTING-->
+			//<!--LEARNCURRENCYPRINTAFTERSETTING-->
+			//<!--EQUALITYLINKAGEPRINTAFTERSETTING-->
+			MathSheets.SchoolClock.printAfterSetting();
 		}
 
 		// 答題準備按鍵
 		function btnReadyClick() {
 			// 設定頁面所有輸入域為可用狀態(共通)-交卷按鈕顯示,準備按鈕隱藏,打印按鈕隱藏
 			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
-			// 設定頁面所有輸入域為可用狀態（時鐘學習板）
+			// 設定頁面所有輸入域為可用狀態（四則運算）
+			//<!--ARITHMETICREADY-->
+			// 設定頁面所有輸入域為可用狀態(運算比大小)
+			//<!--EQUALITYCOMPARISONREADY-->
+			// 設定頁面所有輸入域為可用狀態(等式接龍)
+			//<!--COMPUTINGCONNECTIONREADY-->
+			// 設定頁面所有輸入域為可用狀態(算數應用題)
+			//<!--MATHWORDPROBLEMSREADY-->
+			// 設定頁面所有輸入域為可用狀態(水果連連看)
+			//<!--FRUITSLINKAGEREADY-->
+			// 設定頁面所有輸入域為可用狀態(找到最近的數字)
+			//<!--FINDNEARESTNUMBERREADY-->
+			// 設定頁面所有輸入域為可用狀態(算式組合)
+			//<!--COMBINATORIALEQUATIONREADY-->
+			// 設定頁面所有輸入域為可用狀態(射門得分)
+			//<!--SCOREGOALREADY-->
+			// 設定頁面所有輸入域為可用狀態(比多少)
+			//<!--HOWMUCHMOREREADY-->
+			// 設定頁面所有輸入域為可用狀態(找規律)
+			//<!--FINDTHELAWREADY-->
+			// 設定頁面所有輸入域為可用狀態(數字排序)
+			//<!--NUMERICSORTINGREADY-->
+			// 設定頁面所有輸入域為可用狀態(認識貨幣)
+			//<!--LEARNCURRENCYREADY-->
+			// 設定頁面所有輸入域為可用狀態(算式連一連)
+			//<!--EQUALITYLINKAGEREADY-->
+			// 設定頁面所有輸入域為可用狀態(時鐘學習板)
 			MathSheets.SchoolClock.ready();
 
 			// 計時開始
@@ -70,6 +135,34 @@
 		// 訂正按鈕(不計入答題情況信息)
 		function btnMakeCorrectionsClick() {
 			var fault = 0;
+			// 四則運算題
+			//<!--ARITHMETICMAKECORRECTIONS-->
+			// 算式比較大小
+			//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->
+			// 等式接龍
+			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
+			// 算數應用題
+			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
+			// 水果連連看
+			//<!--FRUITSLINKAGEMAKECORRECTIONS-->
+			// 找到最近的數字
+			//<!--FINDNEARESTNUMBERMAKECORRECTIONS-->
+			// 算式組合
+			//<!--COMBINATORIALEQUATIONMAKECORRECTIONS-->
+			// 射門得分
+			//<!--SCOREGOALMAKECORRECTIONS-->
+			// 比多少
+			//<!--HOWMUCHMOREMAKECORRECTIONS-->
+			// 找規律
+			//<!--FINDTHELAWMAKECORRECTIONS-->
+			// 數字排序
+			//<!--NUMERICSORTINGMAKECORRECTIONS-->
+			// 認識貨幣
+			//<!--LEARNCURRENCYMAKECORRECTIONS-->
+			// 算式連一連
+			//<!--EQUALITYLINKAGEMAKECORRECTIONS-->
+			// 時鐘學習板
+			fault += MathSheets.SchoolClock.makeCorrections();
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -77,6 +170,34 @@
 
 		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
 		function btnTheirPapersClick() {
+			// 四則運算交卷
+			//<!--ARITHMETICTHEIRPAPERS-->
+			// 算式比大小交卷
+			//<!--EQUALITYCOMPARISONTHEIRPAPERS-->
+			// 等式接龍交卷
+			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
+			// 算數應用題交卷
+			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
+			// 水果連連看
+			//<!--FRUITSLINKAGETHEIRPAPERS-->
+			// 找到最近的數字
+			//<!--FINDNEARESTNUMBERTHEIRPAPERS-->
+			// 算式組合
+			//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->
+			// 射門得分
+			//<!--SCOREGOALTHEIRPAPERS-->
+			// 比多少
+			//<!--HOWMUCHMORETHEIRPAPERS-->
+			// 找規律
+			//<!--FINDTHELAWTHEIRPAPERS-->
+			// 數字排序
+			//<!--NUMERICSORTINGTHEIRPAPERS-->
+			// 認識貨幣
+			//<!--LEARNCURRENCYTHEIRPAPERS-->
+			// 算式連一連
+			//<!--EQUALITYLINKAGETHEIRPAPERS-->
+			// 時鐘學習板
+			MathSheets.SchoolClock.theirPapers();
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -106,11 +227,43 @@
 			</div>
 		</div>
 		<div id="divPrintContent">
-			<br />
-			<div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">時鐘學習板</span></h4></div><hr />
-			<div class="row text-center row-margin-top">
+			<!--ARITHMETIC-->
+			<!--EQUALITYCOMPARISON-->
+			<!--COMPUTINGCONNECTION-->
+			<!--MATHWORDPROBLEMS-->
+			<!--FRUITSLINKAGE-->
+			<!--FINDNEARESTNUMBER-->
+			<!--COMBINATORIALEQUATION-->
+			<!--SCOREGOAL-->
+			<!--HOWMUCHMORE-->
+			<!--FINDTHELAW-->
+			<!--NUMERICSORTING-->
+			<!--LEARNCURRENCY-->
+			<!--EQUALITYLINKAGE-->
+			<br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">時鐘學習板</span></h4></div><hr /><div class="row text-center row-margin-top">
 				<div class="col-md-4 line-height">
-					<img src="../Content/image/clock/Moon.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="上午" />
+					<img src="../Content/image/clock/Sun.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="中午" />
+					<div class="watch-section">
+						<div class="watch-inner">
+							<div class="faces">
+								<div class="face face4">
+									<svg id="clock0" class="clock"></svg>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-inline clock-inline">
+						<input id="inputClockH0" type="text" placeholder="時" class="form-control input-addBorder hours" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputClockM0" type="text" placeholder="分" class="form-control input-addBorder minutes" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputClockS0" type="text" placeholder="秒" class="form-control input-addBorder seconds" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<img id="imgOKSchoolClock0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoSchoolClock0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					</div>
+				</div>
+				<div class="col-md-4 line-height">
+					<img src="../Content/image/clock/Moon.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="晚上" />
 					<div class="watch-section">
 						<div class="watch-inner">
 							<div class="faces">
@@ -121,17 +274,17 @@
 						</div>
 					</div>
 					<div class="form-inline clock-inline">
-						<input id="inputH00" type="text" placeholder="時" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<input id="inputClockH1" type="text" placeholder="時" class="form-control input-addBorder hours" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
 						<span class="label">:</span>
-						<input id="inputM00" type="text" placeholder="分" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<input id="inputClockM1" type="text" placeholder="分" class="form-control input-addBorder minutes" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
 						<span class="label">:</span>
-						<input id="inputS00" type="text" placeholder="秒" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-						<img id="imgOKSchoolClock00" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgNoSchoolClock00" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+						<input id="inputClockS1" type="text" placeholder="秒" class="form-control input-addBorder seconds" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<img id="imgOKSchoolClock1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoSchoolClock1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
 					</div>
 				</div>
 				<div class="col-md-4 line-height">
-					<img src="../Content/image/clock/Sun.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="下午" />
+					<img src="../Content/image/clock/Sun.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="午夜" />
 					<div class="watch-section">
 						<div class="watch-inner">
 							<div class="faces">
@@ -142,17 +295,19 @@
 						</div>
 					</div>
 					<div class="form-inline clock-inline">
-						<input id="inputH01" type="text" placeholder="時" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<input id="inputClockH2" type="text" placeholder="時" class="form-control input-addBorder hours" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
 						<span class="label">:</span>
-						<input id="inputM01" type="text" placeholder="分" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<input id="inputClockM2" type="text" placeholder="分" class="form-control input-addBorder minutes" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
 						<span class="label">:</span>
-						<input id="inputS01" type="text" placeholder="秒" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-						<img id="imgOKSchoolClock01" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgNoSchoolClock01" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+						<input id="inputClockS2" type="text" placeholder="秒" class="form-control input-addBorder seconds" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<img id="imgOKSchoolClock2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoSchoolClock2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
 					</div>
 				</div>
+			</div>
+			<div class="row text-center row-margin-top">
 				<div class="col-md-4 line-height">
-					<img src="../Content/image/clock/Sun.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="凌晨" />
+					<img src="../Content/image/clock/Moon.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="深夜" />
 					<div class="watch-section">
 						<div class="watch-inner">
 							<div class="faces">
@@ -163,17 +318,39 @@
 						</div>
 					</div>
 					<div class="form-inline clock-inline">
-						<input id="inputH02" type="text" placeholder="時" class="form-control input-addBorder" style="width: 50px; text-align:center; " disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<input id="inputClockH3" type="text" placeholder="時" class="form-control input-addBorder hours" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
 						<span class="label">:</span>
-						<input id="inputM02" type="text" placeholder="分" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<input id="inputClockM3" type="text" placeholder="分" class="form-control input-addBorder minutes" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
 						<span class="label">:</span>
-						<input id="inputS02" type="text" placeholder="秒" class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-						<img id="imgOKSchoolClock02" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-						<img id="imgNoSchoolClock02" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+						<input id="inputClockS3" type="text" placeholder="秒" class="form-control input-addBorder seconds" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<img id="imgOKSchoolClock3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoSchoolClock3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
 					</div>
 				</div>
-				<input type="hidden" id="hidClocksAnswer" value="20:30:00;7:15:00;12:30:00" />
+				<div class="col-md-4 line-height">
+					<img src="../Content/image/clock/Moon.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="中午" />
+					<div class="watch-section">
+						<div class="watch-inner">
+							<div class="faces">
+								<div class="face face4">
+									<svg id="clock4" class="clock"></svg>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-inline clock-inline">
+						<input id="inputClockH4" type="text" placeholder="時" class="form-control input-addBorder hours" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputClockM4" type="text" placeholder="分" class="form-control input-addBorder minutes" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputClockS4" type="text" placeholder="秒" class="form-control input-addBorder seconds" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<img id="imgOKSchoolClock4" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+						<img id="imgNoSchoolClock4" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+					</div>
+				</div>
 			</div>
+			<input type="hidden" id="hidClocksAnswer" value="12:0:0;20:45:0;0:15:0;23:15:0;12:45:0" />
+
 		</div>
 		<HR>
 		<div class="row">

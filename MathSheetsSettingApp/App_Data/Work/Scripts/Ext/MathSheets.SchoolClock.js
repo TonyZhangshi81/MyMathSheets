@@ -1,27 +1,52 @@
-﻿
+﻿var __aryClocksAnswer = new Array();
+
 var MathSheets = MathSheets || {};
 
 MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 
 	// 打印設置
 	printSetting = function () {
-
+		$("input[id*='inputClock']").each(function (index, element) {
+			$(element).addClass('input-print');
+			$(element).removeAttr('placeholder');
+			$(element).removeAttr("disabled");
+		});
 	},
 
 		// 打印后頁面設定
 		printAfterSetting = function () {
-
+			$("input[id*='inputClock']").each(function (index, element) {
+				if ($(element).hasClass('hours')) {
+					$(element).attr('placeholder', '時');
+				} else if ($(element).hasClass('minutes')) {
+					$(element).attr('placeholder', '分');
+				} else {
+					$(element).attr('placeholder', '秒');
+				}
+				$(element).removeClass('input-print');
+				$(element).attr("disabled", "disabled");
+			});
 		},
 
 		// 答题验证(正确:true  错误:false)
-		_schoolClockCorrecting = function (index, element) {
+		_schoolClockCorrecting = function (index, answer) {
+			// 答案時分秒
+			var hms = (answer || '').split(':');
+			// 時
+			var hours = parseInt($("#inputClockH" + index).val());
+			// 分
+			var minutes = parseInt($("#inputClockM" + index).val());
+			// 秒
+			var seconds = parseInt($("#inputClockS" + index).val());
+
 			// 验证输入值是否与答案一致
-			if ($(element).val() == $('#hiddenAc' + index).val()
-				|| (parseInt($('#hiddenAc' + index).val()) == -999 && $(element).val() != '')) {
+			if (parseInt(hms[0]) == hours && parseInt(hms[1]) == minutes && parseInt(hms[2]) == seconds) {
 				// 对错图片显示和隐藏
 				$('#imgOKSchoolClock' + index).show();
 				$('#imgNoSchoolClock' + index).hide();
-				$(element).attr("disabled", "disabled");
+				$("#inputClockH" + index).attr("disabled", "disabled");
+				$("#inputClockM" + index).attr("disabled", "disabled");
+				$("#inputClockS" + index).attr("disabled", "disabled");
 				// 正确:true
 				return true;
 			} else {
@@ -33,11 +58,9 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 			}
 		},
 
-		// 设定页面所有输入域为可用状态(四则运算)
+		// 设定页面所有输入域为可用状态(時鐘學習板)
 		ready = function () {
-			var aryClocksAnswer = new Array();
-			aryClocksAnswer = ($('#hidClocksAnswer').val() || '').split(';');
-
+			__aryClocksAnswer = ($('#hidClocksAnswer').val() || '').split(';');
 
 			$("svg[class='clock']").each(function (index, element) {
 				var clock = Snap('#' + $(element).attr('id'));
@@ -46,7 +69,11 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 				var seconds = clock.rect(80, 10, 1, 80).attr({ fill: "#ff6400" });
 				var middle = clock.circle(81, 80, 3).attr({ fill: "#535353" });
 
-				_updateTime(hours, minutes, seconds, aryClocksAnswer[index]);
+				_updateTime(hours, minutes, seconds, __aryClocksAnswer[index]);
+			});
+
+			$("input[id*='inputClock']").each(function (index, element) {
+				$(element).removeAttr("disabled");
 			});
 		},
 
@@ -89,9 +116,9 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 		// 订正(時鐘學習板)
 		makeCorrections = function () {
 			var fault = 0;
-			$("input[id*='inputAc']").each(function (index, element) {
+			$.each(__aryClocksAnswer, function (index, answer) {
 				// 答题验证
-				if (!_schoolClockCorrecting(index, element)) {
+				if (!_schoolClockCorrecting(index, answer)) {
 					// 答题错误时,错误件数加一
 					fault++;
 				}
@@ -99,11 +126,11 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 			return fault;
 		},
 
-		// 四则运算交卷
+		// 時鐘學習板交卷
 		theirPapers = function () {
-			$("input[id*='inputAc']").each(function (index, element) {
+			$.each(__aryClocksAnswer, function (index, answer) {
 				// 答题验证
-				if (!_schoolClockCorrecting(index, element)) {
+				if (!_schoolClockCorrecting(index, answer)) {
 					// 答题错误时,错误件数加一
 					__isFault++;
 				} else {
