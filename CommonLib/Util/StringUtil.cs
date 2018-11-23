@@ -109,5 +109,64 @@
 			}
 			return flag;
 		}
+
+		/// <summary>
+		/// 計時制（AM/PM）enum轉圖片名稱（HTML圖片顯示使用）
+		/// </summary>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		public static string ToTimeSystemString(this TimeSystem type)
+		{
+			var flag = string.Empty;
+			switch (type)
+			{
+				case TimeSystem.AM:
+					flag = "Sun";
+					break;
+				case TimeSystem.PM:
+					flag = "Moon";
+					break;
+				default:
+					break;
+			}
+			return flag;
+		}
+
+		/// <summary>
+		/// 時間段類型（24小時制）enum轉tooltip（HTML圖片顯示使用）
+		/// </summary>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		public static string ToTimeIntervalTypeString(this TimeIntervalType type)
+		{
+			var flag = string.Empty;
+			switch (type)
+			{
+				case TimeIntervalType.Midnight:
+					flag = "午夜";
+					break;
+				case TimeIntervalType.WeeHours:
+					flag = "凌晨";
+					break;
+				case TimeIntervalType.Forenoon:
+					flag = "上午";
+					break;
+				case TimeIntervalType.Nooning:
+					flag = "中午";
+					break;
+				case TimeIntervalType.Afternoon:
+					flag = "下午";
+					break;
+				case TimeIntervalType.Night:
+					flag = "晚上";
+					break;
+				case TimeIntervalType.LateNight:
+					flag = "深夜";
+					break;
+				default:
+					break;
+			}
+			return flag;
+		}
 	}
 }

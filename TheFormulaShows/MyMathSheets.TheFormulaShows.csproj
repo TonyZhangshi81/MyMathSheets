@@ -169,6 +169,7 @@ copy "..\Scripts\snap\snap.svg-min.js" "$(SolutionDir)\MathSheetsSettingApp\App_
 copy "..\Content\bootstrap.min.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\favicon.ico" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\MathSheets.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\SchoolClock.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 xcopy "..\Content\image" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\image" /C /E /H /K /R /Y
 </PostBuildEvent>
   </PropertyGroup>

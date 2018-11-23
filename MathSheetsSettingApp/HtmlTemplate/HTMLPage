@@ -10,6 +10,7 @@
 	<link rel="icon" href="../Content/favicon.ico">
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+	<!--SCHOOLCLOCKSTYLESHEET-->
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
@@ -17,6 +18,7 @@
 	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
+	<script src="../Scripts/snap/snap.svg-min.js"></script>
 	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
 	<!--ARITHMETICSCRIPT-->
 	<!--EQUALITYCOMPARISONSCRIPT-->
@@ -31,6 +33,7 @@
 	<!--NUMERICSORTINGSCRIPT-->
 	<!--LEARNCURRENCYSCRIPT-->
 	<!--EQUALITYLINKAGESCRIPT-->
+	<!--SCHOOLCLOCKSCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -66,6 +69,7 @@
 			//<!--NUMERICSORTINGPRINTSETTING-->
 			//<!--LEARNCURRENCYPRINTSETTING-->
 			//<!--EQUALITYLINKAGEPRINTSETTING-->
+			//<!--SCHOOLCLOCKPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -83,6 +87,7 @@
 			//<!--NUMERICSORTINGPRINTAFTERSETTING-->
 			//<!--LEARNCURRENCYPRINTAFTERSETTING-->
 			//<!--EQUALITYLINKAGEPRINTAFTERSETTING-->
+			//<!--SCHOOLCLOCKPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -115,6 +120,8 @@
 			//<!--LEARNCURRENCYREADY-->
 			// 設定頁面所有輸入域為可用狀態(算式連一連)
 			//<!--EQUALITYLINKAGEREADY-->
+			// 設定頁面所有輸入域為可用狀態(時鐘學習板)
+			//<!--SCHOOLCLOCKREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -154,6 +161,8 @@
 			//<!--LEARNCURRENCYMAKECORRECTIONS-->
 			// 算式連一連
 			//<!--EQUALITYLINKAGEMAKECORRECTIONS-->
+			// 時鐘學習板
+			//<!--SCHOOLCLOCKMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -187,6 +196,8 @@
 			//<!--LEARNCURRENCYTHEIRPAPERS-->
 			// 算式連一連
 			//<!--EQUALITYLINKAGETHEIRPAPERS-->
+			// 時鐘學習板
+			//<!--SCHOOLCLOCKTHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -229,6 +240,7 @@
 		<!--NUMERICSORTING-->
 		<!--LEARNCURRENCY-->
 		<!--EQUALITYLINKAGE-->
+		<!--SCHOOLCLOCK-->
 		</div>
 		<HR>
 		<div class="row">
