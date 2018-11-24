@@ -9,6 +9,7 @@
 	<meta name="author" content="">
 	<link rel="icon" href="../Content/image/favicon.ico">
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+	<link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
 	<!--SCHOOLCLOCKSTYLESHEET-->
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
@@ -19,6 +20,7 @@
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
 	<script src="../Scripts/snap/snap.svg-min.js"></script>
+	<script src="../Scripts/jquery.rating-stars.min.js"></script>
 	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
 	<!--ARITHMETICSCRIPT-->
 	<!--EQUALITYCOMPARISONSCRIPT-->
@@ -39,21 +41,7 @@
 	<script>
 		// 頁面啟動后加載
 		$(document).ready(function () {
-			// 準備
-			$('#btnReady').click(function () { btnReadyClick(); });
-			// 提交答題
-			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
-			// 訂正錯題
-			$('#btnMakeCorrections').click(function () { btnMakeCorrectionsClick(); });
-			// 完成
-			$('#btnOver').click(function () { btnOverClick(); });
-			// 打印
-			$('#btnPrint').click(function () { btnPrintClick(); });
-
-			// 還原上一次答題結果
-			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
-			// 計算式提示
-			$(function () { $("[data-toggle='tooltip']").tooltip(); });
+			
 		});
 
 		// 打印
@@ -258,7 +246,46 @@
 			</div>
 		</div>
 		<div class="page-header">
-			<h4>練習情況</h4>
+			<div class="col-md-2">
+				<h4> 練習情況</h4>
+			</div>
+			<div class="col-md-9">
+				<div class="rating-stars block" id="more-rating">
+					<input type="hidden" id="hidPracticeScore" value="0" class="rating-value" />
+					<div class="rating-stars-container">
+						<div class="rating-star">
+							<i class="fa fa-star"> </i>
+						</div>
+						<div class="rating-star">
+							<i class="fa fa-star"> </i>
+						</div>
+						<div class="rating-star">
+							<i class="fa fa-star"> </i>
+						</div>
+						<div class="rating-star">
+							<i class="fa fa-star"> </i>
+						</div>
+						<div class="rating-star">
+							<i class="fa fa-star"> </i>
+						</div>
+						<div class="rating-star">
+							<i class="fa fa-star"> </i>
+						</div>
+						<div class="rating-star">
+							<i class="fa fa-star"> </i>
+						</div>
+						<div class="rating-star">
+							<i class="fa fa-star"> </i>
+						</div>
+						<div class="rating-star">
+							<i class="fa fa-star"> </i>
+						</div>
+						<div class="rating-star">
+							<i class="fa fa-star"> </i>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="well">
 			<p>

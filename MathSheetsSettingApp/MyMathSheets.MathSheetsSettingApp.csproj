@@ -89,6 +89,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App_Data\Work\Content\fonts\fontawesome-webfont.eot" />
+    <None Include="App_Data\Work\Content\fonts\fontawesome-webfont.ttf" />
+    <None Include="App_Data\Work\Content\fonts\fontawesome-webfont.woff" />
+    <None Include="App_Data\Work\Content\fonts\fontawesome-webfont.woff2" />
+    <None Include="App_Data\Work\Content\fonts\FontAwesome.otf" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -108,6 +113,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Work\Content\bootstrap.min.css" />
+    <Content Include="App_Data\Work\Content\font-awesome.min.css" />
+    <Content Include="App_Data\Work\Content\fonts\fontawesome-webfont.svg" />
     <Content Include="App_Data\Work\Content\image\favicon.ico" />
     <None Include="App_Data\Work\Content\image\Arithmetic.png" />
     <None Include="App_Data\Work\Content\image\ComputingConnection.png" />

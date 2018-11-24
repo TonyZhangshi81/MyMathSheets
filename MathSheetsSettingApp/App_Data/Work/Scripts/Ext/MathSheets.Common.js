@@ -227,14 +227,23 @@ MathSheets.Common = MathSheets.Common || (function () {
 }());
 
 $(document).ready(function () {
+	// 準備
+	$('#btnReady').click(function () { btnReadyClick(); });
+	// 提交答題
+	$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
+	// 訂正錯題
+	$('#btnMakeCorrections').click(function () { btnMakeCorrectionsClick(); });
+	// 完成
+	$('#btnOver').click(function () { btnOverClick(); });
+	// 打印
+	$('#btnPrint').click(function () { btnPrintClick(); });
+
 	// 按鍵屏蔽防止刷新頁面
 	MathSheets.Common.forbidKeyDown();
-
 	// 禁用右鍵點擊功能
 	$(document).bind("contextmenu", function (e) {
 		return false;
 	});
-
 	$('.totop').bind("mouseover", function () { MathSheets.Common.overShow(this); });
 	$('.totop').bind("mouseout", function () { MathSheets.Common.outHide(this); });
 	$('.totop').bind("click", function () { MathSheets.Common.totopClick(); });
@@ -249,6 +258,29 @@ $(document).ready(function () {
 		}
 	});
 
+	// 還原上一次答題結果
+	MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
+	// 計算式提示
+	$(function () { $("[data-toggle='tooltip']").tooltip(); });
+
+	var ratingOptions = {
+		selectors: {
+			starsSelector: '.rating-stars',
+			starSelector: '.rating-star',
+			starActiveClass: 'is--active',
+			starHoverClass: 'is--hover',
+			starNoHoverClass: 'is--no-hover',
+			targetFormElementSelector: '.rating-value'
+		}
+	};
+	// 星星打分評級js插件初始化
+	$(".rating-stars").ratingStars(ratingOptions);
+	// 移除星星的各類事件
+	$(".rating-star").each(function (index, element) {
+		$(element).unbind('mouseenter');
+		$(element).unbind('mouseleave');
+		$(element).unbind('click touchstart');
+	});
 });
 
 String.prototype.PadLeft = function (totalWidth, paddingChar) {
