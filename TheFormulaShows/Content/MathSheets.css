@@ -167,12 +167,12 @@
 
 .divSeat4 {
 	left: 300px;
-	top: 120px;
+	top: 130px;
 }
 
 .divSeat7 {
 	left: 300px;
-	top: 220px;
+	top: 230px;
 }
 
 .divSeat1 {
@@ -182,12 +182,12 @@
 
 .divSeat5 {
 	left: 410px;
-	top: 120px;
+	top: 130px;
 }
 
 .divSeat8 {
 	left: 410px;
-	top: 220px;
+	top: 230px;
 }
 
 .divSeat2 {
@@ -197,12 +197,12 @@
 
 .divSeat6 {
 	left: 520px;
-	top: 120px;
+	top: 130px;
 }
 
 .divSeat9 {
 	left: 520px;
-	top: 220px;
+	top: 230px;
 }
 
 .divSeat3 {
@@ -216,28 +216,6 @@
 	text-align: left !important
 }
 
-.fruitsFormula-left {
-	float: left;
-	position: absolute;
-	display: inline-block;
-	border-style: solid;
-	background-color: gainsboro;
-	margin-left: 5px;
-	height: 180px;
-	padding-top: 10px;
-}
-
-.fruitsFormula-right {
-	float: left;
-	position: absolute;
-	display: inline-block;
-	left: 250px;
-	border-style: solid;
-	background-color: gainsboro;
-	height: 180px;
-	padding-top: 10px;
-}
-
 .fruitsImg {
 	margin-top: -10px;
 }
@@ -248,7 +226,7 @@
 	width: 800px !important;
 	height: 300px !important;
 	display: inline-block;
-	left: 240px;
+	left: 20px;
 }
 
 .easyui-panel-ScoreGoal-ext {

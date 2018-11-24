@@ -98,8 +98,6 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 			}
 
 			StringBuilder html = new StringBuilder();
-			StringBuilder fruitsFormulasLeftHtml = new StringBuilder();
-			StringBuilder fruitsFormulasRightHtml = new StringBuilder();
 			StringBuilder easyuiPanelHtml = new StringBuilder();
 			StringBuilder divDragHtml = new StringBuilder();
 			StringBuilder divContainerHtml = new StringBuilder();
@@ -108,43 +106,15 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 			// 繪製水果算是區
 			p.Formulas.FruitsFormulas.ToList().ForEach(d =>
 			{
-				if (index >= 5)
-				{
-					// 水果算式对半显示(以5件为界限)
-					if (index == 5)
-					{
-						fruitsFormulasRightHtml.AppendLine("<div class=\"row text-center row-margin-top fruitsFormula-right\" >");
-					}
-					// 顯示水果算式Div區域(后5件)
-					CreateFruitsFormulasHtml(fruitsFormulasRightHtml, d, index);
-				}
-				else
-				{
-					if (index == 0)
-					{
-						fruitsFormulasLeftHtml.AppendLine("<div class=\"row text-center row-margin-top fruitsFormula-left\" >");
-					}
-					// 顯示水果算式Div區域(前5件)
-					CreateFruitsFormulasHtml(fruitsFormulasLeftHtml, d, index);
-				}
-
 				// 可拖動水果Div區域
 				divDragHtml.AppendLine(string.Format("<div id=\"divFruitDrag{0}\" class=\"divFruitDrag\" style=\"position: absolute; left: {1}px; top: {2}px;\" data-options=\"onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag\">", index, CoordinateArray[index].Left, CoordinateArray[index].Top));
-				divDragHtml.AppendLine(string.Format("<img src=\"../Content/image/fruits/{0}.png\" width=40 height=40>", FruitsArray[index].ToString()));
+				divDragHtml.AppendLine(string.Format("<img src=\"../Content/image/fruits/{0}.png\" width=\"40\" height=\"40\" data-toggle=\"tooltip\" title=\"{1}{2}{3}\">", FruitsArray[index].ToString(), d.LeftParameter, d.Sign.ToOperationString(), d.RightParameter));
 				divDragHtml.AppendLine(string.Format("<input id=\"divFruitDrag{0}Input\" type=\"hidden\" />", index));
 				divDragHtml.AppendLine(string.Format("<input id=\"divFruitDrag{0}Result\" type=\"hidden\" value=\"ERROR\" />", index));
 				divDragHtml.AppendLine("</div>");
 
 				index++;
 			});
-			// Div闭合(件數一定會存在)
-			fruitsFormulasLeftHtml.AppendLine("</div>");
-			// 5件及以上的情况
-			if (fruitsFormulasRightHtml.Length != 0)
-			{
-				// Div闭合
-				fruitsFormulasRightHtml.AppendLine("</div>");
-			}
 
 			int seat = 0;
 			p.Formulas.Sort.ToList().ForEach(d =>
@@ -174,9 +144,6 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 
 			// 放置範圍上下限值設定
 			html.AppendFormat("<input id=\"hidFruitsArray\" type=\"hidden\" value=\"{0}\"/>", GetFruitsArray(p.Formulas.Seats));
-			// 繪製水果算式區
-			html.Append(fruitsFormulasLeftHtml.ToString());
-			html.Append(fruitsFormulasRightHtml.ToString());
 			// 圖片移動區域
 			html.Append(easyuiPanelHtml.ToString());
 
@@ -186,22 +153,6 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 			}
 
 			return html.ToString();
-		}
-
-		/// <summary>
-		/// 顯示水果算式Div區域
-		/// </summary>
-		/// <param name="fruitsFormulasHtml">html編輯</param>
-		/// <param name="formula">計算式</param>
-		/// <param name="index">當前記錄件數索引</param>
-		private void CreateFruitsFormulasHtml(StringBuilder fruitsFormulasHtml, Formula formula, int index)
-		{
-			fruitsFormulasHtml.AppendLine("<div class=\"form-inline-ext\">");
-			fruitsFormulasHtml.AppendLine("<h5>");
-			fruitsFormulasHtml.AppendLine(string.Format("<img src=\"../Content/image/fruits/{0}.png\" class=\"fruitsImg\" width=25 height=25>", FruitsArray[index].ToString()));
-			fruitsFormulasHtml.AppendLine(string.Format("<span class=\"label\">{0}{1}{2}</span>", formula.LeftParameter, formula.Sign.ToOperationString(), formula.RightParameter));
-			fruitsFormulasHtml.AppendLine("</h5>");
-			fruitsFormulasHtml.AppendLine("</div>");
 		}
 	}
 
