@@ -108,7 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Work\Content\bootstrap.min.css" />
-    <Content Include="App_Data\Work\Content\favicon.ico" />
+    <Content Include="App_Data\Work\Content\image\favicon.ico" />
     <None Include="App_Data\Work\Content\image\Arithmetic.png" />
     <None Include="App_Data\Work\Content\image\ComputingConnection.png" />
     <Content Include="App_Data\Work\Content\image\CombinatorialEquation.png" />
@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Work\Page\" />
+    <Folder Include="App_Data\Work\Plugin\" />
     <Folder Include="App_Data\Work\Scripts\Ext\" />
     <Folder Include="App_Data\Work\Scripts\snap\" />
     <Folder Include="App_Data\Work\Scripts\umd\" />

@@ -11,6 +11,12 @@
 	z-index: 999;
 }
 
+.plugin-butterfly {
+	position: absolute;
+	top: 10px;
+	left: 90px;
+}
+
 .row-margin-top {
 	margin-top: 10px;
 }

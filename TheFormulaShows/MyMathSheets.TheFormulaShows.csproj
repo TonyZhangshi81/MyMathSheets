@@ -52,7 +52,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\favicon.ico" />
+    <Content Include="Content\image\favicon.ico" />
     <Content Include="Content\image\calculator.png" />
     <Content Include="Content\image\char-less.png" />
     <Content Include="Content\image\char-more.png" />
@@ -68,14 +68,6 @@
     <Content Include="Content\image\timg.png" />
     <Content Include="Content\MathSheets.css" />
     <Content Include="Demo\ALL.html" />
-    <Content Include="Demo\html5-svg-clock\css\faces.png" />
-    <Content Include="Demo\html5-svg-clock\css\normalize.css" />
-    <Content Include="Demo\html5-svg-clock\css\style.css" />
-    <Content Include="Demo\html5-svg-clock\index.html" />
-    <Content Include="Demo\html5-svg-clock\js\index.js" />
-    <Content Include="Demo\html5-svg-clock\js\jquery.js" />
-    <Content Include="Demo\html5-svg-clock\js\snap.svg-min.js" />
-    <Content Include="Demo\HTMLPage.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -108,6 +100,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Plugin\butterfly.html" />
+    <Content Include="Plugin\css\reset.min.css" />
+    <Content Include="Plugin\css\style.css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\bootstrap-grid.css.map" />
@@ -116,8 +111,6 @@
     <None Include="Content\bootstrap-reboot.min.css.map" />
     <None Include="Content\bootstrap.css.map" />
     <None Include="Content\bootstrap.min.css.map" />
-    <None Include="Demo\html5-svg-clock\config.rb" />
-    <None Include="Demo\html5-svg-clock\scss\style.scss" />
     <None Include="packages.config" />
     <None Include="Scripts\bootstrap.bundle.js.map" />
     <None Include="Scripts\bootstrap.bundle.min.js.map" />
@@ -152,6 +145,7 @@
 rem copy "$(SolutionDir)\Lib\*.dll" "$(SolutionDir)\Lib\Release\" /Y
 copy "..\Template\HTMLPage" "$(SolutionDir)\MathSheetsSettingApp\HtmlTemplate" /Y
 xcopy "..\Scripts\Ext" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\Ext" /C /E /H /K /R /Y
+xcopy "..\Plugin" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Plugin" /C /E /H /K /R /Y
 copy "..\Scripts\bootstrap.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.easyui.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery-3.3.1.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
@@ -161,7 +155,6 @@ copy "..\Scripts\store.legacy.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_D
 copy "..\Scripts\umd\popper.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd" /Y
 copy "..\Scripts\snap\snap.svg-min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\snap" /Y
 copy "..\Content\bootstrap.min.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
-copy "..\Content\favicon.ico" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\MathSheets.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\SchoolClock.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 xcopy "..\Content\image" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\image" /C /E /H /K /R /Y
