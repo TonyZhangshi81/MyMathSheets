@@ -312,8 +312,7 @@ svg {
 }
 
 .rating-stars {
-	width: 100%;
-	text-align: center;
+	width: 500px;
 }
 
 .rating-stars .rating-stars-container {

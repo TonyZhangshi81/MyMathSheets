@@ -241,42 +241,44 @@
 			</div>
 		</div>
 		<div class="page-header">
-			<div class="col-md-2">
-				<h4> 練習情況</h4>
-			</div>
-			<div class="col-md-9">
-				<div class="rating-stars block" id="more-rating">
-					<input type="hidden" id="hidPracticeScore" value="0" class="rating-value" />
-					<div class="rating-stars-container">
-						<div class="rating-star">
-							<i class="fa fa-star"> </i>
-						</div>
-						<div class="rating-star">
-							<i class="fa fa-star"> </i>
-						</div>
-						<div class="rating-star">
-							<i class="fa fa-star"> </i>
-						</div>
-						<div class="rating-star">
-							<i class="fa fa-star"> </i>
-						</div>
-						<div class="rating-star">
-							<i class="fa fa-star"> </i>
-						</div>
-						<div class="rating-star">
-							<i class="fa fa-star"> </i>
-						</div>
-						<div class="rating-star">
-							<i class="fa fa-star"> </i>
-						</div>
-						<div class="rating-star">
-							<i class="fa fa-star"> </i>
-						</div>
-						<div class="rating-star">
-							<i class="fa fa-star"> </i>
-						</div>
-						<div class="rating-star">
-							<i class="fa fa-star"> </i>
+			<div class="row text-center row-margin-top">
+				<div class="col-md-2">
+					<h4> 練習情況</h4>
+				</div>
+				<div class="col-md-9">
+					<div class="rating-stars block" id="more-rating" style="display: none;">
+						<input type="hidden" id="hidPracticeScore" value="0" class="rating-value" />
+						<div class="rating-stars-container">
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
 						</div>
 					</div>
 				</div>

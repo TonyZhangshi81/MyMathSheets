@@ -138,13 +138,38 @@ MathSheets.Common = MathSheets.Common || (function () {
 			// 顯示答錯題數
 			$(_getId(faultSpanId)).text(__isFault);
 
-			// 對/錯圖片顯示和隱藏
 			if (__isFault != 0) {
 				$(_getId(btnMakeCorrectionsId)).show();
 			} else {
 				$(_getId(btnOverId)).show();
 			}
 			$(_getId(btnTheirPapersId)).hide();
+
+			var score = Math.round(__isRight / (__isRight + __isFault) * 10);
+			$('#hidPracticeScore').val(score);
+
+			$('#more-rating').show();
+
+			// 打星處理
+			var ratingOptions = {
+				selectors: {
+					starsSelector: '.rating-stars',
+					starSelector: '.rating-star',
+					starActiveClass: 'is--active',
+					starHoverClass: 'is--hover',
+					starNoHoverClass: 'is--no-hover',
+					targetFormElementSelector: '.rating-value'
+				}
+			};
+			// 星星打分評級js插件初始化
+			$(".rating-stars").ratingStars(ratingOptions);
+			// 移除星星的各類事件
+			$(".rating-star").each(function (index, element) {
+				$(element).unbind('mouseenter');
+				$(element).unbind('mouseleave');
+				$(element).unbind('click touchstart');
+			});
+
 		},
 
 		// 計時停止（答題結果設定）
@@ -226,6 +251,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 	};
 }());
 
+// 頁面啟動后加載
 $(document).ready(function () {
 	// 準備
 	$('#btnReady').click(function () { btnReadyClick(); });
@@ -262,25 +288,6 @@ $(document).ready(function () {
 	MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
 	// 計算式提示
 	$(function () { $("[data-toggle='tooltip']").tooltip(); });
-
-	var ratingOptions = {
-		selectors: {
-			starsSelector: '.rating-stars',
-			starSelector: '.rating-star',
-			starActiveClass: 'is--active',
-			starHoverClass: 'is--hover',
-			starNoHoverClass: 'is--no-hover',
-			targetFormElementSelector: '.rating-value'
-		}
-	};
-	// 星星打分評級js插件初始化
-	$(".rating-stars").ratingStars(ratingOptions);
-	// 移除星星的各類事件
-	$(".rating-star").each(function (index, element) {
-		$(element).unbind('mouseenter');
-		$(element).unbind('mouseleave');
-		$(element).unbind('click touchstart');
-	});
 });
 
 String.prototype.PadLeft = function (totalWidth, paddingChar) {

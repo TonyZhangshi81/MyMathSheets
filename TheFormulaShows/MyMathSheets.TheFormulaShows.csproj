@@ -170,6 +170,8 @@ copy "..\Content\font-awesome.min.css" "$(SolutionDir)\MathSheetsSettingApp\App_
 copy "..\Content\MathSheets.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\SchoolClock.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 xcopy "..\Content\image" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\image" /C /E /H /K /R /Y
+copy "..\Scripts\jquery.rating-stars.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
