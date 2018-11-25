@@ -78,7 +78,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 		}
 
 		/// <summary>
-		/// 等式值是不是出现在右边
+		/// 等式值是不是出現在左邊
 		/// </summary>
 		public bool IsRight
 		{
@@ -102,7 +102,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 		private bool CheckIsNeedInverseMethod(IList<ArithmeticFormula> preFormulas, Formula currentFormula)
 		{
 			// 全零的情況
-			if (currentFormula.LeftParameter == 0 && currentFormula.RightParameter == 0 && currentFormula.Answer == 0)
+			if (currentFormula.LeftParameter == 0 || currentFormula.RightParameter == 0 || currentFormula.Answer == 0)
 			{
 				return true;
 			}
