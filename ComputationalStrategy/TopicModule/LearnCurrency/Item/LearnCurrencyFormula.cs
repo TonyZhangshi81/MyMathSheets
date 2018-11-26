@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Item
 {
@@ -8,17 +9,9 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Item
 	public class LearnCurrencyFormula
 	{
 		/// <summary>
-		/// 元单位
+		/// 貨幣單位
 		/// </summary>
-		public int YuanUnit { get; set; }
-		/// <summary>
-		/// 角单位
-		/// </summary>
-		public int JiaoUnit { get; set; }
-		/// <summary>
-		/// 分单位
-		/// </summary>
-		public int FenUnit { get; set; }
+		public Currency CurrencyUnit { get; set; }
 		/// <summary>
 		/// 填空項目種類(左邊或者右邊為填空項目)
 		/// </summary>

@@ -82,6 +82,7 @@
     <Compile Include="Main\HtmlSupport\IHtmlSupportFactory.cs" />
     <Compile Include="Main\HtmlSupport\IMakeHtml.cs" />
     <Compile Include="Main\HtmlSupport\MakeHtml.cs" />
+    <Compile Include="Main\Item\Currency.cs" />
     <Compile Include="Main\Item\Formula.cs" />
     <Compile Include="Main\OperationStrategy\OperationHelper.cs" />
     <Compile Include="Main\OperationStrategy\OperationFactory.cs" />
@@ -110,6 +111,7 @@
     </Compile>
     <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="Util\Consts.cs" />
+    <Compile Include="Util\CurrencyUtil.cs" />
     <Compile Include="Util\JsonExtension.cs" />
     <Compile Include="Util\RandomNumber\RandomNumberComposition.cs" />
     <Compile Include="Util\ReflectionUtil.cs" />

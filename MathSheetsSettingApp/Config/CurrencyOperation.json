@@ -1,0 +1,42 @@
+[
+	{
+		"Identifier": "CO005",
+		"FourOperationsType": 2,
+		"MaximumLimit": 799,
+		"NumberOfQuestions": 5,
+		"QuestionType": 2,
+		"Signs": [ 0, 1 ]
+	},
+	{
+		"Identifier": "CO001",
+		"FourOperationsType": 1,
+		"MaximumLimit": 59,
+		"NumberOfQuestions": 6,
+		"QuestionType": 2,
+		"Signs": [ 0 ]
+	},
+	{
+		"Identifier": "CO002",
+		"FourOperationsType": 1,
+		"MaximumLimit": 69,
+		"NumberOfQuestions": 5,
+		"QuestionType": 1,
+		"Signs": [ 1 ]
+	},
+	{
+		"Identifier": "CO003",
+		"FourOperationsType": 2,
+		"MaximumLimit": 9,
+		"NumberOfQuestions": 4,
+		"QuestionType": 1,
+		"Signs": [ 0, 1 ]
+	},
+	{
+		"Identifier": "CO004",
+		"FourOperationsType": 2,
+		"MaximumLimit": 99,
+		"NumberOfQuestions": 5,
+		"QuestionType": 1,
+		"Signs": [ 0, 1 ]
+	}
+]

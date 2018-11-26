@@ -38,9 +38,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 				{
 					Console.WriteLine(string.Format("{0} = {1} {2} {3}",
 						CommonUtil.GetValue(GapFilling.Answer, d.Arithmetic.Answer, d.Arithmetic.Gap),
-						CommonUtil.GetValue(GapFilling.Right, d.Arithmetic.RightParameter, d.Arithmetic.Gap),
+						CommonUtil.GetValue(GapFilling.Right, d.Arithmetic.LeftParameter, d.Arithmetic.Gap),
 						d.Arithmetic.Sign.ToOperationString(),
-						CommonUtil.GetValue(GapFilling.Left, d.Arithmetic.LeftParameter, d.Arithmetic.Gap)));
+						CommonUtil.GetValue(GapFilling.Left, d.Arithmetic.RightParameter, d.Arithmetic.Gap)));
 				}
 			});
 		}

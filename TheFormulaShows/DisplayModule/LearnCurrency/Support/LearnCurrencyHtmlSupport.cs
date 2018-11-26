@@ -115,12 +115,12 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.YuanUnit);
+				_answers.AppendFormat("{0},", item.CurrencyUnit.Yuan);
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(YUANUNIT_HTML);
 			}
 			else
 			{
-				html.AppendFormat(SPAN_HTML_FORMAT, item.YuanUnit).AppendLine(YUANUNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.CurrencyUnit.Yuan).AppendLine(YUANUNIT_HTML);
 			}
 
 			return html.ToString();
@@ -140,12 +140,12 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.JiaoUnit);
+				_answers.AppendFormat("{0},", item.CurrencyUnit.Jiao);
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(JIAOUNIT_HTML);
 			}
 			else
 			{
-				html.AppendFormat(SPAN_HTML_FORMAT, item.JiaoUnit).AppendLine(JIAOUNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.CurrencyUnit.Jiao).AppendLine(JIAOUNIT_HTML);
 			}
 
 			return html.ToString();
@@ -191,12 +191,12 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.FenUnit);
+				_answers.AppendFormat("{0},", item.CurrencyUnit.Fen);
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(FENUNIT_HTML);
 			}
 			else
 			{
-				html.AppendFormat(SPAN_HTML_FORMAT, item.FenUnit).AppendLine(FENUNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.CurrencyUnit.Fen).AppendLine(FENUNIT_HTML);
 			}
 
 			return html.ToString();

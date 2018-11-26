@@ -51,6 +51,7 @@ namespace MyMathSheets.TestConsoleApp
 			LearnCurrencyParameter lcParameter = null;
 			EqualityLinkageParameter elParameter = null;
 			SchoolClockParameter scParameter = null;
+			CurrencyOperationParameter coParameter = null;
 
 			bool isShowMenu = true;
 
@@ -110,6 +111,12 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("************************* 時鐘學習板 ***********************");
 					Console.WriteLine("    D1-指定分鐘");
 					Console.WriteLine("    D2-隨機時間");
+					Console.WriteLine("************************* 貨幣運算 ***********************");
+					Console.WriteLine("    E1-隨機貨幣運算（元角分）");
+					Console.WriteLine("    E2-貨幣運算加法");
+					Console.WriteLine("    E3-貨幣運算減法");
+					Console.WriteLine("    E4-隨機貨幣運算（分）");
+					Console.WriteLine("    E5-貨幣運算減法（角分）");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -376,6 +383,38 @@ namespace MyMathSheets.TestConsoleApp
 						scParameter = (SchoolClockParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.SchoolClock, "SC002");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.SchoolClock, scParameter.Formulas.ToList());
 						break;
+
+					case "E1":
+						Console.WriteLine();
+						Console.WriteLine("隨機貨幣運算（元角分）");
+						coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyOperation, "CO005");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyOperation, coParameter.Formulas.ToList());
+						break;
+					case "E2":
+						Console.WriteLine();
+						Console.WriteLine("貨幣運算加法");
+						coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyOperation, "CO001");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyOperation, coParameter.Formulas.ToList());
+						break;
+					case "E3":
+						Console.WriteLine();
+						Console.WriteLine("貨幣運算減法");
+						coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyOperation, "CO002");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyOperation, coParameter.Formulas.ToList());
+						break;
+					case "E4":
+						Console.WriteLine();
+						Console.WriteLine("隨機貨幣運算（分）");
+						coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyOperation, "CO003");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyOperation, coParameter.Formulas.ToList());
+						break;
+					case "E5":
+						Console.WriteLine();
+						Console.WriteLine("隨機貨幣運算（角）");
+						coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyOperation, "CO004");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyOperation, coParameter.Formulas.ToList());
+						break;
+
 
 					case "D9":
 						isShowMenu = true;

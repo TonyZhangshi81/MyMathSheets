@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Item;
@@ -146,9 +147,9 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		private bool CheckIsNeedInverseMethod(IList<LearnCurrencyFormula> preFormulas, LearnCurrencyFormula currentFormula)
 		{
 			// 判斷當前算式是否已經出現過
-			if (preFormulas.ToList().Any(d => d.YuanUnit == currentFormula.YuanUnit
-			&& d.JiaoUnit == currentFormula.JiaoUnit
-			&& d.FenUnit == currentFormula.FenUnit
+			if (preFormulas.ToList().Any(d => d.CurrencyUnit.Yuan == currentFormula.CurrencyUnit.Yuan
+			&& d.CurrencyUnit.Jiao == currentFormula.CurrencyUnit.Jiao
+			&& d.CurrencyUnit.Fen == currentFormula.CurrencyUnit.Fen
 			&& d.CurrencyTransformType == currentFormula.CurrencyTransformType))
 			{
 				return true;
@@ -201,12 +202,15 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 隨機編排填空項目(是角還是分)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			// 元單位
-			formula.YuanUnit = yuan;
-			// 角單位
-			formula.JiaoUnit = jiao;
-			// 分單位
-			formula.FenUnit = fen;
+			formula.CurrencyUnit = new Currency()
+			{
+				// 元單位
+				Yuan = yuan,
+				// 角單位
+				Jiao = jiao,
+				// 分單位
+				Fen = fen
+			};
 			// 剩餘的分
 			formula.RemainderFen = fen % 10;
 			// 填空項目(分或者角)
@@ -229,12 +233,15 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 隨機編排填空項目(是角還是分)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			// 元單位
-			formula.YuanUnit = yuan;
-			// 角單位
-			formula.JiaoUnit = jiao;
-			// 分單位
-			formula.FenUnit = fen;
+			formula.CurrencyUnit = new Currency()
+			{
+				// 元單位
+				Yuan = yuan,
+				// 角單位
+				Jiao = jiao,
+				// 分單位
+				Fen = fen
+			};
 			// 填空項目(分或者角)
 			formula.Gap = gap;
 		}
@@ -253,10 +260,13 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 隨機編排填空項目(是角還是分)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			// 角單位
-			formula.JiaoUnit = jiao;
-			// 分單位
-			formula.FenUnit = fen;
+			formula.CurrencyUnit = new Currency()
+			{
+				// 角單位
+				Jiao = jiao,
+				// 分單位
+				Fen = fen
+			};
 			// 填空項目(分或者角)
 			formula.Gap = gap;
 		}
@@ -275,10 +285,14 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 隨機編排填空項目(是角還是分)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			// 分單位
-			formula.YuanUnit = yuan;
-			// 分單位
-			formula.FenUnit = fen;
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new Currency()
+			{
+				// 元單位
+				Yuan = yuan,
+				// 分單位
+				Fen = fen
+			};
 			// 填空項目(分或者元)
 			formula.Gap = gap;
 		}
@@ -299,12 +313,15 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 隨機編排填空項目(是角還是分)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			// 分單位
-			formula.YuanUnit = yuan;
-			// 分單位
-			formula.FenUnit = fen;
-			// 角單位
-			formula.JiaoUnit = jiao;
+			formula.CurrencyUnit = new Currency()
+			{
+				// 元單位
+				Yuan = yuan,
+				// 角單位
+				Jiao = jiao,
+				// 分單位
+				Fen = fen
+			};
 			// 填空項目(分或者角)
 			formula.Gap = gap;
 		}
@@ -323,10 +340,13 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 隨機編排填空項目(是角還是分)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			// 分單位
-			formula.FenUnit = fen;
-			// 角單位
-			formula.JiaoUnit = jiao;
+			formula.CurrencyUnit = new Currency()
+			{
+				// 角單位
+				Jiao = jiao,
+				// 分單位
+				Fen = fen
+			};
 			// 填空項目(分或者角)
 			formula.Gap = gap;
 		}
@@ -355,10 +375,13 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 隨機編排填空項目(是角還是元)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			// 元單位
-			formula.YuanUnit = yuan;
-			// 角單位
-			formula.JiaoUnit = jiao;
+			formula.CurrencyUnit = new Currency()
+			{
+				// 元單位
+				Yuan = yuan,
+				// 角單位
+				Jiao = jiao
+			};
 			// 剩餘的角
 			formula.RemainderJiao = jiao % 10;
 			// 填空項目(角或者元、角)
@@ -379,10 +402,13 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 隨機編排填空項目(是角還是元)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			// 元單位
-			formula.YuanUnit = yuan;
-			// 角單位
-			formula.JiaoUnit = jiao;
+			formula.CurrencyUnit = new Currency()
+			{
+				// 元單位
+				Yuan = yuan,
+				// 角單位
+				Jiao = jiao
+			};
 			// 填空項目(角或者元)
 			formula.Gap = gap;
 		}
@@ -401,10 +427,13 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 隨機編排填空項目(是角還是元)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			// 元單位
-			formula.YuanUnit = yuan;
-			// 角單位
-			formula.JiaoUnit = jiao;
+			formula.CurrencyUnit = new Currency()
+			{
+				// 元單位
+				Yuan = yuan,
+				// 角單位
+				Jiao = jiao
+			};
 			// 填空項目(元或者角)
 			formula.Gap = gap;
 		}
@@ -423,10 +452,13 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 隨機編排填空項目(是分還是元)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			// 元單位
-			formula.YuanUnit = yuan;
-			// 分單位
-			formula.FenUnit = fen;
+			formula.CurrencyUnit = new Currency()
+			{
+				// 元單位
+				Yuan = yuan,
+				// 分單位
+				Fen = fen
+			};
 			// 填空項目(元或者分)
 			formula.Gap = gap;
 		}

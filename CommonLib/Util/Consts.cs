@@ -8,6 +8,41 @@
 	}
 
 	/// <summary>
+	/// 貨幣運算類型
+	/// </summary>
+	public enum CurrencyOperationUnitType : int
+	{
+		/// <summary>
+		/// 元角分單位
+		/// </summary>
+		YJF = 0,
+		/// <summary>
+		/// 元角單位
+		/// </summary>
+		YJ,
+		/// <summary>
+		/// 元分單位
+		/// </summary>
+		YF,
+		/// <summary>
+		/// 元單位
+		/// </summary>
+		Yuan,
+		/// <summary>
+		/// 角單位
+		/// </summary>
+		Jiao,
+		/// <summary>
+		/// 角分單位
+		/// </summary>
+		JF,
+		/// <summary>
+		/// 分單位
+		/// </summary>
+		Fen
+	}
+
+	/// <summary>
 	/// 貨幣轉換題型種類
 	/// </summary>
 	/// <remarks>轉換的前提不出現小數點</remarks>
@@ -548,6 +583,10 @@
 			/// 時鐘學習板
 			/// </summary>
 			SchoolClock,
+			/// <summary>
+			/// 貨幣運算
+			/// </summary>
+			CurrencyOperation,
 			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>

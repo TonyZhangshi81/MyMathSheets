@@ -19,7 +19,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
 		public IList<LearnCurrencyFormula> Formulas { get; set; }
 
 		/// <summary>
-		/// 認識貨幣個數設置
+		/// 認識貨幣題型參數設置
 		/// </summary>
 		public int[] Types { get; set; }
 

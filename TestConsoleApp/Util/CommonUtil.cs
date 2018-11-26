@@ -20,6 +20,18 @@ namespace MyMathSheets.TestConsoleApp
 		}
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="item"></param>
+		/// <param name="parameter"></param>
+		/// <param name="gap"></param>
+		/// <returns></returns>
+		public static string GetValue(GapFilling item, string parameter, GapFilling gap)
+		{
+			return item == gap ? string.Format("({0})", parameter) : parameter;
+		}
+
+		/// <summary>
 		/// 題型測試結果輸出
 		/// </summary>
 		/// <typeparam name="T">各題型類的輸出結果類型參數</typeparam>

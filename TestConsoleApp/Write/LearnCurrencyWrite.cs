@@ -32,44 +32,44 @@ namespace MyMathSheets.TestConsoleApp.Write
 				{
 					// 元轉角
 					case CurrencyTransform.Y2J:
-						format.AppendFormat("元({0}) = 角({1})  填空項目:{2}", d.YuanUnit, d.JiaoUnit, (d.Gap == GapFilling.Left) ? "元" : "角");
+						format.AppendFormat("元({0}) = 角({1})  填空項目:{2}", d.CurrencyUnit.Yuan, d.CurrencyUnit.Jiao, (d.Gap == GapFilling.Left) ? "元" : "角");
 						break;
 					// 元轉分
 					case CurrencyTransform.Y2F:
-						format.AppendFormat("元({0}) = 分({1})  填空項目:{2}", d.YuanUnit, d.FenUnit, (d.Gap == GapFilling.Left) ? "元" : "分");
+						format.AppendFormat("元({0}) = 分({1})  填空項目:{2}", d.CurrencyUnit.Yuan, d.CurrencyUnit.Fen, (d.Gap == GapFilling.Left) ? "元" : "分");
 						break;
 					// 角轉元
 					case CurrencyTransform.J2Y:
-						format.AppendFormat("角({0}) = 元({1})  填空項目:{2}", d.JiaoUnit, d.YuanUnit, (d.Gap == GapFilling.Left) ? "角" : "元");
+						format.AppendFormat("角({0}) = 元({1})  填空項目:{2}", d.CurrencyUnit.Jiao, d.CurrencyUnit.Yuan, (d.Gap == GapFilling.Left) ? "角" : "元");
 						break;
 					// 角轉分
 					case CurrencyTransform.J2F:
-						format.AppendFormat("角({0}) = 分({1})  填空項目:{2}", d.JiaoUnit, d.FenUnit, (d.Gap == GapFilling.Left) ? "角" : "分");
+						format.AppendFormat("角({0}) = 分({1})  填空項目:{2}", d.CurrencyUnit.Jiao, d.CurrencyUnit.Fen, (d.Gap == GapFilling.Left) ? "角" : "分");
 						break;
 					// 角轉元分
 					case CurrencyTransform.J2YF:
-						format.AppendFormat("角({0}) = 元({1})分({2})  填空項目:{3}", d.JiaoUnit, d.YuanUnit, d.FenUnit, (d.Gap == GapFilling.Left) ? "角" : "元、分");
+						format.AppendFormat("角({0}) = 元({1})分({2})  填空項目:{3}", d.CurrencyUnit.Jiao, d.CurrencyUnit.Yuan, d.CurrencyUnit.Fen, (d.Gap == GapFilling.Left) ? "角" : "元、分");
 						break;
 					// 元轉分
 					case CurrencyTransform.F2Y:
-						format.AppendFormat("分({0}) = 元({1})  填空項目:{2}", d.FenUnit, d.YuanUnit, (d.Gap == GapFilling.Left) ? "分" : "元");
+						format.AppendFormat("分({0}) = 元({1})  填空項目:{2}", d.CurrencyUnit.Fen, d.CurrencyUnit.Yuan, (d.Gap == GapFilling.Left) ? "分" : "元");
 						break;
 					// 元轉角
 					case CurrencyTransform.F2J:
-						format.AppendFormat("分({0}) = 角({1})  填空項目:{2}", d.FenUnit, d.JiaoUnit, (d.Gap == GapFilling.Left) ? "分" : "角");
+						format.AppendFormat("分({0}) = 角({1})  填空項目:{2}", d.CurrencyUnit.Fen, d.CurrencyUnit.Jiao, (d.Gap == GapFilling.Left) ? "分" : "角");
 						break;
 					// 分轉元角
 					case CurrencyTransform.F2YJ:
-						format.AppendFormat("分({0}) = 元({1})角({2})  填空項目:{3}", d.FenUnit, d.YuanUnit, d.JiaoUnit, (d.Gap == GapFilling.Left) ? "分" : "元、角");
+						format.AppendFormat("分({0}) = 元({1})角({2})  填空項目:{3}", d.CurrencyUnit.Fen, d.CurrencyUnit.Yuan, d.CurrencyUnit.Jiao, (d.Gap == GapFilling.Left) ? "分" : "元、角");
 						break;
 					// 角轉元（有剩餘）
 					case CurrencyTransform.J2YExt:
-						format.AppendFormat("角({0}) = 元({1})角({2})  填空項目:{3}", d.JiaoUnit, d.YuanUnit, d.RemainderJiao.Value, 
+						format.AppendFormat("角({0}) = 元({1})角({2})  填空項目:{3}", d.CurrencyUnit.Jiao, d.CurrencyUnit.Yuan, d.RemainderJiao.Value,
 											(d.Gap == GapFilling.Left) ? "角" : "元角");
 						break;
 					// 分轉元角（有剩餘）
 					case CurrencyTransform.F2YJExt:
-						format.AppendFormat("分({0}) = 元({1})角({2})分({3})  填空項目:{4}", d.FenUnit, d.YuanUnit, d.JiaoUnit, d.RemainderFen.Value,
+						format.AppendFormat("分({0}) = 元({1})角({2})分({3})  填空項目:{4}", d.CurrencyUnit.Fen, d.CurrencyUnit.Yuan, d.CurrencyUnit.Jiao, d.RemainderFen.Value,
 											(d.Gap == GapFilling.Left) ? "分" : "元角分");
 						break;
 				}
