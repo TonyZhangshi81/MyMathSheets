@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using System;
+using System.Text;
 
 namespace MyMathSheets.CommonLib.Util
 {
@@ -64,6 +65,33 @@ namespace MyMathSheets.CommonLib.Util
 			};
 
 			return currency;
+		}
+
+		/// <summary>
+		/// 貨幣元角分已字符串形式輸出
+		/// </summary>
+		/// <param name="currency">貨幣對象</param>
+		/// <returns>字符串</returns>
+		public static string CurrencyToString(this Currency currency)
+		{
+			StringBuilder builder = new StringBuilder();
+
+			// 元單位信息打印
+			if (currency.Yuan.HasValue)
+			{
+				builder.AppendFormat("{0}元", currency.Yuan);
+			}
+			// 角單位信息打印
+			if (currency.Jiao.HasValue)
+			{
+				builder.AppendFormat("{0}角", currency.Jiao);
+			}
+			// 分單位信息打印
+			if (currency.Fen.HasValue)
+			{
+				builder.AppendFormat("{0}分", currency.Fen);
+			}
+			return builder.ToString();
 		}
 	}
 }

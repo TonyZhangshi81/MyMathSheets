@@ -14,14 +14,14 @@ namespace MyMathSheets.CommonLib.Main.Item
 		/// <summary>
 		/// 元单位
 		/// </summary>
-		public int Yuan { get; set; }
+		public int? Yuan { get; set; }
 		/// <summary>
 		/// 角单位
 		/// </summary>
-		public int Jiao { get; set; }
+		public int? Jiao { get; set; }
 		/// <summary>
 		/// 分单位
 		/// </summary>
-		public int Fen { get; set; }
+		public int? Fen { get; set; }
 	}
 }

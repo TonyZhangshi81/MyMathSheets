@@ -9,7 +9,7 @@ using System.Text;
 namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 {
 	/// <summary>
-	/// 
+	/// 貨幣運算題型HTML支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.CurrencyOperation)]
 	[Substitute("<!--CURRENCYOPERATIONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.CurrencyOperation.js\" charset=\"utf-8\"></script>")]
@@ -21,7 +21,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 	public class CurrencyOperationHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
-		/// 
+		/// 題型HTML模板作成
 		/// </summary>
 		/// <param name="parameter"></param>
 		/// <returns></returns>
@@ -44,7 +44,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 			foreach (CurrencyOperationFormula item in p.Formulas)
 			{
 				isRowHtmlClosed = false;
-				colHtml.AppendLine("<div class=\"col-md-3 form-inline\">");
+				colHtml.AppendLine("<div class=\"col-md-6 form-inline\">");
 				colHtml.AppendLine("<h5>");
 
 				if (item.AnswerIsRight)
@@ -116,12 +116,21 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 			var html = string.Empty;
 			if (item == gap)
 			{
+				switch (parameter.IntToCurrencyUnitType())
+				{
+					case CurrencyOperationUnitType.Fen:
+						break;
+				}
+
+
 				html += string.Format("<input id=\"inputAc{0}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", index);
+
+
 				html += string.Format("<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>", index, parameter);
 			}
 			else
 			{
-				html = string.Format("<span class=\"label\">{0}</span>", parameter);
+				html = string.Format("<span class=\"label\">{0}</span>", parameter.IntToCurrency().CurrencyToString());
 			}
 			return html;
 		}
