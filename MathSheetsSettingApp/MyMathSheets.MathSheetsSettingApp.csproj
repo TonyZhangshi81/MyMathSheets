@@ -112,6 +112,7 @@
     <Content Include="App_Data\Work\Content\bootstrap.min.css" />
     <Content Include="App_Data\Work\Content\font-awesome.min.css" />
     <Content Include="App_Data\Work\Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="App_Data\Work\Content\image\CurrencyOperation.png" />
     <Content Include="App_Data\Work\Content\image\favicon.ico" />
     <None Include="App_Data\Work\Content\image\Arithmetic.png" />
     <None Include="App_Data\Work\Content\image\ComputingConnection.png" />
