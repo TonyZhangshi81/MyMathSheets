@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Parameters
 		/// <summary>
 		/// 認識價格作成并輸出
 		/// </summary>
-		public CurrencyLinkageFormula Formulas { get; set; }
+		public CurrencyLinkageFormula Currencys { get; set; }
 		/// <summary>
 		/// 算式個數設置
 		/// </summary>
@@ -35,7 +35,7 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Parameters
 			QueueType = (JsonExtension.GetPropertyByJson(Reserve, "DivQueueType") == null) ? DivQueueType.Lengthways : (DivQueueType)Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "DivQueueType"));
 
 			// 集合實例化
-			Formulas = new CurrencyLinkageFormula();
+			Currencys = new CurrencyLinkageFormula();
 		}
 	}
 }

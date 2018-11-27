@@ -13,6 +13,7 @@
 	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
 	<!--EQUALITYLINKAGESTYLESHEET-->
 	<!--SCHOOLCLOCKSTYLESHEET-->
+	<!--CURRENCYLINKAGESTYLESHEET-->
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
@@ -38,6 +39,7 @@
 	<!--EQUALITYLINKAGESCRIPT-->
 	<!--SCHOOLCLOCKSCRIPT-->
 	<!--CURRENCYOPERATIONSCRIPT-->
+	<!--CURRENCYLINKAGESCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -56,6 +58,7 @@
 			//<!--EQUALITYLINKAGEPRINTSETTING-->
 			//<!--SCHOOLCLOCKPRINTSETTING-->
 			//<!--CURRENCYOPERATIONPRINTSETTING-->
+			//<!--CURRENCYLINKAGEPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -75,6 +78,7 @@
 			//<!--EQUALITYLINKAGEPRINTAFTERSETTING-->
 			//<!--SCHOOLCLOCKPRINTAFTERSETTING-->
 			//<!--CURRENCYOPERATIONPRINTAFTERSETTING-->
+			//<!--CURRENCYLINKAGEPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -111,6 +115,8 @@
 			//<!--SCHOOLCLOCKREADY-->
 			// 設定頁面所有輸入域為可用狀態(貨幣運算)
 			//<!--CURRENCYOPERATIONREADY-->
+			// 設定頁面所有輸入域為可用狀態(認識貨幣)
+			//<!--CURRENCYLINKAGEREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -154,6 +160,8 @@
 			//<!--SCHOOLCLOCKMAKECORRECTIONS-->
 			// 貨幣運算
 			//<!--CURRENCYOPERATIONMAKECORRECTIONS-->
+			// 認識貨幣
+			//<!--CURRENCYLINKAGEMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -191,6 +199,8 @@
 			//<!--SCHOOLCLOCKTHEIRPAPERS-->
 			// 貨幣運算
 			//<!--CURRENCYOPERATIONTHEIRPAPERS-->
+			// 認識貨幣
+			//<!--CURRENCYLINKAGETHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -238,6 +248,7 @@
 		<!--EQUALITYLINKAGE-->
 		<!--SCHOOLCLOCK-->
 		<!--CURRENCYOPERATION-->
+		<!--CURRENCYLINKAGE-->
 		</div>
 		<HR>
 		<div class="row">

@@ -9,17 +9,17 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Item
 	public class CurrencyLinkageFormula
 	{
 		/// <summary>
-		/// 左邊计算式集合
+		/// 左邊(上面)價格集合
 		/// </summary>
-		public IList<Formula> LeftFormulas { get; set; }
+		public IList<decimal> LeftCurrencys { get; set; }
 
 		/// <summary>
-		/// 右邊计算式集合
+		/// 右邊(下面)價格集合
 		/// </summary>
-		public IList<Formula> RightFormulas { get; set; }
+		public IList<int> RightCurrencys { get; set; }
 
 		/// <summary>
-		/// 
+		/// 隨機排序
 		/// </summary>
 		public IList<int> Sort { get; set; }
 
