@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{41486B43-37E3-406A-A032-974BAED36767}</ProjectGuid>
+    <ProjectGuid>{3206E500-28D2-4055-A14F-3DE8CBD526E9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MyMathSheets.TheFormulaShows.EqualityLinkage</RootNamespace>
-    <AssemblyName>MyMathSheets.TheFormulaShows.EqualityLinkage</AssemblyName>
+    <RootNamespace>MyMathSheets.ComputationalStrategy.CurrencyLinkage</RootNamespace>
+    <AssemblyName>MyMathSheets.ComputationalStrategy.CurrencyLinkage</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\MyMathSheets.TheFormulaShows.EqualityLinkage.xml</DocumentationFile>
+    <DocumentationFile>bin\MyMathSheets.ComputationalStrategy.CurrencyLinkage.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,11 +33,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,18 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Support\EqualityLinkageHtmlSupport.cs" />
+    <Compile Include="Item\CurrencyLinkageFormula.cs" />
+    <Compile Include="Main\Parameters\CurrencyLinkageParameter.cs" />
+    <Compile Include="Main\Strategy\CurrencyLinkage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\EqualityLinkage.css" />
-    <Content Include="Scripts\Ext\MathSheets.EqualityLinkage.js" />
-    <Content Include="Template\EqualityLinkage.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\image\" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="Config\CurrencyLinkage.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -65,20 +61,13 @@
       <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
       <Name>MyMathSheets.CommonLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e1}</Project>
-      <Name>MyMathSheets.BasicOperationsLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\EqualityLinkage\MyMathSheets.ComputationalStrategy.EqualityLinkage.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de8cbd526e8}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.EqualityLinkage</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)Lib" /Y
-copy "..\Scripts\Ext\*.js" "..\..\..\Scripts\Ext\" /Y
-xcopy "..\Content" "..\..\..\Content" /C /E /H /K /R /Y
-copy "..\Template\*.html" "$(SolutionDir)TheFormulaShows\Template" /Y</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)\Lib" /Y
+copy "..\Config\*.json" "$(SolutionDir)MathSheetsSettingApp\Config" /Y
+copy "..\Config\*.json" "$(SolutionDir)TestConsoleApp\Config" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

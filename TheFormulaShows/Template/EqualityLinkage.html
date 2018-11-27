@@ -7,15 +7,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="icon" href="../Content/favicon.ico">
+	<link rel="icon" href="../Content/image/favicon.ico">
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+	<link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+	<link href="../Content/EqualityLinkage.css" rel="stylesheet" type="text/css" />
+	<!--SCHOOLCLOCKSTYLESHEET-->
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+	<script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
 	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
 	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
+	<script src="../Scripts/snap/snap.svg-min.js"></script>
+	<script src="../Scripts/jquery.rating-stars.min.js"></script>
 	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
 	<!--ARITHMETICSCRIPT-->
 	<!--EQUALITYCOMPARISONSCRIPT-->
@@ -30,28 +36,11 @@
 	<!--NUMERICSORTINGSCRIPT-->
 	<!--LEARNCURRENCYSCRIPT-->
 	<script src="../Scripts/Ext/MathSheets.EqualityLinkage.js" charset="utf-8"></script>
+	<!--SCHOOLCLOCKSCRIPT-->
+	<!--CURRENCYOPERATIONSCRIPT-->
 	<title>題庫</title>
 
 	<script>
-		// 頁面啟動后加載
-		$(document).ready(function () {
-			// 準備
-			$('#btnReady').click(function () { btnReadyClick(); });
-			// 提交答題
-			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
-			// 訂正錯題
-			$('#btnMakeCorrections').click(function () { btnMakeCorrectionsClick(); });
-			// 完成
-			$('#btnOver').click(function () { btnOverClick(); });
-			// 打印
-			$('#btnPrint').click(function () { btnPrintClick(); });
-
-			// 還原上一次答題結果
-			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
-			// 計算式提示
-			$(function () { $("[data-toggle='tooltip']").tooltip(); });
-		});
-
 		// 打印
 		function btnPrintClick() {
 			//<!--ARITHMETICPRINTSETTING-->
@@ -65,6 +54,8 @@
 			//<!--NUMERICSORTINGPRINTSETTING-->
 			//<!--LEARNCURRENCYPRINTSETTING-->
 			MathSheets.EqualityLinkage.printSetting();
+			//<!--SCHOOLCLOCKPRINTSETTING-->
+			//<!--CURRENCYOPERATIONPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -82,6 +73,8 @@
 			//<!--NUMERICSORTINGPRINTAFTERSETTING-->
 			//<!--LEARNCURRENCYPRINTAFTERSETTING-->
 			MathSheets.EqualityLinkage.printAfterSetting();
+			//<!--SCHOOLCLOCKPRINTAFTERSETTING-->
+			//<!--CURRENCYOPERATIONPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -114,6 +107,10 @@
 			//<!--LEARNCURRENCYREADY-->
 			// 設定頁面所有輸入域為可用狀態(算式連一連)
 			MathSheets.EqualityLinkage.ready();
+			// 設定頁面所有輸入域為可用狀態(時鐘學習板)
+			//<!--SCHOOLCLOCKREADY-->
+			// 設定頁面所有輸入域為可用狀態(貨幣運算)
+			//<!--CURRENCYOPERATIONREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -153,6 +150,10 @@
 			//<!--LEARNCURRENCYMAKECORRECTIONS-->
 			// 算式連一連
 			fault += MathSheets.EqualityLinkage.makeCorrections();
+			// 時鐘學習板
+			//<!--SCHOOLCLOCKMAKECORRECTIONS-->
+			// 貨幣運算
+			//<!--CURRENCYOPERATIONMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -186,6 +187,10 @@
 			//<!--LEARNCURRENCYTHEIRPAPERS-->
 			// 算式連一連
 			MathSheets.EqualityLinkage.theirPapers();
+			// 時鐘學習板
+			//<!--SCHOOLCLOCKTHEIRPAPERS-->
+			// 貨幣運算
+			//<!--CURRENCYOPERATIONTHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -213,6 +218,9 @@
 				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
 				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
 			</div>
+			<div class="plugin-butterfly">
+				<iframe frameborder="0" scrolling="no" src="../Plugin/butterfly.html" width="320" height="250"></iframe>
+			</div>
 		</div>
 		<div id="divPrintContent">
 			<!--ARITHMETIC-->
@@ -236,63 +244,60 @@
 					<line id="line04" x1="0" y1="0" x2="0" y2="0" stroke="#ff006e" stroke-width="1" />
 				</svg>
 				<div class="divDrawLine" style="left: 30px; top:10px;" id="div00S">
-					<h5><span class="label">11 + 12</span></h5>
+					<h5><span class="label">14 + 1</span></h5>
 					<input type="checkbox" id="chkdiv00S" style="display: none;" />
 					<input type="hidden" value="line00" />
 				</div>
 				<div class="divDrawLine" style="left: 30px; top:70px;" id="div01S">
-					<h5><span class="label">28 - 22</span></h5>
+					<h5><span class="label">16 - 13</span></h5>
 					<input type="checkbox" id="chkdiv01S" style="display: none;" />
 					<input type="hidden" value="line01" />
 				</div>
 				<div class="divDrawLine" style="left: 30px; top:130px;" id="div02S">
-					<h5><span class="label">14 + 2</span></h5>
+					<h5><span class="label">2 + 0</span></h5>
 					<input type="checkbox" id="chkdiv02S" style="display: none;" />
 					<input type="hidden" value="line02" />
 				</div>
 				<div class="divDrawLine" style="left: 30px; top:190px;" id="div03S">
-					<h5><span class="label">16 + 12</span></h5>
+					<h5><span class="label">25 + 3</span></h5>
 					<input type="checkbox" id="chkdiv03S" style="display: none;" />
 					<input type="hidden" value="line03" />
 				</div>
 				<div class="divDrawLine" style="left: 30px; top:250px;" id="div04S">
-					<h5><span class="label">19 - 16</span></h5>
+					<h5><span class="label">24 - 0</span></h5>
 					<input type="checkbox" id="chkdiv04S" style="display: none;" />
 					<input type="hidden" value="line04" />
 				</div>
 				<div class="divDrawLine" style="left: 250px; top:10px;" id="div00E">
-					<h5><span class="label">28 - 0</span></h5>
+					<h5><span class="label">28 - 25</span></h5>
 					<input type="checkbox" id="chkdiv00E" style="display: none;" />
-					<input type="hidden" value="line00" />
 				</div>
 				<div class="divDrawLine" style="left: 250px; top:70px;" id="div01E">
-					<h5><span class="label">18 - 12</span></h5>
+					<h5><span class="label">1 + 1</span></h5>
 					<input type="checkbox" id="chkdiv01E" style="display: none;" />
-					<input type="hidden" value="line01" />
 				</div>
 				<div class="divDrawLine" style="left: 250px; top:130px;" id="div02E">
-					<h5><span class="label">25 - 2</span></h5>
+					<h5><span class="label">30 - 15</span></h5>
 					<input type="checkbox" id="chkdiv02E" style="display: none;" />
-					<input type="hidden" value="line02" />
 				</div>
 				<div class="divDrawLine" style="left: 250px; top:190px;" id="div03E">
-					<h5><span class="label">18 - 2</span></h5>
+					<h5><span class="label">17 + 7</span></h5>
 					<input type="checkbox" id="chkdiv03E" style="display: none;" />
-					<input type="hidden" value="line03" />
 				</div>
 				<div class="divDrawLine" style="left: 250px; top:250px;" id="div04E">
-					<h5><span class="label">1 + 2</span></h5>
+					<h5><span class="label">12 + 16</span></h5>
 					<input type="checkbox" id="chkdiv04E" style="display: none;" />
-					<input type="hidden" value="line04" />
 				</div>
 				<input type="hidden" id="hidSelectedS" />
 				<input type="hidden" id="hidSelectedE" />
 				<input type="hidden" id="hidInitSettings" value="#div00S,#div00E,#div04E,1,#svg01" />
-				<input type="hidden" value="div00S#div02E;div01S#div01E;div02S#div03E;div03S#div00E;div04S#div04E" id="hidElAnswer" />
+				<input type="hidden" value="div00S#div02E;div01S#div00E;div02S#div01E;div03S#div04E;div04S#div03E" id="hidElAnswer" />
 			</div>
 			<img id="imgOKEqualityLinkage" src="../Content/image/correct.png" class="OKEqualityLinkage-lengthways" style="display: none; " />
 			<img id="imgNoEqualityLinkage" src="../Content/image/fault.png" class="NoEqualityLinkage-lengthways" style="display: none; " />
 
+			<!--SCHOOLCLOCK-->
+			<!--CURRENCYOPERATION-->
 		</div>
 		<HR>
 		<div class="row">
@@ -307,7 +312,48 @@
 			</div>
 		</div>
 		<div class="page-header">
-			<h4>練習情況</h4>
+			<div class="row text-center row-margin-top">
+				<div class="col-md-2">
+					<h4> 練習情況</h4>
+				</div>
+				<div class="col-md-9">
+					<div class="rating-stars block" id="more-rating" style="display: none;">
+						<input type="hidden" id="hidPracticeScore" value="0" class="rating-value" />
+						<div class="rating-stars-container">
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="well">
 			<p>

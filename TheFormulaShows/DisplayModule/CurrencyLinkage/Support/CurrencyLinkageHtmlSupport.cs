@@ -3,25 +3,25 @@ using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Parameters;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
+namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 {
 	/// <summary>
 	/// 
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.EqualityLinkage)]
-	[Substitute("<!--EQUALITYLINKAGESTYLESHEET-->", "<link href=\"../Content/EqualityLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
-	[Substitute("<!--EQUALITYLINKAGESCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.EqualityLinkage.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--EQUALITYLINKAGEREADY-->", "MathSheets.EqualityLinkage.ready();")]
-	[Substitute("//<!--EQUALITYLINKAGEMAKECORRECTIONS-->", "fault += MathSheets.EqualityLinkage.makeCorrections();")]
-	[Substitute("//<!--EQUALITYLINKAGETHEIRPAPERS-->", "MathSheets.EqualityLinkage.theirPapers();")]
-	[Substitute("//<!--EQUALITYLINKAGEPRINTSETTING-->", "MathSheets.EqualityLinkage.printSetting();")]
-	[Substitute("//<!--EQUALITYLINKAGEPRINTAFTERSETTING-->", "MathSheets.EqualityLinkage.printAfterSetting();")]
-	public class EqualityLinkageHtmlSupport : HtmlSupportBase
+	[HtmlSupport(LayoutSetting.Preview.CurrencyLinkage)]
+	[Substitute("<!--CURRENCYLINKAGESTYLESHEET-->", "<link href=\"../Content/CurrencyLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute("<!--CURRENCYLINKAGESCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.CurrencyLinkage.js\" charset=\"utf-8\"></script>")]
+	[Substitute("//<!--CURRENCYLINKAGEREADY-->", "MathSheets.CurrencyLinkage.ready();")]
+	[Substitute("//<!--CURRENCYLINKAGEMAKECORRECTIONS-->", "fault += MathSheets.CurrencyLinkage.makeCorrections();")]
+	[Substitute("//<!--CURRENCYLINKAGETHEIRPAPERS-->", "MathSheets.CurrencyLinkage.theirPapers();")]
+	[Substitute("//<!--CURRENCYLINKAGEPRINTSETTING-->", "MathSheets.CurrencyLinkage.printSetting();")]
+	[Substitute("//<!--CURRENCYLINKAGEPRINTAFTERSETTING-->", "MathSheets.CurrencyLinkage.printAfterSetting();")]
+	public class CurrencyLinkageHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
 		/// 左側計算式坐標列表（限定5個坐標）
@@ -35,7 +35,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// <summary>
 		/// 構造體
 		/// </summary>
-		public EqualityLinkageHtmlSupport()
+		public CurrencyLinkageHtmlSupport()
 		{
 			LeftFormulasArray = new Dictionary<DivQueueType, List<string>>();
 			// 左側計算式坐標列表(縱向連線)
@@ -78,7 +78,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 			};
 
 			_answerString = new StringBuilder();
-			_hidInitSettings = new StringBuilder();
+			_hidCurrencyInitSettings = new StringBuilder();
 		}
 
 		/// <summary>
@@ -88,7 +88,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// <returns></returns>
 		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
-			EqualityLinkageParameter p = parameter as EqualityLinkageParameter;
+			CurrencyLinkageParameter p = parameter as CurrencyLinkageParameter;
 
 			if (p.Formulas.LeftFormulas.Count == 0)
 			{
@@ -97,16 +97,16 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 
 			StringBuilder html = new StringBuilder();
 
-			html.AppendLine(string.Format("<div class=\"row text-center row-margin-top {0}\">", p.QueueType == DivQueueType.Lengthways ? "drawLine-panel-lengthways" : "drawLine-panel-crosswise"));
+			html.AppendLine(string.Format("<div class=\"row text-center row-margin-top {0}\">", p.QueueType == DivQueueType.Lengthways ? "drawLine-panel-currency-lengthways" : "drawLine-panel-currency-crosswise"));
 			html.Append(GetSvgHtml(p));
 			html.Append(GetLeftFormulasHtml(p));
 			html.Append(GetRightFormulasHtml(p));
 			html.Append(GetInitSettingsHtml(p));
 			html.AppendLine("</div>");
-			html.AppendLine(string.Format("<img id=\"imgOKEqualityLinkage\" src=\"../Content/image/correct.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "OKEqualityLinkage-lengthways" : "OKEqualityLinkage-crosswise"));
-			html.AppendLine(string.Format("<img id=\"imgNoEqualityLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "NoEqualityLinkage-lengthways" : "NoEqualityLinkage-crosswise"));
+			html.AppendLine(string.Format("<img id=\"imgOKCurrencyLinkage\" src=\"../Content/image/correct.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "OKCurrencyLinkage-lengthways" : "OKCurrencyLinkage-crosswise"));
+			html.AppendLine(string.Format("<img id=\"imgNoCurrencyLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "NoCurrencyLinkage-lengthways" : "NoCurrencyLinkage-crosswise"));
 
-			html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">算式連一連</span></h4></div><hr />");
+			html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">認識價格</span></h4></div><hr />");
 
 			return html.ToString();
 		}
@@ -114,11 +114,11 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// <summary>
 		/// 線型HTML模板
 		/// </summary>
-		private const string LINE_HTML_FORMAT = "<line id=\"line{0}\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"0\" stroke=\"#ff006e\" stroke-width=\"1\" />";
+		private const string LINE_HTML_FORMAT = "<line id=\"lineCl{0}\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"0\" stroke=\"#ff006e\" stroke-width=\"1\" />";
 		/// <summary>
 		/// 起始點（結束點）DIV的HTML模板
 		/// </summary>
-		private const string DIVDRAWLINE_HTML_FORMAT = "<div class=\"divDrawLine\" style=\"{0}\" id=\"div{1}{2}\">{3}</div>";
+		private const string DIVDRAWLINE_HTML_FORMAT = "<div class=\"divDrawLine-currency\" style=\"{0}\" id=\"divCl{1}{2}\">{3}</div>";
 		/// <summary>
 		/// 算式HTML模板
 		/// </summary>
@@ -130,22 +130,22 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// <summary>
 		/// 起始點（結束點）DIV的線型名稱模板
 		/// </summary>
-		private const string DIV_LINE_HTML_FORMAT = "<input type=\"hidden\" value=\"line{0}\" />";
+		private const string DIV_LINE_HTML_FORMAT = "<input type=\"hidden\" value=\"lineCl{0}\" />";
 		/// <summary>
 		/// 初期化參數HTML模板
 		/// </summary>
-		private const string INIT_SETTINGS_HTML_FORMAT = "<input type = \"hidden\" id=\"hidInitSettings\" value=\"{0}\" />";
+		private const string INIT_SETTINGS_HTML_FORMAT = "<input type = \"hidden\" id=\"hidCurrencyInitSettings\" value=\"{0}\" />";
 		/// <summary>
 		/// 題型答案HTML模板
 		/// </summary>
-		private const string ANSWER_HTML_FORMAT = "<input type = \"hidden\" value=\"{0}\" id=\"hidElAnswer\" />";
+		private const string ANSWER_HTML_FORMAT = "<input type = \"hidden\" value=\"{0}\" id=\"hidClAnswer\" />";
 
 		/// <summary>
 		/// 右側計算式HTML作成
 		/// </summary>
 		/// <param name="p">題型參數</param>
 		/// <returns>右側計算式HTML</returns>
-		private string GetRightFormulasHtml(EqualityLinkageParameter p)
+		private string GetRightFormulasHtml(CurrencyLinkageParameter p)
 		{
 			int controlIndex = 0;
 			StringBuilder html = new StringBuilder();
@@ -179,31 +179,31 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// <summary>
 		/// 初期化參數
 		/// </summary>
-		private StringBuilder _hidInitSettings { get; set; }
+		private StringBuilder _hidCurrencyInitSettings { get; set; }
 
 		/// <summary>
 		/// 初期化參數HTML作成
 		/// </summary>
 		/// <param name="p">題型參數</param>
 		/// <returns>初期化參數HTML</returns>
-		private string GetInitSettingsHtml(EqualityLinkageParameter p)
+		private string GetInitSettingsHtml(CurrencyLinkageParameter p)
 		{
 			StringBuilder html = new StringBuilder();
 
 			if(p.QueueType == DivQueueType.Lengthways)
 			{
 				int divLastLastIndex = p.Formulas.RightFormulas.Count - 1;
-				_hidInitSettings.AppendFormat("#div00S,#div00E,#div{0}E,{1},#svg01", divLastLastIndex.ToString().PadLeft(2, '0'), (int)p.QueueType);
+				_hidCurrencyInitSettings.AppendFormat("#divCl00S,#divCl00E,#divCl{0}E,{1},#svgCl01", divLastLastIndex.ToString().PadLeft(2, '0'), (int)p.QueueType);
 			}
 			else
 			{
 				int divLastIndex = p.Formulas.LeftFormulas.Count - 1;
-				_hidInitSettings.AppendFormat("#div00S,#div{0}S,#div00E,{1},#svg01", divLastIndex.ToString().PadLeft(2, '0'), (int)p.QueueType);
+				_hidCurrencyInitSettings.AppendFormat("#divCl00S,#divCl{0}S,#divCl00E,{1},#svgCl01", divLastIndex.ToString().PadLeft(2, '0'), (int)p.QueueType);
 			}
 
-			html.AppendLine("<input type=\"hidden\" id=\"hidSelectedS\" />");
-			html.AppendLine("<input type=\"hidden\" id=\"hidSelectedE\" />");
-			html.AppendLine(string.Format(INIT_SETTINGS_HTML_FORMAT, _hidInitSettings.ToString()));
+			html.AppendLine("<input type=\"hidden\" id=\"hidCurrencySelectedS\" />");
+			html.AppendLine("<input type=\"hidden\" id=\"hidCurrencySelectedE\" />");
+			html.AppendLine(string.Format(INIT_SETTINGS_HTML_FORMAT, _hidCurrencyInitSettings.ToString()));
 			html.AppendLine(string.Format(ANSWER_HTML_FORMAT, _answerString.ToString()));
 
 			return html.ToString();
@@ -214,7 +214,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// </summary>
 		/// <param name="p">題型參數</param>
 		/// <returns>左側計算式HTML</returns>
-		private string GetLeftFormulasHtml(EqualityLinkageParameter p)
+		private string GetLeftFormulasHtml(CurrencyLinkageParameter p)
 		{
 			int controlIndex = 0;
 			StringBuilder html = new StringBuilder();
@@ -234,7 +234,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 				html.AppendLine(string.Format(DIVDRAWLINE_HTML_FORMAT, LeftFormulasArray[p.QueueType][controlIndex], controlIndex.ToString().PadLeft(2, '0'), "S", content.ToString()));
 
 				int seat = p.Formulas.Seats[controlIndex];
-				_answerString.AppendFormat("div{0}S#div{1}E;", controlIndex.ToString().PadLeft(2, '0'), seat.ToString().PadLeft(2, '0'));
+				_answerString.AppendFormat("divCl{0}S#divCl{1}E;", controlIndex.ToString().PadLeft(2, '0'), seat.ToString().PadLeft(2, '0'));
 
 				controlIndex++;
 			});
@@ -252,12 +252,12 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// </summary>
 		/// <param name="p">題型參數</param>
 		/// <returns>線型HTML</returns>
-		private string GetSvgHtml(EqualityLinkageParameter p)
+		private string GetSvgHtml(CurrencyLinkageParameter p)
 		{
 			int controlIndex = 0;
 			StringBuilder html = new StringBuilder();
 
-			html.AppendLine("<svg id=\"svg01\" style=\"left: 0px; top: 0px;\" width=\"0\" height=\"0\">");
+			html.AppendLine("<svg id=\"svgCl01\" style=\"left: 0px; top: 0px;\" width=\"0\" height=\"0\">");
 			// 線型HTML
 			p.Formulas.LeftFormulas.ToList().ForEach(d =>
 			{

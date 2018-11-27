@@ -11,8 +11,7 @@
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
-	<!--EQUALITYLINKAGESTYLESHEET-->
-	<!--SCHOOLCLOCKSTYLESHEET-->
+	<link href="../Content/CurrencyLinkage.css" rel="stylesheet" type="text/css" />
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
@@ -35,12 +34,12 @@
 	<!--FINDTHELAWSCRIPT-->
 	<!--NUMERICSORTINGSCRIPT-->
 	<!--LEARNCURRENCYSCRIPT-->
-	<!--EQUALITYLINKAGESCRIPT-->
-	<!--SCHOOLCLOCKSCRIPT-->
-	<!--CURRENCYOPERATIONSCRIPT-->
+	<script src="../Scripts/Ext/MathSheets.CurrencyLinkage.js" charset="utf-8"></script>
 	<title>題庫</title>
 
 	<script>
+
+
 		// 打印
 		function btnPrintClick() {
 			//<!--ARITHMETICPRINTSETTING-->
@@ -53,9 +52,7 @@
 			//<!--FINDTHELAWPRINTSETTING-->
 			//<!--NUMERICSORTINGPRINTSETTING-->
 			//<!--LEARNCURRENCYPRINTSETTING-->
-			//<!--EQUALITYLINKAGEPRINTSETTING-->
-			//<!--SCHOOLCLOCKPRINTSETTING-->
-			//<!--CURRENCYOPERATIONPRINTSETTING-->
+			MathSheets.CurrencyLinkage.printSetting();
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -72,9 +69,7 @@
 			//<!--FINDTHELAWPRINTAFTERSETTING-->
 			//<!--NUMERICSORTINGPRINTAFTERSETTING-->
 			//<!--LEARNCURRENCYPRINTAFTERSETTING-->
-			//<!--EQUALITYLINKAGEPRINTAFTERSETTING-->
-			//<!--SCHOOLCLOCKPRINTAFTERSETTING-->
-			//<!--CURRENCYOPERATIONPRINTAFTERSETTING-->
+			MathSheets.CurrencyLinkage.printAfterSetting();
 		}
 
 		// 答題準備按鍵
@@ -106,11 +101,7 @@
 			// 設定頁面所有輸入域為可用狀態(認識貨幣)
 			//<!--LEARNCURRENCYREADY-->
 			// 設定頁面所有輸入域為可用狀態(算式連一連)
-			//<!--EQUALITYLINKAGEREADY-->
-			// 設定頁面所有輸入域為可用狀態(時鐘學習板)
-			//<!--SCHOOLCLOCKREADY-->
-			// 設定頁面所有輸入域為可用狀態(貨幣運算)
-			//<!--CURRENCYOPERATIONREADY-->
+			MathSheets.CurrencyLinkage.ready();
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -149,11 +140,7 @@
 			// 認識貨幣
 			//<!--LEARNCURRENCYMAKECORRECTIONS-->
 			// 算式連一連
-			//<!--EQUALITYLINKAGEMAKECORRECTIONS-->
-			// 時鐘學習板
-			//<!--SCHOOLCLOCKMAKECORRECTIONS-->
-			// 貨幣運算
-			//<!--CURRENCYOPERATIONMAKECORRECTIONS-->
+			fault += MathSheets.CurrencyLinkage.makeCorrections();
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -186,11 +173,7 @@
 			// 認識貨幣
 			//<!--LEARNCURRENCYTHEIRPAPERS-->
 			// 算式連一連
-			//<!--EQUALITYLINKAGETHEIRPAPERS-->
-			// 時鐘學習板
-			//<!--SCHOOLCLOCKTHEIRPAPERS-->
-			// 貨幣運算
-			//<!--CURRENCYOPERATIONTHEIRPAPERS-->
+			MathSheets.CurrencyLinkage.theirPapers();
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -223,21 +206,89 @@
 			</div>
 		</div>
 		<div id="divPrintContent">
-		<!--ARITHMETIC-->
-		<!--EQUALITYCOMPARISON-->
-		<!--COMPUTINGCONNECTION-->
-		<!--MATHWORDPROBLEMS-->
-		<!--FRUITSLINKAGE-->
-		<!--FINDNEARESTNUMBER-->
-		<!--COMBINATORIALEQUATION-->
-		<!--SCOREGOAL-->
-		<!--HOWMUCHMORE-->
-		<!--FINDTHELAW-->
-		<!--NUMERICSORTING-->
-		<!--LEARNCURRENCY-->
-		<!--EQUALITYLINKAGE-->
-		<!--SCHOOLCLOCK-->
-		<!--CURRENCYOPERATION-->
+			<!--ARITHMETIC-->
+			<!--EQUALITYCOMPARISON-->
+			<!--COMPUTINGCONNECTION-->
+			<!--MATHWORDPROBLEMS-->
+			<!--FRUITSLINKAGE-->
+			<!--FINDNEARESTNUMBER-->
+			<!--COMBINATORIALEQUATION-->
+			<!--SCOREGOAL-->
+			<!--HOWMUCHMORE-->
+			<!--FINDTHELAW-->
+			<!--NUMERICSORTING-->
+			<!--LEARNCURRENCY-->
+			<br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">認識價格</span></h4></div><hr /><div class="row text-center row-margin-top drawLine-panel-currency-lengthways">
+				<svg id="svgCl01" style="left: 0px; top: 0px;" width="0" height="0">
+					<line id="lineCl00" x1="0" y1="0" x2="0" y2="0" stroke="#ff006e" stroke-width="1" />
+					<line id="lineCl01" x1="0" y1="0" x2="0" y2="0" stroke="#ff006e" stroke-width="1" />
+					<line id="lineCl02" x1="0" y1="0" x2="0" y2="0" stroke="#ff006e" stroke-width="1" />
+					<line id="lineCl03" x1="0" y1="0" x2="0" y2="0" stroke="#ff006e" stroke-width="1" />
+					<line id="lineCl04" x1="0" y1="0" x2="0" y2="0" stroke="#ff006e" stroke-width="1" />
+				</svg>
+				<div class="divDrawLine-currency" style="left: 30px; top:10px;" id="divCl00S">
+					<img src="../Content/image/shop/Book.png" width="60" height="60" />
+					<h6><span class="label">6.50</span></h6>
+					<input type="checkbox" id="chkdivCl00S" style="display: none;" />
+					<input type="hidden" value="lineCl00" />
+				</div>
+				<div class="divDrawLine-currency" style="left: 30px; top:110px;" id="divCl01S">
+					<img src="../Content/image/shop/Christmas.png" width="60" height="60" />
+					<h6><span class="label">12.30</span></h6>
+					<input type="checkbox" id="chkdivCl01S" style="display: none;" />
+					<input type="hidden" value="lineCl01" />
+				</div>
+				<div class="divDrawLine-currency" style="left: 30px; top:210px;" id="divCl02S">
+					<img src="../Content/image/shop/Hat.png" width="60" height="60" />
+					<h6><span class="label">20.50</span></h6>
+					<input type="checkbox" id="chkdivCl02S" style="display: none;" />
+					<input type="hidden" value="lineCl02" />
+				</div>
+				<div class="divDrawLine-currency" style="left: 30px; top:310px;" id="divCl03S">
+					<img src="../Content/image/shop/Mittens.png" width="60" height="60" />
+					<h6><span class="label">13.25</span></h6>
+					<input type="checkbox" id="chkdivCl03S" style="display: none;" />
+					<input type="hidden" value="lineCl03" />
+				</div>
+				<div class="divDrawLine-currency" style="left: 30px; top:410px;" id="divCl04S">
+					<img src="../Content/image/shop/Pencil.png" width="60" height="60" />
+					<h6><span class="label">1.00</span></h6>
+					<input type="checkbox" id="chkdivCl04S" style="display: none;" />
+					<input type="hidden" value="lineCl04" />
+				</div>
+				<div class="divDrawLine-currency" style="left: 250px; top:10px;" id="divCl00E">
+					<img src="../Content/image/shop/Money.png" width="60" height="60" />
+					<h6><span class="label">12元5角</span></h6>
+					<input type="checkbox" id="chkdivCl00E" style="display: none;" />
+				</div>
+				<div class="divDrawLine-currency" style="left: 250px; top:110px;" id="divCl01E">
+					<img src="../Content/image/shop/Money.png" width="60" height="60" />
+					<h6><span class="label">20元5角</span></h6>
+					<input type="checkbox" id="chkdivCl01E" style="display: none;" />
+				</div>
+				<div class="divDrawLine-currency" style="left: 250px; top:210px;" id="divCl02E">
+					<img src="../Content/image/shop/Money.png" width="60" height="60" />
+					<h6><span class="label">13元2角5分</span></h6>
+					<input type="checkbox" id="chkdivCl02E" style="display: none;" />
+				</div>
+				<div class="divDrawLine-currency" style="left: 250px; top:310px;" id="divCl03E">
+					<img src="../Content/image/shop/Money.png" width="60" height="60" />
+					<h6><span class="label">6元5角</span></h6>
+					<input type="checkbox" id="chkdivCl03E" style="display: none;" />
+				</div>
+				<div class="divDrawLine-currency" style="left: 250px; top:410px;" id="divCl04E">
+					<img src="../Content/image/shop/Money.png" width="60" height="60" />
+					<h6><span class="label">1元</span></h6>
+					<input type="checkbox" id="chkdivCl04E" style="display: none;" />
+				</div>
+				<input type="hidden" id="hidCurrencySelectedS" />
+				<input type="hidden" id="hidCurrencySelectedE" />
+				<input type="hidden" id="hidCurrencyInitSettings" value="#divCl00S,#divCl00E,#divCl04E,1,#svgCl01" />
+				<input type="hidden" value="divCl00S#divCl02E;divCl01S#divCl01E;divCl02S#divCl03E;divCl03S#divCl00E;divCl04S#divCl04E" id="hidClAnswer" />
+			</div>
+			<img id="imgOKCurrencyLinkage" src="../Content/image/correct.png" class="OKCurrencyLinkage-lengthways" style="display: none; " />
+			<img id="imgNoCurrencyLinkage" src="../Content/image/fault.png" class="NoCurrencyLinkage-lengthways" style="display: none; " />
+
 		</div>
 		<HR>
 		<div class="row">
@@ -254,7 +305,7 @@
 		<div class="page-header">
 			<div class="row text-center row-margin-top">
 				<div class="col-md-2">
-					<h4> 練習情況</h4>
+			<h4>練習情況</h4>
 				</div>
 				<div class="col-md-9">
 					<div class="rating-stars block" id="more-rating" style="display: none;">

@@ -1,0 +1,63 @@
+.drawLine-panel-currency-lengthways {
+	position: relative;
+	overflow: hidden;
+	width: 400px !important;
+	height: 500px !important;
+	display: inline-block;
+	left: 50px;
+}
+
+.drawLine-panel-currency-crosswise {
+	position: relative;
+	overflow: hidden;
+	width: 700px !important;
+	height: 200px !important;
+	display: inline-block;
+	left: 50px;
+}
+
+.OKCurrencyLinkage-lengthways {
+	position: relative;
+	left: 50px;
+	top: -170px;
+	width: 80px;
+	height: 80px;
+}
+
+.OKCurrencyLinkage-crosswise {
+	position: relative;
+	left: 50px;
+	top: -100px;
+	width: 80px;
+	height: 80px;
+}
+
+.NoCurrencyLinkage-lengthways {
+	position: relative;
+	left: 50px;
+	top: -170px;
+	width: 80px;
+	height: 80px;
+}
+
+.NoCurrencyLinkage-crosswise {
+	position: relative;
+	left: 50px;
+	top: -100px;
+	width: 80px;
+	height: 80px;
+}
+
+.divDrawLine-currency-print {
+	border: 1px solid #0094ff;
+}
+
+.divDrawLine-currency {
+	position: absolute;
+	background: #9fcfff;
+	width: 110px;
+	height: 60px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 0 6px;
+	cursor: pointer;
+}

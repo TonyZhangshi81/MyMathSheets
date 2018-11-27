@@ -444,6 +444,65 @@
 	}
 
 	/// <summary>
+	/// 商品
+	/// </summary>
+	public enum Shop : int
+	{
+		/// <summary>
+		/// 手套
+		/// </summary>
+		Mittens = 0,
+		/// <summary>
+		/// 玩偶
+		/// </summary>
+		Christmas,
+		/// <summary>
+		/// 書包
+		/// </summary>
+		Schoolbag,
+		/// <summary>
+		/// 拖鞋
+		/// </summary>
+		Slipper,
+		/// <summary>
+		/// 帽子
+		/// </summary>
+		Hat,
+		/// <summary>
+		/// 體恤衫
+		/// </summary>
+		Shirt,
+		/// <summary>
+		/// 書
+		/// </summary>
+		Book,
+		/// <summary>
+		/// 尺
+		/// </summary>
+		Ruler,
+		/// <summary>
+		/// 鉛筆
+		/// </summary>
+		Pencil,
+		/// <summary>
+		/// 橡皮
+		/// </summary>
+		Rubber,
+		/// <summary>
+		/// 雨傘
+		/// </summary>
+		Umbrella,
+		/// <summary>
+		/// 魔方
+		/// </summary>
+		RubiksCube,
+		/// <summary>
+		/// 貨幣
+		/// </summary>
+		Money
+	}
+
+	/// <summary>
 	/// 水果
 	/// </summary>
 	public enum Fruits : int
@@ -587,6 +646,10 @@
 			/// 貨幣運算
 			/// </summary>
 			CurrencyOperation,
+			/// <summary>
+			/// 認識價格
+			/// </summary>
+			CurrencyLinkage,
 			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
