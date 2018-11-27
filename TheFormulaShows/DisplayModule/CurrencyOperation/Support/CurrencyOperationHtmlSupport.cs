@@ -21,6 +21,27 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 	public class CurrencyOperationHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
+		/// 輸入項目HTML模板
+		/// </summary>
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputCo{0}L{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+		/// <summary>
+		/// 等號HTML
+		/// </summary>
+		private const string CALCULATOR_HTML = "<img src=\"../Content/image/calculator.png\" width=\"30\" height=\"30\" />";
+		/// <summary>
+		/// 運算符HTML模板
+		/// </summary>
+		private const string SIGN_HTML_FORMAT = "<img src=\"../Content/image/{0}.png\" width=\"30\" height=\"30\" />";
+		/// <summary>
+		/// 對錯HTML模板
+		/// </summary>
+		private const string IMG_CURRENCY_OPERATION_HTML_FORMAT = "<img id=\"img{0}CurrencyOperation{1}\" src=\"../Content/image/{2}.png\" style=\"width: 40px; height: 40px; display: none; \" />";
+		/// <summary>
+		/// SPAN標籤HTML模板
+		/// </summary>
+		private const string SPAN_HTML_FORMAT = "<span class=\"label\">{0}</span>";
+
+		/// <summary>
 		/// 題型HTML模板作成
 		/// </summary>
 		/// <param name="parameter"></param>
@@ -45,33 +66,46 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 			{
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-6 form-inline\">");
-				colHtml.AppendLine("<h5>");
+				colHtml.AppendLine("<h6>");
 
+				string pIndex = controlIndex.ToString().PadLeft(2, '0');
+				GapFilling gap = item.CurrencyArithmetic.Gap;
+				// 方程式左右是否互換位置
 				if (item.AnswerIsRight)
 				{
-					colHtml.AppendLine(GetHtml(item.CurrencyArithmetic.Gap, item.CurrencyArithmetic.LeftParameter, GapFilling.Left, controlIndex));
-					colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.CurrencyArithmetic.Sign.ToOperationString()));
-					colHtml.AppendLine(GetHtml(item.CurrencyArithmetic.Gap, item.CurrencyArithmetic.RightParameter, GapFilling.Right, controlIndex));
-					colHtml.AppendLine("<span class=\"label\">=</span>");
-					colHtml.AppendLine(GetHtml(item.CurrencyArithmetic.Gap, item.CurrencyArithmetic.Answer, GapFilling.Answer, controlIndex));
+					// 加數、被減數
+					colHtml.Append(GetHtml(gap == GapFilling.Left, item.CurrencyArithmetic.LeftParameter, pIndex));
+					// 算式運算符
+					colHtml.AppendLine(string.Format(SIGN_HTML_FORMAT, item.CurrencyArithmetic.Sign.ToString()));
+					// 加數、減數
+					colHtml.Append(GetHtml(gap == GapFilling.Right, item.CurrencyArithmetic.RightParameter, pIndex));
+					// 等號
+					colHtml.AppendLine(CALCULATOR_HTML);
+					// 和、差
+					colHtml.Append(GetHtml(gap == GapFilling.Answer, item.CurrencyArithmetic.Answer, pIndex));
 				}
 				else
 				{
-					colHtml.AppendLine(GetHtml(item.CurrencyArithmetic.Gap, item.CurrencyArithmetic.Answer, GapFilling.Answer, controlIndex));
-					colHtml.AppendLine("<span class=\"label\">=</span>");
-					colHtml.AppendLine(GetHtml(item.CurrencyArithmetic.Gap, item.CurrencyArithmetic.LeftParameter, GapFilling.Left, controlIndex));
-					colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.CurrencyArithmetic.Sign.ToOperationString()));
-					colHtml.AppendLine(GetHtml(item.CurrencyArithmetic.Gap, item.CurrencyArithmetic.RightParameter, GapFilling.Right, controlIndex));
+					// 和、差
+					colHtml.Append(GetHtml(gap == GapFilling.Answer, item.CurrencyArithmetic.Answer, pIndex));
+					// 等號
+					colHtml.AppendLine(CALCULATOR_HTML);
+					// 加數、被減數
+					colHtml.Append(GetHtml(gap == GapFilling.Left, item.CurrencyArithmetic.LeftParameter, pIndex));
+					// 算式運算符
+					colHtml.AppendLine(string.Format(SIGN_HTML_FORMAT, item.CurrencyArithmetic.Sign.ToString()));
+					// 加數、減數
+					colHtml.Append(GetHtml(gap == GapFilling.Right, item.CurrencyArithmetic.RightParameter, pIndex));
 				}
 
-				colHtml.AppendLine(string.Format("<img id=\"imgOKCurrencyOperation{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgNoCurrencyOperation{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
-				colHtml.AppendLine("</h5>");
+				colHtml.AppendLine(string.Format(IMG_CURRENCY_OPERATION_HTML_FORMAT, "OK", pIndex, "correct"));
+				colHtml.AppendLine(string.Format(IMG_CURRENCY_OPERATION_HTML_FORMAT, "No", pIndex, "fault"));
+				colHtml.AppendLine("</h6>");
 				colHtml.AppendLine("</div>");
 
 				controlIndex++;
 				numberOfColumns++;
-				if (numberOfColumns == 4)
+				if (numberOfColumns == 2)
 				{
 					rowHtml.AppendLine("<div class=\"row text-center row-margin-top\">");
 					rowHtml.Append(colHtml.ToString());
@@ -97,42 +131,88 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">四則運算</span></h4></div><hr />");
+				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">貨幣運算</span></h4></div><hr />");
 			}
 
 			return html.ToString();
 		}
 
 		/// <summary>
-		/// 
+		/// 方程式HTML模板輸出
 		/// </summary>
-		/// <param name="item"></param>
-		/// <param name="parameter"></param>
-		/// <param name="gap"></param>
-		/// <param name="index"></param>
-		/// <returns></returns>
-		private string GetHtml(GapFilling item, int parameter, GapFilling gap, int index)
+		/// <param name="isFill">是否為填空項目</param>
+		/// <param name="parameter">題型參數</param>
+		/// <param name="parentIndex">控件ID</param>
+		/// <returns>HTML模板</returns>
+		private string GetHtml(bool isFill, int parameter, string parentIndex)
 		{
-			var html = string.Empty;
-			if (item == gap)
+			int index = 0;
+			StringBuilder html = new StringBuilder();
+			StringBuilder answer = new StringBuilder();
+			if (isFill)
 			{
 				switch (parameter.IntToCurrencyUnitType())
 				{
 					case CurrencyOperationUnitType.Fen:
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "分"));
+						answer.AppendFormat("{0}", parameter.IntToCurrency().Fen);
+						break;
+
+					case CurrencyOperationUnitType.JF:
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "角"));
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "分"));
+						answer.AppendFormat("{0};{1}", parameter.IntToCurrency().Jiao, parameter.IntToCurrency().Fen);
+						break;
+
+					case CurrencyOperationUnitType.Jiao:
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "角"));
+						answer.AppendFormat("{0}", parameter.IntToCurrency().Jiao);
+						break;
+
+					case CurrencyOperationUnitType.YF:
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "元"));
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "分"));
+						answer.AppendFormat("{0};{1}", parameter.IntToCurrency().Yuan, parameter.IntToCurrency().Fen);
+						break;
+
+					case CurrencyOperationUnitType.YJ:
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "元"));
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "角"));
+						answer.AppendFormat("{0};{1}", parameter.IntToCurrency().Yuan, parameter.IntToCurrency().Jiao);
+						break;
+
+					case CurrencyOperationUnitType.YJF:
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "元"));
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "角"));
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "分"));
+						answer.AppendFormat("{0};{1};{2}", parameter.IntToCurrency().Yuan, parameter.IntToCurrency().Jiao, parameter.IntToCurrency().Fen);
+						break;
+
+					case CurrencyOperationUnitType.Yuan:
+						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
+						html.AppendLine(string.Format(SPAN_HTML_FORMAT, "元"));
+						answer.AppendFormat("{0}", parameter.IntToCurrency().Yuan);
 						break;
 				}
-
-
-				html += string.Format("<input id=\"inputAc{0}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", index);
-
-
-				html += string.Format("<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>", index, parameter);
+				// 題型答案
+				html.AppendLine(string.Format("<input id=\"hidCo{0}\" type=\"hidden\" value=\"{1}\"/>", parentIndex, answer.ToString()));
 			}
 			else
 			{
-				html = string.Format("<span class=\"label\">{0}</span>", parameter.IntToCurrency().CurrencyToString());
+				html.AppendLine(string.Format(SPAN_HTML_FORMAT, parameter.IntToCurrency().CurrencyToString()));
 			}
-			return html;
+			return html.ToString();
 		}
 	}
 }

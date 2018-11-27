@@ -57,11 +57,11 @@ namespace MyMathSheets.CommonLib.Util
 			Currency currency = new Currency
 			{
 				// 分
-				Fen = value % 10,
+				Fen = (value % 10 == 0) ? (int?)null : (value % 10),
 				// 角
-				Jiao = value % 100 / 10,
+				Jiao = (value % 100 / 10 == 0) ? (int?)null : (value % 100 / 10),
 				// 元
-				Yuan = value / 100
+				Yuan = (value / 100 == 0) ? (int?)null : (value / 100)
 			};
 
 			return currency;

@@ -36,6 +36,7 @@
 	<!--LEARNCURRENCYSCRIPT-->
 	<!--EQUALITYLINKAGESCRIPT-->
 	<!--SCHOOLCLOCKSCRIPT-->
+	<!--CURRENCYOPERATIONSCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -53,6 +54,7 @@
 			//<!--LEARNCURRENCYPRINTSETTING-->
 			//<!--EQUALITYLINKAGEPRINTSETTING-->
 			//<!--SCHOOLCLOCKPRINTSETTING-->
+			//<!--CURRENCYOPERATIONPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -71,6 +73,7 @@
 			//<!--LEARNCURRENCYPRINTAFTERSETTING-->
 			//<!--EQUALITYLINKAGEPRINTAFTERSETTING-->
 			//<!--SCHOOLCLOCKPRINTAFTERSETTING-->
+			//<!--CURRENCYOPERATIONPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -105,6 +108,8 @@
 			//<!--EQUALITYLINKAGEREADY-->
 			// 設定頁面所有輸入域為可用狀態(時鐘學習板)
 			//<!--SCHOOLCLOCKREADY-->
+			// 設定頁面所有輸入域為可用狀態(貨幣運算)
+			//<!--CURRENCYOPERATIONREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -146,6 +151,8 @@
 			//<!--EQUALITYLINKAGEMAKECORRECTIONS-->
 			// 時鐘學習板
 			//<!--SCHOOLCLOCKMAKECORRECTIONS-->
+			// 貨幣運算
+			//<!--CURRENCYOPERATIONMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -181,6 +188,8 @@
 			//<!--EQUALITYLINKAGETHEIRPAPERS-->
 			// 時鐘學習板
 			//<!--SCHOOLCLOCKTHEIRPAPERS-->
+			// 貨幣運算
+			//<!--CURRENCYOPERATIONTHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -227,6 +236,7 @@
 		<!--LEARNCURRENCY-->
 		<!--EQUALITYLINKAGE-->
 		<!--SCHOOLCLOCK-->
+		<!--CURRENCYOPERATION-->
 		</div>
 		<HR>
 		<div class="row">

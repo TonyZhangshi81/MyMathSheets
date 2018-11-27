@@ -22,13 +22,13 @@ MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
 		},
 
 		// 答题验证(正确:true  错误:false)
-		_currencyOperationCorrecting = function (pIndex, pElement) {
+		_currencyOperationCorrecting = function (pIndex, answerElement) {
 			var inputAry = new Array();
-			var answers = ($(pElement).val() || '').split(';');
+			var answers = ($(answerElement).val() || '').split(';');
 
 			var isRight = true;
 			$.each(answers, function (index, answer) {
-				var element = $("input[id *= 'inputCo" + pIndex.toString().PadLeft(2, '0') + "L" + index + "']");
+				var element = $("input[id *= 'inputCo" + pIndex + "L" + index + "']");
 				inputAry.push($(element));
 
 				if (parseInt($(element).val()) != answer) {
@@ -64,8 +64,9 @@ MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
 		makeCorrections = function () {
 			var fault = 0;
 			$("input[id*='hidCo']").each(function (pIndex, pElement) {
+				var index = pIndex.toString().PadLeft(2, '0');
 				// 答题验证
-				if (!_currencyOperationCorrecting(pIndex, pElement)) {
+				if (!_currencyOperationCorrecting(index, pElement)) {
 					// 答题错误时,错误件数加一
 					fault++;
 				}
@@ -75,9 +76,10 @@ MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
 
 		// 貨幣運算交卷
 		theirPapers = function () {
-			$("input[id*='hidCo']").each(function (index, element) {
+			$("input[id*='hidCo']").each(function (pIndex, pElement) {
+				var index = pIndex.toString().PadLeft(2, '0');
 				// 答题验证
-				if (!_currencyOperationCorrecting(index, element)) {
+				if (!_currencyOperationCorrecting(index, pElement)) {
 					// 答题错误时,错误件数加一
 					__isFault++;
 				} else {
