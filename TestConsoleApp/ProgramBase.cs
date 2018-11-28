@@ -5,6 +5,7 @@ using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
@@ -52,6 +53,7 @@ namespace MyMathSheets.TestConsoleApp
 			EqualityLinkageParameter elParameter = null;
 			SchoolClockParameter scParameter = null;
 			CurrencyOperationParameter coParameter = null;
+			CurrencyLinkageParameter clParameter = null;
 
 			bool isShowMenu = true;
 
@@ -117,6 +119,9 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    E3-貨幣運算減法");
 					Console.WriteLine("    E4-隨機貨幣運算（分）");
 					Console.WriteLine("    E5-貨幣運算減法（角分）");
+					Console.WriteLine("************************* 認識價格 ***********************");
+					Console.WriteLine("    F1-商品價格(橫向)");
+					Console.WriteLine("    F2-商品價格(縱向)");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -413,6 +418,19 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("隨機貨幣運算（角）");
 						coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyOperation, "CO004");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyOperation, coParameter.Formulas.ToList());
+						break;
+
+					case "F1":
+						Console.WriteLine();
+						Console.WriteLine("商品價格(橫向)");
+						clParameter = (CurrencyLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyLinkage, "CL001");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyLinkage, clParameter.Currencys);
+						break;
+					case "F2":
+						Console.WriteLine();
+						Console.WriteLine("商品價格(縱向)");
+						clParameter = (CurrencyLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyLinkage, "CL002");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyLinkage, clParameter.Currencys);
 						break;
 
 
