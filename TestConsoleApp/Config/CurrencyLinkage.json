@@ -1,7 +1,7 @@
 [
 	{
 		"Identifier": "CL001",
-		"Reserve": "{\"Amount\" : 10, \"DivQueueType\" : 1}"
+		"Reserve": "{\"Amount\" : 5, \"DivQueueType\" : 0}"
 	},
 	{
 		"Identifier": "CL002",

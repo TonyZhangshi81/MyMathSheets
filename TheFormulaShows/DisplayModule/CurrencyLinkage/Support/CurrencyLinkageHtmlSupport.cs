@@ -77,11 +77,11 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 				// 下位計算式坐標列表(橫向連線)
 				[DivQueueType.Crosswise] = new List<string>()
 				{
-					"left: 30px; top:200px;",
-					"left: 160px; top:200px;",
-					"left: 290px; top:200px;",
-					"left: 420px; top:200px;",
-					"left: 550px; top:200px;"
+					"left: 30px; top:150px;",
+					"left: 160px; top:150px;",
+					"left: 290px; top:150px;",
+					"left: 420px; top:150px;",
+					"left: 550px; top:150px;"
 				}
 			};
 
@@ -266,7 +266,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 				// 左側(上面)隨機商品圖片
 				content.AppendLine(string.Format(LEFT_IMAGE_HTML_FORMAT, ShopsArray[controlIndex].ToString()));
 				// 左側(上面)價格HTML模板
-				content.AppendLine(string.Format(LEFT_CURRENCY_HTML_FORMAT, d.ToString("#.#0")));
+				content.AppendLine(string.Format(LEFT_CURRENCY_HTML_FORMAT, d.ToString("0.00")));
 				// 選擇控件HTML模板
 				content.AppendLine(string.Format(CHECKBOX_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0'), "S"));
 				// 起始點（結束點）DIV的線型名稱模板

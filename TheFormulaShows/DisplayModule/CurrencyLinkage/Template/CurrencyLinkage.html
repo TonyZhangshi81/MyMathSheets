@@ -22,36 +22,12 @@
 	<script src="../Scripts/snap/snap.svg-min.js"></script>
 	<script src="../Scripts/jquery.rating-stars.min.js"></script>
 	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
-	<!--ARITHMETICSCRIPT-->
-	<!--EQUALITYCOMPARISONSCRIPT-->
-	<!--COMPUTINGCONNECTIONSCRIPT-->
-	<!--MATHWORDPROBLEMSSCRIPT-->
-	<!--FRUITSLINKAGESCRIPT-->
-	<!--FINDNEARESTNUMBERSCRIPT-->
-	<!--COMBINATORIALEQUATIONSCRIPT-->
-	<!--SCOREGOALSCRIPT-->
-	<!--HOWMUCHMORESCRIPT-->
-	<!--FINDTHELAWSCRIPT-->
-	<!--NUMERICSORTINGSCRIPT-->
-	<!--LEARNCURRENCYSCRIPT-->
 	<script src="../Scripts/Ext/MathSheets.CurrencyLinkage.js" charset="utf-8"></script>
 	<title>題庫</title>
 
 	<script>
-
-
 		// 打印
 		function btnPrintClick() {
-			//<!--ARITHMETICPRINTSETTING-->
-			//<!--EQUALITYCOMPARISONPRINTSETTING-->
-			//<!--COMPUTINGCONNECTIONPRINTSETTING-->
-			//<!--MATHWORDPROBLEMSPRINTSETTING-->
-			//<!--FINDNEARESTNUMBERPRINTSETTING-->
-			//<!--COMBINATORIALEQUATIONPRINTSETTING-->
-			//<!--HOWMUCHMOREPRINTSETTING-->
-			//<!--FINDTHELAWPRINTSETTING-->
-			//<!--NUMERICSORTINGPRINTSETTING-->
-			//<!--LEARNCURRENCYPRINTSETTING-->
 			MathSheets.CurrencyLinkage.printSetting();
 
 			// 頁面答應處理
@@ -59,16 +35,6 @@
 			// 打印后恢復頁面最初狀態設置
 			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
 			// 打印后頁面設定
-			//<!--ARITHMETICPRINTAFTERSETTING-->
-			//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->
-			//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->
-			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
-			//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->
-			//<!--COMBINATORIALEQUATIONPRINTAFTERSETTING-->
-			//<!--HOWMUCHMOREPRINTAFTERSETTING-->
-			//<!--FINDTHELAWPRINTAFTERSETTING-->
-			//<!--NUMERICSORTINGPRINTAFTERSETTING-->
-			//<!--LEARNCURRENCYPRINTAFTERSETTING-->
 			MathSheets.CurrencyLinkage.printAfterSetting();
 		}
 
@@ -76,31 +42,7 @@
 		function btnReadyClick() {
 			// 設定頁面所有輸入域為可用狀態(共通)-交卷按鈕顯示,準備按鈕隱藏,打印按鈕隱藏
 			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
-			// 設定頁面所有輸入域為可用狀態（四則運算）
-			//<!--ARITHMETICREADY-->
-			// 設定頁面所有輸入域為可用狀態(運算比大小)
-			//<!--EQUALITYCOMPARISONREADY-->
-			// 設定頁面所有輸入域為可用狀態(等式接龍)
-			//<!--COMPUTINGCONNECTIONREADY-->
-			// 設定頁面所有輸入域為可用狀態(算數應用題)
-			//<!--MATHWORDPROBLEMSREADY-->
-			// 設定頁面所有輸入域為可用狀態(水果連連看)
-			//<!--FRUITSLINKAGEREADY-->
-			// 設定頁面所有輸入域為可用狀態(找到最近的數字)
-			//<!--FINDNEARESTNUMBERREADY-->
-			// 設定頁面所有輸入域為可用狀態(算式組合)
-			//<!--COMBINATORIALEQUATIONREADY-->
-			// 設定頁面所有輸入域為可用狀態(射門得分)
-			//<!--SCOREGOALREADY-->
-			// 設定頁面所有輸入域為可用狀態(比多少)
-			//<!--HOWMUCHMOREREADY-->
-			// 設定頁面所有輸入域為可用狀態(找規律)
-			//<!--FINDTHELAWREADY-->
-			// 設定頁面所有輸入域為可用狀態(數字排序)
-			//<!--NUMERICSORTINGREADY-->
 			// 設定頁面所有輸入域為可用狀態(認識貨幣)
-			//<!--LEARNCURRENCYREADY-->
-			// 設定頁面所有輸入域為可用狀態(算式連一連)
 			MathSheets.CurrencyLinkage.ready();
 
 			// 計時開始
@@ -115,31 +57,7 @@
 		// 訂正按鈕(不計入答題情況信息)
 		function btnMakeCorrectionsClick() {
 			var fault = 0;
-			// 四則運算題
-			//<!--ARITHMETICMAKECORRECTIONS-->
-			// 算式比較大小
-			//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->
-			// 等式接龍
-			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
-			// 算數應用題
-			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
-			// 水果連連看
-			//<!--FRUITSLINKAGEMAKECORRECTIONS-->
-			// 找到最近的數字
-			//<!--FINDNEARESTNUMBERMAKECORRECTIONS-->
-			// 算式組合
-			//<!--COMBINATORIALEQUATIONMAKECORRECTIONS-->
-			// 射門得分
-			//<!--SCOREGOALMAKECORRECTIONS-->
-			// 比多少
-			//<!--HOWMUCHMOREMAKECORRECTIONS-->
-			// 找規律
-			//<!--FINDTHELAWMAKECORRECTIONS-->
-			// 數字排序
-			//<!--NUMERICSORTINGMAKECORRECTIONS-->
 			// 認識貨幣
-			//<!--LEARNCURRENCYMAKECORRECTIONS-->
-			// 算式連一連
 			fault += MathSheets.CurrencyLinkage.makeCorrections();
 
 			// 訂正按鈕處理
@@ -148,31 +66,7 @@
 
 		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
 		function btnTheirPapersClick() {
-			// 四則運算交卷
-			//<!--ARITHMETICTHEIRPAPERS-->
-			// 算式比大小交卷
-			//<!--EQUALITYCOMPARISONTHEIRPAPERS-->
-			// 等式接龍交卷
-			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
-			// 算數應用題交卷
-			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
-			// 水果連連看
-			//<!--FRUITSLINKAGETHEIRPAPERS-->
-			// 找到最近的數字
-			//<!--FINDNEARESTNUMBERTHEIRPAPERS-->
-			// 算式組合
-			//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->
-			// 射門得分
-			//<!--SCOREGOALTHEIRPAPERS-->
-			// 比多少
-			//<!--HOWMUCHMORETHEIRPAPERS-->
-			// 找規律
-			//<!--FINDTHELAWTHEIRPAPERS-->
-			// 數字排序
-			//<!--NUMERICSORTINGTHEIRPAPERS-->
 			// 認識貨幣
-			//<!--LEARNCURRENCYTHEIRPAPERS-->
-			// 算式連一連
 			MathSheets.CurrencyLinkage.theirPapers();
 
 			// 交卷按鈕處理
@@ -206,19 +100,8 @@
 			</div>
 		</div>
 		<div id="divPrintContent">
-			<!--ARITHMETIC-->
-			<!--EQUALITYCOMPARISON-->
-			<!--COMPUTINGCONNECTION-->
-			<!--MATHWORDPROBLEMS-->
-			<!--FRUITSLINKAGE-->
-			<!--FINDNEARESTNUMBER-->
-			<!--COMBINATORIALEQUATION-->
-			<!--SCOREGOAL-->
-			<!--HOWMUCHMORE-->
-			<!--FINDTHELAW-->
-			<!--NUMERICSORTING-->
-			<!--LEARNCURRENCY-->
-			<br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">認識價格</span></h4></div><hr /><div class="row text-center row-margin-top drawLine-panel-currency-lengthways">
+			<br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">認識價格</span></h4></div><hr />
+			<div class="row text-center row-margin-top drawLine-panel-currency-crosswise">
 				<svg id="svgCl01" style="left: 0px; top: 0px;" width="0" height="0">
 					<line id="lineCl00" x1="0" y1="0" x2="0" y2="0" stroke="#ff006e" stroke-width="1" />
 					<line id="lineCl01" x1="0" y1="0" x2="0" y2="0" stroke="#ff006e" stroke-width="1" />
@@ -227,67 +110,67 @@
 					<line id="lineCl04" x1="0" y1="0" x2="0" y2="0" stroke="#ff006e" stroke-width="1" />
 				</svg>
 				<div class="divDrawLine-currency" style="left: 30px; top:10px;" id="divCl00S">
-					<img src="../Content/image/shop/Book.png" width="60" height="60" />
-					<h6><span class="label">6.50</span></h6>
+					<img src="../Content/image/shop/Mittens.png" width="60" height="60" />
+					<h6><span class="label">1.53</span></h6>
 					<input type="checkbox" id="chkdivCl00S" style="display: none;" />
 					<input type="hidden" value="lineCl00" />
 				</div>
-				<div class="divDrawLine-currency" style="left: 30px; top:110px;" id="divCl01S">
-					<img src="../Content/image/shop/Christmas.png" width="60" height="60" />
-					<h6><span class="label">12.30</span></h6>
+				<div class="divDrawLine-currency" style="left: 160px; top:10px;" id="divCl01S">
+					<img src="../Content/image/shop/Shirt.png" width="60" height="60" />
+					<h6><span class="label">9.60</span></h6>
 					<input type="checkbox" id="chkdivCl01S" style="display: none;" />
 					<input type="hidden" value="lineCl01" />
 				</div>
-				<div class="divDrawLine-currency" style="left: 30px; top:210px;" id="divCl02S">
-					<img src="../Content/image/shop/Hat.png" width="60" height="60" />
-					<h6><span class="label">20.50</span></h6>
+				<div class="divDrawLine-currency" style="left: 290px; top:10px;" id="divCl02S">
+					<img src="../Content/image/shop/RubiksCube.png" width="60" height="60" />
+					<h6><span class="label">3.05</span></h6>
 					<input type="checkbox" id="chkdivCl02S" style="display: none;" />
 					<input type="hidden" value="lineCl02" />
 				</div>
-				<div class="divDrawLine-currency" style="left: 30px; top:310px;" id="divCl03S">
-					<img src="../Content/image/shop/Mittens.png" width="60" height="60" />
-					<h6><span class="label">13.25</span></h6>
+				<div class="divDrawLine-currency" style="left: 420px; top:10px;" id="divCl03S">
+					<img src="../Content/image/shop/Hat.png" width="60" height="60" />
+					<h6><span class="label">9.62</span></h6>
 					<input type="checkbox" id="chkdivCl03S" style="display: none;" />
 					<input type="hidden" value="lineCl03" />
 				</div>
-				<div class="divDrawLine-currency" style="left: 30px; top:410px;" id="divCl04S">
-					<img src="../Content/image/shop/Pencil.png" width="60" height="60" />
-					<h6><span class="label">1.00</span></h6>
+				<div class="divDrawLine-currency" style="left: 550px; top:10px;" id="divCl04S">
+					<img src="../Content/image/shop/Ruler.png" width="60" height="60" />
+					<h6><span class="label">2.94</span></h6>
 					<input type="checkbox" id="chkdivCl04S" style="display: none;" />
 					<input type="hidden" value="lineCl04" />
 				</div>
-				<div class="divDrawLine-currency" style="left: 250px; top:10px;" id="divCl00E">
+				<div class="divDrawLine-currency" style="left: 30px; top:150px;" id="divCl00E">
 					<img src="../Content/image/shop/Money.png" width="60" height="60" />
-					<h6><span class="label">12元5角</span></h6>
+					<h6><span class="label">2元9角4分</span></h6>
 					<input type="checkbox" id="chkdivCl00E" style="display: none;" />
 				</div>
-				<div class="divDrawLine-currency" style="left: 250px; top:110px;" id="divCl01E">
+				<div class="divDrawLine-currency" style="left: 160px; top:150px;" id="divCl01E">
 					<img src="../Content/image/shop/Money.png" width="60" height="60" />
-					<h6><span class="label">20元5角</span></h6>
+					<h6><span class="label">9元6角2分</span></h6>
 					<input type="checkbox" id="chkdivCl01E" style="display: none;" />
 				</div>
-				<div class="divDrawLine-currency" style="left: 250px; top:210px;" id="divCl02E">
+				<div class="divDrawLine-currency" style="left: 290px; top:150px;" id="divCl02E">
 					<img src="../Content/image/shop/Money.png" width="60" height="60" />
-					<h6><span class="label">13元2角5分</span></h6>
+					<h6><span class="label">9元6角</span></h6>
 					<input type="checkbox" id="chkdivCl02E" style="display: none;" />
 				</div>
-				<div class="divDrawLine-currency" style="left: 250px; top:310px;" id="divCl03E">
+				<div class="divDrawLine-currency" style="left: 420px; top:150px;" id="divCl03E">
 					<img src="../Content/image/shop/Money.png" width="60" height="60" />
-					<h6><span class="label">6元5角</span></h6>
+					<h6><span class="label">3元5分</span></h6>
 					<input type="checkbox" id="chkdivCl03E" style="display: none;" />
 				</div>
-				<div class="divDrawLine-currency" style="left: 250px; top:410px;" id="divCl04E">
+				<div class="divDrawLine-currency" style="left: 550px; top:150px;" id="divCl04E">
 					<img src="../Content/image/shop/Money.png" width="60" height="60" />
-					<h6><span class="label">1元</span></h6>
+					<h6><span class="label">1元5角3分</span></h6>
 					<input type="checkbox" id="chkdivCl04E" style="display: none;" />
 				</div>
 				<input type="hidden" id="hidCurrencySelectedS" />
 				<input type="hidden" id="hidCurrencySelectedE" />
-				<input type="hidden" id="hidCurrencyInitSettings" value="#divCl00S,#divCl00E,#divCl04E,1,#svgCl01" />
-				<input type="hidden" value="divCl00S#divCl02E;divCl01S#divCl01E;divCl02S#divCl03E;divCl03S#divCl00E;divCl04S#divCl04E" id="hidClAnswer" />
+				<input type="hidden" id="hidCurrencyInitSettings" value="#divCl00S,#divCl04S,#divCl00E,0,#svgCl01" />
+				<input type="hidden" value="divCl00S#divCl04E;divCl01S#divCl02E;divCl02S#divCl03E;divCl03S#divCl01E;divCl04S#divCl00E" id="hidClAnswer" />
 			</div>
-			<img id="imgOKCurrencyLinkage" src="../Content/image/correct.png" class="OKCurrencyLinkage-lengthways" style="display: none; " />
-			<img id="imgNoCurrencyLinkage" src="../Content/image/fault.png" class="NoCurrencyLinkage-lengthways" style="display: none; " />
+			<img id="imgOKCurrencyLinkage" src="../Content/image/correct.png" class="OKCurrencyLinkage-crosswise" style="display: none; " />
+			<img id="imgNoCurrencyLinkage" src="../Content/image/fault.png" class="NoCurrencyLinkage-crosswise" style="display: none; " />
 
 		</div>
 		<HR>
@@ -305,7 +188,7 @@
 		<div class="page-header">
 			<div class="row text-center row-margin-top">
 				<div class="col-md-2">
-			<h4>練習情況</h4>
+					<h4> 練習情況</h4>
 				</div>
 				<div class="col-md-9">
 					<div class="rating-stars block" id="more-rating" style="display: none;">
