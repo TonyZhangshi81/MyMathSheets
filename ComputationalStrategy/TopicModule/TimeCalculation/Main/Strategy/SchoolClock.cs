@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.SchoolClock.Item;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Properties;
 using System;
@@ -120,7 +120,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		private bool CheckIsNeedInverseMethod(IList<SchoolClockFormula> preFormulas, SchoolClockFormula currentFormula)
 		{
 			// 防止出現全零的情況
-			if (currentFormula.Hours == 0 && currentFormula.Minutes == 0 && currentFormula.Seconds == 0)
+			if(currentFormula.Hours == 0 && currentFormula.Minutes == 0 && currentFormula.Seconds == 0)
 			{
 				return true;
 			}

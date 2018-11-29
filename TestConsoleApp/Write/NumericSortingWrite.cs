@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.FindTheLaw.Item;
+using MyMathSheets.ComputationalStrategy.NumericSorting.Item;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;

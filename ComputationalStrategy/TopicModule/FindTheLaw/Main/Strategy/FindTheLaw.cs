@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
+namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 {
 	/// <summary>
 	/// 找規律題
@@ -157,7 +157,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 			randomIndexList.Sort();
 
 			// index: 0,1,2,3,4,5,6
-			if(randomIndexList[0] >= 3 || randomIndexList[2] < 4 || randomIndexList[1] - randomIndexList[0] > 3 || randomIndexList[2] - randomIndexList[1] > 3)
+			if (randomIndexList[0] >= 3 || randomIndexList[2] < 4 || randomIndexList[1] - randomIndexList[0] > 3 || randomIndexList[2] - randomIndexList[1] > 3)
 			{
 				randomIndexList.Sort();
 				// 隨機填空項目的順次原則是保證至少有3個已知數是連續的(便於題型解答)
@@ -198,7 +198,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 				numberList.Add(start);
 				randomIndexList.Add(index);
 			}
-			
+
 			FindTheLawFormula formula = new FindTheLawFormula()
 			{
 				// 自然數列表

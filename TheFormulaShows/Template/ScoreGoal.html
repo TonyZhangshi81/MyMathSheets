@@ -7,93 +7,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="icon" href="../Content/favicon.ico">
+	<link rel="icon" href="../Content/image/favicon.ico">
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+	<link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+	<link href="../Content/ScoreGoal.css" rel="stylesheet" type="text/css" />
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+	<script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
 	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
 	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
 	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
+	<script src="../Scripts/snap/snap.svg-min.js"></script>
+	<script src="../Scripts/jquery.rating-stars.min.js"></script>
 	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
-	<!--ARITHMETICSCRIPT-->
-	<!--EQUALITYCOMPARISONSCRIPT-->
-	<!--COMPUTINGCONNECTIONSCRIPT-->
-	<!--MATHWORDPROBLEMSSCRIPT-->
-	<!--FRUITSLINKAGESCRIPT-->
-	<!--FINDNEARESTNUMBERSCRIPT-->
-	<!--COMBINATORIALEQUATIONSCRIPT-->
 	<script src="../Scripts/Ext/MathSheets.ScoreGoal.js" charset="utf-8"></script>
-	<!--HOWMUCHMORESCRIPT-->
 	<title>題庫</title>
 
 	<script>
-		// 頁面啟動后加載
-		$(document).ready(function () {
-			// 準備
-			$('#btnReady').click(function () { btnReadyClick(); });
-			// 提交答題
-			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
-			// 訂正錯題
-			$('#btnMakeCorrections').click(function () { btnMakeCorrectionsClick(); });
-			// 完成
-			$('#btnOver').click(function () { btnOverClick(); });
-			// 打印
-			$('#btnPrint').click(function () { btnPrintClick(); });
-
-			// 還原上一次答題結果
-			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
-			// 計算式提示
-			$(function () { $("[data-toggle='tooltip']").tooltip(); });
-		});
-
 		// 打印
 		function btnPrintClick() {
-			//<!--ARITHMETICPRINTSETTING-->
-			//<!--EQUALITYCOMPARISONPRINTSETTING-->
-			//<!--COMPUTINGCONNECTIONPRINTSETTING-->
-			//<!--MATHWORDPROBLEMSPRINTSETTING-->
-			//<!--FINDNEARESTNUMBERPRINTSETTING-->
-			//<!--COMBINATORIALEQUATIONPRINTSETTING-->
-			//<!--HOWMUCHMOREPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
 			// 打印后恢復頁面最初狀態設置
 			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
-			// 打印后頁面設定
-			//<!--ARITHMETICPRINTAFTERSETTING-->
-			//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->
-			//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->
-			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
-			//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->
-			//<!--COMBINATORIALEQUATIONPRINTAFTERSETTING-->
-			//<!--HOWMUCHMOREPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
 		function btnReadyClick() {
 			// 設定頁面所有輸入域為可用狀態(共通)-交卷按鈕顯示,準備按鈕隱藏,打印按鈕隱藏
 			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
-			// 設定頁面所有輸入域為可用狀態（四則運算）
-			//<!--ARITHMETICREADY-->
-			// 設定頁面所有輸入域為可用狀態(運算比大小)
-			//<!--EQUALITYCOMPARISONREADY-->
-			// 設定頁面所有輸入域為可用狀態(等式接龍)
-			//<!--COMPUTINGCONNECTIONREADY-->
-			// 設定頁面所有輸入域為可用狀態(算數應用題)
-			//<!--MATHWORDPROBLEMSREADY-->
-			// 設定頁面所有輸入域為可用狀態(水果連連看)
-			//<!--FRUITSLINKAGEREADY-->
-			// 設定頁面所有輸入域為可用狀態(找到最近的數字)
-			//<!--FINDNEARESTNUMBERREADY-->
-			// 設定頁面所有輸入域為可用狀態(算式組合)
-			//<!--COMBINATORIALEQUATIONREADY-->
 			// 設定頁面所有輸入域為可用狀態(射門得分)
 			__goalsArrayHiddenControlId = 'hidBallsArray'; MathSheets.ScoreGoal.ready('divBall', 'divGoaler');
-			// 設定頁面所有輸入域為可用狀態(比多少)
-			//<!--HOWMUCHMOREREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -107,24 +54,8 @@
 		// 訂正按鈕(不計入答題情況信息)
 		function btnMakeCorrectionsClick() {
 			var fault = 0;
-			// 四則運算題
-			//<!--ARITHMETICMAKECORRECTIONS-->
-			// 算式比較大小
-			//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->
-			// 等式接龍
-			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
-			// 算數應用題
-			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
-			// 水果連連看
-			//<!--FRUITSLINKAGEMAKECORRECTIONS-->
-			// 找到最近的數字
-			//<!--FINDNEARESTNUMBERMAKECORRECTIONS-->
-			// 算式組合
-			//<!--COMBINATORIALEQUATIONMAKECORRECTIONS-->
 			// 射門得分
 			fault += MathSheets.ScoreGoal.makeCorrections();
-			// 比多少
-			//<!--HOWMUCHMOREMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -132,24 +63,8 @@
 
 		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
 		function btnTheirPapersClick() {
-			// 四則運算交卷
-			//<!--ARITHMETICTHEIRPAPERS-->
-			// 算式比大小交卷
-			//<!--EQUALITYCOMPARISONTHEIRPAPERS-->
-			// 等式接龍交卷
-			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
-			// 算數應用題交卷
-			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
-			// 水果連連看
-			//<!--FRUITSLINKAGETHEIRPAPERS-->
-			// 找到最近的數字
-			//<!--FINDNEARESTNUMBERTHEIRPAPERS-->
-			// 算式組合
-			//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->
 			// 射門得分
 			MathSheets.ScoreGoal.theirPapers();
-			// 比多少
-			//<!--HOWMUCHMORETHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -177,60 +92,46 @@
 				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
 				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
 			</div>
+			<div class="plugin-butterfly">
+				<iframe frameborder="0" scrolling="no" src="../Plugin/butterfly.html" width="320" height="250"></iframe>
+			</div>
 		</div>
 		<div id="divPrintContent">
-			<!--ARITHMETIC-->
-			<!--EQUALITYCOMPARISON-->
-			<!--COMPUTINGCONNECTION-->
-			<!--MATHWORDPROBLEMS-->
-			<!--FRUITSLINKAGE-->
-			<!--FINDNEARESTNUMBER-->
-			<!--COMBINATORIALEQUATION-->
-			<br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">射門得分</span></h4></div><hr /><input id="hidBallsArray" type="hidden" value="0,1,1,0,0,1,0,1" /><div class="easyui-panel easyui-panel-ScoreGoal-ext">
-				<div id="divBall0" class="divBall" style="position: absolute; left: 10px; top: 90px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Basketball.png" width=40 height=40 data-toggle="tooltip" title="8+9">
+			<br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">射門得分</span></h4></div><hr /><input id="hidBallsArray" type="hidden" value="0,0,1,1,1,0" /><div class="easyui-panel easyui-panel-ScoreGoal-ext">
+				<div id="divBall0" class="divBall" style="position: absolute; left: 170px; top: 90px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+					<img src="../Content/image/sport/Volleyball.png" width=40 height=40 data-toggle="tooltip" title="30-13">
 					<input id="divBall0Input" type="hidden" />
 					<input id="divBall0Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall1" class="divBall" style="position: absolute; left: 15px; top: 20px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Rugby.png" width=40 height=40 data-toggle="tooltip" title="45-1">
+				<div id="divBall1" class="divBall" style="position: absolute; left: 80px; top: 75px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+					<img src="../Content/image/sport/Golf.png" width=40 height=40 data-toggle="tooltip" title="9+8">
 					<input id="divBall1Input" type="hidden" />
 					<input id="divBall1Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall2" class="divBall" style="position: absolute; left: 115px; top: 130px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Football.png" width=40 height=40 data-toggle="tooltip" title="34+10">
+				<div id="divBall2" class="divBall" style="position: absolute; left: 70px; top: 175px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+					<img src="../Content/image/sport/Football.png" width=40 height=40 data-toggle="tooltip" title="24-17">
 					<input id="divBall2Input" type="hidden" />
 					<input id="divBall2Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall3" class="divBall" style="position: absolute; left: 70px; top: 175px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Volleyball.png" width=40 height=40 data-toggle="tooltip" title="14+3">
+				<div id="divBall3" class="divBall" style="position: absolute; left: 140px; top: 230px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+					<img src="../Content/image/sport/Tennis.png" width=40 height=40 data-toggle="tooltip" title="29-22">
 					<input id="divBall3Input" type="hidden" />
 					<input id="divBall3Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall4" class="divBall" style="position: absolute; left: 80px; top: 75px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Tennis.png" width=40 height=40 data-toggle="tooltip" title="9+8">
+				<div id="divBall4" class="divBall" style="position: absolute; left: 5px; top: 180px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+					<img src="../Content/image/sport/BeachBall.png" width=40 height=40 data-toggle="tooltip" title="1+6">
 					<input id="divBall4Input" type="hidden" />
 					<input id="divBall4Result" type="hidden" value="ERROR" />
 				</div>
-				<div id="divBall5" class="divBall" style="position: absolute; left: 170px; top: 90px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/BeachBall.png" width=40 height=40 data-toggle="tooltip" title="50-6">
+				<div id="divBall5" class="divBall" style="position: absolute; left: 130px; top: 35px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+					<img src="../Content/image/sport/Ball.png" width=40 height=40 data-toggle="tooltip" title="16+1">
 					<input id="divBall5Input" type="hidden" />
 					<input id="divBall5Result" type="hidden" value="ERROR" />
-				</div>
-				<div id="divBall6" class="divBall" style="position: absolute; left: 130px; top: 35px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Golf.png" width=40 height=40 data-toggle="tooltip" title="11+6">
-					<input id="divBall6Input" type="hidden" />
-					<input id="divBall6Result" type="hidden" value="ERROR" />
-				</div>
-				<div id="divBall7" class="divBall" style="position: absolute; left: 5px; top: 180px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Ball.png" width=40 height=40 data-toggle="tooltip" title="31+13">
-					<input id="divBall7Input" type="hidden" />
-					<input id="divBall7Result" type="hidden" value="ERROR" />
 				</div>
 
 				<div id="divGoaler0" class="divGoaler divGoaler0">
 					<h5>
-						<span class="label">20-3</span>
+						<span class="label">12+5</span>
 						<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;">
 					</h5>
 				</div>
@@ -247,7 +148,7 @@
 				</div>
 				<div id="divGoaler1" class="divGoaler divGoaler1">
 					<h5>
-						<span class="label">35+9</span>
+						<span class="label">4+3</span>
 						<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;">
 					</h5>
 				</div>
@@ -257,8 +158,6 @@
 				</div>
 
 			</div>
-
-			<!--HOWMUCHMORE-->
 		</div>
 		<HR>
 		<div class="row">
@@ -273,7 +172,48 @@
 			</div>
 		</div>
 		<div class="page-header">
-			<h4>練習情況</h4>
+			<div class="row text-center row-margin-top">
+				<div class="col-md-2">
+					<h4> 練習情況</h4>
+				</div>
+				<div class="col-md-9">
+					<div class="rating-stars block" id="more-rating" style="display: none;">
+						<input type="hidden" id="hidPracticeScore" value="0" class="rating-value" />
+						<div class="rating-stars-container">
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+							<div class="rating-star">
+								<i class="fa fa-star"> </i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="well">
 			<p>

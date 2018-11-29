@@ -1,6 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Message;
+using MyMathSheets.ComputationalStrategy.SchoolClock.Item;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
 using System;
@@ -26,9 +26,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 
 			formulas.ToList().ForEach(d =>
 			{
-				Console.WriteLine(string.Format("{0} {1}:{2}:{3} {4}", 
-								d.TimeInterval.TimeIntervalTypeToString().PadRight(18), 
-								d.Hours.ToString().PadLeft(2, '0'), 
+				Console.WriteLine(string.Format("{0} {1}:{2}:{3} {4}",
+								d.TimeInterval.TimeIntervalTypeToString().PadRight(18),
+								d.Hours.ToString().PadLeft(2, '0'),
 								d.Minutes.ToString().PadLeft(2, '0'),
 								d.Seconds.ToString().PadLeft(2, '0'),
 								d.TimeType.ToString()));

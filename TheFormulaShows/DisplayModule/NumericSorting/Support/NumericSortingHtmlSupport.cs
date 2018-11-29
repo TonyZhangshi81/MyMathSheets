@@ -2,12 +2,12 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.FindTheLaw.Item;
+using MyMathSheets.ComputationalStrategy.NumericSorting.Item;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyMathSheets.TheFormulaShows.EqualityComparison.Support
+namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 {
 	/// <summary>
 	/// 

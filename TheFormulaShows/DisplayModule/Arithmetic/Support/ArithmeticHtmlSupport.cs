@@ -3,6 +3,7 @@ using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.Arithmetic.Item;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters;
 using System.Text;
 

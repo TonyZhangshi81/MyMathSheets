@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Util;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Item
+namespace MyMathSheets.ComputationalStrategy.NumericSorting.Item
 {
 	/// <summary>
 	/// 題型計算式對象構成

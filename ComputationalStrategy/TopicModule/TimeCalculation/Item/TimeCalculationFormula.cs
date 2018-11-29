@@ -1,11 +1,11 @@
 ﻿using MyMathSheets.CommonLib.Util;
 
-namespace MyMathSheets.ComputationalStrategy.SchoolClock.Item
+namespace MyMathSheets.CommonLib.Main.Item
 {
 	/// <summary>
 	/// 计算式对象构成
 	/// </summary>
-	public class SchoolClockFormula
+	public class TimeCalculationFormula
 	{
 		/// <summary>
 		/// 計時制（AM/PM）

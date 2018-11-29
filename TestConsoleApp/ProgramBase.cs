@@ -317,7 +317,7 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("找規律");
 						ftlParameter = (FindTheLawParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindTheLaw, "FTL001");
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FindTheLaw, ftlParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FindTheLaw, Enumerable.ToList<ComputationalStrategy.FindTheLaw.Item.FindTheLawFormula>(ftlParameter.Formulas));
 						break;
 
 					case "AA":

@@ -1,6 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.FindTheLaw.Item;
+using MyMathSheets.ComputationalStrategy.NumericSorting.Item;
 using System;
 using System.Collections.Generic;
 

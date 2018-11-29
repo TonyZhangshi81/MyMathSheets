@@ -1,8 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.SchoolClock.Item;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
 using System.Text;
 
