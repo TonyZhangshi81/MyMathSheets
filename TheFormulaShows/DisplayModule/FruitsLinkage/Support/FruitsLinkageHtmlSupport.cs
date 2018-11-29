@@ -15,6 +15,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 	/// 
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.FruitsLinkage)]
+	[Substitute("<!--FRUITSLINKAGESTYLESHEET-->", "<link href=\"../Content/FruitsLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute("<!--FRUITSLINKAGESCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.FruitsLinkage.js\" charset=\"utf-8\"></script>")]
 	[Substitute("//<!--FRUITSLINKAGEREADY-->", "__fruitsArrayHiddenControlId = 'hidFruitsArray';MathSheets.FruitsLinkage.ready('divFruitDrag', 'divContainer');")]
 	[Substitute("//<!--FRUITSLINKAGEMAKECORRECTIONS-->", "fault += MathSheets.FruitsLinkage.makeCorrections();")]
@@ -125,7 +126,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 				divContainerHtml.AppendLine(string.Format("<div id=\"divContainer{0}\" class=\"divContainer divSeat{1}\">", seat, seat));
 				divContainerHtml.AppendLine("<h5>");
 				divContainerHtml.AppendLine(string.Format("<span class=\"label\">{0}{1}{2}</span>", container.LeftParameter, container.Sign.ToOperationString(), container.RightParameter));
-				divContainerHtml.AppendLine("<img src=\"../Content/image/fruits/table.png\" width=78 height=20 style=\"margin-top:35px;\">");
+				divContainerHtml.AppendLine("<img src=\"../Content/image/fruits/table.png\" width=78 height=75 style=\"margin-top:-20px;\">");
 				divContainerHtml.AppendLine(string.Format("<img id=\"imgOKFruitsLinkage{0}\" src=\"../Content/image/correct.png\" style=\"width: 20px; height: 20px; display: none; \" />", seat));
 				divContainerHtml.AppendLine(string.Format("<img id=\"imgNoFruitsLinkage{0}\" src=\"../Content/image/fault.png\" style=\"width: 20px; height: 20px; display: none; \" />", seat));
 				divContainerHtml.AppendLine("</h5>");

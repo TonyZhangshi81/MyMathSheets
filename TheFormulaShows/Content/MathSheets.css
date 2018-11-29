@@ -86,130 +86,6 @@
 	font-size: 0.7rem;
 }
 
-.divFruitDrag {
-	z-index: 2;
-	width: 40px;
-	height: 40px;
-	background: aliceblue;
-}
-
-.divBall {
-	z-index: 2;
-	width: 40px;
-	height: 40px;
-	background: aliceblue;
-}
-
-.divContainer {
-	z-index: 1;
-	width: 80px;
-	height: 80px;
-	background: aliceblue;
-	position: absolute;
-	border: 1px solid #ccc;
-}
-
-.divGoaler {
-	z-index: 1;
-	width: 200px;
-	height: 140px;
-	background: aliceblue;
-	position: absolute;
-	border: 1px solid #ccc;
-}
-
-.divScore {
-	z-index: 1;
-	background: aliceblue;
-	position: absolute;
-	border: none;
-}
-
-.divScoreGoalResultImg {
-	z-index: 1;
-	background: aliceblue;
-	position: absolute;
-	border: none;
-	left: 530px;
-	top: 200px;
-}
-
-.divScore0 {
-	left: 500px;
-	top: 90px;
-}
-
-.divScore1 {
-	left: 555px;
-	top: 90px;
-}
-
-.divScore2 {
-	left: 605px;
-	top: 90px;
-}
-
-.divGoaler0 {
-	left: 250px;
-	top: 20px;
-}
-
-.divGoaler1 {
-	left: 660px;
-	top: 20px;
-}
-
-
-.divSeat0 {
-	left: 250px;
-	top: 20px;
-}
-
-.divSeat4 {
-	left: 300px;
-	top: 130px;
-}
-
-.divSeat7 {
-	left: 300px;
-	top: 230px;
-}
-
-.divSeat1 {
-	left: 360px;
-	top: 20px;
-}
-
-.divSeat5 {
-	left: 410px;
-	top: 130px;
-}
-
-.divSeat8 {
-	left: 410px;
-	top: 230px;
-}
-
-.divSeat2 {
-	left: 470px;
-	top: 20px;
-}
-
-.divSeat6 {
-	left: 520px;
-	top: 130px;
-}
-
-.divSeat9 {
-	left: 520px;
-	top: 230px;
-}
-
-.divSeat3 {
-	left: 580px;
-	top: 20px;
-}
-
 .form-inline-ext {
 	padding-left: 15px;
 	padding-right: 8px;
@@ -218,24 +94,6 @@
 
 .fruitsImg {
 	margin-top: -10px;
-}
-
-.easyui-panel-ext {
-	position: relative;
-	overflow: hidden;
-	width: 800px !important;
-	height: 300px !important;
-	display: inline-block;
-	left: 20px;
-}
-
-.easyui-panel-ScoreGoal-ext {
-	position: relative;
-	overflow: hidden;
-	width: 900px !important;
-	height: 300px !important;
-	display: inline-block;
-	left: 100px;
 }
 
 .list-group-ext {
@@ -251,11 +109,31 @@ svg {
 	width: 500px;
 }
 
-.rating-stars .rating-stars-container {
+.rating-stars {
 	font-size: 0px;
 }
 
-.rating-stars .rating-stars-container .rating-star {
+.rating-stars-container {
+	font-size: 0px;
+}
+
+.rating-stars {
+	display: inline-block;
+	font-size: 32px;
+	color: #555555;
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
+.rating-stars-container {
+	display: inline-block;
+	font-size: 32px;
+	color: #555555;
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
+.rating-star {
 	display: inline-block;
 	font-size: 32px;
 	color: #555555;
@@ -271,5 +149,3 @@ svg {
 .rating-stars .rating-stars-container .rating-star.is--no-hover {
 	color: #555555;
 }
-
-

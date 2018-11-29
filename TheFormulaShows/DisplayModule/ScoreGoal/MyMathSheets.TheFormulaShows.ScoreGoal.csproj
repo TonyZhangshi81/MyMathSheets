@@ -54,6 +54,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ScoreGoal.css" />
     <Content Include="Content\image\sport\ball.png" />
     <Content Include="Content\image\sport\Basketball.png" />
     <Content Include="Content\image\sport\beachBall.png" />
@@ -85,7 +86,7 @@
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)Lib" /Y
 copy "..\Scripts\Ext\*.js" "..\..\..\Scripts\Ext\" /Y
-xcopy "..\Content\image" "..\..\..\Content\image" /C /E /H /K /R /Y
+xcopy "..\Content" "..\..\..\Content" /C /E /H /K /R /Y
 copy "..\Template\*.html" "$(SolutionDir)TheFormulaShows\Template" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>

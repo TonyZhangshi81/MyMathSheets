@@ -122,7 +122,11 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// <summary>
 		/// 算式HTML模板
 		/// </summary>
-		private const string FORMULA_HTML_FORMAT = "<h5><span class=\"label\">{0} {1} {2}</span></h5>";
+		private const string FORMULA_HTML_FORMAT = "<span class=\"label\">{0} {1} {2}</span>";
+		/// <summary>
+		/// 算式圖標HTML
+		/// </summary>
+		private const string IMAGE_FORMULA_HTML = "<img src=\"../Content/image/project/Calculator.png\" width=\"16\" height=\"16\" />";
 		/// <summary>
 		/// 選擇控件HTML模板
 		/// </summary>
@@ -157,8 +161,13 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 
 				Formula formula = p.Formulas.RightFormulas[i];
 
+				// 開始
+				content.AppendLine("<h5>");
 				// 算式HTML模板
 				content.AppendLine(string.Format(FORMULA_HTML_FORMAT, formula.LeftParameter, formula.Sign.ToOperationString(), formula.RightParameter));
+				// 閉合
+				content.AppendLine("</h5>");
+
 				// 選擇控件HTML模板
 				content.AppendLine(string.Format(CHECKBOX_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0'), "E"));
 				// 起始點（結束點）DIV的線型名稱模板
@@ -224,8 +233,15 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 			{
 				content.Length = 0;
 
+				// 開始
+				content.AppendLine("<h5>");
+				// 算式圖標
+				content.AppendLine(IMAGE_FORMULA_HTML);
 				// 算式HTML模板
 				content.AppendLine(string.Format(FORMULA_HTML_FORMAT, d.LeftParameter, d.Sign.ToOperationString(), d.RightParameter));
+				// 閉合
+				content.AppendLine("</h5>");
+
 				// 選擇控件HTML模板
 				content.AppendLine(string.Format(CHECKBOX_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0'), "S"));
 				// 起始點（結束點）DIV的線型名稱模板

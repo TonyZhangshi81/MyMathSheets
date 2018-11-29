@@ -2,11 +2,11 @@
 	{
 		"Identifier": "FL004",
 		"FourOperationsType": 2,
-		"MaximumLimit": 30,
+		"MaximumLimit": 20,
 		"NumberOfQuestions": 1,
-		"QuestionType": 3,
+		"QuestionType": 1,
 		"Signs": [ 0, 1 ],
-		"Reserve": "{\"Amount\" : 7}"
+		"Reserve": "{\"Amount\" : 10}"
 	},
 	{
 		"Identifier": "FL001",
@@ -22,7 +22,7 @@
 		"FourOperationsType": 1,
 		"MaximumLimit": 30,
 		"NumberOfQuestions": 1,
-		"QuestionType": 3,
+		"QuestionType": 1,
 		"Signs": [ 0 ],
 		"Reserve": "{\"Amount\" : 4}"
 	},
@@ -31,7 +31,7 @@
 		"FourOperationsType": 1,
 		"MaximumLimit": 40,
 		"NumberOfQuestions": 1,
-		"QuestionType": 3,
+		"QuestionType": 1,
 		"Signs": [ 1 ],
 		"Reserve": "{\"Amount\" : 3}"
 	}

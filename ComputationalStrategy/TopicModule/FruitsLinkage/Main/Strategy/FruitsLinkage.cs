@@ -19,7 +19,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
 		/// </summary>
-		private const int INVERSE_NUMBER = 3;
+		private const int INVERSE_NUMBER = 5;
 
 		/// <summary>
 		/// 題型構築
@@ -90,9 +90,10 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 			}
 			else
 			{
+				var seatIndex = 0;
 				RandomNumberComposition random = null;
 				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.Amount; i++)
+				for (var i = 0; i < p.Amount; i++, seatIndex++)
 				{
 					random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
@@ -115,7 +116,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 					containersFormulas.Add(container);
 
 					// 容器座位號
-					seats.Add(i);
+					seats.Add(seatIndex);
 
 					if (CheckIsNeedInverseMethod(fruitsFormulas, containersFormulas, fruit.Answer))
 					{
@@ -130,9 +131,11 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 						{
 							// 當前反推判定次數復原
 							defeated = 0;
+							seatIndex--;
 							continue;
 						}
 						i--;
+						seatIndex--;
 						continue;
 					}
 
@@ -175,6 +178,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 		/// 情況1：算式結果存在一致
 		/// 情況2：無法根據當前計算式的結果推算下一個計算式（一般出現在無法被整除或者超過九九乘法口訣上限值【81】時）
 		/// 情況3：水果計算式與容器計算式完全一致
+		/// 情況4：算式中有0的出現
 		/// </remarks>
 		/// <param name="fruitsFormulas">左側水果計算式集合</param>
 		/// <param name="containersFormulas"></param>
@@ -182,6 +186,12 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 		/// <returns>需要反推：true  正常情況: false</returns>
 		private bool CheckIsNeedInverseMethod(IList<Formula> fruitsFormulas, IList<Formula> containersFormulas, int answer)
 		{
+			// 情況4：算式中有0的出現
+			if (fruitsFormulas.Last().LeftParameter == 0 || fruitsFormulas.Last().RightParameter == 0
+				|| containersFormulas.Last().LeftParameter == 0 || containersFormulas.Last().RightParameter == 0)
+			{
+				return true;
+			}
 			// 情況1
 			if (fruitsFormulas.ToList().Count(d => d.Answer == answer) >= 2)
 			{

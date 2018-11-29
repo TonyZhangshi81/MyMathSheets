@@ -51,12 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\EqualityLinkage.css" />
+    <Content Include="Content\image\project\Calculator.png" />
     <Content Include="Scripts\Ext\MathSheets.EqualityLinkage.js" />
     <Content Include="Template\EqualityLinkage.html" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\image\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
