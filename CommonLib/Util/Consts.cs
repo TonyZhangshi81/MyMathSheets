@@ -651,6 +651,10 @@
 			/// </summary>
 			CurrencyLinkage,
 			/// <summary>
+			/// 時間計算
+			/// </summary>
+			TimeCalculation,
+			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
 			Ready,

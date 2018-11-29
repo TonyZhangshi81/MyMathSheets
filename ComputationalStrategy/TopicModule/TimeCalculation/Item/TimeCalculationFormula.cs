@@ -1,6 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Util;
 
-namespace MyMathSheets.CommonLib.Main.Item
+namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Item
 {
 	/// <summary>
 	/// 计算式对象构成

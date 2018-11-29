@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyMathSheets.ComputationalStrategy.SchoolClock.Properties {
+namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Properties {
     using System;
     
     

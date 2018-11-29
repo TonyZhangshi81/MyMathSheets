@@ -1,20 +1,20 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.SchoolClock.Properties;
+using MyMathSheets.ComputationalStrategy.TimeCalculation.Item;
+using MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.TimeCalculation.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
+namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 {
 	/// <summary>
 	/// 時鐘學習板
 	/// </summary>
-	[Operation(LayoutSetting.Preview.SchoolClock)]
-	public class SchoolClock : OperationBase
+	[Operation(LayoutSetting.Preview.TimeCalculation)]
+	public class TimeCalculation : OperationBase
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -29,13 +29,13 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// <summary>
 		/// 存儲貨幣轉換的實現方法集合
 		/// </summary>
-		private readonly Dictionary<TimeIntervalType, Action<SchoolClockFormula, FourOperationsType>> _timeIntervals =
-			new Dictionary<TimeIntervalType, Action<SchoolClockFormula, FourOperationsType>>();
+		private readonly Dictionary<TimeIntervalType, Action<TimeCalculationFormula, FourOperationsType>> _timeIntervals =
+			new Dictionary<TimeIntervalType, Action<TimeCalculationFormula, FourOperationsType>>();
 
 		/// <summary>
 		/// 構造函數
 		/// </summary>
-		public SchoolClock()
+		public TimeCalculation()
 		{
 			// 指定分鐘數值（0、15、30、45分鐘）
 			_assignMinutes = new Dictionary<HourDivision, int>() {
@@ -67,7 +67,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// <param name="parameter">題型參數</param>
 		protected override void MarkFormulaList(ParameterBase parameter)
 		{
-			SchoolClockParameter p = parameter as SchoolClockParameter;
+			TimeCalculationParameter p = parameter as TimeCalculationParameter;
 
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
@@ -76,8 +76,8 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 			{
 				// 隨機獲取時間段類型中的一個類型
 				TimeIntervalType type = (TimeIntervalType)CommonUtil.GetRandomNumber(0, (int)TimeIntervalType.LateNight);
-				SchoolClockFormula formula = new SchoolClockFormula() { TimeInterval = type };
-				if (_timeIntervals.TryGetValue(type, out Action<SchoolClockFormula, FourOperationsType> timeInterval))
+				TimeCalculationFormula formula = new TimeCalculationFormula() { TimeInterval = type };
+				if (_timeIntervals.TryGetValue(type, out Action<TimeCalculationFormula, FourOperationsType> timeInterval))
 				{
 					timeInterval(formula, p.FourOperationsType);
 					if (p.IsShowSeconds)
@@ -117,10 +117,10 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// <param name="preFormulas">已得到的算式</param>
 		/// <param name="currentFormula">當前算式</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
-		private bool CheckIsNeedInverseMethod(IList<SchoolClockFormula> preFormulas, SchoolClockFormula currentFormula)
+		private bool CheckIsNeedInverseMethod(IList<TimeCalculationFormula> preFormulas, TimeCalculationFormula currentFormula)
 		{
 			// 防止出現全零的情況
-			if(currentFormula.Hours == 0 && currentFormula.Minutes == 0 && currentFormula.Seconds == 0)
+			if (currentFormula.Hours == 0 && currentFormula.Minutes == 0 && currentFormula.Seconds == 0)
 			{
 				return true;
 			}
@@ -137,7 +137,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// 設定計時制（AM/PM）
 		/// </summary>
 		/// <param name="formula">答題結果參數</param>
-		private void SetTimeType(SchoolClockFormula formula)
+		private void SetTimeType(TimeCalculationFormula formula)
 		{
 			if (!formula.Hours.HasValue || !formula.Minutes.HasValue)
 			{
@@ -162,7 +162,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// </summary>
 		/// <param name="formula">答題結果參數</param>
 		/// <param name="type">指定分鐘數值</param>
-		private void MidnightTimeInterval(SchoolClockFormula formula, FourOperationsType type)
+		private void MidnightTimeInterval(TimeCalculationFormula formula, FourOperationsType type)
 		{
 			// 午夜[0:XX]
 			formula.Hours = 0;
@@ -180,7 +180,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// </summary>
 		/// <param name="formula">答題結果參數</param>
 		/// <param name="type">指定分鐘數值</param>
-		private void WeeHoursTimeInterval(SchoolClockFormula formula, FourOperationsType type)
+		private void WeeHoursTimeInterval(TimeCalculationFormula formula, FourOperationsType type)
 		{
 			// 凌晨[1:XX~5:XX]
 			formula.Hours = CommonUtil.GetRandomNumber(1, 5);
@@ -198,7 +198,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// </summary>
 		/// <param name="formula">答題結果參數</param>
 		/// <param name="type">指定分鐘數值</param>
-		private void ForenoonTimeInterval(SchoolClockFormula formula, FourOperationsType type)
+		private void ForenoonTimeInterval(TimeCalculationFormula formula, FourOperationsType type)
 		{
 			// 上午[6:XX~11:XX]
 			formula.Hours = CommonUtil.GetRandomNumber(6, 11);
@@ -216,7 +216,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// </summary>
 		/// <param name="formula">答題結果參數</param>
 		/// <param name="type">指定分鐘數值</param>
-		private void NooningTimeInterval(SchoolClockFormula formula, FourOperationsType type)
+		private void NooningTimeInterval(TimeCalculationFormula formula, FourOperationsType type)
 		{
 			// 中午[12:XX]
 			formula.Hours = 12;
@@ -234,7 +234,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// </summary>
 		/// <param name="formula">答題結果參數</param>
 		/// <param name="type">指定分鐘數值</param>
-		private void AfternoonTimeInterval(SchoolClockFormula formula, FourOperationsType type)
+		private void AfternoonTimeInterval(TimeCalculationFormula formula, FourOperationsType type)
 		{
 			// 下午[13:XX~18:XX]
 			formula.Hours = CommonUtil.GetRandomNumber(13, 18);
@@ -252,7 +252,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// </summary>
 		/// <param name="formula">答題結果參數</param>
 		/// <param name="type">指定分鐘數值</param>
-		private void NightTimeInterval(SchoolClockFormula formula, FourOperationsType type)
+		private void NightTimeInterval(TimeCalculationFormula formula, FourOperationsType type)
 		{
 			// 晚上[19:XX~21:XX]
 			formula.Hours = CommonUtil.GetRandomNumber(19, 21);
@@ -270,7 +270,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// </summary>
 		/// <param name="formula">答題結果參數</param>
 		/// <param name="type">指定分鐘數值</param>
-		private void LateNightTimeInterval(SchoolClockFormula formula, FourOperationsType type)
+		private void LateNightTimeInterval(TimeCalculationFormula formula, FourOperationsType type)
 		{
 			// 深夜[22:XX~23:XX]
 			formula.Hours = CommonUtil.GetRandomNumber(22, 23);

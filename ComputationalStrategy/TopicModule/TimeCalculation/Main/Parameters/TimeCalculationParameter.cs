@@ -1,21 +1,21 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.TimeCalculation.Item;
 using System;
 using System.Collections.Generic;
 
-namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters
+namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters
 {
 	/// <summary>
 	/// 時鐘學習板參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.SchoolClock)]
-	public class SchoolClockParameter : ParameterBase
+	[OperationParameter(LayoutSetting.Preview.TimeCalculation)]
+	public class TimeCalculationParameter : ParameterBase
 	{
 		/// <summary>
 		/// 時鐘學習板題型參數
 		/// </summary>
-		public IList<SchoolClockFormula> Formulas { get; set; }
+		public IList<TimeCalculationFormula> Formulas { get; set; }
 		/// <summary>
 		/// 秒數是否清零
 		/// </summary>
@@ -31,7 +31,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters
 			IsShowSeconds = Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "IsShowSeconds")) == 0;
 
 			// 時鐘學習板集合實例化
-			Formulas = new List<SchoolClockFormula>();
+			Formulas = new List<TimeCalculationFormula>();
 		}
 	}
 }
