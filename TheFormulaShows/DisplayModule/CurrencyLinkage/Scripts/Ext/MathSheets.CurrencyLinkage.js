@@ -4,9 +4,9 @@ var MathSheets = MathSheets || {};
 MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 
 	// DIV畫線點坐標列表
-	var _arrDivPoints = new Array();
+	var _arrCurrencyDivPoints = new Array();
 	// DIV連線狀態列表
-	var _arrDrawLines = new Array();
+	var _arrCurrencyDrawLines = new Array();
 
 	// 打印設置
 	printSetting = function () {
@@ -40,7 +40,7 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 				// 右邊算式答案
 				var right = "#" + (answer || '').split('#')[1];
 				// 答題情況
-				$.each(_arrDrawLines, function (j, value) {
+				$.each(_arrCurrencyDrawLines, function (j, value) {
 					// 如果答題中連線情況與答一致
 					if (value.startPoint.name == left && value.endPoint.name == right) {
 						isRight = true;
@@ -57,7 +57,7 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 				$('#imgOKCurrencyLinkage').show();
 				$('#imgNoCurrencyLinkage').hide();
 				// 移除DIV點擊事件(起始點和結束點)
-				$.each(_arrDivPoints, function (index, div) {
+				$.each(_arrCurrencyDivPoints, function (index, div) {
 					$(div.name).unbind('click');
 				});
 				// 正确:true
@@ -74,21 +74,21 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 		// 设定页面所有输入域为可用状态(認識價格)
 		ready = function () {
 			// 畫線區域初期化
-			_svaAreaInit("#hidCurrencyInitSettings");
+			_arrCurrencyAreaInit("#hidCurrencyInitSettings");
 			// 畫線坐標點初期化
-			_relativeLocationPointInit("#hidCurrencyInitSettings");
+			_relativeLocationCurrencyPointInit("#hidCurrencyInitSettings");
 			// DIV事件註冊(起始點和結束點)
-			$.each(_arrDivPoints, function (index, div) {
+			$.each(_arrCurrencyDivPoints, function (index, div) {
 				// 遍歷每一個畫線坐標點
 				(div.name.substring(div.name.length - 1) == 'S')
-					? $(div.name).click(function () { _btnDivStartClick(this); })
-					: $(div.name).click(function () { _btnDivEndClick(this); });
+					? $(div.name).click(function () { MathSheets.CurrencyLinkage.btnDivStartClick(this); })
+					: $(div.name).click(function () { MathSheets.CurrencyLinkage.btnDivEndClick(this); });
 			});
 
 		},
 
 		// 畫線區域初期化
-		_svaAreaInit = function (hidCurrencyInitSettings) {
+		_arrCurrencyAreaInit = function (hidCurrencyInitSettings) {
 			// 畫線區域的參數取得(注意: 所有控件ID均帶有#)
 			var settings = ($(hidCurrencyInitSettings).val() || "").split(',');
 			// 第一排的左起第一個DIV ID
@@ -132,7 +132,7 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 		},
 
 		// 畫線起始點,結束點坐標初期化
-		_relativeLocationPointInit = function (hidCurrencyInitSettings) {
+		_relativeLocationCurrencyPointInit = function (hidCurrencyInitSettings) {
 			// 畫線區域的參數取得
 			var settings = ($(hidCurrencyInitSettings).val() || "").split(',');
 
@@ -184,14 +184,14 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 						divPoint.y = $(id).offset().top - $(div1Last).offset().top;
 					}
 				}
-				_arrDivPoints.push(divPoint);
+				_arrCurrencyDivPoints.push(divPoint);
 			});
 		},
 
 		// 開始隊列DIV點擊事件
-		_btnDivStartClick = function (div) {
+		btnDivStartClick = function (div) {
 			// 設定當前DIV被選中狀態
-			_chkBoxClick($(div).find(':checkbox'));
+			_chkCurrencyBoxClick($(div).find(':checkbox'));
 
 			var selectedDivId = "#" + $(div).attr("id");
 			// DIV選擇狀態還原
@@ -204,26 +204,26 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 				// 開始隊列中同時被選擇兩項的情況
 				if ($("#hidCurrencySelectedS").val() != selectedDivId) {
 					// 將前一次的選擇狀態取消
-					_chkBoxClick($($("#hidCurrencySelectedS").val()).find(':checkbox'));
+					_chkCurrencyBoxClick($($("#hidCurrencySelectedS").val()).find(':checkbox'));
 					// 記錄當前被選擇的DIV
 					$("#hidCurrencySelectedS").val(selectedDivId);
 				} else {
 					// 將當前結束點選擇狀態取消
-					_chkBoxClick($($("#hidCurrencySelectedE").val()).find(':checkbox'));
+					_chkCurrencyBoxClick($($("#hidCurrencySelectedE").val()).find(':checkbox'));
 					// 取消當前選擇狀態
 					$("#hidCurrencySelectedS").val("");
 					$("#hidCurrencySelectedE").val("");
 				}
 			}
 			// 畫線處理
-			_drawLineToSvg(drawedLine);
+			_currencyDrawLineToSvg(drawedLine);
 		},
 
 		// DIV選擇狀態還原
 		_reducingSelectState = function (selectedDivId) {
 			var line = null;
 			var lineName = "";
-			$.each(_arrDrawLines, function (index, value) {
+			$.each(_arrCurrencyDrawLines, function (index, value) {
 				if (value.startPoint.name == selectedDivId || value.endPoint.name == selectedDivId) {
 					// 取得當前線型
 					line = value;
@@ -235,15 +235,15 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 			});
 			if (line != null) {
 				// 從已畫線隊列中移除
-				_arrDrawLines.remove(line);
+				_arrCurrencyDrawLines.remove(line);
 			}
 			return lineName;
 		},
 
 		// 結束隊列DIV的點擊事件
-		_btnDivEndClick = function (div) {
+		btnDivEndClick = function (div) {
 			// 設定當前DIV被選中狀態
-			_chkBoxClick($(div).find(':checkbox'));
+			_chkCurrencyBoxClick($(div).find(':checkbox'));
 
 			var selectedDivId = "#" + $(div).attr("id");
 			// DIV選擇狀態還原
@@ -256,22 +256,22 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 				// 結束隊列中同時被選擇兩項的情況
 				if ($("#hidCurrencySelectedE").val() != selectedDivId) {
 					// 將前一次的選擇狀態取消
-					_chkBoxClick($($("#hidCurrencySelectedE").val()).find(':checkbox'));
+					_chkCurrencyBoxClick($($("#hidCurrencySelectedE").val()).find(':checkbox'));
 					// 記錄當前被選擇的DIV
 					$("#hidCurrencySelectedE").val(selectedDivId);
 				} else {
 					// 將當前起始點選擇狀態取消
-					_chkBoxClick($($("#hidCurrencySelectedS").val()).find(':checkbox'));
+					_chkCurrencyBoxClick($($("#hidCurrencySelectedS").val()).find(':checkbox'));
 					// 取消當前選擇狀態
 					$("#hidCurrencySelectedE").val("");
 					$("#hidCurrencySelectedS").val("");
 				}
 			}
 			// 畫線處理
-			_drawLineToSvg(drawedLine);
+			_currencyDrawLineToSvg(drawedLine);
 		},
 
-		_drawLineToSvg = function (drawedLine) {
+		_currencyDrawLineToSvg = function (drawedLine) {
 			// 起始點狀態取得(被選擇的DIV ID)
 			var s = $("#hidCurrencySelectedS").val();
 			// 結束點狀態取得(被選擇的DIV ID)
@@ -284,7 +284,7 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 				// 當前畫線狀態對象
 				var drawLine = new Object();
 				// 遍歷每一個畫線坐標點
-				$.each(_arrDivPoints, function (index, value) {
+				$.each(_arrCurrencyDivPoints, function (index, value) {
 					// 找到當前被選擇的起始點坐標
 					if (value.name == s) {
 						x1 = value.x;
@@ -305,7 +305,7 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 						drawLine.endPoint = value;
 					}
 				});
-				_arrDrawLines.push(drawLine);
+				_arrCurrencyDrawLines.push(drawLine);
 				// 畫線處理
 				$(line).attr({ "x1": x1, "y1": y1, "x2": x2, "y2": y2 });
 
@@ -317,18 +317,18 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 				// 畫線清除
 				$(line).attr({ "x1": x1, "y1": y1, "x2": x2, "y2": y2 });
 				// 找出落單的選擇快
-				_findSingleDiv();
+				_findCurrencySingleDiv();
 			}
 		},
 
 		// 找出落單的選擇快
-		_findSingleDiv = function () {
+		_findCurrencySingleDiv = function () {
 			// 遍歷每一個畫線坐標點
-			$.each(_arrDivPoints, function (index, div) {
+			$.each(_arrCurrencyDivPoints, function (index, div) {
 				// 是否處於選擇狀態
 				if ($(div.name).find(':checkbox').is(':checked')) {
 					var isSingle = true;
-					$.each(_arrDrawLines, function (index, value) {
+					$.each(_arrCurrencyDrawLines, function (index, value) {
 						var selectedDivId = div.name;
 						// 判斷是否已經畫線
 						if (value.startPoint.name == selectedDivId || value.endPoint.name == selectedDivId) {
@@ -346,7 +346,7 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 		},
 
 		// 設定當前DIV被選中狀態
-		_chkBoxClick = function (chk) {
+		_chkCurrencyBoxClick = function (chk) {
 			var parent = $(chk).parent();
 			if ($(chk).is(':checked')) {
 				$(chk).prop('checked', false);
@@ -384,6 +384,8 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 		printAfterSetting: printAfterSetting,
 		ready: ready,
 		makeCorrections: makeCorrections,
-		theirPapers: theirPapers
+		theirPapers: theirPapers,
+		btnDivStartClick: btnDivStartClick,
+		btnDivEndClick: btnDivEndClick
 	};
 }());

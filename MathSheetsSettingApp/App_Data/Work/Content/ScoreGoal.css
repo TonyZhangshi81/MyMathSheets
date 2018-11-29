@@ -1,0 +1,64 @@
+.divBall {
+	z-index: 2;
+	width: 40px;
+	height: 40px;
+	background: aliceblue;
+}
+
+.divGoaler {
+	z-index: 1;
+	width: 200px;
+	height: 140px;
+	background: aliceblue;
+	position: absolute;
+	border: 1px solid #ccc;
+}
+
+.divScore {
+	z-index: 1;
+	background: aliceblue;
+	position: absolute;
+	border: none;
+}
+
+.divScoreGoalResultImg {
+	z-index: 1;
+	background: aliceblue;
+	position: absolute;
+	border: none;
+	left: 530px;
+	top: 200px;
+}
+
+.divScore0 {
+	left: 500px;
+	top: 90px;
+}
+
+.divScore1 {
+	left: 555px;
+	top: 90px;
+}
+
+.divScore2 {
+	left: 605px;
+	top: 90px;
+}
+
+.divGoaler0 {
+	left: 250px;
+	top: 20px;
+}
+
+.divGoaler1 {
+	left: 660px;
+	top: 20px;
+}
+.easyui-panel-ScoreGoal-ext {
+	position: relative;
+	overflow: hidden;
+	width: 900px !important;
+	height: 300px !important;
+	display: inline-block;
+	left: 100px;
+}

@@ -93,6 +93,16 @@ namespace MyMathSheets.MathSheetsSettingApp.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap CurrencyLinkage {
+            get {
+                object obj = ResourceManager.GetObject("CurrencyLinkage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap CurrencyOperation {
             get {
                 object obj = ResourceManager.GetObject("CurrencyOperation", resourceCulture);
