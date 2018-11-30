@@ -70,13 +70,11 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 			}
 			else
 			{
-				RandomNumberComposition random;
 				// 按照指定數量作成相應的球門數學計算式(兩個球門)
 				for (var i = 0; i < 2; i++)
 				{
-					random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
-					SignOfOperation sign = p.Signs[random.GetRandomNumber()];
+					SignOfOperation sign = p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
 					// 計算式作成
@@ -94,8 +92,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 				{
 					int seat = 0;
 					// 混合題型（加減乘除運算符實例隨機抽取）
-					random = new RandomNumberComposition(0, p.Signs.Count - 1);
-					SignOfOperation sign = p.Signs[random.GetRandomNumber()];
+					SignOfOperation sign = p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
 
@@ -125,11 +122,8 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 		/// <returns>被選擇的計算結果</returns>
 		private int GetGoal(IList<Formula> goalsFormulas, ref int seat)
 		{
-			// 在兩個球門之間隨機選擇
-			RandomNumberComposition random = new RandomNumberComposition(0, 1);
-			// 選擇的球門號
-			seat = random.GetRandomNumber();
-			return goalsFormulas[seat].Answer;
+			// 在兩個球門之間隨機選擇(選擇的球門號)
+			return goalsFormulas[CommonUtil.GetRandomNumber(0, 1)].Answer;
 		}
 
 		/// <summary>

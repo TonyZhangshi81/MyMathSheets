@@ -26,8 +26,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		{
 			get
 			{
-				RandomNumberComposition number = new RandomNumberComposition(0, (int)GapFilling.Answer);
-				return (GapFilling)number.GetRandomNumber();
+				return (GapFilling)CommonUtil.GetRandomNumber(0, (int)GapFilling.Answer);
 			}
 		}
 
@@ -38,8 +37,8 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <returns></returns>
 		protected virtual int GetLeftParameter(int maximumLimit)
 		{
-			var number = new RandomNumberComposition(_minimumLimit, maximumLimit);
-			return number.GetRandomNumber();
+			var number = CommonUtil.GetRandomNumber(_minimumLimit, maximumLimit);
+			return number;
 		}
 
 		/// <summary>
@@ -50,8 +49,8 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <returns></returns>
 		protected virtual int GetRightParameter(int maximumLimit, int leftParameter = 0)
 		{
-			var number = new RandomNumberComposition(_minimumLimit, maximumLimit - leftParameter);
-			return number.GetRandomNumber();
+			var number = CommonUtil.GetRandomNumber(_minimumLimit, maximumLimit - leftParameter);
+			return number;
 		}
 
 		/// <summary>
@@ -117,8 +116,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <param name="maxValue">下限值</param>
 		public void SetGapFillingItem(GapFilling minValue, GapFilling maxValue)
 		{
-			RandomNumberComposition number = new RandomNumberComposition((int)minValue, (int)maxValue);
-			_formula.Gap = (GapFilling)number.GetRandomNumber();
+			_formula.Gap = (GapFilling)CommonUtil.GetRandomNumber((int)minValue, (int)maxValue);
 		}
 
 		/// <summary>

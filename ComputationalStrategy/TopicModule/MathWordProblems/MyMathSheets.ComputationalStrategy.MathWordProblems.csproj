@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="Item\MathWordProblemsFormula.cs" />
     <Compile Include="Main\Parameters\MathWordProblemsParameter.cs" />
-    <Compile Include="Strategy\MathWordProblems.cs" />
+    <Compile Include="Main\Strategy\MathWordProblems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -22,8 +22,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 		{
 			get
 			{
-				RandomNumberComposition number = new RandomNumberComposition((int)SignOfCompare.Greater, (int)SignOfCompare.Less);
-				return (SignOfCompare)number.GetRandomNumber();
+				return (SignOfCompare)CommonUtil.GetRandomNumber((int)SignOfCompare.Greater, (int)SignOfCompare.Less);
 			}
 		}
 
@@ -35,8 +34,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 		{
 			get
 			{
-				RandomNumberComposition number = new RandomNumberComposition((int)GapFilling.Left, (int)GapFilling.Right);
-				return (GapFilling)number.GetRandomNumber();
+				return (GapFilling)CommonUtil.GetRandomNumber((int)GapFilling.Left, (int)GapFilling.Right);
 			}
 		}
 
@@ -149,13 +147,13 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 		/// <summary>
 		/// 隨機取得運算式對象
 		/// </summary>
-		/// <param name="signs"></param>
+		/// <param name="signs">運算符列表</param>
 		/// <returns>運算式對象</returns>
 		private ICalculate GetRandomStrategy(IList<SignOfOperation> signs)
 		{
-			RandomNumberComposition random = new RandomNumberComposition((int)SignOfOperation.Plus, signs.Count - 1);
 			// 混合題型（加減乘除運算符實例隨機抽取）
-			SignOfOperation sign = signs[random.GetRandomNumber()];
+			SignOfOperation sign = signs[CommonUtil.GetRandomNumber(0, signs.Count - 1)];
+
 			// 對四則運算符實例進行cache管理
 			return CalculateManager(sign);
 		}

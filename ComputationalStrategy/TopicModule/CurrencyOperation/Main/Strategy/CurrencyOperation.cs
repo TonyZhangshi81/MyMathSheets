@@ -87,8 +87,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		{
 			get
 			{
-				RandomNumberComposition random = new RandomNumberComposition(0, (int)LeftOrRight.Right);
-				return ((int)random.GetRandomNumber() == 1);
+				return ((LeftOrRight)CommonUtil.GetRandomNumber(0, (int)LeftOrRight.Right) == LeftOrRight.Right);
 			}
 		}
 

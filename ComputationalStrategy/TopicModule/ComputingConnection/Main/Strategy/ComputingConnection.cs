@@ -69,9 +69,8 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 					int sectionNumber = GetSectionNumber();
 					for (var j = 0; j < sectionNumber; j++)
 					{
-						RandomNumberComposition random = new RandomNumberComposition(0, (int)SignOfOperation.Subtraction);
 						// 混合題型（加減運算符實例隨機抽取） 注意:考虑乘除法接龙答题结果会超出限制,所以只随机加减法策略
-						SignOfOperation sign = p.Signs[random.GetRandomNumber()];
+						SignOfOperation sign = (SignOfOperation)CommonUtil.GetRandomNumber(0, (int)SignOfOperation.Subtraction);
 						// 對四則運算符實例進行cache管理
 						strategy = CalculateManager(sign);
 
@@ -98,8 +97,8 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 		/// <returns></returns>
 		private int GetSectionNumber()
 		{
-			RandomNumberComposition number = new RandomNumberComposition(3, 5);
-			return number.GetRandomNumber();
+			int number = CommonUtil.GetRandomNumber(3, 5);
+			return number;
 		}
 
 		/// <summary>

@@ -96,8 +96,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns></returns>
 		protected override int GetRightParameter(int maximumLimit, int rightParameter)
 		{
-			var number = new RandomNumberComposition(_minimumLimit, maximumLimit);
-			return number.GetRandomNumber() * rightParameter;
+			var number = CommonUtil.GetRandomNumber(_minimumLimit, maximumLimit);
+			return number * rightParameter;
 		}
 
 		/// <summary>
@@ -107,8 +107,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns></returns>
 		protected override int GetLeftParameter(int maximumLimit)
 		{
-			var number = new RandomNumberComposition(1, maximumLimit);
-			return number.GetRandomNumber();
+			var number = CommonUtil.GetRandomNumber(1, maximumLimit);
+			return number;
 		}
 	}
 }

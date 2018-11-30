@@ -94,9 +94,8 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Strategy
 		/// <returns>計算式</returns>
 		private Formula GetFormulaForRandomNumber(IList<SignOfOperation> signs, int maximumLimit, QuestionType questionType)
 		{
-			RandomNumberComposition random = new RandomNumberComposition(0, signs.Count - 1);
 			// 混合題型（加減乘除運算符實例隨機抽取）
-			SignOfOperation sign = signs[random.GetRandomNumber()];
+			SignOfOperation sign = (SignOfOperation)CommonUtil.GetRandomNumber(0, (int)SignOfOperation.Division);
 			// 對四則運算符實例進行cache管理
 			ICalculate strategy = CalculateManager(sign);
 

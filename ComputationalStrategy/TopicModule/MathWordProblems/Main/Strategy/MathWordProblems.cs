@@ -68,9 +68,8 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
-					RandomNumberComposition random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
-					SignOfOperation sign = p.Signs[random.GetRandomNumber()];
+					SignOfOperation sign = p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
 
@@ -186,8 +185,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// <returns>被抽取的题目</returns>
 		private Problems GetRandomProblemsIndex(List<Problems> signsProblems)
 		{
-			RandomNumberComposition random = new RandomNumberComposition(0, signsProblems.Count - 1);
-			Problems problem = signsProblems[random.GetRandomNumber()];
+			Problems problem = signsProblems[CommonUtil.GetRandomNumber(0, signsProblems.Count - 1)];
 			// 从指定运算符的资源库中删除已抽取的题目
 			signsProblems.Remove(problem);
 			// 从总资源库中删除已抽取的题目

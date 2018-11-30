@@ -91,13 +91,11 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 			else
 			{
 				var seatIndex = 0;
-				RandomNumberComposition random = null;
 				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < p.Amount; i++, seatIndex++)
 				{
-					random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
-					SignOfOperation sign = p.Signs[random.GetRandomNumber()];
+					SignOfOperation sign = p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
 					// 計算式作成
@@ -105,9 +103,8 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 					// 水果算式列表添加
 					fruitsFormulas.Add(fruit);
 
-					random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
-					sign = p.Signs[random.GetRandomNumber()];
+					sign = p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
 					// 計算式作成（依據水果算式的答案推算容器算式）

@@ -53,9 +53,8 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
-					RandomNumberComposition random = new RandomNumberComposition(0, p.Signs.Count - 1);
 					// 混合題型（加減乘除運算符實例隨機抽取）
-					SignOfOperation sign = p.Signs[random.GetRandomNumber()];
+					SignOfOperation sign = p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)];
 					// 對四則運算符實例進行cache管理
 					strategy = CalculateManager(sign);
 
@@ -85,8 +84,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 		{
 			get
 			{
-				RandomNumberComposition random = new RandomNumberComposition(0, (int)LeftOrRight.Right);
-				return ((int)random.GetRandomNumber() == 1);
+				return ((LeftOrRight)CommonUtil.GetRandomNumber(0, (int)LeftOrRight.Right) == LeftOrRight.Right);
 			}
 		}
 
