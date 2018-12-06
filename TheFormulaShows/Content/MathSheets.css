@@ -106,28 +106,14 @@ svg {
 }
 
 .rating-stars {
-	width: 500px;
-}
-
-.rating-stars {
-	font-size: 0px;
-}
-
-.rating-stars-container {
-	font-size: 0px;
-}
-
-.rating-stars {
+	width: 100%;
 	display: inline-block;
-	font-size: 32px;
 	color: #555555;
 	cursor: pointer;
-	padding: 5px 10px;
 }
 
 .rating-stars-container {
 	display: inline-block;
-	font-size: 32px;
 	color: #555555;
 	cursor: pointer;
 	padding: 5px 10px;
