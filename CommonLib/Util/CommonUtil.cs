@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyMathSheets.CommonLib.Util
 {
@@ -17,12 +13,12 @@ namespace MyMathSheets.CommonLib.Util
 		/// <param name="upper">上限值（包含）</param>
 		/// <param name="lower">下限值（包含）</param>
 		/// <returns>隨機數</returns>
-		public static int GetRandomNumber(int upper, int lower)
+		public static T GetRandomNumber<T>(T upper, T lower)
 		{
 			// 隨機數處理對象
-			RandomNumberComposition random = new RandomNumberComposition(upper, lower);
+			RandomNumberComposition random = new RandomNumberComposition(Convert.ToInt32(upper), Convert.ToInt32(lower));
 			// 獲取隨機數并返回
-			return random.GetRandomNumber();
+			return (T)ConvertHelper.ChangeType(random.GetRandomNumber(), typeof(T));
 		}
 	}
 }

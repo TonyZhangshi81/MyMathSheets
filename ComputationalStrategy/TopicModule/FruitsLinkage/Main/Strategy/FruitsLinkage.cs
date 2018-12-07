@@ -21,138 +21,158 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 		/// </summary>
 		private const int INVERSE_NUMBER = 5;
 
+		// 左邊水果算式實例
+		private readonly IList<Formula> _fruitsFormulas;
+		// 右邊容器算式實例
+		private readonly IList<Formula> _containersFormulas;
+		// 各計算式編號的集合
+		private readonly IList<int> _seats;
+
+		/// <summary>
+		/// 構造函數
+		/// </summary>
+		public FruitsLinkage()
+		{
+			_fruitsFormulas = new List<Formula>();
+			// 右邊容器算式實例
+			_containersFormulas = new List<Formula>();
+			// 各計算式編號的集合
+			_seats = new List<int>();
+		}
+
 		/// <summary>
 		/// 題型構築
 		/// </summary>
-		/// <param name="parameter"></param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		/// <param name="signFunc">運算符取得用的表達式</param>
+		/// <returns>作成是否成功</returns>
+		private void MarkFormulaList(FruitsLinkageParameter p, Func<SignOfOperation> signFunc)
 		{
-			FruitsLinkageParameter p = parameter as FruitsLinkageParameter;
-
-			ICalculate strategy = null;
-
-			// 水果連連看對象實例
-			FruitsLinkageFormula fruitsLinkageFormula = new FruitsLinkageFormula();
-
-			// 左邊水果算式實例
-			IList<Formula> fruitsFormulas = new List<Formula>();
-			// 右邊容器算式實例
-			IList<Formula> containersFormulas = new List<Formula>();
-			// 容器座位號
-			IList<int> seats = new List<int>();
-
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
 			// (水果個數的個數最多10個)
 			p.Amount = (p.Amount > 10) ? 10 : p.Amount;
+
+			var seatNumber = 0;
+			// 按照指定數量作成相應的數學計算式
+			for (var i = 0; i < p.Amount; i++, seatNumber++)
+			{
+				// 計算式作成（指定單個運算符實例）
+				Formula fruit = MakeLeftFormulas(_fruitsFormulas, p.MaximumLimit, signFunc);
+				// 計算式作成（依據水果算式的答案推算容器算式）
+				Formula container = MakeRightFormulas(_containersFormulas, p.MaximumLimit, fruit.Answer, signFunc);
+				// 各計算式編號的集合
+				_seats.Add(seatNumber);
+
+				if (CheckIsNeedInverseMethod(_fruitsFormulas, _containersFormulas, fruit.Answer))
+				{
+					defeated++;
+					// 移除當前推算
+					_fruitsFormulas.Remove(_fruitsFormulas.Last());
+					_containersFormulas.Remove(_containersFormulas.Last());
+					_seats.Remove(_seats.Last());
+
+					// 如果大於五次則認為此題無法作成繼續下一題
+					if (defeated == INVERSE_NUMBER)
+					{
+						// 當前反推判定次數復原
+						defeated = 0;
+						seatNumber--;
+						continue;
+					}
+					i--;
+					seatNumber--;
+					continue;
+				}
+				// 當前反推判定次數復原
+				defeated = 0;
+			}
+		}
+
+		/// <summary>
+		/// 題型構築
+		/// </summary>
+		/// <param name="parameter">題型參數</param>
+		protected override void MarkFormulaList(ParameterBase parameter)
+		{
+			FruitsLinkageParameter p = parameter as FruitsLinkageParameter;
+
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
-				var seatIndex = 0;
-				// 指定單個運算符實例
-				strategy = CalculateManager(p.Signs[0]);
-				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.Amount; i++, seatIndex++)
-				{
-					// 計算式作成
-					Formula fruit = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0);
-					fruitsFormulas.Add(fruit);
-					// 計算式作成（依據水果算式的答案推算容器算式）
-					Formula container = strategy.CreateFormulaWithAnswer(p.MaximumLimit, fruit.Answer);
-					containersFormulas.Add(container);
-					// 容器座位號
-					seats.Add(seatIndex);
-
-					if (CheckIsNeedInverseMethod(fruitsFormulas, containersFormulas, fruit.Answer))
-					{
-						defeated++;
-						// 移除當前推算
-						fruitsFormulas.Remove(fruitsFormulas.Last());
-						containersFormulas.Remove(containersFormulas.Last());
-						seats.Remove(seats.Last());
-
-						// 如果大於兩次則認為此題無法作成繼續下一題
-						if (defeated == INVERSE_NUMBER)
-						{
-							// 當前反推判定次數復原
-							defeated = 0;
-							seatIndex--;
-							continue;
-						}
-						i--;
-						seatIndex--;
-						continue;
-					}
-
-					// 當前反推判定次數復原
-					defeated = 0;
-				}
+				// 計算式作成（指定單個運算符實例）
+				MarkFormulaList(p, () => { return p.Signs[0]; });
 			}
 			else
 			{
-				var seatIndex = 0;
-				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.Amount; i++, seatIndex++)
-				{
-					// 混合題型（加減乘除運算符實例隨機抽取）
-					SignOfOperation sign = p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)];
-					// 對四則運算符實例進行cache管理
-					strategy = CalculateManager(sign);
-					// 計算式作成
-					Formula fruit = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0, GapFilling.Default);
-					// 水果算式列表添加
-					fruitsFormulas.Add(fruit);
-
-					// 混合題型（加減乘除運算符實例隨機抽取）
-					sign = p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)];
-					// 對四則運算符實例進行cache管理
-					strategy = CalculateManager(sign);
-					// 計算式作成（依據水果算式的答案推算容器算式）
-					Formula container = strategy.CreateFormulaWithAnswer(p.MaximumLimit, fruit.Answer);
-					// 容器算式列表添加
-					containersFormulas.Add(container);
-
-					// 容器座位號
-					seats.Add(seatIndex);
-
-					if (CheckIsNeedInverseMethod(fruitsFormulas, containersFormulas, fruit.Answer))
-					{
-						defeated++;
-						// 移除當前推算
-						fruitsFormulas.Remove(fruitsFormulas.Last());
-						containersFormulas.Remove(containersFormulas.Last());
-						seats.Remove(seats.Last());
-
-						// 如果大於兩次則認為此題無法作成繼續下一題
-						if (defeated == INVERSE_NUMBER)
-						{
-							// 當前反推判定次數復原
-							defeated = 0;
-							seatIndex--;
-							continue;
-						}
-						i--;
-						seatIndex--;
-						continue;
-					}
-
-					// 當前反推判定次數復原
-					defeated = 0;
-				}
+				// 計算式作成（加減乘除運算符實例隨機抽取）
+				MarkFormulaList(p, () => { return p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)]; });
 			}
 
-			// 左邊水果算式
-			fruitsLinkageFormula.FruitsFormulas = fruitsFormulas;
-			// 右側容器算式
-			fruitsLinkageFormula.ContainersFormulas = containersFormulas;
-			// 座位號隨機排序
-			fruitsLinkageFormula.Sort = seats.OrderBy(x => Guid.NewGuid()).ToList();
+			// 水果連連看對象實例
+			FruitsLinkageFormula fruitsLinkageFormula = new FruitsLinkageFormula
+			{
+				// 左邊水果算式
+				FruitsFormulas = _fruitsFormulas,
+				// 右側容器算式
+				ContainersFormulas = _containersFormulas,
+				// 座位號隨機排序
+				Sort = _seats.OrderBy(x => Guid.NewGuid()).ToList()
+			};
 			// 容器的擺放位置
 			fruitsLinkageFormula.Seats = GetNewSeats(fruitsLinkageFormula.Sort);
 
 			// 結果設定
 			p.Formulas = fruitsLinkageFormula;
 		}
+
+		/// <summary>
+		/// 右側計算式集合作成并返回當前新作成的計算式
+		/// </summary>
+		/// <param name="rightFormulas">右側計算式集合</param>
+		/// <param name="maximumLimit">計算結果最大值</param>
+		/// <param name="leftFormulaAnswer">左側新作成計算式的結果值</param>
+		/// <param name="signFunc">運算符取得用的表達式</param>
+		/// <returns>新作成的計算式</returns>
+		private Formula MakeRightFormulas(IList<Formula> rightFormulas, int maximumLimit, int leftFormulaAnswer, Func<SignOfOperation> signFunc)
+		{
+			ICalculate strategy = CalculateManager(signFunc());
+
+			// 計算式作成（依據左邊算式的答案推算右邊的算式）
+			Formula formula = strategy.CreateFormulaWithAnswer(new CalculateParameter()
+			{
+				MaximumLimit = maximumLimit,
+				QuestionType = QuestionType.Default,
+				MinimumLimit = 0
+			}, leftFormulaAnswer);
+			rightFormulas.Add(formula);
+
+			return formula;
+		}
+
+		/// <summary>
+		/// 左側計算式集合作成并返回當前新作成的計算式
+		/// </summary>
+		/// <param name="leftFormulas">左側計算式集合</param>
+		/// <param name="maximumLimit">計算結果最大值</param>
+		/// <param name="signFunc">運算符取得用的表達式</param>
+		/// <returns>新作成的計算式</returns>
+		private Formula MakeLeftFormulas(IList<Formula> leftFormulas, int maximumLimit, Func<SignOfOperation> signFunc)
+		{
+			ICalculate strategy = CalculateManager(signFunc());
+
+			// 計算式作成
+			Formula formula = strategy.CreateFormula(new CalculateParameter()
+			{
+				MaximumLimit = maximumLimit,
+				QuestionType = QuestionType.Default,
+				MinimumLimit = 0
+			});
+			leftFormulas.Add(formula);
+
+			return formula;
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>

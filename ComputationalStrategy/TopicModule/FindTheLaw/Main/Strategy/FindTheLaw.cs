@@ -26,7 +26,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				// 隨機抽取找規律題型的算法種類
-				FindTheLawLevel lawLevel = (FindTheLawLevel)CommonUtil.GetRandomNumber(0, (int)FindTheLawLevel.Superposition);
+				FindTheLawLevel lawLevel = CommonUtil.GetRandomNumber(FindTheLawLevel.Crescent, FindTheLawLevel.Superposition);
 				switch (lawLevel)
 				{
 					// 定量遞增

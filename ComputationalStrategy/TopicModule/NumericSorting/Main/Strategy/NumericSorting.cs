@@ -23,18 +23,18 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Strategy
 			NumericSortingParameter p = parameter as NumericSortingParameter;
 
 			// 出題數量
-			for (var i = 0; i < p.NumberOfQuestions; i++)
+			for (int i = 0; i < p.NumberOfQuestions; i++)
 			{
 				List<int> numberList = new List<int>();
 				List<int> answerList = new List<int>();
 				// 參與數字排序的對象個數
-				for (var j = 0; j < p.Numbers; j++)
+				for (int j = 0; j < p.Numbers; j++)
 				{
 					numberList.Add(GetNumberWithSort(numberList, p.MaximumLimit));
 				}
 
 				// 關係運算符(隨機獲取)
-				SignOfCompare sign = (SignOfCompare)CommonUtil.GetRandomNumber(0, (int)SignOfCompare.Less);
+				SignOfCompare sign = CommonUtil.GetRandomNumber(SignOfCompare.Greater, SignOfCompare.Less);
 				// 如果是大於符號
 				if (sign == SignOfCompare.Greater)
 				{
@@ -47,7 +47,6 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Strategy
 					numberList.Sort();
 				}
 				answerList = numberList;
-
 
 				p.Formulas.Add(new NumericSortingFormula()
 				{

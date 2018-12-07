@@ -19,12 +19,12 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Item
 		public IList<Formula> RightFormulas { get; set; }
 
 		/// <summary>
-		/// 
+		/// 各計算式編號的集合并隨機排序
 		/// </summary>
 		public IList<int> Sort { get; set; }
 
 		/// <summary>
-		/// 容器的擺放位置（從0開始）
+		/// 左邊計算式->右側計算式 擺放位置（從0開始）
 		/// </summary>
 		public IList<int> Seats { get; set; }
 	}

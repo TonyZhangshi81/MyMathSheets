@@ -263,7 +263,7 @@
 	}
 
 	/// <summary>
-	/// 运算符（加、減、乘、除）
+	/// 运算符（加、減、乘、除）、(之前、之後)
 	/// </summary>
 	public enum SignOfOperation : int
 	{
@@ -282,7 +282,15 @@
 		/// <summary>
 		/// 除号
 		/// </summary>
-		Division
+		Division,
+		/// <summary>
+		/// 之前
+		/// </summary>
+		Before,
+		/// <summary>
+		/// 之後
+		/// </summary>
+		Later
 	}
 
 	/// <summary>
@@ -309,7 +317,7 @@
 	}
 
 	/// <summary>
-	/// 题型（标准:結果項為填空、随机：等式中隨機選擇一個項目為填空）
+	/// 题型（标准:結果項為填空、填空：等式中隨機選擇一個項目為填空）
 	/// </summary>
 	public enum QuestionType : int
 	{
@@ -318,7 +326,7 @@
 		/// </summary>
 		Standard = 1,
 		/// <summary>
-		/// 随机填空
+		/// 填空
 		/// </summary>
 		GapFilling,
 		/// <summary>

@@ -148,9 +148,9 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		{
 			// 判斷當前算式是否已經出現過
 			if (preFormulas.ToList().Any(d => d.CurrencyUnit.Yuan == currentFormula.CurrencyUnit.Yuan
-			&& d.CurrencyUnit.Jiao == currentFormula.CurrencyUnit.Jiao
-			&& d.CurrencyUnit.Fen == currentFormula.CurrencyUnit.Fen
-			&& d.CurrencyTransformType == currentFormula.CurrencyTransformType))
+				&& d.CurrencyUnit.Jiao == currentFormula.CurrencyUnit.Jiao
+				&& d.CurrencyUnit.Fen == currentFormula.CurrencyUnit.Fen
+				&& d.CurrencyTransformType == currentFormula.CurrencyTransformType))
 			{
 				return true;
 			}
@@ -474,7 +474,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			if (type == QuestionType.GapFilling)
 			{
 				// 隨機編排填空項目(是分還是元)
-				gap = (GapFilling)CommonUtil.GetRandomNumber((int)GapFilling.Left, (int)GapFilling.Right);
+				gap = CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Right);
 			}
 			return gap;
 		}

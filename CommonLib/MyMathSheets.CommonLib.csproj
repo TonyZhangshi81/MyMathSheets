@@ -62,6 +62,7 @@
     <Compile Include="Main\Arithmetic\CalculateFactory.cs" />
     <Compile Include="Main\Arithmetic\CalculateBase.cs" />
     <Compile Include="Main\Arithmetic\CalculateNotFoundException.cs" />
+    <Compile Include="Main\Arithmetic\CalculateParameter.cs" />
     <Compile Include="Main\ExportAttributes\Calculate\CalculateAttribute.cs" />
     <Compile Include="Main\Arithmetic\CalculateHelper.cs" />
     <Compile Include="Main\Arithmetic\ICalculateFactory.cs" />
@@ -111,6 +112,7 @@
     </Compile>
     <Compile Include="Util\CommonUtil.cs" />
     <Compile Include="Util\Consts.cs" />
+    <Compile Include="Util\ConvertHelper.cs" />
     <Compile Include="Util\CurrencyUtil.cs" />
     <Compile Include="Util\JsonExtension.cs" />
     <Compile Include="Util\RandomNumber\RandomNumberComposition.cs" />

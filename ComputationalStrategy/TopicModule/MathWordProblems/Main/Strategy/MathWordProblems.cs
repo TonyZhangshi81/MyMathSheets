@@ -21,19 +21,19 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		private const string PROBLEMS_JSON_FILE_PATH = @"..\Config\Problems.json";
 
 		/// <summary>
-		/// 出题资料库
+		/// 出題資料庫
 		/// </summary>
 		private List<Problems> _allProblems { get; set; }
 
 		/// <summary>
-		/// 
+		/// 題型作成
 		/// </summary>
-		/// <param name="parameter"></param>
+		/// <param name="parameter">題型參數</param>
 		protected override void MarkFormulaList(ParameterBase parameter)
 		{
 			MathWordProblemsParameter p = parameter as MathWordProblemsParameter;
 
-			// 读取出题资料库
+			// 讀取出題資料庫
 			GetAllProblemsFromResource();
 
 			ICalculate strategy = null;
@@ -41,7 +41,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
 				List<Problems> signProblems = GetProblemsBySign(p.Signs[0]);
-				// 题库中的数量比指定的出题数少的情况
+				// 題庫中的數量比指定的出題數少的情況
 				if (signProblems.Count == 0)
 				{
 					return;
@@ -116,26 +116,31 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// <summary>
 		/// 計算式作成
 		/// </summary>
-		/// <param name="p"></param>
+		/// <param name="p">題型參數</param>
 		/// <param name="strategy">四則運算符實例</param>
-		/// <param name="signProblems">指定运算符的出题资源库</param>
+		/// <param name="signProblems">指定運算符的出題資料庫</param>
 		private void MarkFormulas(MathWordProblemsParameter p, ICalculate strategy, List<Problems> signProblems)
 		{
-			// 资料库中应用题随机取得（不重复）
+			// 資料庫中的應用題隨機取得（不重複）
 			Problems problem = GetRandomProblemsIndex(signProblems);
 			// 計算式作成
-			Formula formula = strategy.CreateFormula(p.MaximumLimit, p.QuestionType, 1);
+			Formula formula = strategy.CreateFormula(new CalculateParameter()
+			{
+				MaximumLimit = p.MaximumLimit,
+				QuestionType = p.QuestionType,
+				MinimumLimit = 1
+			});
 			// 答題矯正(當答題中未出現x或y值時)
 			AnswerCorrect(problem, formula);
 
 			p.Formulas.Add(new MathWordProblemsFormula()
 			{
-				// 运算式
+				// 運算式
 				ProblemFormula = formula,
-				// 应用题文字内容
+				// 應用題文字內容
 				MathWordProblem = problem.Content.Replace("x", formula.LeftParameter.ToString())
 													.Replace("y", formula.RightParameter.ToString()),
-				// 标准答案
+				// 標準答案
 				Verify = problem.Verify.Replace("x", formula.LeftParameter.ToString())
 													.Replace("y", formula.RightParameter.ToString())
 													.Replace("n", formula.Answer.ToString())
@@ -145,7 +150,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// <summary>
 		/// 答題矯正(當答題中未出現x或y值時)
 		/// </summary>
-		/// <param name="problem">资料库</param>
+		/// <param name="problem">資料庫</param>
 		/// <param name="formula">計算式</param>
 		/// <remarks>
 		/// 基於計算式的推斷,當資料庫中出現x+x=n或者y+y=n的情況時,需要對計算式進行矯正,以匹配資料庫中的答案等式
@@ -167,11 +172,11 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		}
 
 		/// <summary>
-		/// 读取资料库
+		/// 讀取資料庫
 		/// </summary>
 		private void GetAllProblemsFromResource()
 		{
-			// 读取资料库
+			// 讀取資料庫
 			using (System.IO.StreamReader file = System.IO.File.OpenText(PROBLEMS_JSON_FILE_PATH))
 			{
 				_allProblems = JsonExtension.GetObjectByJson<List<Problems>>(file.ReadToEnd());
@@ -179,26 +184,26 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		}
 
 		/// <summary>
-		/// 随机获取资料库中的题目（不可重复）
+		/// 隨機獲取資料庫中的題目（不可重複）
 		/// </summary>
-		/// <param name="signsProblems">指定运算符资料库</param>
-		/// <returns>被抽取的题目</returns>
+		/// <param name="signsProblems">指定運算符的應用題</param>
+		/// <returns>被提取的應用題</returns>
 		private Problems GetRandomProblemsIndex(List<Problems> signsProblems)
 		{
 			Problems problem = signsProblems[CommonUtil.GetRandomNumber(0, signsProblems.Count - 1)];
-			// 从指定运算符的资源库中删除已抽取的题目
+			// 從指定運算符的資料庫中刪除已抽取的題目
 			signsProblems.Remove(problem);
-			// 从总资源库中删除已抽取的题目
+			// 從總資料庫中刪除已抽取的題目
 			_allProblems.Remove(_allProblems.Where(d => d.ID.Equals(problem.ID)).First());
 
 			return problem;
 		}
 
 		/// <summary>
-		/// 获取指定运算符出题资料库
+		/// 獲取指定運算符出題資料庫
 		/// </summary>
-		/// <param name="sign">运算符</param>
-		/// <returns>出题资料库</returns>
+		/// <param name="sign">運算符</param>
+		/// <returns>出題資料庫</returns>
 		private List<Problems> GetProblemsBySign(SignOfOperation sign)
 		{
 			return _allProblems.Where(d => d.ID.Substring(0, 1).Equals(sign.OperationToID())).ToList();

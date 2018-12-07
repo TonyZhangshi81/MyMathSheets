@@ -1,10 +1,7 @@
 [
 	{
 		"Identifier": "CE001",
-		"FourOperationsType": 1,
 		"MaximumLimit": 10,
-		"NumberOfQuestions": 3,
-		"QuestionType": 2,
-		"Signs": [ 0 ]
+		"NumberOfQuestions": 3
 	}
 ]

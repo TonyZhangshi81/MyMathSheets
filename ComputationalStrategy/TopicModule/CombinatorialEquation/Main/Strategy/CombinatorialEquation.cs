@@ -29,7 +29,12 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 				// 對四則運算符實例進行cache管理
 				strategy = CalculateManager(SignOfOperation.Plus);
 				// 計算式作成
-				Formula formula = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard);
+				Formula formula = strategy.CreateFormula(new CalculateParameter()
+				{
+					MaximumLimit = p.MaximumLimit,
+					QuestionType = QuestionType.Default,
+					MinimumLimit = 0
+				});
 				// 判定是否需要反推并重新作成計算式
 				if (CheckIsNeedInverseMethod(p, formula.LeftParameter, formula.RightParameter, formula.Answer))
 				{

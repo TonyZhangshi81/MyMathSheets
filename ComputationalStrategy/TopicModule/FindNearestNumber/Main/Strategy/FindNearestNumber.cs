@@ -4,7 +4,7 @@ using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Item;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
-using System.Collections.Generic;
+using System;
 
 namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 {
@@ -15,83 +15,73 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 	public class FindNearestNumber : OperationBase
 	{
 		/// <summary>
-		/// 關係運算符中隨機抽取一個(只限於大於和小於符號)
+		/// 題型構築
 		/// </summary>
+		/// <param name="p">題型參數</param>
+		/// <param name="signFunc">運算符取得用的表達式</param>
 		/// <returns></returns>
-		private SignOfCompare RandomSignOfCompare
+		private bool MarkFormulaList(FindNearestNumberParameter p, Func<SignOfOperation> signFunc)
 		{
-			get
-			{
-				return (SignOfCompare)CommonUtil.GetRandomNumber((int)SignOfCompare.Greater, (int)SignOfCompare.Less);
-			}
-		}
+			// 关系運算式的左側計算式（指定單個運算符實例）
+			Formula leftFormula = MakeLeftFormula(p.MaximumLimit, signFunc);
 
-		/// <summary>
-		/// 隨機抽取填空項目出現在左邊等式還是右邊等式(只限於左邊和右邊)
-		/// </summary>
-		/// <returns></returns>
-		private GapFilling GetGapFilling
-		{
-			get
+			// 關係運算符中隨機抽取一個(只限於大於和小於符號)
+			SignOfCompare compare = CommonUtil.GetRandomNumber(SignOfCompare.Greater, SignOfCompare.Less);
+			// 小於符號推算=》右邊等式結果：左邊等式運算結果加一:左邊等式運算結果減一
+			var rightAnswer = (compare == SignOfCompare.Less) ? leftFormula.Answer + 1 : leftFormula.Answer - 1;
+			// 判斷是否需要回滾當前算式
+			if (CheckIsNeedInverseMethod(compare, leftFormula, p.MaximumLimit))
 			{
-				return (GapFilling)CommonUtil.GetRandomNumber((int)GapFilling.Left, (int)GapFilling.Right);
+				return false;
 			}
+
+			// 关系運算式的右側計算式（指定單個運算符實例）
+			Formula rightFormula = MakeRightFormula(p.MaximumLimit, rightAnswer, signFunc);
+
+			// 在關係運算式中（左側或者右側計算式）隨機確定填空項目所在位置
+			bool isLeftFormula = CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Right) == GapFilling.Left;
+			if (isLeftFormula)
+			{
+				// 在等式左邊的數里隨機選擇一個作為填空項目
+				leftFormula.Gap = CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Right);
+			}
+			else
+			{
+				// 在等式右邊的數里隨機選擇一個作為填空項目
+				rightFormula.Gap = CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Right);
+			}
+
+			// 計算式作成
+			p.Formulas.Add(new NearestNumberFormula()
+			{
+				LeftFormula = leftFormula,
+				RightFormula = rightFormula,
+				Answer = compare
+			});
+
+			return true;
 		}
 
 		/// <summary>
 		/// 題型構築
 		/// </summary>
-		/// <param name="parameter"></param>
+		/// <param name="parameter">題型參數</param>
 		protected override void MarkFormulaList(ParameterBase parameter)
 		{
 			FindNearestNumberParameter p = parameter as FindNearestNumberParameter;
 
-			ICalculate strategy = null;
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
-				// 指定單個運算符實例
-				strategy = CalculateManager(p.Signs[0]);
 				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
-					// 填空項目選邊
-					GapFilling gapFilling = GetGapFilling;
-
-					// 关系符左边计算式
-					Formula leftFormula = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard);
-					if (gapFilling == GapFilling.Left)
-					{
-						// 左邊算式隨機設定填空項目
-						strategy.SetGapFillingItem(GapFilling.Left, GapFilling.Right);
-					}
-
-					// 取得關係運算符
-					SignOfCompare randomSign = RandomSignOfCompare;
-					// 小於符號推算=》右邊等式結果：左邊等式運算結果加一:左邊等式運算結果減一
-					var rightAnswer = (randomSign == SignOfCompare.Less) ? leftFormula.Answer + 1 : leftFormula.Answer - 1;
-					// 判斷是否需要回滾當前算式
-					if (CheckIsNeedInverseMethod(randomSign, leftFormula, p.MaximumLimit))
+					// 指定單個運算符題型
+					if (!MarkFormulaList(p, () => { return p.Signs[0]; }))
 					{
 						i--;
 						continue;
 					}
-
-					// 关系符右边计算式
-					Formula rightFormula = strategy.CreateFormulaWithAnswer(p.MaximumLimit, rightAnswer);
-					if (gapFilling == GapFilling.Right)
-					{
-						// 右邊算式隨機設定填空項目
-						strategy.SetGapFillingItem(GapFilling.Left, GapFilling.Right);
-					}
-
-					// 計算式作成
-					p.Formulas.Add(new NearestNumberFormula()
-					{
-						LeftFormula = leftFormula,
-						RightFormula = rightFormula,
-						Answer = randomSign
-					});
 				}
 			}
 			else
@@ -99,63 +89,57 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
-					// 隨機取得運算式對象
-					strategy = GetRandomStrategy(p.Signs);
-					// 填空項目選邊
-					GapFilling gapFilling = GetGapFilling;
-
-					// 关系符左边计算式
-					Formula leftFormula = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard);
-					if (gapFilling == GapFilling.Left)
-					{
-						// 左邊算式隨機設定填空項目
-						strategy.SetGapFillingItem(GapFilling.Left, GapFilling.Right);
-					}
-
-					// 取得關係運算符
-					SignOfCompare randomSign = RandomSignOfCompare;
-					// 小於符號推算=》右邊等式結果：左邊等式運算結果加一:左邊等式運算結果減一
-					var rightAnswer = (randomSign == SignOfCompare.Less) ? leftFormula.Answer + 1 : leftFormula.Answer - 1;
-					// 判斷是否需要回滾當前算式
-					if (CheckIsNeedInverseMethod(randomSign, leftFormula, p.MaximumLimit))
+					// 隨機單個運算符題型（加減乘除運算符實例隨機抽取）
+					if (!MarkFormulaList(p, () => { return p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)]; }))
 					{
 						i--;
 						continue;
 					}
-
-					// 隨機取得運算式對象
-					strategy = GetRandomStrategy(p.Signs);
-					// 关系符右边计算式
-					Formula rightFormula = strategy.CreateFormulaWithAnswer(p.MaximumLimit, rightAnswer);
-					if (gapFilling == GapFilling.Right)
-					{
-						// 左邊算式隨機設定填空項目
-						strategy.SetGapFillingItem(GapFilling.Left, GapFilling.Right);
-					}
-
-					// 計算式作成
-					p.Formulas.Add(new NearestNumberFormula()
-					{
-						LeftFormula = leftFormula,
-						RightFormula = rightFormula,
-						Answer = randomSign
-					});
 				}
 			}
 		}
 
 		/// <summary>
-		/// 隨機取得運算式對象
+		/// 左側計算式作成
 		/// </summary>
-		/// <param name="signs">運算符列表</param>
-		/// <returns>運算式對象</returns>
-		private ICalculate GetRandomStrategy(IList<SignOfOperation> signs)
+		/// <param name="maximumLimit">計算結果最大值</param>
+		/// <param name="signFunc">運算符取得用的表達式</param>
+		/// <returns>新作成的計算式</returns>
+		private Formula MakeLeftFormula(int maximumLimit, Func<SignOfOperation> signFunc)
 		{
-			// 混合題型（加減乘除運算符實例隨機抽取）
-			SignOfOperation sign = signs[CommonUtil.GetRandomNumber(0, signs.Count - 1)];
+			ICalculate strategy = CalculateManager(signFunc());
 
-			// 對四則運算符實例進行cache管理
-			return CalculateManager(sign);
+			// 計算式作成
+			Formula formula = strategy.CreateFormula(new CalculateParameter()
+			{
+				MaximumLimit = maximumLimit,
+				QuestionType = QuestionType.Default,
+				MinimumLimit = 0
+			});
+
+			return formula;
+		}
+
+		/// <summary>
+		/// 右側計算式作成
+		/// </summary>
+		/// <param name="maximumLimit">計算結果最大值</param>
+		/// <param name="leftFormulaAnswer">左側新作成計算式的結果值</param>
+		/// <param name="signFunc">運算符取得用的表達式</param>
+		/// <returns>新作成的計算式</returns>
+		private Formula MakeRightFormula(int maximumLimit, int leftFormulaAnswer, Func<SignOfOperation> signFunc)
+		{
+			ICalculate strategy = CalculateManager(signFunc());
+
+			// 計算式作成（依據左邊算式的答案推算右邊的算式）
+			Formula formula = strategy.CreateFormulaWithAnswer(new CalculateParameter()
+			{
+				MaximumLimit = maximumLimit,
+				QuestionType = QuestionType.Default,
+				MinimumLimit = 0
+			}, leftFormulaAnswer);
+
+			return formula;
 		}
 
 		/// <summary>

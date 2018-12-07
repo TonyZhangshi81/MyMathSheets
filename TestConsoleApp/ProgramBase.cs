@@ -63,35 +63,35 @@ namespace MyMathSheets.TestConsoleApp
 				{
 					Console.WriteLine("參數選擇：");
 					Console.WriteLine("************************* 四則運算 *************************");
-					Console.WriteLine("    A-隨機四則運算填空");
-					Console.WriteLine("    B-標準加法填空");
-					Console.WriteLine("    C-標準減法填空");
-					Console.WriteLine("    D-標準乘法填空");
-					Console.WriteLine("    E-標準除法填空");
+					Console.WriteLine("    A-四則運算填空");
+					Console.WriteLine("    B-加法填空");
+					Console.WriteLine("    C-減法填空");
+					Console.WriteLine("    D-乘法填空");
+					Console.WriteLine("    E-除法填空");
 					Console.WriteLine("************************* 計算比大小 ***********************");
-					Console.WriteLine("    F-隨機四則運算比較");
-					Console.WriteLine("    G-標準加法比較");
-					Console.WriteLine("    H-標準減法比較");
+					Console.WriteLine("    F-四則運算比較");
+					Console.WriteLine("    G-加法比較");
+					Console.WriteLine("    H-減法比較");
 					Console.WriteLine("************************* 計算接龍 ***********************");
-					Console.WriteLine("    I-隨機加减運算接龍");
-					Console.WriteLine("    J-標準加法運算接龍");
-					Console.WriteLine("    K-標準減法運算接龍");
+					Console.WriteLine("    I-加减運算接龍");
+					Console.WriteLine("    J-加法運算接龍");
+					Console.WriteLine("    K-減法運算接龍");
 					Console.WriteLine("************************* 應用題 ***********************");
-					Console.WriteLine("    L-隨機四則運算應用題");
+					Console.WriteLine("    L-四則運算應用題");
 					Console.WriteLine("    M-加法應用題");
 					Console.WriteLine("    N-減法應用題");
 					Console.WriteLine("************************* 水果連連看 ***********************");
-					Console.WriteLine("    O-隨機四則運算連連看");
+					Console.WriteLine("    O-四則運算連連看");
 					Console.WriteLine("    P-加法連連看");
 					Console.WriteLine("    Q-減法連連看");
 					Console.WriteLine("************************* 尋找最近的數字 ***********************");
-					Console.WriteLine("    R-隨機四則運算");
+					Console.WriteLine("    R-四則運算");
 					Console.WriteLine("    S-加法");
 					Console.WriteLine("    T-減法");
 					Console.WriteLine("************************* 算式組合 ***********************");
 					Console.WriteLine("    U-算式組合");
 					Console.WriteLine("************************* 射門得分 ***********************");
-					Console.WriteLine("    V-隨機四則運算");
+					Console.WriteLine("    V-四則運算");
 					Console.WriteLine("    W-加法");
 					Console.WriteLine("    X-減法");
 					Console.WriteLine("************************* 比多少 ***********************");
@@ -107,17 +107,17 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    B4-認識貨幣(隨機/角轉元分/分轉元角)");
 					Console.WriteLine("    B5-認識貨幣(隨機/元角分擴展)");
 					Console.WriteLine("************************* 算式連一連 ***********************");
-					Console.WriteLine("    C1-隨機四則運算連一連");
+					Console.WriteLine("    C1-四則運算連一連");
 					Console.WriteLine("    C2-加法連一連");
 					Console.WriteLine("    C3-減法連一連");
 					Console.WriteLine("************************* 時鐘學習板 ***********************");
 					Console.WriteLine("    D1-指定分鐘");
 					Console.WriteLine("    D2-隨機時間");
 					Console.WriteLine("************************* 貨幣運算 ***********************");
-					Console.WriteLine("    E1-隨機貨幣運算（元角分）");
+					Console.WriteLine("    E1-貨幣運算（元角分）");
 					Console.WriteLine("    E2-貨幣運算加法");
 					Console.WriteLine("    E3-貨幣運算減法");
-					Console.WriteLine("    E4-隨機貨幣運算（分）");
+					Console.WriteLine("    E4-貨幣運算（分）");
 					Console.WriteLine("    E5-貨幣運算減法（角分）");
 					Console.WriteLine("************************* 認識價格 ***********************");
 					Console.WriteLine("    F1-商品價格(橫向)");
@@ -135,7 +135,7 @@ namespace MyMathSheets.TestConsoleApp
 				{
 					case "A":
 						Console.WriteLine();
-						Console.WriteLine("隨機四則運算填空");
+						Console.WriteLine("四則運算填空");
 
 						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
@@ -143,7 +143,7 @@ namespace MyMathSheets.TestConsoleApp
 
 					case "B":
 						Console.WriteLine();
-						Console.WriteLine("標準加法填空");
+						Console.WriteLine("加法填空");
 
 						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC002");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
@@ -151,7 +151,7 @@ namespace MyMathSheets.TestConsoleApp
 
 					case "C":
 						Console.WriteLine();
-						Console.WriteLine("標準減法填空");
+						Console.WriteLine("減法填空");
 
 						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC003");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
@@ -159,7 +159,7 @@ namespace MyMathSheets.TestConsoleApp
 
 					case "D":
 						Console.WriteLine();
-						Console.WriteLine("標準乘法填空");
+						Console.WriteLine("乘法填空");
 
 						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC004");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
@@ -167,14 +167,14 @@ namespace MyMathSheets.TestConsoleApp
 
 					case "E":
 						Console.WriteLine();
-						Console.WriteLine("標準除法填空");
+						Console.WriteLine("除法填空");
 
 						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC005");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 					case "F":
 						Console.WriteLine();
-						Console.WriteLine("隨機四則運算比較");
+						Console.WriteLine("四則運算比較");
 
 						ecParameter = (EqualityComparisonParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityComparison, "EC001");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
@@ -182,42 +182,42 @@ namespace MyMathSheets.TestConsoleApp
 
 					case "G":
 						Console.WriteLine();
-						Console.WriteLine("標準加法比較");
+						Console.WriteLine("加法比較");
 						ecParameter = (EqualityComparisonParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityComparison, "EC002");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
 						break;
 
 					case "H":
 						Console.WriteLine();
-						Console.WriteLine("標準減法比較");
+						Console.WriteLine("減法比較");
 						ecParameter = (EqualityComparisonParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityComparison, "EC003");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
 						break;
 
 					case "I":
 						Console.WriteLine();
-						Console.WriteLine("標準加法運算接龍");
+						Console.WriteLine("加減法運算接龍");
 						ccParameter = (ComputingConnectionParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ComputingConnection, "CC001");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
 						break;
 
 					case "J":
 						Console.WriteLine();
-						Console.WriteLine("標準加法運算接龍");
+						Console.WriteLine("加法運算接龍");
 						ccParameter = (ComputingConnectionParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ComputingConnection, "CC002");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
 						break;
 
 					case "K":
 						Console.WriteLine();
-						Console.WriteLine("標準減法運算接龍");
+						Console.WriteLine("減法運算接龍");
 						ccParameter = (ComputingConnectionParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ComputingConnection, "CC003");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
 						break;
 
 					case "L":
 						Console.WriteLine();
-						Console.WriteLine("隨機四則運算應用題");
+						Console.WriteLine("四則運算應用題");
 						mpParameter = (MathWordProblemsParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.MathWordProblems, "MP001");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.MathWordProblems, mpParameter.Formulas.ToList());
 						break;
@@ -238,7 +238,7 @@ namespace MyMathSheets.TestConsoleApp
 
 					case "O":
 						Console.WriteLine();
-						Console.WriteLine("隨機四則運算連連看");
+						Console.WriteLine("四則運算連連看");
 						flParameter = (FruitsLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FruitsLinkage, "FL001");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
 						break;
@@ -287,21 +287,21 @@ namespace MyMathSheets.TestConsoleApp
 
 					case "V":
 						Console.WriteLine();
-						Console.WriteLine("隨機足球射門");
+						Console.WriteLine("四則運算");
 						sgParameter = (ScoreGoalParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ScoreGoal, "SG001");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
 						break;
 
 					case "W":
 						Console.WriteLine();
-						Console.WriteLine("加法足球射門");
+						Console.WriteLine("加法");
 						sgParameter = (ScoreGoalParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ScoreGoal, "SG002");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
 						break;
 
 					case "X":
 						Console.WriteLine();
-						Console.WriteLine("減法足球射門");
+						Console.WriteLine("減法");
 						sgParameter = (ScoreGoalParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ScoreGoal, "SG003");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
 						break;
@@ -360,7 +360,7 @@ namespace MyMathSheets.TestConsoleApp
 
 					case "C1":
 						Console.WriteLine();
-						Console.WriteLine("隨機四則運算連一連");
+						Console.WriteLine("四則運算連一連");
 						elParameter = (EqualityLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityLinkage, "EL001");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityLinkage, elParameter.Formulas);
 						break;
@@ -409,13 +409,13 @@ namespace MyMathSheets.TestConsoleApp
 						break;
 					case "E4":
 						Console.WriteLine();
-						Console.WriteLine("隨機貨幣運算（分）");
+						Console.WriteLine("貨幣運算（分）");
 						coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyOperation, "CO003");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyOperation, coParameter.Formulas.ToList());
 						break;
 					case "E5":
 						Console.WriteLine();
-						Console.WriteLine("隨機貨幣運算（角）");
+						Console.WriteLine("貨幣運算（角）");
 						coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyOperation, "CO004");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyOperation, coParameter.Formulas.ToList());
 						break;

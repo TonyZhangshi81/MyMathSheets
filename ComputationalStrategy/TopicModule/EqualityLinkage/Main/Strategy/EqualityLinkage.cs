@@ -21,138 +21,158 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 		/// </summary>
 		private const int INVERSE_NUMBER = 3;
 
+		// 左側計算式集合
+		private IList<Formula> _leftFormulas;
+		// 右側計算式集合
+		private IList<Formula> _rightFormulas;
+		// 各計算式編號的集合
+		private IList<int> _seats;
+
+		/// <summary>
+		/// 構造函數
+		/// </summary>
+		public EqualityLinkage()
+		{
+			// 左側計算式集合
+			_leftFormulas = new List<Formula>();
+			// 右側計算式集合
+			_rightFormulas = new List<Formula>();
+			// 各計算式編號的集合
+			_seats = new List<int>();
+		}
+
 		/// <summary>
 		/// 題型構築
 		/// </summary>
-		/// <param name="parameter"></param>
+		/// <param name="p">題型參數</param>
+		/// <param name="signFunc">運算符取得用的表達式</param>
+		private void MarkFormulaList(EqualityLinkageParameter p, Func<SignOfOperation> signFunc)
+		{
+			// 當前反推判定次數（一次推算內次數累加）
+			int defeated = 0;
+
+			int seatNumber = 0;
+			// 按照指定數量作成相應的數學計算式
+			for (int i = 0; i < p.Amount; i++, seatNumber++)
+			{
+				// 左側計算式集合作成（指定單個運算符實例）
+				Formula formula = MakeLeftFormulas(_leftFormulas, p.MaximumLimit, signFunc);
+				// 右側計算式集合作成（依據左邊算式的答案推算右邊的算式）
+				Formula container = MakeRightFormulas(_rightFormulas, p.MaximumLimit, formula.Answer, signFunc);
+				// 各計算式編號的集合
+				_seats.Add(seatNumber);
+
+				if (CheckIsNeedInverseMethod(_leftFormulas, _rightFormulas, formula.Answer))
+				{
+					defeated++;
+					// 移除當前推算
+					_leftFormulas.Remove(_leftFormulas.Last());
+					_rightFormulas.Remove(_rightFormulas.Last());
+					_seats.Remove(_seats.Last());
+
+					// 如果大於兩次則認為此題無法作成繼續下一題
+					if (defeated == INVERSE_NUMBER)
+					{
+						// 當前反推判定次數復原
+						defeated = 0;
+						seatNumber--;
+						continue;
+					}
+					i--;
+					seatNumber--;
+					continue;
+				}
+
+				// 當前反推判定次數復原
+				defeated = 0;
+			}
+		}
+
+		/// <summary>
+		/// 題型構築
+		/// </summary>
+		/// <param name="parameter">題型參數</param>
 		protected override void MarkFormulaList(ParameterBase parameter)
 		{
 			EqualityLinkageParameter p = parameter as EqualityLinkageParameter;
 
-			ICalculate strategy = null;
-
 			// 算式連一連對象實例
 			EqualityLinkageFormula EqualityLinkageFormula = new EqualityLinkageFormula();
 
-			// 左邊算式實例
-			IList<Formula> leftFormulas = new List<Formula>();
-			// 右邊算式實例
-			IList<Formula> rightFormulas = new List<Formula>();
-			// 容器座位號
-			IList<int> seats = new List<int>();
-
-			// 當前反推判定次數（一次推算內次數累加）
-			int defeated = 0;
 			// (算式個數的個數最多10個)
 			p.Amount = (p.Amount > 10) ? 10 : p.Amount;
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
-				var seatIndex = 0;
-				// 指定單個運算符實例
-				strategy = CalculateManager(p.Signs[0]);
-				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.Amount; i++, seatIndex++)
-				{
-					// 計算式作成
-					Formula formula = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0);
-					leftFormulas.Add(formula);
-					// 計算式作成（依據左邊算式的答案推算右邊的算式）
-					Formula container = strategy.CreateFormulaWithAnswer(p.MaximumLimit, formula.Answer);
-					rightFormulas.Add(container);
-					// 容器座位號
-					seats.Add(seatIndex);
-
-					if (CheckIsNeedInverseMethod(leftFormulas, rightFormulas, formula.Answer))
-					{
-						defeated++;
-						// 移除當前推算
-						leftFormulas.Remove(leftFormulas.Last());
-						rightFormulas.Remove(rightFormulas.Last());
-						seats.Remove(seats.Last());
-
-						// 如果大於兩次則認為此題無法作成繼續下一題
-						if (defeated == INVERSE_NUMBER)
-						{
-							// 當前反推判定次數復原
-							defeated = 0;
-							seatIndex--;
-							continue;
-						}
-						i--;
-						seatIndex--;
-						continue;
-					}
-
-					// 當前反推判定次數復原
-					defeated = 0;
-				}
+				// 計算式作成（指定單個運算符實例）
+				MarkFormulaList(p, () => { return p.Signs[0]; });
 			}
 			else
 			{
-				var seatIndex = 0;
-				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.Amount; i++, seatIndex++)
-				{
-					// 混合題型（加減乘除運算符實例隨機抽取）
-					SignOfOperation sign = p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)];
-					// 對四則運算符實例進行cache管理
-					strategy = CalculateManager(sign);
-					// 計算式作成
-					Formula formula = strategy.CreateFormula(p.MaximumLimit, QuestionType.Standard, 0, GapFilling.Default);
-					// 左邊算式列表添加
-					leftFormulas.Add(formula);
-
-					// 混合題型（加減乘除運算符實例隨機抽取）
-					sign = p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)];
-					// 對四則運算符實例進行cache管理
-					strategy = CalculateManager(sign);
-					// 計算式作成（依據左邊算式的答案推算右邊的算式）
-					Formula container = strategy.CreateFormulaWithAnswer(p.MaximumLimit, formula.Answer);
-					// 右邊的算式列表添加
-					rightFormulas.Add(container);
-
-					// 容器座位號
-					seats.Add(seatIndex);
-
-					if (CheckIsNeedInverseMethod(leftFormulas, rightFormulas, formula.Answer))
-					{
-						defeated++;
-						// 移除當前推算
-						leftFormulas.Remove(leftFormulas.Last());
-						rightFormulas.Remove(rightFormulas.Last());
-						seats.Remove(seats.Last());
-
-						// 如果大於兩次則認為此題無法作成繼續下一題
-						if (defeated == INVERSE_NUMBER)
-						{
-							// 當前反推判定次數復原
-							defeated = 0;
-							seatIndex--;
-							continue;
-						}
-						i--;
-						seatIndex--;
-						continue;
-					}
-
-					// 當前反推判定次數復原
-					defeated = 0;
-				}
+				// 計算式作成（加減乘除運算符實例隨機抽取）
+				MarkFormulaList(p, () => { return p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)]; });
 			}
 
-			// 左邊算式
-			EqualityLinkageFormula.LeftFormulas = leftFormulas;
-			// 右側算式
-			EqualityLinkageFormula.RightFormulas = rightFormulas;
-			// 座位號隨機排序
-			EqualityLinkageFormula.Sort = seats.OrderBy(x => Guid.NewGuid()).ToList();
-			// 容器的擺放位置
+			// 左邊計算式集合
+			EqualityLinkageFormula.LeftFormulas = _leftFormulas;
+			// 右側計算式集合
+			EqualityLinkageFormula.RightFormulas = _rightFormulas;
+			// 各計算式編號的集合并隨機排序
+			EqualityLinkageFormula.Sort = _seats.OrderBy(x => Guid.NewGuid()).ToList();
+			// 左邊計算式->右側計算式 擺放位置
 			EqualityLinkageFormula.Seats = GetNewSeats(EqualityLinkageFormula.Sort);
 
 			// 結果設定
 			p.Formulas = EqualityLinkageFormula;
 		}
+
+		/// <summary>
+		/// 右側計算式集合作成并返回當前新作成的計算式
+		/// </summary>
+		/// <param name="rightFormulas">右側計算式集合</param>
+		/// <param name="maximumLimit">計算結果最大值</param>
+		/// <param name="leftFormulaAnswer">左側新作成計算式的結果值</param>
+		/// <param name="signFunc">運算符取得用的表達式</param>
+		/// <returns>新作成的計算式</returns>
+		private Formula MakeRightFormulas(IList<Formula> rightFormulas, int maximumLimit, int leftFormulaAnswer, Func<SignOfOperation> signFunc)
+		{
+			ICalculate strategy = CalculateManager(signFunc());
+
+			// 計算式作成（依據左邊算式的答案推算右邊的算式）
+			Formula formula = strategy.CreateFormulaWithAnswer(new CalculateParameter()
+			{
+				MaximumLimit = maximumLimit,
+				QuestionType = QuestionType.Default,
+				MinimumLimit = 0
+			}, leftFormulaAnswer);
+			rightFormulas.Add(formula);
+
+			return formula;
+		}
+
+		/// <summary>
+		/// 左側計算式集合作成并返回當前新作成的計算式
+		/// </summary>
+		/// <param name="leftFormulas">左側計算式集合</param>
+		/// <param name="maximumLimit">計算結果最大值</param>
+		/// <param name="signFunc">運算符取得用的表達式</param>
+		/// <returns>新作成的計算式</returns>
+		private Formula MakeLeftFormulas(IList<Formula> leftFormulas, int maximumLimit, Func<SignOfOperation> signFunc)
+		{
+			ICalculate strategy = CalculateManager(signFunc());
+
+			// 計算式作成
+			Formula formula = strategy.CreateFormula(new CalculateParameter()
+			{
+				MaximumLimit = maximumLimit,
+				QuestionType = QuestionType.Default,
+				MinimumLimit = 0
+			});
+			leftFormulas.Add(formula);
+
+			return formula;
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>

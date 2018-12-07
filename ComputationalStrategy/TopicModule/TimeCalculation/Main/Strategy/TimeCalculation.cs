@@ -75,7 +75,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				// 隨機獲取時間段類型中的一個類型
-				TimeIntervalType type = (TimeIntervalType)CommonUtil.GetRandomNumber(0, (int)TimeIntervalType.LateNight);
+				TimeIntervalType type = CommonUtil.GetRandomNumber(TimeIntervalType.Midnight, TimeIntervalType.LateNight);
 				TimeCalculationFormula formula = new TimeCalculationFormula() { TimeInterval = type };
 				if (_timeIntervals.TryGetValue(type, out Action<TimeCalculationFormula, FourOperationsType> timeInterval))
 				{
@@ -168,7 +168,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 			formula.Hours = 0;
 			// 分鐘數值
 			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[(HourDivision)CommonUtil.GetRandomNumber(0, (int)HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
 			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
 			// 設定計時制（AM/PM）
@@ -186,7 +186,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 			formula.Hours = CommonUtil.GetRandomNumber(1, 5);
 			// 分鐘數值
 			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[(HourDivision)CommonUtil.GetRandomNumber(0, (int)HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
 			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
 			// 設定計時制（AM/PM）
@@ -204,7 +204,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 			formula.Hours = CommonUtil.GetRandomNumber(6, 11);
 			// 分鐘數值
 			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[(HourDivision)CommonUtil.GetRandomNumber(0, (int)HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
 			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
 			// 設定計時制（AM/PM）
@@ -222,7 +222,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 			formula.Hours = 12;
 			// 分鐘數值
 			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[(HourDivision)CommonUtil.GetRandomNumber(0, (int)HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
 			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
 			// 設定計時制（AM/PM）
@@ -240,7 +240,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 			formula.Hours = CommonUtil.GetRandomNumber(13, 18);
 			// 分鐘數值
 			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[(HourDivision)CommonUtil.GetRandomNumber(0, (int)HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
 			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
 			// 設定計時制（AM/PM）
@@ -258,7 +258,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 			formula.Hours = CommonUtil.GetRandomNumber(19, 21);
 			// 分鐘數值
 			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[(HourDivision)CommonUtil.GetRandomNumber(0, (int)HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
 			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
 			// 設定計時制（AM/PM）
@@ -276,7 +276,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 			formula.Hours = CommonUtil.GetRandomNumber(22, 23);
 			// 分鐘數值
 			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[(HourDivision)CommonUtil.GetRandomNumber(0, (int)HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
 			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
 			// 設定計時制（AM/PM）
