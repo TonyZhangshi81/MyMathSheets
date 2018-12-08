@@ -239,7 +239,7 @@ namespace MyMathSheets.TestConsoleApp
 					case "O":
 						Console.WriteLine();
 						Console.WriteLine("四則運算連連看");
-						flParameter = (FruitsLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FruitsLinkage, "FL001");
+						flParameter = (FruitsLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FruitsLinkage, "FL004");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
 						break;
 

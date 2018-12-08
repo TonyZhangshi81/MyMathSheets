@@ -53,9 +53,9 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 			// (水果個數的個數最多10個)
 			p.Amount = (p.Amount > 10) ? 10 : p.Amount;
 
-			var seatNumber = 0;
+			int seatNumber = 0;
 			// 按照指定數量作成相應的數學計算式
-			for (var i = 0; i < p.Amount; i++, seatNumber++)
+			for (int i = 0; i < p.Amount; i++, seatNumber++)
 			{
 				// 計算式作成（指定單個運算符實例）
 				Formula fruit = MakeLeftFormulas(_fruitsFormulas, p.MaximumLimit, signFunc);

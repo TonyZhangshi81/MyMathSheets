@@ -9,7 +9,7 @@ using System.Linq;
 namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Strategy
 {
 	/// <summary>
-	/// 找規律題
+	/// 數值排序題型
 	/// </summary>
 	[Operation(LayoutSetting.Preview.NumericSorting)]
 	public class NumericSorting : OperationBase

@@ -62,14 +62,20 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 		/// </summary>
 		/// <remarks>
 		/// 情況1：三個參數存在一致
+		/// 情況2：有零的情況
 		/// </remarks>
-		/// <param name="p"></param>
+		/// <param name="p">題型參數</param>
 		/// <param name="parameterA">第一個參數</param>
 		/// <param name="parameterB">第二個參數</param>
 		/// <param name="parameterC">第三個參數</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
 		private bool CheckIsNeedInverseMethod(CombinatorialEquationParameter p, int parameterA, int parameterB, int parameterC)
 		{
+			if(parameterA == 0 || parameterB == 0 || parameterC == 0)
+			{
+				return true;
+			}
+
 			// 情況1
 			if (p.Formulas.ToList().Any(d =>
 			{

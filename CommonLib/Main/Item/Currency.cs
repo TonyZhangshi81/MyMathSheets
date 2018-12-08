@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyMathSheets.CommonLib.Main.Item
+﻿namespace MyMathSheets.CommonLib.Main.Item
 {
 	/// <summary>
 	/// 貨幣單位

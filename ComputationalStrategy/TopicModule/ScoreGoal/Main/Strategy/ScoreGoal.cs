@@ -47,7 +47,6 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 				QuestionType = QuestionType.Default,
 				MinimumLimit = 0
 			});
-			leftFormulas.Add(formula);
 
 			return formula;
 		}
@@ -72,7 +71,6 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 				QuestionType = QuestionType.Default,
 				MinimumLimit = 0
 			}, leftFormulaAnswer);
-			rightFormulas.Add(formula, seat);
 
 			return formula;
 		}
@@ -93,9 +91,9 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 				if (CheckIsNeedInverseMethodForGoals(goal, _goalsFormulas))
 				{
 					i--;
-					_goalsFormulas.Remove(_goalsFormulas.Last());
 					continue;
 				}
+				_goalsFormulas.Add(goal);
 			}
 			// 按照指定數量作成相應的數學計算式(足球的個數最多10個)
 			for (int i = 0; i < p.Amount; i++)
@@ -109,7 +107,6 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 				if (CheckIsNeedInverseMethodForBalls(formula, _ballsFormulas))
 				{
 					i--;
-					_ballsFormulas.Remove(formula);
 					continue;
 				}
 				// 足球計算式
@@ -172,12 +169,12 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 		private bool CheckIsNeedInverseMethodForBalls(Formula currentFormula, Dictionary<Formula, int> ballsFormulas)
 		{
 			// 等式左邊參數都是零的情況
-			if (currentFormula.RightParameter == 0 && currentFormula.LeftParameter == 0)
+			if (currentFormula.RightParameter == 0 || currentFormula.LeftParameter == 0)
 			{
 				return true;
 			}
 			// 算式存在一致
-			if (ballsFormulas.ToList().Any(d => d.Key.RightParameter == currentFormula.RightParameter
+			if (ballsFormulas.Count > 1 && ballsFormulas.ToList().Any(d => d.Key.RightParameter == currentFormula.RightParameter
 											&& d.Key.LeftParameter == currentFormula.LeftParameter
 											&& d.Key.Answer == currentFormula.Answer
 											&& d.Key.Sign == currentFormula.Sign))
@@ -200,7 +197,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 		private bool CheckIsNeedInverseMethodForGoals(Formula currentFormula, IList<Formula> goalsFormulas)
 		{
 			// 等式左邊參數都是零的情況
-			if ((currentFormula.RightParameter == 0 && currentFormula.LeftParameter == 0) || currentFormula.Answer == 0)
+			if (currentFormula.RightParameter == 0 || currentFormula.LeftParameter == 0 || currentFormula.Answer == 0)
 			{
 				return true;
 			}
