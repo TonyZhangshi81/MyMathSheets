@@ -51,6 +51,8 @@
     <Compile Include="Main\Arithmetic\Multiplication.cs" />
     <Compile Include="Main\Arithmetic\Subtraction.cs" />
     <Compile Include="Main\Arithmetic\Adition.cs" />
+    <Compile Include="Main\TimeFlies\Future.cs" />
+    <Compile Include="Main\TimeFlies\Past.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
