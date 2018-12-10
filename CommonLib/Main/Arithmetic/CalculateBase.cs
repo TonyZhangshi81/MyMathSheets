@@ -1,4 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using System;
 
@@ -51,7 +53,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		{
 			if (_formula == null)
 			{
-				throw new NullReferenceException();
+				throw new NullReferenceException(MessageUtil.GetException(() => MsgResources.E0023L));
 			}
 
 			switch (_formula.Sign)
@@ -65,7 +67,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 				case SignOfOperation.Division:
 					return (leftParameter / rightParameter);
 				default:
-					throw new ArgumentOutOfRangeException();
+					throw new ArgumentOutOfRangeException(MessageUtil.GetException(() => MsgResources.E0024L, _formula.Sign.ToString()));
 			}
 		}
 

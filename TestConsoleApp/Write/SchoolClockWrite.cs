@@ -27,11 +27,11 @@ namespace MyMathSheets.TestConsoleApp.Write
 			formulas.ToList().ForEach(d =>
 			{
 				Console.WriteLine(string.Format("{0} {1}:{2}:{3} {4}",
-								d.TimeInterval.TimeIntervalTypeToString().PadRight(18),
-								d.Hours.ToString().PadLeft(2, '0'),
-								d.Minutes.ToString().PadLeft(2, '0'),
-								d.Seconds.ToString().PadLeft(2, '0'),
-								d.TimeType.ToString()));
+								d.LatestTime.TimeInterval.TimeIntervalTypeToString().PadRight(18),
+								d.LatestTime.Hours.ToString().PadLeft(2, '0'),
+								d.LatestTime.Minutes.ToString().PadLeft(2, '0'),
+								d.LatestTime.Seconds.ToString().PadLeft(2, '0'),
+								d.LatestTime.TimeType.ToString()));
 			});
 		}
 	}

@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="E0001L" xml:space="preserve">
-    <value>E0001L:小時數或者分鐘數未指定</value>
-  </data>
-  <data name="E0002L" xml:space="preserve">
-    <value>E0002L:指定的{0}時間段類型不存在</value>
+    <value>E0001L:計算式對象沒有實例化</value>
   </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyMathSheets.CommonLib.Main.Item;
+using System;
 
 namespace MyMathSheets.CommonLib.Util
 {
@@ -19,6 +20,21 @@ namespace MyMathSheets.CommonLib.Util
 			RandomNumberComposition random = new RandomNumberComposition(Convert.ToInt32(upper), Convert.ToInt32(lower));
 			// 獲取隨機數并返回
 			return (T)ConvertHelper.ChangeType(random.GetRandomNumber(), typeof(T));
+		}
+
+		/// <summary>
+		/// 時間轉換為秒數
+		/// </summary>
+		/// <param name="hours">小時數</param>
+		/// <param name="minutes">分鐘數</param>
+		/// <param name="seconds">秒數</param>
+		/// <returns>轉換后的秒數</returns>
+		public static int Time2Second(int hours, int minutes, int seconds)
+		{
+			DateTime startTime = new DateTime(1970, 1, 1, hours, minutes, seconds);
+			DateTime endTime = new DateTime(1970, 1, 1);
+			TimeSpan ts = new TimeSpan(startTime.Ticks - endTime.Ticks);
+			return Convert.ToInt32(ts.TotalSeconds);
 		}
 	}
 }

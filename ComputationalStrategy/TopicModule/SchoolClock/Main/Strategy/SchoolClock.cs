@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Item;
@@ -76,13 +77,16 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 			{
 				// 隨機獲取時間段類型中的一個類型
 				TimeIntervalType type = CommonUtil.GetRandomNumber(TimeIntervalType.Midnight, TimeIntervalType.LateNight);
-				SchoolClockFormula formula = new SchoolClockFormula() { TimeInterval = type };
+				SchoolClockFormula formula = new SchoolClockFormula
+				{
+					LatestTime = new Time() { Hours = 0, Minutes = 0, Seconds = 0 }
+				};
 				if (_timeIntervals.TryGetValue(type, out Action<SchoolClockFormula, FourOperationsType> timeInterval))
 				{
 					timeInterval(formula, p.FourOperationsType);
 					if (p.IsShowSeconds)
 					{
-						formula.Seconds = 0;
+						formula.LatestTime.Seconds = 0;
 					}
 				}
 				else
@@ -120,41 +124,17 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		private bool CheckIsNeedInverseMethod(IList<SchoolClockFormula> preFormulas, SchoolClockFormula currentFormula)
 		{
 			// 防止出現全零的情況
-			if (currentFormula.Hours == 0 && currentFormula.Minutes == 0 && currentFormula.Seconds == 0)
+			if (currentFormula.LatestTime.Hours == 0 && currentFormula.LatestTime.Minutes == 0 && currentFormula.LatestTime.Seconds == 0)
 			{
 				return true;
 			}
 
 			// 判斷當前算式是否已經出現過
-			if (preFormulas.ToList().Any(d => d.Hours == currentFormula.Hours && d.Minutes == currentFormula.Minutes))
+			if (preFormulas.ToList().Any(d => d.LatestTime.Hours == currentFormula.LatestTime.Hours && d.LatestTime.Minutes == currentFormula.LatestTime.Minutes))
 			{
 				return true;
 			}
 			return false;
-		}
-
-		/// <summary>
-		/// 設定計時制（AM/PM）
-		/// </summary>
-		/// <param name="formula">答題結果參數</param>
-		private void SetTimeType(SchoolClockFormula formula)
-		{
-			if (!formula.Hours.HasValue || !formula.Minutes.HasValue)
-			{
-				throw new ArgumentNullException(MessageUtil.GetException(() => MsgResources.E0001L));
-			}
-
-			// 上午[00:01~12:00]
-			if ((0 < formula.Hours && formula.Hours < 12)
-				|| (formula.Hours == 12 && formula.Minutes == 0)
-				|| (formula.Hours == 0 && formula.Minutes >= 1))
-			{
-				formula.TimeType = TimeSystem.AM;
-			}
-			else
-			{
-				formula.TimeType = TimeSystem.PM;
-			}
 		}
 
 		/// <summary>
@@ -165,14 +145,12 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		private void MidnightTimeInterval(SchoolClockFormula formula, FourOperationsType type)
 		{
 			// 午夜[0:XX]
-			formula.Hours = 0;
+			formula.LatestTime.Hours = 0;
 			// 分鐘數值
-			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
+			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
 										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
-			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
-			// 設定計時制（AM/PM）
-			SetTimeType(formula);
+			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
 
 		/// <summary>
@@ -183,14 +161,12 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		private void WeeHoursTimeInterval(SchoolClockFormula formula, FourOperationsType type)
 		{
 			// 凌晨[1:XX~5:XX]
-			formula.Hours = CommonUtil.GetRandomNumber(1, 5);
+			formula.LatestTime.Hours = CommonUtil.GetRandomNumber(1, 5);
 			// 分鐘數值
-			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
+			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
 										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
-			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
-			// 設定計時制（AM/PM）
-			SetTimeType(formula);
+			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
 
 		/// <summary>
@@ -201,14 +177,12 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		private void ForenoonTimeInterval(SchoolClockFormula formula, FourOperationsType type)
 		{
 			// 上午[6:XX~11:XX]
-			formula.Hours = CommonUtil.GetRandomNumber(6, 11);
+			formula.LatestTime.Hours = CommonUtil.GetRandomNumber(6, 11);
 			// 分鐘數值
-			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
+			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
 										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
-			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
-			// 設定計時制（AM/PM）
-			SetTimeType(formula);
+			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
 
 		/// <summary>
@@ -219,14 +193,12 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		private void NooningTimeInterval(SchoolClockFormula formula, FourOperationsType type)
 		{
 			// 中午[12:XX]
-			formula.Hours = 12;
+			formula.LatestTime.Hours = 12;
 			// 分鐘數值
-			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
+			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
 										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
-			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
-			// 設定計時制（AM/PM）
-			SetTimeType(formula);
+			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
 
 		/// <summary>
@@ -237,14 +209,12 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		private void AfternoonTimeInterval(SchoolClockFormula formula, FourOperationsType type)
 		{
 			// 下午[13:XX~18:XX]
-			formula.Hours = CommonUtil.GetRandomNumber(13, 18);
+			formula.LatestTime.Hours = CommonUtil.GetRandomNumber(13, 18);
 			// 分鐘數值
-			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
+			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
 										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
-			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
-			// 設定計時制（AM/PM）
-			SetTimeType(formula);
+			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
 
 		/// <summary>
@@ -255,14 +225,12 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		private void NightTimeInterval(SchoolClockFormula formula, FourOperationsType type)
 		{
 			// 晚上[19:XX~21:XX]
-			formula.Hours = CommonUtil.GetRandomNumber(19, 21);
+			formula.LatestTime.Hours = CommonUtil.GetRandomNumber(19, 21);
 			// 分鐘數值
-			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
+			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
 										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
-			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
-			// 設定計時制（AM/PM）
-			SetTimeType(formula);
+			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
 
 		/// <summary>
@@ -273,14 +241,12 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		private void LateNightTimeInterval(SchoolClockFormula formula, FourOperationsType type)
 		{
 			// 深夜[22:XX~23:XX]
-			formula.Hours = CommonUtil.GetRandomNumber(22, 23);
+			formula.LatestTime.Hours = CommonUtil.GetRandomNumber(22, 23);
 			// 分鐘數值
-			formula.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
+			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
 										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
 			// 秒數值
-			formula.Seconds = CommonUtil.GetRandomNumber(0, 59);
-			// 設定計時制（AM/PM）
-			SetTimeType(formula);
+			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
 	}
 }

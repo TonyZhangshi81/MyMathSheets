@@ -1,6 +1,9 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+﻿using MyMathSheets.BasicOperationsLib.Properties;
+using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
+using System;
 
 namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 {
@@ -10,6 +13,25 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 	[Calculate(SignOfOperation.Before)]
 	public class Past : CalculateBase
 	{
+		/// <summary>
+		/// 求時間的計算結果
+		/// </summary>
+		/// <param name="leftParameter">開始時間(秒數)</param>
+		/// <param name="rightParameter">進過時間(秒數)</param>
+		/// <returns>秒數</returns>
+		protected override int GetAnswer(int leftParameter, int rightParameter)
+		{
+			if (_formula == null)
+			{
+				throw new NullReferenceException(MessageUtil.GetException(() => MsgResources.E0001L));
+			}
+
+			// 開始時間
+			DateTime startTime = leftParameter.ToDateTime();
+			DateTime endTime = startTime.AddSeconds(rightParameter);
+			return endTime.ToSeconds();
+		}
+
 		/// <summary>
 		/// 構造函數
 		/// </summary>

@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.ComputationalStrategy.SchoolClock.Item
 {
@@ -8,24 +9,8 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Item
 	public class SchoolClockFormula
 	{
 		/// <summary>
-		/// 計時制（AM/PM）
+		/// 經過的時間
 		/// </summary>
-		public TimeSystem TimeType { get; set; }
-		/// <summary>
-		/// 時間段類型
-		/// </summary>
-		public TimeIntervalType TimeInterval { get; set; }
-		/// <summary>
-		/// 小時數
-		/// </summary>
-		public int? Hours { get; set; }
-		/// <summary>
-		/// 分鐘數
-		/// </summary>
-		public int? Minutes { get; set; }
-		/// <summary>
-		/// 秒數
-		/// </summary>
-		public int? Seconds { get; set; }
+		public Time LatestTime { get; set; }
 	}
 }

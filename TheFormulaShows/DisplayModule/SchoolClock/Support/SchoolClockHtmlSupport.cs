@@ -55,7 +55,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 			StringBuilder clocksAnswer = new StringBuilder();
 			foreach (SchoolClockFormula item in p.Formulas)
 			{
-				clocksAnswer.AppendFormat("{0}:{1}:{2};", item.Hours, item.Minutes, item.Seconds);
+				clocksAnswer.AppendFormat("{0}:{1}:{2};", item.LatestTime.Hours, item.LatestTime.Minutes, item.LatestTime.Seconds);
 
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-4 line-height\">");
@@ -137,7 +137,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 		{
 			StringBuilder html = new StringBuilder();
 
-			html.AppendLine(string.Format(TOOLTIP_HTML_FORMAT, item.TimeType.ToTimeSystemString(), item.TimeInterval.ToTimeIntervalTypeString()));
+			html.AppendLine(string.Format(TOOLTIP_HTML_FORMAT, item.LatestTime.TimeType.ToTimeSystemString(), item.LatestTime.TimeInterval.ToTimeIntervalTypeString()));
 
 			return html.ToString();
 		}

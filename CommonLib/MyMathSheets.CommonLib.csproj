@@ -119,6 +119,7 @@
     <Compile Include="Util\RandomNumber\RandomNumberComposition.cs" />
     <Compile Include="Util\ReflectionUtil.cs" />
     <Compile Include="Util\StringUtil.cs" />
+    <Compile Include="Util\TimeUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

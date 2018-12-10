@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Item
 {
@@ -8,24 +9,16 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Item
 	public class TimeCalculationFormula
 	{
 		/// <summary>
-		/// 計時制（AM/PM）
+		/// 計算開始時間
 		/// </summary>
-		public TimeSystem TimeType { get; set; }
+		public Time StartTime { get; set; }
 		/// <summary>
-		/// 時間段類型
+		/// 計算結束時間
 		/// </summary>
-		public TimeIntervalType TimeInterval { get; set; }
+		public Time EndTime { get; set; }
 		/// <summary>
-		/// 小時數
+		/// 經過的時間
 		/// </summary>
-		public int? Hours { get; set; }
-		/// <summary>
-		/// 分鐘數
-		/// </summary>
-		public int? Minutes { get; set; }
-		/// <summary>
-		/// 秒數
-		/// </summary>
-		public int? Seconds { get; set; }
+		public Time ElapsedTime { get; set; }
 	}
 }

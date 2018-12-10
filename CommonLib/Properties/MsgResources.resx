@@ -135,6 +135,18 @@
   <data name="E0022L" xml:space="preserve">
     <value>E0022L:指定的{0}題型HTML替換標籤未找到</value>
   </data>
+  <data name="E0023L" xml:space="preserve">
+    <value>E0023L:計算式對象沒有實例化</value>
+  </data>
+  <data name="E0024L" xml:space="preserve">
+    <value>E0024L:指定的運算符參數{0}不正確</value>
+  </data>
+  <data name="E0025L" xml:space="preserve">
+    <value>E0025L:小時數或者分鐘數未指定</value>
+  </data>
+  <data name="E0026L" xml:space="preserve">
+    <value>E0026L:指定小時數{0}越界</value>
+  </data>
   <data name="I0001L" xml:space="preserve">
     <value>I0001L:指定運算符實例準備作成</value>
   </data>
