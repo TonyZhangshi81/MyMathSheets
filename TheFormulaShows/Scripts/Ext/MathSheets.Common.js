@@ -192,7 +192,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 		totopClick = function () {
 			$('html,body').animate({
 				scrollTop: 0
-			})
+			}, 1500)
 		},
 
 		// 按鍵屏蔽防止刷新頁面
@@ -280,7 +280,7 @@ $(document).ready(function () {
 		if (nowTop > 200) {
 			$('.totop').show()
 		} else {
-			$('.totop').hide()
+			$('.totop').hide();
 		}
 	});
 
