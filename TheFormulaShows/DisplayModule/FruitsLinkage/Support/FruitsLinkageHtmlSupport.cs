@@ -127,9 +127,11 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 				divContainerHtml.AppendLine("<h5>");
 				divContainerHtml.AppendLine(string.Format("<span class=\"label\">{0}{1}{2}</span>", container.LeftParameter, container.Sign.ToOperationString(), container.RightParameter));
 				divContainerHtml.AppendLine("<img src=\"../Content/image/fruits/table.png\" width=78 height=75 style=\"margin-top:-20px;\">");
-				divContainerHtml.AppendLine(string.Format("<img id=\"imgOKFruitsLinkage{0}\" src=\"../Content/image/correct.png\" style=\"width: 20px; height: 20px; display: none; \" />", seat));
-				divContainerHtml.AppendLine(string.Format("<img id=\"imgNoFruitsLinkage{0}\" src=\"../Content/image/fault.png\" style=\"width: 20px; height: 20px; display: none; \" />", seat));
 				divContainerHtml.AppendLine("</h5>");
+				divContainerHtml.AppendLine("<div class=\"divCorrectOrFault-2\">");
+				divContainerHtml.AppendLine(string.Format("<img id=\"imgOKFruitsLinkage{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-2\" />", seat));
+				divContainerHtml.AppendLine(string.Format("<img id=\"imgNoFruitsLinkage{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-2\" />", seat));
+				divContainerHtml.AppendLine("</div>");
 				divContainerHtml.AppendLine("</div>");
 
 				seat++;

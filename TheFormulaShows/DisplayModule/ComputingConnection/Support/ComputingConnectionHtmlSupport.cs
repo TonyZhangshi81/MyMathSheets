@@ -56,12 +56,14 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 					{
 						// 最后一层时需要将算式结果显示在页面上
 						html.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.Answer));
-						html.AppendLine(string.Format("<img id=\"imgOKComputingConnection{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
-						html.AppendLine(string.Format("<img id=\"imgNoComputingConnection{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
+						html.AppendLine("</h5>");
+						html.AppendLine("<div class=\"divCorrectOrFault-1\">");
+						html.AppendLine(string.Format("<img id=\"imgOKComputingConnection{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", parentControlIndex));
+						html.AppendLine(string.Format("<img id=\"imgNoComputingConnection{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", parentControlIndex));
+						html.AppendLine("</div>");
 						html.AppendLine(string.Format("<input id=\"hiddenAllCc{0}\" type=\"hidden\" value=\"{1}\"/>", parentControlIndex, items.ConfixNumber));
 					}
 				}
-				html.AppendLine("</h5>");
 				html.AppendLine("</div>");
 				html.AppendLine("</div>");
 

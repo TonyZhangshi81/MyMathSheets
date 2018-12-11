@@ -57,6 +57,8 @@ MathSheets.HowMuchMore = MathSheets.HowMuchMore || (function () {
 			// 对错图片显示和隐藏
 			$('#imgOKHmm' + pIndex).show();
 			$('#imgNoHmm' + pIndex).hide();
+			// 移除圖片抖動特效
+			$('#imgNoHmm' + pIndex).removeClass("shake shake-slow");
 			$("img[id*='imgHmmHelp" + pIndex).each(function (index, element) {
 				$(element).attr("disabled", "disabled");
 			});
@@ -66,6 +68,15 @@ MathSheets.HowMuchMore = MathSheets.HowMuchMore || (function () {
 			// 对错图片显示和隐藏
 			$('#imgOKHmm' + pIndex).hide();
 			$('#imgNoHmm' + pIndex).show();
+			$('#imgNoHmm' + pIndex).animate({
+				width: "30px",
+				height: "30px",
+				marginLeft: "0px",
+				marginTop: "0px"
+			}, 1000, function () {
+				// 添加圖片抖動特效（只針對錯題）
+				$(this).addClass("shake shake-slow");
+			});
 			// 错误:false
 			return false;
 		}

@@ -177,8 +177,10 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 
 			// 對錯顯示
 			divGoalsHtml.AppendLine("<div class=\"divScoreGoalResultImg\">");
-			divGoalsHtml.AppendLine("<img id=\"imgOKScoreGoal\" src=\"../Content/image/correct.png\" style=\"width: 60px; height: 60px; display: none; \" />");
-			divGoalsHtml.AppendLine("<img id=\"imgNoScoreGoal\" src=\"../Content/image/fault.png\" style=\"width: 60px; height: 60px; display: none; \" />");
+			divGoalsHtml.AppendLine("<div class=\"divCorrectOrFault-4\">");
+			divGoalsHtml.AppendLine("<img id=\"imgOKScoreGoal\" src=\"../Content/image/correct.png\" class=\"imgCorrect-4\" />");
+			divGoalsHtml.AppendLine("<img id=\"imgNoScoreGoal\" src=\"../Content/image/fault.png\" class=\"imgFault-4\" />");
+			divGoalsHtml.AppendLine("</div>");
 			divGoalsHtml.AppendLine("</div>");
 		}
 	}

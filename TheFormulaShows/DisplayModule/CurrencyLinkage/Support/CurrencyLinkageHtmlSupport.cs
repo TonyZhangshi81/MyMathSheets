@@ -130,8 +130,10 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 			html.Append(GetRightCurrencysHtml(p));
 			html.Append(GetInitSettingsHtml(p));
 			html.AppendLine("</div>");
-			html.AppendLine(string.Format("<img id=\"imgOKCurrencyLinkage\" src=\"../Content/image/correct.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "OKCurrencyLinkage-lengthways" : "OKCurrencyLinkage-crosswise"));
-			html.AppendLine(string.Format("<img id=\"imgNoCurrencyLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "NoCurrencyLinkage-lengthways" : "NoCurrencyLinkage-crosswise"));
+			html.AppendLine(string.Format("<div class=\"{0}\">", p.QueueType == DivQueueType.Lengthways ? "divCorrectOrFault-lengthways" : "divCorrectOrFault-crosswise"));
+			html.AppendLine(string.Format("<img id=\"imgOKCurrencyLinkage\" src=\"../Content/image/correct.png\" class=\"{0}\" />", p.QueueType == DivQueueType.Lengthways ? "OKCurrencyLinkage-lengthways" : "OKCurrencyLinkage-crosswise"));
+			html.AppendLine(string.Format("<img id=\"imgNoCurrencyLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" />", p.QueueType == DivQueueType.Lengthways ? "NoCurrencyLinkage-lengthways" : "NoCurrencyLinkage-crosswise"));
+			html.AppendLine("</div>");
 
 			html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">認識價格</span></h4></div><hr />");
 

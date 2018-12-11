@@ -69,6 +69,7 @@
     <Content Include="Content\MathSheets.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Shake.css" />
     <Content Include="Demo\ALL.html" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -173,6 +174,7 @@ copy "..\Content\EqualityLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_D
 copy "..\Content\CurrencyLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\FruitsLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\ScoreGoal.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\Shake.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 xcopy "..\Content\image" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\image" /C /E /H /K /R /Y
 copy "..\Scripts\jquery.rating-stars.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 

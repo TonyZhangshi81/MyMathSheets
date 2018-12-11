@@ -35,7 +35,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 		/// <summary>
 		/// 對錯HTML模板
 		/// </summary>
-		private const string IMG_CURRENCY_OPERATION_HTML_FORMAT = "<img id=\"img{0}CurrencyOperation{1}\" src=\"../Content/image/{2}.png\" style=\"width: 40px; height: 40px; display: none; \" />";
+		private const string IMG_CURRENCY_OPERATION_HTML_FORMAT = "<img id=\"img{0}CurrencyOperation{1}\" src=\"../Content/image/{2}.png\" class=\"{3}\" />";
 		/// <summary>
 		/// SPAN標籤HTML模板
 		/// </summary>
@@ -98,9 +98,11 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 					colHtml.Append(GetHtml(gap == GapFilling.Right, item.CurrencyArithmetic.RightParameter, pIndex));
 				}
 
-				colHtml.AppendLine(string.Format(IMG_CURRENCY_OPERATION_HTML_FORMAT, "OK", pIndex, "correct"));
-				colHtml.AppendLine(string.Format(IMG_CURRENCY_OPERATION_HTML_FORMAT, "No", pIndex, "fault"));
 				colHtml.AppendLine("</h6>");
+				colHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
+				colHtml.AppendLine(string.Format(IMG_CURRENCY_OPERATION_HTML_FORMAT, "OK", pIndex, "correct", "imgCorrect-1"));
+				colHtml.AppendLine(string.Format(IMG_CURRENCY_OPERATION_HTML_FORMAT, "No", pIndex, "fault", "imgFault-1"));
+				colHtml.AppendLine("</div>");
 				colHtml.AppendLine("</div>");
 
 				controlIndex++;

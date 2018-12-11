@@ -51,9 +51,11 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 					rowHtml.AppendLine(string.Format("<span class=\"badge badge-warning\" style=\"width: 30px;\">{0}</span>", d));
 				});
 				rowHtml.AppendLine(string.Format("<input type=\"hidden\" id=\"hidNsAnswer{0}\" value=\"{1}\" />", parentControlIndex, GetAnswer(item.AnswerList)));
-				rowHtml.AppendLine(string.Format("<img id=\"imgOKNumericSorting{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
-				rowHtml.AppendLine(string.Format("<img id=\"imgNoNumericSorting{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", parentControlIndex));
 				rowHtml.AppendLine("</h5>");
+				rowHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
+				rowHtml.AppendLine(string.Format("<img id=\"imgOKNumericSorting{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", parentControlIndex));
+				rowHtml.AppendLine(string.Format("<img id=\"imgNoNumericSorting{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", parentControlIndex));
+				rowHtml.AppendLine("</div>");
 				rowHtml.AppendLine("</li>");
 				rowHtml.AppendLine("<li class=\"list-group-item\">");
 				rowHtml.AppendLine("<h5>");

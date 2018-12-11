@@ -53,9 +53,11 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
 				listGroupHtml.AppendLine("<h5>");
 				listGroupHtml.AppendLine(GetHtml(item, controlIndex));
-				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKFindTheLaw{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
-				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoFindTheLaw{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				listGroupHtml.AppendLine("</h5>");
+				listGroupHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
+				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKFindTheLaw{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));
+				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoFindTheLaw{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex));
+				listGroupHtml.AppendLine("</div>");
 				listGroupHtml.AppendLine(string.Format("<input id=\"hiddenFtl{0}\" type=\"hidden\" value=\"{1}\" />", controlIndex, GetAnswer(item.NumberList, item.RandomIndexList)));
 				listGroupHtml.AppendLine("</li>");
 				listGroupHtml.AppendLine("</ul>");

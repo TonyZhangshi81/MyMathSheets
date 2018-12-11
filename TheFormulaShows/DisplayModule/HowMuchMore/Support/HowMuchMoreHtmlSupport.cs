@@ -86,9 +86,11 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
 				listGroupHtml.AppendLine("<h4>");
 				listGroupHtml.AppendLine(GetProblemHtml(item));
-				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKHmm{0}\" src=\"../Content/image/correct.png\" style=\"width: 30px; height: 30px; display: none; \" />", controlIndex));
-				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoHmm{0}\" src=\"../Content/image/fault.png\" style=\"width: 30px; height: 30px; display: none; \" />", controlIndex));
 				listGroupHtml.AppendLine("</h4>");
+				listGroupHtml.AppendLine("<div class=\"divCorrectOrFault-3\">");
+				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKHmm{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-3\" />", controlIndex));
+				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoHmm{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-3\" />", controlIndex));
+				listGroupHtml.AppendLine("</div>");
 				listGroupHtml.AppendLine("</li>");
 
 				// 表示項目顯示

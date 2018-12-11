@@ -56,6 +56,8 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 				// 对错图片显示和隐藏
 				$('#imgOKCurrencyLinkage').show();
 				$('#imgNoCurrencyLinkage').hide();
+				// 移除圖片抖動特效
+				$('#imgNoCurrencyLinkage').removeClass("shake shake-slow");
 				// 移除DIV點擊事件(起始點和結束點)
 				$.each(_arrCurrencyDivPoints, function (index, div) {
 					$(div.name).unbind('click');
@@ -66,6 +68,15 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 				// 对错图片显示和隐藏
 				$('#imgOKCurrencyLinkage').hide();
 				$('#imgNoCurrencyLinkage').show();
+				$('#imgNoCurrencyLinkage').animate({
+					width: "80px",
+					height: "80px",
+					marginLeft: "0px",
+					marginTop: "0px"
+				}, 1000, function () {
+					// 添加圖片抖動特效（只針對錯題）
+					$(this).addClass("shake shake-slow");
+				});
 				// 错误:false
 				return false;
 			}

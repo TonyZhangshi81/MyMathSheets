@@ -61,9 +61,11 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 				colHtml.AppendLine("<div class=\"col-md-4 form-inline\">");
 				colHtml.AppendLine("<h5>");
 				colHtml.Append(GetHtml(item, controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgOKLearnCurrency{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgNoLearnCurrency{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine("</h5>");
+				colHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
+				colHtml.AppendLine(string.Format("<img id=\"imgOKLearnCurrency{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgNoLearnCurrency{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex));
+				colHtml.AppendLine("</div>");
 				colHtml.AppendLine("</div>");
 
 				controlIndex++;

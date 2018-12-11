@@ -154,10 +154,21 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 				// 对错图片显示和隐藏
 				$('#imgOKScoreGoal').show();
 				$('#imgNoScoreGoal').hide();
+				// 移除圖片抖動特效
+				$('#imgNoScoreGoal').removeClass("shake shake-slow");
 			} else {
 				// 对错图片显示和隐藏
 				$('#imgOKScoreGoal').hide();
 				$('#imgNoScoreGoal').show();
+				$('#imgNoScoreGoal').animate({
+					width: "60px",
+					height: "60px",
+					marginLeft: "0px",
+					marginTop: "0px"
+				}, 1000, function () {
+					// 添加圖片抖動特效（只針對錯題）
+					$(this).addClass("shake shake-slow");
+				});
 			}
 
 			return fault;
@@ -182,10 +193,21 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 				// 对错图片显示和隐藏
 				$('#imgOKScoreGoal').show();
 				$('#imgNoScoreGoal').hide();
+				// 移除圖片抖動特效
+				$('#imgNoScoreGoal').removeClass("shake shake-slow");
 			} else {
 				// 对错图片显示和隐藏
 				$('#imgOKScoreGoal').hide();
 				$('#imgNoScoreGoal').show();
+				$('#imgNoScoreGoal').animate({
+					width: "60px",
+					height: "60px",
+					marginLeft: "0px",
+					marginTop: "0px"
+				}, 1000, function () {
+					// 添加圖片抖動特效（只針對錯題）
+					$(this).addClass("shake shake-slow");
+				});
 			}
 		},
 

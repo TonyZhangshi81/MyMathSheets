@@ -161,8 +161,10 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 			// 秒數輸入框
 			html.AppendLine(string.Format(INPUT_HTML_FORMAT, "S", controlIndex, "秒", "seconds"));
 			// 答題對錯顯示
-			html.AppendLine(string.Format("<img id=\"imgOKSchoolClock{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
-			html.AppendLine(string.Format("<img id=\"imgNoSchoolClock{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
+			html.AppendLine("<div class=\"divCorrectOrFault-1\">");
+			html.AppendLine(string.Format("<img id=\"imgOKSchoolClock{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));
+			html.AppendLine(string.Format("<img id=\"imgNoSchoolClock{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex));
+			html.AppendLine("</div>");
 			// 閉合
 			html.AppendLine("</div>");
 

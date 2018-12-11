@@ -63,6 +63,8 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 				// 对错图片显示和隐藏
 				$('#imgOKCombinatorial' + index).show();
 				$('#imgNoCombinatorial' + index).hide();
+				// 移除圖片抖動特效
+				$('#imgNoCombinatorial' + index).removeClass("shake shake-slow");
 				$(element).attr("disabled", "disabled");
 				// 正确:true
 				return true;
@@ -70,6 +72,15 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 				// 对错图片显示和隐藏
 				$('#imgOKCombinatorial' + index).hide();
 				$('#imgNoCombinatorial' + index).show();
+				$('#imgNoCombinatorial' + index).animate({
+					width: "40px",
+					height: "40px",
+					marginLeft: "0px",
+					marginTop: "0px"
+				}, 1000, function () {
+					// 添加圖片抖動特效（只針對錯題）
+					$(this).addClass("shake shake-slow");
+				});
 				// 错误:false
 				return false;
 			}

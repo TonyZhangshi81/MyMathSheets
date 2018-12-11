@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Item;
@@ -65,9 +64,11 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
 				}
 
-				colHtml.AppendLine(string.Format("<img id=\"imgOKArithmetic{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgNoArithmetic{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				colHtml.AppendLine("</h5>");
+				colHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
+				colHtml.AppendLine(string.Format("<img id=\"imgOKArithmetic{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgNoArithmetic{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex));
+				colHtml.AppendLine("</div>");
 				colHtml.AppendLine("</div>");
 
 				controlIndex++;

@@ -11,6 +11,7 @@
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+	<link href="../Content/Shake.css" rel="stylesheet" charset="utf-8">
 	<!--SCOREGOALSTYLESHEET-->
 	<!--FRUITSLINKAGESTYLESHEET-->
 	<!--EQUALITYLINKAGESTYLESHEET-->
@@ -273,34 +274,34 @@
 					<div class="rating-stars block" id="more-rating" style="display: none;">
 						<input type="hidden" id="hidPracticeScore" value="0" class="rating-value" />
 						<div class="rating-stars-container">
-							<div class="rating-star">
+							<div class="rating-star shake shake-slow">
 								<i class="fa fa-star"> </i>
 							</div>
-							<div class="rating-star">
+							<div class="rating-star shake shake-slow">
 								<i class="fa fa-star"> </i>
 							</div>
-							<div class="rating-star">
+							<div class="rating-star shake shake-slow">
 								<i class="fa fa-star"> </i>
 							</div>
-							<div class="rating-star">
+							<div class="rating-star shake shake-slow">
 								<i class="fa fa-star"> </i>
 							</div>
-							<div class="rating-star">
+							<div class="rating-star shake shake-slow">
 								<i class="fa fa-star"> </i>
 							</div>
-							<div class="rating-star">
+							<div class="rating-star shake shake-slow">
 								<i class="fa fa-star"> </i>
 							</div>
-							<div class="rating-star">
+							<div class="rating-star shake shake-slow">
 								<i class="fa fa-star"> </i>
 							</div>
-							<div class="rating-star">
+							<div class="rating-star shake shake-slow">
 								<i class="fa fa-star"> </i>
 							</div>
-							<div class="rating-star">
+							<div class="rating-star shake shake-slow">
 								<i class="fa fa-star"> </i>
 							</div>
-							<div class="rating-star">
+							<div class="rating-star shake shake-slow">
 								<i class="fa fa-star"> </i>
 							</div>
 						</div>

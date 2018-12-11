@@ -135,3 +135,87 @@ svg {
 .rating-stars .rating-stars-container .rating-star.is--no-hover {
 	color: #555555;
 }
+
+.divCorrectOrFault-1 {
+	width: 40px;
+	height: 40px;
+	background-color: transparent;
+	margin-left: 4px;
+	margin-top: -10px;
+}
+
+.imgCorrect-1 {
+	width: 40px;
+	height: 40px;
+	display: none;
+}
+
+.imgFault-1 {
+	width: 0px;
+	height: 0px;
+	display: none;
+	margin: auto;
+}
+
+.divCorrectOrFault-2 {
+	width: 20px;
+	height: 20px;
+	background-color: transparent;
+	margin-left: 4px;
+	margin-top: -10px;
+}
+
+.imgCorrect-2 {
+	width: 20px;
+	height: 20px;
+	display: none;
+}
+
+.imgFault-2 {
+	width: 0px;
+	height: 0px;
+	display: none;
+	margin: auto;
+}
+
+.divCorrectOrFault-3 {
+	width: 30px;
+	height: 30px;
+	background-color: transparent;
+	margin-left: 4px;
+	margin-top: -10px;
+}
+
+.imgCorrect-3 {
+	width: 30px;
+	height: 30px;
+	display: none;
+}
+
+.imgFault-3 {
+	width: 0px;
+	height: 0px;
+	display: none;
+	margin: auto;
+}
+
+.divCorrectOrFault-4 {
+	width: 60px;
+	height: 60px;
+	background-color: transparent;
+	margin-left: 4px;
+	margin-top: -10px;
+}
+
+.imgCorrect-4 {
+	width: 60px;
+	height: 60px;
+	display: none;
+}
+
+.imgFault-4 {
+	width: 0px;
+	height: 0px;
+	display: none;
+	margin: auto;
+}

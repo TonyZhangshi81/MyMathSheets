@@ -56,9 +56,11 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 				listGroupHtml.AppendLine(string.Format("<span class=\"badge badge-warning\" style=\"width: 40px;\">{0}</span>", item.ParameterA));
 				listGroupHtml.AppendLine(string.Format("<span class=\"badge badge-success\" style=\"width: 40px;\">{0}</span>", item.ParameterB));
 				listGroupHtml.AppendLine(string.Format("<span class=\"badge badge-primary\" style=\"width: 40px;\">{0}</span>", item.ParameterC));
-				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKCombinatorial{0}\" src=\"../Content/image/correct.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
-				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoCombinatorial{0}\" src=\"../Content/image/fault.png\" style=\"width: 40px; height: 40px; display: none; \" />", controlIndex));
 				listGroupHtml.AppendLine("</h4>");
+				listGroupHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
+				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKCombinatorial{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));
+				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoCombinatorial{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex));
+				listGroupHtml.AppendLine("</div>");
 				listGroupHtml.AppendLine(string.Format("<input id=\"hiddenCe{0}\" type=\"hidden\" value=\"{1}\" />", controlIndex, GetAnswer(item.CombinatorialFormulas)));
 				listGroupHtml.AppendLine("</li>");
 				listGroupHtml.AppendLine(GetHtml(item.CombinatorialFormulas, controlIndex));

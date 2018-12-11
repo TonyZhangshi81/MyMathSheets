@@ -20,6 +20,8 @@ MathSheets.ComputingConnection = MathSheets.ComputingConnection || (function () 
 			// 对错图片显示和隐藏
 			$('#imgOKComputingConnection' + pIndex).show();
 			$('#imgNoComputingConnection' + pIndex).hide();
+			// 移除圖片抖動特效
+			$('#imgNoComputingConnection' + pIndex).removeClass("shake shake-slow");
 
 			inputCcArray.forEach(function (element, index) {
 				$(element).attr("disabled", "disabled");
@@ -30,6 +32,15 @@ MathSheets.ComputingConnection = MathSheets.ComputingConnection || (function () 
 			// 对错图片显示和隐藏
 			$('#imgOKComputingConnection' + pIndex).hide();
 			$('#imgNoComputingConnection' + pIndex).show();
+			$('#imgNoComputingConnection' + pIndex).animate({
+				width: "40px",
+				height: "40px",
+				marginLeft: "0px",
+				marginTop: "0px"
+			}, 1000, function () {
+				// 添加圖片抖動特效（只針對錯題）
+				$(this).addClass("shake shake-slow");
+			});
 			// 错误:false
 			return false;
 		}

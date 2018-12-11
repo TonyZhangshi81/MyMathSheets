@@ -51,6 +51,8 @@ MathSheets.FruitsLinkage = MathSheets.FruitsLinkage || (function () {
 				// 对错图片显示和隐藏
 				$('#imgOKFruitsLinkage' + seat).show();
 				$('#imgNoFruitsLinkage' + seat).hide();
+				// 移除圖片抖動特效
+				$('#imgNoFruitsLinkage' + seat).removeClass("shake shake-slow");
 				//$(element).attr("disabled", "disabled");
 				// 正确:true
 				return true;
@@ -58,6 +60,15 @@ MathSheets.FruitsLinkage = MathSheets.FruitsLinkage || (function () {
 				// 对错图片显示和隐藏
 				$('#imgOKFruitsLinkage' + seat).hide();
 				$('#imgNoFruitsLinkage' + seat).show();
+				$('#imgNoFruitsLinkage' + seat).animate({
+					width: "20px",
+					height: "20px",
+					marginLeft: "0px",
+					marginTop: "0px"
+				}, 1000, function () {
+					// 添加圖片抖動特效（只針對錯題）
+					$(this).addClass("shake shake-slow");
+				});
 				// 错误:false
 				return false;
 			}

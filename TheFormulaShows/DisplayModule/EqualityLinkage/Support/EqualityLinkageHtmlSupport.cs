@@ -103,8 +103,10 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 			html.Append(GetRightFormulasHtml(p));
 			html.Append(GetInitSettingsHtml(p));
 			html.AppendLine("</div>");
+			html.AppendLine(string.Format("<div class=\"{0}\">", p.QueueType == DivQueueType.Lengthways ? "divCorrectOrFault-lengthways" : "divCorrectOrFault-crosswise"));
 			html.AppendLine(string.Format("<img id=\"imgOKEqualityLinkage\" src=\"../Content/image/correct.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "OKEqualityLinkage-lengthways" : "OKEqualityLinkage-crosswise"));
 			html.AppendLine(string.Format("<img id=\"imgNoEqualityLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "NoEqualityLinkage-lengthways" : "NoEqualityLinkage-crosswise"));
+			html.AppendLine("</div>");
 
 			html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">算式連一連</span></h4></div><hr />");
 

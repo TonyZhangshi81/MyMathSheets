@@ -41,6 +41,9 @@ MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
 				// 对错图片显示和隐藏
 				$('#imgOKCurrencyOperation' + pIndex).show();
 				$('#imgNoCurrencyOperation' + pIndex).hide();
+				// 移除圖片抖動特效
+				$('#imgNoCurrencyOperation' + pIndex).removeClass("shake shake-slow");
+
 				$.each(inputAry, function (index, inputObj) { inputObj.attr("disabled", "disabled"); });
 				// 正确:true
 				return true;
@@ -48,6 +51,15 @@ MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
 				// 对错图片显示和隐藏
 				$('#imgOKCurrencyOperation' + pIndex).hide();
 				$('#imgNoCurrencyOperation' + pIndex).show();
+				$('#imgNoCurrencyOperation' + pIndex).animate({
+					width: "40px",
+					height: "40px",
+					marginLeft: "0px",
+					marginTop: "0px"
+				}, 1000, function () {
+					// 添加圖片抖動特效（只針對錯題）
+					$(this).addClass("shake shake-slow");
+				});
 				// 错误:false
 				return false;
 			}

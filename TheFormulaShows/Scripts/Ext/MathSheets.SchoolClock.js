@@ -44,6 +44,9 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 				// 对错图片显示和隐藏
 				$('#imgOKSchoolClock' + index).show();
 				$('#imgNoSchoolClock' + index).hide();
+				// 移除圖片抖動特效
+				$('#imgNoSchoolClock' + index).removeClass("shake shake-slow");
+
 				$("#inputClockH" + index).attr("disabled", "disabled");
 				$("#inputClockM" + index).attr("disabled", "disabled");
 				$("#inputClockS" + index).attr("disabled", "disabled");
@@ -53,6 +56,16 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 				// 对错图片显示和隐藏
 				$('#imgOKSchoolClock' + index).hide();
 				$('#imgNoSchoolClock' + index).show();
+				$('#imgNoSchoolClock' + index).animate({
+					width: "40px",
+					height: "40px",
+					marginLeft: "0px",
+					marginTop: "0px"
+				}, 1000, function () {
+					// 添加圖片抖動特效（只針對錯題）
+					$(this).addClass("shake shake-slow");
+					});
+
 				// 错误:false
 				return false;
 			}
