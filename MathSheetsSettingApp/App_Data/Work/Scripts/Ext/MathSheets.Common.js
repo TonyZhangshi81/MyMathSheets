@@ -181,18 +181,38 @@ MathSheets.Common = MathSheets.Common || (function () {
 			store.set('result', { time: timeStr, right: __isRight, fault: __isFault });
 		},
 
+		// 鼠標移入置頂導航鍵
 		overShow = function (e) {
 			$(e).css('background-color', 'crimson');
 		},
 
+		// 鼠標移出置頂導航鍵
 		outHide = function (e) {
 			$(e).css('background-color', 'darkred');
 		},
 
+		// 點擊置頂導航鍵
 		totopClick = function () {
-			$('html,body').animate({
-				scrollTop: 0
-			})
+			// 移除滾動條事件（由導航鍵事件控制本身的隱藏）
+			$(window).unbind('scroll');
+			// 置頂動畫處理
+			$('html,body').animate( { 
+				scrollTop: 0 }, 1500, "easeOutQuint", function () {
+					setTimeout(function () {
+						$('.totop').hide(400);
+						// 待導航鍵隱藏后回復窗體滾動條事件
+						$(window).bind("scroll", function () { MathSheets.Common.windowScroll(); });
+					}, 500);
+				});
+		},
+
+		windowScroll = function () {
+			var nowTop = $(document).scrollTop();
+			if (nowTop > 200) {
+				$('.totop').show()
+			} else {
+				$('.totop').hide();
+			}
 		},
 
 		// 按鍵屏蔽防止刷新頁面
@@ -247,7 +267,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 		overShow: overShow,
 		outHide: outHide,
 		totopClick: totopClick,
-		ready: ready
+		ready: ready,
+		windowScroll: windowScroll
 	};
 }());
 
@@ -264,32 +285,31 @@ $(document).ready(function () {
 	// 打印
 	$('#btnPrint').click(function () { btnPrintClick(); });
 
+	// 還原上一次答題結果
+	MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
+
 	// 按鍵屏蔽防止刷新頁面
 	MathSheets.Common.forbidKeyDown();
 	// 禁用右鍵點擊功能
-	$(document).bind("contextmenu", function (e) {
-		return false;
-	});
+	$(document).bind("contextmenu", function (e) { return false; });
+
+	// 鼠標移入置頂導航鍵(高亮效果)
 	$('.totop').bind("mouseover", function () { MathSheets.Common.overShow(this); });
+	// 鼠標移出置頂導航鍵
 	$('.totop').bind("mouseout", function () { MathSheets.Common.outHide(this); });
+	// 點擊置頂導航鍵
 	$('.totop').bind("click", function () { MathSheets.Common.totopClick(); });
+	// 窗體滾動條事件
+	$(window).bind("scroll", function () { MathSheets.Common.windowScroll(); });
 
-	// 置頂導航功能
-	$(window).scroll(function () {
-		var nowTop = $(document).scrollTop();
-		if (nowTop > 200) {
-			$('.totop').show()
-		} else {
-			$('.totop').hide()
-		}
-	});
-
-	// 還原上一次答題結果
-	MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
 	// 計算式提示
 	$(function () { $("[data-toggle='tooltip']").tooltip(); });
 });
 
+
+/* 
+ * 以下為javascript屬性、方法擴展 
+ */
 String.prototype.PadLeft = function (totalWidth, paddingChar) {
 	if (paddingChar != null) {
 		return this.PadHelper(totalWidth, paddingChar, false);

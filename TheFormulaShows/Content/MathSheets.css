@@ -1,4 +1,14 @@
-﻿.totop {
+﻿.body-main {
+	background-color: lemonchiffon;
+}
+
+.div-company {
+	text-align: right;
+	font-family: inherit;
+	font-size: xx-small;
+}
+
+.totop {
 	width: 60px;
 	height: 60px;
 	background: url(../Content/image/navigate-up.png) center center no-repeat darkred;
@@ -34,6 +44,8 @@
 
 .main-ext {
 	background-color: aliceblue;
+	border-radius: 0.8rem;
+	-webkit-box-shadow: 0 0 15px;
 }
 
 .btn-circle {

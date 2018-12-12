@@ -106,6 +106,7 @@
     <Content Include="App_Data\Work\Content\image\CurrencyLinkage.png" />
     <Content Include="App_Data\Work\Content\image\CurrencyOperation.png" />
     <Content Include="App_Data\Work\Content\image\favicon.ico" />
+    <Content Include="App_Data\Work\Content\image\logo.png" />
     <Content Include="App_Data\Work\Content\Shake.css" />
     <None Include="App_Data\Work\Content\image\Arithmetic.png" />
     <None Include="App_Data\Work\Content\image\ComputingConnection.png" />

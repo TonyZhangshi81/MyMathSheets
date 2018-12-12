@@ -61,6 +61,7 @@
     <Content Include="Content\image\help.png" />
     <Content Include="Content\image\correct.png" />
     <Content Include="Content\image\homework.png" />
+    <Content Include="Content\image\logo.png" />
     <Content Include="Content\image\Multiple.png" />
     <Content Include="Content\image\navigate-up.png" />
     <Content Include="Content\image\Plus.png" />
@@ -86,6 +87,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.easing.1.3.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
     <Content Include="Scripts\jquery.linq-vsdoc.js" />
     <Content Include="Scripts\jquery.linq.js" />
@@ -163,6 +165,7 @@ copy "..\Scripts\jquery.easyui.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_
 copy "..\Scripts\jquery-3.3.1.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.PrintArea.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\json2.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\jquery.easing.1.3.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\store.legacy.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\umd\popper.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd" /Y
 copy "..\Scripts\snap\snap.svg-min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\snap" /Y
