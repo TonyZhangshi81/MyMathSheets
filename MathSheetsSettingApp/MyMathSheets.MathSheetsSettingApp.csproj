@@ -64,6 +64,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\ImgResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImgResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\MsgResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -74,23 +79,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\ImgResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ImgResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>ImgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\ImgResources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>ImgResources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Properties\MsgResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App_Data\Work\Content\fonts\fontawesome-webfont.eot" />
-    <None Include="App_Data\Work\Content\fonts\fontawesome-webfont.ttf" />
-    <None Include="App_Data\Work\Content\fonts\fontawesome-webfont.woff" />
-    <None Include="App_Data\Work\Content\fonts\fontawesome-webfont.woff2" />
-    <None Include="App_Data\Work\Content\fonts\FontAwesome.otf" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -100,39 +95,30 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Work\Content\bootstrap.min.css" />
-    <Content Include="App_Data\Work\Content\font-awesome.min.css" />
-    <Content Include="App_Data\Work\Content\fonts\fontawesome-webfont.svg" />
-    <Content Include="App_Data\Work\Content\image\CurrencyLinkage.png" />
-    <Content Include="App_Data\Work\Content\image\CurrencyOperation.png" />
-    <Content Include="App_Data\Work\Content\image\favicon.ico" />
-    <Content Include="App_Data\Work\Content\image\logo.png" />
-    <Content Include="App_Data\Work\Content\Shake.css" />
-    <None Include="App_Data\Work\Content\image\Arithmetic.png" />
-    <None Include="App_Data\Work\Content\image\ComputingConnection.png" />
-    <Content Include="App_Data\Work\Content\image\CombinatorialEquation.png" />
-    <None Include="App_Data\Work\Content\image\EqualityComparison.png" />
-    <Content Include="App_Data\Work\Content\image\EqualityLinkage.png" />
-    <Content Include="App_Data\Work\Content\image\FindNearestNumber.png" />
-    <Content Include="App_Data\Work\Content\image\FindTheLaw.png" />
-    <Content Include="App_Data\Work\Content\image\FruitsLinkage.png" />
-    <None Include="App_Data\Work\Content\image\MathWordProblems.png" />
-    <None Include="App_Data\Work\Content\image\HowMuchMore.png" />
-    <None Include="App_Data\Work\Content\image\ready.png" />
-    <None Include="App_Data\Work\Content\image\ScoreGoal.png" />
-    <None Include="App_Data\Work\Content\image\title.png" />
-    <None Include="App_Data\Work\Content\image\NumericSorting.png" />
-    <Content Include="App_Data\Work\Content\image\LearnCurrency.png" />
-    <Content Include="App_Data\Work\Content\image\SchoolClock.png" />
-    <Content Include="App_Data\Work\Content\image\timg.png" />
-    <Content Include="App_Data\Work\Content\MathSheets.css" />
+    <Content Include="Content\image\CurrencyLinkage.png" />
+    <Content Include="Content\image\CurrencyOperation.png" />
+    <None Include="Content\image\Arithmetic.png" />
+    <None Include="Content\image\ComputingConnection.png" />
+    <Content Include="Content\image\CombinatorialEquation.png" />
+    <None Include="Content\image\EqualityComparison.png" />
+    <Content Include="Content\image\EqualityLinkage.png" />
+    <Content Include="Content\image\FindNearestNumber.png" />
+    <Content Include="Content\image\FindTheLaw.png" />
+    <Content Include="Content\image\FruitsLinkage.png" />
+    <None Include="Content\image\MathWordProblems.png" />
+    <None Include="Content\image\HowMuchMore.png" />
+    <None Include="Content\image\ready.png" />
+    <None Include="Content\image\ScoreGoal.png" />
+    <None Include="Content\image\title.png" />
+    <None Include="Content\image\NumericSorting.png" />
+    <Content Include="Content\image\LearnCurrency.png" />
+    <Content Include="Content\image\SchoolClock.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\Work\Content\image\" />
     <Folder Include="App_Data\Work\Page\" />
     <Folder Include="App_Data\Work\Plugin\" />
     <Folder Include="App_Data\Work\Scripts\Ext\" />
-    <Folder Include="App_Data\Work\Scripts\snap\" />
-    <Folder Include="App_Data\Work\Scripts\umd\" />
     <Folder Include="Config\" />
     <Folder Include="HtmlTemplate\" />
   </ItemGroup>

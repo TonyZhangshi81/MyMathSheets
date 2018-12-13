@@ -334,13 +334,7 @@ ASALocalRun/
 # MyProject ignore settings
 /TheFormulaShows/Template/*.html
 
-/TheFormulaShows/Content/image/clock/
-/TheFormulaShows/Content/image/fruits/
-/TheFormulaShows/Content/image/more/
-/TheFormulaShows/Content/image/project/
-/TheFormulaShows/Content/image/rmb/
-/TheFormulaShows/Content/image/shop/
-/TheFormulaShows/Content/image/sport/
+/TheFormulaShows/Content/image/*/
 
 /TheFormulaShows/Content/CurrencyLinkage.css
 /TheFormulaShows/Content/EqualityLinkage.css
@@ -350,6 +344,4 @@ ASALocalRun/
 
 /TheFormulaShows/Scripts/Ext/
 !/TheFormulaShows/Scripts/Ext/MathSheets.Common.js
-
-
 

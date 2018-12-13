@@ -167,7 +167,16 @@ copy "..\Scripts\jquery.PrintArea.js" "$(SolutionDir)\MathSheetsSettingApp\App_D
 copy "..\Scripts\json2.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.easing.1.3.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\store.legacy.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\jquery.rating-stars.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+if not exist "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd"
+(
+  md "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd"
+)
 copy "..\Scripts\umd\popper.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd" /Y
+if not exist "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\snap"
+(
+  md "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\snap"
+)
 copy "..\Scripts\snap\snap.svg-min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\snap" /Y
 copy "..\Content\bootstrap.min.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\font-awesome.min.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
@@ -179,8 +188,6 @@ copy "..\Content\FruitsLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_Dat
 copy "..\Content\ScoreGoal.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\Shake.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 xcopy "..\Content\image" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\image" /C /E /H /K /R /Y
-copy "..\Scripts\jquery.rating-stars.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
-
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
