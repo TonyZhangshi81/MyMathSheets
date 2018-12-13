@@ -329,3 +329,27 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 /Lib
+
+
+# MyProject ignore settings
+/TheFormulaShows/Template/*.html
+
+/TheFormulaShows/Content/image/clock/
+/TheFormulaShows/Content/image/fruits/
+/TheFormulaShows/Content/image/more/
+/TheFormulaShows/Content/image/project/
+/TheFormulaShows/Content/image/rmb/
+/TheFormulaShows/Content/image/shop/
+/TheFormulaShows/Content/image/sport/
+
+/TheFormulaShows/Content/CurrencyLinkage.css
+/TheFormulaShows/Content/EqualityLinkage.css
+/TheFormulaShows/Content/FruitsLinkage.css
+/TheFormulaShows/Content/SchoolClock.css
+/TheFormulaShows/Content/ScoreGoal.css
+
+/TheFormulaShows/Scripts/Ext/
+!/TheFormulaShows/Scripts/Ext/MathSheets.Common.js
+
+
+
