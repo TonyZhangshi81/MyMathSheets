@@ -191,6 +191,20 @@ MathSheets.Common = MathSheets.Common || (function () {
 			$(e).css('background-color', 'darkred');
 		},
 
+		// 鼠標移入頁面頂端導航區域時，浮動菜單顯示
+		overNavbarShow = function () {
+			$(".box").slideDown(500, function () {
+				// TODO
+			});
+		},
+
+		// 鼠標移出浮動菜單區域時，浮動菜單關閉
+		outNavbarHide = function () {
+			$(".box").slideUp(500, function () {
+				// TODO
+			});
+		},
+
 		// 點擊置頂導航鍵
 		totopClick = function () {
 			// 移除滾動條事件（由導航鍵事件控制本身的隱藏）
@@ -266,6 +280,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 		startTime: startTime,
 		overShow: overShow,
 		outHide: outHide,
+		overNavbarShow: overNavbarShow,
+		outNavbarHide: outNavbarHide,
 		totopClick: totopClick,
 		ready: ready,
 		windowScroll: windowScroll
@@ -301,6 +317,10 @@ $(document).ready(function () {
 	$('.totop').bind("click", function () { MathSheets.Common.totopClick(); });
 	// 窗體滾動條事件
 	$(window).bind("scroll", function () { MathSheets.Common.windowScroll(); });
+	// 鼠標移入頁面頂端導航區域時，浮動菜單顯示
+	$('.imgNavbar').bind("mouseover", function () { MathSheets.Common.overNavbarShow(); });
+	// 鼠標移出浮動菜單區域時，浮動菜單關閉
+	$('.box-content').bind("mouseout", function () { MathSheets.Common.outNavbarHide(); });
 
 	// 計算式提示
 	$(function () { $("[data-toggle='tooltip']").tooltip(); });

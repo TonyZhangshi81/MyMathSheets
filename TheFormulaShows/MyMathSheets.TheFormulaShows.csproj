@@ -67,6 +67,7 @@
     <Content Include="Content\image\Plus.png" />
     <Content Include="Content\image\Subtraction.png" />
     <Content Include="Content\image\timg.png" />
+    <Content Include="Content\image\triangle.png" />
     <Content Include="Content\MathSheets.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
