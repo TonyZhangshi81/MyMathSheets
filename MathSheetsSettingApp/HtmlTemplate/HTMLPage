@@ -214,7 +214,11 @@
 	</script>
 </head>
 <body class="body-main">
-	<div class="navbar navbar-fixed-top">
+	<div class="box">
+		<div class="box-content">menu</div>
+	</div>
+	<div class="navbar navbar-fixed-top navbar-ext">
+		<img src="../Content/image/triangle.png" class="imgNavbar" />
 	</div>
 	<div class="container theme-showcase main-ext" role="main">
 		<div class="jumbotron-ext">
@@ -269,7 +273,7 @@
 			</div>
 		</div>
 		<div class="page-header">
-			<div class="row text-left row-margin-top">
+			<div class="row text-left">
 				<div class="col-md-2">
 					<h5>答題情況</h5>
 				</div>
@@ -312,14 +316,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="well">
-			<p>
-				<h6>
-				用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
-				<br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
-				<br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
-				</h6>
-			</p>
+		<div class="row text-left">
+			<div class="col-md-12">
+				<h7>
+					用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+					<br />答對:<span id="spanOK" style="width: 30px; display:inline; padding-left:20px;">11</span>題
+					<br />答錯:<span id="spanNo" style="width: 30px; display:inline; padding-left:20px;">11</span>題
+				</h7>
+			</div>
 		</div>
 	</div>
 	<div class="div-company">

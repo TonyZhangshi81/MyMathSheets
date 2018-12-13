@@ -160,6 +160,7 @@ rem copy "$(SolutionDir)\Lib\*.dll" "$(SolutionDir)\Lib\Release\" /Y
 copy "..\Template\HTMLPage" "$(SolutionDir)\MathSheetsSettingApp\HtmlTemplate" /Y
 xcopy "..\Scripts\Ext" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\Ext" /C /E /H /K /R /Y
 xcopy "..\Plugin" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Plugin" /C /E /H /K /R /Y
+if not exist "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\fonts" md "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\fonts"
 xcopy "..\Content\fonts" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\fonts" /C /E /H /K /R /Y
 copy "..\Scripts\bootstrap.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.easyui.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
