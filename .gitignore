@@ -345,3 +345,11 @@ ASALocalRun/
 /TheFormulaShows/Scripts/Ext/
 !/TheFormulaShows/Scripts/Ext/MathSheets.Common.js
 
+/TestConsoleApp/Config/*.*
+!/TestConsoleApp/Config/ConsoleFormulas.xml
+
+/MathSheetsSettingApp/App_Data/Work/Scripts/
+/MathSheetsSettingApp/App_Data/Work/Plugin/
+/MathSheetsSettingApp/App_Data/Work/Page/
+/MathSheetsSettingApp/App_Data/Work/Content/
+/MathSheetsSettingApp/Config/
