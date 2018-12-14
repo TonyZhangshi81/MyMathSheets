@@ -1,5 +1,5 @@
 ﻿.body-main {
-	background-color: lemonchiffon;
+	background-color: burlywood;
 }
 
 .div-company {
@@ -72,7 +72,7 @@
 .totop {
 	width: 60px;
 	height: 60px;
-	background: url(../Content/image/navigate-up.png) center center no-repeat darkred;
+	background: url(../../Content/image/navigate-up.png) center center no-repeat darkred;
 	background-size: 30px 30px;
 	border-radius: 50%;
 	position: fixed;
@@ -99,7 +99,7 @@
 .jumbotron-ext {
 	padding: 2rem 3rem;
 	border-radius: 0.8rem;
-	background: url("../Content/image/timg.png") no-repeat;
+	background: url("../../Content/image/timg.png") no-repeat;
 	background-size: 100% 100%;
 }
 

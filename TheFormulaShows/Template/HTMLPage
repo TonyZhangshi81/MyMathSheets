@@ -10,7 +10,10 @@
 	<link rel="icon" href="../Content/image/favicon.ico">
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
-	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+	<link title="default" href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+	<link title="burlywood" href="../Content/switcher/MathSheets-burlywood.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+	<link title="coral" href="../Content/switcher/MathSheets-coral.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+	<link title="cornflowerblue" href="../Content/switcher/MathSheets-cornflowerblue.css" rel="stylesheet" charset="utf-8" disabled="disabled">
 	<link href="../Content/Shake.css" rel="stylesheet" charset="utf-8">
 	<!--SCOREGOALSTYLESHEET-->
 	<!--FRUITSLINKAGESTYLESHEET-->
@@ -215,7 +218,14 @@
 </head>
 <body class="body-main">
 	<div class="box">
-		<div class="box-content">menu</div>
+		<div class="box-content">
+			<a href="#" class="close close-ext" id="close">&times;</a>
+			<ul class="switcher">
+				<li style="background-color: burlywood;" id="burlywood"></li>
+				<li style="background-color: coral;" id="coral"></li>
+				<li style="background-color: cornflowerblue;" id="cornflowerblue"></li>
+			</ul>
+		</div>
 	</div>
 	<div class="navbar navbar-fixed-top navbar-ext">
 		<img src="../Content/image/triangle.png" class="imgNavbar" />

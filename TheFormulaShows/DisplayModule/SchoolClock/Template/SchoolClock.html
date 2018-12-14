@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,10 @@
 	<link rel="icon" href="../Content/image/favicon.ico">
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
-	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+	<link title="default" href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+	<link title="burlywood" href="../Content/switcher/MathSheets-burlywood.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+	<link title="coral" href="../Content/switcher/MathSheets-coral.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+	<link title="cornflowerblue" href="../Content/switcher/MathSheets-cornflowerblue.css" rel="stylesheet" charset="utf-8" disabled="disabled">
 	<link href="../Content/Shake.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/SchoolClock.css" rel="stylesheet" type="text/css" />
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
@@ -79,7 +82,18 @@
 	</script>
 </head>
 <body class="body-main">
-	<div class="navbar navbar-fixed-top">
+	<div class="box">
+		<div class="box-content">
+			<a href="#" class="close close-ext" id="close">&times;</a>
+			<ul class="switcher">
+				<li style="background-color: burlywood;" id="burlywood"></li>
+				<li style="background-color: coral;" id="coral"></li>
+				<li style="background-color: cornflowerblue;" id="cornflowerblue"></li>
+			</ul>
+		</div>
+	</div>
+	<div class="navbar navbar-fixed-top navbar-ext">
+		<img src="../Content/image/triangle.png" class="imgNavbar" />
 	</div>
 	<div class="container theme-showcase main-ext" role="main">
 		<div class="jumbotron-ext">
@@ -106,7 +120,7 @@
 		<div id="divPrintContent">
 			<br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">時鐘學習板</span></h4></div><hr /><div class="row text-center row-margin-top">
 				<div class="col-md-4 line-height">
-					<img src="../Content/image/clock/Sun.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="凌晨" />
+					<img src="../Content/image/clock/Moon.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="下午" />
 					<div class="watch-section">
 						<div class="watch-inner">
 							<div class="faces">
@@ -152,7 +166,7 @@
 					</div>
 				</div>
 				<div class="col-md-4 line-height">
-					<img src="../Content/image/clock/Moon.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="中午" />
+					<img src="../Content/image/clock/Sun.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="凌晨" />
 					<div class="watch-section">
 						<div class="watch-inner">
 							<div class="faces">
@@ -177,7 +191,7 @@
 			</div>
 			<div class="row text-center row-margin-top">
 				<div class="col-md-4 line-height">
-					<img src="../Content/image/clock/Sun.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="午夜" />
+					<img src="../Content/image/clock/Moon.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="深夜" />
 					<div class="watch-section">
 						<div class="watch-inner">
 							<div class="faces">
@@ -200,7 +214,7 @@
 					</div>
 				</div>
 				<div class="col-md-4 line-height">
-					<img src="../Content/image/clock/Moon.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="深夜" />
+					<img src="../Content/image/clock/Moon.png" style="width: 30px; height: 30px;" data-toggle="tooltip" title="中午" />
 					<div class="watch-section">
 						<div class="watch-inner">
 							<div class="faces">
@@ -223,7 +237,7 @@
 					</div>
 				</div>
 			</div>
-			<input type="hidden" id="hidClocksAnswer" value="5:15:0;23:30:0;12:30:0;0:15:0;22:45:0" />
+			<input type="hidden" id="hidClocksAnswer" value="17:0:0;23:30:0;5:0:0;22:15:0;12:15:0" />
 		</div>
 		<HR>
 		<div class="row">
@@ -238,7 +252,7 @@
 			</div>
 		</div>
 		<div class="page-header">
-			<div class="row text-left row-margin-top">
+			<div class="row text-left">
 				<div class="col-md-2">
 					<h5>答題情況</h5>
 				</div>
@@ -281,14 +295,14 @@
 				</div>
 			</div>
 		</div>
-		<div class="well">
-			<p>
-				<h6>
+		<div class="row text-left">
+			<div class="col-md-12">
+				<h7>
 					用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
-					<br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
-					<br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
-				</h6>
-			</p>
+					<br />答對:<span id="spanOK" style="width: 30px; display:inline; padding-left:20px;">11</span>題
+					<br />答錯:<span id="spanNo" style="width: 30px; display:inline; padding-left:20px;">11</span>題
+				</h7>
+			</div>
 		</div>
 	</div>
 	<div class="div-company">

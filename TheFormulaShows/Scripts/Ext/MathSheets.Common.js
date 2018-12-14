@@ -194,14 +194,12 @@ MathSheets.Common = MathSheets.Common || (function () {
 		// 鼠標移入頁面頂端導航區域時，浮動菜單顯示
 		overNavbarShow = function () {
 			$(".box").slideDown(500, function () {
-				// TODO
 			});
 		},
 
 		// 鼠標移出浮動菜單區域時，浮動菜單關閉
 		outNavbarHide = function () {
 			$(".box").slideUp(500, function () {
-				// TODO
 			});
 		},
 
@@ -320,7 +318,20 @@ $(document).ready(function () {
 	// 鼠標移入頁面頂端導航區域時，浮動菜單顯示
 	$('.imgNavbar').bind("mouseover", function () { MathSheets.Common.overNavbarShow(); });
 	// 鼠標移出浮動菜單區域時，浮動菜單關閉
-	$('.box-content').bind("mouseout", function () { MathSheets.Common.outNavbarHide(); });
+	$('#close').click(function () { MathSheets.Common.outNavbarHide(); });
+
+
+	$(".switcher li").click(function () {
+		var style = $(this).attr("id");
+		$("link[title='" + style + "']").removeAttr("disabled");
+		$("link[title!='" + style + "']").each(function () {
+			var attr = $(this).attr('title');
+			if (typeof attr !== typeof undefined && attr !== false) {
+				$(this).attr("disabled", "disabled");
+			}
+		});
+		//$.cookie("mystyle", style, { expires: 30 });
+	}); 
 
 	// 計算式提示
 	$(function () { $("[data-toggle='tooltip']").tooltip(); });
