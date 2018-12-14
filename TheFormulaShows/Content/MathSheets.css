@@ -31,8 +31,8 @@
 .box-content {
 	position: relative;
 	width: 40%;
-	float:right;
-	margin-right:35px;
+	float: right;
+	margin-right: 35px;
 	height: 45px;
 	background-color: honeydew;
 	border-radius: 0.2rem;

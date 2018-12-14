@@ -73,7 +73,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 		lastTimeRestore = function (oldSpanId, rightSpanId, faultSpanId) {
 			// 獲取內容
 			var result = store.get('result');
-			if (typeof result !== typeof undefined && attr !== false) {
+		if (typeof result !== typeof undefined && result !== false) {
 				// 前次用時顯示
 				$(_getId(oldSpanId)).text(result.time);
 				// 前次答對數顯示
@@ -111,8 +111,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 				$(_getId(spanHHId)).text(_checkTime(__hour));
 				$(_getId(spanMMId)).text(_checkTime(__minute));
 			}
-			// 59:59:59為計時器上限值,將強制停止計時器
-			if (__second == 59 && __minute == 59 && __hour == 59) {
+			// 23:59:59為計時器上限值,將強制停止計時器
+			if (__second == 59 && __minute == 59 && __hour == 23) {
 				__isStop = true;
 			}
 			// 定時執行(設定時間間隔為1秒)
@@ -265,13 +265,12 @@ MathSheets.Common = MathSheets.Common || (function () {
 			//var cookie_style = $.cookie().mystyle;	 <- 暫無對應方法，因為chrome只在http請求下啟用cookie有效
 			// 使用本地儲存實現style的緩存(TODO: 可以考慮對時效性的功能擴展)
 			var cookie_style = store.get('mystyle');
-			if (cookie_style == null) {
-				$("link[title='default']").removeAttr("disabled");
-			} else {
+		if (typeof cookie_style !== typeof undefined && cookie_style !== false) {
 				// link信息設定處理
 				_linkSetting(cookie_style);
+			} else {
+				$("link[title='default']").removeAttr("disabled");
 			}
-
 		},
 
 		// 按鍵屏蔽防止刷新頁面
