@@ -73,7 +73,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 		lastTimeRestore = function (oldSpanId, rightSpanId, faultSpanId) {
 			// 獲取內容
 			var result = store.get('result');
-		if (typeof result !== typeof undefined && result !== false) {
+			if (typeof result !== typeof undefined && result !== false) {
 				// 前次用時顯示
 				$(_getId(oldSpanId)).text(result.time);
 				// 前次答對數顯示
@@ -146,9 +146,9 @@ MathSheets.Common = MathSheets.Common || (function () {
 			}
 			$(_getId(btnTheirPapersId)).hide();
 
+			// 答題正確率統計(評星級)
 			var score = Math.round(__isRight / (__isRight + __isFault) * 10);
 			$('#hidPracticeScore').val(score);
-
 			$('#more-rating').show();
 
 			// 打星處理
@@ -255,21 +255,34 @@ MathSheets.Common = MathSheets.Common || (function () {
 			_linkSetting(style);
 
 			// 將當前選擇寫入cookie并設定30天有效 <- 暫無對應方法，因為chrome只在http請求下啟用cookie有效
-			//$.cookie("mystyle", style, { expires: 30, path: '/' });
+			// $.cookie("mystyle", style, { expires: 30, path: '/' });
 			// 使用本地儲存實現style的緩存(TODO: 可以考慮對時效性的功能擴展)
 			store.set('mystyle', style);
 		},
 
 		// 頁面主題初期化設置
 		styleInitialize = function () {
-			//var cookie_style = $.cookie().mystyle;	 <- 暫無對應方法，因為chrome只在http請求下啟用cookie有效
+			// var cookie_style = $.cookie().mystyle;	 <- 暫無對應方法，因為chrome只在http請求下啟用cookie有效
 			// 使用本地儲存實現style的緩存(TODO: 可以考慮對時效性的功能擴展)
 			var cookie_style = store.get('mystyle');
-		if (typeof cookie_style !== typeof undefined && cookie_style !== false) {
+			if (typeof cookie_style !== typeof undefined && cookie_style !== false) {
 				// link信息設定處理
 				_linkSetting(cookie_style);
 			} else {
 				$("link[title='default']").removeAttr("disabled");
+			}
+		},
+
+		// 右側導航欄的初期化設置
+		sidebarInitialize = function () {
+			var html = '<li><a href="#divContainer">主題</a></li>';
+			$("h4[id*='mathSheet']").each(function () {
+				html += '<li><a href="#' + $(this).attr('id') + '">' + $($(this).children('span')).text() + '</a></li>';
+			});
+
+			$("ul[class='nav nav-ext']").prepend(html);
+			if ($("div[id='divSidebar']").find("li").length < 4) {
+				$("div[id='divSidebar']").hide();
 			}
 		},
 
@@ -329,6 +342,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 		totopClick: totopClick,
 		styleSelect: styleSelect,
 		styleInitialize: styleInitialize,
+		sidebarInitialize: sidebarInitialize,
 		ready: ready,
 		windowScroll: windowScroll
 	};
@@ -355,6 +369,27 @@ $(document).ready(function () {
 	// 禁用右鍵點擊功能
 	$(document).bind("contextmenu", function (e) { return false; });
 
+	var myVar;
+	$('#divContainer').bind('mousemove', function (e) {
+		if (600 < e.clientY) {
+			myVar = setInterval(function () {
+				var scrollTop = $(window).scrollTop();
+				var scrollHeight = $(document).height();
+				var windowHeight = $(window).height();
+				if (scrollTop + windowHeight == scrollHeight) {
+					clearInterval(myVar);
+				} else {
+					window.scrollTo(0, window.pageYOffset + 2);
+				}
+			}, 100);
+			//(e.clientY - 600));
+		} else if (e.clientY < 150) {
+			//window.scrollTo(0, window.pageYOffset - (150 - e.clientY));
+		} else {
+			clearInterval(myVar);
+		}
+	});
+
 	// 鼠標移入置頂導航鍵(高亮效果)
 	$('.totop').bind("mouseover", function () { MathSheets.Common.overShow(this); });
 	// 鼠標移出置頂導航鍵
@@ -366,14 +401,16 @@ $(document).ready(function () {
 	// 鼠標移入頁面頂端導航區域時，浮動菜單顯示
 	$('.imgNavbar').bind("mouseover", function () { MathSheets.Common.overNavbarShow(); });
 	// 鼠標移出浮動菜單區域時，浮動菜單關閉
-	$('#close').click(function () { MathSheets.Common.outNavbarHide(); });
+	$('#close').bind("click", function () { MathSheets.Common.outNavbarHide(); });
 	// 主題選擇事件
-	$(".switcher li").click(function () { MathSheets.Common.styleSelect(this); });
+	$('.switcher li').bind("click", function () { MathSheets.Common.styleSelect(this); });
 
 	// 計算式提示
 	$(function () { $("[data-toggle='tooltip']").tooltip(); });
 	// 頁面主題初期化設置
 	MathSheets.Common.styleInitialize();
+	// 右側導航欄的初期化設置
+	MathSheets.Common.sidebarInitialize();
 });
 
 

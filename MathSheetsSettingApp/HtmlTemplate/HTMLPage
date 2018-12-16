@@ -231,7 +231,15 @@
 	<div class="navbar navbar-fixed-top navbar-ext">
 		<img src="../Content/image/triangle.png" class="imgNavbar" />
 	</div>
-	<div class="container theme-showcase main-ext" role="main">
+	<div class="bs-docs-sidebar" id="divSidebar">
+		<ul class="nav nav-ext">
+			<li><a href="#divContainer">主題</a></li>
+			<li><a href="#one">算數應用題</a></li>
+			<li><a href="#two">水果連連看</a></li>
+			<li><a href="#three">找出最近的數字</a></li>
+		</ul>
+	</div>
+	<div class="container theme-showcase main-ext" role="main" id="divContainer">
 		<div class="jumbotron-ext">
 			<div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
 			<div class="div-famousPeople">
@@ -331,8 +339,8 @@
 			<div class="col-md-12">
 				<h7>
 					用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
-					<br />答對:<span id="spanOK" style="width: 30px; display:inline; padding-left:20px;">11</span>題
-					<br />答錯:<span id="spanNo" style="width: 30px; display:inline; padding-left:20px;">11</span>題
+					<br />答對:<span id="spanOK" style="width: 30px; display:inline; padding-left:20px;"></span>題
+					<br />答錯:<span id="spanNo" style="width: 30px; display:inline; padding-left:20px;"></span>題
 				</h7>
 			</div>
 		</div>

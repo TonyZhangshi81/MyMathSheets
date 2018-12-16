@@ -10,7 +10,7 @@ using System.ComponentModel.Composition;
 namespace MyMathSheets.CommonLib.Main.HtmlSupport
 {
 	/// <summary>
-	/// HTML支援類接口
+	/// HTML支援類
 	/// </summary>
 	[PartCreationPolicy(CreationPolicy.NonShared)]
 	[Export(typeof(IMakeHtml))]

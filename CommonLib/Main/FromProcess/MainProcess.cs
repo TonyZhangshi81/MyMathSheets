@@ -193,7 +193,6 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 					int indexX = 1, indexY = 1;
 					ComposerFactory.AssemblyInfoCache.ToList().ForEach(d =>
 					{
-
 						_controlList.Add(new ControlInfo()
 						{
 							IndexX = indexX,

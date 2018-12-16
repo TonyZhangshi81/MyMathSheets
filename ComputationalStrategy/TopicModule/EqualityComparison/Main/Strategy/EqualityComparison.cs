@@ -58,7 +58,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Strategy
 			else
 			{
 				// 按照指定數量作成相應的數學計算式（加減乘除運算符實例隨機抽取）
-				MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(SignOfOperation.Plus, SignOfOperation.Division); });
+				MarkFormulaList(p, () => { return p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)]; });
 			}
 		}
 
