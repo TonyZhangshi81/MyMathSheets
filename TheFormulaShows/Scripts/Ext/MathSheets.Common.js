@@ -170,7 +170,13 @@ MathSheets.Common = MathSheets.Common || (function () {
 				$(element).unbind('mouseleave');
 				$(element).unbind('click touchstart');
 			});
-
+			// 如果答題滿分的話則顯示獎章
+			if (score == 10) {
+				// 置頂處理
+				toTop();
+				// 顯示獎章 :-)
+				$(".imgAward").fadeIn(5000);
+			}
 		},
 
 		// 計時停止（答題結果設定）
@@ -212,6 +218,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 			$('html,body').animate({
 				scrollTop: 0
 			}, 1500, "easeOutQuint", function () {
+				// 向上箭頭隱藏
+				$(".imgHelper-up").hide();
 				setTimeout(function () {
 					$('.totop').hide(400);
 					// 待導航鍵隱藏后回復窗體滾動條事件
@@ -226,6 +234,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 			$('html,body').animate({
 				scrollTop: $('.div-company').offset().top
 			}, 1500, "easeOutQuint", function () { $('.totop').show(400); });
+			// 向下箭頭隱藏
+			$(".imgHelper-down").hide();
 		},
 
 		// 窗體滾動條事件
@@ -328,23 +338,25 @@ MathSheets.Common = MathSheets.Common || (function () {
 
 		// 頁面滾動輔助按鍵顯示控制處理
 		scrollAutoHelper = function (clientY) {
+			// 窗體顯示的高度
+			var windowHeight = $(window).height();
 			// 指定區域內顯示顯示
-			if (clientY > 600) {
+			if (clientY > (windowHeight * 0.6)) {
 				// 滾動條高度
 				var scrollTop = $(window).scrollTop();
 				// 頁面總高度
 				var scrollHeight = $(document).height();
-				// 窗體顯示的高度
-				var windowHeight = $(window).height();
 				// 如果滾動條已經到達頁面底部，則關閉當前自動移動
-				if (scrollTop + windowHeight == scrollHeight) {
+				if (scrollTop + windowHeight >= scrollHeight - 1) {
 					// 向下箭頭隱藏
 					$(".imgHelper-down").hide();
 					return;
 				}
 				// 向下箭頭顯示
 				$(".imgHelper-down").show();
-			} else if (clientY < 250) {
+				// 向上箭頭隱藏
+				$(".imgHelper-up").hide();
+			} else if (clientY < (windowHeight * 0.3)) {
 				// 滾動條高度
 				var scrollTop = $(window).scrollTop();
 				// 如果滾動條已經到達頁面頂部，則關閉當前自動移動
@@ -355,6 +367,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 				}
 				// 向上箭頭顯示
 				$(".imgHelper-up").show();
+				// 向下箭頭隱藏
+				$(".imgHelper-down").hide();
 			} else {
 				// 向下箭頭隱藏
 				$(".imgHelper-down").hide();
@@ -450,7 +464,7 @@ $(document).ready(function () {
 	$(document).bind("contextmenu", function (e) { return false; });
 
 	// 答題區域鼠標移動事件（用於顯示頁面自動滾動輔助按鍵）
-	$('#divContainer').bind('mousemove', function (e) {
+	$('#divContainer').bind('mouseover', function (e) {
 		MathSheets.Common.scrollAutoHelper(e.clientY);
 	});
 
@@ -466,7 +480,7 @@ $(document).ready(function () {
 	});
 
 	// 頁面向下滾動
-	$('.imgHelper-down').bind('mouseover', function () {
+	$('.imgHelper-down').bind('mouseenter', function () {
 		// TODO 使用tween.js緩動算法改善動畫效果
 		backId = setInterval(MathSheets.Common.scrollAutoDown, 100);
 	}).bind('mouseleave', function () {
@@ -476,15 +490,15 @@ $(document).ready(function () {
 	});
 
 	// 鼠標移入置頂導航鍵(高亮效果)
-	$('.totop').bind("mouseover", function () { MathSheets.Common.overShow(this); });
+	$('.totop').bind("mouseenter", function () { MathSheets.Common.overShow(this); });
 	// 鼠標移出置頂導航鍵
-	$('.totop').bind("mouseout", function () { MathSheets.Common.outHide(this); });
+	$('.totop').bind("mouseleave", function () { MathSheets.Common.outHide(this); });
 	// 點擊置頂導航鍵
 	$('.totop').bind("click", function () { MathSheets.Common.toTop(); });
 	// 窗體滾動條事件
 	$(window).bind("scroll", function () { MathSheets.Common.windowScroll(); });
 	// 鼠標移入頁面頂端導航區域時，浮動菜單顯示
-	$('.imgNavbar').bind("mouseover", function () { MathSheets.Common.overNavbarShow(); });
+	$('.imgNavbar').bind("mouseenter", function () { MathSheets.Common.overNavbarShow(); });
 	// 鼠標移出浮動菜單區域時，浮動菜單關閉
 	$('#close').bind("click", function () { MathSheets.Common.outNavbarHide(); });
 	// 主題選擇事件

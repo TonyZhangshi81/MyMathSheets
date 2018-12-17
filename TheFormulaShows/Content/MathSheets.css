@@ -94,17 +94,17 @@
 
 .scrollHelper-up {
 	position: fixed;
-	width: 70%;
+	width: 90%;
 	background-color: transparent;
-	top: 150px;
+	top: 10vh;
 	z-index: 80;
 }
 
 .scrollHelper-down {
 	position: fixed;
-	width: 70%;
+	width: 90%;
 	background-color: transparent;
-	top: 650px;
+	top: 60vh;
 	z-index: 80;
 }
 
@@ -114,6 +114,24 @@
 
 .scrollHelper-up div.help {
 	float: right;
+}
+
+.honorArea {
+	position: absolute;
+	background-color: transparent;
+	top: -15px;
+	left: 920px;
+	z-index: 90;
+	transform: rotate(17.5deg);
+	-o-transform:rotate(17.5deg);
+	-webkit-transform:rotate(17.5deg);
+	-moz-transform:rotate(17.5deg);
+}
+
+.imgAward {
+	width: 290px;
+	height: 290px;
+	display: none;
 }
 
 .imgHelper-up {
