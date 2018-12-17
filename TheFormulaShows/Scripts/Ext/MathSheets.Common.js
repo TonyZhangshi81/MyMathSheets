@@ -204,8 +204,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 			});
 		},
 
-		// 點擊置頂導航鍵
-		totopClick = function () {
+		// 置頂導航
+		toTop = function () {
 			// 移除滾動條事件（由導航鍵事件控制本身的隱藏）
 			$(window).unbind('scroll');
 			// 置頂動畫處理
@@ -218,6 +218,14 @@ MathSheets.Common = MathSheets.Common || (function () {
 					$(window).bind("scroll", function () { MathSheets.Common.windowScroll(); });
 				}, 500);
 			});
+		},
+
+		// 移動至畫面最底端
+		toBottom = function () {
+			// 置頂動畫處理
+			$('html,body').animate({
+				scrollTop: $('.div-company').offset().top
+			}, 1500, "easeOutQuint", function () { $('.totop').show(400); });
 		},
 
 		// 窗體滾動條事件
@@ -286,6 +294,74 @@ MathSheets.Common = MathSheets.Common || (function () {
 			}
 		},
 
+		// 頁面向下滾動
+		scrollAutoDown = function () {
+			// 滾動條高度
+			var scrollTop = $(window).scrollTop();
+			// 頁面總高度
+			var scrollHeight = $(document).height();
+			// 窗體顯示的高度
+			var windowHeight = $(window).height();
+			// 如果滾動條已經到達頁面底部，則關閉當前自動移動
+			if (scrollTop + windowHeight == scrollHeight) {
+				// 向下箭頭隱藏
+				$(".imgHelper-down").hide();
+				return;
+			}
+			// 向下移動
+			window.scrollTo(0, window.pageYOffset + 10);
+		},
+
+		// 頁面向上滾動
+		scrollAutoUp = function () {
+			// 滾動條高度
+			var scrollTop = $(window).scrollTop();
+			// 如果滾動條已經到達頁面頂部，則關閉當前自動移動
+			if (scrollTop == 0) {
+				// 向上箭頭隱藏
+				$(".imgHelper-up").hide();
+				return;
+			}
+			// 向上移動
+			window.scrollTo(0, window.pageYOffset - 10);
+		},
+
+		// 頁面滾動輔助按鍵顯示控制處理
+		scrollAutoHelper = function (clientY) {
+			// 指定區域內顯示顯示
+			if (clientY > 600) {
+				// 滾動條高度
+				var scrollTop = $(window).scrollTop();
+				// 頁面總高度
+				var scrollHeight = $(document).height();
+				// 窗體顯示的高度
+				var windowHeight = $(window).height();
+				// 如果滾動條已經到達頁面底部，則關閉當前自動移動
+				if (scrollTop + windowHeight == scrollHeight) {
+					// 向下箭頭隱藏
+					$(".imgHelper-down").hide();
+					return;
+				}
+				// 向下箭頭顯示
+				$(".imgHelper-down").show();
+			} else if (clientY < 250) {
+				// 滾動條高度
+				var scrollTop = $(window).scrollTop();
+				// 如果滾動條已經到達頁面頂部，則關閉當前自動移動
+				if (scrollTop == 0) {
+					// 向上箭頭隱藏
+					$(".imgHelper-up").hide();
+					return;
+				}
+				// 向上箭頭顯示
+				$(".imgHelper-up").show();
+			} else {
+				// 向下箭頭隱藏
+				$(".imgHelper-down").hide();
+				// 向上箭頭隱藏
+				$(".imgHelper-up").hide();
+			}
+		},
 		// 按鍵屏蔽防止刷新頁面
 		forbidKeyDown = function () {
 			$(document).bind("keydown", function (e) {
@@ -339,10 +415,14 @@ MathSheets.Common = MathSheets.Common || (function () {
 		outHide: outHide,
 		overNavbarShow: overNavbarShow,
 		outNavbarHide: outNavbarHide,
-		totopClick: totopClick,
+		toTop: toTop,
+		toBottom: toBottom,
 		styleSelect: styleSelect,
 		styleInitialize: styleInitialize,
 		sidebarInitialize: sidebarInitialize,
+		scrollAutoUp: scrollAutoUp,
+		scrollAutoDown: scrollAutoDown,
+		scrollAutoHelper: scrollAutoHelper,
 		ready: ready,
 		windowScroll: windowScroll
 	};
@@ -369,25 +449,30 @@ $(document).ready(function () {
 	// 禁用右鍵點擊功能
 	$(document).bind("contextmenu", function (e) { return false; });
 
-	var myVar;
+	// 答題區域鼠標移動事件（用於顯示頁面自動滾動輔助按鍵）
 	$('#divContainer').bind('mousemove', function (e) {
-		if (600 < e.clientY) {
-			myVar = setInterval(function () {
-				var scrollTop = $(window).scrollTop();
-				var scrollHeight = $(document).height();
-				var windowHeight = $(window).height();
-				if (scrollTop + windowHeight == scrollHeight) {
-					clearInterval(myVar);
-				} else {
-					window.scrollTo(0, window.pageYOffset + 2);
-				}
-			}, 100);
-			//(e.clientY - 600));
-		} else if (e.clientY < 150) {
-			//window.scrollTo(0, window.pageYOffset - (150 - e.clientY));
-		} else {
-			clearInterval(myVar);
-		}
+		MathSheets.Common.scrollAutoHelper(e.clientY);
+	});
+
+	var backId;
+	// 頁面向上滾動
+	$('.imgHelper-up').bind('mouseenter', function () {
+		// TODO 使用tween.js緩動算法改善動畫效果
+		backId = setInterval(MathSheets.Common.scrollAutoUp, 100);
+	}).bind('mouseleave', function () {
+		clearInterval(backId);
+	}).bind('click', function () {
+		MathSheets.Common.toTop();
+	});
+
+	// 頁面向下滾動
+	$('.imgHelper-down').bind('mouseover', function () {
+		// TODO 使用tween.js緩動算法改善動畫效果
+		backId = setInterval(MathSheets.Common.scrollAutoDown, 100);
+	}).bind('mouseleave', function () {
+		clearInterval(backId);
+	}).bind('click', function () {
+		MathSheets.Common.toBottom();
 	});
 
 	// 鼠標移入置頂導航鍵(高亮效果)
@@ -395,7 +480,7 @@ $(document).ready(function () {
 	// 鼠標移出置頂導航鍵
 	$('.totop').bind("mouseout", function () { MathSheets.Common.outHide(this); });
 	// 點擊置頂導航鍵
-	$('.totop').bind("click", function () { MathSheets.Common.totopClick(); });
+	$('.totop').bind("click", function () { MathSheets.Common.toTop(); });
 	// 窗體滾動條事件
 	$(window).bind("scroll", function () { MathSheets.Common.windowScroll(); });
 	// 鼠標移入頁面頂端導航區域時，浮動菜單顯示

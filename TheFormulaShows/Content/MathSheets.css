@@ -89,7 +89,43 @@
 	letter-spacing: 4px;
 	top: 250px;
 	padding-right:12px;
-	z-index: 999;
+	z-index: 70;
+}
+
+.scrollHelper-up {
+	position: fixed;
+	width: 70%;
+	background-color: transparent;
+	top: 150px;
+	z-index: 80;
+}
+
+.scrollHelper-down {
+	position: fixed;
+	width: 70%;
+	background-color: transparent;
+	top: 650px;
+	z-index: 80;
+}
+
+.scrollHelper-down div.help {
+	float: right;
+}
+
+.scrollHelper-up div.help {
+	float: right;
+}
+
+.imgHelper-up {
+	width: 120px;
+	height: 120px;
+	display: none;
+}
+
+.imgHelper-down {
+	width: 120px;
+	height: 120px;
+	display: none;
 }
 
 .nav-ext{
@@ -116,7 +152,7 @@
 	right: 50px;
 	bottom: 50px;
 	display: none;
-	z-index: 999;
+	z-index: 70;
 }
 
 .plugin-butterfly {
