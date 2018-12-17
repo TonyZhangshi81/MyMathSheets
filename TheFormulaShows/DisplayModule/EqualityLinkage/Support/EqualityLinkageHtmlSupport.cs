@@ -24,6 +24,11 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 	public class EqualityLinkageHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
+		/// 標題HTML模板
+		/// </summary>
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+
+		/// <summary>
 		/// 左側計算式坐標列表（限定5個坐標）
 		/// </summary>
 		private readonly Dictionary<DivQueueType, List<string>> LeftFormulasArray;
@@ -108,7 +113,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 			html.AppendLine(string.Format("<img id=\"imgNoEqualityLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "NoEqualityLinkage-lengthways" : "NoEqualityLinkage-crosswise"));
 			html.AppendLine("</div>");
 
-			html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">算式連一連</span></h4></div><hr />");
+			html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.EqualityLinkage.ToString(), "算式連一連"));
 
 			return html.ToString();
 		}

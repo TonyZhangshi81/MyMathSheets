@@ -12,7 +12,7 @@ using System.Text;
 namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 {
 	/// <summary>
-	/// 
+	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.ScoreGoal)]
 	[Substitute("<!--SCOREGOALSTYLESHEET-->", "<link href=\"../Content/ScoreGoal.css\" rel=\"stylesheet\" type=\"text/css\" />")]
@@ -22,6 +22,11 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 	[Substitute("//<!--SCOREGOALTHEIRPAPERS-->", "MathSheets.ScoreGoal.theirPapers();")]
 	public class ScoreGoalHtmlSupport : HtmlSupportBase
 	{
+		/// <summary>
+		/// 標題HTML模板
+		/// </summary>
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+
 		/// <summary>
 		/// 球類列表
 		/// </summary>
@@ -134,7 +139,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">射門得分</span></h4></div><hr />");
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.ScoreGoal.ToString(), "射門得分"));
 			}
 			return html.ToString();
 		}

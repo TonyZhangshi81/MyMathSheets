@@ -24,6 +24,11 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 	public class CombinatorialEquationHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
+		/// 標題HTML模板
+		/// </summary>
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+
+		/// <summary>
 		/// 算式組合HTML作成
 		/// </summary>
 		/// <param name="parameter">相關計算式</param>
@@ -95,7 +100,7 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">算式組合</span></h4></div><hr />");
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CombinatorialEquation.ToString(), "算式組合"));
 			}
 
 			return html.ToString();

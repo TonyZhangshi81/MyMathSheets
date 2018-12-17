@@ -233,10 +233,6 @@
 	</div>
 	<div class="bs-docs-sidebar" id="divSidebar">
 		<ul class="nav nav-ext">
-			<li><a href="#divContainer">主題</a></li>
-			<li><a href="#one">算數應用題</a></li>
-			<li><a href="#two">水果連連看</a></li>
-			<li><a href="#three">找出最近的數字</a></li>
 		</ul>
 	</div>
 	<div class="container theme-showcase main-ext" role="main" id="divContainer">

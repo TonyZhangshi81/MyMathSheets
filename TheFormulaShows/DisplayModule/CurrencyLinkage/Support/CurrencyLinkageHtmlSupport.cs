@@ -24,6 +24,11 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 	public class CurrencyLinkageHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
+		/// 標題HTML模板
+		/// </summary>
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+
+		/// <summary>
 		/// 商品圖片列表
 		/// </summary>
 		private readonly List<Shop> ShopsArray;
@@ -135,7 +140,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 			html.AppendLine(string.Format("<img id=\"imgNoCurrencyLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" />", p.QueueType == DivQueueType.Lengthways ? "NoCurrencyLinkage-lengthways" : "NoCurrencyLinkage-crosswise"));
 			html.AppendLine("</div>");
 
-			html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">認識價格</span></h4></div><hr />");
+			html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CurrencyLinkage.ToString(), "認識價格"));
 
 			return html.ToString();
 		}

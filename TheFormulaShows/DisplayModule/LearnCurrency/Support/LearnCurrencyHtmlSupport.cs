@@ -20,6 +20,11 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 	[Substitute("//<!--LEARNCURRENCYPRINTAFTERSETTING-->", "MathSheets.LearnCurrency.printAfterSetting();")]
 	public class LearnCurrencyHtmlSupport : HtmlSupportBase
 	{
+		/// <summary>
+		/// 標題HTML模板
+		/// </summary>
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+
 		private const string INPUT_HTML_FORMAT = "<input id=\"inputLc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 60px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
 		private const string YUANUNIT_HTML = "<span class=\"label p-2\">元</span>";
 		private const string JIAOUNIT_HTML = "<span class=\"label p-2\">角</span>";
@@ -97,7 +102,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 			if (html.Length != 0)
 			{
 				// 題型標題
-				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">認識貨幣</span></h4></div><hr />");
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.LearnCurrency.ToString(), "認識貨幣"));
 			}
 
 			return html.ToString();

@@ -22,6 +22,11 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 	public class SchoolClockHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
+		/// 標題HTML模板
+		/// </summary>
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+
+		/// <summary>
 		/// 時鐘答題輸出區域HTML作成
 		/// </summary>
 		private const string INPUT_HTML_FORMAT = "<input id=\"inputClock{0}{1}\" type=\"text\" placeholder=\"{2}\" class=\"form-control input-addBorder {3}\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
@@ -33,10 +38,10 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 		private const string TOOLTIP_HTML_FORMAT = "<img src=\"../Content/image/clock/{0}.png\" style=\"width: 30px; height: 30px;\" data-toggle=\"tooltip\" title=\"{1}\" />";
 
 		/// <summary>
-		/// 
+		/// 題型HTML模板作成
 		/// </summary>
-		/// <param name="parameter"></param>
-		/// <returns></returns>
+		/// <param name="parameter">題型參數</param>
+		/// <returns>題型HTML模板信息</returns>
 		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			SchoolClockParameter p = parameter as SchoolClockParameter;
@@ -99,7 +104,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 			{
 				clocksAnswer.Length -= 1;
 				html.AppendLine(string.Format("<input type=\"hidden\" id=\"hidClocksAnswer\" value=\"{0}\" />", clocksAnswer.ToString()));
-				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">時鐘學習板</span></h4></div><hr />");
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.SchoolClock.ToString(), "時鐘學習板"));
 			}
 
 			return html.ToString();

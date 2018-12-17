@@ -21,6 +21,11 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 	public class CurrencyOperationHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
+		/// 標題HTML模板
+		/// </summary>
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+
+		/// <summary>
 		/// 輸入項目HTML模板
 		/// </summary>
 		private const string INPUT_HTML_FORMAT = "<input id=\"inputCo{0}L{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
@@ -133,7 +138,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">貨幣運算</span></h4></div><hr />");
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CurrencyOperation.ToString(), "貨幣運算"));
 			}
 
 			return html.ToString();

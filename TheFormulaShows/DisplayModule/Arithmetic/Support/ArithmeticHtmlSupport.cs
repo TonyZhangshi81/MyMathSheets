@@ -9,7 +9,7 @@ using System.Text;
 namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 {
 	/// <summary>
-	/// 
+	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.Arithmetic)]
 	[Substitute("<!--ARITHMETICSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.Arithmetic.js\" charset=\"utf-8\"></script>")]
@@ -21,10 +21,15 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 	public class ArithmeticHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
-		/// 
+		/// 標題HTML模板
 		/// </summary>
-		/// <param name="parameter"></param>
-		/// <returns></returns>
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+
+		/// <summary>
+		/// 題型HTML模板作成
+		/// </summary>
+		/// <param name="parameter">題型參數</param>
+		/// <returns>題型HTML模板信息</returns>
 		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			ArithmeticParameter p = parameter as ArithmeticParameter;
@@ -99,7 +104,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">四則運算</span></h4></div><hr />");
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.Arithmetic.ToString(), "四則運算"));
 			}
 
 			return html.ToString();

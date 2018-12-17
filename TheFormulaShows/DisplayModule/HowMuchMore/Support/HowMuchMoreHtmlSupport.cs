@@ -24,6 +24,11 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 	public class HowMuchMoreHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
+		/// 標題HTML模板
+		/// </summary>
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+
+		/// <summary>
 		/// 可選圖片列表
 		/// </summary>
 		private List<HowMuchMoreType> _moreTypeArray;
@@ -144,7 +149,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 			{
 				StringBuilder head = new StringBuilder();
 				// 題目標題顯示
-				head.AppendLine("<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">比多少</span></h4></div><hr />");
+				head.AppendLine(string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.HowMuchMore.ToString(), "比多少"));
 				// 答案項目
 				_gapFillingItems.Length -= 1;
 				head.AppendLine(string.Format("<input type=\"hidden\" id=\"hidImgHmmHelpArray\" value=\"{0}\" />", _gapFillingItems.ToString()));

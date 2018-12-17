@@ -9,7 +9,7 @@ using System.Text;
 namespace MyMathSheets.TheFormulaShows.FindNearestNumber.Support
 {
 	/// <summary>
-	/// 
+	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.FindNearestNumber)]
 	[Substitute("<!--FINDNEARESTNUMBERSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.FindNearestNumber.js\" charset=\"utf-8\"></script>")]
@@ -21,10 +21,15 @@ namespace MyMathSheets.TheFormulaShows.FindNearestNumber.Support
 	public class FindNearestNumberHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
-		/// 
+		/// 標題HTML模板
 		/// </summary>
-		/// <param name="parameter"></param>
-		/// <returns></returns>
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+
+		/// <summary>
+		/// 題型HTML模板作成
+		/// </summary>
+		/// <param name="parameter">題型參數</param>
+		/// <returns>題型HTML模板信息</returns>
 		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			FindNearestNumberParameter p = parameter as FindNearestNumberParameter;
@@ -89,7 +94,7 @@ namespace MyMathSheets.TheFormulaShows.FindNearestNumber.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">找出最近的數字</span></h4></div><hr />");
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.FindNearestNumber.ToString(), "找出最近的數字"));
 			}
 
 			return html.ToString();

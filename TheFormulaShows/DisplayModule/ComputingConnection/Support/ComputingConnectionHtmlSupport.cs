@@ -10,7 +10,7 @@ using System.Text;
 namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 {
 	/// <summary>
-	/// 
+	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.ComputingConnection)]
 	[Substitute("<!--COMPUTINGCONNECTIONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.ComputingConnection.js\" charset=\"utf-8\"></script>")]
@@ -22,10 +22,15 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 	public class ComputingConnectionHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
-		/// 
+		/// 標題HTML模板
 		/// </summary>
-		/// <param name="parameter"></param>
-		/// <returns></returns>
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+
+		/// <summary>
+		/// 題型HTML模板作成
+		/// </summary>
+		/// <param name="parameter">題型參數</param>
+		/// <returns>題型HTML模板信息</returns>
 		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			ComputingConnectionParameter p = parameter as ComputingConnectionParameter;
@@ -73,7 +78,7 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, "<br/><div class=\"page-header\"><h4><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">等式接龍</span></h4></div><hr />");
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.ComputingConnection.ToString(), "等式接龍"));
 			}
 			return html.ToString();
 		}
