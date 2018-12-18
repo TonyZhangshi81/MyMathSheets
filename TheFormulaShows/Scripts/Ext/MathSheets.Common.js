@@ -10,6 +10,10 @@ var __isStop = false;
 var __isRight = 0;
 // 答錯數量
 var __isFault = 0;
+// 所有可輸入項目的集合
+var __allInputElementArray = new Array();
+// 錯題集
+var __allFaultInputElementArray = new Array();
 
 var MathSheets = MathSheets || {};
 MathSheets.Common = MathSheets.Common || (function () {
@@ -38,7 +42,6 @@ MathSheets.Common = MathSheets.Common || (function () {
 			$(_getId(btnReadyId)).hide();
 			// 打印按鈕隱藏
 			$(_getId(btnPrintId)).hide();
-			_setAward(10);
 		},
 
 		// 頁面答應處理
@@ -126,6 +129,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 			if (fault != 0) {
 				// 存在:訂正按鈕顯示
 				$(_getId(btnMakeCorrectionsId)).show();
+				// 錯題項目獲得光標并選中
+				_faultInputElement();
 			} else {
 				// 不存在：訂正按鈕隱藏，完成按鈕顯示
 				$(_getId(btnMakeCorrectionsId)).hide();
@@ -171,8 +176,30 @@ MathSheets.Common = MathSheets.Common || (function () {
 				$(element).unbind('mouseleave');
 				$(element).unbind('click touchstart');
 			});
+			// 錯題項目獲得光標并選中
+			_faultInputElement();
 			// 如果答題滿分的話則顯示獎章
 			_setAward(score);
+		},
+
+		// 錯題項目獲得光標并選中
+		_faultInputElement = function () {
+			if (__allFaultInputElementArray.length != 0) {
+				setTimeout(function () {
+					_setLocation(__allFaultInputElementArray[0]);
+					__allFaultInputElementArray.length = 0;
+				}, 1000);
+			}
+		},
+
+		// 頁面滾動條移動至指定位置
+		_setLocation = function (faultItem) {
+			// 設置滾動高度
+			$('html,body').animate({
+				scrollTop: $(_getId(faultItem.position)).offset().top
+			}, 1500, "easeOutQuint", function () {
+				$(_getId(faultItem.id)).select();
+			});
 		},
 
 		// 顯示獎章
@@ -243,7 +270,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 				setTimeout(function () {
 					$('.totop').hide(400);
 					// 待導航鍵隱藏后回復窗體滾動條事件
-					$(window).bind("scroll", function () { MathSheets.Common.windowScroll(); });
+					$(window).bind("scroll", function () { windowScroll(); });
 				}, 500);
 			});
 		},

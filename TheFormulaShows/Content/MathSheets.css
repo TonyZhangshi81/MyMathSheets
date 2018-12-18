@@ -84,27 +84,30 @@
 
 .bs-docs-sidebar {
 	position: fixed;
-	width: 100%;
+	/*width: 100%;*/
+	left: 130vh;
 	background-color: transparent;
 	letter-spacing: 4px;
 	top: 250px;
-	padding-right:12px;
+	padding-right: 12px;
 	z-index: 70;
 }
 
 .scrollHelper-up {
 	position: fixed;
-	width: 90%;
+	/*width: 90%;*/
 	background-color: transparent;
 	top: 10vh;
+	left: 100vh;
 	z-index: 80;
 }
 
 .scrollHelper-down {
 	position: fixed;
-	width: 90%;
+	/*width: 90%;*/
 	background-color: transparent;
 	top: 60vh;
+	left: 100vh;
 	z-index: 80;
 }
 
