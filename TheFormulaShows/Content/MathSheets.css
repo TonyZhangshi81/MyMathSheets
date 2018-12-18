@@ -85,7 +85,7 @@
 .bs-docs-sidebar {
 	position: fixed;
 	/*width: 100%;*/
-	left: 130vh;
+	right: 0px;
 	background-color: transparent;
 	letter-spacing: 4px;
 	top: 250px;
@@ -97,8 +97,8 @@
 	position: fixed;
 	/*width: 90%;*/
 	background-color: transparent;
-	top: 10vh;
-	left: 100vh;
+	top: 100px;
+	right: 150px;
 	z-index: 80;
 }
 
@@ -106,8 +106,8 @@
 	position: fixed;
 	/*width: 90%;*/
 	background-color: transparent;
-	top: 60vh;
-	left: 100vh;
+	bottom: 100px;
+	right: 150px;
 	z-index: 80;
 }
 
@@ -151,7 +151,7 @@
 
 .nav-ext{
 	display: unset;
-	float: right;
+	
 }
 
 .bs-docs-sidebar ul li {
