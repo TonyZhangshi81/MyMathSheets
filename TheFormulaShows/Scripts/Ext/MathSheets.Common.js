@@ -38,6 +38,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 			$(_getId(btnReadyId)).hide();
 			// 打印按鈕隱藏
 			$(_getId(btnPrintId)).hide();
+			_setAward(10);
 		},
 
 		// 頁面答應處理
@@ -171,12 +172,31 @@ MathSheets.Common = MathSheets.Common || (function () {
 				$(element).unbind('click touchstart');
 			});
 			// 如果答題滿分的話則顯示獎章
-			if (score == 10) {
-				// 置頂處理
-				toTop();
+			_setAward(score);
+		},
+
+		// 顯示獎章
+		_setAward = function (score) {
+			// 如果答題滿分的話則顯示獎章
+			if (score != 10) {
+				return;
+			}
+
+			// 置頂處理
+			toTop();
+			// 精彩瞬間應該先等上4秒鐘 :-!
+			setTimeout(function () {
+				// 隨機設定獎章
+				var path = String.format("../Content/image/honor/award{0}.png", _getRandom(4));
+				$(".imgAward").attr('src', path);
 				// 顯示獎章 :-)
 				$(".imgAward").fadeIn(5000);
-			}
+			}, 2000);
+		},
+
+		// 隨機數取得
+		_getRandom = function (n) {
+			return Math.floor(Math.random() * n + 1);
 		},
 
 		// 計時停止（答題結果設定）
@@ -561,4 +581,17 @@ Array.prototype.remove = function (val) {
 	if (index > -1) {
 		this.splice(index, 1);
 	}
+}
+
+
+String.format = function () {
+	if (arguments.length == 0) {
+		return "";
+	}
+	var str = arguments[0];
+	for (var i = 1; i < arguments.length; i++) {
+		var re = new RegExp('\\{' + (i - 1) + '\\}', 'gm');
+		str = str.replace(re, arguments[i]);
+	}
+	return str;
 }
