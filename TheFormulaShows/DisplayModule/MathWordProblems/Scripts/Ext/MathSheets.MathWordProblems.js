@@ -97,6 +97,8 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 
 			// 验证输入值是否与答案一致
 			if (_isExist(index, result)) {
+				// 动错题集中移除当前项目
+				__allFaultInputElementArray.remove({ position: "mathSheetMathWordProblems", id: ('inputMwp' + index + '0') });
 				// 对错图片显示和隐藏
 				$('#imgOKProblems' + index).show();
 				$('#imgNoProblems' + index).hide();
@@ -108,6 +110,8 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 				// 正确:true
 				return true;
 			} else {
+				// 收集所有錯題項目ID
+				__allFaultInputElementArray.push({ position: "mathSheetMathWordProblems", id: ('inputMwp' + index + '0') });
 				// 对错图片显示和隐藏
 				$('#imgOKProblems' + index).hide();
 				$('#imgNoProblems' + index).show();
@@ -154,6 +158,8 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 		// 设定页面所有输入域为可用状态(算式应用题)
 		ready = function () {
 			$("input[id*='inputMwp']").each(function (index, element) {
+				// 收集所有可輸入項目ID
+				__allInputElementArray.push({ position: "mathSheetMathWordProblems", id: $(element).attr("id") });
 				$(element).removeAttr("disabled");
 			});
 			$("img[id*='imgMwp']").each(function (index, element) {

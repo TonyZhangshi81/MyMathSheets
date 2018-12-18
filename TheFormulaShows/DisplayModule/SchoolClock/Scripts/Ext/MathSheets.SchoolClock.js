@@ -41,6 +41,8 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 
 			// 验证输入值是否与答案一致
 			if (parseInt(hms[0]) == hours && parseInt(hms[1]) == minutes && parseInt(hms[2]) == seconds) {
+				// 动错题集中移除当前项目
+				__allFaultInputElementArray.remove({ position: "mathSheetSchoolClock", id: ("inputClockH" + index) });
 				// 对错图片显示和隐藏
 				$('#imgOKSchoolClock' + index).show();
 				$('#imgNoSchoolClock' + index).hide();
@@ -53,6 +55,8 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 				// 正确:true
 				return true;
 			} else {
+				// 收集所有錯題項目ID
+				__allFaultInputElementArray.push({ position: "mathSheetSchoolClock", id: ("inputClockH" + index) });
 				// 对错图片显示和隐藏
 				$('#imgOKSchoolClock' + index).hide();
 				$('#imgNoSchoolClock' + index).show();
@@ -86,6 +90,8 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 			});
 
 			$("input[id*='inputClock']").each(function (index, element) {
+				// 收集所有可輸入項目ID
+				__allInputElementArray.push({ position: "mathSheetSchoolClock", id: $(element).attr("id") });
 				$(element).removeAttr("disabled");
 			});
 		},

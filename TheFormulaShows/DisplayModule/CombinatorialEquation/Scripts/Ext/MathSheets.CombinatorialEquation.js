@@ -60,6 +60,8 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 
 			// 验证输入值是否与答案一致
 			if (answers.length == 0) {
+				// 动错题集中移除当前项目
+				__allFaultInputElementArray.remove({ position: "mathSheetCombinatorialEquation", id: ('inputCe' + index + 'L0') });
 				// 对错图片显示和隐藏
 				$('#imgOKCombinatorial' + index).show();
 				$('#imgNoCombinatorial' + index).hide();
@@ -69,6 +71,8 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 				// 正确:true
 				return true;
 			} else {
+				// 收集所有錯題項目ID
+				__allFaultInputElementArray.push({ position: "mathSheetCombinatorialEquation", id: ('inputCe' + index + 'L0') });
 				// 对错图片显示和隐藏
 				$('#imgOKCombinatorial' + index).hide();
 				$('#imgNoCombinatorial' + index).show();
@@ -124,6 +128,8 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 		// 设定页面所有输入域为可用状态(算式組合)
 		ready = function () {
 			$("input[id*='inputCe']").each(function (index, element) {
+				// 收集所有可輸入項目ID
+				__allInputElementArray.push({ position: "mathSheetCombinatorialEquation", id: $(element).attr("id") });
 				$(element).removeAttr("disabled");
 			});
 

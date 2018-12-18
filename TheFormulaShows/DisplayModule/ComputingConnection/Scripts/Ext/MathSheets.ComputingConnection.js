@@ -17,6 +17,8 @@ MathSheets.ComputingConnection = MathSheets.ComputingConnection || (function () 
 
 		// 不存在错误的情况下
 		if (!isErr) {
+			// 动错题集中移除当前项目
+			__allFaultInputElementArray.remove({ position: "mathSheetComputingConnection", id: $(inputCcArray[0]).attr("id") });
 			// 对错图片显示和隐藏
 			$('#imgOKComputingConnection' + pIndex).show();
 			$('#imgNoComputingConnection' + pIndex).hide();
@@ -29,6 +31,8 @@ MathSheets.ComputingConnection = MathSheets.ComputingConnection || (function () 
 			// 正确:true
 			return true;
 		} else {
+			// 收集所有錯題項目ID
+			__allFaultInputElementArray.push({ position: "mathSheetComputingConnection", id: $(inputCcArray[0]).attr("id") });
 			// 对错图片显示和隐藏
 			$('#imgOKComputingConnection' + pIndex).hide();
 			$('#imgNoComputingConnection' + pIndex).show();
@@ -67,6 +71,8 @@ MathSheets.ComputingConnection = MathSheets.ComputingConnection || (function () 
 		// 设定页面所有输入域为可用状态(等式接龙)
 		ready = function () {
 			$("input[id*='inputCc']").each(function (index, element) {
+				// 收集所有可輸入項目ID
+				__allInputElementArray.push({ position: "mathSheetComputingConnection", id: $(element).attr("id") });
 				$(element).removeAttr("disabled");
 			});
 		},

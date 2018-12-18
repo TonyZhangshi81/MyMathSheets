@@ -132,20 +132,38 @@ MathSheets.FruitsLinkage = MathSheets.FruitsLinkage || (function () {
 					fault++;
 				}
 			});
+			// 错题集設定
+			_setFaultInputElementArray(fault);
 			return fault;
+		},
+
+		// 错题集設定
+		_setFaultInputElementArray = function (fault) {
+			// 有錯題的情況
+			if (fault != 0) {
+				// 错题集中移除当前项目
+				__allFaultInputElementArray.remove({ position: "mathSheetFruitsLinkage", id: null });
+			} else {
+				// 收集所有錯題項目ID
+				__allFaultInputElementArray.push({ position: "mathSheetFruitsLinkage", id: null });
+			}
 		},
 
 		// 水果連連看交卷
 		theirPapers = function () {
+			var fault = 0;
 			$("div[id*='divFruitDrag']").each(function (index, element) {
 				// 答题验证
 				if (!_fruitsLinkageCorrecting(index, element)) {
 					// 答题错误时,错误件数加一
 					__isFault++;
+					fault++;
 				} else {
 					__isRight++;
 				}
 			});
+			// 错题集設定
+			_setFaultInputElementArray(fault);
 		};
 
 	return {

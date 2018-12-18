@@ -28,6 +28,8 @@ MathSheets.EqualityComparison = MathSheets.EqualityComparison || (function () {
 		_equalityComparisonCorrecting = function (index, element) {
 			// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
 			if ($(element).attr("title") == $('#hiddenEc' + index).val()) {
+				// 动错题集中移除当前项目
+				__allFaultInputElementArray.remove({ position: "mathSheetEqualityComparison", id: $(element).attr("id") });
 				// 对错图片显示和隐藏
 				$('#imgOKEquality' + index).show();
 				$('#imgNoEquality' + index).hide();
@@ -37,6 +39,8 @@ MathSheets.EqualityComparison = MathSheets.EqualityComparison || (function () {
 				// 正确:true
 				return true;
 			} else {
+				// 收集所有錯題項目ID
+				__allFaultInputElementArray.push({ position: "mathSheetEqualityComparison", id: $(element).attr("id") });
 				// 对错图片显示和隐藏
 				$('#imgOKEquality' + index).hide();
 				$('#imgNoEquality' + index).show();

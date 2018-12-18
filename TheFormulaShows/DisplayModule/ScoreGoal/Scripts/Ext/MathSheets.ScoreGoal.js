@@ -150,26 +150,7 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 			});
 
 			// 验证输入值是否与答案一致
-			if (fault == 0) {
-				// 对错图片显示和隐藏
-				$('#imgOKScoreGoal').show();
-				$('#imgNoScoreGoal').hide();
-				// 移除圖片抖動特效
-				$('#imgNoScoreGoal').removeClass("shake shake-slow");
-			} else {
-				// 对错图片显示和隐藏
-				$('#imgOKScoreGoal').hide();
-				$('#imgNoScoreGoal').show();
-				$('#imgNoScoreGoal').animate({
-					width: "60px",
-					height: "60px",
-					marginLeft: "0px",
-					marginTop: "0px"
-				}, 1000, function () {
-					// 添加圖片抖動特效（只針對錯題）
-					$(this).addClass("shake shake-slow");
-				});
-			}
+			_arithmeticCorrecting(fault);
 
 			return fault;
 		},
@@ -187,15 +168,26 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 					__isRight++;
 				}
 			});
+			// 验证输入值是否与答案一致
+			_arithmeticCorrecting(fault);
+		},
 
+		// 验证输入值是否与答案一致
+		_arithmeticCorrecting = function (fault) {
 			// 验证输入值是否与答案一致
 			if (fault == 0) {
+				// 动错题集中移除当前项目
+				__allFaultInputElementArray.remove({ position: "mathSheetScoreGoal", id: null });
+
 				// 对错图片显示和隐藏
 				$('#imgOKScoreGoal').show();
 				$('#imgNoScoreGoal').hide();
 				// 移除圖片抖動特效
 				$('#imgNoScoreGoal').removeClass("shake shake-slow");
 			} else {
+				// 收集所有錯題項目ID
+				__allFaultInputElementArray.push({ position: "mathSheetScoreGoal", id: null });
+
 				// 对错图片显示和隐藏
 				$('#imgOKScoreGoal').hide();
 				$('#imgNoScoreGoal').show();

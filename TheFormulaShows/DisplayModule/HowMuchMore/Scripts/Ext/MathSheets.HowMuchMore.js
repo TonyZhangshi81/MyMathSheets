@@ -54,6 +54,8 @@ MathSheets.HowMuchMore = MathSheets.HowMuchMore || (function () {
 		var answer = parseInt($(pElement).val());
 		// 验证输入值是否与答案一致
 		if (answer == isTrue){
+			// 动错题集中移除当前项目
+			__allFaultInputElementArray.remove({ position: "mathHowMuchMore", id: null });
 			// 对错图片显示和隐藏
 			$('#imgOKHmm' + pIndex).show();
 			$('#imgNoHmm' + pIndex).hide();
@@ -65,6 +67,8 @@ MathSheets.HowMuchMore = MathSheets.HowMuchMore || (function () {
 			// 正确:true
 			return true;
 		}else{
+			// 收集所有錯題項目ID
+			__allFaultInputElementArray.push({ position: "mathHowMuchMore", id: null });
 			// 对错图片显示和隐藏
 			$('#imgOKHmm' + pIndex).hide();
 			$('#imgNoHmm' + pIndex).show();

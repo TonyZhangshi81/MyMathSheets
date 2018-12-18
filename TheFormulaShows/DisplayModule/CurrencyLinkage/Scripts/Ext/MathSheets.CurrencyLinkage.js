@@ -53,6 +53,8 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 
 			// 验证输入值是否与答案一致
 			if (isRight) {
+				// 动错题集中移除当前项目
+				__allFaultInputElementArray.remove({ position: "mathSheetCurrencyLinkage", id: null });
 				// 对错图片显示和隐藏
 				$('#imgOKCurrencyLinkage').show();
 				$('#imgNoCurrencyLinkage').hide();
@@ -65,6 +67,8 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 				// 正确:true
 				return true;
 			} else {
+				// 收集所有錯題項目ID
+				__allFaultInputElementArray.push({ position: "mathSheetCurrencyLinkage", id: null });
 				// 对错图片显示和隐藏
 				$('#imgOKCurrencyLinkage').hide();
 				$('#imgNoCurrencyLinkage').show();

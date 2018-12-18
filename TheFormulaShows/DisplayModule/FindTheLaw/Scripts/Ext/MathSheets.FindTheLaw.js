@@ -37,6 +37,8 @@ MathSheets.FindTheLaw = MathSheets.FindTheLaw || (function () {
 			});
 			// 如果不存在错误
 			if (right) {
+				// 动错题集中移除当前项目
+				__allFaultInputElementArray.remove({ position: "mathSheetFindTheLaw", id: $(inputAry[0]).attr("id") });
 				// 对错图片显示和隐藏
 				$('#imgOKFindTheLaw' + pindex).show();
 				$('#imgNoFindTheLaw' + pindex).hide();
@@ -46,6 +48,8 @@ MathSheets.FindTheLaw = MathSheets.FindTheLaw || (function () {
 				// 正确:true
 				return true;
 			} else {
+				// 收集所有錯題項目ID
+				__allFaultInputElementArray.push({ position: "mathSheetFindTheLaw", id: $(inputAry[0]).attr("id") });
 				// 对错图片显示和隐藏
 				$('#imgOKFindTheLaw' + pindex).hide();
 				$('#imgNoFindTheLaw' + pindex).show();
@@ -66,6 +70,8 @@ MathSheets.FindTheLaw = MathSheets.FindTheLaw || (function () {
 		// 设定页面所有输入域为可用状态(找規律)
 		ready = function () {
 			$("input[id*='inputFtl']").each(function (index, element) {
+				// 收集所有可輸入項目ID
+				__allInputElementArray.push({ position: "mathSheetFindTheLaw", id: $(element).attr("id") });
 				$(element).removeAttr("disabled");
 			});
 		},

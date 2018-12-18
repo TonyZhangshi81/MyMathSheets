@@ -201,7 +201,10 @@ MathSheets.Common = MathSheets.Common || (function () {
 			$('html,body').animate({
 				scrollTop: $(_getId(faultItem.position)).offset().top
 			}, 1500, "easeOutQuint", function () {
-				$(_getId(faultItem.id)).select();
+				// 高亮選中當前輸入框
+				if (faultItem.id != null) {
+					$(_getId(faultItem.id)).select();
+				}
 			});
 		},
 

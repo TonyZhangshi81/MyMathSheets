@@ -38,6 +38,8 @@ MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
 
 			// 验证输入值是否与答案一致
 			if (isRight) {
+				// 动错题集中移除当前项目
+				__allFaultInputElementArray.remove({ position: "mathSheetCurrencyOperation", id: $(inputAry[0]).attr("id") });
 				// 对错图片显示和隐藏
 				$('#imgOKCurrencyOperation' + pIndex).show();
 				$('#imgNoCurrencyOperation' + pIndex).hide();
@@ -48,6 +50,8 @@ MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
 				// 正确:true
 				return true;
 			} else {
+				// 收集所有錯題項目ID
+				__allFaultInputElementArray.push({ position: "mathSheetCurrencyOperation", id: $(inputAry[0]).attr("id") });
 				// 对错图片显示和隐藏
 				$('#imgOKCurrencyOperation' + pIndex).hide();
 				$('#imgNoCurrencyOperation' + pIndex).show();
@@ -68,6 +72,8 @@ MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
 		// 设定页面所有输入域为可用状态(貨幣運算)
 		ready = function () {
 			$("input[id*='inputCo']").each(function (index, element) {
+				// 收集所有可輸入項目ID
+				__allInputElementArray.push({ position: "mathSheetCurrencyOperation", id: $(element).attr("id") });
 				$(element).removeAttr("disabled");
 			});
 		},
