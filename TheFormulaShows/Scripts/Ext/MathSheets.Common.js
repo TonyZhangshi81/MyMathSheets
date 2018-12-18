@@ -31,6 +31,9 @@ MathSheets.Common = MathSheets.Common || (function () {
 
 		// 頁面關閉
 		windowClose = function () {
+			// window.close();
+			//open(location, '_self').close();
+			window.location.href = "about:blank";
 			window.close();
 		},
 
@@ -346,9 +349,11 @@ MathSheets.Common = MathSheets.Common || (function () {
 			});
 
 			$("ul[class='nav nav-ext']").prepend(html);
+			/*
 			if ($("div[id='divSidebar']").find("li").length < 4) {
 				$("div[id='divSidebar']").hide();
 			}
+			*/
 		},
 
 		// 頁面向下滾動
@@ -510,10 +515,13 @@ $(document).ready(function () {
 	// 禁用右鍵點擊功能
 	$(document).bind("contextmenu", function (e) { return false; });
 
-	// 答題區域鼠標移動事件（用於顯示頁面自動滾動輔助按鍵）
-	$('#divContainer').bind('mouseover', function (e) {
-		MathSheets.Common.scrollAutoHelper(e.clientY);
-	});
+	// 當頁面超長時顯示輔助滾輪
+	if ($(document).height() > 2000) {
+		// 答題區域鼠標移動事件（用於顯示頁面自動滾動輔助按鍵）
+		$('#divContainer').bind('mouseover', function (e) {
+			MathSheets.Common.scrollAutoHelper(e.clientY);
+		});
+	}
 
 	var backId;
 	// 頁面向上滾動

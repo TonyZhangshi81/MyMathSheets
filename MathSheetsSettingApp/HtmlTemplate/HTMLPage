@@ -235,6 +235,9 @@
 		<ul class="nav nav-ext">
 		</ul>
 	</div>
+	<div class="honorArea">
+		<img src="" class="imgAward" />
+	</div>
 	<div class="scrollHelper-up">
 		<div class="help">
 			<img id="imgUp" src="../Content/image/up.png" class="imgHelper-up" />
