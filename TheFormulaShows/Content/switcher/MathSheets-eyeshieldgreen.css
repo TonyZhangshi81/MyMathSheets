@@ -2,5 +2,17 @@
 @import url(MathSheets.css);
 
 .body-main {
+	background-color: lightgreen;
+}
+
+.main-ext {
 	background-color: #C7EDCC;
+	border-radius: 0.8rem;
+	-webkit-box-shadow: 0 0 15px;
+}
+
+.list-group-ext .list-group-item {
+	padding: unset;
+	border: unset;
+	background-color: transparent;
 }

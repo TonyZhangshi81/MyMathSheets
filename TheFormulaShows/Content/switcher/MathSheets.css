@@ -4,6 +4,12 @@
 	background-color: lemonchiffon;
 }
 
+.main-ext {
+	background-color: aliceblue;
+	border-radius: 0.8rem;
+	-webkit-box-shadow: 0 0 15px;
+}
+
 .totop {
 	width: 60px;
 	height: 60px;

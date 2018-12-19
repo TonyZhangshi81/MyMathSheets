@@ -396,7 +396,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 			// 窗體顯示的高度
 			var windowHeight = $(window).height();
 			// 指定區域內顯示顯示
-			if (clientY > (windowHeight * 0.7)) {
+			if (clientY > (windowHeight * 0.8 - 120)) {
 				// 滾動條高度
 				var scrollTop = $(window).scrollTop();
 				// 頁面總高度
@@ -411,7 +411,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 				$(".imgHelper-down").show();
 				// 向上箭頭隱藏
 				$(".imgHelper-up").hide();
-			} else if (clientY < 220) {
+			} else if (clientY < (windowHeight * 0.2 + 120)) {
 				// 滾動條高度
 				var scrollTop = $(window).scrollTop();
 				// 如果滾動條已經到達頁面頂部，則關閉當前自動移動
