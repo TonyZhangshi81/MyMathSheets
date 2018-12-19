@@ -1,19 +1,21 @@
-﻿
+﻿@charset "utf-8";
+
+
 @media screen and (min-width: 1200px) {
 	.container {
-		max-width: 980px!important;
+		max-width: 980px !important;
 	}
 }
 
 .body-main {
-	background-color: lemonchiffon;
+	background-color: wheat;
 }
 
 .div-company {
 	text-align: right;
 	font-family: inherit;
 	font-size: xx-small;
-	margin-top:30px;
+	margin-top: 30px;
 }
 
 .box {
@@ -37,7 +39,7 @@
 
 .box-content {
 	position: relative;
-	width: 18%;
+	width: 22%;
 	float: right;
 	margin-right: 35px;
 	height: 45px;
@@ -47,20 +49,20 @@
 }
 
 .navbar-ext {
-	justify-content: flex-end!important;
+	justify-content: flex-end !important;
 }
 
-.switcher{
-	padding:12px 12px 12px 12px;
-	margin-top:0px;
+.switcher {
+	padding: 12px 12px 12px 12px;
+	margin-top: 0px;
 	margin-bottom: 25px;
-	max-height:30px;
-	min-height:30px;
-	width:100%;
+	max-height: 30px;
+	min-height: 30px;
+	width: 100%;
 }
 
 .close-ext {
-	padding: 6px 12px 12px 30px;
+	padding: 8px 12px 12px 30px;
 	float: right;
 }
 
@@ -84,30 +86,27 @@
 
 .bs-docs-sidebar {
 	position: fixed;
-	/*width: 100%;*/
-	left: 130vh;
+	right: 0px;
 	background-color: transparent;
 	letter-spacing: 4px;
 	top: 250px;
-	padding-right: 12px;
+	padding-right: 15px;
 	z-index: 70;
 }
 
 .scrollHelper-up {
 	position: fixed;
-	/*width: 90%;*/
 	background-color: transparent;
-	top: 10vh;
+	/*top: 220px;*/
 	left: 100vh;
 	z-index: 80;
 }
 
 .scrollHelper-down {
 	position: fixed;
-	/*width: 90%;*/
 	background-color: transparent;
-	top: 60vh;
 	left: 100vh;
+	bottom: 120px;
 	z-index: 80;
 }
 
@@ -126,9 +125,9 @@
 	left: 920px;
 	z-index: 90;
 	transform: rotate(17.5deg);
-	-o-transform:rotate(17.5deg);
-	-webkit-transform:rotate(17.5deg);
-	-moz-transform:rotate(17.5deg);
+	-o-transform: rotate(17.5deg);
+	-webkit-transform: rotate(17.5deg);
+	-moz-transform: rotate(17.5deg);
 }
 
 .imgAward {
@@ -149,7 +148,7 @@
 	display: none;
 }
 
-.nav-ext{
+.nav-ext {
 	display: unset;
 	float: right;
 }

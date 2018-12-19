@@ -52,6 +52,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\default.css" />
     <Content Include="Content\image\favicon.ico" />
     <Content Include="Content\image\calculator.png" />
     <Content Include="Content\image\char-less.png" />
@@ -69,13 +70,14 @@
     <Content Include="Content\image\Subtraction.png" />
     <Content Include="Content\image\timg.png" />
     <Content Include="Content\image\triangle.png" />
-    <Content Include="Content\MathSheets.css" />
+    <Content Include="Content\switcher\MathSheets.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Shake.css" />
     <Content Include="Content\switcher\MathSheets-burlywood.css" />
     <Content Include="Content\switcher\MathSheets-coral.css" />
     <Content Include="Content\switcher\MathSheets-cornflowerblue.css" />
+    <Content Include="Content\switcher\MathSheets-eyeshieldgreen.css" />
     <Content Include="Demo\ALL.html" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
