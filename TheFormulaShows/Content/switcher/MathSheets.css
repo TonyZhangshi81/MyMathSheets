@@ -1,0 +1,25 @@
+﻿@import url(../default.css);
+
+.body-main {
+	background-color: lemonchiffon;
+}
+
+.totop {
+	width: 60px;
+	height: 60px;
+	background: url(../../Content/image/navigate-up.png) center no-repeat darkred;
+	background-size: 30px 30px;
+	border-radius: 50%;
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	display: none;
+	z-index: 70;
+}
+
+.jumbotron-ext {
+	padding: 2rem 3rem;
+	border-radius: 0.8rem;
+	background: url("../../Content/image/timg.png") no-repeat;
+	background-size: 100% 100%;
+}
