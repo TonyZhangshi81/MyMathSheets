@@ -22,6 +22,7 @@
 	<!--SCHOOLCLOCKSTYLESHEET-->
 	<!--CURRENCYLINKAGESTYLESHEET-->
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+	<script src="../Scripts/jquery.linq.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
 	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
@@ -218,6 +219,7 @@
 	</script>
 </head>
 <body class="body-main">
+	<!-- 主題選擇區 -->
 	<div class="box">
 		<div class="box-content">
 			<a href="#" class="close close-ext" id="close">&times;</a>
@@ -229,27 +231,34 @@
 			</ul>
 		</div>
 	</div>
+	<!-- 設置按鈕 -->
 	<div class="navbar navbar-fixed-top navbar-ext">
 		<img src="../Content/image/triangle.png" class="imgNavbar" />
 	</div>
+	<!-- 右側題型導航菜單 -->
 	<div class="bs-docs-sidebar" id="divSidebar">
 		<ul class="nav nav-ext">
 		</ul>
 	</div>
+	<!-- 獎牌擺放區 -->
 	<div class="honorArea">
 		<img src="" class="imgAward" />
 	</div>
+	<!-- 輔助滾動-向上 -->
 	<div class="scrollHelper-up">
 		<div class="help">
 			<img id="imgUp" src="../Content/image/up.png" class="imgHelper-up" />
 		</div>
 	</div>
+	<!-- 輔助滾動-向下 -->
 	<div class="scrollHelper-down">
 		<div class="help">
 			<img id="imgDown" src="../Content/image/down.png" class="imgHelper-down" />
 		</div>
 	</div>
+	<!-- 正文 -->
 	<div class="container theme-showcase main-ext" role="main" id="divContainer">
+		<!-- 標題歡迎畫面 -->
 		<div class="jumbotron-ext">
 			<div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
 			<div class="div-famousPeople">
@@ -271,6 +280,7 @@
 				<iframe frameborder="0" scrolling="no" src="../Plugin/butterfly.html" width="320" height="250"></iframe>
 			</div>
 		</div>
+		<!-- 題型區 -->
 		<div id="divPrintContent">
 		<!--ARITHMETIC-->
 		<!--EQUALITYCOMPARISON-->
@@ -290,6 +300,7 @@
 		<!--CURRENCYLINKAGE-->
 		</div>
 		<HR>
+		<!-- 按鍵操作區 -->
 		<div class="row">
 			<div class="col-md-12 col-md-offset-3">
 				<p class="text-center">
@@ -301,6 +312,7 @@
 				</p>
 			</div>
 		</div>
+		<!-- 答題評分區 -->
 		<div class="page-header">
 			<div class="row text-left">
 				<div class="col-md-2">
@@ -345,6 +357,7 @@
 				</div>
 			</div>
 		</div>
+		<!-- 答題統計 -->
 		<div class="row text-left">
 			<div class="col-md-12">
 				<h7>
@@ -355,9 +368,11 @@
 			</div>
 		</div>
 	</div>
+	<!-- 網頁版權 -->
 	<div class="div-company">
 			&copy; MyMathSheets.HOME 2018
 	</div>
+	<!-- 置頂按鍵 -->
 	<a href="javascript:" class="totop"></a>
 </body>
 </html>
