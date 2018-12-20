@@ -10,10 +10,19 @@ var __isStop = false;
 var __isRight = 0;
 // 答錯數量
 var __isFault = 0;
+// 獲取對應模塊距離頂端的距離（開始和結束）
+var __itemTops = new Array();
+// 導航欄列表
+var __navlist = null;
 // 所有可輸入項目的集合
 var __allInputElementArray = new Array();
 // 錯題集
 var __allFaultInputElementArray = new Array();
+
+// 頁面總高度
+var __scrollHeight;
+// 窗體顯示的高度
+var __windowHeight;
 
 var MathSheets = MathSheets || {};
 MathSheets.Common = MathSheets.Common || (function () {
@@ -266,17 +275,18 @@ MathSheets.Common = MathSheets.Common || (function () {
 		// 置頂導航
 		toTop = function () {
 			// 移除滾動條事件（由導航鍵事件控制本身的隱藏）
-			$(window).unbind('scroll');
+			//$(window).unbind('scroll');
 			// 置頂動畫處理
 			$('html,body').animate({
 				scrollTop: 0
-			}, 1500, "easeOutQuint", function () {
+			}, 2500, "easeOutQuint", function () {
 				// 向上箭頭隱藏
 				$(".imgHelper-up").hide();
 				setTimeout(function () {
 					$('.totop').hide(400);
 					// 待導航鍵隱藏后回復窗體滾動條事件
-					$(window).bind("scroll", function () { windowScroll(); });
+					//$(window).bind("scroll", function () { windowScroll(); });
+					//windowScroll();
 				}, 500);
 			});
 		},
@@ -289,18 +299,6 @@ MathSheets.Common = MathSheets.Common || (function () {
 			}, 1500, "easeOutQuint", function () { $('.totop').show(400); });
 			// 向下箭頭隱藏
 			$(".imgHelper-down").hide();
-		},
-
-		// 窗體滾動條事件
-		windowScroll = function () {
-			var nowTop = $(document).scrollTop();
-			if (nowTop > 200) {
-				// 置頂導航鍵顯示
-				$('.totop').show()
-			} else {
-				// 置頂導航鍵隱藏
-				$('.totop').hide();
-			}
 		},
 
 		// link信息設定處理
@@ -346,12 +344,41 @@ MathSheets.Common = MathSheets.Common || (function () {
 
 		// 右側導航欄的初期化設置
 		sidebarInitialize = function () {
-			var html = '<li><a href="#divContainer">主題</a></li>';
-			$("h4[id*='mathSheet']").each(function () {
+			__itemTops.length = 0;
+
+			// 存放各模塊開始位置
+			var begins = [];
+			// 默認第一個導航欄為被選中狀態
+			var html = '<li><a href="#divContainer" class="active">主題</a></li>';
+			begins[0] = 20;
+			$("h4[id*='mathSheet']").each(function (index) {
 				html += '<li><a href="#' + $(this).attr('id') + '">' + $($(this).children('span')).text() + '</a></li>';
+				// 獲取對應模塊距離頂端的距離
+				begins[index + 1] = $(this).offset().top;
 			});
 
+			$.each(begins, function (index, begin) {
+				var sheet = new Object();
+				// 模塊索引號
+				sheet.index = index;
+				// 模塊開始位置
+				sheet.begin = begin;
+				// 判斷當前模塊是不是在頁面的末尾（當頁面只有1個題型模塊時也是相同處理）
+				if (index == begins.length - 1) {
+					// 當前模塊在頁面的末尾
+					sheet.end = $(document).height() - 150;
+				} else {
+					// 結束位置為當前模塊的後一個模塊的開始位置
+					sheet.end = begins[index + 1];
+				}
+				__itemTops.push(sheet);
+			});
+
+			// 根據模塊動態作成導航欄
 			$("ul[class='nav nav-ext']").prepend(html);
+			// 獲取導航欄對象列表
+			__navlist = $('.bs-docs-sidebar ul li a');
+
 			/*
 			if ($("div[id='divSidebar']").find("li").length < 4) {
 				$("div[id='divSidebar']").hide();
@@ -359,16 +386,55 @@ MathSheets.Common = MathSheets.Common || (function () {
 			*/
 		},
 
+		// 窗體滾動條事件
+		windowScroll = function () {
+			// 滾動條距離窗體頂端的距離
+			var scrollTop = $(window).scrollTop();
+
+			// 可視範圍查詢
+			var searchList = $.Enumerable.From(__itemTops)
+				.Where(function (v) {
+					return scrollTop <= v.begin && scrollTop + __windowHeight > v.end
+				}).ToArray();
+			// 優先考慮可視範圍內的模塊設置高亮、其後再考慮接近窗體頂端的模塊
+			if (searchList.length > 0) {
+				$.each(__navlist, function (index, nav) {
+					if (index == searchList[0].index) {
+						$(nav).addClass('active');
+					} else {
+						$(nav).removeClass('active');
+					}
+				});
+			} else {
+				// 遍歷所有模塊距離頂端的距離
+				$.each(__itemTops, function (index, sheet) {
+					if (scrollTop >= sheet.begin && scrollTop < sheet.end) {
+						__navlist.eq(index).addClass('active');
+					} else {
+						__navlist.eq(index).removeClass('active');
+					}
+				});
+			}
+
+			if (scrollTop > 200) {
+				// 置頂導航鍵顯示
+				$('.totop').show()
+			} else {
+				// 置頂導航鍵隱藏
+				$('.totop').hide();
+			}
+		},
+
 		// 頁面向下滾動
 		scrollAutoDown = function () {
 			// 滾動條高度
 			var scrollTop = $(window).scrollTop();
 			// 頁面總高度
-			var scrollHeight = $(document).height();
+			//var scrollHeight = $(document).height();
 			// 窗體顯示的高度
-			var windowHeight = $(window).height();
+			//var windowHeight = $(window).height();
 			// 如果滾動條已經到達頁面底部，則關閉當前自動移動
-			if (scrollTop + windowHeight == scrollHeight) {
+			if (scrollTop + __windowHeight == __scrollHeight) {
 				// 向下箭頭隱藏
 				$(".imgHelper-down").hide();
 				return;
@@ -394,15 +460,15 @@ MathSheets.Common = MathSheets.Common || (function () {
 		// 頁面滾動輔助按鍵顯示控制處理
 		scrollAutoHelper = function (clientY) {
 			// 窗體顯示的高度
-			var windowHeight = $(window).height();
+			//var windowHeight = $(window).height();
 			// 指定區域內顯示顯示
-			if (clientY > (windowHeight * 0.7)) {
+			if (clientY > (__windowHeight * 0.7)) {
 				// 滾動條高度
 				var scrollTop = $(window).scrollTop();
 				// 頁面總高度
-				var scrollHeight = $(document).height();
+				//var scrollHeight = $(document).height();
 				// 如果滾動條已經到達頁面底部，則關閉當前自動移動
-				if (scrollTop + windowHeight >= scrollHeight - 1) {
+				if (scrollTop + __windowHeight >= __scrollHeight - 1) {
 					// 向下箭頭隱藏
 					$(".imgHelper-down").hide();
 					return;
@@ -518,8 +584,12 @@ $(document).ready(function () {
 	// 禁用右鍵點擊功能
 	$(document).bind("contextmenu", function (e) { return false; });
 
+	// 窗體顯示的高度
+	__windowHeight = $(window).height();
+	// 頁面總高度
+	__scrollHeight = $(document).height();
 	// 當頁面超長時顯示輔助滾輪
-	if ($(document).height() > 2000) {
+	if (__scrollHeight > 2000) {
 		/* 
 		 * 與 mouseover 事件不同，只有在鼠標指針穿過被選中的元素時，才會觸發 mouseenter 事件。
 		 * 如果鼠標指針穿過任何子元素，同樣會觸發 mouseover 事件。 
@@ -557,8 +627,12 @@ $(document).ready(function () {
 	$('.totop').bind("mouseleave", function () { MathSheets.Common.outHide(this); });
 	// 點擊置頂導航鍵
 	$('.totop').bind("click", function () { MathSheets.Common.toTop(); });
+
+	// 右側導航欄的初期化設置
+	MathSheets.Common.sidebarInitialize();
 	// 窗體滾動條事件
 	$(window).bind("scroll", function () { MathSheets.Common.windowScroll(); });
+
 	// 鼠標移入頁面頂端導航區域時，浮動菜單顯示
 	$('.imgNavbar').bind("mouseenter", function () { MathSheets.Common.overNavbarShow(); });
 	// 鼠標移出浮動菜單區域時，浮動菜單關閉
@@ -570,8 +644,6 @@ $(document).ready(function () {
 	$(function () { $("[data-toggle='tooltip']").tooltip(); });
 	// 頁面主題初期化設置
 	MathSheets.Common.styleInitialize();
-	// 右側導航欄的初期化設置
-	MathSheets.Common.sidebarInitialize();
 });
 
 

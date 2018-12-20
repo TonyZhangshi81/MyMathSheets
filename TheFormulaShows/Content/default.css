@@ -161,6 +161,9 @@
 .bs-docs-sidebar ul li a:hover {
 	color: darkorange;
 }
+.bs-docs-sidebar ul li a.active {
+	color: darkorange;
+}
 
 .totop {
 	width: 60px;
