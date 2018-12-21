@@ -62,6 +62,8 @@
     <Content Include="Content\image\help.png" />
     <Content Include="Content\image\correct.png" />
     <Content Include="Content\image\homework.png" />
+    <Content Include="Content\image\lightoff.png" />
+    <Content Include="Content\image\lighton.png" />
     <Content Include="Content\image\logo.png" />
     <Content Include="Content\image\Multiple.png" />
     <Content Include="Content\image\navigate-down.png" />

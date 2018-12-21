@@ -349,10 +349,10 @@ MathSheets.Common = MathSheets.Common || (function () {
 			// 存放各模塊開始位置
 			var begins = [];
 			// 默認第一個導航欄為被選中狀態
-			var html = '<li><a href="#divContainer" class="active">主題</a></li>';
+			var html = '<li><img class="light"/><a href="#divContainer" class="active">主題</a></li>';
 			begins[0] = 20;
 			$("h4[id*='mathSheet']").each(function (index) {
-				html += '<li><a href="#' + $(this).attr('id') + '">' + $($(this).children('span')).text() + '</a></li>';
+				html += '<li><img class="light"/><a href="#' + $(this).attr('id') + '">' + $($(this).children('span')).text() + '</a></li>';
 				// 獲取對應模塊距離頂端的距離
 				begins[index + 1] = $(this).offset().top;
 			});
@@ -366,7 +366,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 				// 判斷當前模塊是不是在頁面的末尾（當頁面只有1個題型模塊時也是相同處理）
 				if (index == begins.length - 1) {
 					// 當前模塊在頁面的末尾
-					sheet.end = $(document).height() - 150;
+					sheet.end = $(document).height() - 250;
 				} else {
 					// 結束位置為當前模塊的後一個模塊的開始位置
 					sheet.end = begins[index + 1];

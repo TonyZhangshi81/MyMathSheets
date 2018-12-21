@@ -27,7 +27,8 @@
 	left: 0px;
 	text-align: center;
 	display: none;
-	margin-top: 5px
+	margin-top: 5px;
+	z-index:90;
 }
 
 .imgNavbar {
@@ -88,7 +89,7 @@
 	background-color: transparent;
 	letter-spacing: 4px;
 	top: 250px;
-	padding-right: 15px;
+	padding-right: 20px;
 	z-index: 70;
 }
 
@@ -153,13 +154,21 @@
 
 .bs-docs-sidebar ul li {
 	cursor: pointer;
-	font: italic bold 12px/20px arial,sans-serif;
+	font: bold 12px/20px arial,sans-serif;
 }
 
-.bs-docs-sidebar ul li a:hover {
+.bs-docs-sidebar img.light {
+	background: url(../Content/image/lighton.png) center no-repeat;
+	border-radius: 0.8rem;
+	width: 10px;
+	height: 10px;
+	margin-right:3px;
+}
+
+.bs-docs-sidebar a:hover {
 	color: darkorange;
 }
-.bs-docs-sidebar ul li a.active {
+.bs-docs-sidebar a.active {
 	color: darkorange;
 }
 
