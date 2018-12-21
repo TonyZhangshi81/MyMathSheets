@@ -177,6 +177,7 @@ copy "..\Scripts\jquery.PrintArea.js" "$(SolutionDir)\MathSheetsSettingApp\App_D
 copy "..\Scripts\json2.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.easing.1.3.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\store.legacy.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\jquery.linq.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.rating-stars.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.cookie-1.4.1.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 if not exist "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd" md "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\umd"
@@ -191,6 +192,7 @@ copy "..\Content\EqualityLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_D
 copy "..\Content\CurrencyLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\FruitsLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\ScoreGoal.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\default.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\Shake.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 xcopy "..\Content\image" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\image" /C /E /H /K /R /Y
 xcopy "..\Content\switcher" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\switcher" /C /E /H /K /R /Y</PostBuildEvent>
