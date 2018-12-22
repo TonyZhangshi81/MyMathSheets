@@ -659,7 +659,7 @@
 			/// </summary>
 			CurrencyLinkage,
 			/// <summary>
-			/// 時間計算
+			/// 時間運算
 			/// </summary>
 			TimeCalculation,
 			/// <summary>

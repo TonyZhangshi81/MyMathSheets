@@ -16,4 +16,5 @@
 	<object id="SchoolClock" type="MyMathSheets.TestConsoleApp.Write.SchoolClockWrite"></object>
 	<object id="CurrencyOperation" type="MyMathSheets.TestConsoleApp.Write.CurrencyOperationWrite"></object>
 	<object id="CurrencyLinkage" type="MyMathSheets.TestConsoleApp.Write.CurrencyLinkageWrite"></object>
+	<object id="TimeCalculation" type="MyMathSheets.TestConsoleApp.Write.TimeCalculationWrite"></object>
 </objects>

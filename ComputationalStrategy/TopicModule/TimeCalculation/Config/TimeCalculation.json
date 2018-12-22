@@ -1,14 +1,26 @@
 [
 	{
-		"Identifier": "SC001",
-		"FourOperationsType": 1,
+		"Identifier": "TC001",
+		"FourOperationsType": 2,
 		"NumberOfQuestions": 5,
-		"Reserve": "{\"IsShowSeconds\" : 0}"
+		"QuestionType": 2,
+		"Signs": [ 4, 5 ],
+		"Reserve": "{\"ElapsedHours\" : '0', \"IsEssignMinutes\" : 0, \"IsShowSeconds\" : 0}"
 	},
 	{
-		"Identifier": "SC002",
-		"FourOperationsType": 2,
+		"Identifier": "TC002",
+		"FourOperationsType": 1,
 		"NumberOfQuestions": 6,
-		"Reserve": "{\"IsShowSeconds\" : 1}"
+		"QuestionType": 2,
+		"Signs": [ 5 ],
+		"Reserve": "{\"ElapsedHours\" : '0,1,2', \"IsEssignMinutes\" : 0, \"IsShowSeconds\" : 0}"
+	},
+	{
+		"Identifier": "TC003",
+		"FourOperationsType": 1,
+		"NumberOfQuestions": 6,
+		"QuestionType": 2,
+		"Signs": [ 4 ],
+		"Reserve": "{\"ElapsedHours\" : '0', \"IsEssignMinutes\" : 1, \"IsShowSeconds\" : 0}"
 	}
 ]

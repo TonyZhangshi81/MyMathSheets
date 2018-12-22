@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using System;
+using System.Collections.Generic;
 
 namespace MyMathSheets.CommonLib.Util
 {
@@ -8,6 +9,17 @@ namespace MyMathSheets.CommonLib.Util
 	/// </summary>
 	public static class CommonUtil
 	{
+		/// <summary>
+		/// 指定集合範圍內的隨機數取得
+		/// </summary>
+		/// <typeparam name="T">集合類型</typeparam>
+		/// <param name="list">參數集合</param>
+		/// <returns>隨機取得的對象</returns>
+		public static T GetRandomNumber<T>(List<T> list)
+		{
+			return list[GetRandomNumber(0, list.Count - 1)];
+		}
+
 		/// <summary>
 		/// 指定範圍內的隨機數取得
 		/// </summary>

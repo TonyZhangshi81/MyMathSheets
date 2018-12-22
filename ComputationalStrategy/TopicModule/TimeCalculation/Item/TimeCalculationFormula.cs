@@ -20,5 +20,10 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Item
 		/// 經過的時間
 		/// </summary>
 		public Time ElapsedTime { get; set; }
+		/// <summary>
+		/// 运算符
+		/// </summary>
+		/// <see cref="SignOfOperation"/>
+		public SignOfOperation Sign { get; set; }
 	}
 }

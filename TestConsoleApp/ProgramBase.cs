@@ -17,6 +17,7 @@ using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Linq;
@@ -34,7 +35,8 @@ namespace MyMathSheets.TestConsoleApp
 		/// <summary>
 		/// 啟動時所使用的函數
 		/// </summary>
-		public virtual void Start()
+		/// <param name="args">調試用參數</param>
+		public virtual void Start(string[] args)
 		{
 			Console.OutputEncoding = Encoding.Unicode;
 
@@ -54,8 +56,9 @@ namespace MyMathSheets.TestConsoleApp
 			SchoolClockParameter scParameter = null;
 			CurrencyOperationParameter coParameter = null;
 			CurrencyLinkageParameter clParameter = null;
+			TimeCalculationParameter tcParameter = null;
 
-			bool isShowMenu = true;
+			bool isShowMenu = !(args.Length > 0);
 
 			while (1 == 1)
 			{
@@ -122,6 +125,10 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("************************* 認識價格 ***********************");
 					Console.WriteLine("    F1-商品價格(橫向)");
 					Console.WriteLine("    F2-商品價格(縱向)");
+					Console.WriteLine("************************* 時間計算 ***********************");
+					Console.WriteLine("    G1-時間計算(隨機)");
+					Console.WriteLine("    G2-時間計算(之前)");
+					Console.WriteLine("    G3-時間計算(之後)");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -130,7 +137,7 @@ namespace MyMathSheets.TestConsoleApp
 					isShowMenu = false;
 				}
 
-				string key = Console.ReadLine();
+				string key = (args.Length > 0) ? args[0] : Console.ReadLine();
 				switch (key)
 				{
 					case "A":
@@ -419,7 +426,6 @@ namespace MyMathSheets.TestConsoleApp
 						coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyOperation, "CO004");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyOperation, coParameter.Formulas.ToList());
 						break;
-
 					case "F1":
 						Console.WriteLine();
 						Console.WriteLine("商品價格(橫向)");
@@ -433,6 +439,25 @@ namespace MyMathSheets.TestConsoleApp
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyLinkage, clParameter.Currencys);
 						break;
 
+					case "G1":
+						Console.WriteLine();
+						Console.WriteLine("時間計算(隨機)");
+						tcParameter = (TimeCalculationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.TimeCalculation, "TC001");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.TimeCalculation, tcParameter.Formulas.ToList());
+						break;
+					case "G2":
+						Console.WriteLine();
+						Console.WriteLine("時間計算(加法)");
+						tcParameter = (TimeCalculationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.TimeCalculation, "TC002");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.TimeCalculation, tcParameter.Formulas.ToList());
+						break;
+					case "G3":
+						Console.WriteLine();
+						Console.WriteLine("時間計算(減法)");
+						tcParameter = (TimeCalculationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.TimeCalculation, "TC003");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.TimeCalculation, tcParameter.Formulas.ToList());
+						break;
+
 
 					case "D9":
 						isShowMenu = true;
@@ -444,6 +469,10 @@ namespace MyMathSheets.TestConsoleApp
 						Console.ReadKey();
 						Environment.Exit(0);
 						break;
+				}
+				if (args.Length > 0)
+				{
+					args[0] = "99";
 				}
 			}
 		}

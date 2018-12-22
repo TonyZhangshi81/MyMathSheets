@@ -16,7 +16,7 @@
 
 			// 主程序啟動
 			var program = new Program();
-			program.Start();
+			program.Start(args);
 		}
 	}
 }

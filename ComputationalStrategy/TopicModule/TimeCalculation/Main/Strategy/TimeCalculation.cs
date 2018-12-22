@@ -11,7 +11,7 @@ using System.Linq;
 namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 {
 	/// <summary>
-	/// 時間計算
+	/// 時間運算
 	/// </summary>
 	[Operation(LayoutSetting.Preview.TimeCalculation)]
 	public class TimeCalculation : OperationBase
@@ -33,10 +33,6 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 				{ HourDivision.Half, 30 },
 				{ HourDivision.ThreeQuarters, 45 }
 			};
-
-
-
-
 		}
 
 		/// <summary>
@@ -45,21 +41,19 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		/// <param name="p">題型參數</param>
 		/// <param name="startTime">開始時間</param>
 		/// <returns>開始時間(秒數)</returns>
-		private int GetStartTime(TimeCalculationParameter p, Time startTime)
+		private int GetStartTime(TimeCalculationParameter p, out Time startTime)
 		{
-			Time time = new Time
+			startTime = new Time
 			{
 				// 小時數
-				Hours = CommonUtil.GetRandomNumber(0, 24),
+				Hours = CommonUtil.GetRandomNumber(0, 23),
 				// 分鐘數
-				Minutes = p.FourOperationsType == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-							: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)],
+				Minutes = CommonUtil.GetRandomNumber(0, 59),
 				// 秒數
-				Seconds = CommonUtil.GetRandomNumber(0, 59)
+				Seconds = (p.IsShowSeconds) ? 0 : CommonUtil.GetRandomNumber(0, 59)
 			};
-			startTime = time;
 			// 時間轉換為秒數
-			return time.ToSeconds();
+			return startTime.ToSeconds();
 		}
 
 		/// <summary>
@@ -68,21 +62,20 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		/// <param name="p">題型參數</param>
 		/// <param name="elapsedTime">經過時間</param>
 		/// <returns>經過時間(秒數)</returns>
-		private int GetElapsedTime(TimeCalculationParameter p, Time elapsedTime)
+		private int GetElapsedTime(TimeCalculationParameter p, out Time elapsedTime)
 		{
-			Time time = new Time
+			elapsedTime = new Time
 			{
 				// 小時數
-				Hours = CommonUtil.GetRandomNumber(0, 24),
+				Hours = CommonUtil.GetRandomNumber(p.ElapsedHours.ToList()),
 				// 分鐘數
-				Minutes = p.FourOperationsType == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-							: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)],
+				Minutes = p.IsEssignMinutes ? _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)]
+							: CommonUtil.GetRandomNumber(0, 59),
 				// 秒數
-				Seconds = CommonUtil.GetRandomNumber(0, 59)
+				Seconds = (p.IsShowSeconds) ? 0 : CommonUtil.GetRandomNumber(0, 59)
 			};
-			elapsedTime = time;
 			// 時間轉換為秒數
-			return time.ToSeconds();
+			return elapsedTime.ToSeconds();
 		}
 
 		/// <summary>
@@ -96,27 +89,31 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 			// 按照指定數量作成相應的數學計算式
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
-				// 開始時間
-				Time startTime = new Time();
 				// 結束時間
-				Time endTime = new Time();
-				// 經過時間
-				Time elapsedTime = new Time();
-
-				strategy = CalculateManager(signFunc());
+				Time endTime;
+				SignOfOperation sign = signFunc();
+				// 對指定運算符實例化(時間計算:之前和之後)
+				strategy = CalculateManager(sign);
 				Formula formula = strategy.CreateFormula(new CalculateParameter()
 				{
-					MaximumLimit = GetStartTime(p, startTime),
+					// 開始時間
+					MaximumLimit = GetStartTime(p, out Time startTime),
 					QuestionType = p.QuestionType,
-					MinimumLimit = GetElapsedTime(p, elapsedTime)
+					// 結束時間
+					MinimumLimit = GetElapsedTime(p, out Time elapsedTime)
 				});
 				endTime = formula.Answer.ToTime();
 
-
-
+				TimeCalculationFormula timeCalculationFormula = new TimeCalculationFormula() { ElapsedTime = elapsedTime, StartTime = startTime, EndTime = endTime, Sign = sign };
+				if (CheckIsNeedInverseMethod(p.Formulas, timeCalculationFormula))
+				{
+					i--;
+					continue;
+				}
+				// 計算式作成
+				p.Formulas.Add(timeCalculationFormula);
 			}
 		}
-
 
 		/// <summary>
 		/// 算式作成
@@ -126,10 +123,16 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		{
 			TimeCalculationParameter p = parameter as TimeCalculationParameter;
 
-			// 按照指定數量作成相應的數學計算式
-			for (int i = 0; i < p.NumberOfQuestions; i++)
+			// 標準題型
+			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
-
+				// 算式作成（指定單個運算符實例）
+				MarkFormulaList(p, () => { return p.Signs[0]; });
+			}
+			else
+			{
+				// 算式作成（之前之後運算符實例隨機抽取）
+				MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(p.Signs.ToList()); });
 			}
 		}
 
@@ -137,8 +140,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		/// 判定是否需要反推并重新作成計算式
 		/// </summary>
 		/// <remarks>
-		/// 情況1:完全一致
-		/// 情況2:時分秒全零
+		/// 情況1:時分秒全零
 		/// </remarks>
 		/// <param name="preFormulas">已得到的算式</param>
 		/// <param name="currentFormula">當前算式</param>
@@ -147,12 +149,6 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		{
 			// 防止出現全零的情況
 			if (currentFormula.ElapsedTime.Hours == 0 && currentFormula.ElapsedTime.Minutes == 0 && currentFormula.ElapsedTime.Seconds == 0)
-			{
-				return true;
-			}
-
-			// 判斷當前算式是否已經出現過
-			if (preFormulas.ToList().Any(d => d.ElapsedTime.Hours == currentFormula.ElapsedTime.Hours && d.ElapsedTime.Minutes == currentFormula.ElapsedTime.Minutes))
 			{
 				return true;
 			}

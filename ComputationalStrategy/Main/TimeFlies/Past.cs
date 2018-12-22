@@ -28,7 +28,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 
 			// 開始時間
 			DateTime startTime = leftParameter.ToDateTime();
-			DateTime endTime = startTime.AddSeconds(rightParameter);
+			DateTime endTime = startTime.AddSeconds(rightParameter * -1);
 			return endTime.ToSeconds();
 		}
 

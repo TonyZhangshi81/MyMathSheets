@@ -55,6 +55,12 @@
 				case SignOfOperation.Multiple:
 					flag = "×";
 					break;
+				case SignOfOperation.Before:
+					flag = "之前";
+					break;
+				case SignOfOperation.Later:
+					flag = "之後";
+					break;
 				default:
 					break;
 			}

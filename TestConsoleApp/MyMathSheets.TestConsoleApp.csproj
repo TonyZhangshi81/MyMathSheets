@@ -41,6 +41,14 @@
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MyMathSheets.BasicOperationsLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.BasicOperationsLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.CommonLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.CommonLib.dll</HintPath>
+    </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.Arithmetic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.Arithmetic.dll</HintPath>
@@ -52,6 +60,10 @@
     <Reference Include="MyMathSheets.ComputationalStrategy.ComputingConnection, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.ComputingConnection.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.CurrencyLinkage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.CurrencyLinkage.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.CurrencyOperation">
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.CurrencyOperation.dll</HintPath>
@@ -98,6 +110,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.ScoreGoal.dll</HintPath>
     </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.TimeCalculation">
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.TimeCalculation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Spring.Core, Version=2.0.1.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <HintPath>..\packages\Spring.Core.2.0.1\lib\net45\Spring.Core.dll</HintPath>
     </Reference>
@@ -127,6 +145,7 @@
     <Compile Include="Write\FindNearestNumberWrite.cs" />
     <Compile Include="Write\EqualityLinkageWrite.cs" />
     <Compile Include="Write\CurrencyOperationWrite.cs" />
+    <Compile Include="Write\TimeCalculationWrite.cs" />
     <Compile Include="Write\SchoolClockWrite.cs" />
     <Compile Include="Write\LearnCurrencyWrite.cs" />
     <Compile Include="Write\HowMuchMoreWrite.cs" />
@@ -157,20 +176,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CommonLib\MyMathSheets.CommonLib.csproj">
-      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
-      <Name>MyMathSheets.CommonLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e1}</Project>
-      <Name>MyMathSheets.BasicOperationsLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\TopicModule\CurrencyLinkage\MyMathSheets.ComputationalStrategy.CurrencyLinkage.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de8cbd526e9}</Project>
-      <Name>MyMathSheets.ComputationalStrategy.CurrencyLinkage</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
