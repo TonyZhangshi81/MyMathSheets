@@ -49,6 +49,7 @@
 	<!--SCHOOLCLOCKSCRIPT-->
 	<!--CURRENCYOPERATIONSCRIPT-->
 	<!--CURRENCYLINKAGESCRIPT-->
+	<!--TIMECALCULATIONSCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -68,6 +69,7 @@
 			//<!--SCHOOLCLOCKPRINTSETTING-->
 			//<!--CURRENCYOPERATIONPRINTSETTING-->
 			//<!--CURRENCYLINKAGEPRINTSETTING-->
+			//<!--TIMECALCULATIONPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -88,6 +90,7 @@
 			//<!--SCHOOLCLOCKPRINTAFTERSETTING-->
 			//<!--CURRENCYOPERATIONPRINTAFTERSETTING-->
 			//<!--CURRENCYLINKAGEPRINTAFTERSETTING-->
+			//<!--TIMECALCULATIONPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -126,6 +129,8 @@
 			//<!--CURRENCYOPERATIONREADY-->
 			// 設定頁面所有輸入域為可用狀態(認識貨幣)
 			//<!--CURRENCYLINKAGEREADY-->
+			// 設定頁面所有輸入域為可用狀態(時間運算)
+			//<!--TIMECALCULATIONREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -171,6 +176,8 @@
 			//<!--CURRENCYOPERATIONMAKECORRECTIONS-->
 			// 認識貨幣
 			//<!--CURRENCYLINKAGEMAKECORRECTIONS-->
+			// 時間運算
+			//<!--TIMECALCULATIONMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -210,6 +217,8 @@
 			//<!--CURRENCYOPERATIONTHEIRPAPERS-->
 			// 認識貨幣
 			//<!--CURRENCYLINKAGETHEIRPAPERS-->
+			// 時間運算
+			//<!--TIMECALCULATIONTHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -228,6 +237,7 @@
 				<li style="background-color: burlywood;" id="burlywood"></li>
 				<li style="background-color: coral;" id="coral"></li>
 				<li style="background-color: cornflowerblue;" id="cornflowerblue"></li>
+				<li style="background-color: #C7EDCC;" id="eyeshieldgreen"></li>
 			</ul>
 		</div>
 	</div>
@@ -247,13 +257,13 @@
 	<!-- 輔助滾動-向上 -->
 	<div class="scrollHelper-up">
 		<div class="help">
-			<img id="imgUp" src="../Content/image/up.png" class="imgHelper-up" />
+			<img id="imgUp" src="../Content/image/navigate-up.png" class="imgHelper-up" />
 		</div>
 	</div>
 	<!-- 輔助滾動-向下 -->
 	<div class="scrollHelper-down">
 		<div class="help">
-			<img id="imgDown" src="../Content/image/down.png" class="imgHelper-down" />
+			<img id="imgDown" src="../Content/image/navigate-down.png" class="imgHelper-down" />
 		</div>
 	</div>
 	<!-- 正文 -->
@@ -298,6 +308,7 @@
 		<!--SCHOOLCLOCK-->
 		<!--CURRENCYOPERATION-->
 		<!--CURRENCYLINKAGE-->
+		<!--TIMECALCULATION-->
 		</div>
 		<HR>
 		<!-- 按鍵操作區 -->

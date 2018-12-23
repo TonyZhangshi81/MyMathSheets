@@ -5,7 +5,6 @@ using MyMathSheets.ComputationalStrategy.TimeCalculation.Item;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MyMathSheets.TestConsoleApp.Write
 {
@@ -27,10 +26,11 @@ namespace MyMathSheets.TestConsoleApp.Write
 			formulas.ForEach(d =>
 			{
 				Console.WriteLine(string.Format("{0}在{1}{2}是{3}",
-					string.Format("{0}:{1}:{2}", d.StartTime.Hours, d.StartTime.Minutes, d.StartTime.Seconds),
-					string.Format("{0}:{1}:{2}", d.ElapsedTime.Hours, d.ElapsedTime.Minutes, d.ElapsedTime.Seconds),
+					CommonUtil.GetValue(GapFilling.Left, string.Format("{0}:{1}:{2}", d.StartTime.Hours, d.StartTime.Minutes, d.StartTime.Seconds), d.Gap),
+					CommonUtil.GetValue(GapFilling.Right, string.Format("{0}:{1}:{2}", d.ElapsedTime.Hours, d.ElapsedTime.Minutes, d.ElapsedTime.Seconds), d.Gap),
 					d.Sign.ToOperationString(),
-					string.Format("{0}:{1}:{2}", d.EndTime.Hours, d.EndTime.Minutes, d.EndTime.Seconds)));
+					CommonUtil.GetValue(GapFilling.Answer, string.Format("{0}:{1}:{2}", d.EndTime.Hours, d.EndTime.Minutes, d.EndTime.Seconds), d.Gap)
+					));
 			});
 		}
 	}

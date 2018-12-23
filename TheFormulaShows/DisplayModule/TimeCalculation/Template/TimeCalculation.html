@@ -16,11 +16,6 @@
 	<link title="cornflowerblue" href="../Content/switcher/MathSheets-cornflowerblue.css" rel="stylesheet" charset="utf-8" disabled="disabled">
 	<link title="eyeshieldgreen" href="../Content/switcher/MathSheets-eyeshieldgreen.css" rel="stylesheet" charset="utf-8" disabled="disabled">
 	<link href="../Content/Shake.css" rel="stylesheet" charset="utf-8">
-	<!--SCOREGOALSTYLESHEET-->
-	<!--FRUITSLINKAGESTYLESHEET-->
-	<!--EQUALITYLINKAGESTYLESHEET-->
-	<!--SCHOOLCLOCKSTYLESHEET-->
-	<!--CURRENCYLINKAGESTYLESHEET-->
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.linq.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
@@ -33,64 +28,20 @@
 	<script src="../Scripts/jquery.rating-stars.min.js"></script>
 	<script src="../Scripts/jquery.easing.1.3.js"></script>
 	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
-	<!--ARITHMETICSCRIPT-->
-	<!--EQUALITYCOMPARISONSCRIPT-->
-	<!--COMPUTINGCONNECTIONSCRIPT-->
-	<!--MATHWORDPROBLEMSSCRIPT-->
-	<!--FRUITSLINKAGESCRIPT-->
-	<!--FINDNEARESTNUMBERSCRIPT-->
-	<!--COMBINATORIALEQUATIONSCRIPT-->
-	<!--SCOREGOALSCRIPT-->
-	<!--HOWMUCHMORESCRIPT-->
-	<!--FINDTHELAWSCRIPT-->
-	<!--NUMERICSORTINGSCRIPT-->
-	<!--LEARNCURRENCYSCRIPT-->
-	<!--EQUALITYLINKAGESCRIPT-->
-	<!--SCHOOLCLOCKSCRIPT-->
-	<!--CURRENCYOPERATIONSCRIPT-->
-	<!--CURRENCYLINKAGESCRIPT-->
-	<!--TIMECALCULATIONSCRIPT-->
+	<script src="../Scripts/Ext/MathSheets.TimeCalculation.js" charset="utf-8"></script>
 	<title>題庫</title>
 
 	<script>
 		// 打印
 		function btnPrintClick() {
-			//<!--ARITHMETICPRINTSETTING-->
-			//<!--EQUALITYCOMPARISONPRINTSETTING-->
-			//<!--COMPUTINGCONNECTIONPRINTSETTING-->
-			//<!--MATHWORDPROBLEMSPRINTSETTING-->
-			//<!--FINDNEARESTNUMBERPRINTSETTING-->
-			//<!--COMBINATORIALEQUATIONPRINTSETTING-->
-			//<!--HOWMUCHMOREPRINTSETTING-->
-			//<!--FINDTHELAWPRINTSETTING-->
-			//<!--NUMERICSORTINGPRINTSETTING-->
-			//<!--LEARNCURRENCYPRINTSETTING-->
-			//<!--EQUALITYLINKAGEPRINTSETTING-->
-			//<!--SCHOOLCLOCKPRINTSETTING-->
-			//<!--CURRENCYOPERATIONPRINTSETTING-->
-			//<!--CURRENCYLINKAGEPRINTSETTING-->
-			//<!--TIMECALCULATIONPRINTSETTING-->
+			MathSheets.TimeCalculation.printSetting();
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
 			// 打印后恢復頁面最初狀態設置
 			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
 			// 打印后頁面設定
-			//<!--ARITHMETICPRINTAFTERSETTING-->
-			//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->
-			//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->
-			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
-			//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->
-			//<!--COMBINATORIALEQUATIONPRINTAFTERSETTING-->
-			//<!--HOWMUCHMOREPRINTAFTERSETTING-->
-			//<!--FINDTHELAWPRINTAFTERSETTING-->
-			//<!--NUMERICSORTINGPRINTAFTERSETTING-->
-			//<!--LEARNCURRENCYPRINTAFTERSETTING-->
-			//<!--EQUALITYLINKAGEPRINTAFTERSETTING-->
-			//<!--SCHOOLCLOCKPRINTAFTERSETTING-->
-			//<!--CURRENCYOPERATIONPRINTAFTERSETTING-->
-			//<!--CURRENCYLINKAGEPRINTAFTERSETTING-->
-			//<!--TIMECALCULATIONPRINTAFTERSETTING-->
+			MathSheets.TimeCalculation.printAfterSetting();
 		}
 
 		// 答題準備按鍵
@@ -98,39 +49,7 @@
 			// 設定頁面所有輸入域為可用狀態(共通)-交卷按鈕顯示,準備按鈕隱藏,打印按鈕隱藏
 			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
 			// 設定頁面所有輸入域為可用狀態（四則運算）
-			//<!--ARITHMETICREADY-->
-			// 設定頁面所有輸入域為可用狀態(運算比大小)
-			//<!--EQUALITYCOMPARISONREADY-->
-			// 設定頁面所有輸入域為可用狀態(等式接龍)
-			//<!--COMPUTINGCONNECTIONREADY-->
-			// 設定頁面所有輸入域為可用狀態(算數應用題)
-			//<!--MATHWORDPROBLEMSREADY-->
-			// 設定頁面所有輸入域為可用狀態(水果連連看)
-			//<!--FRUITSLINKAGEREADY-->
-			// 設定頁面所有輸入域為可用狀態(找到最近的數字)
-			//<!--FINDNEARESTNUMBERREADY-->
-			// 設定頁面所有輸入域為可用狀態(算式組合)
-			//<!--COMBINATORIALEQUATIONREADY-->
-			// 設定頁面所有輸入域為可用狀態(射門得分)
-			//<!--SCOREGOALREADY-->
-			// 設定頁面所有輸入域為可用狀態(比多少)
-			//<!--HOWMUCHMOREREADY-->
-			// 設定頁面所有輸入域為可用狀態(找規律)
-			//<!--FINDTHELAWREADY-->
-			// 設定頁面所有輸入域為可用狀態(數字排序)
-			//<!--NUMERICSORTINGREADY-->
-			// 設定頁面所有輸入域為可用狀態(認識貨幣)
-			//<!--LEARNCURRENCYREADY-->
-			// 設定頁面所有輸入域為可用狀態(算式連一連)
-			//<!--EQUALITYLINKAGEREADY-->
-			// 設定頁面所有輸入域為可用狀態(時鐘學習板)
-			//<!--SCHOOLCLOCKREADY-->
-			// 設定頁面所有輸入域為可用狀態(貨幣運算)
-			//<!--CURRENCYOPERATIONREADY-->
-			// 設定頁面所有輸入域為可用狀態(認識貨幣)
-			//<!--CURRENCYLINKAGEREADY-->
-			// 設定頁面所有輸入域為可用狀態(時間運算)
-			//<!--TIMECALCULATIONREADY-->
+			MathSheets.TimeCalculation.ready();
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -145,39 +64,7 @@
 		function btnMakeCorrectionsClick() {
 			var fault = 0;
 			// 四則運算題
-			//<!--ARITHMETICMAKECORRECTIONS-->
-			// 算式比較大小
-			//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->
-			// 等式接龍
-			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
-			// 算數應用題
-			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
-			// 水果連連看
-			//<!--FRUITSLINKAGEMAKECORRECTIONS-->
-			// 找到最近的數字
-			//<!--FINDNEARESTNUMBERMAKECORRECTIONS-->
-			// 算式組合
-			//<!--COMBINATORIALEQUATIONMAKECORRECTIONS-->
-			// 射門得分
-			//<!--SCOREGOALMAKECORRECTIONS-->
-			// 比多少
-			//<!--HOWMUCHMOREMAKECORRECTIONS-->
-			// 找規律
-			//<!--FINDTHELAWMAKECORRECTIONS-->
-			// 數字排序
-			//<!--NUMERICSORTINGMAKECORRECTIONS-->
-			// 認識貨幣
-			//<!--LEARNCURRENCYMAKECORRECTIONS-->
-			// 算式連一連
-			//<!--EQUALITYLINKAGEMAKECORRECTIONS-->
-			// 時鐘學習板
-			//<!--SCHOOLCLOCKMAKECORRECTIONS-->
-			// 貨幣運算
-			//<!--CURRENCYOPERATIONMAKECORRECTIONS-->
-			// 認識貨幣
-			//<!--CURRENCYLINKAGEMAKECORRECTIONS-->
-			// 時間運算
-			//<!--TIMECALCULATIONMAKECORRECTIONS-->
+			fault += MathSheets.TimeCalculation.makeCorrections();
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -186,39 +73,7 @@
 		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
 		function btnTheirPapersClick() {
 			// 四則運算交卷
-			//<!--ARITHMETICTHEIRPAPERS-->
-			// 算式比大小交卷
-			//<!--EQUALITYCOMPARISONTHEIRPAPERS-->
-			// 等式接龍交卷
-			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
-			// 算數應用題交卷
-			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
-			// 水果連連看
-			//<!--FRUITSLINKAGETHEIRPAPERS-->
-			// 找到最近的數字
-			//<!--FINDNEARESTNUMBERTHEIRPAPERS-->
-			// 算式組合
-			//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->
-			// 射門得分
-			//<!--SCOREGOALTHEIRPAPERS-->
-			// 比多少
-			//<!--HOWMUCHMORETHEIRPAPERS-->
-			// 找規律
-			//<!--FINDTHELAWTHEIRPAPERS-->
-			// 數字排序
-			//<!--NUMERICSORTINGTHEIRPAPERS-->
-			// 認識貨幣
-			//<!--LEARNCURRENCYTHEIRPAPERS-->
-			// 算式連一連
-			//<!--EQUALITYLINKAGETHEIRPAPERS-->
-			// 時鐘學習板
-			//<!--SCHOOLCLOCKTHEIRPAPERS-->
-			// 貨幣運算
-			//<!--CURRENCYOPERATIONTHEIRPAPERS-->
-			// 認識貨幣
-			//<!--CURRENCYLINKAGETHEIRPAPERS-->
-			// 時間運算
-			//<!--TIMECALCULATIONTHEIRPAPERS-->
+			MathSheets.TimeCalculation.theirPapers();
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -247,8 +102,7 @@
 	</div>
 	<!-- 右側題型導航菜單 -->
 	<div class="bs-docs-sidebar" id="divSidebar">
-		<ul class="nav nav-ext">
-		</ul>
+		<ul class="nav nav-ext"></ul>
 	</div>
 	<!-- 獎牌擺放區 -->
 	<div class="honorArea">
@@ -292,23 +146,66 @@
 		</div>
 		<!-- 題型區 -->
 		<div id="divPrintContent">
-		<!--ARITHMETIC-->
-		<!--EQUALITYCOMPARISON-->
-		<!--COMPUTINGCONNECTION-->
-		<!--MATHWORDPROBLEMS-->
-		<!--FRUITSLINKAGE-->
-		<!--FINDNEARESTNUMBER-->
-		<!--COMBINATORIALEQUATION-->
-		<!--SCOREGOAL-->
-		<!--HOWMUCHMORE-->
-		<!--FINDTHELAW-->
-		<!--NUMERICSORTING-->
-		<!--LEARNCURRENCY-->
-		<!--EQUALITYLINKAGE-->
-		<!--SCHOOLCLOCK-->
-		<!--CURRENCYOPERATION-->
-		<!--CURRENCYLINKAGE-->
-		<!--TIMECALCULATION-->
+			<br /><div class="page-header"><h4 id="mathSheetTimeCalculation"><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">時間運算</span></h4></div><hr />
+			<div class="row text-center row-margin-top">
+				<div class="col-md-12 form-inline">
+					<h5>
+						<img src="../Content/image/lightoff.png" width="30" height="30" />
+						<span class="label">09:15:00</span>
+						<span class="label">在1小時15分鐘之後是</span>
+						<input id="inputTc000" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputTc001" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputTc002" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<input id="hiddenTc00" type="hidden" value="10:30:00" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKTimeCalculation0" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoTimeCalculation0" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+			</div>
+			<div class="row text-center row-margin-top">
+				<div class="col-md-12 form-inline">
+					<h5>
+						<img src="../Content/image/lightoff.png" width="30" height="30" />
+						<input id="inputTc010" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputTc011" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">:</span>
+						<input id="inputTc012" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">在0小時45分鐘之前是</span>
+						<span class="label">19:25:00</span>
+						<input id="hiddenTc01" type="hidden" value="20:10:00" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKTimeCalculation1" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoTimeCalculation1" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+			</div>
+			<div class="row text-center row-margin-top">
+				<div class="col-md-12 form-inline">
+					<h5>
+						<img src="../Content/image/lightoff.png" width="30" height="30" />
+						<span class="label">09:15:00</span>
+						<span class="label">在</span>
+						<input id="inputTc020" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">小時</span>
+						<input id="inputTc021" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">分鐘</span>
+						<input id="inputTc022" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+						<span class="label">秒之後是</span>
+						<span class="label">10:30:00</span>
+						<input id="hiddenTc00" type="hidden" value="10:30:00" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKTimeCalculation2" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoTimeCalculation2" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+			</div>
 		</div>
 		<HR>
 		<!-- 按鍵操作區 -->
@@ -381,7 +278,7 @@
 	</div>
 	<!-- 網頁版權 -->
 	<div class="div-company">
-			&copy; MyMathSheets.HOME 2018
+		&copy; MyMathSheets.HOME 2018
 	</div>
 	<!-- 置頂按鍵 -->
 	<a href="javascript:" class="totop"></a>

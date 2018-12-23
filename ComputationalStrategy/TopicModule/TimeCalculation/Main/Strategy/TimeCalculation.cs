@@ -98,13 +98,21 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 				{
 					// 開始時間
 					MaximumLimit = GetStartTime(p, out Time startTime),
-					QuestionType = p.QuestionType,
 					// 結束時間
 					MinimumLimit = GetElapsedTime(p, out Time elapsedTime)
 				});
 				endTime = formula.Answer.ToTime();
 
-				TimeCalculationFormula timeCalculationFormula = new TimeCalculationFormula() { ElapsedTime = elapsedTime, StartTime = startTime, EndTime = endTime, Sign = sign };
+				TimeCalculationFormula timeCalculationFormula = new TimeCalculationFormula()
+				{
+					ElapsedTime = elapsedTime,
+					StartTime = startTime,
+					EndTime = endTime,
+					Sign = sign,
+					// 對在等式中的三個數值隨機產生填空項（用於填空題型）
+					Gap = (p.QuestionType == QuestionType.GapFilling) ? CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Answer) : GapFilling.Answer
+				};
+				// 判定是否需要反推并重新作成計算式
 				if (CheckIsNeedInverseMethod(p.Formulas, timeCalculationFormula))
 				{
 					i--;

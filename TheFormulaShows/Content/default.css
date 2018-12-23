@@ -138,12 +138,14 @@
 .imgHelper-up {
 	width: 120px;
 	height: 120px;
+	background: url(../Content/image/navigate-up.png) center no-repeat;
 	display: none;
 }
 
 .imgHelper-down {
 	width: 120px;
 	height: 120px;
+	background: url(../Content/image/navigate-down.png) center no-repeat;
 	display: none;
 }
 

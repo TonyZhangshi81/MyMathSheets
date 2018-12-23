@@ -62,6 +62,11 @@
     <Content Include="Content\image\help.png" />
     <Content Include="Content\image\correct.png" />
     <Content Include="Content\image\homework.png" />
+    <Content Include="Content\image\honor\award0.png" />
+    <Content Include="Content\image\honor\award1.png" />
+    <Content Include="Content\image\honor\award2.png" />
+    <Content Include="Content\image\honor\award3.png" />
+    <Content Include="Content\image\honor\award4.png" />
     <Content Include="Content\image\lightoff.png" />
     <Content Include="Content\image\lighton.png" />
     <Content Include="Content\image\logo.png" />

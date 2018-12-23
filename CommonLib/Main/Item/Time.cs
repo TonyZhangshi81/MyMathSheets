@@ -96,5 +96,27 @@ namespace MyMathSheets.CommonLib.Main.Item
 		/// 秒數
 		/// </summary>
 		public int? Seconds { get; set; }
+
+		/// <summary>
+		/// 返回時間
+		/// </summary>
+		public string HMSValue
+		{
+			get
+			{
+				return string.Format("{0}:{1}:{2}", Hours.Value.ToString().PadLeft(2, '0'), Minutes.Value.ToString().PadLeft(2, '0'), Seconds.Value.ToString().PadLeft(2, '0'));
+			}
+		}
+
+		/// <summary>
+		/// 返回時間
+		/// </summary>
+		public string CNValue
+		{
+			get
+			{
+				return string.Format("{0}小時{1}分鐘{2}秒", Hours.Value, Minutes.Value, Seconds.Value);
+			}
+		}
 	}
 }

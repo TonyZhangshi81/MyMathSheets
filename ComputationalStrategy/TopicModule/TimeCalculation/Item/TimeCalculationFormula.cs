@@ -25,5 +25,9 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Item
 		/// </summary>
 		/// <see cref="SignOfOperation"/>
 		public SignOfOperation Sign { get; set; }
+		/// <summary>
+		/// 填空随机项目（运算符左边参数、运算符右边参数、等式结果）
+		/// </summary>
+		public GapFilling Gap { get; set; }
 	}
 }
