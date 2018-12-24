@@ -43,6 +43,60 @@
 	}
 
 	/// <summary>
+	/// 長度轉換題型種類
+	/// </summary>
+	public enum LengthUnitTransform : int
+	{
+		/// <summary>
+		/// 米到分米(eg:1米=>10分米)
+		/// </summary>
+		M2D = 0,
+		/// <summary>
+		/// 米到釐米(eg:1米=>100釐米)
+		/// </summary>
+		M2C,
+		/// <summary>
+		/// 米到毫米(eg:1米=>1000毫米)
+		/// </summary>
+		M2MM,
+		/// <summary>
+		/// 分米到米(eg:20分米=>2米)
+		/// </summary>
+		D2M,
+		/// <summary>
+		/// 分米到釐米(eg:1分米=>10釐米)
+		/// </summary>
+		D2C,
+		/// <summary>
+		/// 分米到毫米(eg:1分米=>100毫米)
+		/// </summary>
+		D2MM,
+		/// <summary>
+		/// 分米到米釐米(eg:24分米=>2米40釐米)
+		/// </summary>
+		D2MC,
+		/// <summary>
+		/// 釐米到米(eg:200釐米=>2米)
+		/// </summary>
+		C2M,
+		/// <summary>
+		/// 釐米到分米(eg:20釐米=>2分米)
+		/// </summary>
+		C2D,
+		/// <summary>
+		/// 釐米到毫米(eg:2釐米=>20毫米)
+		/// </summary>
+		C2MM,
+		/// <summary>
+		/// 釐米到分米毫米(eg:25釐米=>2分米50毫米)
+		/// </summary>
+		C2DMM,
+
+	
+
+	}
+
+	/// <summary>
 	/// 貨幣轉換題型種類
 	/// </summary>
 	/// <remarks>轉換的前提不出現小數點</remarks>
@@ -662,6 +716,10 @@
 			/// 時間運算
 			/// </summary>
 			TimeCalculation,
+			/// <summary>
+			/// 認識長度單位
+			/// </summary>
+			LearnLengthUnit,
 			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>

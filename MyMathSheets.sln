@@ -189,6 +189,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.TimeCalculation", "TheFormulaShows\DisplayModule\TimeCalculation\MyMathSheets.TheFormulaShows.TimeCalculation.csproj", "{41486B43-37E3-406A-A032-974BAED39997}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.LearnLengthUnit", "ComputationalStrategy\TopicModule\LearnLengthUnit\MyMathSheets.ComputationalStrategy.LearnLengthUnit.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF55389}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -353,6 +355,10 @@ Global
 		{41486B43-37E3-406A-A032-974BAED39997}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41486B43-37E3-406A-A032-974BAED39997}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41486B43-37E3-406A-A032-974BAED39997}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4AFCD1E-6872-4643-9728-E5E6DFF55389}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4AFCD1E-6872-4643-9728-E5E6DFF55389}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4AFCD1E-6872-4643-9728-E5E6DFF55389}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4AFCD1E-6872-4643-9728-E5E6DFF55389}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -393,6 +399,7 @@ Global
 		{3206E500-28D2-4055-A14F-3DE8CBD526E9} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 		{3206E500-28D2-4055-A14F-3DE3CBD588E9} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 		{41486B43-37E3-406A-A032-974BAED39997} = {3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}
+		{A4AFCD1E-6872-4643-9728-E5E6DFF55389} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D308C80E-F93A-4F56-89CD-5A89344949B1}
