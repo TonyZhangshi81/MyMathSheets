@@ -589,7 +589,7 @@ $(document).ready(function () {
 	// 頁面總高度
 	__scrollHeight = $(document).height();
 	// 當頁面超長時顯示輔助滾輪
-	if (__scrollHeight > 2000) {
+	if (__scrollHeight > __windowHeight) {
 		/* 
 		 * 與 mouseover 事件不同，只有在鼠標指針穿過被選中的元素時，才會觸發 mouseenter 事件。
 		 * 如果鼠標指針穿過任何子元素，同樣會觸發 mouseover 事件。 
