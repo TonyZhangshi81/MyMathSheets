@@ -97,7 +97,7 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 			var html = string.Empty;
 			if (item == gap)
 			{
-				html += string.Format("<input id=\"inputCc{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", pIndex, index);
+				html += string.Format("<input id=\"inputCc{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", pIndex, index);
 				html += string.Format("<input id=\"hiddenCc{0}{1}\" type=\"hidden\" value=\"{2}\"/>", pIndex, index, parameter);
 			}
 			else

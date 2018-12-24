@@ -50,6 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\TimeCalculation.css" />
     <Content Include="Scripts\Ext\MathSheets.TimeCalculation.js" />
     <Content Include="Template\TimeCalculation.html" />
   </ItemGroup>

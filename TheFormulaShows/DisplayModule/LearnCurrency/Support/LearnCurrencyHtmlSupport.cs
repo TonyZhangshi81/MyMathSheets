@@ -25,7 +25,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
 
-		private const string INPUT_HTML_FORMAT = "<input id=\"inputLc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 60px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputLc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-2\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
 		private const string YUANUNIT_HTML = "<span class=\"label p-2\">元</span>";
 		private const string JIAOUNIT_HTML = "<span class=\"label p-2\">角</span>";
 		private const string FENUNIT_HTML = "<span class=\"label p-2\">分</span>";

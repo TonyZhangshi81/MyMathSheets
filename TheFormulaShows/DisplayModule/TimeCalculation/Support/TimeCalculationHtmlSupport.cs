@@ -48,7 +48,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 				rowHtml.AppendLine("<div class=\"row text-center row-margin-top\">");
 				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
 				rowHtml.AppendLine("<h5>");
-				rowHtml.AppendLine("<img src=\"../Content/image/lightoff.png\" width=\"30\" height=\"30\" />");
+				rowHtml.AppendLine("<span class=\"span-tc-lightoff\" />");
 
 				// 開始時間計算式
 				rowHtml.AppendLine(GetStartTimeHtml(item.StartTime, item.Gap, controlIndex));
@@ -185,7 +185,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 		/// <summary>
 		/// 輸入項目HTML模板
 		/// </summary>
-		private const string INPUT_HTML_FORMAT = "<input id=\"inputTc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputTc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
 		private const string SPAN_COLON_HTML = "<span class=\"label\">:</span>";
 		/// <summary>
 		/// 時間HTML模板(數字)

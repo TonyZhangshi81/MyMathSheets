@@ -68,7 +68,7 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 				int controlIndex = 0;
 				item.NumberList.ForEach(d =>
 				{
-					rowHtml.AppendLine(string.Format("<input id=\"inputNs{0}L{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
+					rowHtml.AppendLine(string.Format("<input id=\"inputNs{0}L{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
 					if (controlIndex != p.Numbers - 1)
 					{
 						rowHtml.AppendLine(string.Format("<img src=\"../Content/image/{0}.png\" width=\"30\" height=\"30\" />", item.Sign.ToSignOfCompareEnString()));

@@ -5,22 +5,12 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 
 	// 打印設置
 	printSetting = function () {
-		//$("input[id*='inputTc']").each(function (index, element) {
-		//	$(element).addClass('input-print');
-		//	$(element).removeAttr('placeholder');
-		//	$(element).removeAttr("disabled");
-		//});
 		$("input[id*='inputTc']").addClass('input-print').removeAttr('placeholder').removeAttr("disabled");
 	},
 
 		// 打印后頁面設定
 		printAfterSetting = function () {
 			$("input[id*='inputTc']").removeClass('input-print').attr('placeholder', '??').attr("disabled", "disabled");
-			//$("input[id*='inputTc']").each(function (index, element) {
-			//	$(element).removeClass('input-print');
-			//	$(element).attr('placeholder', '??');
-			//	$(element).attr("disabled", "disabled");
-			//});
 		},
 
 		// 答题验证(正确:true  错误:false)
@@ -29,14 +19,14 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 			// 答案
 			var answers = ($(pElement).val() || "").split(':');
 			// 填空項目
-			var $inputs = $("input[id*='inputTc" +  pIndex.toString().PadLeft(2, '0') + "']");
+			var $inputs = $("input[id*='inputTc" + pIndex.toString().PadLeft(2, '0') + "']");
 			$inputs.each(function (index, element) {
 				// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
 				if (parseInt($(element).val()) != parseInt(answers[index])) {
 					fault = false;
-				} 
+				}
 			});
-			
+
 			// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
 			if (fault) {
 				// 动错题集中移除当前项目
@@ -78,6 +68,8 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 				__allInputElementArray.push({ position: "mathSheetTimeCalculation", id: $(element).attr("id") });
 
 				$(element).removeAttr("disabled");
+				// 亮燈
+				$("span[class='span-tc-lightoff']").removeClass("span-tc-lightoff").addClass("span-tc-lighton");
 			});
 		},
 
@@ -105,6 +97,8 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 					__isRight++;
 				}
 			});
+			// 關燈
+			$("span[class='span-tc-lighton']").removeClass("span-tc-lighton").addClass("span-tc-lightoff");
 		};
 
 	return {

@@ -117,7 +117,7 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 			{
 				if (items.RandomIndexList.Any(_ => _ == controlIndex))
 				{
-					html.AppendLine(string.Format("<input id=\"inputFtl{0}L{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
+					html.AppendLine(string.Format("<input id=\"inputFtl{0}L{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
 				}
 				else
 				{

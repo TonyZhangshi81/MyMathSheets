@@ -115,7 +115,7 @@ namespace MyMathSheets.TheFormulaShows.FindNearestNumber.Support
 			var html = string.Empty;
 			if (item == gap)
 			{
-				html += string.Format("<input id=\"inputFnn{0}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", index);
+				html += string.Format("<input id=\"inputFnn{0}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", index);
 				html += string.Format("<input id=\"hiddenFnn{0}\" type=\"hidden\" value=\"{1}\"/>", index, parameter);
 			}
 			else

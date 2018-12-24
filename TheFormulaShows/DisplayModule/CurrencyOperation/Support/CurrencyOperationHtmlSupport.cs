@@ -28,7 +28,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 		/// <summary>
 		/// 輸入項目HTML模板
 		/// </summary>
-		private const string INPUT_HTML_FORMAT = "<input id=\"inputCo{0}L{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputCo{0}L{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
 		/// <summary>
 		/// 等號HTML
 		/// </summary>

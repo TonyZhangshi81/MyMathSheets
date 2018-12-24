@@ -29,7 +29,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 		/// <summary>
 		/// 時鐘答題輸出區域HTML作成
 		/// </summary>
-		private const string INPUT_HTML_FORMAT = "<input id=\"inputClock{0}{1}\" type=\"text\" placeholder=\"{2}\" class=\"form-control input-addBorder {3}\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputClock{0}{1}\" type=\"text\" placeholder=\"{2}\" class=\"form-control input-addBorder {3}\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
 		private const string SPAN_HTML = "<span class=\"label\">:</span>";
 
 		/// <summary>

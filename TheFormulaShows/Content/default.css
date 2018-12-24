@@ -239,6 +239,13 @@
 
 .input-addBorder {
 	border: 1px solid black;
+	width: 50px!important;
+	text-align: center;
+}
+.input-addBorder-2 {
+	border: 1px solid black;
+	width: 60px !important;
+	text-align: center;
 }
 
 .button-addBorder {

@@ -120,11 +120,11 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 			{
 				html.AppendLine("<li class=\"list-group-item\">");
 				html.AppendLine("<h4>");
-				html.AppendLine(string.Format("<input id=\"inputCe{0}L{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
+				html.AppendLine(string.Format("<input id=\"inputCe{0}L{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
 				html.AppendLine(string.Format("<img src=\"../Content/image/help.png\" width=\"30\" height=\"30\" id=\"imgCe{0}S{1}\" title=\"help\" />", parentControlIndex, controlIndex));
-				html.AppendLine(string.Format("<input id=\"inputCe{0}R{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
+				html.AppendLine(string.Format("<input id=\"inputCe{0}R{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
 				html.AppendLine("<img src=\"../Content/image/calculator.png\" style=\"width: 30px; height: 30px; \" />");
-				html.AppendLine(string.Format("<input id=\"inputCe{0}A{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" style=\"width: 50px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
+				html.AppendLine(string.Format("<input id=\"inputCe{0}A{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
 				html.AppendLine("</h4>");
 				html.AppendLine("</li>");
 
