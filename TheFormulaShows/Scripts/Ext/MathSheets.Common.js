@@ -229,7 +229,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 			// 精彩瞬間應該先等上4秒鐘 :-!
 			setTimeout(function () {
 				// 隨機設定獎章
-				var path = String.format("../Content/image/honor/award{0}.png", _getRandom(4));
+				var path = String.format("../Content/image/honor/award{0}.png", _getRandom(8));
 				$(".imgAward").attr('src', path);
 				// 顯示獎章 :-)
 				$(".imgAward").fadeIn(5000);
