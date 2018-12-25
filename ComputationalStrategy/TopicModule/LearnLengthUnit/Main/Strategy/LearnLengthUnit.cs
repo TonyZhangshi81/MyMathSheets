@@ -1,13 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
-using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Item;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Properties;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 {
@@ -25,37 +22,58 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 		/// <summary>
 		/// 存儲長度轉換的實現方法集合
 		/// </summary>
-		private readonly Dictionary<CurrencyTransform, Action<LearnLengthUnitFormula, QuestionType>> _currencys =
-			new Dictionary<CurrencyTransform, Action<LearnLengthUnitFormula, QuestionType>>();
+		private readonly Dictionary<LengthUnitTransform, Action<LearnLengthUnitFormula, QuestionType>> _currencys =
+			new Dictionary<LengthUnitTransform, Action<LearnLengthUnitFormula, QuestionType>>();
 
 		/// <summary>
 		/// 構造函數
 		/// </summary>
 		public LearnLengthUnit()
 		{
-			/*
-			// 元轉換為角
-			_currencys[CurrencyTransform.Y2J] = YuanConvertToJiao;
-			// 元轉換為分
-			_currencys[CurrencyTransform.Y2F] = YuanConvertToFen;
-			// 角轉換為元
-			_currencys[CurrencyTransform.J2Y] = JiaoConvertToYuan;
-			// 角轉換為分
-			_currencys[CurrencyTransform.J2F] = JiaoConvertToFen;
-			// 角轉換為元分
-			_currencys[CurrencyTransform.J2YF] = JiaoConvertToYuanFen;
-			// 分轉換為元
-			_currencys[CurrencyTransform.F2Y] = FenConvertToYuan;
-			// 分轉換為角
-			_currencys[CurrencyTransform.F2J] = FenConvertToJiao;
-			// 分轉換為元角
-			_currencys[CurrencyTransform.F2YJ] = FenConvertToYuanJiao;
-
-			// 角轉換為元（有剩餘）
-			_currencys[CurrencyTransform.J2YExt] = JiaoConvertToYuanExt;
-			// 分轉換為元角（有剩餘）
-			_currencys[CurrencyTransform.F2YJExt] = FenConvertToYuanJiaoExt;
-			*/
+			// 米轉換為分米
+			_currencys[LengthUnitTransform.M2D] = MeterConvertToDecimetre;
+			// 米轉換為釐米
+			_currencys[LengthUnitTransform.M2C] = MeterConvertToCentimeter;
+			// 米轉換為毫米
+			_currencys[LengthUnitTransform.M2MM] = MeterConvertToMillimeter;
+			// 分米轉換為米
+			_currencys[LengthUnitTransform.D2M] = DecimetreConvertToMeter;
+			// 分米轉換為釐米
+			_currencys[LengthUnitTransform.D2C] = DecimetreConvertToCentimeter;
+			// 分米轉換為毫米
+			_currencys[LengthUnitTransform.D2MM] = DecimetreConvertToMillimeter;
+			// 分米到米分米
+			_currencys[LengthUnitTransform.D2MExt] = DecimetreConvertToMeterExt;
+			// 分米到米釐米
+			_currencys[LengthUnitTransform.D2MC] = DecimetreConvertToMeterCentimeter;
+			// 釐米到米
+			_currencys[LengthUnitTransform.C2M] = CentimeterConvertToMeter;
+			// 釐米到分米
+			_currencys[LengthUnitTransform.C2D] = CentimeterConvertToDecimetre;
+			// 釐米到毫米
+			_currencys[LengthUnitTransform.C2MM] = CentimeterConvertToMillimeter;
+			// 釐米到米分米
+			_currencys[LengthUnitTransform.C2MD] = CentimeterConvertToMeterDecimetre;
+			// 釐米到分米毫米
+			_currencys[LengthUnitTransform.C2MD] = CentimeterConvertToDecimetreMillimeter;
+			// 釐米到米分米釐米
+			_currencys[LengthUnitTransform.C2MDExt] = CentimeterConvertToMeterDecimetreExt;
+			// 毫米到米
+			_currencys[LengthUnitTransform.MM2M] = MillimeterConvertToMeter;
+			// 毫米到分米
+			_currencys[LengthUnitTransform.MM2D] = MillimeterConvertToDecimetre;
+			// 毫米到釐米
+			_currencys[LengthUnitTransform.MM2C] = MillimeterConvertToCentimeter;
+			// 毫米到米分米
+			_currencys[LengthUnitTransform.MM2MD] = MillimeterConvertToMeterDecimetre;
+			// 毫米到米分米釐米
+			_currencys[LengthUnitTransform.MM2MDC] = MillimeterConvertToMeterDecimetreCentimeter;
+			// 毫米到分米釐米
+			_currencys[LengthUnitTransform.MM2DC] = MillimeterConvertToDecimetreCentimeter;
+			// 毫米到米釐米
+			_currencys[LengthUnitTransform.MM2MC] = MillimeterConvertToMeterCentimeter;
+			// 毫米轉換為米分米釐米毫米
+			_currencys[LengthUnitTransform.MM2MDCExt] = MillimeterConvertToMeterDecimetreCentimeterExt;
 		}
 		/// <summary>
 		/// 算式作成
@@ -138,7 +156,593 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			}
 			*/
 		}
-		
+
+		/// <summary>
+		/// 米轉換為分米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(米或者分米)</param>
+		protected virtual void MeterConvertToDecimetre(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得米數量級
+			int meter = CommonUtil.GetRandomNumber(1, 10);
+			// 轉換為分米的換算
+			int decimetre = meter * 10;
+			// 隨機編排填空項目(是米還是分米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 米單位
+				Meter = meter,
+				// 分米單位
+				Decimetre = decimetre
+			};
+			// 填空項目(米或者分米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 米轉換為釐米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(米或者釐米)</param>
+		protected virtual void MeterConvertToCentimeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得米數量級
+			int meter = CommonUtil.GetRandomNumber(1, 10);
+			// 轉換為釐米的換算
+			int centimeter = meter * 100;
+			// 隨機編排填空項目(是米還是釐米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 米單位
+				Meter = meter,
+				// 釐米單位
+				Centimeter = centimeter
+			};
+			// 填空項目(米或者釐米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 米轉換為毫米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(米或者毫米)</param>
+		protected virtual void MeterConvertToMillimeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得米數量級
+			int meter = CommonUtil.GetRandomNumber(1, 10);
+			// 轉換為毫米的換算
+			int millimeter = meter * 1000;
+			// 隨機編排填空項目(是米還是毫米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 米單位
+				Meter = meter,
+				// 毫米單位
+				Millimeter = millimeter
+			};
+			// 填空項目(米或者毫米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 分米轉換為米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(米或者分米)</param>
+		protected virtual void DecimetreConvertToMeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得分米數量級
+			int decimetre = CommonUtil.GetRandomNumber(1, 10) * 10;
+			// 轉換為米的換算
+			int meter = decimetre / 10;
+			// 隨機編排填空項目(是米還是分米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 分米單位
+				Decimetre = decimetre,
+				// 米單位
+				Meter = meter
+			};
+			// 填空項目(米或者分米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 分米到釐米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(米或者釐米)</param>
+		protected virtual void DecimetreConvertToCentimeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得分米數量級
+			int decimetre = CommonUtil.GetRandomNumber(1, 10);
+			// 轉換為釐米的換算
+			int entimeter = decimetre * 10;
+			// 隨機編排填空項目(是釐米還是分米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 分米單位
+				Decimetre = decimetre,
+				// 釐米單位
+				Centimeter = entimeter
+			};
+			// 填空項目(米或者釐米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 分米轉換為毫米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(分米或者毫米)</param>
+		protected virtual void DecimetreConvertToMillimeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得分米數量級
+			int decimetre = CommonUtil.GetRandomNumber(1, 10);
+			// 轉換為毫米的換算
+			int millimeter = decimetre * 100;
+			// 隨機編排填空項目(是分米還是毫米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 分米單位
+				Decimetre = decimetre,
+				// 毫米單位
+				Millimeter = millimeter
+			};
+			// 填空項目(分米或者毫米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 分米到米分米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(分米或者米分米)</param>
+		protected virtual void DecimetreConvertToMeterExt(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得米數量級
+			int meter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機取得分米數量級
+			int remainderDecimetre = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機編排填空項目(是分米還是米分米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 分米單位
+				Decimetre = meter * 10 + remainderDecimetre,
+				// 米單位
+				Meter = meter
+			};
+			// 剩餘的分米
+			formula.RemainderDecimetre = remainderDecimetre;
+			// 填空項目(分米或者米、分米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 分米到米釐米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(分米或者米釐米)</param>
+		protected virtual void DecimetreConvertToMeterCentimeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得分米數量級
+			int decimetre = CommonUtil.GetRandomNumber(11, 99);
+			// 轉換為米的換算
+			int meter = decimetre / 10;
+			// 轉換為釐米的換算
+			int centimeter = decimetre % 10 * 10;
+			// 隨機編排填空項目(是分米還是米分米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 分米單位
+				Decimetre = decimetre,
+				// 米單位
+				Meter = meter,
+				// 釐米單位
+				Centimeter = centimeter
+			};
+			// 填空項目(分米或者米、釐米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 釐米轉換為米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(釐米或者米)</param>
+		protected virtual void CentimeterConvertToMeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得釐米數量級
+			int centimeter = CommonUtil.GetRandomNumber(1, 10) * 100;
+			// 轉換為米的換算
+			int meter = centimeter / 100;
+			// 隨機編排填空項目(是釐米還是米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 釐米單位
+				Centimeter = centimeter,
+				// 米單位
+				Meter = meter
+			};
+			// 填空項目(釐米或者米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 釐米轉換為分米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(釐米或者分米)</param>
+		protected virtual void CentimeterConvertToDecimetre(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得釐米數量級
+			int centimeter = CommonUtil.GetRandomNumber(1, 10) * 10;
+			// 轉換為分米的換算
+			int decimetre = centimeter / 10;
+			// 隨機編排填空項目(是釐米還是分米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 釐米單位
+				Centimeter = centimeter,
+				// 分米單位
+				Decimetre = decimetre
+			};
+			// 填空項目(釐米或者分米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 釐米轉換為毫米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(釐米或者毫米)</param>
+		protected virtual void CentimeterConvertToMillimeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得釐米數量級
+			int centimeter = CommonUtil.GetRandomNumber(1, 10);
+			// 轉換為毫米的換算
+			int millimeter = centimeter * 10;
+			// 隨機編排填空項目(是釐米還是毫米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 釐米單位
+				Centimeter = centimeter,
+				// 毫米單位
+				Millimeter = millimeter
+			};
+			// 填空項目(釐米或者毫米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 釐米轉換為米分米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(釐米或者米分米)</param>
+		protected virtual void CentimeterConvertToMeterDecimetre(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得釐米數量級
+			int centimeter = CommonUtil.GetRandomNumber(11, 99) * 10;
+			// 轉換為米的換算
+			int meter = centimeter / 100;
+			// 轉換為分米的換算
+			int decimetre = centimeter % 100;
+			// 隨機編排填空項目(是釐米還是米分米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 釐米單位
+				Centimeter = centimeter,
+				// 米單位
+				Meter = meter,
+				// 分米單位
+				Decimetre = decimetre
+			};
+			// 填空項目(釐米或者米分米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 釐米轉換為分米毫米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(釐米或者分米毫米)</param>
+		protected virtual void CentimeterConvertToDecimetreMillimeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得釐米數量級
+			int centimeter = CommonUtil.GetRandomNumber(11, 99);
+			// 轉換為分米的換算
+			int decimetre = centimeter / 10;
+			// 轉換為毫米的換算
+			int millimeter = centimeter % 10 * 10;
+			// 隨機編排填空項目(是釐米還是分米毫米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 釐米單位
+				Centimeter = centimeter,
+				// 分米單位
+				Decimetre = decimetre,
+				// 毫米單位
+				Millimeter = millimeter
+			};
+			// 填空項目(釐米或者分米毫米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 釐米轉換為米分米釐米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(釐米或者米分米釐米)</param>
+		protected virtual void CentimeterConvertToMeterDecimetreExt(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得米數量級
+			int meter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機取得分米數量級
+			int decimetre = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機取得釐米數量級
+			int remainderCentimeter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機編排填空項目(是釐米還是米分米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 釐米單位
+				Centimeter = meter * 100 + decimetre * 10 + remainderCentimeter,
+				// 米單位
+				Meter = meter,
+				// 分米單位
+				Decimetre = decimetre
+			};
+			// 剩餘的釐米
+			formula.RemainderCentimeter = remainderCentimeter;
+			// 填空項目(釐米或者米分米釐米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 毫米轉換為米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(毫米或者米)</param>
+		protected virtual void MillimeterConvertToMeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得米數量級
+			int meter = CommonUtil.GetRandomNumber(1, 10);
+			// 隨機編排填空項目(是毫米還是米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 毫米單位
+				Millimeter = meter * 1000,
+				// 米單位
+				Meter = meter
+			};
+			// 填空項目(毫米或者米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 毫米轉換為分米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(毫米或者分米)</param>
+		protected virtual void MillimeterConvertToDecimetre(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得分米數量級
+			int decimetre = CommonUtil.GetRandomNumber(1, 10);
+			// 隨機編排填空項目(是毫米還是分米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 毫米單位
+				Millimeter = decimetre * 100,
+				// 分米單位
+				Decimetre = decimetre
+			};
+			// 填空項目(毫米或者分米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 毫米轉換為釐米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(毫米或者釐米)</param>
+		protected virtual void MillimeterConvertToCentimeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得釐米數量級
+			int centimeter = CommonUtil.GetRandomNumber(1, 10);
+			// 隨機編排填空項目(是毫米還是釐米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 毫米單位
+				Millimeter = centimeter * 10,
+				// 釐米單位
+				Centimeter = centimeter
+			};
+			// 填空項目(毫米或者釐米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 毫米轉換為米分米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(毫米或者米分米)</param>
+		protected virtual void MillimeterConvertToMeterDecimetre(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得米數量級
+			int meter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機取得分米數量級
+			int decimetre = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機編排填空項目(是毫米還是米分米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 毫米單位
+				Millimeter = meter * 1000 + decimetre * 100,
+				// 米單位
+				Meter = meter,
+				// 分米單位
+				Decimetre = decimetre
+			};
+			// 填空項目(毫米或者米分米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 毫米轉換為米分米釐米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(毫米或者米分米釐米)</param>
+		protected virtual void MillimeterConvertToMeterDecimetreCentimeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得米數量級
+			int meter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機取得分米數量級
+			int decimetre = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機取得釐米數量級
+			int centimeter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機編排填空項目(是毫米還是米分米釐米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 毫米單位
+				Millimeter = meter * 1000 + decimetre * 100 + centimeter * 10,
+				// 米單位
+				Meter = meter,
+				// 分米單位
+				Decimetre = decimetre,
+				// 釐米單位
+				Centimeter = centimeter
+			};
+			// 填空項目(毫米或者米分米釐米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 毫米轉換為分米釐米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(毫米或者分米釐米)</param>
+		protected virtual void MillimeterConvertToDecimetreCentimeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得分米數量級
+			int decimetre = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機取得釐米數量級
+			int centimeter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機編排填空項目(是毫米還是分米釐米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 毫米單位
+				Millimeter = decimetre * 100 + centimeter * 10,
+				// 分米單位
+				Decimetre = decimetre,
+				// 釐米單位
+				Centimeter = centimeter
+			};
+			// 填空項目(毫米或者分米釐米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 毫米轉換為米釐米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(毫米或者米釐米)</param>
+		protected virtual void MillimeterConvertToMeterCentimeter(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得米數量級
+			int meter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機取得釐米數量級
+			int centimeter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機編排填空項目(是毫米還是米釐米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 毫米單位
+				Millimeter = meter * 1000 + centimeter * 10,
+				// 米單位
+				Meter = meter,
+				// 釐米單位
+				Centimeter = centimeter
+			};
+			// 填空項目(毫米或者米釐米)
+			formula.Gap = gap;
+		}
+
+		/// <summary>
+		/// 毫米轉換為米分米釐米毫米
+		/// </summary>
+		/// <param name="formula">計算式作成</param>
+		/// <param name="type">填空項目選擇(毫米或者米分米釐米毫米)</param>
+		protected virtual void MillimeterConvertToMeterDecimetreCentimeterExt(LearnLengthUnitFormula formula, QuestionType type)
+		{
+			// 隨機取得米數量級
+			int meter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機取得分米數量級
+			int decimetre = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機取得釐米數量級
+			int centimeter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機取得釐米數量級
+			int remainderMillimeter = CommonUtil.GetRandomNumber(1, 9);
+			// 隨機編排填空項目(是毫米還是米分米釐米毫米)
+			GapFilling gap = GetRandomGapFilling(type);
+			// 結果對象設置并返回
+			formula.CurrencyUnit = new LengthUnit()
+			{
+				// 毫米單位
+				Millimeter = meter * 1000 + decimetre * 100 + centimeter * 10 + remainderMillimeter,
+				// 米單位
+				Meter = meter,
+				// 分米單位
+				Decimetre = decimetre,
+				// 釐米單位
+				Centimeter = centimeter
+			};
+			// 剩餘的毫米
+			formula.RemainderMillimeter = remainderMillimeter;
+			// 填空項目(毫米或者米分米釐米毫米)
+			formula.Gap = gap;
+		}
+
 
 		/// <summary>
 		/// 隨機編排填空項目

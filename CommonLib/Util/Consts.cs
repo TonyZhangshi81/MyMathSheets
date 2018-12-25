@@ -19,27 +19,27 @@
 		/// <summary>
 		/// 元角單位
 		/// </summary>
-		YJ,
+		YJ = 1,
 		/// <summary>
 		/// 元分單位
 		/// </summary>
-		YF,
+		YF = 2,
 		/// <summary>
 		/// 元單位
 		/// </summary>
-		Yuan,
+		Yuan = 3,
 		/// <summary>
 		/// 角單位
 		/// </summary>
-		Jiao,
+		Jiao = 4,
 		/// <summary>
 		/// 角分單位
 		/// </summary>
-		JF,
+		JF = 5,
 		/// <summary>
 		/// 分單位
 		/// </summary>
-		Fen
+		Fen = 6
 	}
 
 	/// <summary>
@@ -54,46 +54,87 @@
 		/// <summary>
 		/// 米到釐米(eg:1米=>100釐米)
 		/// </summary>
-		M2C,
+		M2C = 1,
 		/// <summary>
 		/// 米到毫米(eg:1米=>1000毫米)
 		/// </summary>
-		M2MM,
+		M2MM = 2,
 		/// <summary>
 		/// 分米到米(eg:20分米=>2米)
 		/// </summary>
-		D2M,
+		D2M = 3,
 		/// <summary>
 		/// 分米到釐米(eg:1分米=>10釐米)
 		/// </summary>
-		D2C,
+		D2C = 4,
 		/// <summary>
 		/// 分米到毫米(eg:1分米=>100毫米)
 		/// </summary>
-		D2MM,
+		D2MM = 5,
+		/// <summary>
+		/// 分米到米分米(eg:23分米=>2米3分米)
+		/// </summary>
+		D2MExt = 6,
 		/// <summary>
 		/// 分米到米釐米(eg:24分米=>2米40釐米)
 		/// </summary>
-		D2MC,
+		D2MC = 7,
 		/// <summary>
 		/// 釐米到米(eg:200釐米=>2米)
 		/// </summary>
-		C2M,
+		C2M = 8,
 		/// <summary>
 		/// 釐米到分米(eg:20釐米=>2分米)
 		/// </summary>
-		C2D,
+		C2D = 9,
 		/// <summary>
 		/// 釐米到毫米(eg:2釐米=>20毫米)
 		/// </summary>
-		C2MM,
+		C2MM = 10,
+		/// <summary>
+		/// 釐米到米分米(eg:230釐米=>2米3分米)
+		/// </summary>
+		C2MD = 11,
 		/// <summary>
 		/// 釐米到分米毫米(eg:25釐米=>2分米50毫米)
 		/// </summary>
-		C2DMM,
-
-	
-
+		C2DMM = 12,
+		/// <summary>
+		/// 釐米到米分米釐米(eg:125釐米=>1米2分米5釐米)
+		/// </summary>
+		C2MDExt = 13,
+		/// <summary>
+		/// 毫米到米(eg:1000毫米=>1米)
+		/// </summary>
+		MM2M = 14,
+		/// <summary>
+		/// 毫米到分米(eg:100毫米=>1分米)
+		/// </summary>
+		MM2D = 15,
+		/// <summary>
+		/// 毫米到釐米(eg:10毫米=>1釐米)
+		/// </summary>
+		MM2C = 16,
+		/// <summary>
+		/// 毫米到米分米(eg:1200毫米=>1米2分米)
+		/// </summary>
+		MM2MD = 17,
+		/// <summary>
+		/// 毫米到米分米釐米(eg:1230毫米=>1米2分米3釐米)
+		/// </summary>
+		MM2MDC = 18,
+		/// <summary>
+		/// 毫米到分米釐米(eg:230毫米=>2分米3釐米)
+		/// </summary>
+		MM2DC = 19,
+		/// <summary>
+		/// 毫米到米釐米(eg:1030毫米=>1米3釐米)
+		/// </summary>
+		MM2MC = 20,
+		/// <summary>
+		/// 毫米到米分米釐米毫米(eg:1234毫米=>1米2分米3釐米4毫米)
+		/// </summary>
+		MM2MDCExt = 21
 	}
 
 	/// <summary>
@@ -109,39 +150,39 @@
 		/// <summary>
 		/// 元到分(eg:1元=>100分)
 		/// </summary>
-		Y2F,
+		Y2F = 1,
 		/// <summary>
 		/// 角轉元(eg:20角=>2元)
 		/// </summary>
-		J2Y,
+		J2Y = 2,
 		/// <summary>
 		/// 角轉分(eg:2角=>20分)
 		/// </summary>
-		J2F,
+		J2F = 3,
 		/// <summary>
 		/// 角轉元分(eg:34角=>3元4分)
 		/// </summary>
-		J2YF,
+		J2YF = 4,
 		/// <summary>
 		/// 分轉元(eg:200分=>2元)
 		/// </summary>
-		F2Y,
+		F2Y = 5,
 		/// <summary>
 		/// 分轉角(eg:20分=>2角)
 		/// </summary>
-		F2J,
+		F2J = 6,
 		/// <summary>
 		/// 分轉元角(eg:230分=>2元3角)
 		/// </summary>
-		F2YJ,
+		F2YJ = 7,
 		/// <summary>
 		/// 角轉元(有剩餘 eg:23角=>2元3角)
 		/// </summary>
-		J2YExt,
+		J2YExt = 8,
 		/// <summary>
 		/// 分轉元角(有剩餘 eg:234分=>2元3角4分)
 		/// </summary>
-		F2YJExt,
+		F2YJExt = 9
 	}
 
 	/// <summary>
