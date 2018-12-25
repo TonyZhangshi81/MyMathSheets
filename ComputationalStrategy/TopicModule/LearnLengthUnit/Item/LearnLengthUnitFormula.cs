@@ -11,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Item
 		/// <summary>
 		/// 長度單位
 		/// </summary>
-		public LengthUnit CurrencyUnit { get; set; }
+		public LengthUnit LengthUnitItme { get; set; }
 		/// <summary>
 		/// 填空項目種類(左邊或者右邊為填空項目)
 		/// </summary>

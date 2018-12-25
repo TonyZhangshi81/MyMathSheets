@@ -13,6 +13,7 @@ using MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
@@ -57,6 +58,7 @@ namespace MyMathSheets.TestConsoleApp
 			CurrencyOperationParameter coParameter = null;
 			CurrencyLinkageParameter clParameter = null;
 			TimeCalculationParameter tcParameter = null;
+			LearnLengthUnitParameter lluParameter = null;
 
 			bool isShowMenu = !(args.Length > 0);
 
@@ -129,6 +131,10 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    G1-時間計算(隨機)");
 					Console.WriteLine("    G2-時間計算(之前)");
 					Console.WriteLine("    G3-時間計算(之後)");
+					Console.WriteLine("************************* 認識長度單位 ***********************");
+					Console.WriteLine("    H1-認識長度單位(隨機/米 -> 分米,釐米,毫米)");
+					Console.WriteLine("    H2-認識長度單位(隨機/分米 -> 米,釐米,毫米)");
+					Console.WriteLine("    H2-認識長度單位(隨機/釐米 -> 米,分米,毫米)");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -438,7 +444,6 @@ namespace MyMathSheets.TestConsoleApp
 						clParameter = (CurrencyLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyLinkage, "CL002");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyLinkage, clParameter.Currencys);
 						break;
-
 					case "G1":
 						Console.WriteLine();
 						Console.WriteLine("時間計算(隨機)");
@@ -456,6 +461,25 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("時間計算(減法)");
 						tcParameter = (TimeCalculationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.TimeCalculation, "TC003");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.TimeCalculation, tcParameter.Formulas.ToList());
+						break;
+
+					case "H1":
+						Console.WriteLine();
+						Console.WriteLine("認識長度單位(隨機/米 -> 分米,釐米,毫米)");
+						lluParameter = (LearnLengthUnitParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnLengthUnit, "LLU001");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnLengthUnit, lluParameter.Formulas.ToList());
+						break;
+					case "H2":
+						Console.WriteLine();
+						Console.WriteLine("認識長度單位(隨機/分米 -> 米,釐米,毫米)");
+						lluParameter = (LearnLengthUnitParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnLengthUnit, "LLU002");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnLengthUnit, lluParameter.Formulas.ToList());
+						break;
+					case "H3":
+						Console.WriteLine();
+						Console.WriteLine("認識長度單位(隨機/釐米 -> 米,分米,毫米)");
+						lluParameter = (LearnLengthUnitParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnLengthUnit, "LLU003");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnLengthUnit, lluParameter.Formulas.ToList());
 						break;
 
 

@@ -95,6 +95,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.LearnCurrency.dll</HintPath>
     </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.LearnLengthUnit">
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.LearnLengthUnit.dll</HintPath>
+    </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.MathWordProblems, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.MathWordProblems.dll</HintPath>
@@ -145,6 +148,7 @@
     <Compile Include="Write\FindNearestNumberWrite.cs" />
     <Compile Include="Write\EqualityLinkageWrite.cs" />
     <Compile Include="Write\CurrencyOperationWrite.cs" />
+    <Compile Include="Write\LearnLengthUnitWrite.cs" />
     <Compile Include="Write\TimeCalculationWrite.cs" />
     <Compile Include="Write\SchoolClockWrite.cs" />
     <Compile Include="Write\LearnCurrencyWrite.cs" />

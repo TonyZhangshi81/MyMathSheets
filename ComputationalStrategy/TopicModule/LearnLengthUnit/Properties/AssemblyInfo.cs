@@ -22,7 +22,6 @@ using System.Runtime.InteropServices;
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
 [assembly: Guid("3206e500-28d2-4055-a14f-3de3cbd526e1")]
-// https://www.oschina.net/translate/wpf-mvvm-step-by-step-basics-to-advance-level   WPF MVVM模式
 // 程序集的版本信息由下列四个值组成: 
 //
 //      主版本

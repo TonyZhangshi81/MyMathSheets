@@ -17,4 +17,5 @@
 	<object id="CurrencyOperation" type="MyMathSheets.TestConsoleApp.Write.CurrencyOperationWrite"></object>
 	<object id="CurrencyLinkage" type="MyMathSheets.TestConsoleApp.Write.CurrencyLinkageWrite"></object>
 	<object id="TimeCalculation" type="MyMathSheets.TestConsoleApp.Write.TimeCalculationWrite"></object>
+	<object id="LearnLengthUnit" type="MyMathSheets.TestConsoleApp.Write.LearnLengthUnitWrite"></object>
 </objects>

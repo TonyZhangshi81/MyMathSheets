@@ -55,6 +55,50 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 分轉換為元角（有剩餘）
 			_currencys[CurrencyTransform.F2YJExt] = FenConvertToYuanJiaoExt;
 		}
+
+		/// <summary>
+		/// 算式作成
+		/// </summary>
+		/// <param name="p">題型參數</param>
+		/// <param name="currencyTransFunc">運算符取得用的表達式</param>
+		private void MarkFormulaList(LearnCurrencyParameter p, Func<CurrencyTransform> currencyTransFunc)
+		{
+			// 當前反推判定次數（一次推算內次數累加）
+			int defeated = 0;
+
+			// 貨幣轉換類型
+			CurrencyTransform type = currencyTransFunc();
+
+			// 按照指定數量作成相應的數學計算式
+			for (var i = 0; i < p.NumberOfQuestions; i++)
+			{
+				LearnCurrencyFormula formula = new LearnCurrencyFormula() { CurrencyTransformType = type };
+				if (_currencys.TryGetValue(type, out Action<LearnCurrencyFormula, QuestionType> currency))
+				{
+					currency(formula, p.QuestionType);
+				}
+				else
+				{
+					throw new ArgumentException(MessageUtil.GetException(() => MsgResources.E0001L, type.ToString()));
+				}
+
+				if (CheckIsNeedInverseMethod(p.Formulas, formula))
+				{
+					defeated++;
+					// 如果大於兩次則認為此題無法作成繼續下一題
+					if (defeated == INVERSE_NUMBER)
+					{
+						// 當前反推判定次數復原
+						defeated = 0;
+						continue;
+					}
+					i--;
+					continue;
+				}
+				p.Formulas.Add(formula);
+			}
+		}
+
 		/// <summary>
 		/// 算式作成
 		/// </summary>
@@ -63,75 +107,16 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		{
 			LearnCurrencyParameter p = parameter as LearnCurrencyParameter;
 
-			// 當前反推判定次數（一次推算內次數累加）
-			int defeated = 0;
 			// 標準題型（指定單個轉換單位）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
 				// 單一的貨幣轉換類型
-				CurrencyTransform type = (CurrencyTransform)p.Types[0];
-
-				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.NumberOfQuestions; i++)
-				{
-					LearnCurrencyFormula formula = new LearnCurrencyFormula() { CurrencyTransformType = type };
-					if (_currencys.TryGetValue(type, out Action<LearnCurrencyFormula, QuestionType> currency))
-					{
-						currency(formula, p.QuestionType);
-					}
-					else
-					{
-						throw new ArgumentException(MessageUtil.GetException(() => MsgResources.E0001L, type.ToString()));
-					}
-
-					if (CheckIsNeedInverseMethod(p.Formulas, formula))
-					{
-						defeated++;
-						// 如果大於兩次則認為此題無法作成繼續下一題
-						if (defeated == INVERSE_NUMBER)
-						{
-							// 當前反推判定次數復原
-							defeated = 0;
-							continue;
-						}
-						i--;
-						continue;
-					}
-					p.Formulas.Add(formula);
-				}
+				MarkFormulaList(p, () => { return (CurrencyTransform)p.Types[0]; });
 			}
 			else
 			{
-				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.NumberOfQuestions; i++)
-				{
-					// 單一的貨幣轉換類型
-					CurrencyTransform type = GetRandomCurrencyTransform(p.Types);
-					LearnCurrencyFormula formula = new LearnCurrencyFormula() { CurrencyTransformType = type };
-					if (_currencys.TryGetValue(type, out Action<LearnCurrencyFormula, QuestionType> currency))
-					{
-						currency(formula, p.QuestionType);
-					}
-					else
-					{
-						throw new ArgumentException(MessageUtil.GetException(() => MsgResources.E0001L, type.ToString()));
-					}
-
-					if (CheckIsNeedInverseMethod(p.Formulas, formula))
-					{
-						defeated++;
-						// 如果大於兩次則認為此題無法作成繼續下一題
-						if (defeated == INVERSE_NUMBER)
-						{
-							// 當前反推判定次數復原
-							defeated = 0;
-							continue;
-						}
-						i--;
-						continue;
-					}
-					p.Formulas.Add(formula);
-				}
+				// 隨機獲取貨幣轉換集合中的一個轉換類型
+				MarkFormulaList(p, () => { return (CurrencyTransform)CommonUtil.GetRandomNumber(p.Types.ToList()); });
 			}
 		}
 
@@ -155,17 +140,6 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 				return true;
 			}
 			return false;
-		}
-
-		/// <summary>
-		/// 隨機獲取貨幣轉換集合中的一個轉換類型
-		/// </summary>
-		/// <param name="types">貨幣轉換集合（題型配置）</param>
-		/// <returns>轉換類型</returns>
-		private CurrencyTransform GetRandomCurrencyTransform(int[] types)
-		{
-			int index = CommonUtil.GetRandomNumber(0, types.Count() - 1);
-			return (CurrencyTransform)types[index];
 		}
 
 		/// <summary>

@@ -81,4 +81,5 @@
 copy "..\Config\*.json" "$(SolutionDir)MathSheetsSettingApp\Config" /Y
 copy "..\Config\*.json" "$(SolutionDir)TestConsoleApp\Config" /Y</PostBuildEvent>
   </PropertyGroup>
+  <ProjectExtensions />
 </Project>

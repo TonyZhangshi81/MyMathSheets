@@ -1,10 +1,13 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Item;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Properties;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 {
@@ -55,7 +58,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 釐米到米分米
 			_currencys[LengthUnitTransform.C2MD] = CentimeterConvertToMeterDecimetre;
 			// 釐米到分米毫米
-			_currencys[LengthUnitTransform.C2MD] = CentimeterConvertToDecimetreMillimeter;
+			_currencys[LengthUnitTransform.C2DMM] = CentimeterConvertToDecimetreMillimeter;
 			// 釐米到米分米釐米
 			_currencys[LengthUnitTransform.C2MDExt] = CentimeterConvertToMeterDecimetreExt;
 			// 毫米到米
@@ -75,6 +78,49 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 毫米轉換為米分米釐米毫米
 			_currencys[LengthUnitTransform.MM2MDCExt] = MillimeterConvertToMeterDecimetreCentimeterExt;
 		}
+
+		/// <summary>
+		/// 算式作成
+		/// </summary>
+		/// <param name="p">題型參數</param>
+		/// <param name="lengthUnitFunc">運算符取得用的表達式</param>
+		private void MarkFormulaList(LearnLengthUnitParameter p, Func<LengthUnitTransform> lengthUnitFunc)
+		{
+			// 當前反推判定次數（一次推算內次數累加）
+			int defeated = 0;
+			// 按照指定數量作成相應的數學計算式
+			for (var i = 0; i < p.NumberOfQuestions; i++)
+			{
+				// 單一的長度轉換類型
+				LengthUnitTransform type = lengthUnitFunc();
+
+				LearnLengthUnitFormula formula = new LearnLengthUnitFormula() { LengthUnitTransformType = type };
+				if (_currencys.TryGetValue(type, out Action<LearnLengthUnitFormula, QuestionType> currency))
+				{
+					currency(formula, p.QuestionType);
+				}
+				else
+				{
+					throw new ArgumentException(MessageUtil.GetException(() => MsgResources.E0001L, type.ToString()));
+				}
+
+				if (CheckIsNeedInverseMethod(p.Formulas, formula))
+				{
+					defeated++;
+					// 如果大於兩次則認為此題無法作成繼續下一題
+					if (defeated == INVERSE_NUMBER)
+					{
+						// 當前反推判定次數復原
+						defeated = 0;
+						continue;
+					}
+					i--;
+					continue;
+				}
+				p.Formulas.Add(formula);
+			}
+		}
+
 		/// <summary>
 		/// 算式作成
 		/// </summary>
@@ -83,78 +129,40 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 		{
 			LearnLengthUnitParameter p = parameter as LearnLengthUnitParameter;
 
-			/*
-			// 當前反推判定次數（一次推算內次數累加）
-			int defeated = 0;
 			// 標準題型（指定單個轉換單位）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
 				// 單一的長度轉換類型
-				CurrencyTransform type = (CurrencyTransform)p.Types[0];
-
-				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.NumberOfQuestions; i++)
-				{
-					LearnLengthUnitFormula formula = new LearnLengthUnitFormula() { CurrencyTransformType = type };
-					if (_currencys.TryGetValue(type, out Action<LearnLengthUnitFormula, QuestionType> currency))
-					{
-						currency(formula, p.QuestionType);
-					}
-					else
-					{
-						throw new ArgumentException(MessageUtil.GetException(() => MsgResources.E0001L, type.ToString()));
-					}
-
-					if (CheckIsNeedInverseMethod(p.Formulas, formula))
-					{
-						defeated++;
-						// 如果大於兩次則認為此題無法作成繼續下一題
-						if (defeated == INVERSE_NUMBER)
-						{
-							// 當前反推判定次數復原
-							defeated = 0;
-							continue;
-						}
-						i--;
-						continue;
-					}
-					p.Formulas.Add(formula);
-				}
+				MarkFormulaList(p, () => { return (LengthUnitTransform)p.Types[0]; });
 			}
 			else
 			{
-				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.NumberOfQuestions; i++)
-				{
-					// 單一的長度轉換類型
-					CurrencyTransform type = GetRandomCurrencyTransform(p.Types);
-					LearnLengthUnitFormula formula = new LearnLengthUnitFormula() { CurrencyTransformType = type };
-					if (_currencys.TryGetValue(type, out Action<LearnLengthUnitFormula, QuestionType> currency))
-					{
-						currency(formula, p.QuestionType);
-					}
-					else
-					{
-						throw new ArgumentException(MessageUtil.GetException(() => MsgResources.E0001L, type.ToString()));
-					}
-
-					if (CheckIsNeedInverseMethod(p.Formulas, formula))
-					{
-						defeated++;
-						// 如果大於兩次則認為此題無法作成繼續下一題
-						if (defeated == INVERSE_NUMBER)
-						{
-							// 當前反推判定次數復原
-							defeated = 0;
-							continue;
-						}
-						i--;
-						continue;
-					}
-					p.Formulas.Add(formula);
-				}
+				// 隨機獲取長度轉換集合中的一個轉換類型
+				MarkFormulaList(p, () => { return (LengthUnitTransform)CommonUtil.GetRandomNumber(p.Types.ToList()); });
 			}
-			*/
+		}
+
+		/// <summary>
+		/// 判定是否需要反推并重新作成計算式
+		/// </summary>
+		/// <remarks>
+		/// 情況1：完全一致
+		/// </remarks>
+		/// <param name="preFormulas">已得到的算式</param>
+		/// <param name="currentFormula">當前算式</param>
+		/// <returns>需要反推：true  正常情況: false</returns>
+		private bool CheckIsNeedInverseMethod(IList<LearnLengthUnitFormula> preFormulas, LearnLengthUnitFormula currentFormula)
+		{
+			// 判斷當前算式是否已經出現過
+			if (preFormulas.ToList().Any(d => d.LengthUnitItme.Meter == currentFormula.LengthUnitItme.Meter
+				&& d.LengthUnitItme.Decimetre == currentFormula.LengthUnitItme.Decimetre
+				&& d.LengthUnitItme.Centimeter == currentFormula.LengthUnitItme.Centimeter
+				&& d.LengthUnitItme.Millimeter == currentFormula.LengthUnitItme.Millimeter
+				&& d.LengthUnitTransformType == currentFormula.LengthUnitTransformType))
+			{
+				return true;
+			}
+			return false;
 		}
 
 		/// <summary>
@@ -171,7 +179,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是米還是分米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 米單位
 				Meter = meter,
@@ -196,7 +204,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是米還是釐米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 米單位
 				Meter = meter,
@@ -221,7 +229,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是米還是毫米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 米單位
 				Meter = meter,
@@ -246,7 +254,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是米還是分米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 分米單位
 				Decimetre = decimetre,
@@ -271,7 +279,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是釐米還是分米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 分米單位
 				Decimetre = decimetre,
@@ -296,7 +304,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是分米還是毫米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 分米單位
 				Decimetre = decimetre,
@@ -321,7 +329,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是分米還是米分米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 分米單位
 				Decimetre = meter * 10 + remainderDecimetre,
@@ -350,7 +358,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是分米還是米分米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 分米單位
 				Decimetre = decimetre,
@@ -377,7 +385,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是釐米還是米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 釐米單位
 				Centimeter = centimeter,
@@ -402,7 +410,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是釐米還是分米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 釐米單位
 				Centimeter = centimeter,
@@ -427,7 +435,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是釐米還是毫米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 釐米單位
 				Centimeter = centimeter,
@@ -454,7 +462,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是釐米還是米分米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 釐米單位
 				Centimeter = centimeter,
@@ -483,7 +491,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是釐米還是分米毫米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 釐米單位
 				Centimeter = centimeter,
@@ -512,7 +520,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是釐米還是米分米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 釐米單位
 				Centimeter = meter * 100 + decimetre * 10 + remainderCentimeter,
@@ -539,7 +547,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是毫米還是米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 毫米單位
 				Millimeter = meter * 1000,
@@ -562,7 +570,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是毫米還是分米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 毫米單位
 				Millimeter = decimetre * 100,
@@ -585,7 +593,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是毫米還是釐米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 毫米單位
 				Millimeter = centimeter * 10,
@@ -610,7 +618,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是毫米還是米分米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 毫米單位
 				Millimeter = meter * 1000 + decimetre * 100,
@@ -639,7 +647,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是毫米還是米分米釐米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 毫米單位
 				Millimeter = meter * 1000 + decimetre * 100 + centimeter * 10,
@@ -668,7 +676,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是毫米還是分米釐米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 毫米單位
 				Millimeter = decimetre * 100 + centimeter * 10,
@@ -695,7 +703,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是毫米還是米釐米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 毫米單位
 				Millimeter = meter * 1000 + centimeter * 10,
@@ -726,7 +734,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			// 隨機編排填空項目(是毫米還是米分米釐米毫米)
 			GapFilling gap = GetRandomGapFilling(type);
 			// 結果對象設置并返回
-			formula.CurrencyUnit = new LengthUnit()
+			formula.LengthUnitItme = new LengthUnit()
 			{
 				// 毫米單位
 				Millimeter = meter * 1000 + decimetre * 100 + centimeter * 10 + remainderMillimeter,
