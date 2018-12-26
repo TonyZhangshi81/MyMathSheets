@@ -134,7 +134,8 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("************************* 認識長度單位 ***********************");
 					Console.WriteLine("    H1-認識長度單位(隨機/米 -> 分米,釐米,毫米)");
 					Console.WriteLine("    H2-認識長度單位(隨機/分米 -> 米,釐米,毫米)");
-					Console.WriteLine("    H2-認識長度單位(隨機/釐米 -> 米,分米,毫米)");
+					Console.WriteLine("    H3-認識長度單位(隨機/釐米 -> 米,分米,毫米)");
+					Console.WriteLine("    H4-認識長度單位(隨機/毫米 -> 米,分米,釐米,毫米)");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -479,6 +480,12 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine();
 						Console.WriteLine("認識長度單位(隨機/釐米 -> 米,分米,毫米)");
 						lluParameter = (LearnLengthUnitParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnLengthUnit, "LLU003");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnLengthUnit, lluParameter.Formulas.ToList());
+						break;
+					case "H4":
+						Console.WriteLine();
+						Console.WriteLine("認識長度單位(隨機/毫米 -> 米,分米,釐米,毫米)");
+						lluParameter = (LearnLengthUnitParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnLengthUnit, "LLU004");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnLengthUnit, lluParameter.Formulas.ToList());
 						break;
 

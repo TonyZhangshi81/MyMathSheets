@@ -19,5 +19,12 @@
 		"NumberOfQuestions": 10,
 		"QuestionType": 2,
 		"Reserve": "{\"Type\" : '8,9,10,11,12,13'}"
+	},
+	{
+		"Identifier": "LLU004",
+		"FourOperationsType": 2,
+		"NumberOfQuestions": 10,
+		"QuestionType": 2,
+		"Reserve": "{\"Type\" : '14,15,16,17,18,19,20,21'}"
 	}
 ]

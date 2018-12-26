@@ -90,6 +90,39 @@ namespace MyMathSheets.TestConsoleApp.Write
 						break;
 					default:
 						break;
+
+					// 毫米到米
+					case LengthUnitTransform.MM2M:
+						format.AppendFormat("({0})毫米 = ({1})米  填空項目:{2}", d.LengthUnitItme.Millimeter, d.LengthUnitItme.Meter, (d.Gap == GapFilling.Left) ? "毫米" : "米");
+						break;
+					// 毫米到分米
+					case LengthUnitTransform.MM2D:
+						format.AppendFormat("({0})毫米 = ({1})分米  填空項目:{2}", d.LengthUnitItme.Millimeter, d.LengthUnitItme.Decimetre, (d.Gap == GapFilling.Left) ? "毫米" : "分米");
+						break;
+					// 毫米到釐米
+					case LengthUnitTransform.MM2C:
+						format.AppendFormat("({0})毫米 = ({1})釐米  填空項目:{2}", d.LengthUnitItme.Millimeter, d.LengthUnitItme.Centimeter, (d.Gap == GapFilling.Left) ? "毫米" : "釐米");
+						break;
+					// 毫米到米分米
+					case LengthUnitTransform.MM2MD:
+						format.AppendFormat("({0})毫米 = ({1})米({2})分米  填空項目:{3}", d.LengthUnitItme.Millimeter, d.LengthUnitItme.Meter, d.LengthUnitItme.Decimetre, (d.Gap == GapFilling.Left) ? "毫米" : "米,分米");
+						break;
+					// 毫米到米分米釐米
+					case LengthUnitTransform.MM2MDC:
+						format.AppendFormat("({0})毫米 = ({1})米({2})分米({3})釐米  填空項目:{4}", d.LengthUnitItme.Millimeter, d.LengthUnitItme.Meter, d.LengthUnitItme.Decimetre, d.LengthUnitItme.Centimeter, (d.Gap == GapFilling.Left) ? "毫米" : "米,分米,釐米");
+						break;
+					// 毫米到米分米釐米
+					case LengthUnitTransform.MM2DC:
+						format.AppendFormat("({0})毫米 = ({1})分米({2})釐米  填空項目:{3}", d.LengthUnitItme.Millimeter, d.LengthUnitItme.Decimetre, d.LengthUnitItme.Centimeter, (d.Gap == GapFilling.Left) ? "毫米" : "分米,釐米");
+						break;
+					// 毫米到米釐米
+					case LengthUnitTransform.MM2MC:
+						format.AppendFormat("({0})毫米 = ({1})米({2})釐米  填空項目:{3}", d.LengthUnitItme.Millimeter, d.LengthUnitItme.Meter, d.LengthUnitItme.Centimeter, (d.Gap == GapFilling.Left) ? "毫米" : "米,釐米");
+						break;
+					// 毫米到米分米釐米毫米
+					case LengthUnitTransform.MM2MDCExt:
+						format.AppendFormat("({0})毫米 = ({1})米({2})分米({3})釐米({4})毫米  填空項目:{5}", d.LengthUnitItme.Millimeter, d.LengthUnitItme.Meter, d.LengthUnitItme.Decimetre, d.LengthUnitItme.Centimeter, d.RemainderMillimeter, (d.Gap == GapFilling.Left) ? "毫米" : "米,分米,釐米,毫米");
+						break;
 				}
 
 				Console.WriteLine(format);
