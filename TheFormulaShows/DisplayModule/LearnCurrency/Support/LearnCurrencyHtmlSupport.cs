@@ -63,7 +63,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 			foreach (LearnCurrencyFormula item in p.Formulas)
 			{
 				isRowHtmlClosed = false;
-				colHtml.AppendLine("<div class=\"col-md-4 form-inline\">");
+				colHtml.AppendLine("<div class=\"col-md-6 form-inline\">");
 				colHtml.AppendLine("<h5>");
 				colHtml.Append(GetHtml(item, controlIndex));
 				colHtml.AppendLine("</h5>");
@@ -75,7 +75,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 
 				controlIndex++;
 				numberOfColumns++;
-				if (numberOfColumns == 3)
+				if (numberOfColumns == 2)
 				{
 					rowHtml.AppendLine("<div class=\"row text-center row-margin-top\">");
 					rowHtml.Append(colHtml.ToString());
