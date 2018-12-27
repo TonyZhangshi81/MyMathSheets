@@ -94,13 +94,13 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 			if (gap == GapFilling.Answer)
 			{
 				// 小時
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "0");
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "0", "時");
 				html += SPAN_COLON_HTML;
 				// 分鐘
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "1");
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "1", "分");
 				html += SPAN_COLON_HTML;
 				// 秒
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "2");
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "2", "秒");
 
 				// 題型答案
 				html += string.Format(INPUT_ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), endTime.HMSValue);
@@ -128,13 +128,13 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 			if (gap == GapFilling.Left)
 			{
 				// 小時
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "0");
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "0", "時");
 				html += SPAN_COLON_HTML;
 				// 分鐘
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "1");
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "1", "分");
 				html += SPAN_COLON_HTML;
 				// 秒
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "2");
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "2", "秒");
 
 				// 題型答案
 				html += string.Format(INPUT_ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), startTime.HMSValue);
@@ -202,16 +202,16 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 		/// 輸入項目HTML模板
 		/// </summary>
 		private const string INPUT_HTML_FORMAT = "<input id=\"inputTc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
-		private const string INPUT_HTML_ON_SCRIPT_FORMAT = "<input id=\"inputTc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" onFocus=\"MathSheets.TimeCalculation.inputOnFocus(this);\" onBlur=\"MathSheets.TimeCalculation.inputOnBlur(this);\" />";
+		private const string INPUT_HTML_ON_SCRIPT_FORMAT = "<input id=\"inputTc{0}{1}\" type=\"text\" placeholder=\"{2}\" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" onFocus=\"MathSheets.TimeCalculation.inputOnFocus(this);\" onBlur=\"MathSheets.TimeCalculation.inputOnBlur(this);\" />";
 		private const string SPAN_COLON_HTML = "<span class=\"label\">:</span>";
 		/// <summary>
 		/// 時間HTML模板(數字)
 		/// </summary>
-		private const string SPAN_TIME_NUM_HTML_FORMAT = "<span class=\"label\"><span class=\"label p-2\">{0}</span></span>";
+		private const string SPAN_TIME_NUM_HTML_FORMAT = "<span class=\"label p-2\">{0}</span>";
 		/// <summary>
 		/// 時間HTML模板(單位)
 		/// </summary>
-		private const string SPAN_TIME_CN_HTML_FORMAT = "<span class=\"label\"><span class=\"label p-2\">{0}{1}</span></span>";
+		private const string SPAN_TIME_CN_HTML_FORMAT = "<span class=\"label p-2\">{0}{1}</span>";
 		/// <summary>
 		/// 題型答案
 		/// </summary>
