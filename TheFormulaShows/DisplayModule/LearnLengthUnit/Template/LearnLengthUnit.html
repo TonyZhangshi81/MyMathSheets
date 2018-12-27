@@ -50,7 +50,7 @@
 	<!--CURRENCYOPERATIONSCRIPT-->
 	<!--CURRENCYLINKAGESCRIPT-->
 	<!--TIMECALCULATIONSCRIPT-->
-	<!--LEARNLENGTHUNITSCRIPT-->
+	<script src="../Scripts/Ext/MathSheets.LearnLengthUnit.js" charset="utf-8"></script>
 	<title>題庫</title>
 
 	<script>
@@ -71,7 +71,7 @@
 			//<!--CURRENCYOPERATIONPRINTSETTING-->
 			//<!--CURRENCYLINKAGEPRINTSETTING-->
 			//<!--TIMECALCULATIONPRINTSETTING-->
-			//<!--LEARNLENGTHUNITPRINTSETTING-->
+			MathSheets.LearnLengthUnit.printSetting();
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -93,7 +93,7 @@
 			//<!--CURRENCYOPERATIONPRINTAFTERSETTING-->
 			//<!--CURRENCYLINKAGEPRINTAFTERSETTING-->
 			//<!--TIMECALCULATIONPRINTAFTERSETTING-->
-			//<!--LEARNLENGTHUNITPRINTAFTERSETTING-->
+			MathSheets.LearnLengthUnit.printAfterSetting();
 		}
 
 		// 答題準備按鍵
@@ -135,7 +135,7 @@
 			// 設定頁面所有輸入域為可用狀態(時間運算)
 			//<!--TIMECALCULATIONREADY-->
 			// 設定頁面所有輸入域為可用狀態(認識長度單位)
-			//<!--LEARNLENGTHUNITREADY-->
+			MathSheets.LearnLengthUnit.ready();
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -184,7 +184,7 @@
 			// 時間運算
 			//<!--TIMECALCULATIONMAKECORRECTIONS-->
 			// 認識長度單位
-			//<!--LEARNLENGTHUNITMAKECORRECTIONS-->
+			fault += MathSheets.LearnLengthUnit.makeCorrections();
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -227,7 +227,7 @@
 			// 時間運算
 			//<!--TIMECALCULATIONTHEIRPAPERS-->
 			// 認識長度單位
-			//<!--LEARNLENGTHUNITTHEIRPAPERS-->
+			MathSheets.LearnLengthUnit.theirPapers();
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -256,8 +256,7 @@
 	</div>
 	<!-- 右側題型導航菜單 -->
 	<div class="bs-docs-sidebar" id="divSidebar">
-		<ul class="nav nav-ext">
-		</ul>
+		<ul class="nav nav-ext"></ul>
 	</div>
 	<!-- 獎牌擺放區 -->
 	<div class="honorArea">
@@ -301,24 +300,154 @@
 		</div>
 		<!-- 題型區 -->
 		<div id="divPrintContent">
-		<!--ARITHMETIC-->
-		<!--EQUALITYCOMPARISON-->
-		<!--COMPUTINGCONNECTION-->
-		<!--MATHWORDPROBLEMS-->
-		<!--FRUITSLINKAGE-->
-		<!--FINDNEARESTNUMBER-->
-		<!--COMBINATORIALEQUATION-->
-		<!--SCOREGOAL-->
-		<!--HOWMUCHMORE-->
-		<!--FINDTHELAW-->
-		<!--NUMERICSORTING-->
-		<!--LEARNCURRENCY-->
-		<!--EQUALITYLINKAGE-->
-		<!--SCHOOLCLOCK-->
-		<!--CURRENCYOPERATION-->
-		<!--CURRENCYLINKAGE-->
-		<!--TIMECALCULATION-->
-		<!--LEARNLENGTHUNIT-->
+			<!--ARITHMETIC-->
+			<!--EQUALITYCOMPARISON-->
+			<!--COMPUTINGCONNECTION-->
+			<!--MATHWORDPROBLEMS-->
+			<!--FRUITSLINKAGE-->
+			<!--FINDNEARESTNUMBER-->
+			<!--COMBINATORIALEQUATION-->
+			<!--SCOREGOAL-->
+			<!--HOWMUCHMORE-->
+			<!--FINDTHELAW-->
+			<!--NUMERICSORTING-->
+			<!--LEARNCURRENCY-->
+			<!--EQUALITYLINKAGE-->
+			<!--SCHOOLCLOCK-->
+			<!--CURRENCYOPERATION-->
+			<!--CURRENCYLINKAGE-->
+			<!--TIMECALCULATION-->
+			<br /><div class="page-header"><h4 id="mathSheetLearnLengthUnit"><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">認識長度單位</span></h4></div><hr /><div class="row text-center row-margin-top">
+				<div class="col-md-6 form-inline">
+					<h5>
+						<input id="inputLlu0S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">米</span>
+						<span class="label">=</span>
+						<span class="label">8000</span><span class="label p-2">毫米</span>
+						<input id="hidLluAnswer0" type="hidden" value="8" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKLearnLengthUnit0" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoLearnLengthUnit0" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+				<div class="col-md-6 form-inline">
+					<h5>
+						<input id="inputLlu1S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">米</span>
+						<span class="label">=</span>
+						<span class="label">6000</span><span class="label p-2">毫米</span>
+						<input id="hidLluAnswer1" type="hidden" value="6" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKLearnLengthUnit1" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoLearnLengthUnit1" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+			</div>
+			<div class="row text-center row-margin-top">
+				<div class="col-md-6 form-inline">
+					<h5>
+						<input id="inputLlu2S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">米</span>
+						<span class="label">=</span>
+						<span class="label">900</span><span class="label p-2">釐米</span>
+						<input id="hidLluAnswer2" type="hidden" value="9" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKLearnLengthUnit2" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoLearnLengthUnit2" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+				<div class="col-md-6 form-inline">
+					<h5>
+						<input id="inputLlu3S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">米</span>
+						<span class="label">=</span>
+						<span class="label">7000</span><span class="label p-2">毫米</span>
+						<input id="hidLluAnswer3" type="hidden" value="7" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKLearnLengthUnit3" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoLearnLengthUnit3" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+			</div>
+			<div class="row text-center row-margin-top">
+				<div class="col-md-6 form-inline">
+					<h5>
+						<input id="inputLlu4S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">米</span>
+						<span class="label">=</span>
+						<span class="label">70</span><span class="label p-2">分米</span>
+						<input id="hidLluAnswer4" type="hidden" value="7" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKLearnLengthUnit4" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoLearnLengthUnit4" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+				<div class="col-md-6 form-inline">
+					<h5>
+						<input id="inputLlu5S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">米</span>
+						<span class="label">=</span>
+						<span class="label">2000</span><span class="label p-2">毫米</span>
+						<input id="hidLluAnswer5" type="hidden" value="2" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKLearnLengthUnit5" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoLearnLengthUnit5" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+			</div>
+			<div class="row text-center row-margin-top">
+				<div class="col-md-6 form-inline">
+					<h5>
+						<span class="label">3</span><span class="label p-2">米</span>
+						<span class="label">=</span>
+						<input id="inputLlu6S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">釐米</span>
+						<input id="hidLluAnswer6" type="hidden" value="300" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKLearnLengthUnit6" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoLearnLengthUnit6" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+				<div class="col-md-6 form-inline">
+					<h5>
+						<span class="label">3</span><span class="label p-2">米</span>
+						<span class="label">=</span>
+						<input id="inputLlu7S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">毫米</span>
+						<input id="hidLluAnswer7" type="hidden" value="3000" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKLearnLengthUnit7" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoLearnLengthUnit7" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+			</div>
+			<div class="row text-center row-margin-top">
+				<div class="col-md-6 form-inline">
+					<h5>
+						<input id="inputLlu8S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">米</span>
+						<span class="label">=</span>
+						<span class="label">1000</span><span class="label p-2">釐米</span>
+						<input id="hidLluAnswer8" type="hidden" value="10" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKLearnLengthUnit8" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoLearnLengthUnit8" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+				<div class="col-md-6 form-inline">
+					<h5>
+						<input id="inputLlu9S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">米</span>
+						<span class="label">=</span>
+						<span class="label">9000</span><span class="label p-2">毫米</span>
+						<input id="hidLluAnswer9" type="hidden" value="9" />
+					</h5>
+					<div class="divCorrectOrFault-1">
+						<img id="imgOKLearnLengthUnit9" src="../Content/image/correct.png" class="imgCorrect-1" />
+						<img id="imgNoLearnLengthUnit9" src="../Content/image/fault.png" class="imgFault-1" />
+					</div>
+				</div>
+			</div>
+
 		</div>
 		<HR>
 		<!-- 按鍵操作區 -->
@@ -391,7 +520,7 @@
 	</div>
 	<!-- 網頁版權 -->
 	<div class="div-company">
-			&copy; MyMathSheets.HOME 2018
+		&copy; MyMathSheets.HOME 2018
 	</div>
 	<!-- 置頂按鍵 -->
 	<a href="javascript:" class="totop"></a>

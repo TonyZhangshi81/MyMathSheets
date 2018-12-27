@@ -50,6 +50,7 @@
 	<!--CURRENCYOPERATIONSCRIPT-->
 	<!--CURRENCYLINKAGESCRIPT-->
 	<!--TIMECALCULATIONSCRIPT-->
+	<!--LEARNLENGTHUNITSCRIPT-->
 	<title>題庫</title>
 
 	<script>
@@ -70,6 +71,7 @@
 			//<!--CURRENCYOPERATIONPRINTSETTING-->
 			//<!--CURRENCYLINKAGEPRINTSETTING-->
 			//<!--TIMECALCULATIONPRINTSETTING-->
+			//<!--LEARNLENGTHUNITPRINTSETTING-->
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -91,6 +93,7 @@
 			//<!--CURRENCYOPERATIONPRINTAFTERSETTING-->
 			//<!--CURRENCYLINKAGEPRINTAFTERSETTING-->
 			//<!--TIMECALCULATIONPRINTAFTERSETTING-->
+			//<!--LEARNLENGTHUNITPRINTAFTERSETTING-->
 		}
 
 		// 答題準備按鍵
@@ -131,6 +134,8 @@
 			//<!--CURRENCYLINKAGEREADY-->
 			// 設定頁面所有輸入域為可用狀態(時間運算)
 			//<!--TIMECALCULATIONREADY-->
+			// 設定頁面所有輸入域為可用狀態(認識長度單位)
+			//<!--LEARNLENGTHUNITREADY-->
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -178,6 +183,8 @@
 			//<!--CURRENCYLINKAGEMAKECORRECTIONS-->
 			// 時間運算
 			//<!--TIMECALCULATIONMAKECORRECTIONS-->
+			// 認識長度單位
+			//<!--LEARNLENGTHUNITMAKECORRECTIONS-->
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -219,6 +226,8 @@
 			//<!--CURRENCYLINKAGETHEIRPAPERS-->
 			// 時間運算
 			//<!--TIMECALCULATIONTHEIRPAPERS-->
+			// 認識長度單位
+			//<!--LEARNLENGTHUNITTHEIRPAPERS-->
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -309,6 +318,7 @@
 		<!--CURRENCYOPERATION-->
 		<!--CURRENCYLINKAGE-->
 		<!--TIMECALCULATION-->
+		<!--LEARNLENGTHUNIT-->
 		</div>
 		<HR>
 		<!-- 按鍵操作區 -->

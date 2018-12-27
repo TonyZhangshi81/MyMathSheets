@@ -183,6 +183,16 @@ namespace MyMathSheets.MathSheetsSettingApp.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap LearnLengthUnit {
+            get {
+                object obj = ResourceManager.GetObject("LearnLengthUnit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap MathWordProblems {
             get {
                 object obj = ResourceManager.GetObject("MathWordProblems", resourceCulture);
@@ -226,6 +236,16 @@ namespace MyMathSheets.MathSheetsSettingApp.Properties {
         internal static System.Drawing.Bitmap ScoreGoal {
             get {
                 object obj = ResourceManager.GetObject("ScoreGoal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap TimeCalculation {
+            get {
+                object obj = ResourceManager.GetObject("TimeCalculation", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

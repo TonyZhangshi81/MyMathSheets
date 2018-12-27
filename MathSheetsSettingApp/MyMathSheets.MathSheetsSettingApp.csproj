@@ -97,6 +97,7 @@
   <ItemGroup>
     <Content Include="Content\image\CurrencyLinkage.png" />
     <Content Include="Content\image\CurrencyOperation.png" />
+    <Content Include="Content\image\TimeCalculation.png" />
     <None Include="Content\image\Arithmetic.png" />
     <None Include="Content\image\ComputingConnection.png" />
     <Content Include="Content\image\CombinatorialEquation.png" />
@@ -112,6 +113,7 @@
     <None Include="Content\image\title.png" />
     <None Include="Content\image\NumericSorting.png" />
     <Content Include="Content\image\LearnCurrency.png" />
+    <Content Include="Content\image\LearnLengthUnit.png" />
     <Content Include="Content\image\SchoolClock.png" />
   </ItemGroup>
   <ItemGroup>
