@@ -21,13 +21,13 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 			// 填空項目
 			var $inputs = $("input[id*='inputTc" + pIndex.toString().PadLeft(2, '0') + "']");
 			$inputs.each(function (index, element) {
-				// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
+				// 验证输入值是否与答案一致
 				if (parseInt($(element).val()) != parseInt(answers[index])) {
 					fault = false;
 				}
 			});
 
-			// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
+			// 验证输入值是否与答案一致
 			if (fault) {
 				// 动错题集中移除当前项目
 				__allFaultInputElementArray.remove({ position: "mathSheetTimeCalculation", id: $inputs.eq(0).attr("id") });
@@ -86,6 +86,28 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 			return fault;
 		},
 
+		// 當光標落在文本輸入框中的時候發生的事件
+		inputOnFocus = function (e) {
+			var value = $(e).val();
+			// 如果當前輸入框的內容是空
+			if (value == "") {
+				return;
+			}
+			// 刪除數字前的"0"
+			$(e).val(parseInt(value));
+		},
+
+		// 當光標失去焦點的時候發生的事件
+		inputOnBlur = function (e) {
+			var value = $(e).val();
+			// 如果當前輸入框的內容是空
+			if (value == "") {
+				return;
+			}
+			// 在數字前填充"0"
+			$(e).val(value.PadLeft(2, '0'));
+		},
+
 		// 時間運算交卷
 		theirPapers = function () {
 			$("input[id*='hiddenTc']").each(function (pIndex, pElement) {
@@ -106,6 +128,8 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 		printAfterSetting: printAfterSetting,
 		ready: ready,
 		makeCorrections: makeCorrections,
+		inputOnFocus: inputOnFocus,
+		inputOnBlur: inputOnBlur,
 		theirPapers: theirPapers
 	};
 }());
