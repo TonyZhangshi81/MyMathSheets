@@ -145,6 +145,28 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 			return fault;
 		},
 
+		// 當光標落在文本輸入框中的時候發生的事件
+		inputOnFocus = function (e) {
+			var value = $(e).val();
+			// 如果當前輸入框的內容是空
+			if (value == "") {
+				return;
+			}
+			// 刪除數字前的"0"
+			$(e).val(parseInt(value));
+		},
+
+		// 當光標失去焦點的時候發生的事件
+		inputOnBlur = function (e) {
+			var value = $(e).val();
+			// 如果當前輸入框的內容是空
+			if (value == "") {
+				return;
+			}
+			// 在數字前填充"0"
+			$(e).val(value.PadLeft(2, '0'));
+		},
+
 		// 時鐘學習板交卷
 		theirPapers = function () {
 			$.each(__aryClocksAnswer, function (index, answer) {
@@ -163,6 +185,8 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 		printAfterSetting: printAfterSetting,
 		ready: ready,
 		makeCorrections: makeCorrections,
+		inputOnFocus: inputOnFocus,
+		inputOnBlur: inputOnBlur,
 		theirPapers: theirPapers
 	};
 }());
