@@ -50,13 +50,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\image\clock\hourglass.png" />
-    <Content Include="Content\image\clock\time.png" />
     <Content Include="Content\TimeCalculation.css" />
     <Content Include="Scripts\Ext\MathSheets.TimeCalculation.js" />
     <Content Include="Template\TimeCalculation.html" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\image\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

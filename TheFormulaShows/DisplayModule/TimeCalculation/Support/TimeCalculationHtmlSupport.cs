@@ -48,7 +48,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 				rowHtml.AppendLine("<div class=\"row text-center row-margin-top\">");
 				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
 				rowHtml.AppendLine("<h5>");
-				rowHtml.AppendLine("<span class=\"span-tc-lightoff\" />");
+				rowHtml.AppendLine("<span class=\"span-tc-lightoff\"></span>");
 
 				// 開始時間計算式
 				rowHtml.AppendLine(GetStartTimeHtml(item.StartTime, item.Gap, controlIndex));
