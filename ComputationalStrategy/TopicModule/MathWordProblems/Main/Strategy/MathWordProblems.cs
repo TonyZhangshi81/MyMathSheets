@@ -4,8 +4,10 @@ using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Item;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 {
@@ -16,6 +18,10 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 	public class MathWordProblems : OperationBase
 	{
 		/// <summary>
+		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
+		/// </summary>
+		private const int INVERSE_NUMBER = 3;
+		/// <summary>
 		/// 應用題庫文件所在路徑
 		/// </summary>
 		private const string PROBLEMS_JSON_FILE_PATH = @"..\Config\Problems.json";
@@ -24,6 +30,51 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// 出題資料庫
 		/// </summary>
 		private List<Problems> _allProblems { get; set; }
+
+		/// <summary>
+		/// 算式作成
+		/// </summary>
+		/// <param name="p">題型參數</param>
+		/// <param name="signFunc">運算符取得用的表達式</param>
+		private void MarkFormulaList(MathWordProblemsParameter p, Func<SignOfOperation> signFunc)
+		{
+			// 當前反推判定次數（一次推算內次數累加）
+			int defeated = 0;
+
+			ICalculate strategy = null;
+			// 按照指定數量作成相應的數學計算式
+			for (var i = 0; i < p.NumberOfQuestions; i++)
+			{
+				SignOfOperation sign = signFunc();
+				List<Problems> signProblems = GetProblemsBySign(sign);
+				// 題庫中的數量比指定的出題數少的情況
+				if (signProblems.Count == 0)
+				{
+					continue;
+				}
+
+				// 指定單個運算符實例
+				strategy = CalculateManager(sign);
+				// 計算式作成
+				MarkFormulas(p, strategy, signProblems);
+				// 判定是否需要反推并重新作成計算式
+				if (CheckIsNeedInverseMethod(p.Formulas.Last().ProblemFormula))
+				{
+					p.Formulas.Remove(p.Formulas.Last());
+
+					defeated++;
+					// 如果大於兩次則認為此題無法作成繼續下一題
+					if (defeated == INVERSE_NUMBER)
+					{
+						// 當前反推判定次數復原
+						defeated = 0;
+						continue;
+					}
+					i--;
+					continue;
+				}
+			}
+		}
 
 		/// <summary>
 		/// 題型作成
@@ -40,58 +91,13 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
-				List<Problems> signProblems = GetProblemsBySign(p.Signs[0]);
-				// 題庫中的數量比指定的出題數少的情況
-				if (signProblems.Count == 0)
-				{
-					return;
-				}
-
-				// 指定單個運算符實例
-				strategy = CalculateManager(p.Signs[0]);
-				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.NumberOfQuestions; i++)
-				{
-					// 計算式作成
-					MarkFormulas(p, strategy, signProblems);
-					// 判定是否需要反推并重新作成計算式
-					if (CheckIsNeedInverseMethod(p.Formulas.Last().ProblemFormula))
-					{
-						i--;
-						p.Formulas.Remove(p.Formulas.Last());
-						continue;
-					}
-				}
+				// 單一的運算符類型
+				MarkFormulaList(p, () => { return p.Signs[0]; });
 			}
 			else
 			{
-				// 按照指定數量作成相應的數學計算式
-				for (var i = 0; i < p.NumberOfQuestions; i++)
-				{
-					// 混合題型（加減乘除運算符實例隨機抽取）
-					SignOfOperation sign = p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)];
-					// 對四則運算符實例進行cache管理
-					strategy = CalculateManager(sign);
-
-					List<Problems> signProblems = GetProblemsBySign(sign);
-					// 题库中的数量比指定的出题数少的情况
-					if (signProblems.Count == 0)
-					{
-						i--;
-						continue;
-					}
-
-					// 計算式作成
-					MarkFormulas(p, strategy, signProblems);
-
-					// 判定是否需要反推并重新作成計算式
-					if (CheckIsNeedInverseMethod(p.Formulas.Last().ProblemFormula))
-					{
-						i--;
-						p.Formulas.Remove(p.Formulas.Last());
-						continue;
-					}
-				}
+				// 混合題型（加減乘除運算符實例隨機抽取）
+				MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(p.Signs.ToList()); });
 			}
 		}
 
@@ -106,7 +112,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		private bool CheckIsNeedInverseMethod(Formula currentFormula)
 		{
 			// x或y參數為0
-			if (currentFormula.LeftParameter == 0 || currentFormula.RightParameter == 0)
+			if (currentFormula.LeftParameter == 0 || currentFormula.RightParameter == 0 || currentFormula.Answer == 0)
 			{
 				return true;
 			}
@@ -157,6 +163,43 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// </remarks>
 		private void AnswerCorrect(Problems problem, Formula formula)
 		{
+			// 中括號中的內容
+			Regex rgx = new Regex(@"(?i)(?<=\[)(.*)(?=\])");
+			if (rgx.IsMatch(problem.Content))
+			{
+				// 中括號內的表達式取得
+				var expression = rgx.Match(problem.Content).Value;
+				var left = expression.Substring(0, 1);
+				var expValue = expression.Substring(2);
+				// 如果是減法表達式
+				if (expression.IndexOf("-") >= 0)
+				{
+					if ("x".Equals(left))
+					{
+						formula.RightParameter -= Convert.ToInt32(expValue);
+					}
+					else if ("y".Equals(left))
+					{
+						formula.LeftParameter -= Convert.ToInt32(expValue);
+					}
+					formula.Answer += Convert.ToInt32(expValue);
+				}
+				else
+				{
+					// 加法表達式
+					if ("x".Equals(left))
+					{
+						formula.RightParameter += Convert.ToInt32(expValue);
+					}
+					else if ("y".Equals(left))
+					{
+						formula.LeftParameter += Convert.ToInt32(expValue);
+					}
+					formula.Answer += Convert.ToInt32(expValue);
+				}
+				// 表達式替換為一個參數符號(eg: [x+1] => x)
+				problem.Content = problem.Content.Replace(string.Format("[{0}]", rgx.Match(problem.Content).Value), left);
+			}
 			// 答題結果中不存在x參數
 			if (problem.Verify.IndexOf("x") < 0)
 			{
