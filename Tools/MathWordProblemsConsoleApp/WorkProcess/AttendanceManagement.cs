@@ -60,7 +60,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 		/// <param name="content"></param>
 		private void Write(string content)
 		{
-			using (FileStream fs = new FileStream(Path.GetFullPath(@"..\..\..\ComputationalStrategy\Config\Problems.json"), FileMode.Create))
+			using (FileStream fs = new FileStream(Path.GetFullPath(@"..\App_Data\Problems.json"), FileMode.Create))
 			{
 				// 获得字节数组
 				byte[] data = System.Text.Encoding.UTF8.GetBytes(content);

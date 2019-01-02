@@ -68,5 +68,8 @@
     <None Include="App_Data\MathWordProblems.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\output\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
