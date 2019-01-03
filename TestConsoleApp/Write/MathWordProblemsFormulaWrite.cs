@@ -5,6 +5,7 @@ using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace MyMathSheets.TestConsoleApp.Write
 {
@@ -25,7 +26,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 
 			formulas.ToList().ForEach(d =>
 			{
-				Console.WriteLine(string.Format("{0} {1}", d.MathWordProblem, d.Verify));
+				Console.WriteLine(string.Format("{0} {1} {2}", d.MathWordProblem, d.Verify, d.Unit));
 			});
 		}
 
