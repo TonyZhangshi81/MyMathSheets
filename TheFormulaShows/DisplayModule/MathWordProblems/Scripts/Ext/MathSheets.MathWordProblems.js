@@ -66,40 +66,63 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 				return true;
 			}
 
+			// 如果有單位填空項目
+			if ($(inputArray[4]).length > 0) {
+				if ($(inputArray[4]).val() == '') {
+					return true;
+				}
+			}
+
 			return false;
 		},
 
 		// 答案比對
 		_isExist = function (index, result) {
+			// 計算公式
 			var hidValue = $('#hiddenMwp' + index).val();
+			// 單位
+			var hidUnit = $('#hiddenMwpUnit' + index).val();
+
 			var answers = (hidValue || '').split(',');
 			for (var i = 0; i < answers.length; i++) {
-				if (answers[i] == result)
+				answer = answers[i];
+				if (hidUnit != '') {
+					answer += '(' + hidUnit + ')';
+				}
+				// 檢查計算公式是否一致
+				if (answer == result)
 					return true;
 			}
 			return false;
 		},
 
 		// 答题验证(正确:true  错误:false)
-		_mathWordProblemsCorrecting = function (index, element) {
+		_mathWordProblemsCorrecting = function (pIndex, pElement) {
 			var inputArray = new Array();
+			var index = pIndex.toString().PadLeft(2, '0');
 			inputArray.push($('#inputMwp' + index + '0'));
 			inputArray.push($('#inputMwp' + index + '1'));
 			inputArray.push($('#imgMwp' + index));
 			inputArray.push($('#inputMwp' + index + '2'));
+			// 單位填空項目
+			inputArray.push($('#inputMwp' + index + '3'));
 
 			var result = '';
 			// 計算式各項目的非空檢查
 			if (!_checkInputIsEmpty(inputArray)) {
 				// 等式健全的情況下，統計結果
 				result = $(inputArray[0]).val() + _signToString($(inputArray[2]).attr("title")) + $(inputArray[1]).val() + "=" + $(inputArray[3]).val();
+				// 如果有單位填空項目
+				if ($(inputArray[4]).length > 0) {
+					result += "(" + $(inputArray[4]).val() + ")";
+				}
 			}
 
-			// 验证输入值是否与答案一致
+			// 驗證輸入值是否與答案一致
 			if (_isExist(index, result)) {
-				// 动错题集中移除当前项目
+				// 在錯題集中移除當前項目
 				__allFaultInputElementArray.remove({ position: "mathSheetMathWordProblems", id: ('inputMwp' + index + '0') });
-				// 对错图片显示和隐藏
+				// 對錯圖片顯示和影藏
 				$('#imgOKProblems' + index).show();
 				$('#imgNoProblems' + index).hide();
 				// 移除圖片抖動特效
@@ -169,9 +192,9 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 
 		// 交卷
 		theirPapers = function () {
-			$("input[id*='hiddenMwp']").each(function (index, element) {
+			$("input[id*='hiddenMwp']").each(function (pIndex, pElement) {
 				// 答题验证
-				if (!_mathWordProblemsCorrecting(index, element)) {
+				if (!_mathWordProblemsCorrecting(pIndex, pElement)) {
 					// 答题错误时,错误件数加一
 					__isFault++;
 				} else {
@@ -183,9 +206,9 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 		// 订正(算式应用题)
 		makeCorrections = function () {
 			var fault = 0;
-			$("input[id*='hiddenMwp']").each(function (index, element) {
+			$("input[id*='hiddenMwp']").each(function (pIndex, pElement) {
 				// 答题验证
-				if (!_mathWordProblemsCorrecting(index, element)) {
+				if (!_mathWordProblemsCorrecting(pIndex, pElement)) {
 					// 答题错误时,错误件数加一
 					fault++;
 				}

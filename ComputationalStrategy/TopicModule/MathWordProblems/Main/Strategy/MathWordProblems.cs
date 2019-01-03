@@ -143,6 +143,8 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 			{
 				// 運算式
 				ProblemFormula = formula,
+				// 單位
+				Unit = problem.Unit ?? string.Empty,
 				// 應用題文字內容
 				MathWordProblem = problem.Content.Replace("x", formula.LeftParameter.ToString())
 													.Replace("y", formula.RightParameter.ToString()),
@@ -176,24 +178,25 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 				{
 					if ("x".Equals(left))
 					{
-						formula.RightParameter -= Convert.ToInt32(expValue);
+						formula.LeftParameter -= Convert.ToInt32(expValue);
+						formula.Answer -= Convert.ToInt32(expValue);
 					}
 					else if ("y".Equals(left))
 					{
-						formula.LeftParameter -= Convert.ToInt32(expValue);
+						formula.RightParameter -= Convert.ToInt32(expValue);
+						formula.Answer += Convert.ToInt32(expValue);
 					}
-					formula.Answer += Convert.ToInt32(expValue);
 				}
 				else
 				{
 					// 加法表達式
 					if ("x".Equals(left))
 					{
-						formula.RightParameter += Convert.ToInt32(expValue);
+						formula.LeftParameter += Convert.ToInt32(expValue);
 					}
 					else if ("y".Equals(left))
 					{
-						formula.LeftParameter += Convert.ToInt32(expValue);
+						formula.RightParameter += Convert.ToInt32(expValue);
 					}
 					formula.Answer += Convert.ToInt32(expValue);
 				}

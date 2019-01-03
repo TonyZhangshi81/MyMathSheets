@@ -24,6 +24,14 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 		/// 標題HTML模板
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+		/// <summary>
+		/// 輸入框HTML模板
+		/// </summary>
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+		/// <summary>
+		/// 輸入框HTML模板
+		/// </summary>
+		private const string INPUT_UNIT_HTML_FORMAT = "<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" 字 \" class=\"form-control input-addBorder\" disabled=\"disabled\" />";
 
 		/// <summary>
 		/// 題型HTML模板作成
@@ -53,16 +61,28 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 				rowHtml.AppendLine("</div>");
 				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
 				rowHtml.AppendLine("<h5>");
-				rowHtml.AppendLine(string.Format("<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, 0));
-				rowHtml.AppendLine(string.Format("<img src=\"../Content/image/help.png\" id=\"imgMwp{0}\" style=\"width: 30px; height: 30px;\" title=\"help\" />", parentControlIndex));
-				rowHtml.AppendLine(string.Format("<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, 1));
+				rowHtml.AppendLine(string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 0));
+				rowHtml.AppendLine(string.Format("<img src=\"../Content/image/help.png\" id=\"imgMwp{0}\" style=\"width: 30px; height: 30px;\" title=\"help\" />", parentControlIndex.ToString().PadLeft(2, '0')));
+				rowHtml.AppendLine(string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 1));
 				rowHtml.AppendLine("<img src=\"../Content/image/calculator.png\" style=\"width: 30px; height: 30px;\" />");
-				rowHtml.AppendLine(string.Format("<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, 2));
-				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwp{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex, item.Verify));
+				rowHtml.AppendLine(string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 2));
+
+				// 單位填寫
+				if (!string.IsNullOrEmpty(item.Unit))
+				{
+					rowHtml.AppendLine("<span class=\"label\">(</span>");
+					rowHtml.AppendLine(string.Format(INPUT_UNIT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 3));
+					rowHtml.AppendLine("<span class=\"label\">)</span>");
+				}
+
+				// 標準方程式（答案）
+				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwp{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex.ToString().PadLeft(2, '0'), item.Verify));
+				// 單位（答案）
+				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwpUnit{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex.ToString().PadLeft(2, '0'), item.Unit));
 				rowHtml.AppendLine("</h5>");
 				rowHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
-				rowHtml.AppendLine(string.Format("<img id=\"imgOKProblems{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", parentControlIndex));
-				rowHtml.AppendLine(string.Format("<img id=\"imgNoProblems{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", parentControlIndex));
+				rowHtml.AppendLine(string.Format("<img id=\"imgOKProblems{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", parentControlIndex.ToString().PadLeft(2, '0')));
+				rowHtml.AppendLine(string.Format("<img id=\"imgNoProblems{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", parentControlIndex.ToString().PadLeft(2, '0')));
 				rowHtml.AppendLine("</div>");
 				rowHtml.AppendLine("</div>");
 
