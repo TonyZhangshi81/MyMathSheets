@@ -16,6 +16,10 @@ var __itemTops = new Array();
 var __navlist = null;
 // 所有可輸入項目的集合
 var __allInputElementArray = new Array();
+// 當前Active狀態的輸入框對象
+var __focusInputElement = null;
+// 當前Active狀態的輸入框索引號
+var __sequence = 0;
 // 錯題集
 var __allFaultInputElementArray = new Array();
 
@@ -54,6 +58,11 @@ MathSheets.Common = MathSheets.Common || (function () {
 			$(_getId(btnReadyId)).hide();
 			// 打印按鈕隱藏
 			$(_getId(btnPrintId)).hide();
+
+			setTimeout(function () {
+				// 頁面第一個輸入域設置Active
+				$('#divPrintContent').find('input').first().focus();
+			}, 1000);
 		},
 
 		// 頁面答應處理
@@ -380,6 +389,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 			__navlist = $('.bs-docs-sidebar ul li a');
 
 			/*
+			 * 題型數量小於4時不顯示右側導航欄
 			if ($("div[id='divSidebar']").find("li").length < 4) {
 				$("div[id='divSidebar']").hide();
 			}
@@ -497,10 +507,57 @@ MathSheets.Common = MathSheets.Common || (function () {
 				$(".imgHelper-up").hide();
 			}
 		},
+
 		// 按鍵屏蔽防止刷新頁面
 		forbidKeyDown = function () {
 			$(document).bind("keydown", function (e) {
 				var e = window.event || e;
+
+				// 判斷鍵盤是按下了左方向鍵
+				if (e.keyCode == 39) {
+					if (__allInputElementArray.length == 0) {
+						return false;
+					}
+					if (__sequence == __allInputElementArray.length - 1) {
+						__sequence = -1;
+					}
+					__sequence++;
+					$(_getId(__allInputElementArray[__sequence].id)).focus().select();
+
+					return false;
+				}
+				// 判斷鍵盤是按下了左方向鍵
+				if (e.keyCode == 37) {
+					if (__allInputElementArray.length == 0) {
+						return false;
+					}
+					if (__sequence == 0) {
+						__sequence = __allInputElementArray.length;
+					}
+					__sequence--;
+					$(_getId(__allInputElementArray[__sequence].id)).focus().select();
+
+					return false;
+				}
+				// 判斷鍵盤是按下回車鍵（重新定位Active輸入域的索引號用於左移右移）
+				if (e.keyCode == 13) {
+					// 當前focus項目取得
+					var f = $("input:focus");
+					if (f.length == 0) {
+						return false;
+					}
+					// Active輸入域的id
+					var selectedId = f.attr("id");
+					// 遍歷全部輸入域
+					$.each(__allInputElementArray, function (index, e) {
+						if (selectedId == e.id) {
+							// 重新定位Active輸入域的索引號
+							__sequence = index;
+							return false;
+						}
+					});
+				}
+
 				// 屏蔽 Alt+ 方向鍵 ←
 				// 屏蔽 Alt+ 方向鍵 →
 				if ((e.altKey) && ((e.keyCode == 37) || (e.keyCode == 39))) {
