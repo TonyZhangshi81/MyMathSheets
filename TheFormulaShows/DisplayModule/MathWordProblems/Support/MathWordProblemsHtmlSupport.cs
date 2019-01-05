@@ -76,7 +76,7 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 				}
 
 				// 標準方程式（答案）
-				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwp{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex.ToString().PadLeft(2, '0'), item.Verify));
+				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwpAnswer{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex.ToString().PadLeft(2, '0'), item.Verify));
 				// 單位（答案）
 				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwpUnit{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex.ToString().PadLeft(2, '0'), item.Unit));
 				rowHtml.AppendLine("</h5>");

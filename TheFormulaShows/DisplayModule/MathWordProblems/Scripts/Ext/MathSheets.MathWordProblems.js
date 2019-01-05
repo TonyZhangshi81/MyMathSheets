@@ -79,7 +79,7 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 		// 答案比對
 		_isExist = function (index, result) {
 			// 計算公式
-			var hidValue = $('#hiddenMwp' + index).val();
+			var hidValue = $('#hiddenMwpAnswer' + index).val();
 			// 單位
 			var hidUnit = $('#hiddenMwpUnit' + index).val();
 
@@ -192,7 +192,7 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 
 		// 交卷
 		theirPapers = function () {
-			$("input[id*='hiddenMwp']").each(function (pIndex, pElement) {
+			$("input[id*='hiddenMwpAnswer']").each(function (pIndex, pElement) {
 				// 答题验证
 				if (!_mathWordProblemsCorrecting(pIndex, pElement)) {
 					// 答题错误时,错误件数加一
@@ -206,7 +206,7 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 		// 订正(算式应用题)
 		makeCorrections = function () {
 			var fault = 0;
-			$("input[id*='hiddenMwp']").each(function (pIndex, pElement) {
+			$("input[id*='hiddenMwpAnswer']").each(function (pIndex, pElement) {
 				// 答题验证
 				if (!_mathWordProblemsCorrecting(pIndex, pElement)) {
 					// 答题错误时,错误件数加一

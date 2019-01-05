@@ -241,7 +241,20 @@ MathSheets.Common = MathSheets.Common || (function () {
 				var path = String.format("../Content/image/honor/award{0}.png", _getRandom(8));
 				$(".imgAward").attr('src', path);
 				// 顯示獎章 :-)
-				$(".imgAward").fadeIn(5000);
+				$(".imgAward").fadeIn(500, function () {
+					$(this).animate({ width: "290px", height: "290px" }, "slow", null, function () {
+						$(".honorArea").animate({ "top": "-30px", }, 100)
+							.animate({ "top": "-15px", }, 100)
+							.animate({ "top": "-28px", }, 100)
+							.animate({ "top": "-15px", }, 100)
+							.animate({ "top": "-25px", }, 50)
+							.animate({ "top": "-15px", }, 50)
+							.animate({ "top": "-22px", }, 50)
+							.animate({ "top": "-15px", }, 10)
+							.animate({ "top": "-18px", }, 10)
+							.animate({ "top": "-15px", }, 10)
+					});
+				});
 			}, 2000);
 		},
 
@@ -508,6 +521,30 @@ MathSheets.Common = MathSheets.Common || (function () {
 			}
 		},
 
+		// 取得下一個輸入框的索引號
+		_getNextInputFocusSequence = function (currentSelectedId) {
+			// 當前focus項目取得
+			var f = $("input:focus");
+			if (f.length == 0) {
+				return -1;
+			}
+			// Active輸入域的id
+			var selectedId = f.attr("id");
+			// 當前輸入框是active狀態
+			if (selectedId == currentSelectedId) {
+				return __sequence;
+			}
+			// 遍歷全部輸入域
+			$.each(__allInputElementArray, function (index, e) {
+				if (selectedId == e.id) {
+					// 重新定位Active輸入域的索引號
+					__sequence = index;
+					return false;
+				}
+			});
+			return __sequence;
+		},
+
 		// 按鍵屏蔽防止刷新頁面
 		forbidKeyDown = function () {
 			$(document).bind("keydown", function (e) {
@@ -518,6 +555,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 					if (__allInputElementArray.length == 0) {
 						return false;
 					}
+
+					__sequence = _getNextInputFocusSequence(__allInputElementArray[__sequence].id);
 					if (__sequence == __allInputElementArray.length - 1) {
 						__sequence = -1;
 					}
@@ -531,6 +570,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 					if (__allInputElementArray.length == 0) {
 						return false;
 					}
+
+					__sequence = _getNextInputFocusSequence(__allInputElementArray[__sequence].id);
 					if (__sequence == 0) {
 						__sequence = __allInputElementArray.length;
 					}
