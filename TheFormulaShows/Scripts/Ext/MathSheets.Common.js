@@ -272,16 +272,6 @@ MathSheets.Common = MathSheets.Common || (function () {
 			store.set('result', { time: timeStr, right: __isRight, fault: __isFault });
 		},
 
-		// 鼠標移入置頂導航鍵
-		overShow = function (e) {
-			$(e).css('background-color', 'crimson');
-		},
-
-		// 鼠標移出置頂導航鍵
-		outHide = function (e) {
-			$(e).css('background-color', 'darkred');
-		},
-
 		// 鼠標移入頁面頂端導航區域時，浮動菜單顯示
 		overNavbarShow = function () {
 			$(".box").slideDown(500, function () {
@@ -644,8 +634,6 @@ MathSheets.Common = MathSheets.Common || (function () {
 		forbidKeyDown: forbidKeyDown,
 		windowClose: windowClose,
 		startTime: startTime,
-		overShow: overShow,
-		outHide: outHide,
 		overNavbarShow: overNavbarShow,
 		outNavbarHide: outNavbarHide,
 		toTop: toTop,
@@ -719,10 +707,6 @@ $(document).ready(function () {
 		MathSheets.Common.toBottom();
 	});
 
-	// 鼠標移入置頂導航鍵(高亮效果)
-	$('.totop').bind("mouseenter", function () { MathSheets.Common.overShow(this); });
-	// 鼠標移出置頂導航鍵
-	$('.totop').bind("mouseleave", function () { MathSheets.Common.outHide(this); });
 	// 點擊置頂導航鍵
 	$('.totop').bind("click", function () { MathSheets.Common.toTop(); });
 

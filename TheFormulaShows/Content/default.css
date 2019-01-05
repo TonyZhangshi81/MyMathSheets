@@ -185,6 +185,12 @@
 	z-index: 70;
 }
 
+.totop:hover {
+	background: url(../Content/image/navigate-up.png) center no-repeat crimson;
+	background-size: 36px 36px;
+	-webkit-box-shadow: 0 0 10px;
+}
+
 .plugin-butterfly {
 	position: absolute;
 	top: 10px;

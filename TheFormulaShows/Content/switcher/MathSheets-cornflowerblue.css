@@ -4,3 +4,37 @@
 .body-main {
 	background-color: cornflowerblue;
 }
+
+.main-ext {
+	background-color: white;
+	border-radius: 0.8rem;
+	-webkit-box-shadow: 0 0 15px;
+}
+
+.bs-docs-sidebar a {
+	color: white;
+}
+
+.bs-docs-sidebar a:hover,
+.bs-docs-sidebar a.active {
+	color: black;
+}
+
+.totop {
+	width: 60px;
+	height: 60px;
+	background: url(../../Content/image/navigate-up.png) center no-repeat whitesmoke;
+	background-size: 30px 30px;
+	border-radius: 50%;
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	display: none;
+	z-index: 70;
+}
+
+.totop:hover {
+	background: url(../../Content/image/navigate-up.png) center no-repeat white;
+	background-size: 36px 36px;
+	-webkit-box-shadow: 0 0 10px;
+}
