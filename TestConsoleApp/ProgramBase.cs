@@ -73,6 +73,7 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    C-減法填空");
 					Console.WriteLine("    D-乘法填空");
 					Console.WriteLine("    E-除法填空");
+					Console.WriteLine("    AX-四則運算擴展題");
 					Console.WriteLine("************************* 計算比大小 ***********************");
 					Console.WriteLine("    F-四則運算比較");
 					Console.WriteLine("    G-加法比較");
@@ -152,6 +153,14 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("四則運算填空");
 
 						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC001");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
+						break;
+
+					case "AX":
+						Console.WriteLine();
+						Console.WriteLine("四則運算擴展");
+
+						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, "AC007");
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
 						break;
 

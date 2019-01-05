@@ -12,6 +12,10 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Item
 		/// </summary>
 		public Formula Arithmetic { get; set; }
 		/// <summary>
+		/// 多級計算式
+		/// </summary>
+		public Formula MultistageArithmetic { get; set; }
+		/// <summary>
 		/// 
 		/// </summary>
 		public bool AnswerIsRight { get; set; }

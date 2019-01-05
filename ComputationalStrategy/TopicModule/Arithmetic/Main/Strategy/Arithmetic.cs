@@ -44,17 +44,50 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 				{
 					// 四則運算式
 					Arithmetic = formula,
+					// 多級運算式
+					MultistageArithmetic = GetMultistageFormula(p, formula, () => { return signFunc(); }),
 					// 等式值是不是出現在右邊
 					AnswerIsRight = IsRight
 				});
 			}
 		}
 
+		/// <summary>
+		/// 多級運算式作成
+		/// </summary>
+		/// <param name="p">題型參數</param>
+		/// <param name="pervFormula">第一級計算式</param>
+		/// <param name="signFunc">運算符取得用的表達式</param>
+		/// <returns>四則運算式</returns>
+		private Formula GetMultistageFormula(ArithmeticParameter p, Formula pervFormula, Func<SignOfOperation> signFunc)
+		{
+			// 第一級計算式右加數值
+			if (pervFormula.RightParameter == 0)
+			{
+				return null;
+			}
+
+			ICalculate strategy = CalculateManager(signFunc());
+			// 計算式作成（依據左邊算式的答案推算右邊的算式）
+			Formula formula = strategy.CreateFormulaWithAnswer(new CalculateParameter()
+			{
+				MaximumLimit = p.MaximumLimit,
+				QuestionType = QuestionType.Default,
+				MinimumLimit = 0
+			}, pervFormula.RightParameter);
+
+			if(pervFormula.Gap == GapFilling.Right)
+			{
+				formula.Gap = CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Right);
+			}
+
+			return formula;
+		}
 
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		/// <param name="parameter"></param>
+		/// <param name="parameter">題型參數</param>
 		protected override void MarkFormulaList(ParameterBase parameter)
 		{
 			ArithmeticParameter p = parameter as ArithmeticParameter;
