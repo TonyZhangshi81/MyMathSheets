@@ -61,7 +61,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 
 			setTimeout(function () {
 				// 頁面第一個輸入域設置Active
-				$('#divPrintContent').find('input').first().focus();
+				$('#divPrintContent').find(':text').first().focus();
 			}, 1000);
 		},
 
