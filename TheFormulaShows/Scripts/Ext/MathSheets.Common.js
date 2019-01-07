@@ -205,10 +205,10 @@ MathSheets.Common = MathSheets.Common || (function () {
 
 		// 錯題項目獲得光標并選中
 		_faultInputElement = function () {
-			if (__allFaultInputElementArray.length != 0) {
+			if (__allInputElementArray.length != 0) {
 				setTimeout(function () {
-					_setLocation(__allFaultInputElementArray[0]);
-					__allFaultInputElementArray.length = 0;
+					_setLocation(__allInputElementArray[0]);
+					//__allInputElementArray.length = 0;
 				}, 1000);
 			}
 		},
@@ -218,10 +218,10 @@ MathSheets.Common = MathSheets.Common || (function () {
 			// 設置滾動高度
 			$('html,body').animate({
 				scrollTop: $(_getId(faultItem.position)).offset().top
-			}, 1500, "easeOutQuint", function () {
+			}, 500, "easeOutQuint", function () {
 				// 高亮選中當前輸入框
 				if (faultItem.id != null) {
-					$(_getId(faultItem.id)).select();
+					$(_getId(faultItem.id)).focus().select();
 				}
 			});
 		},
@@ -535,6 +535,16 @@ MathSheets.Common = MathSheets.Common || (function () {
 			return __sequence;
 		},
 
+		// 答題后將正確的項目從列表中移除
+		removeInputElementArray = function (objValue) {
+			$.each(__allInputElementArray, function (index, item) {
+				if (item.position == objValue.position && item.id == objValue.id) {
+					__allInputElementArray.splice(index, 1);
+					return false;
+				}
+			});
+		},
+
 		// 按鍵屏蔽防止刷新頁面
 		forbidKeyDown = function () {
 			$(document).bind("keydown", function (e) {
@@ -645,7 +655,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 		scrollAutoDown: scrollAutoDown,
 		scrollAutoHelper: scrollAutoHelper,
 		ready: ready,
-		windowScroll: windowScroll
+		windowScroll: windowScroll,
+		removeInputElementArray: removeInputElementArray
 	};
 }());
 

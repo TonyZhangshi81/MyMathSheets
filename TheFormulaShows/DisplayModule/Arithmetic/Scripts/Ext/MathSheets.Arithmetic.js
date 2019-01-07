@@ -27,7 +27,7 @@ MathSheets.Arithmetic = MathSheets.Arithmetic || (function () {
 			if ($(element).val() == $('#hiddenAc' + index).val()
 				|| (parseInt($('#hiddenAc' + index).val()) == -999 && $(element).val() != '')) {
 				// 动错题集中移除当前项目
-				__allFaultInputElementArray.remove({ position: "mathSheetArithmetic", id: $(element).attr("id") });
+				removeInputElementArray({ position: "mathSheetArithmetic", id: $(element).attr("id") })
 
 				// 对错图片显示和隐藏
 				$('#imgOKArithmetic' + index).show();
@@ -38,9 +38,6 @@ MathSheets.Arithmetic = MathSheets.Arithmetic || (function () {
 				// 正确:true
 				return true;
 			} else {
-				// 收集所有錯題項目ID
-				__allFaultInputElementArray.push({ position: "mathSheetArithmetic", id: $(element).attr("id") });
-
 				// 对错图片显示和隐藏
 				$('#imgOKArithmetic' + index).hide();
 				$('#imgNoArithmetic' + index).show();

@@ -45,7 +45,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 					// 四則運算式
 					Arithmetic = formula,
 					// 多級運算式
-					MultistageArithmetic = GetMultistageFormula(p, formula, () => { return signFunc(); }),
+					MultistageArithmetic = (p.Multistage) ? GetMultistageFormula(p, formula, () => { return signFunc(); }) : null,
 					// 等式值是不是出現在右邊
 					AnswerIsRight = IsRight
 				});
@@ -79,6 +79,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 			if(pervFormula.Gap == GapFilling.Right)
 			{
 				formula.Gap = CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Right);
+				pervFormula.Gap = GapFilling.Default;
 			}
 
 			return formula;
