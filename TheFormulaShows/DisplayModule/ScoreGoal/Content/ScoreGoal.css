@@ -1,29 +1,31 @@
+@charset "utf-8";
+
 .divBall {
 	z-index: 2;
 	width: 40px;
 	height: 40px;
-	background: aliceblue;
+	background: transparent;
 }
 
 .divGoaler {
 	z-index: 1;
 	width: 200px;
 	height: 140px;
-	background: aliceblue;
+	background: transparent;
 	position: absolute;
-	border: 1px solid #ccc;
+	border: 0px;
 }
 
 .divScore {
 	z-index: 1;
-	background: aliceblue;
+	background: transparent;
 	position: absolute;
 	border: none;
 }
 
 .divScoreGoalResultImg {
 	z-index: 1;
-	background: aliceblue;
+	background: transparent;
 	position: absolute;
 	border: none;
 	left: 530px;

@@ -30,7 +30,7 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 			// 验证输入值是否与答案一致
 			if (fault) {
 				// 动错题集中移除当前项目
-				__allFaultInputElementArray.remove({ position: "mathSheetTimeCalculation", id: $inputs.eq(0).attr("id") });
+				removeInputElementArray({ position: "mathSheetTimeCalculation", id: $inputs.eq(0).attr("id") });
 
 				// 对错图片显示和隐藏
 				$('#imgOKTimeCalculation' + pIndex).show();
@@ -41,8 +41,6 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 				// 正确:true
 				return true;
 			} else {
-				// 收集所有錯題項目ID
-				__allFaultInputElementArray.push({ position: "mathSheetTimeCalculation", id: $inputs.eq(0).attr("id") });
 
 				// 对错图片显示和隐藏
 				$('#imgOKTimeCalculation' + pIndex).hide();

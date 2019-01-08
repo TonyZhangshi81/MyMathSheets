@@ -19,7 +19,7 @@ MathSheets.NumericSorting = MathSheets.NumericSorting || (function () {
 			// 验证输入值是否与答案一致
 			if (isOK) {
 				// 动错题集中移除当前项目
-				__allFaultInputElementArray.remove({ position: "mathSheetNumericSorting", id: $(inputAry[0]).attr('id') });
+				removeInputElementArray({ position: "mathSheetNumericSorting", id: $(inputAry[0]).attr('id') });
 				// 对错图片显示和隐藏
 				$('#imgOKNumericSorting' + pindex).show();
 				$('#imgNoNumericSorting' + pindex).hide();
@@ -29,8 +29,6 @@ MathSheets.NumericSorting = MathSheets.NumericSorting || (function () {
 				// 正确:true
 				return true;
 			} else {
-				// 收集所有錯題項目ID
-				__allFaultInputElementArray.push({ position: "mathSheetNumericSorting", id: $(inputAry[0]).attr('id') });
 				// 对错图片显示和隐藏
 				$('#imgOKNumericSorting' + pindex).hide();
 				$('#imgNoNumericSorting' + pindex).show();

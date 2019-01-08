@@ -142,10 +142,7 @@ MathSheets.FruitsLinkage = MathSheets.FruitsLinkage || (function () {
 			// 有錯題的情況
 			if (fault != 0) {
 				// 错题集中移除当前项目
-				__allFaultInputElementArray.remove({ position: "mathSheetFruitsLinkage", id: null });
-			} else {
-				// 收集所有錯題項目ID
-				__allFaultInputElementArray.push({ position: "mathSheetFruitsLinkage", id: null });
+				removeInputElementArray({ position: "mathSheetFruitsLinkage", id: null });
 			}
 		},
 

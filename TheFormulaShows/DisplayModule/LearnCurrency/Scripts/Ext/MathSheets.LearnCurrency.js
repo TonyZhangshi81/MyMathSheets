@@ -36,7 +36,7 @@ MathSheets.LearnCurrency = MathSheets.LearnCurrency || (function () {
 			// 验证输入值是否与答案一致
 			if (isOK) {
 				// 动错题集中移除当前项目
-				__allFaultInputElementArray.remove({ position: "mathSheetLearnCurrency", id: $(inputAry[0]).attr("id") });
+				removeInputElementArray({ position: "mathSheetLearnCurrency", id: $(inputAry[0]).attr("id") });
 				// 对错图片显示和隐藏
 				$('#imgOKLearnCurrency' + pindex).show();
 				$('#imgNoLearnCurrency' + pindex).hide();
@@ -46,8 +46,6 @@ MathSheets.LearnCurrency = MathSheets.LearnCurrency || (function () {
 				// 正确:true
 				return true;
 			} else {
-				// 收集所有錯題項目ID
-				__allFaultInputElementArray.push({ position: "mathSheetLearnCurrency", id: $(inputAry[0]).attr("id") });
 				// 对错图片显示和隐藏
 				$('#imgOKLearnCurrency' + pindex).hide();
 				$('#imgNoLearnCurrency' + pindex).show();

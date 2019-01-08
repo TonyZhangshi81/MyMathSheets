@@ -18,7 +18,7 @@ MathSheets.ComputingConnection = MathSheets.ComputingConnection || (function () 
 		// 不存在错误的情况下
 		if (!isErr) {
 			// 动错题集中移除当前项目
-			__allFaultInputElementArray.remove({ position: "mathSheetComputingConnection", id: $(inputCcArray[0]).attr("id") });
+			removeInputElementArray({ position: "mathSheetComputingConnection", id: $(inputCcArray[0]).attr("id") });
 			// 对错图片显示和隐藏
 			$('#imgOKComputingConnection' + pIndex).show();
 			$('#imgNoComputingConnection' + pIndex).hide();
@@ -31,8 +31,6 @@ MathSheets.ComputingConnection = MathSheets.ComputingConnection || (function () 
 			// 正确:true
 			return true;
 		} else {
-			// 收集所有錯題項目ID
-			__allFaultInputElementArray.push({ position: "mathSheetComputingConnection", id: $(inputCcArray[0]).attr("id") });
 			// 对错图片显示和隐藏
 			$('#imgOKComputingConnection' + pIndex).hide();
 			$('#imgNoComputingConnection' + pIndex).show();

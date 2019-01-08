@@ -15,6 +15,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 	/// 比多少題型HTML支援類,動態作成html并按照一定的格式注入html模板中
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.HowMuchMore)]
+	[Substitute("<!--HOWMUCHMORESHEET-->", "<link href=\"../Content/HowMuchMore.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute("<!--HOWMUCHMORESCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.HowMuchMore.js\" charset=\"utf-8\"></script>")]
 	[Substitute("//<!--HOWMUCHMOREREADY-->", "MathSheets.HowMuchMore.ready();")]
 	[Substitute("//<!--HOWMUCHMOREMAKECORRECTIONS-->", "fault += MathSheets.HowMuchMore.makeCorrections();")]
@@ -88,7 +89,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 
 				listGroupHtml.AppendLine("<div class=\"col-md-6 form-inline\">");
 				listGroupHtml.AppendLine("<ul class=\"list-group list-group-ext\">");
-				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
+				listGroupHtml.AppendLine("<li class=\"list-group-item list-group-item-ext-1\">");
 				listGroupHtml.AppendLine("<h4>");
 				listGroupHtml.AppendLine(GetProblemHtml(item));
 				listGroupHtml.AppendLine("</h4>");
@@ -99,14 +100,14 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 				listGroupHtml.AppendLine("</li>");
 
 				// 表示項目顯示
-				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
+				listGroupHtml.AppendLine("<li class=\"list-group-item list-group-item-ext-2\">");
 				listGroupHtml.AppendLine("<h4>");
 				listGroupHtml.AppendLine(SetDisplayItem(item));
 				listGroupHtml.AppendLine("</h4>");
 				listGroupHtml.AppendLine("</li>");
 
 				// 填空項目顯示
-				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
+				listGroupHtml.AppendLine("<li class=\"list-group-item list-group-item-ext-3\">");
 				listGroupHtml.AppendLine("<h4>");
 				listGroupHtml.AppendLine(SetDisplayGapFillingItem(item, controlIndex));
 				listGroupHtml.AppendLine("</h4>");

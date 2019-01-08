@@ -177,7 +177,7 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 			// 验证输入值是否与答案一致
 			if (fault == 0) {
 				// 动错题集中移除当前项目
-				__allFaultInputElementArray.remove({ position: "mathSheetScoreGoal", id: null });
+				removeInputElementArray({ position: "mathSheetScoreGoal", id: null });
 
 				// 对错图片显示和隐藏
 				$('#imgOKScoreGoal').show();
@@ -185,9 +185,7 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 				// 移除圖片抖動特效
 				$('#imgNoScoreGoal').removeClass("shake shake-slow");
 			} else {
-				// 收集所有錯題項目ID
-				__allFaultInputElementArray.push({ position: "mathSheetScoreGoal", id: null });
-
+				
 				// 对错图片显示和隐藏
 				$('#imgOKScoreGoal').hide();
 				$('#imgNoScoreGoal').show();

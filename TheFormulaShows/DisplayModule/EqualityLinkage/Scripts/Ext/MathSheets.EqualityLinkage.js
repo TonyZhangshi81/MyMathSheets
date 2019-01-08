@@ -54,7 +54,7 @@ MathSheets.EqualityLinkage = MathSheets.EqualityLinkage || (function () {
             // 验证输入值是否与答案一致
             if (isRight) {
 				// 动错题集中移除当前项目
-				__allFaultInputElementArray.remove({ position: "mathSheetEqualityLinkage", id: null });
+				removeInputElementArray({ position: "mathSheetEqualityLinkage", id: null });
                 // 对错图片显示和隐藏
                 $('#imgOKEqualityLinkage').show();
 				$('#imgNoEqualityLinkage').hide();
@@ -67,8 +67,6 @@ MathSheets.EqualityLinkage = MathSheets.EqualityLinkage || (function () {
                 // 正确:true
                 return true;
             } else {
-				// 收集所有錯題項目ID
-				__allFaultInputElementArray.push({ position: "mathSheetEqualityLinkage", id: null });
                 // 对错图片显示和隐藏
                 $('#imgOKEqualityLinkage').hide();
 				$('#imgNoEqualityLinkage').show();

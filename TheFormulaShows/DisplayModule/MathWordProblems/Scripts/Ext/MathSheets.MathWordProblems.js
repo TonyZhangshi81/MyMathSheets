@@ -121,7 +121,10 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 			// 驗證輸入值是否與答案一致
 			if (_isExist(index, result)) {
 				// 在錯題集中移除當前項目
-				__allFaultInputElementArray.remove({ position: "mathSheetMathWordProblems", id: ('inputMwp' + index + '0') });
+				removeInputElementArray({ position: "mathSheetMathWordProblems", id: ('pIndex' + index + '0') });
+				removeInputElementArray({ position: "mathSheetMathWordProblems", id: ('pIndex' + index + '1') });
+				removeInputElementArray({ position: "mathSheetMathWordProblems", id: ('pIndex' + index + '2') });
+				removeInputElementArray({ position: "mathSheetMathWordProblems", id: ('pIndex' + index + '3') });
 				// 對錯圖片顯示和影藏
 				$('#imgOKProblems' + index).show();
 				$('#imgNoProblems' + index).hide();
@@ -133,8 +136,6 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 				// 正确:true
 				return true;
 			} else {
-				// 收集所有錯題項目ID
-				__allFaultInputElementArray.push({ position: "mathSheetMathWordProblems", id: ('inputMwp' + index + '0') });
 				// 对错图片显示和隐藏
 				$('#imgOKProblems' + index).hide();
 				$('#imgNoProblems' + index).show();

@@ -27,7 +27,7 @@ MathSheets.FindNearestNumber = MathSheets.FindNearestNumber || (function () {
 			if ($(element).val() == $('#hiddenFnn' + index).val()
 				|| (parseInt($('#hiddenFnn' + index).val()) == -999 && $(element).val() != '')) {
 				// 动错题集中移除当前项目
-				__allFaultInputElementArray.remove({ position: "mathSheetFindNearestNumber", id: $(element).attr("id") });
+				removeInputElementArray({ position: "mathSheetFindNearestNumber", id: $(element).attr("id") });
 				// 对错图片显示和隐藏
 				$('#imgOKFindNearestNumber' + index).show();
 				$('#imgNoFindNearestNumber' + index).hide();
@@ -37,8 +37,6 @@ MathSheets.FindNearestNumber = MathSheets.FindNearestNumber || (function () {
 				// 正确:true
 				return true;
 			} else {
-				// 收集所有錯題項目ID
-				__allFaultInputElementArray.push({ position: "mathSheetFindNearestNumber", id: $(element).attr("id") });
 				// 对错图片显示和隐藏
 				$('#imgOKFindNearestNumber' + index).hide();
 				$('#imgNoFindNearestNumber' + index).show();
