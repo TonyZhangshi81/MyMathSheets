@@ -41,8 +41,10 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 
 			// 验证输入值是否与答案一致
 			if (parseInt(hms[0]) == hours && parseInt(hms[1]) == minutes && parseInt(hms[2]) == seconds) {
-				// 动错题集中移除当前项目
+				// 动错题集中移除当前项目(時分秒)
 				removeInputElementArray({ position: "mathSheetSchoolClock", id: ("inputClockH" + index) });
+				removeInputElementArray({ position: "mathSheetSchoolClock", id: ("inputClockM" + index) });
+				removeInputElementArray({ position: "mathSheetSchoolClock", id: ("inputClockS" + index) });
 				// 对错图片显示和隐藏
 				$('#imgOKSchoolClock' + index).show();
 				$('#imgNoSchoolClock' + index).hide();

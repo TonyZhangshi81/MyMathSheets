@@ -37,14 +37,17 @@ MathSheets.FindTheLaw = MathSheets.FindTheLaw || (function () {
 			});
 			// 如果不存在错误
 			if (right) {
-				// 动错题集中移除当前项目
-				removeInputElementArray({ position: "mathSheetFindTheLaw", id: $(inputAry[0]).attr("id") });
 				// 对错图片显示和隐藏
 				$('#imgOKFindTheLaw' + pindex).show();
 				$('#imgNoFindTheLaw' + pindex).hide();
 				// 移除圖片抖動特效
 				$('#imgNoFindTheLaw' + pindex).removeClass("shake shake-slow");
-				$.each(inputAry, function (index, inputObj) { inputObj.attr("disabled", "disabled"); });
+				$.each(inputAry, function (index, inputObj) {
+					// 控件只讀屬性設置
+					inputObj.attr("disabled", "disabled");
+					// 在錯題集中移除當前項目
+					removeInputElementArray({ position: "mathSheetFindTheLaw", id: $(inputObj).attr("id") });
+				});
 				// 正确:true
 				return true;
 			} else {

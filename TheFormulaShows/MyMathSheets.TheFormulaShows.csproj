@@ -202,6 +202,7 @@ copy "..\Content\EqualityLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_D
 copy "..\Content\CurrencyLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\FruitsLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\ScoreGoal.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\HowMuchMore.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\default.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\Shake.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 xcopy "..\Content\image" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\image" /C /E /H /K /R /Y
