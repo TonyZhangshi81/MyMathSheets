@@ -674,6 +674,44 @@
 		/// </summary>
 		Superposition,
 	}
+	/// <summary>
+	/// HTML屬性注入類型
+	/// </summary>
+	public enum SubstituteType : int
+	{
+		/// <summary>
+		/// 樣式庫引用注入點
+		/// </summary>
+		Stylesheet = 0,
+		/// <summary>
+		/// 腳本引用注入點
+		/// </summary>
+		Script,
+		/// <summary>
+		/// 打印前設置事件注入點
+		/// </summary>
+		PrintSettingEvent,
+		/// <summary>
+		/// 打印后設置事件注入點
+		/// </summary>
+		PrintAfterSettingEvent,
+		/// <summary>
+		/// 題型準備事件注入點
+		/// </summary>
+		ReadyEvent,
+		/// <summary>
+		/// 題型訂正事件注入點
+		/// </summary>
+		MakeCorrectionsEvent,
+		/// <summary>
+		/// 題型交卷事件注入點
+		/// </summary>
+		TictheirPapersEvent,
+		/// <summary>
+		/// 題型正文注入點
+		/// </summary>
+		Content
+	}
 
 	/// <summary>
 	/// 題型類型

@@ -13,12 +13,12 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.Arithmetic)]
-	[Substitute("<!--ARITHMETICSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.Arithmetic.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--ARITHMETICREADY-->", "MathSheets.Arithmetic.ready();")]
-	[Substitute("//<!--ARITHMETICMAKECORRECTIONS-->", "fault += MathSheets.Arithmetic.makeCorrections();")]
-	[Substitute("//<!--ARITHMETICTHEIRPAPERS-->", "MathSheets.Arithmetic.theirPapers();")]
-	[Substitute("//<!--ARITHMETICPRINTSETTING-->", "MathSheets.Arithmetic.printSetting();")]
-	[Substitute("//<!--ARITHMETICPRINTAFTERSETTING-->", "MathSheets.Arithmetic.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.Arithmetic.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.Arithmetic.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.Arithmetic.makeCorrections();")]
+	[Substitute(SubstituteType.TictheirPapersEvent, "MathSheets.Arithmetic.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.Arithmetic.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.Arithmetic.printAfterSetting();")]
 	public class ArithmeticHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

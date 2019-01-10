@@ -27,7 +27,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// <summary>
 		/// 替換資源
 		/// </summary>
-		private Dictionary<string, Dictionary<string, string>> _htmlMaps = new Dictionary<string, Dictionary<string, string>>();
+		private Dictionary<string, Dictionary<SubstituteType, string>> _htmlMaps = new Dictionary<string, Dictionary<SubstituteType, string>>();
 
 		/// <summary>
 		/// 
@@ -60,7 +60,32 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		[ImportingConstructor]
 		public MainProcess()
 		{
+			Stylesheet = new StringBuilder();
+			Script = new StringBuilder();
+			PrintSettingEvent = new StringBuilder();
+			PrintAfterSettingEvent = new StringBuilder();
+			ReadyEvent = new StringBuilder();
+			MakeCorrectionsEvent = new StringBuilder();
+			TictheirPapersEvent = new StringBuilder();
+			Content = new StringBuilder();
 		}
+
+		/// <summary>樣式庫引用注入點</summary>
+		private StringBuilder Stylesheet { get; set; }
+		/// <summary></summary>
+		private StringBuilder Script { get; set; }
+		/// <summary></summary>
+		private StringBuilder PrintSettingEvent { get; set; }
+		/// <summary></summary>
+		private StringBuilder PrintAfterSettingEvent { get; set; }
+		/// <summary></summary>
+		private StringBuilder ReadyEvent { get; set; }
+		/// <summary></summary>
+		private StringBuilder MakeCorrectionsEvent { get; set; }
+		/// <summary></summary>
+		private StringBuilder TictheirPapersEvent { get; set; }
+		/// <summary></summary>
+		private StringBuilder Content { get; set; }
 
 		/// <summary>
 		/// 出題按鍵點擊事件
@@ -79,18 +104,58 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// 讀取HTML模板內容
 			htmlTemplate.Append(File.ReadAllText(destFileName, Encoding.UTF8));
 			// 遍歷已選擇的題型
-			foreach (KeyValuePair<string, Dictionary<string, string>> d in _htmlMaps)
+			foreach (KeyValuePair<string, Dictionary<SubstituteType, string>> d in _htmlMaps)
 			{
 				log.Debug(MessageUtil.GetException(() => MsgResources.I0016L, d.Key));
 
 				// 替換HTML模板中的預留內容（HTML、JS注入操作）
-				foreach (KeyValuePair<string, string> m in d.Value)
+				foreach (KeyValuePair<SubstituteType, string> m in d.Value)
 				{
 					log.Debug(MessageUtil.GetException(() => MsgResources.I0015L, m.Key));
 
-					htmlTemplate.Replace(m.Key, m.Value);
+					switch (m.Key)
+					{
+						// 樣式庫引用注入
+						case SubstituteType.Stylesheet:
+							Stylesheet.AppendLine(m.Value);
+							break;
+						// 腳本引用注入
+						case SubstituteType.Script:
+							Script.AppendLine(m.Value);
+							break;
+						// 打印前設置事件注入點
+						case SubstituteType.PrintSettingEvent:
+							PrintSettingEvent.AppendLine(m.Value);
+							break;
+						// 打印后設置事件注入點
+						case SubstituteType.PrintAfterSettingEvent:
+							PrintAfterSettingEvent.AppendLine(m.Value);
+							break;
+						// 準備事件注入點
+						case SubstituteType.ReadyEvent:
+							ReadyEvent.AppendLine(m.Value);
+							break;
+						// 交卷事件注入點
+						case SubstituteType.TictheirPapersEvent:
+							TictheirPapersEvent.AppendLine(m.Value);
+							break;
+						// 答題訂正事件注入點
+						case SubstituteType.MakeCorrectionsEvent:
+							MakeCorrectionsEvent.AppendLine(m.Value);
+							break;
+						default:
+							break;
+					}
 				}
 			}
+
+			htmlTemplate.Replace("<!--STYLESHEET-->", Stylesheet.ToString());
+			htmlTemplate.Replace("<!--READYEVENT-->", ReadyEvent.ToString());
+			htmlTemplate.Replace("<!--SHEET-->", Stylesheet.ToString());
+			htmlTemplate.Replace("<!--SHEET-->", Stylesheet.ToString());
+			htmlTemplate.Replace("<!--SHEET-->", Stylesheet.ToString());
+			htmlTemplate.Replace("<!--SHEET-->", Stylesheet.ToString());
+			htmlTemplate.Replace("<!--SHEET-->", Stylesheet.ToString());
 
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0017L));
 
