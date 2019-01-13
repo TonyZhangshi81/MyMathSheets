@@ -9,6 +9,93 @@ namespace MyMathSheets.TestConsoleApp.Util
 	public static class StringUtil
 	{
 		/// <summary>
+		/// 獲取運算符對應的簡寫ID
+		/// </summary>
+		/// <param name="operation">運算符</param>
+		/// <returns>簡寫ID</returns>
+		public static string OperationToID(this SignOfOperation operation)
+		{
+			var flag = string.Empty;
+			switch (operation)
+			{
+				case SignOfOperation.Plus:
+					flag = "P";
+					break;
+				case SignOfOperation.Subtraction:
+					flag = "S";
+					break;
+				case SignOfOperation.Division:
+					flag = "D";
+					break;
+				case SignOfOperation.Multiple:
+					flag = "M";
+					break;
+				default:
+					break;
+			}
+			return flag;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <returns></returns>
+		public static string ToOperationString(this SignOfOperation operation)
+		{
+			var flag = string.Empty;
+			switch (operation)
+			{
+				case SignOfOperation.Plus:
+					flag = "+";
+					break;
+				case SignOfOperation.Subtraction:
+					flag = "-";
+					break;
+				case SignOfOperation.Division:
+					flag = "×";
+					break;
+				case SignOfOperation.Multiple:
+					flag = "÷";
+					break;
+				case SignOfOperation.Before:
+					flag = "之前";
+					break;
+				case SignOfOperation.Later:
+					flag = "之後";
+					break;
+				default:
+					break;
+			}
+			return flag;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <returns></returns>
+		public static string ToSignOfCompareString(this SignOfCompare operation)
+		{
+			var flag = string.Empty;
+			switch (operation)
+			{
+				case SignOfCompare.Equal:
+					flag = "=";
+					break;
+				case SignOfCompare.Greater:
+					flag = ">";
+					break;
+				case SignOfCompare.Less:
+					flag = "<";
+					break;
+				default:
+					break;
+			}
+			return flag;
+		}
+
+		/// <summary>
 		/// 24小時制轉化為特定格式字符串
 		/// </summary>
 		/// <param name="type"></param>

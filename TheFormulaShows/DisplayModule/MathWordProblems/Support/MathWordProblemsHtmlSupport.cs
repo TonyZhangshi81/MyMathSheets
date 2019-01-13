@@ -12,12 +12,12 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.MathWordProblems)]
-	[Substitute("<!--MATHWORDPROBLEMSSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.MathWordProblems.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--MATHWORDPROBLEMSREADY-->", "MathSheets.MathWordProblems.ready();")]
-	[Substitute("//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->", "fault += MathSheets.MathWordProblems.makeCorrections();")]
-	[Substitute("//<!--MATHWORDPROBLEMSTHEIRPAPERS-->", "MathSheets.MathWordProblems.theirPapers();")]
-	[Substitute("//<!--MATHWORDPROBLEMSPRINTSETTING-->", "MathSheets.MathWordProblems.printSetting();")]
-	[Substitute("//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->", "MathSheets.MathWordProblems.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.MathWordProblems.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.MathWordProblems.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.MathWordProblems.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.MathWordProblems.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.MathWordProblems.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.MathWordProblems.printAfterSetting();")]
 	public class MathWordProblemsHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

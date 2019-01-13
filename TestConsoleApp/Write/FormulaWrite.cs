@@ -1,9 +1,9 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Item;
 using MyMathSheets.TestConsoleApp.Properties;
+using MyMathSheets.TestConsoleApp.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,20 +30,20 @@ namespace MyMathSheets.TestConsoleApp.Write
 				if (d.AnswerIsRight)
 				{
 					Console.WriteLine(string.Format("{0} {1} {2} = {3}",
-						CommonUtil.GetValue(GapFilling.Left, d.Arithmetic.LeftParameter, d.Arithmetic.Gap),
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.Arithmetic.LeftParameter, d.Arithmetic.Gap),
 						d.Arithmetic.Sign.ToOperationString(),
 						// 是否運用多級四則運算
-						(d.MultistageArithmetic is null) ? CommonUtil.GetValue(GapFilling.Right, d.Arithmetic.RightParameter, d.Arithmetic.Gap) : GetMultistageFormula(d.Arithmetic, d.MultistageArithmetic),
-						CommonUtil.GetValue(GapFilling.Answer, d.Arithmetic.Answer, d.Arithmetic.Gap)));
+						(d.MultistageArithmetic is null) ? CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.Arithmetic.RightParameter, d.Arithmetic.Gap) : GetMultistageFormula(d.Arithmetic, d.MultistageArithmetic),
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Answer, d.Arithmetic.Answer, d.Arithmetic.Gap)));
 				}
 				else
 				{
 					Console.WriteLine(string.Format("{0} = {1} {2} {3}",
-						CommonUtil.GetValue(GapFilling.Answer, d.Arithmetic.Answer, d.Arithmetic.Gap),
-						CommonUtil.GetValue(GapFilling.Left, d.Arithmetic.LeftParameter, d.Arithmetic.Gap),
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Answer, d.Arithmetic.Answer, d.Arithmetic.Gap),
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.Arithmetic.LeftParameter, d.Arithmetic.Gap),
 						d.Arithmetic.Sign.ToOperationString(),
 						// 是否運用多級四則運算
-						(d.MultistageArithmetic is null) ? CommonUtil.GetValue(GapFilling.Left, d.Arithmetic.RightParameter, d.Arithmetic.Gap) : GetMultistageFormula(d.Arithmetic, d.MultistageArithmetic)));
+						(d.MultistageArithmetic is null) ? CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.Arithmetic.RightParameter, d.Arithmetic.Gap) : GetMultistageFormula(d.Arithmetic, d.MultistageArithmetic)));
 				}
 			});
 		}
@@ -57,10 +57,10 @@ namespace MyMathSheets.TestConsoleApp.Write
 		private string GetMultistageFormula(Formula leftFormula, Formula multistageFormula)
 		{
 			return string.Format("{0} {1} {2}",
-				CommonUtil.GetValue(GapFilling.Right, multistageFormula.LeftParameter, multistageFormula.Gap),
+				CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, multistageFormula.LeftParameter, multistageFormula.Gap),
 				// 前一級運算符是減法的話,下一級的運算符需要變換
-				(leftFormula.Sign == SignOfOperation.Subtraction) ? (multistageFormula.Sign == SignOfOperation.Plus) ?  SignOfOperation.Subtraction.ToOperationString() : SignOfOperation.Plus.ToOperationString() : multistageFormula.Sign.ToOperationString(),
-				CommonUtil.GetValue(GapFilling.Left, multistageFormula.RightParameter, multistageFormula.Gap));
+				(leftFormula.Sign == CommonLib.Util.SignOfOperation.Subtraction) ? (multistageFormula.Sign == CommonLib.Util.SignOfOperation.Plus) ? CommonLib.Util.SignOfOperation.Subtraction.ToOperationString() : CommonLib.Util.SignOfOperation.Plus.ToOperationString() : multistageFormula.Sign.ToOperationString(),
+				CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, multistageFormula.RightParameter, multistageFormula.Gap));
 		}
 	}
 }

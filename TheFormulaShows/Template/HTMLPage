@@ -36,7 +36,7 @@
 		// 打印
 		function btnPrintClick() {
 			// 打印前頁面設定
-			//<!--PRINTSETTING-->
+			// PRINTSETTING
 
 			// 頁面答應處理
 			MathSheets.Common.pagePrint('divPrintContent');
@@ -44,7 +44,7 @@
 			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
 
 			// 打印后頁面設定
-			//<!--PRINTAFTERSETTING-->
+			// PRINTAFTERSETTING
 		}
 
 		// 答題準備按鍵
@@ -53,7 +53,7 @@
 			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
 
 			// 設定頁面所有輸入域為可用狀態
-			//<!--READY-->
+			// READY
 
 			// 計時開始
 			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -67,7 +67,8 @@
 		// 訂正按鈕(不計入答題情況信息)
 		function btnMakeCorrectionsClick() {
 			var fault = 0;
-			//<!--MAKECORRECTIONS-->
+			// 訂正
+			// MAKECORRECTIONS
 
 			// 訂正按鈕處理
 			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -75,42 +76,8 @@
 
 		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
 		function btnTheirPapersClick() {
-			// 四則運算交卷
-			//<!--ARITHMETICTHEIRPAPERS-->
-			// 算式比大小交卷
-			//<!--EQUALITYCOMPARISONTHEIRPAPERS-->
-			// 等式接龍交卷
-			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
-			// 算數應用題交卷
-			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
-			// 水果連連看
-			//<!--FRUITSLINKAGETHEIRPAPERS-->
-			// 找到最近的數字
-			//<!--FINDNEARESTNUMBERTHEIRPAPERS-->
-			// 算式組合
-			//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->
-			// 射門得分
-			//<!--SCOREGOALTHEIRPAPERS-->
-			// 比多少
-			//<!--HOWMUCHMORETHEIRPAPERS-->
-			// 找規律
-			//<!--FINDTHELAWTHEIRPAPERS-->
-			// 數字排序
-			//<!--NUMERICSORTINGTHEIRPAPERS-->
-			// 認識貨幣
-			//<!--LEARNCURRENCYTHEIRPAPERS-->
-			// 算式連一連
-			//<!--EQUALITYLINKAGETHEIRPAPERS-->
-			// 時鐘學習板
-			//<!--SCHOOLCLOCKTHEIRPAPERS-->
-			// 貨幣運算
-			//<!--CURRENCYOPERATIONTHEIRPAPERS-->
-			// 認識貨幣
-			//<!--CURRENCYLINKAGETHEIRPAPERS-->
-			// 時間運算
-			//<!--TIMECALCULATIONTHEIRPAPERS-->
-			// 認識長度單位
-			//<!--LEARNLENGTHUNITTHEIRPAPERS-->
+			// 交卷
+			// TICTHEIRPAPERS
 
 			// 交卷按鈕處理
 			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -184,24 +151,7 @@
 		</div>
 		<!-- 題型區 -->
 		<div id="divPrintContent">
-		<!--ARITHMETIC-->
-		<!--EQUALITYCOMPARISON-->
-		<!--COMPUTINGCONNECTION-->
-		<!--MATHWORDPROBLEMS-->
-		<!--FRUITSLINKAGE-->
-		<!--FINDNEARESTNUMBER-->
-		<!--COMBINATORIALEQUATION-->
-		<!--SCOREGOAL-->
-		<!--HOWMUCHMORE-->
-		<!--FINDTHELAW-->
-		<!--NUMERICSORTING-->
-		<!--LEARNCURRENCY-->
-		<!--EQUALITYLINKAGE-->
-		<!--SCHOOLCLOCK-->
-		<!--CURRENCYOPERATION-->
-		<!--CURRENCYLINKAGE-->
-		<!--TIMECALCULATION-->
-		<!--LEARNLENGTHUNIT-->
+			<!--CONTENT-->
 		</div>
 		<HR>
 		<!-- 按鍵操作區 -->

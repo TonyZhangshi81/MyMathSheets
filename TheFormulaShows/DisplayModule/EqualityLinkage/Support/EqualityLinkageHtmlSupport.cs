@@ -14,13 +14,13 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 	/// 
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.EqualityLinkage)]
-	[Substitute("<!--EQUALITYLINKAGESTYLESHEET-->", "<link href=\"../Content/EqualityLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
-	[Substitute("<!--EQUALITYLINKAGESCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.EqualityLinkage.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--EQUALITYLINKAGEREADY-->", "MathSheets.EqualityLinkage.ready();")]
-	[Substitute("//<!--EQUALITYLINKAGEMAKECORRECTIONS-->", "fault += MathSheets.EqualityLinkage.makeCorrections();")]
-	[Substitute("//<!--EQUALITYLINKAGETHEIRPAPERS-->", "MathSheets.EqualityLinkage.theirPapers();")]
-	[Substitute("//<!--EQUALITYLINKAGEPRINTSETTING-->", "MathSheets.EqualityLinkage.printSetting();")]
-	[Substitute("//<!--EQUALITYLINKAGEPRINTAFTERSETTING-->", "MathSheets.EqualityLinkage.printAfterSetting();")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/EqualityLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.EqualityLinkage.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.EqualityLinkage.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.EqualityLinkage.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.EqualityLinkage.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.EqualityLinkage.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.EqualityLinkage.printAfterSetting();")]
 	public class EqualityLinkageHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

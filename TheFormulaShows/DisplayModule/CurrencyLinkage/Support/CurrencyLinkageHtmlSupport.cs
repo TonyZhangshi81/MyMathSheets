@@ -11,16 +11,16 @@ using System.Text;
 namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 {
 	/// <summary>
-	/// 
+	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.CurrencyLinkage)]
-	[Substitute("<!--CURRENCYLINKAGESTYLESHEET-->", "<link href=\"../Content/CurrencyLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
-	[Substitute("<!--CURRENCYLINKAGESCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.CurrencyLinkage.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--CURRENCYLINKAGEREADY-->", "MathSheets.CurrencyLinkage.ready();")]
-	[Substitute("//<!--CURRENCYLINKAGEMAKECORRECTIONS-->", "fault += MathSheets.CurrencyLinkage.makeCorrections();")]
-	[Substitute("//<!--CURRENCYLINKAGETHEIRPAPERS-->", "MathSheets.CurrencyLinkage.theirPapers();")]
-	[Substitute("//<!--CURRENCYLINKAGEPRINTSETTING-->", "MathSheets.CurrencyLinkage.printSetting();")]
-	[Substitute("//<!--CURRENCYLINKAGEPRINTAFTERSETTING-->", "MathSheets.CurrencyLinkage.printAfterSetting();")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/CurrencyLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.CurrencyLinkage.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.CurrencyLinkage.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.CurrencyLinkage.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.CurrencyLinkage.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.CurrencyLinkage.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.CurrencyLinkage.printAfterSetting();")]
 	public class CurrencyLinkageHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
@@ -114,10 +114,10 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 		}
 
 		/// <summary>
-		/// 
+		/// 題型HTML模板作成
 		/// </summary>
-		/// <param name="parameter"></param>
-		/// <returns></returns>
+		/// <param name="parameter">題型參數</param>
+		/// <returns>題型HTML模板信息</returns>
 		protected override string MakeHtmlStatement(ParameterBase parameter)
 		{
 			CurrencyLinkageParameter p = parameter as CurrencyLinkageParameter;

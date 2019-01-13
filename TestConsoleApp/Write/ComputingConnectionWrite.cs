@@ -1,8 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Item;
 using MyMathSheets.TestConsoleApp.Properties;
+using MyMathSheets.TestConsoleApp.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +32,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 				d.ConfixFormulas.ToList().ForEach(dd =>
 				{
 					builder.AppendFormat("{0} {1} {2} = ",
-										CommonUtil.GetValue(GapFilling.Left, dd.LeftParameter, dd.Gap),
+										CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, dd.LeftParameter, dd.Gap),
 										dd.Sign.ToOperationString(),
-										CommonUtil.GetValue(GapFilling.Right, dd.RightParameter, dd.Gap));
+										CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, dd.RightParameter, dd.Gap));
 				});
 				if (builder.Length != 0)
 				{

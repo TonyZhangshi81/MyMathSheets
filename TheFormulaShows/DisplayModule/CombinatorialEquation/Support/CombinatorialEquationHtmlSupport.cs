@@ -15,12 +15,12 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 	/// 
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.CombinatorialEquation)]
-	[Substitute("<!--COMBINATORIALEQUATIONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.CombinatorialEquation.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--COMBINATORIALEQUATIONREADY-->", "MathSheets.CombinatorialEquation.ready();")]
-	[Substitute("//<!--COMBINATORIALEQUATIONMAKECORRECTIONS-->", "fault += MathSheets.CombinatorialEquation.makeCorrections();")]
-	[Substitute("//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->", "MathSheets.CombinatorialEquation.theirPapers();")]
-	[Substitute("//<!--COMBINATORIALEQUATIONPRINTSETTING-->", "MathSheets.CombinatorialEquation.printSetting();")]
-	[Substitute("//<!--COMBINATORIALEQUATIONPRINTAFTERSETTING-->", "MathSheets.CombinatorialEquation.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.CombinatorialEquation.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.CombinatorialEquation.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.CombinatorialEquation.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.CombinatorialEquation.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.CombinatorialEquation.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.CombinatorialEquation.printAfterSetting();")]
 	public class CombinatorialEquationHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

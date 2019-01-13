@@ -1,8 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.EqualityComparison.Item;
 using MyMathSheets.TestConsoleApp.Properties;
+using MyMathSheets.TestConsoleApp.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;

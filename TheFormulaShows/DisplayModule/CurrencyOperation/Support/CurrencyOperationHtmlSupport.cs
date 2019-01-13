@@ -12,12 +12,12 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 	/// 貨幣運算題型HTML支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.CurrencyOperation)]
-	[Substitute("<!--CURRENCYOPERATIONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.CurrencyOperation.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--CURRENCYOPERATIONREADY-->", "MathSheets.CurrencyOperation.ready();")]
-	[Substitute("//<!--CURRENCYOPERATIONMAKECORRECTIONS-->", "fault += MathSheets.CurrencyOperation.makeCorrections();")]
-	[Substitute("//<!--CURRENCYOPERATIONTHEIRPAPERS-->", "MathSheets.CurrencyOperation.theirPapers();")]
-	[Substitute("//<!--CURRENCYOPERATIONPRINTSETTING-->", "MathSheets.CurrencyOperation.printSetting();")]
-	[Substitute("//<!--CURRENCYOPERATIONPRINTAFTERSETTING-->", "MathSheets.CurrencyOperation.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.CurrencyOperation.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.CurrencyOperation.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.CurrencyOperation.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.CurrencyOperation.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.CurrencyOperation.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.CurrencyOperation.printAfterSetting();")]
 	public class CurrencyOperationHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

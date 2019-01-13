@@ -14,12 +14,12 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 	/// 找規律題型HTML支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.FindTheLaw)]
-	[Substitute("<!--FINDTHELAWSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.FindTheLaw.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--FINDTHELAWREADY-->", "MathSheets.FindTheLaw.ready();")]
-	[Substitute("//<!--FINDTHELAWMAKECORRECTIONS-->", "fault += MathSheets.FindTheLaw.makeCorrections();")]
-	[Substitute("//<!--FINDTHELAWTHEIRPAPERS-->", "MathSheets.FindTheLaw.theirPapers();")]
-	[Substitute("//<!--FINDTHELAWPRINTSETTING-->", "MathSheets.FindTheLaw.printSetting();")]
-	[Substitute("//<!--FINDTHELAWPRINTAFTERSETTING-->", "MathSheets.FindTheLaw.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.FindTheLaw.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.FindTheLaw.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.FindTheLaw.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.FindTheLaw.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.FindTheLaw.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.FindTheLaw.printAfterSetting();")]
 	public class FindTheLawHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

@@ -12,12 +12,12 @@ namespace MyMathSheets.TheFormulaShows.EqualityComparison.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.EqualityComparison)]
-	[Substitute("<!--EQUALITYCOMPARISONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.EqualityComparison.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--EQUALITYCOMPARISONREADY-->", "MathSheets.EqualityComparison.ready();")]
-	[Substitute("//<!--EQUALITYCOMPARISONMAKECORRECTIONS-->", "fault += MathSheets.EqualityComparison.makeCorrections();")]
-	[Substitute("//<!--EQUALITYCOMPARISONTHEIRPAPERS-->", "MathSheets.EqualityComparison.theirPapers();")]
-	[Substitute("//<!--EQUALITYCOMPARISONPRINTSETTING-->", "MathSheets.EqualityComparison.printSetting();")]
-	[Substitute("//<!--EQUALITYCOMPARISONPRINTAFTERSETTING-->", "MathSheets.EqualityComparison.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.EqualityComparison.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.EqualityComparison.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.EqualityComparison.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.EqualityComparison.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.EqualityComparison.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.EqualityComparison.printAfterSetting();")]
 	public class EqualityComparisonHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

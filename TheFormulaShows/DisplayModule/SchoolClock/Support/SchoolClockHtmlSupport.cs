@@ -12,13 +12,13 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 	/// 時鐘學習板題型HTML模板作成
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.SchoolClock)]
-	[Substitute("<!--SCHOOLCLOCKSTYLESHEET-->", "<link href=\"../Content/SchoolClock.css\" rel=\"stylesheet\" type=\"text/css\" />")]
-	[Substitute("<!--SCHOOLCLOCKSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.SchoolClock.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--SCHOOLCLOCKREADY-->", "MathSheets.SchoolClock.ready();")]
-	[Substitute("//<!--SCHOOLCLOCKMAKECORRECTIONS-->", "fault += MathSheets.SchoolClock.makeCorrections();")]
-	[Substitute("//<!--SCHOOLCLOCKTHEIRPAPERS-->", "MathSheets.SchoolClock.theirPapers();")]
-	[Substitute("//<!--SCHOOLCLOCKPRINTSETTING-->", "MathSheets.SchoolClock.printSetting();")]
-	[Substitute("//<!--SCHOOLCLOCKPRINTAFTERSETTING-->", "MathSheets.SchoolClock.printAfterSetting();")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/SchoolClock.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.SchoolClock.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.SchoolClock.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.SchoolClock.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.SchoolClock.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.SchoolClock.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.SchoolClock.printAfterSetting();")]
 	public class SchoolClockHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

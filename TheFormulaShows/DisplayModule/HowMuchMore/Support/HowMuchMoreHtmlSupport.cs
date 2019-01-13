@@ -15,13 +15,13 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 	/// 比多少題型HTML支援類,動態作成html并按照一定的格式注入html模板中
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.HowMuchMore)]
-	[Substitute("<!--HOWMUCHMORESHEET-->", "<link href=\"../Content/HowMuchMore.css\" rel=\"stylesheet\" type=\"text/css\" />")]
-	[Substitute("<!--HOWMUCHMORESCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.HowMuchMore.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--HOWMUCHMOREREADY-->", "MathSheets.HowMuchMore.ready();")]
-	[Substitute("//<!--HOWMUCHMOREMAKECORRECTIONS-->", "fault += MathSheets.HowMuchMore.makeCorrections();")]
-	[Substitute("//<!--HOWMUCHMORETHEIRPAPERS-->", "MathSheets.HowMuchMore.theirPapers();")]
-	[Substitute("//<!--HOWMUCHMOREPRINTSETTING-->", "MathSheets.HowMuchMore.printSetting();")]
-	[Substitute("//<!--HOWMUCHMOREPRINTAFTERSETTING-->", "MathSheets.HowMuchMore.printAfterSetting();")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/HowMuchMore.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.HowMuchMore.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.HowMuchMore.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.HowMuchMore.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.HowMuchMore.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.HowMuchMore.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.HowMuchMore.printAfterSetting();")]
 	public class HowMuchMoreHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

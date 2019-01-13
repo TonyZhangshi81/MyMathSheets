@@ -87,7 +87,6 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 			// 讀取出題資料庫
 			GetAllProblemsFromResource();
 
-			ICalculate strategy = null;
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
@@ -252,7 +251,35 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// <returns>出題資料庫</returns>
 		private List<Problems> GetProblemsBySign(SignOfOperation sign)
 		{
-			return _allProblems.Where(d => d.ID.Substring(0, 1).Equals(sign.OperationToID())).ToList();
+			return _allProblems.Where(d => d.ID.Substring(0, 1).Equals(GetOperationId(sign))).ToList();
+		}
+
+		/// <summary>
+		/// 獲取運算符對應的簡寫ID
+		/// </summary>
+		/// <param name="operation">運算符</param>
+		/// <returns>簡寫ID</returns>
+		private string GetOperationId(SignOfOperation operation)
+		{
+			var flag = string.Empty;
+			switch (operation)
+			{
+				case SignOfOperation.Plus:
+					flag = "P";
+					break;
+				case SignOfOperation.Subtraction:
+					flag = "S";
+					break;
+				case SignOfOperation.Division:
+					flag = "D";
+					break;
+				case SignOfOperation.Multiple:
+					flag = "M";
+					break;
+				default:
+					break;
+			}
+			return flag;
 		}
 	}
 }

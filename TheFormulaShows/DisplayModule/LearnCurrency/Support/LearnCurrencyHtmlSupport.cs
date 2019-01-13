@@ -12,12 +12,12 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 	/// 根據題型輸出結果作成HTML模板信息
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.LearnCurrency)]
-	[Substitute("<!--LEARNCURRENCYSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.LearnCurrency.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--LEARNCURRENCYREADY-->", "MathSheets.LearnCurrency.ready();")]
-	[Substitute("//<!--LEARNCURRENCYMAKECORRECTIONS-->", "fault += MathSheets.LearnCurrency.makeCorrections();")]
-	[Substitute("//<!--LEARNCURRENCYTHEIRPAPERS-->", "MathSheets.LearnCurrency.theirPapers();")]
-	[Substitute("//<!--LEARNCURRENCYPRINTSETTING-->", "MathSheets.LearnCurrency.printSetting();")]
-	[Substitute("//<!--LEARNCURRENCYPRINTAFTERSETTING-->", "MathSheets.LearnCurrency.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.LearnCurrency.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.LearnCurrency.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.LearnCurrency.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.LearnCurrency.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.LearnCurrency.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.LearnCurrency.printAfterSetting();")]
 	public class LearnCurrencyHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

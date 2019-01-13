@@ -706,7 +706,7 @@
 		/// <summary>
 		/// 題型交卷事件注入點
 		/// </summary>
-		TictheirPapersEvent,
+		TheirPapersEvent,
 		/// <summary>
 		/// 題型正文注入點
 		/// </summary>

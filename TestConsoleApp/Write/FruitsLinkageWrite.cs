@@ -1,9 +1,9 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Item;
 using MyMathSheets.TestConsoleApp.Properties;
+using MyMathSheets.TestConsoleApp.Util;
 using System;
 using System.Linq;
 
@@ -28,10 +28,10 @@ namespace MyMathSheets.TestConsoleApp.Write
 			formulas.FruitsFormulas.ToList().ForEach(d =>
 			{
 				Console.WriteLine(string.Format("水果：{0} {1} {2} = {3}   容器編號：{4}",
-					CommonUtil.GetValue(GapFilling.Left, d.LeftParameter, d.Gap),
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.LeftParameter, d.Gap),
 					d.Sign.ToOperationString(),
-					CommonUtil.GetValue(GapFilling.Right, d.RightParameter, d.Gap),
-					CommonUtil.GetValue(GapFilling.Answer, d.Answer, d.Gap),
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.RightParameter, d.Gap),
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Answer, d.Answer, d.Gap),
 					formulas.Seats[index++]));
 			});
 
@@ -40,13 +40,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 			{
 				Formula container = formulas.ContainersFormulas[d];
 
-				GapFilling gap = container.Gap;
+				CommonLib.Util.GapFilling gap = container.Gap;
 				Console.WriteLine(string.Format("容器{0}：{1} {2} {3} = {4}",
 					seat++,
-					CommonUtil.GetValue(GapFilling.Left, container.LeftParameter, gap),
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, container.LeftParameter, gap),
 					container.Sign.ToOperationString(),
-					CommonUtil.GetValue(GapFilling.Right, container.RightParameter, gap),
-					CommonUtil.GetValue(GapFilling.Answer, container.Answer, gap)));
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, container.RightParameter, gap),
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Answer, container.Answer, gap)));
 			});
 		}
 	}

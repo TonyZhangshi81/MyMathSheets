@@ -1,8 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.TimeCalculation.Item;
 using MyMathSheets.TestConsoleApp.Properties;
+using MyMathSheets.TestConsoleApp.Util;
 using System;
 using System.Collections.Generic;
 
@@ -26,10 +26,10 @@ namespace MyMathSheets.TestConsoleApp.Write
 			formulas.ForEach(d =>
 			{
 				Console.WriteLine(string.Format("{0}在{1}{2}是{3}",
-					CommonUtil.GetValue(GapFilling.Left, string.Format("{0}:{1}:{2}", d.StartTime.Hours, d.StartTime.Minutes, d.StartTime.Seconds), d.Gap),
-					CommonUtil.GetValue(GapFilling.Right, string.Format("{0}:{1}:{2}", d.ElapsedTime.Hours, d.ElapsedTime.Minutes, d.ElapsedTime.Seconds), d.Gap),
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, string.Format("{0}:{1}:{2}", d.StartTime.Hours, d.StartTime.Minutes, d.StartTime.Seconds), d.Gap),
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, string.Format("{0}:{1}:{2}", d.ElapsedTime.Hours, d.ElapsedTime.Minutes, d.ElapsedTime.Seconds), d.Gap),
 					d.Sign.ToOperationString(),
-					CommonUtil.GetValue(GapFilling.Answer, string.Format("{0}:{1}:{2}", d.EndTime.Hours, d.EndTime.Minutes, d.EndTime.Seconds), d.Gap)
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Answer, string.Format("{0}:{1}:{2}", d.EndTime.Hours, d.EndTime.Minutes, d.EndTime.Seconds), d.Gap)
 					));
 			});
 		}

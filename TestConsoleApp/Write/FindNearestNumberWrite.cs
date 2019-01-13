@@ -1,8 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Item;
 using MyMathSheets.TestConsoleApp.Properties;
+using MyMathSheets.TestConsoleApp.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,13 +27,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 			formulas.ToList().ForEach(d =>
 			{
 				Console.WriteLine(string.Format("{0} {1} {2} {3} {4} {5} {6}",
-					CommonUtil.GetValue(GapFilling.Left, d.LeftFormula.LeftParameter, d.LeftFormula.Gap),
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.LeftFormula.LeftParameter, d.LeftFormula.Gap),
 					d.LeftFormula.Sign.ToOperationString(),
-					CommonUtil.GetValue(GapFilling.Right, d.LeftFormula.RightParameter, d.LeftFormula.Gap),
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.LeftFormula.RightParameter, d.LeftFormula.Gap),
 					d.Answer.ToSignOfCompareString(),
-					CommonUtil.GetValue(GapFilling.Left, d.RightFormula.LeftParameter, d.RightFormula.Gap),
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.RightFormula.LeftParameter, d.RightFormula.Gap),
 					d.RightFormula.Sign.ToOperationString(),
-					CommonUtil.GetValue(GapFilling.Right, d.RightFormula.RightParameter, d.RightFormula.Gap)));
+					CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.RightFormula.RightParameter, d.RightFormula.Gap)));
 			});
 		}
 	}

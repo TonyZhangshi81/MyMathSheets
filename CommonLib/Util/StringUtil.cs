@@ -1,59 +1,31 @@
 ﻿namespace MyMathSheets.CommonLib.Util
 {
 	/// <summary>
-	/// 
+	/// 字符串轉換類
 	/// </summary>
 	public static class StringUtil
 	{
 		/// <summary>
-		/// 
+		/// 運算符轉換為對應的字符編碼
 		/// </summary>
-		/// <param name="operation"></param>
-		/// <returns></returns>
-		public static string OperationToID(this SignOfOperation operation)
-		{
-			var flag = string.Empty;
-			switch (operation)
-			{
-				case SignOfOperation.Plus:
-					flag = "P";
-					break;
-				case SignOfOperation.Subtraction:
-					flag = "S";
-					break;
-				case SignOfOperation.Division:
-					flag = "D";
-					break;
-				case SignOfOperation.Multiple:
-					flag = "M";
-					break;
-				default:
-					break;
-			}
-			return flag;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="operation"></param>
-		/// <returns></returns>
+		/// <param name="operation">運算符(加減乘除)</param>
+		/// <returns>字符編碼</returns>
 		public static string ToOperationString(this SignOfOperation operation)
 		{
 			var flag = string.Empty;
 			switch (operation)
 			{
 				case SignOfOperation.Plus:
-					flag = "+";
+					flag = "&#43;";
 					break;
 				case SignOfOperation.Subtraction:
-					flag = "-";
+					flag = "&#8722;";
 					break;
 				case SignOfOperation.Division:
-					flag = "÷";
+					flag = "&#247;";
 					break;
 				case SignOfOperation.Multiple:
-					flag = "×";
+					flag = "&#215;";
 					break;
 				case SignOfOperation.Before:
 					flag = "之前";
@@ -66,24 +38,25 @@
 			}
 			return flag;
 		}
+
 		/// <summary>
-		/// 
+		/// 關係運算符轉換為對應的字符編碼
 		/// </summary>
-		/// <param name="operation"></param>
-		/// <returns></returns>
+		/// <param name="operation">運算符(大於小於等於)</param>
+		/// <returns>字符編碼</returns>
 		public static string ToSignOfCompareString(this SignOfCompare operation)
 		{
 			var flag = string.Empty;
 			switch (operation)
 			{
 				case SignOfCompare.Equal:
-					flag = "=";
+					flag = "&#61;";
 					break;
 				case SignOfCompare.Greater:
-					flag = ">";
+					flag = "&#62;";
 					break;
 				case SignOfCompare.Less:
-					flag = "<";
+					flag = "&#60;";
 					break;
 				default:
 					break;
@@ -94,8 +67,8 @@
 		/// <summary>
 		/// 關係運算符enum轉圖片名稱（HTML圖片顯示使用）
 		/// </summary>
-		/// <param name="operation"></param>
-		/// <returns></returns>
+		/// <param name="operation">運算符(大於小於等於)</param>
+		/// <returns>圖片名稱</returns>
 		public static string ToSignOfCompareEnString(this SignOfCompare operation)
 		{
 			var flag = string.Empty;

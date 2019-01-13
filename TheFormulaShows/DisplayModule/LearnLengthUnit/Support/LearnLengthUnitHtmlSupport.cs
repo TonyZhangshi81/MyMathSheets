@@ -12,12 +12,12 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 	/// 根據題型輸出結果作成HTML模板信息
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.LearnLengthUnit)]
-	[Substitute("<!--LEARNLENGTHUNITSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.LearnLengthUnit.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--LEARNLENGTHUNITREADY-->", "MathSheets.LearnLengthUnit.ready();")]
-	[Substitute("//<!--LEARNLENGTHUNITMAKECORRECTIONS-->", "fault += MathSheets.LearnLengthUnit.makeCorrections();")]
-	[Substitute("//<!--LEARNLENGTHUNITTHEIRPAPERS-->", "MathSheets.LearnLengthUnit.theirPapers();")]
-	[Substitute("//<!--LEARNLENGTHUNITPRINTSETTING-->", "MathSheets.LearnLengthUnit.printSetting();")]
-	[Substitute("//<!--LEARNLENGTHUNITPRINTAFTERSETTING-->", "MathSheets.LearnLengthUnit.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.LearnLengthUnit.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.LearnLengthUnit.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.LearnLengthUnit.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.LearnLengthUnit.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.LearnLengthUnit.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.LearnLengthUnit.printAfterSetting();")]
 	public class LearnLengthUnitHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

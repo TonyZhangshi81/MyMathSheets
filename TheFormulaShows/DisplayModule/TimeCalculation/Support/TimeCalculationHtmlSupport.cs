@@ -13,12 +13,12 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.TimeCalculation)]
-	[Substitute("<!--TIMECALCULATIONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.TimeCalculation.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--TIMECALCULATIONREADY-->", "MathSheets.TimeCalculation.ready();")]
-	[Substitute("//<!--TIMECALCULATIONMAKECORRECTIONS-->", "fault += MathSheets.TimeCalculation.makeCorrections();")]
-	[Substitute("//<!--TIMECALCULATIONTHEIRPAPERS-->", "MathSheets.TimeCalculation.theirPapers();")]
-	[Substitute("//<!--TIMECALCULATIONPRINTSETTING-->", "MathSheets.TimeCalculation.printSetting();")]
-	[Substitute("//<!--TIMECALCULATIONPRINTAFTERSETTING-->", "MathSheets.TimeCalculation.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.TimeCalculation.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.TimeCalculation.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.TimeCalculation.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.TimeCalculation.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.TimeCalculation.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.TimeCalculation.printAfterSetting();")]
 	public class TimeCalculationHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

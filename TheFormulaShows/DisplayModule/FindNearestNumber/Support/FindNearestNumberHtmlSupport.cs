@@ -12,12 +12,12 @@ namespace MyMathSheets.TheFormulaShows.FindNearestNumber.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.FindNearestNumber)]
-	[Substitute("<!--FINDNEARESTNUMBERSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.FindNearestNumber.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--FINDNEARESTNUMBERREADY-->", "MathSheets.FindNearestNumber.ready();")]
-	[Substitute("//<!--FINDNEARESTNUMBERMAKECORRECTIONS-->", "fault += MathSheets.FindNearestNumber.makeCorrections();")]
-	[Substitute("//<!--FINDNEARESTNUMBERTHEIRPAPERS-->", "MathSheets.FindNearestNumber.theirPapers();")]
-	[Substitute("//<!--FINDNEARESTNUMBERPRINTSETTING-->", "MathSheets.FindNearestNumber.printSetting();")]
-	[Substitute("//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->", "MathSheets.FindNearestNumber.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.FindNearestNumber.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.FindNearestNumber.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.FindNearestNumber.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.FindNearestNumber.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.FindNearestNumber.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.FindNearestNumber.printAfterSetting();")]
 	public class FindNearestNumberHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

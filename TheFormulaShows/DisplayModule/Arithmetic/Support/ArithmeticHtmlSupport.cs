@@ -16,7 +16,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.Arithmetic.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.Arithmetic.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.Arithmetic.makeCorrections();")]
-	[Substitute(SubstituteType.TictheirPapersEvent, "MathSheets.Arithmetic.theirPapers();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.Arithmetic.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.Arithmetic.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.Arithmetic.printAfterSetting();")]
 	public class ArithmeticHtmlSupport : HtmlSupportBase

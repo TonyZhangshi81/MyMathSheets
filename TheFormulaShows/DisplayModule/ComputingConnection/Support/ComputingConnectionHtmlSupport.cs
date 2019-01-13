@@ -13,12 +13,12 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.ComputingConnection)]
-	[Substitute("<!--COMPUTINGCONNECTIONSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.ComputingConnection.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--COMPUTINGCONNECTIONREADY-->", "MathSheets.ComputingConnection.ready();")]
-	[Substitute("//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->", "fault += MathSheets.ComputingConnection.makeCorrections();")]
-	[Substitute("//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->", "MathSheets.ComputingConnection.theirPapers();")]
-	[Substitute("//<!--COMPUTINGCONNECTIONPRINTSETTING-->", "MathSheets.ComputingConnection.printSetting();")]
-	[Substitute("//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->", "MathSheets.ComputingConnection.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.ComputingConnection.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.ComputingConnection.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.ComputingConnection.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.ComputingConnection.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.ComputingConnection.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.ComputingConnection.printAfterSetting();")]
 	public class ComputingConnectionHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>

@@ -13,12 +13,12 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.NumericSorting)]
-	[Substitute("<!--NUMERICSORTINGSCRIPT-->", "<script src=\"../Scripts/Ext/MathSheets.NumericSorting.js\" charset=\"utf-8\"></script>")]
-	[Substitute("//<!--NUMERICSORTINGREADY-->", "MathSheets.NumericSorting.ready();")]
-	[Substitute("//<!--NUMERICSORTINGMAKECORRECTIONS-->", "fault += MathSheets.NumericSorting.makeCorrections();")]
-	[Substitute("//<!--NUMERICSORTINGTHEIRPAPERS-->", "MathSheets.NumericSorting.theirPapers();")]
-	[Substitute("//<!--NUMERICSORTINGPRINTSETTING-->", "MathSheets.NumericSorting.printSetting();")]
-	[Substitute("//<!--NUMERICSORTINGPRINTAFTERSETTING-->", "MathSheets.NumericSorting.printAfterSetting();")]
+	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.NumericSorting.js\" charset=\"utf-8\"></script>")]
+	[Substitute(SubstituteType.ReadyEvent, "MathSheets.NumericSorting.ready();")]
+	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.NumericSorting.makeCorrections();")]
+	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.NumericSorting.theirPapers();")]
+	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.NumericSorting.printSetting();")]
+	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.NumericSorting.printAfterSetting();")]
 	public class NumericSortingHtmlSupport : HtmlSupportBase
 	{
 		/// <summary>
