@@ -84,6 +84,8 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 			_minimumLimit = parameter.MinimumLimit;
 			// 默認填空項是答案項
 			_formula.Gap = GapFilling.Answer;
+			// 默認計算式不帶小括號
+			_formula.IsNeedBracket = false;
 			if (parameter.QuestionType == QuestionType.GapFilling)
 			{
 				// 對在等式中的三個數值隨機產生填空項（用於填空題型）

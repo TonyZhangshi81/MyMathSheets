@@ -11,7 +11,10 @@ namespace MyMathSheets.CommonLib.Main.Item
 		/// 默認情況計算式有解
 		/// </summary>
 		public Formula() => IsNoSolution = false;
-
+		/// <summary>
+		/// 是否使用括號（小括號）
+		/// </summary>
+		public bool IsNeedBracket { get; set; }
 		/// <summary>
 		/// 运算符左边参数
 		/// </summary>

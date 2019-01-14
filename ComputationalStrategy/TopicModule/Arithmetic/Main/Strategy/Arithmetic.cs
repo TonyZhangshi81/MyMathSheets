@@ -34,6 +34,8 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 					QuestionType = p.QuestionType,
 					MinimumLimit = 0
 				});
+				// 隨機設定是否帶小括號(當參數配置允許小括號)
+				formula.IsNeedBracket = p.IsNeedBracket ? CommonUtil.GetRandomNumber(false, true) : false;
 				if (CheckIsNeedInverseMethod(p.Formulas, formula))
 				{
 					i--;
@@ -67,7 +69,17 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 				return null;
 			}
 
-			ICalculate strategy = CalculateManager(signFunc());
+			// 隨機運算符取得
+			SignOfOperation sign = signFunc();
+			// 隨機設定是否帶小括號(當參數配置允許小括號且第一級計算式不帶小括號的情況下)
+			bool isNeedBracket = (p.IsNeedBracket && !pervFormula.IsNeedBracket) ? CommonUtil.GetRandomNumber(false, true) : false;
+			// 如果第二級計算式帶小括號並且是第一級算式為減法運算符,那麼第二級計算式的運算符需要變換(取反)
+			if (pervFormula.Sign == SignOfOperation.Subtraction && isNeedBracket || pervFormula.Sign == SignOfOperation.Subtraction)
+			{
+				sign = sign == SignOfOperation.Plus ? SignOfOperation.Subtraction : SignOfOperation.Plus;
+			}
+
+			ICalculate strategy = CalculateManager(sign);
 			// 計算式作成（依據左邊算式的答案推算右邊的算式）
 			Formula formula = strategy.CreateFormulaWithAnswer(new CalculateParameter()
 			{
@@ -75,8 +87,9 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 				QuestionType = QuestionType.Default,
 				MinimumLimit = 0
 			}, pervFormula.RightParameter);
+			formula.IsNeedBracket = isNeedBracket;
 
-			if(pervFormula.Gap == GapFilling.Right)
+			if (pervFormula.Gap == GapFilling.Right)
 			{
 				formula.Gap = CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Right);
 				pervFormula.Gap = GapFilling.Default;

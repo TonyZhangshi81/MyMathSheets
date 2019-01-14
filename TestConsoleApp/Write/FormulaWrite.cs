@@ -29,21 +29,25 @@ namespace MyMathSheets.TestConsoleApp.Write
 			{
 				if (d.AnswerIsRight)
 				{
-					Console.WriteLine(string.Format("{0} {1} {2} = {3}",
+					Console.WriteLine(string.Format("{0}{1} {2} {3} = {4}",
+						d.Arithmetic.IsNeedBracket ? "(" : string.Empty,
 						CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.Arithmetic.LeftParameter, d.Arithmetic.Gap),
 						d.Arithmetic.Sign.ToOperationString(),
 						// 是否運用多級四則運算
-						(d.MultistageArithmetic is null) ? CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.Arithmetic.RightParameter, d.Arithmetic.Gap) : GetMultistageFormula(d.Arithmetic, d.MultistageArithmetic),
+						(d.MultistageArithmetic is null) 
+							? CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.Arithmetic.RightParameter, d.Arithmetic.Gap) + (d.Arithmetic.IsNeedBracket ? ")" : string.Empty) : GetMultistageFormula(d.Arithmetic, d.MultistageArithmetic),
 						CommonUtil.GetValue(CommonLib.Util.GapFilling.Answer, d.Arithmetic.Answer, d.Arithmetic.Gap)));
 				}
 				else
 				{
-					Console.WriteLine(string.Format("{0} = {1} {2} {3}",
+					Console.WriteLine(string.Format("{0} = {1}{2} {3} {4}",
 						CommonUtil.GetValue(CommonLib.Util.GapFilling.Answer, d.Arithmetic.Answer, d.Arithmetic.Gap),
+						d.Arithmetic.IsNeedBracket ? "(" : string.Empty,
 						CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.Arithmetic.LeftParameter, d.Arithmetic.Gap),
 						d.Arithmetic.Sign.ToOperationString(),
 						// 是否運用多級四則運算
-						(d.MultistageArithmetic is null) ? CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.Arithmetic.RightParameter, d.Arithmetic.Gap) : GetMultistageFormula(d.Arithmetic, d.MultistageArithmetic)));
+						(d.MultistageArithmetic is null) 
+							? CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.Arithmetic.RightParameter, d.Arithmetic.Gap) + (d.Arithmetic.IsNeedBracket ? ")" : string.Empty) : GetMultistageFormula(d.Arithmetic, d.MultistageArithmetic)));
 				}
 			});
 		}
@@ -56,11 +60,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <returns>四則運算打印顯示信息</returns>
 		private string GetMultistageFormula(Formula leftFormula, Formula multistageFormula)
 		{
-			return string.Format("{0} {1} {2}",
+			return string.Format("{0}{1}{2} {3} {4}{5}",
+				multistageFormula.IsNeedBracket ? "(" : string.Empty,
 				CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, multistageFormula.LeftParameter, multistageFormula.Gap),
+				leftFormula.IsNeedBracket ? ")" : string.Empty,
+				multistageFormula.Sign.ToOperationString(),
 				// 前一級運算符是減法的話,下一級的運算符需要變換
-				(leftFormula.Sign == CommonLib.Util.SignOfOperation.Subtraction) ? (multistageFormula.Sign == CommonLib.Util.SignOfOperation.Plus) ? CommonLib.Util.SignOfOperation.Subtraction.ToOperationString() : CommonLib.Util.SignOfOperation.Plus.ToOperationString() : multistageFormula.Sign.ToOperationString(),
-				CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, multistageFormula.RightParameter, multistageFormula.Gap));
+				//(leftFormula.Sign == CommonLib.Util.SignOfOperation.Subtraction) 
+				//	? (multistageFormula.Sign == CommonLib.Util.SignOfOperation.Plus) 
+				//		? CommonLib.Util.SignOfOperation.Subtraction.ToOperationString() : CommonLib.Util.SignOfOperation.Plus.ToOperationString() : multistageFormula.Sign.ToOperationString(),
+				CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, multistageFormula.RightParameter, multistageFormula.Gap),
+				multistageFormula.IsNeedBracket ? ")" : string.Empty);
 		}
 	}
 }
