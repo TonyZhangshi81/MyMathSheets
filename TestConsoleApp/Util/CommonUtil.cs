@@ -16,7 +16,7 @@ namespace MyMathSheets.TestConsoleApp
 		/// <returns></returns>
 		public static string GetValue(GapFilling item, int parameter, GapFilling gap)
 		{
-			return item == gap ? string.Format("({0})", parameter) : parameter.ToString();
+			return item == gap ? string.Format("[{0}]", parameter) : parameter.ToString();
 		}
 
 		/// <summary>
@@ -28,7 +28,7 @@ namespace MyMathSheets.TestConsoleApp
 		/// <returns></returns>
 		public static string GetValue(GapFilling item, string parameter, GapFilling gap)
 		{
-			return item == gap ? string.Format("({0})", parameter) : parameter;
+			return item == gap ? string.Format("[{0}]", parameter) : parameter;
 		}
 
 		/// <summary>
