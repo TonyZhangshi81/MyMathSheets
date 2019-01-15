@@ -64,11 +64,10 @@ namespace MyMathSheets.TestConsoleApp.Write
 				multistageFormula.IsNeedBracket ? "(" : string.Empty,
 				CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, multistageFormula.LeftParameter, multistageFormula.Gap),
 				leftFormula.IsNeedBracket ? ")" : string.Empty,
-				multistageFormula.Sign.ToOperationString(),
 				// 前一級運算符是減法的話,下一級的運算符需要變換
-				//(leftFormula.Sign == CommonLib.Util.SignOfOperation.Subtraction) 
-				//	? (multistageFormula.Sign == CommonLib.Util.SignOfOperation.Plus) 
-				//		? CommonLib.Util.SignOfOperation.Subtraction.ToOperationString() : CommonLib.Util.SignOfOperation.Plus.ToOperationString() : multistageFormula.Sign.ToOperationString(),
+				(leftFormula.Sign == CommonLib.Util.SignOfOperation.Subtraction && !multistageFormula.IsNeedBracket) 
+					? (multistageFormula.Sign == CommonLib.Util.SignOfOperation.Plus) 
+						? CommonLib.Util.SignOfOperation.Subtraction.ToOperationString() : CommonLib.Util.SignOfOperation.Plus.ToOperationString() : multistageFormula.Sign.ToOperationString(),
 				CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, multistageFormula.RightParameter, multistageFormula.Gap),
 				multistageFormula.IsNeedBracket ? ")" : string.Empty);
 		}
