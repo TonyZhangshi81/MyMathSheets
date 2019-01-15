@@ -24,7 +24,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// <summary>
 		/// 應用題庫文件所在路徑
 		/// </summary>
-		private const string PROBLEMS_JSON_FILE_PATH = @"..\Config\Problems.json";
+		private const string PROBLEMS_JSON_FILE_PATH = @"..\Config\MathWordProblemsLibrary.json";
 
 		/// <summary>
 		/// 出題資料庫
@@ -235,7 +235,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// <returns>被提取的應用題</returns>
 		private Problems GetRandomProblemsIndex(List<Problems> signsProblems)
 		{
-			Problems problem = signsProblems[CommonUtil.GetRandomNumber(0, signsProblems.Count - 1)];
+			Problems problem = CommonUtil.GetRandomNumber(signsProblems);
 			// 從指定運算符的資料庫中刪除已抽取的題目
 			signsProblems.Remove(problem);
 			// 從總資料庫中刪除已抽取的題目

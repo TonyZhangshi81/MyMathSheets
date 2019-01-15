@@ -11,6 +11,7 @@ using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters;
@@ -59,6 +60,7 @@ namespace MyMathSheets.TestConsoleApp
 			CurrencyLinkageParameter clParameter = null;
 			TimeCalculationParameter tcParameter = null;
 			LearnLengthUnitParameter lluParameter = null;
+			GapFillingProblemsParameter gfpParameter = null;
 
 			bool isShowMenu = !(args.Length > 0);
 
@@ -137,6 +139,8 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("    H2-認識長度單位(隨機/分米 -> 米,釐米,毫米)");
 					Console.WriteLine("    H3-認識長度單位(隨機/釐米 -> 米,分米,毫米)");
 					Console.WriteLine("    H4-認識長度單位(隨機/毫米 -> 米,分米,釐米,毫米)");
+					Console.WriteLine("************************* 基礎填空題 ***********************");
+					Console.WriteLine("    I1-基礎填空題");
 					Console.WriteLine("*************************");
 					Console.Write("    9-菜單    0-退出");
 					Console.WriteLine("");
@@ -498,6 +502,12 @@ namespace MyMathSheets.TestConsoleApp
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnLengthUnit, lluParameter.Formulas.ToList());
 						break;
 
+					case "I1":
+						Console.WriteLine();
+						Console.WriteLine("基礎填空題");
+						gfpParameter = (GapFillingProblemsParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.GapFillingProblems, "GFP001");
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.GapFillingProblems, gfpParameter.Formulas.ToList());
+						break;
 
 					case "D9":
 						isShowMenu = true;

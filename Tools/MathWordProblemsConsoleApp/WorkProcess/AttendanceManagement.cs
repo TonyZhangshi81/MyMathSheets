@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.MathWordProblemsConsoleApp.Ext;
 using MyMathSheets.MathWordProblemsConsoleApp.Util;
 using MyMathSheets.MathWordProblemsConsoleApp.WorkProcess.Item;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -64,9 +65,16 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 						_xls.GetRangeText(string.Format("O{0}", rowIndex)),
 						_xls.GetRangeText(string.Format("P{0}", rowIndex)),
 						_xls.GetRangeText(string.Format("Q{0}", rowIndex)),
-						_xls.GetRangeText(string.Format("R{0}", rowIndex))
+						_xls.GetRangeText(string.Format("R{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("S{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("T{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("U{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("V{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("W{0}", rowIndex))
 					}
 				});
+
+				Console.Write(".");
 			}
 			// JSON轉換處理
 			string content = list.GetJsonByObject();
@@ -99,6 +107,8 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 					Verify = _xls.GetRangeText(string.Format("D{0}", rowIndex)),
 					Unit = _xls.GetRangeText(string.Format("E{0}", rowIndex))
 				});
+
+				Console.Write(".");
 			}
 			// JSON轉換處理
 			string content = list.GetJsonByObject();

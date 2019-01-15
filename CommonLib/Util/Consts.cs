@@ -800,6 +800,10 @@
 			/// </summary>
 			LearnLengthUnit,
 			/// <summary>
+			/// 基礎填空
+			/// </summary>
+			GapFillingProblems, 
+			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
 			Ready,

@@ -18,4 +18,5 @@
 	<object id="CurrencyLinkage" type="MyMathSheets.TestConsoleApp.Write.CurrencyLinkageWrite"></object>
 	<object id="TimeCalculation" type="MyMathSheets.TestConsoleApp.Write.TimeCalculationWrite"></object>
 	<object id="LearnLengthUnit" type="MyMathSheets.TestConsoleApp.Write.LearnLengthUnitWrite"></object>
+	<object id="GapFillingProblems" type="MyMathSheets.TestConsoleApp.Write.GapFillingProblemsWrite"></object>
 </objects>

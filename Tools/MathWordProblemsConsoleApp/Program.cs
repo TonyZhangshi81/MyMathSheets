@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.MathWordProblemsConsoleApp.Ext;
 using MyMathSheets.MathWordProblemsConsoleApp.WorkProcess;
+using System;
 using System.Configuration;
 using System.IO;
 
@@ -11,6 +12,9 @@ namespace MyMathSheets.MathWordProblemsConsoleApp
 		{
 			if (args.Length == 0)
 			{
+				Console.WriteLine("沒有可執行的參數！");
+				Console.ReadLine();
+				Environment.Exit(-1);
 				return;
 			}
 
@@ -25,14 +29,18 @@ namespace MyMathSheets.MathWordProblemsConsoleApp
 				{
 					// 應用題
 					case "MathWordProblems":
-						att.SetMathWordProblemsJson("Problems");
+						att.SetMathWordProblemsJson("MathWordProblemsLibrary");
 						break;
 					// 填空題
 					case "GapFillingProblems":
-						att.SetGapFillingProblemsJson("GapFillingProblems");
+						att.SetGapFillingProblemsJson("GapFillingProblemsLibrary");
 						break;
 				}
 			}
+
+			Console.WriteLine("JSON文件已經作成，請及時更新。");
+			Console.ReadLine();
+			Environment.Exit(0);
 		}
 	}
 }
