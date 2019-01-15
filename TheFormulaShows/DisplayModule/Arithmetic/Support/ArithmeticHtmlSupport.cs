@@ -28,7 +28,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		/// <summary>
 		/// 等號HTML模板
 		/// </summary>
-		private const string EQUALTO_HTML = "<span class=\"label\">=</span>";
+		private const string EQUALTO_HTML_FORMAT = "<span class=\"label\">{0}</span>";
 		/// <summary>
 		/// LABEL標籤HTML模板
 		/// </summary>
@@ -58,26 +58,74 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 			foreach (ArithmeticFormula item in p.Formulas)
 			{
 				isRowHtmlClosed = false;
-				colHtml.AppendLine("<div class=\"col-md-3 form-inline\">");
+				colHtml.AppendLine("<div class=\"col-md-4 form-inline\">");
 				colHtml.AppendLine("<h5>");
 
 				if (item.AnswerIsRight)
 				{
+					// 第一級計算式中是否使用括號
+					if (item.Arithmetic.IsNeedBracket)
+					{
+						// 左括號（注意：右括號在第二級計算式中）
+						colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, "("));
+					}
+
+					// 第一級計算式左側的值
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.LeftParameter, GapFilling.Left, controlIndex));
+
+					// 第一級計算式運算符
 					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.Arithmetic.Sign.ToOperationString()));
+
 					// 是否運用多級四則運算
-					colHtml.AppendLine((item.MultistageArithmetic is null) ? GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex) : GetMultistageFormula(item.Arithmetic, item.MultistageArithmetic, controlIndex));
-					colHtml.AppendLine(EQUALTO_HTML);
+					if (item.MultistageArithmetic is null)
+					{
+						// 第一級計算式右側的值
+						colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
+					}
+					else
+					{
+						// 第二級計算式
+						colHtml.AppendLine(GetMultistageFormula(item.Arithmetic, item.MultistageArithmetic, controlIndex));
+					}
+
+					// 等號
+					colHtml.AppendLine(string.Format(EQUALTO_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareString()));
+
+					// 結果值
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.Answer, GapFilling.Answer, controlIndex));
 				}
 				else
 				{
+					// 結果值
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.Answer, GapFilling.Answer, controlIndex));
-					colHtml.AppendLine(EQUALTO_HTML);
+
+					// 等號
+					colHtml.AppendLine(string.Format(EQUALTO_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareString()));
+
+					// 第一級計算式中是否使用括號
+					if (item.Arithmetic.IsNeedBracket)
+					{
+						// 左括號（注意：右括號在第二級計算式中）
+						colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, "("));
+					}
+
+					// 第一級計算式左側的值
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.LeftParameter, GapFilling.Left, controlIndex));
+
+					// 第一級計算式運算符
 					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.Arithmetic.Sign.ToOperationString()));
+
 					// 是否運用多級四則運算
-					colHtml.AppendLine((item.MultistageArithmetic is null) ? GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex) : GetMultistageFormula(item.Arithmetic, item.MultistageArithmetic, controlIndex));
+					if (item.MultistageArithmetic is null)
+					{
+						// 第一級計算式右側的值
+						colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
+					}
+					else
+					{
+						// 第二級計算式
+						colHtml.AppendLine(GetMultistageFormula(item.Arithmetic, item.MultistageArithmetic, controlIndex));
+					}
 				}
 
 				colHtml.AppendLine("</h5>");
@@ -89,7 +137,9 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 
 				controlIndex++;
 				numberOfColumns++;
-				if (numberOfColumns == 4)
+
+				// 單位行上顯示3道題目
+				if (numberOfColumns == 3)
 				{
 					rowHtml.AppendLine("<div class=\"row text-center row-margin-top\">");
 					rowHtml.Append(colHtml.ToString());
@@ -132,30 +182,57 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		{
 			var html = string.Empty;
 
-			html += GetHtml(multistageFormula.Gap, multistageFormula.LeftParameter, GapFilling.Left, controlIndex);
-			// 前一級運算符是減法的話,下一級的運算符需要變換
-			if (leftFormula.Sign == SignOfOperation.Subtraction)
+			// 第二級計算式中是否使用括號
+			if (multistageFormula.IsNeedBracket)
 			{
+				// 左括號
+				html += string.Format(LABEL_HTML_FORMAT, "(");
+			}
+
+			// 第二級計算式的左側值
+			html += GetHtml(multistageFormula.Gap, multistageFormula.LeftParameter, GapFilling.Left, controlIndex);
+
+			// 第一級計算式中是否使用括號
+			if (leftFormula.IsNeedBracket)
+			{
+				// 右括號（注意：左括號在第一級計算式中）
+				html += string.Format(LABEL_HTML_FORMAT, ")");
+			}
+
+			// 前一級運算符是減法的話,下一級的運算符需要變換
+			if (leftFormula.Sign == SignOfOperation.Subtraction && !multistageFormula.IsNeedBracket)
+			{
+				// 運算符
 				html += (multistageFormula.Sign == SignOfOperation.Plus) ? string.Format(LABEL_HTML_FORMAT, SignOfOperation.Subtraction.ToOperationString()) : string.Format(LABEL_HTML_FORMAT, SignOfOperation.Plus.ToOperationString());
 			}
-			if (leftFormula.Sign == SignOfOperation.Plus)
+			else
 			{
+				// 運算符
 				html += string.Format(LABEL_HTML_FORMAT, multistageFormula.Sign.ToOperationString());
 			}
+
+			// 第二級計算式的右側值
 			html += GetHtml(multistageFormula.Gap, multistageFormula.RightParameter, GapFilling.Right, controlIndex);
-			
+
+			// 第二級計算式中是否使用括號
+			if (multistageFormula.IsNeedBracket)
+			{
+				// 左括號
+				html += string.Format(LABEL_HTML_FORMAT, ")");
+			}
+
 			return html;
 		}
 
 		/// <summary>
-		/// 
+		/// 計算式HTML作成
 		/// </summary>
-		/// <param name="item"></param>
-		/// <param name="parameter"></param>
-		/// <param name="gap"></param>
-		/// <param name="index"></param>
-		/// <param name="isMultistage"></param>
-		/// <returns></returns>
+		/// <param name="item">填空項目</param>
+		/// <param name="parameter">計算式中的數值</param>
+		/// <param name="gap">當前顯示項目所在計算式中的位置</param>
+		/// <param name="index">控件索引號</param>
+		/// <param name="isMultistage">是否使用多集計算</param>
+		/// <returns>HTML模板信息</returns>
 		private string GetHtml(GapFilling item, int parameter, GapFilling gap, int index, bool isMultistage = false)
 		{
 			var html = string.Empty;
@@ -168,17 +245,6 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 			{
 				html = string.Format(LABEL_HTML_FORMAT, parameter);
 			}
-
-			/*
-			if (isMultistage)
-			{
-				html += string.Format("<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>", index, parameter);
-			}
-			else
-			{
-				html += string.Format("<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>", index, parameter);
-			}
-			*/
 
 			return html;
 		}
