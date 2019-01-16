@@ -24,7 +24,6 @@ MathSheets.GapFillingProblems = MathSheets.GapFillingProblems || (function () {
 				removeInputElementArray({ position: "mathSheetGapFillingProblems", id: $(element).attr("id") });
 				$(element).attr("disabled", "disabled");
 			});
-
 			
 			// 對錯圖片顯示和影藏
 			$('#imgOKGapFillingProblems' + strId).show();

@@ -59,7 +59,7 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 			foreach (GapFillingProblemsFormula item in p.Formulas)
 			{
 				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
-				rowHtml.AppendLine("<h5>");
+				rowHtml.AppendLine("<h6>");
 				rowHtml.AppendLine("<p class=\"text-info\">");
 				// 題號
 				rowHtml.AppendLine(string.Format("<span class=\"label label-default\">{0}. </span>", parentControlIndex + 1));
@@ -85,7 +85,7 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 				rowHtml.AppendLine(string.Format(ANSWER_HIDDEN_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), answer));
 
 				rowHtml.AppendLine("</p>");
-				rowHtml.AppendLine("</h5>");
+				rowHtml.AppendLine("</h6>");
 				rowHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
 				rowHtml.AppendLine(string.Format("<img id=\"imgOKGapFillingProblems{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", parentControlIndex.ToString().PadLeft(2, '0')));
 				rowHtml.AppendLine(string.Format("<img id=\"imgNoGapFillingProblems{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", parentControlIndex.ToString().PadLeft(2, '0')));

@@ -208,6 +208,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 			if (__allInputElementArray.length != 0) {
 				setTimeout(function () {
 					_setLocation(__allInputElementArray[0]);
+					__sequence = 0;
 					//__allInputElementArray.length = 0;
 				}, 1000);
 			}
