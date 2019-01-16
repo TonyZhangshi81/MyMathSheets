@@ -94,7 +94,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityComparison.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.EqualityComparison.ToString(), "運算比大小"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.EqualityComparison.ToString(), LayoutSetting.Preview.EqualityComparison.ToComputationalStrategyName()));
 			}
 			return html.ToString();
 		}

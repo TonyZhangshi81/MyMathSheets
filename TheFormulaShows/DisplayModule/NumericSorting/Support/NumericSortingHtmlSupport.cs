@@ -91,7 +91,7 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.NumericSorting.ToString(), "數字排序"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.NumericSorting.ToString(), LayoutSetting.Preview.NumericSorting.ToComputationalStrategyName()));
 			}
 			return html.ToString();
 		}

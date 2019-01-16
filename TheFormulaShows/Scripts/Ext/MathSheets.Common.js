@@ -368,6 +368,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 				html += '<li><img class="light"/><a href="#' + $(this).attr('id') + '">' + $($(this).children('span')).text() + '</a></li>';
 				// 獲取對應模塊距離頂端的距離
 				begins[index + 1] = $(this).offset().top;
+
+				//console.log($(this).attr('id') + begins[index + 1]);
 			});
 
 			$.each(begins, function (index, begin) {
@@ -384,6 +386,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 					// 結束位置為當前模塊的後一個模塊的開始位置
 					sheet.end = begins[index + 1];
 				}
+
+				//console.log(sheet.index + "|" + sheet.begin + "|" + sheet.end);
 				__itemTops.push(sheet);
 			});
 
@@ -404,6 +408,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 		windowScroll = function () {
 			// 滾動條距離窗體頂端的距離
 			var scrollTop = $(window).scrollTop();
+
+		console.log(scrollTop + "|" + (scrollTop + __windowHeight) + "|" + __windowHeight);
 
 			// 可視範圍查詢
 			var searchList = $.Enumerable.From(__itemTops)
@@ -683,7 +689,7 @@ $(document).ready(function () {
 	$(document).bind("contextmenu", function (e) { return false; });
 
 	// 窗體顯示的高度
-	__windowHeight = $(window).height();
+	__windowHeight = window.innerHeight;//$(window).height();
 	// 頁面總高度
 	__scrollHeight = $(document).height();
 	// 當頁面超長時顯示輔助滾輪

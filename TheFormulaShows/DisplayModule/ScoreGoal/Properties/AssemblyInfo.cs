@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MathSheetMarker(SystemModel.TheFormulaShows, LayoutSetting.Preview.ScoreGoal, "射門得分")]
+[assembly: MathSheetMarker(SystemModel.TheFormulaShows, LayoutSetting.Preview.ScoreGoal)]

@@ -103,7 +103,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 			if (html.Length != 0)
 			{
 				// 題型標題
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.LearnLengthUnit.ToString(), "認識長度單位"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.LearnLengthUnit.ToString(), LayoutSetting.Preview.LearnLengthUnit.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();

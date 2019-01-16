@@ -104,7 +104,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 			{
 				clocksAnswer.Length -= 1;
 				html.AppendLine(string.Format("<input type=\"hidden\" id=\"hidClocksAnswer\" value=\"{0}\" />", clocksAnswer.ToString()));
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.SchoolClock.ToString(), "時鐘學習板"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.SchoolClock.ToString(), LayoutSetting.Preview.SchoolClock.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();

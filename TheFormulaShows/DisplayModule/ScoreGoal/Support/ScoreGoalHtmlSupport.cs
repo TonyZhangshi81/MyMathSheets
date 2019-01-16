@@ -139,7 +139,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.ScoreGoal.ToString(), "射門得分"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.ScoreGoal.ToString(), LayoutSetting.Preview.ScoreGoal.ToComputationalStrategyName()));
 			}
 			return html.ToString();
 		}

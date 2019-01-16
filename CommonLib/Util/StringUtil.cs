@@ -147,5 +147,79 @@
 			}
 			return flag;
 		}
+
+		/// <summary>
+		/// 返回題型的名稱
+		/// </summary>
+		/// <param name="type">題型</param>
+		/// <returns>題型的名稱</returns>
+		public static string ToComputationalStrategyName(this LayoutSetting.Preview type)
+		{
+			string name = string.Empty;
+			switch (type)
+			{
+				case LayoutSetting.Preview.Arithmetic:
+					name = "四則運算";
+					break;
+				case LayoutSetting.Preview.EqualityComparison:
+					name = "運算比大小";
+					break;
+				case LayoutSetting.Preview.ComputingConnection:
+					name = "等式接龍";
+					break;
+				case LayoutSetting.Preview.MathWordProblems:
+					name = "算式應用題";
+					break;
+				case LayoutSetting.Preview.FruitsLinkage:
+					name = "水果連連看";
+					break;
+				case LayoutSetting.Preview.FindNearestNumber:
+					name = "找到最近的數字";
+					break;
+				case LayoutSetting.Preview.CombinatorialEquation:
+					name = "算式組合";
+					break;
+				case LayoutSetting.Preview.ScoreGoal:
+					name = "射門得分";
+					break;
+				case LayoutSetting.Preview.HowMuchMore:
+					name = "比多少";
+					break;
+				case LayoutSetting.Preview.FindTheLaw:
+					name = "找規律";
+					break;
+				case LayoutSetting.Preview.NumericSorting:
+					name = "數字排序";
+					break;
+				case LayoutSetting.Preview.LearnCurrency:
+					name = "認識貨幣";
+					break;
+				case LayoutSetting.Preview.EqualityLinkage:
+					name = "算式連一連";
+					break;
+				case LayoutSetting.Preview.SchoolClock:
+					name = "時鐘學習板";
+					break;
+				case LayoutSetting.Preview.CurrencyOperation:
+					name = "貨幣運算";
+					break;
+				case LayoutSetting.Preview.CurrencyLinkage:
+					name = "認識價格";
+					break;
+				case LayoutSetting.Preview.TimeCalculation:
+					name = "時間運算";
+					break;
+				case LayoutSetting.Preview.LearnLengthUnit:
+					name = "認識長度單位";
+					break;
+				case LayoutSetting.Preview.GapFillingProblems:
+					name = "基礎填空";
+					break;
+				default:
+					break;
+			}
+
+			return name;
+		}
 	}
 }

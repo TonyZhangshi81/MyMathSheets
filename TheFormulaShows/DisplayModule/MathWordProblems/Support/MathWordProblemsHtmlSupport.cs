@@ -98,7 +98,7 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.MathWordProblems.ToString(), "算數應用題"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.MathWordProblems.ToString(), LayoutSetting.Preview.MathWordProblems.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();

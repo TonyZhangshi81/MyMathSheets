@@ -14,16 +14,16 @@ namespace MyMathSheets.CommonLib
 		/// </summary>
 		/// <param name="id">模塊識別號</param>
 		/// <param name="preview">子模塊識別號（題型模塊化對應）</param>
-		/// <param name="description">程序集描述</param>
-		public MathSheetMarkerAttribute(SystemModel id, LayoutSetting.Preview preview = LayoutSetting.Preview.Null, string description = "")
+		public MathSheetMarkerAttribute(SystemModel id, LayoutSetting.Preview preview = LayoutSetting.Preview.Null)
         {
             this.SystemId = id;
 			this.Preview = preview;
-			this.Description = description;
+			// 題型名稱
+			this.Description = preview.ToComputationalStrategyName();
 		}
 
 		/// <summary>
-		/// 程序集描述
+		/// 題型名稱
 		/// </summary>
 		public string Description
 		{

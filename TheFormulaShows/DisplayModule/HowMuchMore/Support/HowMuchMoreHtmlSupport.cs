@@ -150,7 +150,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 			{
 				StringBuilder head = new StringBuilder();
 				// 題目標題顯示
-				head.AppendLine(string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.HowMuchMore.ToString(), "比多少"));
+				head.AppendLine(string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.HowMuchMore.ToString(), LayoutSetting.Preview.HowMuchMore.ToComputationalStrategyName()));
 				// 答案項目
 				_gapFillingItems.Length -= 1;
 				head.AppendLine(string.Format("<input type=\"hidden\" id=\"hidImgHmmHelpArray\" value=\"{0}\" />", _gapFillingItems.ToString()));

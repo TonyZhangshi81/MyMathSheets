@@ -104,7 +104,7 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.GapFillingProblems.ToString(), "基礎填空題"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.GapFillingProblems.ToString(), LayoutSetting.Preview.GapFillingProblems.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();

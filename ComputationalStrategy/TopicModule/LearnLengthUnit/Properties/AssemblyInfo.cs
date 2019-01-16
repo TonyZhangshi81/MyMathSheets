@@ -35,4 +35,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MathSheetMarker(SystemModel.ComputationalStrategy, LayoutSetting.Preview.LearnLengthUnit, "認識長度單位")]
+[assembly: MathSheetMarker(SystemModel.ComputationalStrategy, LayoutSetting.Preview.LearnLengthUnit)]

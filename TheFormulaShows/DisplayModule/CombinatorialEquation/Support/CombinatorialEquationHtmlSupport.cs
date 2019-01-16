@@ -100,7 +100,7 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CombinatorialEquation.ToString(), "算式組合"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CombinatorialEquation.ToString(), LayoutSetting.Preview.CombinatorialEquation.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();

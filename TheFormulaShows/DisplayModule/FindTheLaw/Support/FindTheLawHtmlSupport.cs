@@ -96,7 +96,7 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.FindTheLaw.ToString(), "找規律"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.FindTheLaw.ToString(), LayoutSetting.Preview.FindTheLaw.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();

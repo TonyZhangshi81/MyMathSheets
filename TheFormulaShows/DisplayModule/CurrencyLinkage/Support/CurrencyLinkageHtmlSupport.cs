@@ -140,7 +140,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 			html.AppendLine(string.Format("<img id=\"imgNoCurrencyLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" />", p.QueueType == DivQueueType.Lengthways ? "NoCurrencyLinkage-lengthways" : "NoCurrencyLinkage-crosswise"));
 			html.AppendLine("</div>");
 
-			html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CurrencyLinkage.ToString(), "認識價格"));
+			html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CurrencyLinkage.ToString(), LayoutSetting.Preview.CurrencyLinkage.ToComputationalStrategyName()));
 
 			return html.ToString();
 		}

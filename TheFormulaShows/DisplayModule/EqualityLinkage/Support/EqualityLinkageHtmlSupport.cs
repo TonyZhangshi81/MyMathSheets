@@ -113,7 +113,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 			html.AppendLine(string.Format("<img id=\"imgNoEqualityLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "NoEqualityLinkage-lengthways" : "NoEqualityLinkage-crosswise"));
 			html.AppendLine("</div>");
 
-			html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.EqualityLinkage.ToString(), "算式連一連"));
+			html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.EqualityLinkage.ToString(), LayoutSetting.Preview.EqualityLinkage.ToComputationalStrategyName()));
 
 			return html.ToString();
 		}

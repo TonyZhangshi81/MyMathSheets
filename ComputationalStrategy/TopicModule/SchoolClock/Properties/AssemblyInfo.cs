@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MathSheetMarker(SystemModel.ComputationalStrategy, LayoutSetting.Preview.SchoolClock, "時鐘學習板")]
+[assembly: MathSheetMarker(SystemModel.ComputationalStrategy, LayoutSetting.Preview.SchoolClock)]

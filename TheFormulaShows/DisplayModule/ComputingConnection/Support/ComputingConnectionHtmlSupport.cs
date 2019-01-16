@@ -78,7 +78,7 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.ComputingConnection.ToString(), "等式接龍"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.ComputingConnection.ToString(), LayoutSetting.Preview.ComputingConnection.ToComputationalStrategyName()));
 			}
 			return html.ToString();
 		}

@@ -94,7 +94,7 @@ namespace MyMathSheets.TheFormulaShows.FindNearestNumber.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.FindNearestNumber.ToString(), "找出最近的數字"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.FindNearestNumber.ToString(), LayoutSetting.Preview.FindNearestNumber.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();

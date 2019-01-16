@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MathSheetMarker(SystemModel.ComputationalStrategy, LayoutSetting.Preview.NumericSorting, "數字排序")]
+[assembly: MathSheetMarker(SystemModel.ComputationalStrategy, LayoutSetting.Preview.NumericSorting)]

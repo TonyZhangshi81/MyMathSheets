@@ -138,7 +138,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CurrencyOperation.ToString(), "貨幣運算"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CurrencyOperation.ToString(), LayoutSetting.Preview.CurrencyOperation.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();

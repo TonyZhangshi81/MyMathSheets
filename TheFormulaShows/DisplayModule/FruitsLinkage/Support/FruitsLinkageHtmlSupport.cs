@@ -157,7 +157,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.FruitsLinkage.ToString(), "水果連連看"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.FruitsLinkage.ToString(), LayoutSetting.Preview.FruitsLinkage.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();

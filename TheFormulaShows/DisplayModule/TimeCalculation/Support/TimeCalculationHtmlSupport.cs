@@ -73,7 +73,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 			html.Append(rowHtml);
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.TimeCalculation.ToString(), "時間運算"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.TimeCalculation.ToString(), LayoutSetting.Preview.TimeCalculation.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();

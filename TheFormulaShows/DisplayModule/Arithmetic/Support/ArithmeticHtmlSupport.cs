@@ -165,7 +165,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.Arithmetic.ToString(), "四則運算"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.Arithmetic.ToString(), LayoutSetting.Preview.Arithmetic.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();

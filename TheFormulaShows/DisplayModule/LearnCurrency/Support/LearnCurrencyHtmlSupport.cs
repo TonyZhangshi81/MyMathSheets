@@ -102,7 +102,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 			if (html.Length != 0)
 			{
 				// 題型標題
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.LearnCurrency.ToString(), "認識貨幣"));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.LearnCurrency.ToString(), LayoutSetting.Preview.LearnCurrency.ToComputationalStrategyName()));
 			}
 
 			return html.ToString();
