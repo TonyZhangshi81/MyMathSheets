@@ -333,6 +333,12 @@ svg {
 	margin-top: -10px;
 }
 
+.imgBookmark {
+	width: 8px;
+	height: 8px;
+	margin-top:-30px;
+}
+
 .imgCorrect-1 {
 	width: 40px;
 	height: 40px;

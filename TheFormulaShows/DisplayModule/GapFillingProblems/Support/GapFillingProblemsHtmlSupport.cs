@@ -80,6 +80,14 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 					index++;
 				});
 
+				if(item.Level >= 3)
+				{
+					for(int i = 1; i<= item.Level; i++)
+					{
+						rowHtml.AppendLine("<img src=\"../Content/image/bookmark.png\" class=\"imgBookmark\" />");
+					}
+				}
+
 				// 答題答案
 				answer.Length -= 1;
 				rowHtml.AppendLine(string.Format(ANSWER_HIDDEN_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), answer));
