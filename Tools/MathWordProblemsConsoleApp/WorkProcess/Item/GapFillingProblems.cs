@@ -26,6 +26,12 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess.Item
 		public string Content { get; set; }
 
 		/// <summary>
+		/// 級別難易度（1至5級，級別越高難度越大）
+		/// </summary>
+		[DataMember(Name = "level")]
+		public int Level { get; set; }
+
+		/// <summary>
 		/// 參數集合
 		/// </summary>
 		[DataMember(Name = "parameters")]

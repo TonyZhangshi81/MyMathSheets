@@ -36,7 +36,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 					index++;
 				});
 				// 內容打印
-				Console.WriteLine(content);
+				Console.WriteLine(string.Format("{0}  LEVEL<{1}>", content, d.Level));
 				content.Length = 0;
 				index = 0;
 			});

@@ -48,6 +48,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 				{
 					ID = _xls.GetRangeText(string.Format("B{0}", rowIndex)),
 					Content = _xls.GetRangeText(string.Format("C{0}", rowIndex)),
+					Level = Convert.ToInt16(_xls.GetRangeText(string.Format("AD{0}", rowIndex))),
 					Parameters = new List<string>() {
 						_xls.GetRangeText(string.Format("D{0}", rowIndex)),
 						_xls.GetRangeText(string.Format("E{0}", rowIndex)),

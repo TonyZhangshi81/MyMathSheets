@@ -1,6 +1,7 @@
 [
 	{
 		"Identifier": "GFP001",
-		"NumberOfQuestions": 5
+		"NumberOfQuestions": 5,
+		"Reserve": "{\"Level\" : '1,2,3,4,5'}"
 	}
 ]

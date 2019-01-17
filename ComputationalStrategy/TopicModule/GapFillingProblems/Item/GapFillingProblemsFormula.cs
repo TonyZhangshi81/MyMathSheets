@@ -13,6 +13,11 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Item
 		/// </summary>
 		public string GapFillingProblem { get; set; }
 		/// <summary>
+		/// 級別難易度（1至5級，級別越高難度越大）
+		/// </summary>
+		[DataMember(Name = "level")]
+		public int Level { get; set; }
+		/// <summary>
 		/// 答案集合
 		/// </summary>
 		public List<string> Answers { get; set; }
@@ -35,6 +40,12 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Item
 		/// </summary>
 		[DataMember(Name = "content")]
 		public string Content { get; set; }
+
+		/// <summary>
+		/// 級別難易度（1至5級，級別越高難度越大）
+		/// </summary>
+		[DataMember(Name = "level")]
+		public int Level { get; set; }
 
 		/// <summary>
 		/// 參數集合
