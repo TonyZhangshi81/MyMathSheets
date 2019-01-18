@@ -94,6 +94,11 @@
     <Content Include="Demo\ALL.html" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Demo\snake-game.html" />
+    <Content Include="Games\break the bricks\css\default.css" />
+    <Content Include="Games\break the bricks\css\normalize.css" />
+    <Content Include="Games\break the bricks\fonts\icomoon.svg" />
+    <Content Include="Games\break the bricks\index.html" />
+    <Content Include="Games\break the bricks\js\BlockBlaster.js" />
     <Content Include="Games\snake\ball_blue.png" />
     <Content Include="Games\snake\ball_purple.png" />
     <Content Include="Games\snake\snake-game.html" />
@@ -148,6 +153,9 @@
     <None Include="Content\fonts\fontawesome-webfont.woff" />
     <None Include="Content\fonts\fontawesome-webfont.woff2" />
     <None Include="Content\fonts\FontAwesome.otf" />
+    <None Include="Games\break the bricks\fonts\icomoon.eot" />
+    <None Include="Games\break the bricks\fonts\icomoon.ttf" />
+    <None Include="Games\break the bricks\fonts\icomoon.woff" />
     <None Include="packages.config" />
     <None Include="Scripts\bootstrap.bundle.js.map" />
     <None Include="Scripts\bootstrap.bundle.min.js.map" />
