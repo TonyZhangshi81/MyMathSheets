@@ -27,6 +27,8 @@ var __allFaultInputElementArray = new Array();
 var __scrollHeight;
 // 窗體顯示的高度
 var __windowHeight;
+// 遊戲
+var __game;
 
 var MathSheets = MathSheets || {};
 MathSheets.Common = MathSheets.Common || (function () {
@@ -564,8 +566,20 @@ MathSheets.Common = MathSheets.Common || (function () {
 
 		// 點擊獎牌可以玩遊戲了：）
 		imgAwardClick = function () {
-			// 貪吃蛇遊戲
-			_openWindow("../Games/snake/snake-game.html", "貪吃蛇", 440, 470);
+			// 避免遊戲外洩（一次做題玩盡所有遊戲！）
+			if (__game == null) {
+				__game = _getRandom(2);
+			}
+			switch (__game) {
+				case 1:
+					// 貪吃蛇遊戲
+					_openWindow("../Games/snake/snake-game.html", "貪吃蛇", 440, 470);
+					break;
+				case 2:
+					// 打方塊遊戲
+					_openWindow("../Games/break the bricks/index.html", "打方塊", 810, 605);
+					break;
+			}
 		},
 
 		// 按鍵屏蔽防止刷新頁面
