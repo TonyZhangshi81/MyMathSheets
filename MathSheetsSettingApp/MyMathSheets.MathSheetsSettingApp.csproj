@@ -120,6 +120,7 @@
   <ItemGroup>
     <Folder Include="App_Data\Work\Content\image\" />
     <Folder Include="App_Data\Work\Content\switcher\" />
+    <Folder Include="App_Data\Work\Games\" />
     <Folder Include="App_Data\Work\Page\" />
     <Folder Include="App_Data\Work\Plugin\" />
     <Folder Include="App_Data\Work\Scripts\Ext\" />

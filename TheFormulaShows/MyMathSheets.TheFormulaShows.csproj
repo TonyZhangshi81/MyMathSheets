@@ -93,6 +93,10 @@
     <Content Include="Content\switcher\MathSheets-eyeshieldgreen.css" />
     <Content Include="Demo\ALL.html" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Demo\snake-game.html" />
+    <Content Include="Games\snake\ball_blue.png" />
+    <Content Include="Games\snake\ball_purple.png" />
+    <Content Include="Games\snake\snake-game.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

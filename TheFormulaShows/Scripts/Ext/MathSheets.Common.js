@@ -368,7 +368,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 				html += '<li><img class="light"/><a href="#' + $(this).attr('id') + '">' + $($(this).children('span')).text() + '</a></li>';
 				// 獲取對應模塊距離頂端的距離
 				begins[index + 1] = $(this).offset().top;
-
+				//debug
 				//console.log($(this).attr('id') + begins[index + 1]);
 			});
 
@@ -386,7 +386,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 					// 結束位置為當前模塊的後一個模塊的開始位置
 					sheet.end = begins[index + 1];
 				}
-
+				//debug
 				//console.log(sheet.index + "|" + sheet.begin + "|" + sheet.end);
 				__itemTops.push(sheet);
 			});
@@ -409,7 +409,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 			// 滾動條距離窗體頂端的距離
 			var scrollTop = $(window).scrollTop();
 
-		console.log(scrollTop + "|" + (scrollTop + __windowHeight) + "|" + __windowHeight);
+			//debug
+			//console.log(scrollTop + "|" + (scrollTop + __windowHeight) + "|" + __windowHeight);
 
 			// 可視範圍查詢
 			var searchList = $.Enumerable.From(__itemTops)
@@ -552,6 +553,21 @@ MathSheets.Common = MathSheets.Common || (function () {
 			});
 		},
 
+		// 打開新窗口
+		_openWindow = function (url, name, width, height) {
+			// 獲取窗口的垂直位置
+			var top = (window.screen.availHeight - 30 - height) / 2;
+			// 獲取窗口的垂水平位置;
+			var left = (window.screen.availWidth - 10 - width) / 2;
+			window.open(url, name, 'height=' + height + ',,innerHeight=' + height + ',width=' + width + ',innerWidth=' + width + ',top=' + top + ',left=' + left + ',toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+		},
+
+		// 點擊獎牌可以玩遊戲了：）
+		imgAwardClick = function () {
+			// 貪吃蛇遊戲
+			_openWindow("../Games/snake/snake-game.html", "貪吃蛇", 440, 470);
+		},
+
 		// 按鍵屏蔽防止刷新頁面
 		forbidKeyDown = function () {
 			$(document).bind("keydown", function (e) {
@@ -661,6 +677,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 		scrollAutoUp: scrollAutoUp,
 		scrollAutoDown: scrollAutoDown,
 		scrollAutoHelper: scrollAutoHelper,
+		imgAwardClick: imgAwardClick,
 		ready: ready,
 		windowScroll: windowScroll,
 		removeInputElementArray: removeInputElementArray
@@ -739,6 +756,8 @@ $(document).ready(function () {
 	$('#close').bind("click", function () { MathSheets.Common.outNavbarHide(); });
 	// 主題選擇事件
 	$('.switcher li').bind("click", function () { MathSheets.Common.styleSelect(this); });
+	// 獎牌點擊事件
+	$('.imgAward').bind("click", function () { MathSheets.Common.imgAwardClick(); });
 
 	// 計算式提示
 	$(function () { $("[data-toggle='tooltip']").tooltip(); });
