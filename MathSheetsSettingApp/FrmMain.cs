@@ -189,5 +189,18 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 刷新題型預覽區域
 			PreviewReflash();
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void WorkPagesSelectedIndexChanged(object sender, EventArgs e)
+		{
+			foreach (CheckBox control in this.panel1.Controls)
+			{
+				control.Enabled = string.IsNullOrEmpty(cmbWorkPages.SelectedValue.ToString());
+			}
+		}
 	}
 }

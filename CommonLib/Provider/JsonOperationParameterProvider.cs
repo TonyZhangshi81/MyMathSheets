@@ -29,8 +29,14 @@ namespace MyMathSheets.CommonLib.Provider
 			{
 				return allProblems[0];
 			}
+			// 指定的題型編號不存在的情況下,默認選用現有題型參數集中的第一個參數項目
+			List<ParameterBase> list = allProblems.ToList().Where(d => d.Identifier.Equals(identifier)).ToList();
+			if(list.Count == 0)
+			{
+				return allProblems[0];
+			}
 			// 按照指定參數標識返回相應的參數項目
-			return allProblems.ToList().Where(d => d.Identifier.Equals(identifier)).First();
+			return list.First();
 		}
 	}
 }

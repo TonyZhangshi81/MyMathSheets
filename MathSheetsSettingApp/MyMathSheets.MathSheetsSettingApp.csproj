@@ -86,6 +86,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Config\TopicManagement.json" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -124,7 +125,6 @@
     <Folder Include="App_Data\Work\Page\" />
     <Folder Include="App_Data\Work\Plugin\" />
     <Folder Include="App_Data\Work\Scripts\Ext\" />
-    <Folder Include="Config\" />
     <Folder Include="HtmlTemplate\" />
   </ItemGroup>
   <ItemGroup>

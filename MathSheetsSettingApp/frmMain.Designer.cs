@@ -38,7 +38,7 @@
 			// btnSure
 			// 
 			this.btnSure.Location = new System.Drawing.Point(114, 555);
-			this.btnSure.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.btnSure.Margin = new System.Windows.Forms.Padding(4);
 			this.btnSure.Name = "btnSure";
 			this.btnSure.Size = new System.Drawing.Size(458, 34);
 			this.btnSure.TabIndex = 0;
@@ -51,7 +51,7 @@
 			this.flpPreview.AutoScroll = true;
 			this.flpPreview.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
 			this.flpPreview.Location = new System.Drawing.Point(614, 18);
-			this.flpPreview.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.flpPreview.Margin = new System.Windows.Forms.Padding(4);
 			this.flpPreview.Name = "flpPreview";
 			this.flpPreview.Size = new System.Drawing.Size(766, 573);
 			this.flpPreview.TabIndex = 18;
@@ -61,7 +61,7 @@
 			// 
 			this.chkIsPreview.AutoSize = true;
 			this.chkIsPreview.Location = new System.Drawing.Point(40, 561);
-			this.chkIsPreview.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.chkIsPreview.Margin = new System.Windows.Forms.Padding(4);
 			this.chkIsPreview.Name = "chkIsPreview";
 			this.chkIsPreview.Size = new System.Drawing.Size(70, 22);
 			this.chkIsPreview.TabIndex = 25;
@@ -71,7 +71,7 @@
 			// panel1
 			// 
 			this.panel1.Location = new System.Drawing.Point(40, 18);
-			this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.panel1.Margin = new System.Windows.Forms.Padding(4);
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(531, 438);
 			this.panel1.TabIndex = 28;
@@ -84,6 +84,7 @@
 			this.cmbWorkPages.Name = "cmbWorkPages";
 			this.cmbWorkPages.Size = new System.Drawing.Size(282, 26);
 			this.cmbWorkPages.TabIndex = 29;
+			this.cmbWorkPages.SelectedIndexChanged += new System.EventHandler(this.WorkPagesSelectedIndexChanged);
 			// 
 			// FrmMain
 			// 
@@ -95,7 +96,7 @@
 			this.Controls.Add(this.chkIsPreview);
 			this.Controls.Add(this.flpPreview);
 			this.Controls.Add(this.btnSure);
-			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "FrmMain";
 			this.Text = "戀數學";
 			this.Load += new System.EventHandler(this.Form1_Load);

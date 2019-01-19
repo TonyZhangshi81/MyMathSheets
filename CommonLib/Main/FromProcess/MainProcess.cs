@@ -5,6 +5,7 @@ using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -68,8 +69,25 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			MakeCorrectionsEvent = new StringBuilder();
 			TictheirPapersEvent = new StringBuilder();
 			Content = new StringBuilder();
+
+			// 題型參數初期化處理
+			TopicManagementInit();
 		}
 
+		/// <summary>
+		/// 題型參數初期化處理
+		/// </summary>
+		private void TopicManagementInit()
+		{
+			// 读取资料库
+			using (System.IO.StreamReader file = System.IO.File.OpenText(ConfigurationManager.AppSettings.Get("TopicManagement")))
+			{
+				TopicManagementDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(file.ReadToEnd());
+			};
+		}
+
+		/// <summary>題型參數</summary>
+		private Dictionary<string, string> TopicManagementDictionary { get; set; }
 		/// <summary>樣式庫引用注入點</summary>
 		private StringBuilder Stylesheet { get; set; }
 		/// <summary>腳本引用注入</summary>
@@ -279,8 +297,15 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// <returns>替換內容</returns>
 		private Dictionary<SubstituteType, string> GetHtmlReplaceContentMaps(LayoutSetting.Preview preview)
 		{
+			// 題型編號
+			string identifier = string.Empty;
+			if (TopicManagementDictionary.ContainsKey(preview.ToString())){
+				// 題型編號取得
+				identifier = TopicManagementDictionary[preview.ToString()];
+			}
+
 			// 構造題型并取得結果
-			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview);
+			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview, identifier);
 			// 題型HTML信息作成并對指定的HTML模板標識進行替換
 			Dictionary<SubstituteType, string> htmlMaps = MakeHtml.GetHtmlStatement(preview, parameter);
 			return htmlMaps;
