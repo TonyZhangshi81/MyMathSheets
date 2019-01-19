@@ -1,14 +1,17 @@
 [
 	{
 		"Identifier": "CL001",
-		"Reserve": "{\"Amount\" : 5, \"DivQueueType\" : 0}"
+		"NumberOfQuestions": 5,
+		"Reserve": "{\"DivQueueType\" : 0}"
 	},
 	{
 		"Identifier": "CL002",
-		"Reserve": "{\"Amount\" : 4, \"DivQueueType\" : 0}"
+		"NumberOfQuestions": 4,
+		"Reserve": "{\"DivQueueType\" : 0}"
 	},
 	{
 		"Identifier": "CL003",
-		"Reserve": "{\"Amount\" : 3}"
+		"NumberOfQuestions": 3,
+		"Reserve": "{\"DivQueueType\" : 1}"
 	}
 ]

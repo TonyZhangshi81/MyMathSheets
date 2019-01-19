@@ -16,10 +16,6 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters
 		/// </summary>
 		public EqualityLinkageFormula Formulas { get; set; }
 		/// <summary>
-		/// 算式個數設置
-		/// </summary>
-		public int Amount { get; set; }
-		/// <summary>
 		/// 是否為縱向排列(0:橫向 1:縱向)
 		/// </summary>
 		public DivQueueType QueueType { get; set; }
@@ -29,8 +25,6 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters
 		public override void InitParameter()
 		{
 			base.InitParameter();
-			// 答題數量
-			Amount = Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "Amount"));
 			// 是否為縱向排列
 			QueueType = (JsonExtension.GetPropertyByJson(Reserve, "DivQueueType") == null) ? DivQueueType.Lengthways : (DivQueueType)Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "DivQueueType"));
 

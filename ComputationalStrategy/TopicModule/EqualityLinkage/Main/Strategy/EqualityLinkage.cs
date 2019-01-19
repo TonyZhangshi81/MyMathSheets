@@ -51,9 +51,12 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
 
+			// (算式個數的個數最多10個)
+			p.NumberOfQuestions = (p.NumberOfQuestions > 10) ? 10 : p.NumberOfQuestions;
+
 			int seatNumber = 0;
 			// 按照指定數量作成相應的數學計算式
-			for (int i = 0; i < p.Amount; i++, seatNumber++)
+			for (int i = 0; i < p.NumberOfQuestions; i++, seatNumber++)
 			{
 				// 左側計算式集合作成（指定單個運算符實例）
 				Formula formula = MakeLeftFormulas(_leftFormulas, p.MaximumLimit, signFunc);
@@ -99,8 +102,6 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 			// 算式連一連對象實例
 			EqualityLinkageFormula EqualityLinkageFormula = new EqualityLinkageFormula();
 
-			// (算式個數的個數最多10個)
-			p.Amount = (p.Amount > 10) ? 10 : p.Amount;
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{

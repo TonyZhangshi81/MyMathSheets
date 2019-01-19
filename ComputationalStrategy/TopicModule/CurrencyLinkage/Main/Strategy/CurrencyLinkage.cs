@@ -33,9 +33,9 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Strategy
 			IList<int> seats = new List<int>();
 
 			// (題型數量最多10個)
-			p.Amount = (p.Amount > 10) ? 10 : p.Amount;
+			p.NumberOfQuestions = (p.NumberOfQuestions > 10) ? 10 : p.NumberOfQuestions;
 			// 按照指定數量作成相應的數學計算式
-			for (var seatIndex = 0; seatIndex < p.Amount; seatIndex++)
+			for (var seatIndex = 0; seatIndex < p.NumberOfQuestions; seatIndex++)
 			{
 				int currency = CommonUtil.GetRandomNumber(1, 999);
 				// 左邊(上面)價格作成
