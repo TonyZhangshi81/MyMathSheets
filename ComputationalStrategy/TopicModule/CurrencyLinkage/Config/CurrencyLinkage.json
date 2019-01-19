@@ -6,12 +6,7 @@
 	},
 	{
 		"Identifier": "CL002",
-		"NumberOfQuestions": 4,
-		"Reserve": "{\"DivQueueType\" : 0}"
-	},
-	{
-		"Identifier": "CL003",
-		"NumberOfQuestions": 3,
+		"NumberOfQuestions": 5,
 		"Reserve": "{\"DivQueueType\" : 1}"
 	}
 ]

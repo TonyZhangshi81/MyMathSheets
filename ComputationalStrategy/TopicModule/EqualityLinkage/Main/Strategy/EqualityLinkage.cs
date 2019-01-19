@@ -51,8 +51,8 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
 
-			// (算式個數的個數最多10個)
-			p.NumberOfQuestions = (p.NumberOfQuestions > 10) ? 10 : p.NumberOfQuestions;
+			// (算式個數的個數最多5個)
+			p.NumberOfQuestions = (p.NumberOfQuestions > 5) ? 5 : p.NumberOfQuestions;
 
 			int seatNumber = 0;
 			// 按照指定數量作成相應的數學計算式

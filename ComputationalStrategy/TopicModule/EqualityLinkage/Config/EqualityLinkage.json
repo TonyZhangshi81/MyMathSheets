@@ -2,7 +2,7 @@
 	{
 		"Identifier": "EL004",
 		"FourOperationsType": 2,
-		"MaximumLimit": 30,
+		"MaximumLimit": 20,
 		"NumberOfQuestions": 5,
 		"Signs": [ 0, 1 ],
 		"Reserve": "{\"DivQueueType\" : 1}"
@@ -19,24 +19,24 @@
 		"Identifier": "EL001",
 		"FourOperationsType": 1,
 		"MaximumLimit": 20,
-		"NumberOfQuestions": 10,
+		"NumberOfQuestions": 5,
 		"Signs": [ 1 ],
 		"Reserve": "{\"DivQueueType\" : 1}"
 	},
 	{
 		"Identifier": "EL002",
 		"FourOperationsType": 1,
-		"MaximumLimit": 30,
-		"NumberOfQuestions": 4,
+		"MaximumLimit": 20,
+		"NumberOfQuestions": 5,
 		"Signs": [ 0 ],
 		"Reserve": "{\"DivQueueType\" : 1}"
 	},
 	{
 		"Identifier": "EL003",
 		"FourOperationsType": 1,
-		"MaximumLimit": 40,
-		"NumberOfQuestions": 3,
+		"MaximumLimit": 30,
+		"NumberOfQuestions": 5,
 		"Signs": [ 1 ],
-		"Reserve": "{\"DivQueueType\" : 1}"
+		"Reserve": "{\"DivQueueType\" : 0}"
 	}
 ]
