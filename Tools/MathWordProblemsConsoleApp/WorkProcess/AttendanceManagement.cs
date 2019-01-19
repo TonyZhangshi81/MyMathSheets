@@ -43,6 +43,11 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 					break;
 				}
 
+				if("off".Equals(_xls.GetRangeText(string.Format("A{0}", rowIndex))))
+				{
+					continue;
+				}
+
 				// 構造
 				list.Add(new GapFillingProblems()
 				{
