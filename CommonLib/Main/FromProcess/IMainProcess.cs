@@ -21,6 +21,12 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		List<LayoutSetting.Preview> LayoutSettingPreviewList { get; set; }
 
 		/// <summary>
+		/// 獲取指定文件夾下所有文件的文件名列表
+		/// </summary>
+		/// <returns>文件名列表</returns>
+		List<string> GetWorkPageFiles();
+
+		/// <summary>
 		/// 出題按鍵點擊事件
 		/// </summary>
 		/// <returns></returns>

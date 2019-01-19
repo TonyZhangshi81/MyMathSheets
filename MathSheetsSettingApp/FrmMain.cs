@@ -49,8 +49,19 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			// 題型縮略瀏覽初期化
 			PreviewInit();
+			// 歷屆題型試卷初期化顯示
+			WorkPagesDisplay();
+
 			// 創建題型選擇控件
 			CreateQuestionCheckBoxList();
+		}
+
+		/// <summary>
+		/// 歷屆題型試卷初期化顯示
+		/// </summary>
+		private void WorkPagesDisplay()
+		{
+			cmbWorkPages.DataSource = _process.GetWorkPageFiles();
 		}
 
 		/// <summary>
@@ -120,6 +131,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <param name="e">事件處理</param>
 		private void SureClick(object sender, EventArgs e)
 		{
+			if (!string.IsNullOrEmpty(cmbWorkPages.SelectedValue.ToString()))
+			{
+				System.Diagnostics.Process.Start(ConfigurationManager.AppSettings.Get("Preview"), "\"" + Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") + cmbWorkPages.SelectedValue.ToString()) + "\"");
+				return;
+			}
+
 			// 選題情況
 			if (!_process.ChooseCheck())
 			{

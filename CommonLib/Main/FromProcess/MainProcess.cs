@@ -88,6 +88,37 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		private StringBuilder Content { get; set; }
 
 		/// <summary>
+		/// 獲取指定文件夾下所有文件的文件名列表
+		/// </summary>
+		/// <returns>文件名列表</returns>
+		public List<string> GetWorkPageFiles()
+		{
+			List<string> fileNames = new List<string>();
+			// 如果目錄不存在
+			if (!Directory.Exists(ConfigurationManager.AppSettings.Get("HtmlWork")))
+			{
+				return fileNames;
+			}
+
+			string filter = DateTime.Now.ToString("yyyyMMdd");
+			DirectoryInfo root = new DirectoryInfo(ConfigurationManager.AppSettings.Get("HtmlWork"));
+			// 獲取文件列表
+			root.GetFiles().ToList().ForEach(d =>
+			{
+				if(d.Name.IndexOf(filter) >= 0)
+				{
+					fileNames.Add(d.Name);
+				}
+			});
+			if(fileNames.Count > 0)
+			{
+				fileNames.Insert(0, string.Empty);
+			}
+
+			return fileNames;
+		}
+
+		/// <summary>
 		/// 出題按鍵點擊事件
 		/// </summary>
 		/// <returns>靜態頁面文件名</returns>
