@@ -15,10 +15,6 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters
 		/// 射門得分作成并輸出
 		/// </summary>
 		public ScoreGoalFormula Formulas { get; set; }
-		/// <summary>
-		/// 足球個數個數設置
-		/// </summary>
-		public int Amount { get; set; }
 
 		/// <summary>
 		/// 初期化參數
@@ -26,8 +22,6 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters
 		public override void InitParameter()
 		{
 			base.InitParameter();
-
-			Amount = Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "Amount"));
 
 			// 集合實例化
 			Formulas = new ScoreGoalFormula();

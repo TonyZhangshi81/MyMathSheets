@@ -662,17 +662,33 @@
 	public enum FindTheLawLevel : int
 	{
 		/// <summary>
-		/// 定值逐漸增大型
+		/// 定量遞增
 		/// </summary>
-		Crescent,
+		Crescent = 0,
 		/// <summary>
-		/// 逐漸減小型
+		/// 定量遞減
 		/// </summary>
 		Diminishingly,
 		/// <summary>
-		/// 疊加型
+		/// 變量遞增
+		/// </summary>
+		Variable,
+		/// <summary>
+		/// 變量遞減
+		/// </summary>
+		Decrement,
+		/// <summary>
+		/// 疊加遞增
 		/// </summary>
 		Superposition,
+		/// <summary>
+		/// 定量遞增擴展（2個定值逐個遞增）
+		/// </summary>
+		CrescentExt,
+		/// <summary>
+		/// 定量遞減擴展（2個定值逐個遞減）
+		/// </summary>
+		DiminishinglyExt,
 	}
 	/// <summary>
 	/// HTML屬性注入類型

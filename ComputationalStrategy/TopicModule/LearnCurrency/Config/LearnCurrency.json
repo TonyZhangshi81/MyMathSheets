@@ -1,37 +1,44 @@
 [
 	{
-		"Identifier": "LC002",
+		"Identifier": "LC001",
 		"FourOperationsType": 2,
-		"NumberOfQuestions": 20,
-		"QuestionType": 2,
-		"Reserve": "{\"Type\" : '0,1,2,3,4,5,6,7'}"
+		"NumberOfQuestions": 10,
+		"QuestionType": 1,
+		"Reserve": "{\"Type\" : '0,1'}"
 	},
 	{
-		"Identifier": "LC001",
-		"FourOperationsType": 1,
-		"NumberOfQuestions": 4,
+		"Identifier": "LC002",
+		"FourOperationsType": 2,
+		"NumberOfQuestions": 10,
 		"QuestionType": 1,
-		"Reserve": "{\"Type\" : '0'}"
+		"Reserve": "{\"Type\" : '2,3'}"
 	},
 	{
 		"Identifier": "LC003",
-		"FourOperationsType": 1,
-		"NumberOfQuestions": 4,
-		"QuestionType": 2,
-		"Reserve": "{\"Type\" : '1'}"
+		"FourOperationsType": 2,
+		"NumberOfQuestions": 10,
+		"QuestionType": 1,
+		"Reserve": "{\"Type\" : '5,6'}"
 	},
 	{
 		"Identifier": "LC004",
 		"FourOperationsType": 2,
-		"NumberOfQuestions": 7,
+		"NumberOfQuestions": 15,
 		"QuestionType": 2,
-		"Reserve": "{\"Type\" : '4,7'}"
+		"Reserve": "{\"Type\" : '0,1,2,3,5,6'}"
 	},
 	{
 		"Identifier": "LC005",
 		"FourOperationsType": 2,
-		"NumberOfQuestions": 8,
+		"NumberOfQuestions": 10,
 		"QuestionType": 2,
-		"Reserve": "{\"Type\" : '8,9'}"
+		"Reserve": "{\"Type\" : '4,7'}"
+	},
+	{
+		"Identifier": "LC006",
+		"FourOperationsType": 2,
+		"NumberOfQuestions": 10,
+		"QuestionType": 2,
+		"Reserve": "{\"Type\" : '4,7,8,9'}"
 	}
 ]

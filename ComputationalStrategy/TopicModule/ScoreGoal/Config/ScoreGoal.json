@@ -1,30 +1,30 @@
 [
 	{
-		"Identifier": "SG004",
-		"FourOperationsType": 2,
-		"MaximumLimit": 30,
-		"Signs": [ 0, 1 ],
-		"Reserve": "{\"Amount\" : 6}"
-	},
-	{
 		"Identifier": "SG001",
-		"FourOperationsType": 2,
-		"MaximumLimit": 50,
-		"Signs": [ 0, 1 ],
-		"Reserve": "{\"Amount\" : 8}"
+		"FourOperationsType": 1,
+		"MaximumLimit": 20,
+		"NumberOfQuestions": 8,
+		"Signs": [ 0 ]
 	},
 	{
 		"Identifier": "SG002",
 		"FourOperationsType": 1,
-		"MaximumLimit": 30,
-		"Signs": [ 0 ],
-		"Reserve": "{\"Amount\" : 5}"
+		"MaximumLimit": 20,
+		"NumberOfQuestions": 10,
+		"Signs": [ 1 ]
 	},
 	{
 		"Identifier": "SG003",
-		"FourOperationsType": 1,
-		"MaximumLimit": 35,
-		"Signs": [ 1 ],
-		"Reserve": "{\"Amount\" : 4}"
+		"FourOperationsType": 2,
+		"MaximumLimit": 20,
+		"NumberOfQuestions": 10,
+		"Signs": [ 0, 1 ]
+	},
+	{
+		"Identifier": "SG004",
+		"FourOperationsType": 2,
+		"MaximumLimit": 40,
+		"NumberOfQuestions": 10,
+		"Signs": [ 0, 1 ]
 	}
 ]

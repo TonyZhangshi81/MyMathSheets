@@ -96,7 +96,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 				_goalsFormulas.Add(goal);
 			}
 			// 按照指定數量作成相應的數學計算式(足球的個數最多10個)
-			for (int i = 0; i < p.Amount; i++)
+			for (int i = 0; i < p.NumberOfQuestions; i++)
 			{
 				int seat = 0;
 				// 選取球門
@@ -123,7 +123,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 			ScoreGoalParameter p = parameter as ScoreGoalParameter;
 
 			// (足球的個數最多10個)
-			p.Amount = (p.Amount > 10) ? 10 : p.Amount;
+			p.NumberOfQuestions = (p.NumberOfQuestions > 10) ? 10 : p.NumberOfQuestions;
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{

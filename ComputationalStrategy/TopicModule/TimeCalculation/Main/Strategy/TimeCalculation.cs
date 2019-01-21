@@ -57,7 +57,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		}
 
 		/// <summary>
-		/// 隨機取得開始時間(秒數)
+		/// 隨機取得經過時間(秒數)
 		/// </summary>
 		/// <param name="p">題型參數</param>
 		/// <param name="elapsedTime">經過時間</param>
