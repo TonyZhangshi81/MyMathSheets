@@ -131,7 +131,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <param name="e">事件處理</param>
 		private void SureClick(object sender, EventArgs e)
 		{
-			if (cmbWorkPages.SelectedValue != null)
+			if (cmbWorkPages.SelectedIndex > 0)
 			{
 				System.Diagnostics.Process.Start(ConfigurationManager.AppSettings.Get("Preview"), "\"" + Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") + cmbWorkPages.SelectedValue.ToString()) + "\"");
 				return;
@@ -199,7 +199,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			foreach (CheckBox control in this.panel1.Controls)
 			{
-				control.Enabled = string.IsNullOrEmpty(cmbWorkPages.SelectedValue.ToString());
+				control.Enabled = !(cmbWorkPages.SelectedIndex > 0);
 			}
 		}
 	}

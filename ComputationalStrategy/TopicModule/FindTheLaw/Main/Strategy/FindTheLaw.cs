@@ -187,7 +187,6 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 				// 隨機項目編號(填空項目)
 				RandomIndexList = RandomIndexListOrder(randomIndexList)
 			};
-			//formula.RandomIndexList.Sort();
 
 			// 結果返回
 			return formula;
@@ -223,15 +222,13 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 			randomIndexList.Sort();
 
 			// index: 0,1,2,3,4,5,6
-			//if (randomIndexList[0] >= 3 || randomIndexList[2] < 4 || randomIndexList[1] - randomIndexList[0] > 3 || randomIndexList[2] - randomIndexList[1] > 3)
-			//{
-			//	randomIndexList.Sort();
-			//	// 隨機填空項目的順次原則是保證至少有3個已知數是連續的(便於題型解答)
-			//	return randomIndexList;
-			//}
-
+			if (randomIndexList[0] >= 3 || randomIndexList[2] < 4 || randomIndexList[1] - randomIndexList[0] > 3 || randomIndexList[2] - randomIndexList[1] > 3)
+			{
+				// 隨機填空項目的順次原則是保證至少有3個已知數是連續的(便於題型解答)
+				return randomIndexList;
+			}
 			// 避免填空項目是以間隔排列的
-			if ((randomIndexList[0] == 1 && randomIndexList[1] == 3 && randomIndexList[2] == 5) ||
+			else if ((randomIndexList[0] == 1 && randomIndexList[1] == 3 && randomIndexList[2] == 5) ||
 				(randomIndexList[0] == 0 && randomIndexList[1] == 2 && randomIndexList[2] == 4) ||
 				(randomIndexList[0] == 2 && randomIndexList[1] == 4 && randomIndexList[2] == 6))
 			{
@@ -270,7 +267,6 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 				// 隨機項目編號(填空項目)
 				RandomIndexList = RandomIndexListOrder(randomIndexList)
 			};
-			//formula.RandomIndexList.Sort();
 
 			// 結果返回
 			return formula;
