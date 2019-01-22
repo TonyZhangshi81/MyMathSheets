@@ -12,7 +12,7 @@ using System.Text;
 namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 {
 	/// <summary>
-	/// 
+	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.CombinatorialEquation)]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.CombinatorialEquation.js\" charset=\"utf-8\"></script>")]
@@ -27,6 +27,10 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 		/// 標題HTML模板
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+		/// <summary>
+		/// 標籤HTML模板
+		/// </summary>
+		private const string SPAN_BADGE_HTML_FORMAT = "<span class=\"badge {0}\" style=\"width: 40px;\">{1}</span>";
 
 		/// <summary>
 		/// 算式組合HTML作成
@@ -58,9 +62,10 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 				listGroupHtml.AppendLine("<ul class=\"list-group list-group-ext\">");
 				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
 				listGroupHtml.AppendLine("<h4>");
-				listGroupHtml.AppendLine(string.Format("<span class=\"badge badge-warning\" style=\"width: 40px;\">{0}</span>", item.ParameterA));
-				listGroupHtml.AppendLine(string.Format("<span class=\"badge badge-success\" style=\"width: 40px;\">{0}</span>", item.ParameterB));
-				listGroupHtml.AppendLine(string.Format("<span class=\"badge badge-primary\" style=\"width: 40px;\">{0}</span>", item.ParameterC));
+				listGroupHtml.AppendLine(string.Format(SPAN_BADGE_HTML_FORMAT, "badge-warning", item.ParameterA));
+				listGroupHtml.AppendLine(string.Format(SPAN_BADGE_HTML_FORMAT, "badge-success", item.ParameterB));
+				listGroupHtml.AppendLine(string.Format(SPAN_BADGE_HTML_FORMAT, "badge-primary", item.ParameterC));
+				listGroupHtml.AppendLine(string.Format(SPAN_BADGE_HTML_FORMAT, "badge-info", item.ParameterD));
 				listGroupHtml.AppendLine("</h4>");
 				listGroupHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
 				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKCombinatorial{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));

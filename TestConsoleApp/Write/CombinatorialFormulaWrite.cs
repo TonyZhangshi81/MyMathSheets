@@ -26,7 +26,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 
 			formulas.ToList().ForEach(d =>
 			{
-				Console.WriteLine(string.Format("{0} {1} {2}", d.ParameterA, d.ParameterB, d.ParameterC));
+				Console.WriteLine(string.Format("{0} {1} {2} {3}", d.ParameterA, d.ParameterB, d.ParameterC, d.ParameterD));
 				d.CombinatorialFormulas.ToList().ForEach(m =>
 				{
 					Console.WriteLine(string.Format("{0} {1} {2} = {3}",

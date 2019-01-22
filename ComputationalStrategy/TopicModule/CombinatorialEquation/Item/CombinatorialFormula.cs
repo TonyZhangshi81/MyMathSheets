@@ -21,6 +21,10 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item
 		/// </summary>
 		public int ParameterC { get; set; }
 		/// <summary>
+		/// 無效參數
+		/// </summary>
+		public int ParameterD { get; set; }
+		/// <summary>
 		/// 組合后的算式集合
 		/// </summary>
 		public IList<Formula> CombinatorialFormulas { get; set; }
