@@ -202,7 +202,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 			// 錯題項目獲得光標并選中
 			_faultInputElement();
 			// 如果答題滿分的話則顯示獎章
-			_setAward(score);
+			_setAward();
 		},
 
 		// 錯題項目獲得光標并選中
@@ -230,9 +230,9 @@ MathSheets.Common = MathSheets.Common || (function () {
 		},
 
 		// 顯示獎章
-		_setAward = function (score) {
+		_setAward = function () {
 			// 如果答題滿分的話則顯示獎章
-			if (score != 10) {
+			if (__isFault != 0) {
 				return;
 			}
 
