@@ -37,12 +37,11 @@
 			// 
 			// btnSure
 			// 
-			this.btnSure.Location = new System.Drawing.Point(114, 555);
-			this.btnSure.Margin = new System.Windows.Forms.Padding(4);
+			this.btnSure.Location = new System.Drawing.Point(76, 370);
 			this.btnSure.Name = "btnSure";
-			this.btnSure.Size = new System.Drawing.Size(458, 34);
+			this.btnSure.Size = new System.Drawing.Size(305, 23);
 			this.btnSure.TabIndex = 0;
-			this.btnSure.Text = "出題";
+			this.btnSure.Text = "出题";
 			this.btnSure.UseVisualStyleBackColor = true;
 			this.btnSure.Click += new System.EventHandler(this.SureClick);
 			// 
@@ -50,55 +49,52 @@
 			// 
 			this.flpPreview.AutoScroll = true;
 			this.flpPreview.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-			this.flpPreview.Location = new System.Drawing.Point(614, 18);
-			this.flpPreview.Margin = new System.Windows.Forms.Padding(4);
+			this.flpPreview.Location = new System.Drawing.Point(409, 12);
 			this.flpPreview.Name = "flpPreview";
-			this.flpPreview.Size = new System.Drawing.Size(766, 573);
+			this.flpPreview.Size = new System.Drawing.Size(511, 382);
 			this.flpPreview.TabIndex = 18;
 			this.flpPreview.WrapContents = false;
 			// 
 			// chkIsPreview
 			// 
 			this.chkIsPreview.AutoSize = true;
-			this.chkIsPreview.Location = new System.Drawing.Point(40, 561);
-			this.chkIsPreview.Margin = new System.Windows.Forms.Padding(4);
+			this.chkIsPreview.Location = new System.Drawing.Point(27, 374);
 			this.chkIsPreview.Name = "chkIsPreview";
-			this.chkIsPreview.Size = new System.Drawing.Size(70, 22);
+			this.chkIsPreview.Size = new System.Drawing.Size(48, 16);
 			this.chkIsPreview.TabIndex = 25;
-			this.chkIsPreview.Text = "瀏覽";
+			this.chkIsPreview.Text = "浏览";
 			this.chkIsPreview.UseVisualStyleBackColor = true;
 			// 
 			// panel1
 			// 
-			this.panel1.Location = new System.Drawing.Point(40, 18);
-			this.panel1.Margin = new System.Windows.Forms.Padding(4);
+			this.panel1.Location = new System.Drawing.Point(27, 12);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(531, 438);
+			this.panel1.Size = new System.Drawing.Size(354, 292);
 			this.panel1.TabIndex = 28;
 			// 
 			// cmbWorkPages
 			// 
 			this.cmbWorkPages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbWorkPages.FormattingEnabled = true;
-			this.cmbWorkPages.Location = new System.Drawing.Point(290, 510);
+			this.cmbWorkPages.Location = new System.Drawing.Point(193, 340);
+			this.cmbWorkPages.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
 			this.cmbWorkPages.Name = "cmbWorkPages";
-			this.cmbWorkPages.Size = new System.Drawing.Size(282, 26);
+			this.cmbWorkPages.Size = new System.Drawing.Size(189, 20);
 			this.cmbWorkPages.TabIndex = 29;
 			this.cmbWorkPages.SelectedIndexChanged += new System.EventHandler(this.WorkPagesSelectedIndexChanged);
 			// 
 			// FrmMain
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1398, 608);
+			this.ClientSize = new System.Drawing.Size(856, 405);
 			this.Controls.Add(this.cmbWorkPages);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.chkIsPreview);
 			this.Controls.Add(this.flpPreview);
 			this.Controls.Add(this.btnSure);
-			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "FrmMain";
-			this.Text = "戀數學";
+			this.Text = "一起做练习";
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.ResumeLayout(false);
 			this.PerformLayout();

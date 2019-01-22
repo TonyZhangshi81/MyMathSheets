@@ -28,6 +28,10 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 		/// 標題HTML模板
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+		/// <summary>
+		/// 比较HTML模板
+		/// </summary>
+		private const string SPAN_MORE_LITTLE_HTML_FORMAT = "<span>{0}</span>";
 
 		/// <summary>
 		/// 可選圖片列表
@@ -175,16 +179,16 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 				html.AppendLine(string.Format("<img src=\"../Content/image/more/{0}.png\" width=\"30\" height=\"30\" />", _moreTypeArray[0].ToString()));
 				html.AppendLine("<span>比</span>");
 				html.AppendLine(string.Format("<img src=\"../Content/image/more/{0}.png\" width=\"30\" height=\"30\" />", _moreTypeArray[1].ToString()));
-				html.AppendLine("<span>多</span>");
+				html.AppendLine(string.Format(SPAN_MORE_LITTLE_HTML_FORMAT, Consts.MORE_UNIT));
 			}
 			else
 			{
 				html.AppendLine(string.Format("<img src=\"../Content/image/more/{0}.png\" width=\"30\" height=\"30\" />", _moreTypeArray[1].ToString()));
 				html.AppendLine("<span>比</span>");
 				html.AppendLine(string.Format("<img src=\"../Content/image/more/{0}.png\" width=\"30\" height=\"30\" />", _moreTypeArray[0].ToString()));
-				html.AppendLine("<span>少</span>");
+				html.AppendLine(string.Format(SPAN_MORE_LITTLE_HTML_FORMAT, Consts.LITTLE_UNIT));
 			}
-			html.AppendLine(string.Format("<span>{0}個</span>", item.DefaultFormula.Answer));
+			html.AppendLine(string.Format("<span>{0}{1}</span>", item.DefaultFormula.Answer, Consts.ENTRY_UNIT));
 
 			return html.ToString();
 		}

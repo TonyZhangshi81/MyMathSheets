@@ -25,6 +25,24 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 		/// 標題HTML模板
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+		/// <summary>
+		/// 輸入項目HTML模板
+		/// </summary>
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputTc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+		private const string INPUT_HTML_ON_SCRIPT_FORMAT = "<input id=\"inputTc{0}{1}\" type=\"text\" placeholder=\"{2}\" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" onFocus=\"MathSheets.TimeCalculation.inputOnFocus(this);\" onBlur=\"MathSheets.TimeCalculation.inputOnBlur(this);\" />";
+		private const string SPAN_COLON_HTML = "<span class=\"label\">:</span>";
+		/// <summary>
+		/// 時間HTML模板(數字)
+		/// </summary>
+		private const string SPAN_TIME_NUM_HTML_FORMAT = "<span class=\"label p-2\">{0}</span>";
+		/// <summary>
+		/// 時間HTML模板(單位)
+		/// </summary>
+		private const string SPAN_TIME_CN_HTML_FORMAT = "<span class=\"label p-2\">{0}{1}</span>";
+		/// <summary>
+		/// 題型答案
+		/// </summary>
+		private const string INPUT_ANSWER_HTML_FORMAT = "<input id=\"hiddenTc{0}\" type=\"hidden\" value=\"{1}\" />";
 
 		/// <summary>
 		/// 題型HTML模板作成
@@ -94,13 +112,13 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 			if (gap == GapFilling.Answer)
 			{
 				// 小時
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "0", "時");
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "0", Consts.HR_UNIT);
 				html += SPAN_COLON_HTML;
 				// 分鐘
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "1", "分");
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "1", Consts.MIN_UNIT);
 				html += SPAN_COLON_HTML;
 				// 秒
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "2", "秒");
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "2", Consts.SEC_UNIT);
 
 				// 題型答案
 				html += string.Format(INPUT_ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), endTime.HMSValue);
@@ -123,19 +141,18 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 		private string GetStartTimeHtml(Time startTime, GapFilling gap, int index)
 		{
 			var html = string.Empty;
-			html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, "現在是");
+			html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, "现在是");
 			// 如果是填空項目
 			if (gap == GapFilling.Left)
 			{
 				// 小時
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "0", "時");
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "0", Consts.HR_UNIT);
 				html += SPAN_COLON_HTML;
 				// 分鐘
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "1", "分");
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "1", Consts.MIN_UNIT);
 				html += SPAN_COLON_HTML;
 				// 秒
-				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "2", "秒");
-
+				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "2", Consts.SEC_UNIT);
 				// 題型答案
 				html += string.Format(INPUT_ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), startTime.HMSValue);
 			}
@@ -164,13 +181,13 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 			{
 				// 小時
 				html += string.Format(INPUT_HTML_FORMAT, index.ToString().PadLeft(2, '0'), "0");
-				html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, "小時");
+				html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, Consts.HOUR_UNIT);
 				// 分鐘
 				html += string.Format(INPUT_HTML_FORMAT, index.ToString().PadLeft(2, '0'), "1");
-				html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, "分鐘");
+				html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, Consts.MINUTE_UNIT);
 				// 秒
 				html += string.Format(INPUT_HTML_FORMAT, index.ToString().PadLeft(2, '0'), "2");
-				html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, "秒");
+				html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, Consts.SEC_UNIT);
 
 				// 題型答案
 				html += string.Format(INPUT_ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), elapsedTime.HMSValue);
@@ -181,40 +198,21 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 				// 小時
 				if (elapsedTime.Hours.Value != 0)
 				{
-					html += string.Format(SPAN_TIME_CN_HTML_FORMAT, elapsedTime.Hours, "小時");
+					html += string.Format(SPAN_TIME_CN_HTML_FORMAT, elapsedTime.Hours, Consts.HOUR_UNIT);
 				}
 				// 分鐘
 				if (elapsedTime.Minutes.Value != 0)
 				{
-					html += string.Format(SPAN_TIME_CN_HTML_FORMAT, elapsedTime.Minutes, "分鐘");
+					html += string.Format(SPAN_TIME_CN_HTML_FORMAT, elapsedTime.Minutes, Consts.MINUTE_UNIT);
 				}
 				// 秒
 				if (elapsedTime.Seconds.Value != 0)
 				{
-					html += string.Format(SPAN_TIME_CN_HTML_FORMAT, elapsedTime.Seconds, "秒");
+					html += string.Format(SPAN_TIME_CN_HTML_FORMAT, elapsedTime.Seconds, Consts.SEC_UNIT);
 				}
 			}
 			html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, sign.ToOperationString());
 			return html;
 		}
-
-		/// <summary>
-		/// 輸入項目HTML模板
-		/// </summary>
-		private const string INPUT_HTML_FORMAT = "<input id=\"inputTc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
-		private const string INPUT_HTML_ON_SCRIPT_FORMAT = "<input id=\"inputTc{0}{1}\" type=\"text\" placeholder=\"{2}\" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" onFocus=\"MathSheets.TimeCalculation.inputOnFocus(this);\" onBlur=\"MathSheets.TimeCalculation.inputOnBlur(this);\" />";
-		private const string SPAN_COLON_HTML = "<span class=\"label\">:</span>";
-		/// <summary>
-		/// 時間HTML模板(數字)
-		/// </summary>
-		private const string SPAN_TIME_NUM_HTML_FORMAT = "<span class=\"label p-2\">{0}</span>";
-		/// <summary>
-		/// 時間HTML模板(單位)
-		/// </summary>
-		private const string SPAN_TIME_CN_HTML_FORMAT = "<span class=\"label p-2\">{0}{1}</span>";
-		/// <summary>
-		/// 題型答案
-		/// </summary>
-		private const string INPUT_ANSWER_HTML_FORMAT = "<input id=\"hiddenTc{0}\" type=\"hidden\" value=\"{1}\" />";
 	}
 }

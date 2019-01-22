@@ -129,21 +129,21 @@
 	<div class="container theme-showcase main-ext" role="main" id="divContainer">
 		<!-- 標題歡迎畫面 -->
 		<div class="jumbotron-ext">
-			<div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
+			<div style="margin-bottom: 50px;"><span class="label label-default label-title">你好！我们一起做练习</span></div>
 			<div class="div-famousPeople">
 				<h6>
-					<span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+					<span class="text-info-ext">普罗克拉斯：哪里有数，哪里就有美。</span>
 					<br />
-					<span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+					<span class="text-info-ext">罗素：数学，如果正常的看它，不但拥有真理，而且也具有至高的美，正如雕塑的美，是一种冷而严肃的美。"</span>
 					<br />
-					<span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+					<span class="text-info-ext">华罗庚：数学是壮丽多彩、千姿百态、引人入胜的，认为数学枯燥乏味的人，只是看到了数学的严谨性，而没有体会出数学的内在美。"</span>
 				</h6>
 			</div>
 			<hr class="hr-Ext" />
 			<div class="text-info-ext">
-				前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
-				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
-				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
+				前一次做题用时：<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>题
+				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>题
 			</div>
 			<div class="plugin-butterfly">
 				<iframe frameborder="0" scrolling="no" src="../Plugin/butterfly.html" width="320" height="250"></iframe>
@@ -158,9 +158,9 @@
 		<div class="row">
 			<div class="col-md-12 col-md-offset-3">
 				<p class="text-center">
-					<button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
+					<button id="btnReady" type="button" class="btn btn-lg btn-success">准备</button>
 					<button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
-					<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
+					<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">订正</button>
 					<button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
 					<button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
 				</p>
@@ -170,7 +170,7 @@
 		<div class="page-header">
 			<div class="row text-left">
 				<div class="col-md-2">
-					<h5>答題情況</h5>
+					<h5>答题情况</h5>
 				</div>
 				<div class="col-md-9">
 					<div class="rating-stars block" id="more-rating" style="display: none;">
@@ -215,9 +215,9 @@
 		<div class="row text-left">
 			<div class="col-md-12">
 				<h7>
-					用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
-					<br />答對:<span id="spanOK" style="width: 30px; display:inline; padding-left:20px;"></span>題
-					<br />答錯:<span id="spanNo" style="width: 30px; display:inline; padding-left:20px;"></span>題
+					用时：<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+					<br />答题：<span id="spanOK" style="width: 30px; display:inline; padding-left:20px;"></span>题
+					<br />答题：<span id="spanNo" style="width: 30px; display:inline; padding-left:20px;"></span>题
 				</h7>
 			</div>
 		</div>

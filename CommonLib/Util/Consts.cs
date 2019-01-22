@@ -1,10 +1,77 @@
 ﻿namespace MyMathSheets.CommonLib.Util
 {
 	/// <summary>
-	/// 
+	/// 常量定義
 	/// </summary>
-	public class Consts
+	public static class Consts
 	{
+		/// <summary>
+		/// 長度單位（米）
+		/// </summary>
+		public const string METER_UNIT = "米";
+		/// <summary>
+		/// 長度單位（分米）
+		/// </summary>
+		public const string DECIMETRE_UNIT = "分米";
+		/// <summary>
+		/// 長度單位（釐米）
+		/// </summary>
+		public const string CENTIMETER_UNIT = "厘米";
+		/// <summary>
+		/// 長度單位（毫米）
+		/// </summary>
+		public const string MILLIMETER_UNIT = "毫米";
+		/// <summary>
+		/// 貨幣單位（元）
+		/// </summary>
+		public const string YUAN_UNIT = "元";
+		/// <summary>
+		/// 貨幣單位（角）
+		/// </summary>
+		public const string JIAO_UNIT = "角";
+		/// <summary>
+		/// 貨幣單位（分）
+		/// </summary>
+		public const string FEN_UNIT = "分";
+
+		/// <summary>
+		/// 比較（多）
+		/// </summary>
+		public const string MORE_UNIT = "多";
+		/// <summary>
+		/// 比較（少）
+		/// </summary>
+		public const string LITTLE_UNIT = "少";
+		/// <summary>
+		/// 單位（個）
+		/// </summary>
+		public const string ENTRY_UNIT = "个";
+		/// <summary>
+		/// 單位（字）
+		/// </summary>
+		public const string WORD_UNIT = "字";
+		/// <summary>
+		/// 時間單位（時）
+		/// </summary>
+		public const string HR_UNIT = "时";
+		/// <summary>
+		/// 時間單位（小時）
+		/// </summary>
+		public const string HOUR_UNIT = "小时";
+		/// <summary>
+		/// 時間單位（分）
+		/// </summary>
+		public const string MIN_UNIT = "分";
+		/// <summary>
+		/// 時間單位（分鐘）
+		/// </summary>
+		public const string MINUTE_UNIT = "分钟";
+		/// <summary>
+		/// 時間單位（秒）
+		/// </summary>
+		public const string SEC_UNIT = "秒";
+
+
 	}
 
 	/// <summary>

@@ -26,9 +26,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
 
 		private const string INPUT_HTML_FORMAT = "<input id=\"inputLc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-2\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
-		private const string YUANUNIT_HTML = "<span class=\"label p-2\">元</span>";
-		private const string JIAOUNIT_HTML = "<span class=\"label p-2\">角</span>";
-		private const string FENUNIT_HTML = "<span class=\"label p-2\">分</span>";
+		private const string CURRENCY_UNIT_HTML_FORMAT = "<span class=\"label p-2\">{0}</span>";
 		private const string SPAN_HTML_FORMAT = "<span class=\"label\">{0}</span>";
 		private const string EQUALTO_HTML = "<span class=\"label\">=</span>";
 
@@ -123,11 +121,11 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.CurrencyUnit.Yuan);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(YUANUNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.YUAN_UNIT));
 			}
 			else
 			{
-				html.AppendFormat(SPAN_HTML_FORMAT, item.CurrencyUnit.Yuan).AppendLine(YUANUNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.CurrencyUnit.Yuan).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.YUAN_UNIT));
 			}
 
 			return html.ToString();
@@ -148,11 +146,11 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.CurrencyUnit.Jiao);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(JIAOUNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.JIAO_UNIT));
 			}
 			else
 			{
-				html.AppendFormat(SPAN_HTML_FORMAT, item.CurrencyUnit.Jiao).AppendLine(JIAOUNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.CurrencyUnit.Jiao).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.JIAO_UNIT));
 			}
 
 			return html.ToString();
@@ -173,12 +171,12 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.RemainderJiao.Value);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(JIAOUNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.JIAO_UNIT));
 			}
 			else
 			{
 				// 考慮剩餘角的輸出
-				html.AppendFormat(SPAN_HTML_FORMAT, item.RemainderJiao.Value).AppendLine(JIAOUNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.RemainderJiao.Value).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.JIAO_UNIT));
 			}
 
 			return html.ToString();
@@ -199,11 +197,11 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.CurrencyUnit.Fen);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(FENUNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.FEN_UNIT));
 			}
 			else
 			{
-				html.AppendFormat(SPAN_HTML_FORMAT, item.CurrencyUnit.Fen).AppendLine(FENUNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.CurrencyUnit.Fen).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.FEN_UNIT));
 			}
 
 			return html.ToString();
@@ -224,12 +222,12 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.RemainderFen.Value);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(FENUNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.FEN_UNIT));
 			}
 			else
 			{
 				// 考慮剩餘分的輸出
-				html.AppendFormat(SPAN_HTML_FORMAT, item.RemainderFen.Value).AppendLine(FENUNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.RemainderFen.Value).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.FEN_UNIT));
 			}
 
 			return html.ToString();

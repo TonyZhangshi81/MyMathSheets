@@ -31,7 +31,7 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 		/// <summary>
 		/// 輸入框HTML模板
 		/// </summary>
-		private const string INPUT_UNIT_HTML_FORMAT = "<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" 字 \" class=\"form-control input-addBorder\" disabled=\"disabled\" />";
+		private const string INPUT_UNIT_HTML_FORMAT = "<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" {2} \" class=\"form-control input-addBorder\" disabled=\"disabled\" />";
 
 		/// <summary>
 		/// 題型HTML模板作成
@@ -71,7 +71,7 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 				if (!string.IsNullOrEmpty(item.Unit))
 				{
 					rowHtml.AppendLine("<span class=\"label\">(</span>");
-					rowHtml.AppendLine(string.Format(INPUT_UNIT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 3));
+					rowHtml.AppendLine(string.Format(INPUT_UNIT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 3, Consts.WORD_UNIT));
 					rowHtml.AppendLine("<span class=\"label\">)</span>");
 				}
 

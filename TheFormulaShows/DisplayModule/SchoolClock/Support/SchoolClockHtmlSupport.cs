@@ -158,13 +158,13 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 
 			html.AppendLine("<div class=\"form-inline clock-inline\">");
 			// 小時數輸入框
-			html.AppendLine(string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, "H", controlIndex, "時", "hours"));
+			html.AppendLine(string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, "H", controlIndex, Consts.HR_UNIT, "hours"));
 			html.AppendLine(SPAN_HTML);
 			// 分鐘數輸入框
-			html.AppendLine(string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, "M", controlIndex, "分", "minutes"));
+			html.AppendLine(string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, "M", controlIndex, Consts.MIN_UNIT, "minutes"));
 			html.AppendLine(SPAN_HTML);
 			// 秒數輸入框
-			html.AppendLine(string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, "S", controlIndex, "秒", "seconds"));
+			html.AppendLine(string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, "S", controlIndex, Consts.SEC_UNIT, "seconds"));
 			// 答題對錯顯示
 			html.AppendLine("<div class=\"divCorrectOrFault-1\">");
 			html.AppendLine(string.Format("<img id=\"imgOKSchoolClock{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));

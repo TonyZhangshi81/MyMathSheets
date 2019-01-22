@@ -140,7 +140,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 選題情況
 			if (!_process.ChooseCheck())
 			{
-				MessageBox.Show(this, "運算符未指定");
+				MessageBox.Show(this, "题型未选择");
 				return;
 			}
 

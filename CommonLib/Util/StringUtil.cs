@@ -31,7 +31,7 @@
 					flag = "之前";
 					break;
 				case SignOfOperation.Later:
-					flag = "之後";
+					flag = "之后";
 					break;
 				default:
 					break;
@@ -159,61 +159,61 @@
 			switch (type)
 			{
 				case LayoutSetting.Preview.Arithmetic:
-					name = "四則運算";
+					name = "四则运算";
 					break;
 				case LayoutSetting.Preview.EqualityComparison:
-					name = "運算比大小";
+					name = "算式比大小";
 					break;
 				case LayoutSetting.Preview.ComputingConnection:
-					name = "等式接龍";
+					name = "等式接龙";
 					break;
 				case LayoutSetting.Preview.MathWordProblems:
-					name = "算式應用題";
+					name = "算式应用题";
 					break;
 				case LayoutSetting.Preview.FruitsLinkage:
-					name = "水果連連看";
+					name = "水果连连看";
 					break;
 				case LayoutSetting.Preview.FindNearestNumber:
-					name = "找到最近的數字";
+					name = "找到最近的数字";
 					break;
 				case LayoutSetting.Preview.CombinatorialEquation:
-					name = "算式組合";
+					name = "算式组合";
 					break;
 				case LayoutSetting.Preview.ScoreGoal:
-					name = "射門得分";
+					name = "射门得分";
 					break;
 				case LayoutSetting.Preview.HowMuchMore:
 					name = "比多少";
 					break;
 				case LayoutSetting.Preview.FindTheLaw:
-					name = "找規律";
+					name = "找规律";
 					break;
 				case LayoutSetting.Preview.NumericSorting:
-					name = "數字排序";
+					name = "数字排序";
 					break;
 				case LayoutSetting.Preview.LearnCurrency:
-					name = "認識貨幣";
+					name = "认识货币";
 					break;
 				case LayoutSetting.Preview.EqualityLinkage:
-					name = "算式連一連";
+					name = "算式连一连";
 					break;
 				case LayoutSetting.Preview.SchoolClock:
-					name = "時鐘學習板";
+					name = "时钟学习板";
 					break;
 				case LayoutSetting.Preview.CurrencyOperation:
-					name = "貨幣運算";
+					name = "货币运算";
 					break;
 				case LayoutSetting.Preview.CurrencyLinkage:
-					name = "認識價格";
+					name = "认识价格";
 					break;
 				case LayoutSetting.Preview.TimeCalculation:
-					name = "時間運算";
+					name = "时间运算";
 					break;
 				case LayoutSetting.Preview.LearnLengthUnit:
-					name = "認識長度單位";
+					name = "认识长度单位";
 					break;
 				case LayoutSetting.Preview.GapFillingProblems:
-					name = "基礎填空";
+					name = "基础填空";
 					break;
 				default:
 					break;

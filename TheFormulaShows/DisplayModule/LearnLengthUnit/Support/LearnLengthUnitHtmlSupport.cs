@@ -26,12 +26,9 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
 
 		private const string INPUT_HTML_FORMAT = "<input id=\"inputLlu{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-2\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
-		private const string METER_UNIT_HTML = "<span class=\"label p-2\">米</span>";
-		private const string DECIMETRE_UNIT_HTML = "<span class=\"label p-2\">分米</span>";
-		private const string CENTIMETER_UNIT_HTML = "<span class=\"label p-2\">釐米</span>";
-		private const string MILLIMETER_UNIT_HTML = "<span class=\"label p-2\">毫米</span>";
+		private const string UNIT_HTML_FORMAT = "<span class=\"label p-2\">{0}</span>";
 		private const string SPAN_HTML_FORMAT = "<span class=\"label\">{0}</span>";
-		private const string EQUALTO_HTML = "<span class=\"label\">=</span>";
+		private const string EQUALTO_HTML = "<span class=\"label\">&#61;</span>";
 
 		/// <summary>
 		/// 答案列表(eg: 1,5,12,10,4,8,1.....)
@@ -124,11 +121,11 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.LengthUnitItme.Meter);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(METER_UNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.METER_UNIT));
 			}
 			else
 			{
-				html.AppendFormat(SPAN_HTML_FORMAT, item.LengthUnitItme.Meter).AppendLine(METER_UNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.LengthUnitItme.Meter).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.METER_UNIT));
 			}
 
 			return html.ToString();
@@ -149,11 +146,11 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.LengthUnitItme.Decimetre);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(DECIMETRE_UNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.DECIMETRE_UNIT));
 			}
 			else
 			{
-				html.AppendFormat(SPAN_HTML_FORMAT, item.LengthUnitItme.Decimetre).AppendLine(DECIMETRE_UNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.LengthUnitItme.Decimetre).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.DECIMETRE_UNIT));
 			}
 
 			return html.ToString();
@@ -174,11 +171,11 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.LengthUnitItme.Centimeter);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(CENTIMETER_UNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.CENTIMETER_UNIT));
 			}
 			else
 			{
-				html.AppendFormat(SPAN_HTML_FORMAT, item.LengthUnitItme.Centimeter).AppendLine(CENTIMETER_UNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.LengthUnitItme.Centimeter).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.CENTIMETER_UNIT));
 			}
 
 			return html.ToString();
@@ -199,11 +196,11 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.LengthUnitItme.Millimeter);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(MILLIMETER_UNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.MILLIMETER_UNIT));
 			}
 			else
 			{
-				html.AppendFormat(SPAN_HTML_FORMAT, item.LengthUnitItme.Millimeter).AppendLine(MILLIMETER_UNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.LengthUnitItme.Millimeter).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.MILLIMETER_UNIT));
 			}
 
 			return html.ToString();
@@ -224,12 +221,12 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.RemainderDecimetre.Value);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(DECIMETRE_UNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.DECIMETRE_UNIT));
 			}
 			else
 			{
 				// 考慮剩餘分米的輸出
-				html.AppendFormat(SPAN_HTML_FORMAT, item.RemainderDecimetre.Value).AppendLine(DECIMETRE_UNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.RemainderDecimetre.Value).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.DECIMETRE_UNIT));
 			}
 
 			return html.ToString();
@@ -250,12 +247,12 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.RemainderCentimeter.Value);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(CENTIMETER_UNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.CENTIMETER_UNIT));
 			}
 			else
 			{
 				// 考慮剩餘釐米的輸出
-				html.AppendFormat(SPAN_HTML_FORMAT, item.RemainderCentimeter.Value).AppendLine(CENTIMETER_UNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.RemainderCentimeter.Value).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.CENTIMETER_UNIT));
 			}
 
 			return html.ToString();
@@ -276,12 +273,12 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 			if (isInput)
 			{
 				_answers.AppendFormat("{0},", item.RemainderMillimeter.Value);
-				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(MILLIMETER_UNIT_HTML);
+				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.MILLIMETER_UNIT));
 			}
 			else
 			{
 				// 考慮剩餘毫米的輸出
-				html.AppendFormat(SPAN_HTML_FORMAT, item.RemainderMillimeter.Value).AppendLine(MILLIMETER_UNIT_HTML);
+				html.AppendFormat(SPAN_HTML_FORMAT, item.RemainderMillimeter.Value).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.MILLIMETER_UNIT));
 			}
 
 			return html.ToString();

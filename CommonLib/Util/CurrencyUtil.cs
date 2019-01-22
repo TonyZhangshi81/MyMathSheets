@@ -79,17 +79,17 @@ namespace MyMathSheets.CommonLib.Util
 			// 元單位信息打印
 			if (currency.Yuan.HasValue)
 			{
-				builder.AppendFormat("{0}元", currency.Yuan);
+				builder.AppendFormat("{0}{1}", currency.Yuan, Consts.YUAN_UNIT);
 			}
 			// 角單位信息打印
 			if (currency.Jiao.HasValue)
 			{
-				builder.AppendFormat("{0}角", currency.Jiao);
+				builder.AppendFormat("{0}{1}", currency.Jiao, Consts.JIAO_UNIT);
 			}
 			// 分單位信息打印
 			if (currency.Fen.HasValue)
 			{
-				builder.AppendFormat("{0}分", currency.Fen);
+				builder.AppendFormat("{0}{1}", currency.Fen, Consts.FEN_UNIT);
 			}
 			return builder.ToString();
 		}
