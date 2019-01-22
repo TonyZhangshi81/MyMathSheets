@@ -66,12 +66,12 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
 
-			// 貨幣轉換類型
-			CurrencyTransform type = currencyTransFunc();
-
 			// 按照指定數量作成相應的數學計算式
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
+				// 貨幣轉換類型
+				CurrencyTransform type = currencyTransFunc();
+
 				LearnCurrencyFormula formula = new LearnCurrencyFormula() { CurrencyTransformType = type };
 				if (_currencys.TryGetValue(type, out Action<LearnCurrencyFormula, QuestionType> currency))
 				{

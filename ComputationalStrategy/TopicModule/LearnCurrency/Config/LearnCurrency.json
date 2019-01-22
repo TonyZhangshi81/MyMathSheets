@@ -40,5 +40,12 @@
 		"NumberOfQuestions": 10,
 		"QuestionType": 2,
 		"Reserve": "{\"Type\" : '4,7,8,9'}"
+	},
+	{
+		"Identifier": "LC007",
+		"FourOperationsType": 2,
+		"NumberOfQuestions": 10,
+		"QuestionType": 1,
+		"Reserve": "{\"Type\" : '0,1,2,3,5,6'}"
 	}
 ]

@@ -1,5 +1,5 @@
 {
-	"Arithmetic": "AC006",
+	"Arithmetic": "AC008",
 	"CombinatorialEquation": "CE001",
 	"ComputingConnection": "CC001",
 	"CurrencyLinkage": "CL001",
@@ -13,7 +13,7 @@
 	"ScoreGoal": "SC003",
 	"HowMuchMore": "HMM001",
 	"NumericSorting": "NS001",
-	"LearnCurrency": "LC004",
+	"LearnCurrency": "LC007",
 	"SchoolClock": "SG004",
 	"TimeCalculation": "TC003",
 	"LearnLengthUnit": "LLU005",
