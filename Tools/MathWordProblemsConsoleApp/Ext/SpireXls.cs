@@ -63,11 +63,10 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Ext
 		#endregion
 
 		/// <summary>
-		/// 
+		/// 返回指定單元格的值
 		/// </summary>
-		/// <param name="cellName"></param>
-		/// <param name="value"></param>
-		/// <param name="style"></param>
+		/// <param name="cellName">單元格位置</param>
+		/// <returns>單元格的值</returns>
 		public string GetRangeText(string cellName)
 		{
 			CellRange cell = Sheet.Range[cellName];
@@ -78,6 +77,21 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Ext
 				cell.Value2 = value;
 			}
 			return Sheet.Range[cellName].Value;
+		}
+
+		/// <summary>
+		/// 返回指定單元格的公式
+		/// </summary>
+		/// <param name="cellName">單元格位置</param>
+		/// <returns>單元格的公式</returns>
+		public string GetFormula(string cellName)
+		{
+			CellRange cell = Sheet.Range[cellName];
+			if (cell.HasFormula)
+			{
+				return cell.Formula.Substring(1);
+			}
+			return string.Empty;
 		}
 
 		#region Release resources
