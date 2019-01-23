@@ -27,11 +27,11 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 		/// <summary>
 		/// 輸入框HTML模板
 		/// </summary>
-		private const string INPUT_HTML_FORMAT = "<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" {2} \" class=\"form-control input-addBorder-3\" disabled=\"disabled\" />";
 		/// <summary>
 		/// 輸入框HTML模板
 		/// </summary>
-		private const string INPUT_UNIT_HTML_FORMAT = "<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" {2} \" class=\"form-control input-addBorder\" disabled=\"disabled\" />";
+		private const string INPUT_UNIT_HTML_FORMAT = "<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" {2} \" class=\"form-control input-addBorder-2\" disabled=\"disabled\" />";
 
 		/// <summary>
 		/// 題型HTML模板作成
@@ -55,28 +55,24 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
 				rowHtml.AppendLine("<h5>");
 				rowHtml.AppendLine("<p class=\"text-info\">");
+				rowHtml.AppendLine(string.Format("<span class=\"label\">{0}.</span>", parentControlIndex + 1));
 				rowHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.MathWordProblem));
 				rowHtml.AppendLine("</p>");
 				rowHtml.AppendLine("</h5>");
 				rowHtml.AppendLine("</div>");
 				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
 				rowHtml.AppendLine("<h5>");
-				rowHtml.AppendLine(string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 0));
-				rowHtml.AppendLine(string.Format("<img src=\"../Content/image/help.png\" id=\"imgMwp{0}\" style=\"width: 30px; height: 30px;\" title=\"help\" />", parentControlIndex.ToString().PadLeft(2, '0')));
-				rowHtml.AppendLine(string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 1));
-				rowHtml.AppendLine("<img src=\"../Content/image/calculator.png\" style=\"width: 30px; height: 30px;\" />");
-				rowHtml.AppendLine(string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 2));
-
-				// 單位填寫
+				// 計算式輸入域
+				rowHtml.AppendLine(string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 0, Consts.WORD_PROBLEM_INPUT_READY));
+				// 單位輸入域
 				if (!string.IsNullOrEmpty(item.Unit))
 				{
 					rowHtml.AppendLine("<span class=\"label\">(</span>");
-					rowHtml.AppendLine(string.Format(INPUT_UNIT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 3, Consts.WORD_UNIT));
+					rowHtml.AppendLine(string.Format(INPUT_UNIT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), 1, Consts.WORD_PROBLEM_UNIT));
 					rowHtml.AppendLine("<span class=\"label\">)</span>");
 				}
-
 				// 標準方程式（答案）
-				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwpAnswer{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex.ToString().PadLeft(2, '0'), item.Verify));
+				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwpAnswer{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex.ToString().PadLeft(2, '0'), GetAnswer(item)));
 				// 單位（答案）
 				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwpUnit{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex.ToString().PadLeft(2, '0'), item.Unit));
 				rowHtml.AppendLine("</h5>");
@@ -102,6 +98,25 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 			}
 
 			return html.ToString();
+		}
+
+		/// <summary>
+		/// 題型答案設置
+		/// </summary>
+		/// <param name="item">題型參數類</param>
+		/// <returns>題型答案</returns>
+		private string GetAnswer(MathWordProblemsFormula item)
+		{
+			StringBuilder answer = new StringBuilder();
+			item.Answers.ForEach(d =>
+			{
+				if (!string.IsNullOrEmpty(d))
+				{
+					answer.AppendFormat("{0};", d);
+				}
+			});
+			answer.Length -= 1;
+			return answer.ToString();
 		}
 	}
 }

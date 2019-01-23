@@ -142,8 +142,8 @@
 			<hr class="hr-Ext" />
 			<div class="text-info-ext">
 				前一次做题用时：<span id="spanOld" style="padding-left:10px;">00：00：00</span>
-				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>题
-				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>题
+				<span style="padding-left:20px;">答对:</span><span id="spanOldOK" style="padding-left:10px;"></span>题
+				<span style="padding-left:20px;">答错:</span><span id="spanOldNo" style="padding-left:10px;"></span>题
 			</div>
 			<div class="plugin-butterfly">
 				<iframe frameborder="0" scrolling="no" src="../Plugin/butterfly.html" width="320" height="250"></iframe>
@@ -216,8 +216,8 @@
 			<div class="col-md-12">
 				<h7>
 					用时：<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
-					<br />答题：<span id="spanOK" style="width: 30px; display:inline; padding-left:20px;"></span>题
-					<br />答题：<span id="spanNo" style="width: 30px; display:inline; padding-left:20px;"></span>题
+					<br />答对：<span id="spanOK" style="width: 30px; display:inline; padding-left:20px;"></span>题
+					<br />答错：<span id="spanNo" style="width: 30px; display:inline; padding-left:20px;"></span>题
 				</h7>
 			</div>
 		</div>

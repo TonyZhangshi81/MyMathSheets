@@ -47,10 +47,6 @@
 		/// </summary>
 		public const string ENTRY_UNIT = "个";
 		/// <summary>
-		/// 單位（字）
-		/// </summary>
-		public const string WORD_UNIT = "字";
-		/// <summary>
 		/// 時間單位（時）
 		/// </summary>
 		public const string HR_UNIT = "时";
@@ -71,7 +67,14 @@
 		/// </summary>
 		public const string SEC_UNIT = "秒";
 
-
+		/// <summary>
+		/// 應用題單位輸入域字樣
+		/// </summary>
+		public const string WORD_PROBLEM_UNIT = "单位";
+		/// <summary>
+		/// 應用題計算式輸入域字樣
+		/// </summary>
+		public const string WORD_PROBLEM_INPUT_READY = "请写出计算式";
 	}
 
 	/// <summary>

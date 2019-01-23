@@ -251,6 +251,11 @@
 	width: 60px !important;
 	text-align: center;
 }
+.input-addBorder-3 {
+	border: 1px solid black;
+	width: 200px !important;
+	text-align: center;
+}
 
 .button-addBorder {
 	border: 1px solid black;

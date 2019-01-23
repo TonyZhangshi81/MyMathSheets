@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Item
@@ -9,17 +9,13 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Item
 	public class MathWordProblemsFormula
 	{
 		/// <summary>
-		/// 計算方程式
-		/// </summary>
-		public Formula ProblemFormula { get; set; }
-		/// <summary>
 		/// 應用題文字內容
 		/// </summary>
 		public string MathWordProblem { get; set; }
 		/// <summary>
 		/// 標準計算式
 		/// </summary>
-		public string Verify { get; set; }
+		public List<string> Answers { get; set; }
 		/// <summary>
 		/// 單位Verify
 		/// </summary>
@@ -45,10 +41,28 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Item
 		public string Content { get; set; }
 
 		/// <summary>
-		/// 計算式
+		/// 級別難易度（1至5級，級別越高難度越大）
 		/// </summary>
-		[DataMember(Name = "verify")]
-		public string Verify { get; set; }
+		[DataMember(Name = "level")]
+		public int Level { get; set; }
+
+		/// <summary>
+		/// 運算符
+		/// </summary>
+		[DataMember(Name = "sign")]
+		public int Sign { get; set; }
+
+		/// <summary>
+		/// 參數集合
+		/// </summary>
+		[DataMember(Name = "parameters")]
+		public List<string> Parameters { get; set; }
+
+		/// <summary>
+		/// 答案集合
+		/// </summary>
+		[DataMember(Name = "answers")]
+		public List<string> Answers { get; set; }
 
 		/// <summary>
 		/// 單位

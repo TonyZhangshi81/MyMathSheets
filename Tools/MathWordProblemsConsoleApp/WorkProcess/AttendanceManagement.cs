@@ -4,6 +4,7 @@ using MyMathSheets.MathWordProblemsConsoleApp.WorkProcess.Item;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 {
@@ -110,8 +111,28 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 				{
 					ID = _xls.GetRangeText(string.Format("B{0}", rowIndex)),
 					Content = _xls.GetRangeText(string.Format("C{0}", rowIndex)),
-					Verify = _xls.GetRangeText(string.Format("D{0}", rowIndex)),
-					Unit = _xls.GetRangeText(string.Format("E{0}", rowIndex))
+					Sign = Convert.ToInt16(_xls.GetRangeText(string.Format("N{0}", rowIndex))),
+					Level = Convert.ToInt16(_xls.GetRangeText(string.Format("AA{0}", rowIndex))),
+					Parameters = new List<string>() {
+						_xls.GetRangeText(string.Format("D{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("E{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("F{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("G{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("H{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("I{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("J{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("K{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("L{0}", rowIndex)),
+						_xls.GetRangeText(string.Format("M{0}", rowIndex)),
+					},
+					Answers = new List<string>() {
+						GetAnswer(string.Format("P{0}", rowIndex)),
+						GetAnswer(string.Format("Q{0}", rowIndex)),
+						GetAnswer(string.Format("R{0}", rowIndex)),
+						GetAnswer(string.Format("S{0}", rowIndex)),
+						GetAnswer(string.Format("T{0}", rowIndex))
+					},
+					Unit = _xls.GetRangeText(string.Format("O{0}", rowIndex))
 				});
 
 				Console.Write(".");
@@ -120,6 +141,30 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 			string content = list.GetJsonByObject();
 			// 寫文件（作成json文件）
 			Write(content, jsonFileName);
+		}
+
+		/// <summary>
+		/// 獲取公式答案
+		/// </summary>
+		/// <param name="cellName">單元格位置</param>
+		/// <returns>公式答案(eg: D1+E1 => 9+1=10)</returns>
+		private string GetAnswer(string cellName)
+		{
+			string formula = _xls.GetFormula(cellName);
+			if (string.IsNullOrEmpty(formula))
+			{
+				return string.Empty;
+			}
+
+			// 公式中的坐標取得
+			List<string> cellNameList = formula.Split(new char[4] { '+', '-', '*', '/' }).ToList();
+			cellNameList.ForEach(d => {
+				// 遍歷坐標并取得相應的值，替換至公式中
+				formula = formula.Replace(d, _xls.GetRangeText(d));
+			});
+			// 公式結果取得并添加在末尾
+			formula += string.Format("={0}", _xls.GetRangeText(cellName));
+			return formula;
 		}
 
 		/// <summary>
