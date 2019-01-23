@@ -1,30 +1,26 @@
 [
 	{
-		"Identifier": "MP004",
-		"FourOperationsType": 2,
-		"MaximumLimit": 20,
-		"NumberOfQuestions": 8,
-		"Signs": [ 0, 1 ]
-	},
-	{
 		"Identifier": "MP001",
-		"FourOperationsType": 2,
-		"MaximumLimit": 50,
 		"NumberOfQuestions": 5,
-		"Signs": [ 0, 1, 2, 3 ]
+		"Signs": [ 0, 1, 2, 3 ],
+		"Reserve": "{\"Level\" : '3,4,5'}"
 	},
 	{
 		"Identifier": "MP002",
-		"FourOperationsType": 1,
-		"MaximumLimit": 20,
-		"NumberOfQuestions": 5,
-		"Signs": [ 0 ]
+		"NumberOfQuestions": 6,
+		"Signs": [ 0 ],
+		"Reserve": "{\"Level\" : '1,2'}"
 	},
 	{
 		"Identifier": "MP003",
-		"FourOperationsType": 1,
-		"MaximumLimit": 20,
-		"NumberOfQuestions": 5,
-		"Signs": [ 1 ]
+		"NumberOfQuestions": 6,
+		"Signs": [ 1 ],
+		"Reserve": "{\"Level\" : '1,2'}"
+	},
+	{
+		"Identifier": "MP004",
+		"NumberOfQuestions": 8,
+		"Signs": [ 0, 1 ],
+		"Reserve": "{\"Level\" : '1,2,3'}"
 	}
 ]

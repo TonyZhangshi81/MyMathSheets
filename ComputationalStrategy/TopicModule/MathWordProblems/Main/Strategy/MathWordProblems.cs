@@ -42,7 +42,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				SignOfOperation sign = signFunc();
-				List<Problems> signProblems = GetProblemsBySign(sign);
+				List<Problems> signProblems = GetProblemsBySign(sign, p.Levels);
 				// 題庫中的數量比指定的出題數少的情況
 				if (signProblems.Count == 0)
 				{
@@ -80,18 +80,8 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 
 			// 讀取出題資料庫
 			GetAllProblemsFromResource();
-
-			// 標準題型（指定單個運算符）
-			if (p.FourOperationsType == FourOperationsType.Standard)
-			{
-				// 單一的運算符類型
-				MarkFormulaList(p, () => { return p.Signs[0]; });
-			}
-			else
-			{
-				// 混合題型（加減乘除運算符實例隨機抽取）
-				MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(p.Signs.ToList()); });
-			}
+			// 算式作成
+			MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(p.Signs.ToList()); });
 		}
 
 		/// <summary>
@@ -164,10 +154,11 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// 獲取指定運算符出題資料庫
 		/// </summary>
 		/// <param name="sign">運算符</param>
+		/// <param name="levels">等級選擇</param>
 		/// <returns>出題資料庫</returns>
-		private List<Problems> GetProblemsBySign(SignOfOperation sign)
+		private List<Problems> GetProblemsBySign(SignOfOperation sign, int[] levels)
 		{
-			return _allProblems.Where(d => d.Sign == (int)sign).ToList();
+			return _allProblems.Where(d => d.Sign == (int)sign && Array.IndexOf(levels, d.Level) >= 0).ToList();
 		}
 	}
 }

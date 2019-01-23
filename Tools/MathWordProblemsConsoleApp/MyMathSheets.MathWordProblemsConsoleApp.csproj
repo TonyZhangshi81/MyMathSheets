@@ -69,6 +69,7 @@
     <None Include="App.config" />
     <None Include="App_Data\GapFillingProblems.xlsx" />
     <None Include="App_Data\MathWordProblems.xlsx" />
+    <None Include="App_Data\TopicManagement.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
