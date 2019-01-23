@@ -83,6 +83,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 
 				Console.Write(".");
 			}
+			Console.WriteLine();
 			// JSON轉換處理
 			string content = list.GetJsonByObject();
 			// 寫文件（作成json文件）
@@ -137,6 +138,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 
 				Console.Write(".");
 			}
+			Console.WriteLine();
 			// JSON轉換處理
 			string content = list.GetJsonByObject();
 			// 寫文件（作成json文件）
