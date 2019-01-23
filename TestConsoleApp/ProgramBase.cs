@@ -95,8 +95,8 @@ namespace MyMathSheets.TestConsoleApp
 					isShowMenu = false;
 				}
 
-				string key = ((args.Length > 0) ? args[0] : Console.ReadLine()).PadRight(3, '0');
-				switch (key.Substring(0, 3).ToUpper())
+				string key = ((args.Length > 0) ? args[0] : Console.ReadLine()).PadRight(3, '0').ToUpper();
+				switch (key.Substring(0, 3))
 				{
 					case "AC0":
 						Console.WriteLine();

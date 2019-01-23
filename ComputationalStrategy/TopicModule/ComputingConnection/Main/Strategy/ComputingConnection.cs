@@ -82,17 +82,8 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 		{
 			ComputingConnectionParameter p = parameter as ComputingConnectionParameter;
 
-			// 標準題型
-			if (p.FourOperationsType == FourOperationsType.Standard)
-			{
-				// 算式作成（指定單個運算符）
-				MarkFormulaList(p, () => { return SignOfOperation.Plus; });
-			}
-			else
-			{
-				// 算式作成（指定單個運算符）
-				MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(SignOfOperation.Plus, SignOfOperation.Subtraction); });
-			}
+			// 算式作成
+			MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(p.Signs.ToList()); });
 		}
 
 		/// <summary>

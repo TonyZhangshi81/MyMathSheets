@@ -124,17 +124,8 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 		{
 			ArithmeticParameter p = parameter as ArithmeticParameter;
 
-			// 標準題型
-			if (p.FourOperationsType == FourOperationsType.Standard)
-			{
-				// 算式作成（指定單個運算符實例）
-				MarkFormulaList(p, () => { return p.Signs[0]; });
-			}
-			else
-			{
-				// 算式作成（加減乘除運算符實例隨機抽取）
-				MarkFormulaList(p, () => { return p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)]; });
-			}
+			// 算式作成
+			MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(p.Signs.ToList()); });
 		}
 
 		/// <summary>
