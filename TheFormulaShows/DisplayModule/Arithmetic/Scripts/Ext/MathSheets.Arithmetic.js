@@ -23,9 +23,11 @@ MathSheets.Arithmetic = MathSheets.Arithmetic || (function () {
 
 		// 答题验证(正确:true  错误:false)
 		_arithmeticCorrecting = function (index, element) {
+			// 解密
+			var answer = $.base64.atob($('#hiddenAc' + index).val(), true);
 			// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
-			if ($(element).val() == $('#hiddenAc' + index).val()
-				|| (parseInt($('#hiddenAc' + index).val()) == -999 && $(element).val() != '')) {
+			if ($(element).val() == answer
+				|| (parseInt(answer) == -999 && $(element).val() != '')) {
 				// 动错题集中移除当前项目
 				removeInputElementArray({ position: "mathSheetArithmetic", id: $(element).attr("id") });
 
@@ -57,7 +59,7 @@ MathSheets.Arithmetic = MathSheets.Arithmetic || (function () {
 
 		// 设定页面所有输入域为可用状态(四则运算)
 		ready = function () {
-		$("input[id*='inputAc']").each(function (index, element) {
+			$("input[id*='inputAc']").each(function (index, element) {
 				// 收集所有可輸入項目ID
 				__allInputElementArray.push({ position: "mathSheetArithmetic", id: $(element).attr("id") });
 

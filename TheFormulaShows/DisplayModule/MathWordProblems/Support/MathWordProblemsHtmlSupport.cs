@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Item;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
 using System.Text;
@@ -74,7 +75,7 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 				// 標準方程式（答案）
 				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwpAnswer{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex.ToString().PadLeft(2, '0'), GetAnswer(item)));
 				// 單位（答案）
-				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwpUnit{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex.ToString().PadLeft(2, '0'), item.Unit));
+				rowHtml.AppendLine(string.Format("<input id=\"hiddenMwpUnit{0}\" type=\"hidden\" value=\"{1}\" />", parentControlIndex.ToString().PadLeft(2, '0'), Base64.EncodeBase64(item.Unit)));
 				rowHtml.AppendLine("</h5>");
 				rowHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
 				rowHtml.AppendLine(string.Format("<img id=\"imgOKProblems{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", parentControlIndex.ToString().PadLeft(2, '0')));
@@ -112,7 +113,7 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 			{
 				if (!string.IsNullOrEmpty(d))
 				{
-					answer.AppendFormat("{0};", d);
+					answer.AppendFormat("{0};", Base64.EncodeBase64(d));
 				}
 			});
 			answer.Length -= 1;

@@ -114,7 +114,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 			{
 				// 可拖動水果Div區域
 				divDragHtml.AppendLine(string.Format("<div id=\"divFruitDrag{0}\" class=\"divFruitDrag\" style=\"position: absolute; left: {1}px; top: {2}px;\" data-options=\"onDrag:MathSheets.FruitsLinkage.onDrag, onStopDrag:MathSheets.FruitsLinkage.onStopDrag\">", index, CoordinateArray[index].Left, CoordinateArray[index].Top));
-				divDragHtml.AppendLine(string.Format("<img src=\"../Content/image/fruits/{0}.png\" width=\"40\" height=\"40\" data-toggle=\"tooltip\" title=\"{1}{2}{3}\">", FruitsArray[index].ToString(), d.LeftParameter, d.Sign.ToOperationString(), d.RightParameter));
+				divDragHtml.AppendLine(string.Format("<img src=\"../Content/image/fruits/{0}.png\" width=\"40\" height=\"40\" data-toggle=\"tooltip\" title=\"{1}{2}{3}\">", FruitsArray[index].ToString(), d.LeftParameter, d.Sign.ToOperationUnicode(), d.RightParameter));
 				divDragHtml.AppendLine(string.Format("<input id=\"divFruitDrag{0}Input\" type=\"hidden\" />", index));
 				divDragHtml.AppendLine(string.Format("<input id=\"divFruitDrag{0}Result\" type=\"hidden\" value=\"ERROR\" />", index));
 				divDragHtml.AppendLine("</div>");
@@ -130,7 +130,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 				// 容器Div區域
 				divContainerHtml.AppendLine(string.Format("<div id=\"divContainer{0}\" class=\"divContainer divSeat{1}\">", seat, seat));
 				divContainerHtml.AppendLine("<h5>");
-				divContainerHtml.AppendLine(string.Format("<span class=\"label\">{0}{1}{2}</span>", container.LeftParameter, container.Sign.ToOperationString(), container.RightParameter));
+				divContainerHtml.AppendLine(string.Format("<span class=\"label\">{0}{1}{2}</span>", container.LeftParameter, container.Sign.ToOperationUnicode(), container.RightParameter));
 				divContainerHtml.AppendLine("<img src=\"../Content/image/fruits/table.png\" width=78 height=75 style=\"margin-top:-20px;\">");
 				divContainerHtml.AppendLine("</h5>");
 				divContainerHtml.AppendLine("<div class=\"divCorrectOrFault-2\">");

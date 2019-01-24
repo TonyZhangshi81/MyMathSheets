@@ -112,7 +112,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 				var formula = d.Key;
 				// 可拖動球類Div區域
 				divBallsHtml.AppendLine(string.Format("<div id=\"divBall{0}\" class=\"divBall\" style=\"position: absolute; left: {1}px; top: {2}px;\" data-options=\"onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag\">", index, CoordinateArray[index].Left, CoordinateArray[index].Top));
-				divBallsHtml.AppendLine(string.Format("<img src=\"../Content/image/sport/{0}.png\" width=40 height=40 data-toggle=\"tooltip\" title=\"{1}{2}{3}\">", BallsImageArray[index].ToString(), formula.LeftParameter, formula.Sign.ToOperationString(), formula.RightParameter));
+				divBallsHtml.AppendLine(string.Format("<img src=\"../Content/image/sport/{0}.png\" width=40 height=40 data-toggle=\"tooltip\" title=\"{1}{2}{3}\">", BallsImageArray[index].ToString(), formula.LeftParameter, formula.Sign.ToOperationUnicode(), formula.RightParameter));
 				divBallsHtml.AppendLine(string.Format("<input id=\"divBall{0}Input\" type=\"hidden\" />", index));
 				divBallsHtml.AppendLine(string.Format("<input id=\"divBall{0}Result\" type=\"hidden\" value=\"ERROR\" />", index));
 				divBallsHtml.AppendLine("</div>");
@@ -154,7 +154,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 			// 球門1
 			divGoalsHtml.AppendLine("<div id=\"divGoaler0\" class=\"divGoaler divGoaler0\">");
 			divGoalsHtml.AppendLine("<h5>");
-			divGoalsHtml.AppendLine(string.Format("<span class=\"label\">{0}{1}{2}</span>", goalsFormulas[0].LeftParameter, goalsFormulas[0].Sign.ToOperationString(), goalsFormulas[0].RightParameter));
+			divGoalsHtml.AppendLine(string.Format("<span class=\"label\">{0}{1}{2}</span>", goalsFormulas[0].LeftParameter, goalsFormulas[0].Sign.ToOperationUnicode(), goalsFormulas[0].RightParameter));
 			divGoalsHtml.AppendLine("<img src=\"../Content/image/sport/goalkeeper.png\" width=200 height=100 style=\"margin-top:15px;\" >");
 			divGoalsHtml.AppendLine("</h5>");
 			divGoalsHtml.AppendLine("</div>");
@@ -175,7 +175,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 			// 球門2
 			divGoalsHtml.AppendLine("<div id=\"divGoaler1\" class=\"divGoaler divGoaler1\">");
 			divGoalsHtml.AppendLine("<h5>");
-			divGoalsHtml.AppendLine(string.Format("<span class=\"label\">{0}{1}{2}</span>", goalsFormulas[1].LeftParameter, goalsFormulas[1].Sign.ToOperationString(), goalsFormulas[1].RightParameter));
+			divGoalsHtml.AppendLine(string.Format("<span class=\"label\">{0}{1}{2}</span>", goalsFormulas[1].LeftParameter, goalsFormulas[1].Sign.ToOperationUnicode(), goalsFormulas[1].RightParameter));
 			divGoalsHtml.AppendLine("<img src=\"../Content/image/sport/goalkeeper.png\" width=200 height=100 style=\"margin-top:15px;\" >");
 			divGoalsHtml.AppendLine("</h5>");
 			divGoalsHtml.AppendLine("</div>");

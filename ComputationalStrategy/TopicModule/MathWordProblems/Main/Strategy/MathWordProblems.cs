@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Item;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
 using System;
@@ -116,9 +117,9 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 				// 單位
 				Unit = problem.Unit ?? string.Empty,
 				// 應用題文字內容
-				MathWordProblem = problem.Content,
+				MathWordProblem = ZipHelper.GZipDecompressString(problem.Content),
 				// 標準答案
-				Answers = problem.Answers
+				Answers = problem.Answers.Select(d => d = Base64.DecodeBase64String(d)).ToList()
 			});
 		}
 

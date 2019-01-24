@@ -12,7 +12,7 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 		var answers = ($(answerElement).val() || '').split(';');
 		// 計算式比對
 		$.each(answers, function (index, answer) {
-			if (inputAnswer == answer) {
+			if (inputAnswer == $.base64.atob(answer, true)) {
 				isRight = true;
 				return false;
 			}
@@ -20,7 +20,7 @@ MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
 		// 單位
 		var hidUnit = $("#hiddenMwpUnit" + strIndex).val();
 		if (hidUnit != '') {
-			if (hidUnit != $("#inputMwp" + strIndex + "1").val())
+			if ($.base64.atob(hidUnit, true) != $("#inputMwp" + strIndex + "1").val())
 				isRight = false;
 		}
 

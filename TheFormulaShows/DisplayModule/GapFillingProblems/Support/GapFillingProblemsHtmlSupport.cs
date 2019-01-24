@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Item;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters;
 using System.Linq;
@@ -75,7 +76,8 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 					{
 						// 答題輸入框
 						rowHtml.AppendLine(string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), index));
-						answer.AppendFormat("{0},", item.Answers[index]);
+						// 答案項目加密處理
+						answer.AppendFormat("{0};", Base64.EncodeBase64(item.Answers[index]));
 					}
 					index++;
 				});

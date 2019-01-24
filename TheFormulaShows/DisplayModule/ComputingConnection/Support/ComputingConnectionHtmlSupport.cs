@@ -52,7 +52,7 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 				foreach (Formula item in items.ConfixFormulas)
 				{
 					html.AppendLine(this.GetHtml(GapFilling.Left, item.LeftParameter, GapFilling.Right, parentControlIndex, controlIndex));
-					html.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.Sign.ToOperationString()));
+					html.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.Sign.ToOperationUnicode()));
 					html.AppendLine(this.GetHtml(GapFilling.Right, item.RightParameter, GapFilling.Right, parentControlIndex, controlIndex));
 					html.AppendLine("<span class=\"label\">=</span>");
 					controlIndex++;

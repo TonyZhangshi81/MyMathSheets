@@ -211,7 +211,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 					html += string.Format(SPAN_TIME_CN_HTML_FORMAT, elapsedTime.Seconds, Consts.SEC_UNIT);
 				}
 			}
-			html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, sign.ToOperationString());
+			html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, sign.ToOperationUnicode());
 			return html;
 		}
 	}

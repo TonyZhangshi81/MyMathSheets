@@ -3,6 +3,7 @@ using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters;
 using System.Collections.Generic;
@@ -149,7 +150,8 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 			StringBuilder answer = new StringBuilder();
 			items.ToList().ForEach(d =>
 			{
-				answer.AppendFormat("{0}{1}{2}={3},", d.LeftParameter, d.Sign.ToOperationString(), d.RightParameter, d.Answer);
+				// 加密處理
+				answer.AppendFormat("{0};", Base64.EncodeBase64(string.Format("{0}{1}{2}={3}", d.LeftParameter, d.Sign.ToOperationString(), d.RightParameter, d.Answer)));
 			});
 			answer.Length -= 1;
 			return answer.ToString();

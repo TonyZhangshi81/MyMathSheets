@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.MathWordProblemsConsoleApp.Ext;
 using MyMathSheets.MathWordProblemsConsoleApp.Util;
+using MyMathSheets.MathWordProblemsConsoleApp.Util.Security;
 using MyMathSheets.MathWordProblemsConsoleApp.WorkProcess.Item;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,8 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 				list.Add(new GapFillingProblems()
 				{
 					ID = _xls.GetRangeText(string.Format("B{0}", rowIndex)),
-					Content = _xls.GetRangeText(string.Format("C{0}", rowIndex)),
+					// 題型內容壓縮加密
+					Content = ZipHelper.GZipCompressString(_xls.GetRangeText(string.Format("C{0}", rowIndex))),
 					Level = Convert.ToInt16(_xls.GetRangeText(string.Format("AD{0}", rowIndex))),
 					Parameters = new List<string>() {
 						_xls.GetRangeText(string.Format("D{0}", rowIndex)),
@@ -68,16 +70,16 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 						_xls.GetRangeText(string.Format("M{0}", rowIndex)),
 					},
 					Answers = new List<string>() {
-						_xls.GetRangeText(string.Format("N{0}", rowIndex)),
-						_xls.GetRangeText(string.Format("O{0}", rowIndex)),
-						_xls.GetRangeText(string.Format("P{0}", rowIndex)),
-						_xls.GetRangeText(string.Format("Q{0}", rowIndex)),
-						_xls.GetRangeText(string.Format("R{0}", rowIndex)),
-						_xls.GetRangeText(string.Format("S{0}", rowIndex)),
-						_xls.GetRangeText(string.Format("T{0}", rowIndex)),
-						_xls.GetRangeText(string.Format("U{0}", rowIndex)),
-						_xls.GetRangeText(string.Format("V{0}", rowIndex)),
-						_xls.GetRangeText(string.Format("W{0}", rowIndex))
+						_xls.GetRangeText(string.Format("N{0}", rowIndex), true),
+						_xls.GetRangeText(string.Format("O{0}", rowIndex), true),
+						_xls.GetRangeText(string.Format("P{0}", rowIndex), true),
+						_xls.GetRangeText(string.Format("Q{0}", rowIndex), true),
+						_xls.GetRangeText(string.Format("R{0}", rowIndex), true),
+						_xls.GetRangeText(string.Format("S{0}", rowIndex), true),
+						_xls.GetRangeText(string.Format("T{0}", rowIndex), true),
+						_xls.GetRangeText(string.Format("U{0}", rowIndex), true),
+						_xls.GetRangeText(string.Format("V{0}", rowIndex), true),
+						_xls.GetRangeText(string.Format("W{0}", rowIndex), true)
 					}
 				});
 
@@ -111,7 +113,8 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 				list.Add(new MathWordProblems()
 				{
 					ID = _xls.GetRangeText(string.Format("B{0}", rowIndex)),
-					Content = _xls.GetRangeText(string.Format("C{0}", rowIndex)),
+					// 題型內容壓縮加密
+					Content = ZipHelper.GZipCompressString(_xls.GetRangeText(string.Format("C{0}", rowIndex))),
 					Sign = Convert.ToInt16(_xls.GetRangeText(string.Format("N{0}", rowIndex))),
 					Level = Convert.ToInt16(_xls.GetRangeText(string.Format("AA{0}", rowIndex))),
 					Parameters = new List<string>() {
@@ -166,7 +169,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 			});
 			// 公式結果取得并添加在末尾
 			formula += string.Format("={0}", _xls.GetRangeText(cellName));
-			return formula;
+			return Base64.EncodeBase64(formula);
 		}
 
 		/// <summary>

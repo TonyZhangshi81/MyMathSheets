@@ -116,6 +116,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery.base64.js" />
     <Content Include="Scripts\jquery.easing.1.3.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
     <Content Include="Scripts\jquery.linq-vsdoc.js" />
@@ -196,6 +197,7 @@ xcopy "..\Content\fonts" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Cont
 copy "..\Scripts\bootstrap.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.easyui.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery-3.3.1.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\jquery.base64.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.PrintArea.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\json2.min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.easing.1.3.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts" /Y

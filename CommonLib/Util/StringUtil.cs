@@ -10,28 +10,102 @@
 		/// </summary>
 		/// <param name="operation">運算符(加減乘除)</param>
 		/// <returns>字符編碼</returns>
+		public static string ToOperationUnicode(this SignOfOperation operation)
+		{
+			var flag = string.Empty;
+			switch (operation)
+			{
+				// +
+				case SignOfOperation.Plus:
+					flag = "&#43;";
+					break;
+				// −
+				case SignOfOperation.Subtraction:
+					flag = "&#8722;";
+					break;
+				// ÷
+				case SignOfOperation.Division:
+					flag = "&#247;";
+					break;
+				// ×
+				case SignOfOperation.Multiple:
+					flag = "&#215;";
+					break;
+				// 之前
+				case SignOfOperation.Before:
+					flag = "&#20043;&#21069;";
+					break;
+				// 之后
+				case SignOfOperation.Later:
+					flag = "&#20043;&#21518;";
+					break;
+				default:
+					break;
+			}
+			return flag;
+		}
+
+		/// <summary>
+		/// 運算符轉換為對應的字符編碼
+		/// </summary>
+		/// <param name="operation">運算符(加減乘除)</param>
+		/// <returns>字符編碼</returns>
 		public static string ToOperationString(this SignOfOperation operation)
 		{
 			var flag = string.Empty;
 			switch (operation)
 			{
+				// +
 				case SignOfOperation.Plus:
-					flag = "&#43;";
+					flag = "+";
 					break;
+				// −
 				case SignOfOperation.Subtraction:
-					flag = "&#8722;";
+					flag = "−";
 					break;
+				// ÷
 				case SignOfOperation.Division:
-					flag = "&#247;";
+					flag = "÷";
 					break;
+				// ×
 				case SignOfOperation.Multiple:
-					flag = "&#215;";
+					flag = "×";
 					break;
+				// 之前
 				case SignOfOperation.Before:
 					flag = "之前";
 					break;
+				// 之后
 				case SignOfOperation.Later:
 					flag = "之后";
+					break;
+				default:
+					break;
+			}
+			return flag;
+		}
+
+		/// <summary>
+		/// 關係運算符轉換為對應的字符編碼
+		/// </summary>
+		/// <param name="operation">運算符(大於小於等於)</param>
+		/// <returns>字符編碼</returns>
+		public static string ToSignOfCompareUnicode(this SignOfCompare operation)
+		{
+			var flag = string.Empty;
+			switch (operation)
+			{
+				// =
+				case SignOfCompare.Equal:
+					flag = "&#61;";
+					break;
+				// >
+				case SignOfCompare.Greater:
+					flag = "&#62;";
+					break;
+				// <
+				case SignOfCompare.Less:
+					flag = "&#60;";
 					break;
 				default:
 					break;
@@ -50,13 +124,13 @@
 			switch (operation)
 			{
 				case SignOfCompare.Equal:
-					flag = "&#61;";
+					flag = "=";
 					break;
 				case SignOfCompare.Greater:
-					flag = "&#62;";
+					flag = ">";
 					break;
 				case SignOfCompare.Less:
-					flag = "&#60;";
+					flag = "<";
 					break;
 				default:
 					break;

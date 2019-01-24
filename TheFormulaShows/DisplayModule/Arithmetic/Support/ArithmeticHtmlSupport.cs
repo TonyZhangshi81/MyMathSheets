@@ -3,6 +3,7 @@ using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Item;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters;
 using System.Text;
@@ -74,7 +75,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.LeftParameter, GapFilling.Left, controlIndex));
 
 					// 第一級計算式運算符
-					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.Arithmetic.Sign.ToOperationString()));
+					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.Arithmetic.Sign.ToOperationUnicode()));
 
 					// 是否運用多級四則運算
 					if (item.MultistageArithmetic is null)
@@ -113,7 +114,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.LeftParameter, GapFilling.Left, controlIndex));
 
 					// 第一級計算式運算符
-					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.Arithmetic.Sign.ToOperationString()));
+					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.Arithmetic.Sign.ToOperationUnicode()));
 
 					// 是否運用多級四則運算
 					if (item.MultistageArithmetic is null)
@@ -203,12 +204,12 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 			if (leftFormula.Sign == SignOfOperation.Subtraction && !multistageFormula.IsNeedBracket)
 			{
 				// 運算符
-				html += (multistageFormula.Sign == SignOfOperation.Plus) ? string.Format(LABEL_HTML_FORMAT, SignOfOperation.Subtraction.ToOperationString()) : string.Format(LABEL_HTML_FORMAT, SignOfOperation.Plus.ToOperationString());
+				html += (multistageFormula.Sign == SignOfOperation.Plus) ? string.Format(LABEL_HTML_FORMAT, SignOfOperation.Subtraction.ToOperationUnicode()) : string.Format(LABEL_HTML_FORMAT, SignOfOperation.Plus.ToOperationUnicode());
 			}
 			else
 			{
 				// 運算符
-				html += string.Format(LABEL_HTML_FORMAT, multistageFormula.Sign.ToOperationString());
+				html += string.Format(LABEL_HTML_FORMAT, multistageFormula.Sign.ToOperationUnicode());
 			}
 
 			// 第二級計算式的右側值
@@ -239,7 +240,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 			if (item == gap)
 			{
 				html += string.Format("<input id=\"inputAc{0}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", index);
-				html += string.Format("<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>", index, parameter);
+				html += string.Format("<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>", index, Base64.EncodeBase64(parameter.ToString()));
 			}
 			else
 			{

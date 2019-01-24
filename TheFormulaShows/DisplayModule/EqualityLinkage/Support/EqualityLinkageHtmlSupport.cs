@@ -171,7 +171,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 				// 開始
 				content.AppendLine("<h5>");
 				// 算式HTML模板
-				content.AppendLine(string.Format(FORMULA_HTML_FORMAT, formula.LeftParameter, formula.Sign.ToOperationString(), formula.RightParameter));
+				content.AppendLine(string.Format(FORMULA_HTML_FORMAT, formula.LeftParameter, formula.Sign.ToOperationUnicode(), formula.RightParameter));
 				// 閉合
 				content.AppendLine("</h5>");
 
@@ -245,7 +245,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 				// 算式圖標
 				content.AppendLine(IMAGE_FORMULA_HTML);
 				// 算式HTML模板
-				content.AppendLine(string.Format(FORMULA_HTML_FORMAT, d.LeftParameter, d.Sign.ToOperationString(), d.RightParameter));
+				content.AppendLine(string.Format(FORMULA_HTML_FORMAT, d.LeftParameter, d.Sign.ToOperationUnicode(), d.RightParameter));
 				// 閉合
 				content.AppendLine("</h5>");
 

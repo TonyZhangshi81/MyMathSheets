@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Item;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters;
 using System;
@@ -52,11 +53,11 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 				p.Formulas.Add(new GapFillingProblemsFormula()
 				{
 					// 填空題內容
-					GapFillingProblem = problem.Content,
+					GapFillingProblem = ZipHelper.GZipDecompressString(problem.Content),
 					// 級別難度
 					Level = problem.Level,
 					// 答案集合
-					Answers = problem.Answers
+					Answers = problem.Answers.Select(d => d = Base64.DecodeBase64String(d)).ToList()
 				});
 			}
 		}

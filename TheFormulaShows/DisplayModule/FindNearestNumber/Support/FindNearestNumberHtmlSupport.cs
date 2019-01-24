@@ -52,11 +52,11 @@ namespace MyMathSheets.TheFormulaShows.FindNearestNumber.Support
 				colHtml.AppendLine("<div class=\"col-md-4 form-inline\">");
 				colHtml.AppendLine("<h5>");
 				colHtml.AppendLine(this.GetHtml(item.LeftFormula.Gap, item.LeftFormula.LeftParameter, GapFilling.Left, controlIndex));
-				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.LeftFormula.Sign.ToOperationString()));
+				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.LeftFormula.Sign.ToOperationUnicode()));
 				colHtml.AppendLine(this.GetHtml(item.LeftFormula.Gap, item.LeftFormula.RightParameter, GapFilling.Right, controlIndex));
 				colHtml.AppendLine(string.Format("<img src=\"../Content/image/{0}.png\" width=\"30\" height=\"30\" />", item.Answer.ToSignOfCompareEnString()));
 				colHtml.AppendLine(this.GetHtml(item.RightFormula.Gap, item.RightFormula.LeftParameter, GapFilling.Left, controlIndex));
-				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.RightFormula.Sign.ToOperationString()));
+				colHtml.AppendLine(string.Format("<span class=\"label\">{0}</span>", item.RightFormula.Sign.ToOperationUnicode()));
 				colHtml.AppendLine(this.GetHtml(item.RightFormula.Gap, item.RightFormula.RightParameter, GapFilling.Right, controlIndex));
 
 				colHtml.AppendLine("</h5>");

@@ -8,11 +8,12 @@ MathSheets.GapFillingProblems = MathSheets.GapFillingProblems || (function () {
 		var inputAry = new Array();
 		var strId = pIndex.toString().PadLeft(2, '0');
 		// 答案數組
-		var answerAry = ($(pElement).val() || '').split(',');
+		var answerAry = ($(pElement).val() || '').split(';');
 		var isOK = true;
 		$("input[id*='inputGfp" + strId + "']").each(function (index, element) {
 			inputAry.push($(element));
-			if ($(element).val() != answerAry[index]) {
+			var answer = $.base64.atob(answerAry[index], true);
+			if ($(element).val() != answer) {
 				isOK = false;
 			}
 		});

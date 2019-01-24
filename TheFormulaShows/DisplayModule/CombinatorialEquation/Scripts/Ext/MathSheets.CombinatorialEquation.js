@@ -33,10 +33,10 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 				case "plus":
 					return "+";
 				case "subtraction":
-					return "-";
+					return "−";
 				case "multiple":
 					return "×";
-				case "plus":
+				case "division":
 					return "÷";
 			}
 			return "";
@@ -45,7 +45,7 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 		// 答题验证(正确:true  错误:false)
 		_combinatorialCorrecting = function (index, element) {
 			// 答題結果集合
-			var answers = ($(element).val() || "").split(',');
+			var answers = ($(element).val() || "").split(';');
 
 			for (i = 0; i <= 3; i++) {
 				var l = $('#inputCe' + index + 'L' + i).val();
@@ -53,8 +53,11 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 				var r = $('#inputCe' + index + 'R' + i).val();
 				var a = $('#inputCe' + index + 'A' + i).val();
 				var answer = l + s + r + "=" + a;
+				console.log(answer);
 				answers = $.grep(answers, function (value) {
-					return value != answer;
+					var decode = $.base64.atob(value, true);
+					console.log(decode);
+					return (decode != answer);
 				});
 			}
 
