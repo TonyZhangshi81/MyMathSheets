@@ -53,9 +53,7 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 			{
 				isRowHtmlClosed = false;
 
-				listGroupHtml.AppendLine("<div class=\"col-md-4 form-inline\">");
-				listGroupHtml.AppendLine("<ul class=\"list-group list-group-ext\">");
-				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
+				listGroupHtml.AppendLine("<div class=\"col-md-6 form-inline\">");
 				listGroupHtml.AppendLine("<h5>");
 				listGroupHtml.AppendLine(GetHtml(item, controlIndex));
 				listGroupHtml.AppendLine("</h5>");
@@ -64,13 +62,11 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoFindTheLaw{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex));
 				listGroupHtml.AppendLine("</div>");
 				listGroupHtml.AppendLine(string.Format("<input id=\"hiddenFtl{0}\" type=\"hidden\" value=\"{1}\" />", controlIndex, GetAnswer(item.NumberList, item.RandomIndexList)));
-				listGroupHtml.AppendLine("</li>");
-				listGroupHtml.AppendLine("</ul>");
 				listGroupHtml.AppendLine("</div>");
 
 				controlIndex++;
 				numberOfColumns++;
-				if (numberOfColumns == 3)
+				if (numberOfColumns == 2)
 				{
 					rowHtml.AppendLine("<div class=\"row text-center row-margin-top\">");
 					rowHtml.Append(listGroupHtml.ToString());
@@ -117,11 +113,11 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 			{
 				if (items.RandomIndexList.Any(_ => _ == controlIndex))
 				{
-					html.AppendLine(string.Format("<input id=\"inputFtl{0}L{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
+					html.AppendLine(string.Format("<input id=\"inputFtl{0}L{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-2\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", parentControlIndex, controlIndex));
 				}
 				else
 				{
-					html.AppendLine(string.Format("<span class=\"badge badge-warning\" style=\"width: 30px;\">{0}</span>", d));
+					html.AppendLine(string.Format("<span class=\"badge badge-info\" style=\"width: 50px;\">{0}</span>", d));
 				}
 				controlIndex++;
 			});
