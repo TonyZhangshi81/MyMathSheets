@@ -53,24 +53,26 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 				var r = $('#inputCe' + index + 'R' + i).val();
 				var a = $('#inputCe' + index + 'A' + i).val();
 				var answer = l + s + r + "=" + a;
-				console.log(answer);
+				//console.log(answer);
 				answers = $.grep(answers, function (value) {
 					var decode = $.base64.atob(value, true);
-					console.log(decode);
+					//console.log(decode);
 					return (decode != answer);
 				});
 			}
 
 			// 验证输入值是否与答案一致
 			if (answers.length == 0) {
-				// 动错题集中移除当前项目
-				removeInputElementArray({ position: "mathSheetCombinatorialEquation", id: ('inputCe' + index + 'L0') });
+				$("input[id*='inputCe" + index + "']").each(function () {
+					// 动错题集中移除当前项目
+					removeInputElementArray({ position: "mathSheetCombinatorialEquation", id: $(this).attr('id') });
+					$(this).attr("disabled", "disabled");
+				});
 				// 对错图片显示和隐藏
 				$('#imgOKCombinatorial' + index).show();
 				$('#imgNoCombinatorial' + index).hide();
 				// 移除圖片抖動特效
 				$('#imgNoCombinatorial' + index).removeClass("shake shake-slow");
-				$(element).attr("disabled", "disabled");
 				// 正确:true
 				return true;
 			} else {

@@ -68,7 +68,7 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 				listGroupHtml.AppendLine(string.Format(SPAN_BADGE_HTML_FORMAT, "badge-primary", item.ParameterC));
 				listGroupHtml.AppendLine(string.Format(SPAN_BADGE_HTML_FORMAT, "badge-info", item.ParameterD));
 				listGroupHtml.AppendLine("</h4>");
-				listGroupHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
+				listGroupHtml.AppendLine("<div class=\"divCorrectOrFault-3\">");
 				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKCombinatorial{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));
 				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoCombinatorial{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex));
 				listGroupHtml.AppendLine("</div>");

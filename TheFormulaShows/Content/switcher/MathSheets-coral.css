@@ -11,6 +11,12 @@
 	-webkit-box-shadow: 0 0 15px;
 }
 
+.list-group-ext .list-group-item {
+	padding: unset;
+	border: unset;
+	background-color: transparent;
+}
+
 .bs-docs-sidebar a {
 	color: blue;
 }

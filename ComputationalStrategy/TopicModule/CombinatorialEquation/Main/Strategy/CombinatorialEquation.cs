@@ -52,9 +52,9 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 					ParameterC = formula.RightParameter,
 					ParameterD = invalidParameter
 				});
-				if(formula.Sign == SignOfOperation.Plus || formula.Sign == SignOfOperation.Subtraction)
+				if(formula.Sign == SignOfOperation.Plus)
 				{
-					// 加減法算式組合序列
+					// 加法算式組合序列
 					p.Formulas.Last().CombinatorialFormulas = new List<Formula>() {
 						new Formula(){ LeftParameter =  formula.LeftParameter, RightParameter = formula.RightParameter, Answer = formula.Answer, Gap = GapFilling.Default, Sign = SignOfOperation.Plus },
 						new Formula(){ LeftParameter =  formula.RightParameter, RightParameter = formula.LeftParameter, Answer = formula.Answer, Gap = GapFilling.Default, Sign = SignOfOperation.Plus },
@@ -62,14 +62,34 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 						new Formula(){ LeftParameter =  formula.Answer, RightParameter = formula.RightParameter, Answer = formula.LeftParameter, Gap = GapFilling.Default, Sign = SignOfOperation.Subtraction }
 					};
 				}
-				else
+				else if(formula.Sign == SignOfOperation.Subtraction)
 				{
-					// 乘除法算式組合序列
+					// 減法算式組合序列
+					p.Formulas.Last().CombinatorialFormulas = new List<Formula>() {
+						new Formula(){ LeftParameter =  formula.LeftParameter, RightParameter = formula.RightParameter, Answer = formula.Answer, Gap = GapFilling.Default, Sign = SignOfOperation.Subtraction },
+						new Formula(){ LeftParameter =  formula.LeftParameter, RightParameter = formula.Answer, Answer = formula.RightParameter, Gap = GapFilling.Default, Sign = SignOfOperation.Subtraction },
+						new Formula(){ LeftParameter =  formula.Answer, RightParameter = formula.RightParameter, Answer = formula.LeftParameter, Gap = GapFilling.Default, Sign = SignOfOperation.Plus },
+						new Formula(){ LeftParameter =  formula.RightParameter, RightParameter = formula.Answer, Answer = formula.LeftParameter, Gap = GapFilling.Default, Sign = SignOfOperation.Plus }
+					};
+				}
+				else if (formula.Sign == SignOfOperation.Multiple)
+				{
+					// 乘法算式組合序列
 					p.Formulas.Last().CombinatorialFormulas = new List<Formula>() {
 						new Formula(){ LeftParameter =  formula.LeftParameter, RightParameter = formula.RightParameter, Answer = formula.Answer, Gap = GapFilling.Default, Sign = SignOfOperation.Multiple },
 						new Formula(){ LeftParameter =  formula.RightParameter, RightParameter = formula.LeftParameter, Answer = formula.Answer, Gap = GapFilling.Default, Sign = SignOfOperation.Multiple },
 						new Formula(){ LeftParameter =  formula.Answer, RightParameter = formula.LeftParameter, Answer = formula.RightParameter, Gap = GapFilling.Default, Sign = SignOfOperation.Division },
 						new Formula(){ LeftParameter =  formula.Answer, RightParameter = formula.RightParameter, Answer = formula.LeftParameter, Gap = GapFilling.Default, Sign = SignOfOperation.Division }
+					};
+				}
+				else
+				{
+					// 除法算式組合序列
+					p.Formulas.Last().CombinatorialFormulas = new List<Formula>() {
+						new Formula(){ LeftParameter =  formula.RightParameter, RightParameter = formula.Answer, Answer = formula.LeftParameter, Gap = GapFilling.Default, Sign = SignOfOperation.Multiple },
+						new Formula(){ LeftParameter =  formula.Answer, RightParameter = formula.RightParameter, Answer = formula.LeftParameter, Gap = GapFilling.Default, Sign = SignOfOperation.Multiple },
+						new Formula(){ LeftParameter =  formula.LeftParameter, RightParameter = formula.RightParameter, Answer = formula.Answer, Gap = GapFilling.Default, Sign = SignOfOperation.Division },
+						new Formula(){ LeftParameter =  formula.LeftParameter, RightParameter = formula.Answer, Answer = formula.RightParameter, Gap = GapFilling.Default, Sign = SignOfOperation.Division }
 					};
 				}
 
@@ -166,8 +186,9 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 		/// 判定是否需要反推并重新作成計算式
 		/// </summary>
 		/// <remarks>
-		/// 情況1：三個參數存在一致
+		/// 情況1：题型集合中三個參數不能同时存在
 		/// 情況2：有零的情況
+		/// 情况3：三个参数不能有相同的数字
 		/// </remarks>
 		/// <param name="p">題型參數</param>
 		/// <param name="parameterA">第一個參數</param>
@@ -176,7 +197,14 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 		/// <returns>需要反推：true  正常情況: false</returns>
 		private bool CheckIsNeedInverseMethod(CombinatorialEquationParameter p, int parameterA, int parameterB, int parameterC)
 		{
-			if(parameterA == 0 || parameterB == 0 || parameterC == 0)
+			// 情況2
+			if (parameterA == 0 || parameterB == 0 || parameterC == 0)
+			{
+				return true;
+			}
+
+			// 情況3
+			if(parameterA == parameterB || parameterB == parameterC || parameterA == parameterC)
 			{
 				return true;
 			}
