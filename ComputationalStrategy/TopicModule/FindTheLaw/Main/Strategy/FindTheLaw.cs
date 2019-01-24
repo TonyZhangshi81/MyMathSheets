@@ -1,7 +1,9 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Item;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.FindTheLaw.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,34 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 	public class FindTheLaw : OperationBase
 	{
 		/// <summary>
+		/// 找規律題型的實現方法集合
+		/// </summary>
+		private readonly Dictionary<FindTheLawLevel, Func<FindTheLawFormula>> _findTheLawActions = new Dictionary<FindTheLawLevel, Func<FindTheLawFormula>>();
+
+		/// <summary>
+		/// 構造函數
+		/// </summary>
+		public FindTheLaw()
+		{
+			// 定量遞增
+			_findTheLawActions[FindTheLawLevel.Crescent] = Crescent;
+			// 定量遞減
+			_findTheLawActions[FindTheLawLevel.Diminishingly] = Diminishingly;
+			// 變量遞增
+			_findTheLawActions[FindTheLawLevel.Variable] = Variable;
+			// 變量遞減
+			_findTheLawActions[FindTheLawLevel.Decrement] = Decrement;
+			// 疊加遞增
+			_findTheLawActions[FindTheLawLevel.Superposition] = Superposition;
+			// 定量遞增擴展（2個定值逐個遞增）
+			_findTheLawActions[FindTheLawLevel.CrescentExt] = CrescentExt;
+			// 定量遞減擴展（2個定值逐個遞減）
+			_findTheLawActions[FindTheLawLevel.DiminishinglyExt] = DiminishinglyExt;
+			// 數字排隊（從4個隨機數的排列中找規律）
+			_findTheLawActions[FindTheLawLevel.QueueUpBase] = QueueUpBase;
+		}
+
+		/// <summary>
 		/// 算式作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
@@ -28,47 +58,14 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 			{
 				// 隨機抽取找規律題型的算法種類
 				FindTheLawLevel lawLevel = (FindTheLawLevel)CommonUtil.GetRandomNumber(p.Types.ToList());
-				switch (lawLevel)
+
+				if (_findTheLawActions.TryGetValue(lawLevel, out Func<FindTheLawFormula> findTheLawAction))
 				{
-					// 定量遞增
-					case FindTheLawLevel.Crescent:
-						p.Formulas.Add(Crescent(p));
-						break;
-
-					// 定量遞減
-					case FindTheLawLevel.Diminishingly:
-						p.Formulas.Add(Diminishingly(p));
-						break;
-
-					// 變量遞增
-					case FindTheLawLevel.Variable:
-						p.Formulas.Add(Variable(p));
-						break;
-
-					// 變量遞減
-					case FindTheLawLevel.Decrement:
-						p.Formulas.Add(Decrement(p));
-						break;
-
-					// 疊加遞增
-					case FindTheLawLevel.Superposition:
-						p.Formulas.Add(Superposition(p));
-						break;
-
-					// 定量遞增擴展（2個定值逐個遞增）
-					case FindTheLawLevel.CrescentExt:
-						p.Formulas.Add(CrescentExt(p));
-						break;
-
-					// 定量遞減擴展（2個定值逐個遞減）
-					case FindTheLawLevel.DiminishinglyExt:
-						p.Formulas.Add(DiminishinglyExt(p));
-						break;
-
-					// 數字排隊（從4個隨機數的排列中找規律）
-					case FindTheLawLevel.QueueUpBase:
-						p.Formulas.Add(QueueUpBase(p));
-						break;
+					p.Formulas.Add(findTheLawAction());
+				}
+				else
+				{
+					throw new ArgumentException(MessageUtil.GetException(() => MsgResources.E0001L, lawLevel.ToString()));
 				}
 			}
 		}
@@ -76,18 +73,17 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		/// <summary>
 		/// 數字排隊（從4個隨機數的排列中找規律）
 		/// </summary>
-		/// <param name="p">題型參數</param>
 		/// <remarks>eg: 1234,2341,3412,4123,1234</remarks>
-		private FindTheLawFormula QueueUpBase(FindTheLawParameter p)
+		private FindTheLawFormula QueueUpBase()
 		{
 			List<int> numbers = new List<int>();
 			StringBuilder number = new StringBuilder();
 			List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 			int count = 0;
 			// 數字隊列初始化
-			while(true)
+			while (true)
 			{
-				if(count == 4)
+				if (count == 4)
 				{
 					// 初始化創建5位以便前4位數字的輪轉
 					numbers.Add(numbers[0]);
@@ -147,12 +143,11 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		/// <summary>
 		/// 定量遞減擴展（2個定值逐個遞減）
 		/// </summary>
-		/// <param name="p">題型參數</param>
 		/// <remarks>eg: 18,17,13,12,8,7,3,2</remarks>
-		private FindTheLawFormula DiminishinglyExt(FindTheLawParameter p)
+		private FindTheLawFormula DiminishinglyExt()
 		{
 			// 使用定量遞增擴展算法
-			var formula = CrescentExt(p);
+			var formula = CrescentExt();
 			// 在定量遞增擴展算法的結果序列上進行降序設定（獲得遞減序列）
 			formula.NumberList.Sort((x, y) => -x.CompareTo(y));
 
@@ -162,9 +157,8 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		/// <summary>
 		/// 定量遞增擴展（2個定值逐個遞增）
 		/// </summary>
-		/// <param name="p">題型參數</param>
 		/// <remarks>eg: 2,3,7,8,12,13,17,18</remarks>
-		private FindTheLawFormula CrescentExt(FindTheLawParameter p)
+		private FindTheLawFormula CrescentExt()
 		{
 			// 第一個開始的數值
 			var start = CommonUtil.GetRandomNumber(1, 5);
@@ -194,9 +188,8 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		/// <summary>
 		/// 疊加遞增
 		/// </summary>
-		/// <param name="p">題型參數</param>
 		/// <remarks>eg: 1,2,3,5,8,13,21</remarks>
-		private FindTheLawFormula Superposition(FindTheLawParameter p)
+		private FindTheLawFormula Superposition()
 		{
 			// 第一個開始的數值
 			var one = CommonUtil.GetRandomNumber(1, 3);
@@ -225,12 +218,11 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		/// <summary>
 		/// 變量遞減算法
 		/// </summary>
-		/// <param name="p">題型參數</param>
 		/// <remarks>eg: 20,17,14,11,8,5,2</remarks>
-		private FindTheLawFormula Decrement(FindTheLawParameter p)
+		private FindTheLawFormula Decrement()
 		{
 			// 使用變量遞增算法
-			var formula = Variable(p);
+			var formula = Variable();
 			// 在變量遞增算法的結果序列上進行降序設定（獲得遞減序列）
 			formula.NumberList.Sort((x, y) => -x.CompareTo(y));
 
@@ -240,9 +232,8 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		/// <summary>
 		/// 變量遞增
 		/// </summary>
-		/// <param name="p">題型參數</param>
 		/// <remarks>eg: 2,3,5,8,12,17</remarks>
-		private FindTheLawFormula Variable(FindTheLawParameter p)
+		private FindTheLawFormula Variable()
 		{
 			// 第一個開始的數值
 			var start = CommonUtil.GetRandomNumber(1, 5);
@@ -272,12 +263,11 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		/// <summary>
 		/// 定量遞減算法
 		/// </summary>
-		/// <param name="p">題型參數</param>
 		/// <remarks>eg: 20,17,14,11,8,5,2</remarks>
-		private FindTheLawFormula Diminishingly(FindTheLawParameter p)
+		private FindTheLawFormula Diminishingly()
 		{
 			// 使用遞增算法
-			var formula = Crescent(p);
+			var formula = Crescent();
 			// 在遞增算法的結果序列上進行降序設定（獲得遞減序列）
 			formula.NumberList.Sort((x, y) => -x.CompareTo(y));
 
@@ -318,9 +308,8 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		/// <summary>
 		/// 定量遞增算法
 		/// </summary>
-		/// <param name="p">題型參數</param>
 		/// <remarks>eg: 2,5,8,11,14,17,20</remarks>
-		private FindTheLawFormula Crescent(FindTheLawParameter p)
+		private FindTheLawFormula Crescent()
 		{
 			// 第一個開始的數值
 			var start = CommonUtil.GetRandomNumber(1, 5);
