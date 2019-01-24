@@ -759,6 +759,10 @@
 		/// 定量遞減擴展（2個定值逐個遞減）
 		/// </summary>
 		DiminishinglyExt,
+		/// <summary>
+		/// 數字排隊
+		/// </summary>
+		QueueUpBase,
 	}
 	/// <summary>
 	/// HTML屬性注入類型

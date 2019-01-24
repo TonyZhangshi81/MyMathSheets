@@ -5,6 +5,7 @@ using MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 {
@@ -63,8 +64,84 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 					case FindTheLawLevel.DiminishinglyExt:
 						p.Formulas.Add(DiminishinglyExt(p));
 						break;
+
+					// 數字排隊（從4個隨機數的排列中找規律）
+					case FindTheLawLevel.QueueUpBase:
+						p.Formulas.Add(QueueUpBase(p));
+						break;
 				}
 			}
+		}
+
+		/// <summary>
+		/// 數字排隊（從4個隨機數的排列中找規律）
+		/// </summary>
+		/// <param name="p">題型參數</param>
+		/// <remarks>eg: 1234,2341,3412,4123,1234</remarks>
+		private FindTheLawFormula QueueUpBase(FindTheLawParameter p)
+		{
+			List<int> numbers = new List<int>();
+			StringBuilder number = new StringBuilder();
+			List<int> list = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+			int count = 0;
+			// 數字隊列初始化
+			while(true)
+			{
+				if(count == 4)
+				{
+					// 初始化創建5位以便前4位數字的輪轉
+					numbers.Add(numbers[0]);
+					break;
+				}
+				numbers.Add(CommonUtil.GetRandomNumber(list));
+				list.Remove(numbers.Last());
+				count++;
+			}
+
+			// 構成
+			List<int> numberList = new List<int>();
+			numberList.Add(Convert.ToInt32(string.Format("{0}{1}{2}{3}", numbers[0], numbers[1], numbers[2], numbers[3])));
+
+			count = 0;
+			// 數字隊列集合作成
+			while (true)
+			{
+				if (count == 4)
+				{
+					break;
+				}
+
+				number.Length = 0;
+				// 數字隊列輪轉(後一位數逐個逐個往前移動一位)
+				for (int index = 1; index <= numbers.Count; index++)
+				{
+					if (index == numbers.Count)
+					{
+						// 末尾放起始位上的數字
+						numbers[numbers.Count - 1] = numbers[0];
+					}
+					else
+					{
+						// 後一位數往前移動
+						numbers[index - 1] = numbers[index];
+						number.Append(numbers[index - 1]);
+					}
+				}
+
+				numberList.Add(Convert.ToInt32(number.ToString()));
+				count++;
+			}
+
+			FindTheLawFormula formula = new FindTheLawFormula()
+			{
+				// 自然數列表
+				NumberList = numberList,
+				// 填空項目編號
+				RandomIndexList = new List<int>() { 2, 3 }
+			};
+
+			// 結果返回
+			return formula;
 		}
 
 		/// <summary>
@@ -122,9 +199,9 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		private FindTheLawFormula Superposition(FindTheLawParameter p)
 		{
 			// 第一個開始的數值
-			var one = CommonUtil.GetRandomNumber(0, 2);
+			var one = CommonUtil.GetRandomNumber(1, 3);
 			// 第一個開始的數值
-			var two = CommonUtil.GetRandomNumber(0, 2);
+			var two = CommonUtil.GetRandomNumber(1, 3);
 
 			// 構成
 			List<int> numberList = new List<int>() { one, two };

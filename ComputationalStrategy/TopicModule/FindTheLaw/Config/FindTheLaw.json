@@ -2,12 +2,12 @@
 	{
 		"Identifier": "FTL01",
 		"NumberOfQuestions": 4,
-		"Reserve": "{\"Type\" : '0,1'}"
+		"Reserve": "{\"Type\" : '0,1,7'}"
 	},
 	{
 		"Identifier": "FTL02",
 		"NumberOfQuestions": 6,
-		"Reserve": "{\"Type\" : '0,1,2,3,4'}"
+		"Reserve": "{\"Type\" : '0,1,2,3,4,7'}"
 	},
 	{
 		"Identifier": "FTL03",
