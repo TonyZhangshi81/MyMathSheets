@@ -3,6 +3,7 @@ using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.TimeCalculation.Item;
 using MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters;
 using System.Text;
@@ -121,7 +122,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "2", Consts.SEC_UNIT);
 
 				// 題型答案
-				html += string.Format(INPUT_ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), endTime.HMSValue);
+				html += string.Format(INPUT_ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), Base64.EncodeBase64(endTime.HMSValue));
 			}
 			else
 			{
@@ -154,7 +155,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 				// 秒
 				html += string.Format(INPUT_HTML_ON_SCRIPT_FORMAT, index.ToString().PadLeft(2, '0'), "2", Consts.SEC_UNIT);
 				// 題型答案
-				html += string.Format(INPUT_ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), startTime.HMSValue);
+				html += string.Format(INPUT_ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), Base64.EncodeBase64(startTime.HMSValue));
 			}
 			else
 			{
@@ -190,7 +191,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 				html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, Consts.SEC_UNIT);
 
 				// 題型答案
-				html += string.Format(INPUT_ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), elapsedTime.HMSValue);
+				html += string.Format(INPUT_ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), Base64.EncodeBase64(elapsedTime.HMSValue));
 			}
 			else
 			{

@@ -80,7 +80,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 		private string GetBallsArray(Dictionary<Formula, int> ballsFormulas)
 		{
 			StringBuilder seatsList = new StringBuilder();
-			ballsFormulas.ToList().ForEach(d => seatsList.AppendFormat("{0},", d.Value));
+			ballsFormulas.ToList().ForEach(d => seatsList.AppendFormat("{0};", d.Value));
 			seatsList.Length -= 1;
 
 			return seatsList.ToString();

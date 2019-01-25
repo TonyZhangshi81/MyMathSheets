@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Item;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters;
 using System.Collections.Generic;
@@ -104,7 +105,7 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 		private string GetAnswer(List<int> anwsers)
 		{
 			StringBuilder result = new StringBuilder();
-			anwsers.ForEach(d => result.AppendFormat("{0},", d));
+			anwsers.ForEach(d => result.AppendFormat("{0};", Base64.EncodeBase64(d.ToString())));
 			result.Length -= 1;
 			return result.ToString();
 		}

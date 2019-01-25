@@ -26,12 +26,12 @@ MathSheets.FindTheLaw = MathSheets.FindTheLaw || (function () {
 			var inputAry = new Array();
 			var right = true;
 			// 标准答案列表
-			var answerAry = ($(pelement).val() || "").split(',');
+			var answerAry = ($(pelement).val() || "").split(';');
 			// 验证输入值是否与答案一致
 			$("input[id*='inputFtl" + pindex + "']").each(function (index, element) {
 				inputAry.push($(element));
 				answer = ($(element).val() == '') ? 0 : parseInt($(element).val());
-				if (parseInt(answerAry[index]) != answer) {
+				if (parseInt($.base64.atob(answerAry[index], true)) != answer) {
 					right = false;
 				}
 			});
@@ -46,7 +46,7 @@ MathSheets.FindTheLaw = MathSheets.FindTheLaw || (function () {
 					// 控件只讀屬性設置
 					inputObj.attr("disabled", "disabled");
 					// 在錯題集中移除當前項目
-					removeInputElementArray({ position: "mathSheetFindTheLaw", id: $(inputObj).attr("id") });
+					removeInputElementArray({ position: "mathSheetFindTheLaw", id: inputObj.attr("id") });
 				});
 				// 正确:true
 				return true;

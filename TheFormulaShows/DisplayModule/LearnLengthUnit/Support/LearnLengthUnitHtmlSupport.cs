@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Item;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters;
 using System.Text;
@@ -120,7 +121,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.LengthUnitItme.Meter);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.LengthUnitItme.Meter.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.METER_UNIT));
 			}
 			else
@@ -145,7 +146,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.LengthUnitItme.Decimetre);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.LengthUnitItme.Decimetre.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.DECIMETRE_UNIT));
 			}
 			else
@@ -170,7 +171,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.LengthUnitItme.Centimeter);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.LengthUnitItme.Centimeter.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.CENTIMETER_UNIT));
 			}
 			else
@@ -195,7 +196,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.LengthUnitItme.Millimeter);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.LengthUnitItme.Millimeter.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.MILLIMETER_UNIT));
 			}
 			else
@@ -220,7 +221,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.RemainderDecimetre.Value);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.RemainderDecimetre.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.DECIMETRE_UNIT));
 			}
 			else
@@ -246,7 +247,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.RemainderCentimeter.Value);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.RemainderCentimeter.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.CENTIMETER_UNIT));
 			}
 			else
@@ -272,7 +273,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.RemainderMillimeter.Value);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.RemainderMillimeter.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(UNIT_HTML_FORMAT, Consts.MILLIMETER_UNIT));
 			}
 			else

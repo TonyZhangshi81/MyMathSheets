@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Item;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
 using System.Text;
@@ -60,7 +61,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 			StringBuilder clocksAnswer = new StringBuilder();
 			foreach (SchoolClockFormula item in p.Formulas)
 			{
-				clocksAnswer.AppendFormat("{0}:{1}:{2};", item.LatestTime.Hours, item.LatestTime.Minutes, item.LatestTime.Seconds);
+				clocksAnswer.AppendFormat("{0};", Base64.EncodeBase64(string.Format("{0}:{1}:{2}", item.LatestTime.Hours, item.LatestTime.Minutes, item.LatestTime.Seconds)));
 
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-4 line-height\">");

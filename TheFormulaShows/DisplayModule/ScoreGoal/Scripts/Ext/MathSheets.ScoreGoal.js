@@ -18,7 +18,7 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 	// 球門號數組化
 	_goalsArrayInit = function () {
 		// 球門號設置場所(eg:0,1,1,1,0,0,0 => [0,1,1,1,0,0,0])
-		var list = ($('#' + __goalsArrayHiddenControlId).val() || "").split(',');
+		var list = ($('#' + __goalsArrayHiddenControlId).val() || "").split(';');
 		$.each(list, function (index, value) {
 			__goalsArray.push(value);
 		});

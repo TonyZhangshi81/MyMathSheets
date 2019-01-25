@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Item;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
 using System.Text;
@@ -116,7 +117,7 @@ namespace MyMathSheets.TheFormulaShows.FindNearestNumber.Support
 			if (item == gap)
 			{
 				html += string.Format("<input id=\"inputFnn{0}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", index);
-				html += string.Format("<input id=\"hiddenFnn{0}\" type=\"hidden\" value=\"{1}\"/>", index, parameter);
+				html += string.Format("<input id=\"hiddenFnn{0}\" type=\"hidden\" value=\"{1}\"/>", index, Base64.EncodeBase64(parameter.ToString()));
 			}
 			else
 			{

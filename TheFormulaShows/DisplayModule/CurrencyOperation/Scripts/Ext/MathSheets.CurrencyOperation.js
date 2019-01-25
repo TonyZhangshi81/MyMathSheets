@@ -31,7 +31,7 @@ MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
 				var element = $("input[id *= 'inputCo" + pIndex + "L" + index + "']");
 				inputAry.push($(element));
 
-				if (parseInt($(element).val()) != answer) {
+				if (parseInt($(element).val()) != $.base64.atob(answer, true)) {
 					isRight = false;
 				}
 			});
@@ -39,14 +39,17 @@ MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
 			// 验证输入值是否与答案一致
 			if (isRight) {
 				// 动错题集中移除当前项目
-				removeInputElementArray({ position: "mathSheetCurrencyOperation", id: $(inputAry[0]).attr("id") });
+				$.each(inputAry, function (index, inputObj) {
+					removeInputElementArray({ position: "mathSheetCurrencyOperation", id: inputObj.attr("id") });
+					inputObj.attr("disabled", "disabled");
+				});
+
 				// 对错图片显示和隐藏
 				$('#imgOKCurrencyOperation' + pIndex).show();
 				$('#imgNoCurrencyOperation' + pIndex).hide();
 				// 移除圖片抖動特效
 				$('#imgNoCurrencyOperation' + pIndex).removeClass("shake shake-slow");
 
-				$.each(inputAry, function (index, inputObj) { inputObj.attr("disabled", "disabled"); });
 				// 正确:true
 				return true;
 			} else {

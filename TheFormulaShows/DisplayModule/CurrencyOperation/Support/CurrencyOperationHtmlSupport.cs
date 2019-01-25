@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.CurrencyOperation.Item;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
 using System.Text;
@@ -44,7 +45,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 		/// <summary>
 		/// SPAN標籤HTML模板
 		/// </summary>
-		private const string CURRENCY_UNIT_HTML_FORMAT = "<span class=\"label\">{0}</span>";
+		private const string LABEL_HTML_FORMAT = "<span class=\"label\">{0}</span>";
 
 		/// <summary>
 		/// 題型HTML模板作成
@@ -81,7 +82,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 					// 加數、被減數
 					colHtml.Append(GetHtml(gap == GapFilling.Left, item.CurrencyArithmetic.LeftParameter, pIndex));
 					// 算式運算符
-					colHtml.AppendLine(string.Format(SIGN_HTML_FORMAT, item.CurrencyArithmetic.Sign.ToString()));
+					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.CurrencyArithmetic.Sign.ToOperationUnicode()));
 					// 加數、減數
 					colHtml.Append(GetHtml(gap == GapFilling.Right, item.CurrencyArithmetic.RightParameter, pIndex));
 					// 等號
@@ -98,7 +99,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 					// 加數、被減數
 					colHtml.Append(GetHtml(gap == GapFilling.Left, item.CurrencyArithmetic.LeftParameter, pIndex));
 					// 算式運算符
-					colHtml.AppendLine(string.Format(SIGN_HTML_FORMAT, item.CurrencyArithmetic.Sign.ToString()));
+					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.CurrencyArithmetic.Sign.ToOperationUnicode()));
 					// 加數、減數
 					colHtml.Append(GetHtml(gap == GapFilling.Right, item.CurrencyArithmetic.RightParameter, pIndex));
 				}
@@ -162,54 +163,54 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 				{
 					case CurrencyOperationUnitType.Fen:
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.FEN_UNIT));
-						answer.AppendFormat("{0}", parameter.IntToCurrency().Fen);
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.FEN_UNIT));
+						answer.AppendFormat("{0}", Base64.EncodeBase64(parameter.IntToCurrency().Fen.Value.ToString()));
 						break;
 
 					case CurrencyOperationUnitType.JF:
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.JIAO_UNIT));
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.JIAO_UNIT));
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.FEN_UNIT));
-						answer.AppendFormat("{0};{1}", parameter.IntToCurrency().Jiao, parameter.IntToCurrency().Fen);
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.FEN_UNIT));
+						answer.AppendFormat("{0};{1}", Base64.EncodeBase64(parameter.IntToCurrency().Jiao.Value.ToString()), Base64.EncodeBase64(parameter.IntToCurrency().Fen.Value.ToString()));
 						break;
 
 					case CurrencyOperationUnitType.Jiao:
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.JIAO_UNIT));
-						answer.AppendFormat("{0}", parameter.IntToCurrency().Jiao);
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.JIAO_UNIT));
+						answer.AppendFormat("{0}", Base64.EncodeBase64(parameter.IntToCurrency().Jiao.Value.ToString()));
 						break;
 
 					case CurrencyOperationUnitType.YF:
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.YUAN_UNIT));
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.YUAN_UNIT));
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.FEN_UNIT));
-						answer.AppendFormat("{0};{1}", parameter.IntToCurrency().Yuan, parameter.IntToCurrency().Fen);
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.FEN_UNIT));
+						answer.AppendFormat("{0};{1}", Base64.EncodeBase64(parameter.IntToCurrency().Yuan.Value.ToString()), Base64.EncodeBase64(parameter.IntToCurrency().Fen.Value.ToString()));
 						break;
 
 					case CurrencyOperationUnitType.YJ:
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.YUAN_UNIT));
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.YUAN_UNIT));
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.JIAO_UNIT));
-						answer.AppendFormat("{0};{1}", parameter.IntToCurrency().Yuan, parameter.IntToCurrency().Jiao);
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.JIAO_UNIT));
+						answer.AppendFormat("{0};{1}", Base64.EncodeBase64(parameter.IntToCurrency().Yuan.Value.ToString()), Base64.EncodeBase64(parameter.IntToCurrency().Jiao.Value.ToString()));
 						break;
 
 					case CurrencyOperationUnitType.YJF:
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.YUAN_UNIT));
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.YUAN_UNIT));
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.JIAO_UNIT));
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.JIAO_UNIT));
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.FEN_UNIT));
-						answer.AppendFormat("{0};{1};{2}", parameter.IntToCurrency().Yuan, parameter.IntToCurrency().Jiao, parameter.IntToCurrency().Fen);
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.FEN_UNIT));
+						answer.AppendFormat("{0};{1};{2}", Base64.EncodeBase64(parameter.IntToCurrency().Yuan.Value.ToString()), Base64.EncodeBase64(parameter.IntToCurrency().Jiao.Value.ToString()), Base64.EncodeBase64(parameter.IntToCurrency().Fen.Value.ToString()));
 						break;
 
 					case CurrencyOperationUnitType.Yuan:
 						html.AppendLine(string.Format(INPUT_HTML_FORMAT, parentIndex, index++));
-						html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.YUAN_UNIT));
-						answer.AppendFormat("{0}", parameter.IntToCurrency().Yuan);
+						html.AppendLine(string.Format(LABEL_HTML_FORMAT, Consts.YUAN_UNIT));
+						answer.AppendFormat("{0}", Base64.EncodeBase64(parameter.IntToCurrency().Yuan.Value.ToString()));
 						break;
 				}
 				// 題型答案
@@ -217,7 +218,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 			}
 			else
 			{
-				html.AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, parameter.IntToCurrency().CurrencyToString()));
+				html.AppendLine(string.Format(LABEL_HTML_FORMAT, parameter.IntToCurrency().CurrencyToString()));
 			}
 			return html.ToString();
 		}

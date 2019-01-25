@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Item;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters;
 using System.Collections.Generic;
@@ -26,6 +27,10 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 		/// 標題HTML模板
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+		/// <summary>
+		/// 題型答案項目HTML模板
+		/// </summary>
+		private const string ANSWER_HIDDEN_HTML_FORMAT = "<input id=\"hiddenFtl{0}\" type=\"hidden\" value=\"{1}\" />";
 
 		/// <summary>
 		/// HTML模板作成
@@ -61,7 +66,7 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKFindTheLaw{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));
 				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoFindTheLaw{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex));
 				listGroupHtml.AppendLine("</div>");
-				listGroupHtml.AppendLine(string.Format("<input id=\"hiddenFtl{0}\" type=\"hidden\" value=\"{1}\" />", controlIndex, GetAnswer(item.NumberList, item.RandomIndexList)));
+				listGroupHtml.AppendLine(string.Format(ANSWER_HIDDEN_HTML_FORMAT, controlIndex, GetAnswer(item.NumberList, item.RandomIndexList)));
 				listGroupHtml.AppendLine("</div>");
 
 				controlIndex++;
@@ -136,7 +141,7 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 			StringBuilder answer = new StringBuilder();
 			randomIndexList.ForEach(d =>
 			{
-				answer.AppendFormat("{0},", numberList[d]);
+				answer.AppendFormat("{0};", Base64.EncodeBase64(numberList[d].ToString()));
 			});
 			answer.Length -= 1;
 			return answer.ToString();

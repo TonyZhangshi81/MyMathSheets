@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Item;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
 using System.Text;
@@ -120,7 +121,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.CurrencyUnit.Yuan);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.CurrencyUnit.Yuan.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.YUAN_UNIT));
 			}
 			else
@@ -145,7 +146,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.CurrencyUnit.Jiao);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.CurrencyUnit.Jiao.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.JIAO_UNIT));
 			}
 			else
@@ -170,7 +171,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.RemainderJiao.Value);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.RemainderJiao.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.JIAO_UNIT));
 			}
 			else
@@ -196,7 +197,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.CurrencyUnit.Fen);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.CurrencyUnit.Fen.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.FEN_UNIT));
 			}
 			else
@@ -221,7 +222,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 
 			if (isInput)
 			{
-				_answers.AppendFormat("{0},", item.RemainderFen.Value);
+				_answers.AppendFormat("{0};", Base64.EncodeBase64(item.RemainderFen.Value.ToString()));
 				html.AppendFormat(INPUT_HTML_FORMAT, controlIndex, childIndex).AppendLine(string.Format(CURRENCY_UNIT_HTML_FORMAT, Consts.FEN_UNIT));
 			}
 			else

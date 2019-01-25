@@ -17,7 +17,7 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 		_timeCalculationCorrecting = function (pIndex, pElement) {
 			var fault = true;
 			// 答案
-			var answers = ($(pElement).val() || "").split(':');
+			var answers = ($.base64.atob($(pElement).val(), true) || "").split(':');
 			// 填空項目
 			var $inputs = $("input[id*='inputTc" + pIndex.toString().PadLeft(2, '0') + "']");
 			$inputs.each(function (index, element) {
@@ -30,14 +30,16 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 			// 验证输入值是否与答案一致
 			if (fault) {
 				// 动错题集中移除当前项目
-				removeInputElementArray({ position: "mathSheetTimeCalculation", id: $inputs.eq(0).attr("id") });
+				$inputs.each(function (index, element) {
+					$(element).attr("disabled", "disabled");
+					removeInputElementArray({ position: "mathSheetTimeCalculation", id: $(element).attr("id") });
+				});
 
 				// 对错图片显示和隐藏
 				$('#imgOKTimeCalculation' + pIndex).show();
 				$('#imgNoTimeCalculation' + pIndex).hide();
 				// 移除圖片抖動特效
 				$('#imgNoTimeCalculation' + pIndex).removeClass("shake shake-slow");
-				$inputs.attr("disabled", "disabled");
 				// 正确:true
 				return true;
 			} else {

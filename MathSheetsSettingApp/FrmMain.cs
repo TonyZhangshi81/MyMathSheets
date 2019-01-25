@@ -134,7 +134,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (cmbWorkPages.SelectedIndex > 0)
 			{
 				System.Diagnostics.Process.Start(ConfigurationManager.AppSettings.Get("Preview"), "\"" + Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") + cmbWorkPages.SelectedValue.ToString()) + "\"");
-				return;
+				// 退出系統
+				Environment.Exit(0);
 			}
 
 			// 選題情況

@@ -9,7 +9,7 @@ MathSheets.ComputingConnection = MathSheets.ComputingConnection || (function () 
 		var inputCcArray = new Array();
 		$("input[id*='inputCc" + pIndex + "']").each(function (index, element) {
 			// 验证输入值是否与答案一致
-			if ($(element).val() != $('#hiddenCc' + pIndex + index).val()) {
+			if ($(element).val() != $.base64.atob($('#hiddenCc' + pIndex + index).val(), true)) {
 				isErr = true;
 			}
 			inputCcArray.push($(element));
@@ -18,16 +18,16 @@ MathSheets.ComputingConnection = MathSheets.ComputingConnection || (function () 
 		// 不存在错误的情况下
 		if (!isErr) {
 			// 动错题集中移除当前项目
-			removeInputElementArray({ position: "mathSheetComputingConnection", id: $(inputCcArray[0]).attr("id") });
+			inputCcArray.forEach(function (element, index) {
+				removeInputElementArray({ position: "mathSheetComputingConnection", id: $(element).attr("id") });
+				$(element).attr("disabled", "disabled");
+			});
 			// 对错图片显示和隐藏
 			$('#imgOKComputingConnection' + pIndex).show();
 			$('#imgNoComputingConnection' + pIndex).hide();
 			// 移除圖片抖動特效
 			$('#imgNoComputingConnection' + pIndex).removeClass("shake shake-slow");
 
-			inputCcArray.forEach(function (element, index) {
-				$(element).attr("disabled", "disabled");
-			});
 			// 正确:true
 			return true;
 		} else {

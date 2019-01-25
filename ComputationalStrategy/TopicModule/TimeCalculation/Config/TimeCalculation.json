@@ -21,7 +21,7 @@
 		"NumberOfQuestions": 6,
 		"QuestionType": 1,
 		"Signs": [ 4, 5 ],
-		"Reserve": "{\"ElapsedHours\" : '0', \"IsEssignMinutes\" : 1, \"IsShowSeconds\" : 0}"
+		"Reserve": "{\"ElapsedHours\" : '0', \"IsEssignMinutes\" : 0, \"IsShowSeconds\" : 0}"
 	},
 	{
 		"Identifier": "TC004",

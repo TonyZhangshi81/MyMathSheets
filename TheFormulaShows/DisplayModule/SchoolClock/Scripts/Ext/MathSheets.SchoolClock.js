@@ -31,7 +31,7 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 		// 答题验证(正确:true  错误:false)
 		_schoolClockCorrecting = function (index, answer) {
 			// 答案時分秒
-			var hms = (answer || '').split(':');
+			var hms = ($.base64.atob(answer, true) || '').split(':');
 			// 時
 			var hours = parseInt($("#inputClockH" + index).val());
 			// 分
@@ -68,7 +68,7 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 				}, 1000, function () {
 					// 添加圖片抖動特效（只針對錯題）
 					$(this).addClass("shake shake-slow");
-					});
+				});
 
 				// 错误:false
 				return false;
@@ -86,7 +86,7 @@ MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
 				var seconds = clock.rect(80, 10, 1, 80).attr({ fill: "#ff6400" });
 				var middle = clock.circle(81, 80, 3).attr({ fill: "#535353" });
 
-				_updateTime(hours, minutes, seconds, __aryClocksAnswer[index]);
+				_updateTime(hours, minutes, seconds, $.base64.atob(__aryClocksAnswer[index], true));
 			});
 
 			$("input[id*='inputClock']").each(function (index, element) {

@@ -23,9 +23,10 @@ MathSheets.FindNearestNumber = MathSheets.FindNearestNumber || (function () {
 
 		// 答题验证(正确:true  错误:false)
 		_findNearestNumberCorrecting = function (index, element) {
+			// 解密
+			var answer = $.base64.atob($('#hiddenFnn' + index).val(), true);
 			// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
-			if ($(element).val() == $('#hiddenFnn' + index).val()
-				|| (parseInt($('#hiddenFnn' + index).val()) == -999 && $(element).val() != '')) {
+			if ($(element).val() == answer || (parseInt(answer) == -999 && $(element).val() != '')) {
 				// 动错题集中移除当前项目
 				removeInputElementArray({ position: "mathSheetFindNearestNumber", id: $(element).attr("id") });
 				// 对错图片显示和隐藏

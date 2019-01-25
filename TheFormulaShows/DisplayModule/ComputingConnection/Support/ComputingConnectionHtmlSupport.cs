@@ -3,6 +3,7 @@ using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Item;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters;
 using System.Text;
@@ -98,7 +99,7 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 			if (item == gap)
 			{
 				html += string.Format("<input id=\"inputCc{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", pIndex, index);
-				html += string.Format("<input id=\"hiddenCc{0}{1}\" type=\"hidden\" value=\"{2}\"/>", pIndex, index, parameter);
+				html += string.Format("<input id=\"hiddenCc{0}{1}\" type=\"hidden\" value=\"{2}\"/>", pIndex, index, Base64.EncodeBase64(parameter.ToString()));
 			}
 			else
 			{

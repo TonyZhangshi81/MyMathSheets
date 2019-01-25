@@ -522,11 +522,11 @@ MathSheets.Common = MathSheets.Common || (function () {
 		},
 
 		// 取得下一個輸入框的索引號
-		_getNextInputFocusSequence = function (currentSelectedId) {
+		_getNextInputFocusSequence = function (currentSelectedId, keyCode) {
 			// 當前focus項目取得
 			var f = $("input:focus");
 			if (f.length == 0) {
-				return -1;
+				return (keyCode == 39) ? -1 : 1;
 			}
 			// Active輸入域的id
 			var selectedId = f.attr("id");
@@ -593,7 +593,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 						return false;
 					}
 
-					__sequence = _getNextInputFocusSequence(__allInputElementArray[__sequence].id);
+					__sequence = _getNextInputFocusSequence(__allInputElementArray[__sequence].id, e.keyCode);
 					if (__sequence == __allInputElementArray.length - 1) {
 						__sequence = -1;
 					}
@@ -608,7 +608,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 						return false;
 					}
 
-					__sequence = _getNextInputFocusSequence(__allInputElementArray[__sequence].id);
+					__sequence = _getNextInputFocusSequence(__allInputElementArray[__sequence].id, e.keyCode);
 					if (__sequence == 0) {
 						__sequence = __allInputElementArray.length;
 					}

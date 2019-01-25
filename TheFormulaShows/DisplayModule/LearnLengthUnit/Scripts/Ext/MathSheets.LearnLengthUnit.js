@@ -24,11 +24,11 @@ MathSheets.LearnLengthUnit = MathSheets.LearnLengthUnit || (function () {
 		_learnLengthUnitCorrecting = function (pindex, pelement) {
 			var inputAry = new Array();
 			// 答案數組
-			var answerAry = ($(pelement).val() || '').split(',');
+			var answerAry = ($(pelement).val() || '').split(';');
 			var isOK = true;
 			$("input[id*='inputLlu" + pindex + "S']").each(function (index, element) {
 				inputAry.push($(element));
-				if (parseInt($(element).val()) != parseInt(answerAry[index])) {
+				if (parseInt($(element).val()) != parseInt($.base64.atob(answerAry[index], true))) {
 					isOK = false;
 				}
 			});
@@ -36,13 +36,15 @@ MathSheets.LearnLengthUnit = MathSheets.LearnLengthUnit || (function () {
 			// 验证输入值是否与答案一致
 			if (isOK) {
 				// 动错题集中移除当前项目
-				removeInputElementArray({ position: "mathSheetLearnLengthUnit", id: $(inputAry[0]).attr("id") });
+				$.each(inputAry, function (index, inputObj) {
+					inputObj.attr("disabled", "disabled");
+					removeInputElementArray({ position: "mathSheetLearnLengthUnit", id: inputObj.attr("id") });
+				});
 				// 对错图片显示和隐藏
 				$('#imgOKLearnLengthUnit' + pindex).show();
 				$('#imgNoLearnLengthUnit' + pindex).hide();
 				// 移除圖片抖動特效
 				$('#imgNoLearnLengthUnit' + pindex).removeClass("shake shake-slow");
-				$.each(inputAry, function (index, inputObj) { inputObj.attr("disabled", "disabled"); });
 				// 正确:true
 				return true;
 			} else {

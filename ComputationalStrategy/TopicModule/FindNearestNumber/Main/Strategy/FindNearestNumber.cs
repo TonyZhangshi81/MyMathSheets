@@ -114,7 +114,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 			{
 				MaximumLimit = maximumLimit,
 				QuestionType = QuestionType.Default,
-				MinimumLimit = 0
+				MinimumLimit = 1
 			});
 
 			return formula;
@@ -136,7 +136,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 			{
 				MaximumLimit = maximumLimit,
 				QuestionType = QuestionType.Default,
-				MinimumLimit = 0
+				MinimumLimit = 1
 			}, leftFormulaAnswer);
 
 			return formula;
