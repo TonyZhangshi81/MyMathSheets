@@ -47,8 +47,8 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 			{
 				// 小時數
 				Hours = CommonUtil.GetRandomNumber(0, 23),
-				// 分鐘數
-				Minutes = CommonUtil.GetRandomNumber(0, 59),
+				// 分鐘數（減少難度而暫定的處理 -> 指定分鐘數值（0、15、30、45分鐘））
+				Minutes = _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)],
 				// 秒數
 				Seconds = (p.IsShowSeconds) ? 0 : CommonUtil.GetRandomNumber(0, 59)
 			};
