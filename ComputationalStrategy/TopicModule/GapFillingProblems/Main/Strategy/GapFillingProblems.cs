@@ -44,6 +44,11 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 			// 按照指定數量作成相應的數學計算式
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
+				if(_allProblems.Count == 0)
+				{
+					break;
+				}
+
 				// 隨機從題庫中提取題目(不重複)
 				GapFillingProblemsLibrary problem = CommonUtil.GetRandomNumber(_allProblems);
 				// 資料庫中刪除已抽取的題目
@@ -56,6 +61,8 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 					GapFillingProblem = ZipHelper.GZipDecompressString(problem.Content),
 					// 級別難度
 					Level = problem.Level,
+					// 參數集合
+					Parameters = problem.Parameters,
 					// 答案集合
 					Answers = problem.Answers.Select(d => d = Base64.DecodeBase64String(d)).ToList()
 				});

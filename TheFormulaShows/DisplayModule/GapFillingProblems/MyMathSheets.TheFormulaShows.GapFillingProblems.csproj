@@ -49,13 +49,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\GapFillingProblemsHtmlSupport.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\image\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\image\fill\009901.png" />
+    <Content Include="Content\image\fill\010001.png" />
+    <Content Include="Content\image\fill\010101.png" />
+    <Content Include="Content\image\fill\010201.png" />
+    <Content Include="Content\image\fill\010301.png" />
+    <Content Include="Content\image\fill\010401.png" />
     <Content Include="Scripts\Ext\MathSheets.GapFillingProblems.js" />
     <Content Include="Template\GapFillingProblems.html" />
   </ItemGroup>

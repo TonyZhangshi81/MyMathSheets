@@ -5,6 +5,7 @@ using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Item;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters;
+using System;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -30,7 +31,11 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 		/// <summary>
 		/// 輸入框HTML模板
 		/// </summary>
-		private const string INPUT_HTML_FORMAT = "<input id=\"inputGfp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" />";
+		private const string INPUT1_HTML_FORMAT = "<input id=\"inputGfp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" />";
+		/// <summary>
+		/// 輸入框HTML模板（計算式輸入框（200px））
+		/// </summary>
+		private const string INPUT3_HTML_FORMAT = "<input id=\"inputGfp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-3\" disabled=\"disabled\" />";
 		/// <summary>
 		/// 文字表示HTML模板
 		/// </summary>
@@ -39,6 +44,74 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 		/// 答題答案HTML模板
 		/// </summary>
 		private const string ANSWER_HIDDEN_HTML_FORMAT = "<input id=\"hiddenGfpAnswer{0}\" type=\"hidden\" value=\"{1}\" />";
+		/// <summary>
+		/// 圖片表示HTML模板
+		/// </summary>
+		private const string IMAGE_HTML_FORMAT = "<img id=\"imgGfp{0}{1}\" src=\"../Content/image/fill/{2}.png\" />";
+
+		/// <summary>
+		/// 填空題內容作成
+		/// </summary>
+		/// <param name="item">題型參數對象</param>
+		/// <param name="rowHtml">HTML輸出對象</param>
+		/// <param name="parentControlIndex">控件ID</param>
+		/// <param name="answer">題型答案</param>
+		private void GapFillingProblemToHtml(GapFillingProblemsFormula item, StringBuilder rowHtml, int parentControlIndex, StringBuilder answer)
+		{
+			// 子控件ID
+			int chindControlIndex = 0;
+			// 答案參數索引號
+			int answerIndex = 0;
+			// 題型參數索引號
+			int parameterIndex = 0;
+
+			StringBuilder completed = new StringBuilder();
+			// 填空題內容中的參數拼接
+			item.GapFillingProblem.Split(new string[3] { "IPT1", "IPT5", "IMG1" }, StringSplitOptions.None).ToList().ForEach(d =>
+			{
+				// 文字描述部分
+				rowHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, d));
+				// 已完成部分的內容
+				completed.Append(d);
+
+				if (completed.Length == item.GapFillingProblem.Length)
+				{
+					return;
+				}
+
+				// 判斷對象（固定4位長度）
+				string judge = item.GapFillingProblem.Substring(completed.Length, 4);
+
+				switch (judge)
+				{
+					case "IPT1":
+						// 答題輸入框
+						rowHtml.AppendLine(string.Format(INPUT1_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), chindControlIndex));
+						// 答案項目加密處理
+						answer.AppendFormat("{0};", Base64.EncodeBase64(item.Answers[answerIndex]));
+						answerIndex++;
+						break;
+					case "IPT5":
+						// 答題輸入框
+						rowHtml.AppendLine(string.Format(INPUT3_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), chindControlIndex));
+						// 答案項目加密處理
+						answer.AppendFormat("{0};", Base64.EncodeBase64(item.Answers[answerIndex]));
+						answerIndex++;
+						break;
+					case "IMG1":
+						// 圖形內容
+						rowHtml.AppendLine(string.Format(IMAGE_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), chindControlIndex, item.Parameters[parameterIndex]));
+						parameterIndex++;
+						break;
+				}
+
+				// 已完成部分的內容
+				completed.Append(judge);
+
+				chindControlIndex++;
+			});
+
+		}
 
 		/// <summary>
 		/// 題型HTML模板作成
@@ -60,31 +133,18 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 			foreach (GapFillingProblemsFormula item in p.Formulas)
 			{
 				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
-				rowHtml.AppendLine("<h6>");
 				rowHtml.AppendLine("<p class=\"text-info\">");
 				// 題號
 				rowHtml.AppendLine(string.Format("<span class=\"label label-default\">{0}. </span>", parentControlIndex + 1));
 
-				int index = 0;
 				StringBuilder answer = new StringBuilder();
 				// 填空題內容中的參數拼接
-				Regex.Split(item.GapFillingProblem, "INPUT").ToList().ForEach(d =>
-				{
-					// 文字描述部分
-					rowHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, d));
-					if (!string.IsNullOrEmpty(item.Answers[index]))
-					{
-						// 答題輸入框
-						rowHtml.AppendLine(string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), index));
-						// 答案項目加密處理
-						answer.AppendFormat("{0};", Base64.EncodeBase64(item.Answers[index]));
-					}
-					index++;
-				});
+				GapFillingProblemToHtml(item, rowHtml, parentControlIndex, answer);
 
-				if(item.Level >= 3)
+				// 難度等級在3級以上（包含3級）的顯示星星
+				if (item.Level >= 3)
 				{
-					for(int i = 1; i<= item.Level; i++)
+					for (int i = 1; i <= item.Level; i++)
 					{
 						rowHtml.AppendLine("<img src=\"../Content/image/bookmark.png\" class=\"imgBookmark\" />");
 					}
@@ -95,7 +155,6 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 				rowHtml.AppendLine(string.Format(ANSWER_HIDDEN_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), answer));
 
 				rowHtml.AppendLine("</p>");
-				rowHtml.AppendLine("</h6>");
 				rowHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
 				rowHtml.AppendLine(string.Format("<img id=\"imgOKGapFillingProblems{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", parentControlIndex.ToString().PadLeft(2, '0')));
 				rowHtml.AppendLine(string.Format("<img id=\"imgNoGapFillingProblems{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", parentControlIndex.ToString().PadLeft(2, '0')));

@@ -21,6 +21,10 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Item
 		/// 答案集合
 		/// </summary>
 		public List<string> Answers { get; set; }
+		/// <summary>
+		/// 參數集合
+		/// </summary>
+		public List<string> Parameters { get; set; }
 	}
 
 	/// <summary>
