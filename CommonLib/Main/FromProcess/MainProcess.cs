@@ -324,7 +324,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 					_controlList = new List<ControlInfo>();
 
 					int indexX = 1, indexY = 1;
-					ComposerFactory.AssemblyInfoCache.ToList().ForEach(d =>
+					ComposerFactory.AssemblyInfoCache.OrderBy(c => c.Key).ToList().ForEach(d =>
 					{
 						_controlList.Add(new ControlInfo()
 						{

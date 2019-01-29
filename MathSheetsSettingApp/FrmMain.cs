@@ -7,6 +7,7 @@ using MyMathSheets.MathSheetsSettingApp.Properties;
 using System;
 using System.ComponentModel.Composition;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -82,7 +83,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 					TabIndex = controlIndex,
 					UseVisualStyleBackColor = true
 				};
-				checkBox.CheckedChanged += new System.EventHandler(QuestionCheckedChanged);
+				checkBox.CheckedChanged += new EventHandler(QuestionCheckedChanged);
 
 				this.panel1.Controls.Add(checkBox);
 
@@ -133,7 +134,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			if (cmbWorkPages.SelectedIndex > 0)
 			{
-				System.Diagnostics.Process.Start(ConfigurationManager.AppSettings.Get("Preview"), "\"" + Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") + cmbWorkPages.SelectedValue.ToString()) + "\"");
+				Process.Start(ConfigurationManager.AppSettings.Get("Preview"), "\"" + Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") + cmbWorkPages.SelectedValue.ToString()) + "\"");
 				// 退出系統
 				Environment.Exit(0);
 			}
@@ -148,12 +149,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0002A));
 			// 出題按鍵點擊事件
 			var destFileName = _process.SureClick();
-			// 是否瀏覽
-			if (chkIsPreview.Checked)
-			{
-				// 使用IE打開已作成的靜態頁面
-				System.Diagnostics.Process.Start(ConfigurationManager.AppSettings.Get("Preview"), "\"" + Path.GetFullPath(@destFileName) + "\"");
-			}
+			// 使用IE打開已作成的靜態頁面
+			Process.Start(ConfigurationManager.AppSettings.Get("Preview"), "\"" + Path.GetFullPath(@destFileName) + "\"");
 			// 退出系統
 			Environment.Exit(0);
 		}
