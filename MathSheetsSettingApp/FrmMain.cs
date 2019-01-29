@@ -46,9 +46,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// </summary>
 		/// <param name="sender">事件發生者</param>
 		/// <param name="e">事件處理</param>
-		private void Form1_Load(object sender, EventArgs e)
+		private void FormLoad(object sender, EventArgs e)
 		{
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0001A));
+
+			this.Width = 920;
+			this.Height = 490;
 
 			// 題型縮略瀏覽初期化
 			PreviewInit();
@@ -77,39 +80,45 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 題型分類集合
 			List<LayoutSetting.Classify> classifyList = _process.ControlList.GroupBy(d => d.Classify).Select(d => d.Key).ToList();
 
+			int locationY = 0;
+			int rowCount = 0;
 			classifyList.ForEach(c =>
 			{
 				GroupBox groubox = new GroupBox();
-				groubox.Name = "gbDemo" + rowIndex.ToString();
-				groubox.Width = 354;
+				groubox.Name = "groubox" + rowIndex.ToString();
+				groubox.Width = 360;
 				groubox.Text = c.ToClassifyName();
-				groubox.Location = new Point(4, (15 + rowIndex * 40));
-				this.panel1.Controls.Add(groubox);
+				groubox.Location = new Point(0, locationY);
 
-				_process.ControlList.Where(d => c == d.Classify).ToList().ForEach(d =>
+				var controlList = _process.ControlList.Where(d => c == d.Classify).ToList();
+				if (controlList.Count > 0)
 				{
-					CheckBox checkBox = new CheckBox
+					controlList.ForEach(d =>
 					{
-						AutoSize = true,
-						Location = new Point((10 + ((d.IndexX - 1) * 120)), ((12 + (d.IndexY - 1) * 33))),
-						Name = d.ControlId,
-						Size = new Size(72, 16),
-						Text = d.Title,
-						TabIndex = controlIndex,
-						UseVisualStyleBackColor = true
-					};
-					checkBox.CheckedChanged += new EventHandler(QuestionCheckedChanged);
+						CheckBox checkBox = new CheckBox
+						{
+							AutoSize = true,
+							Location = new Point((10 + (d.IndexX - 1) * 120), (20 + (d.IndexY - 1) * 33)),
+							Name = d.ControlId,
+							Size = new Size(72, 16),
+							Text = d.Title,
+							TabIndex = controlIndex,
+							UseVisualStyleBackColor = true
+						};
+						checkBox.CheckedChanged += new EventHandler(QuestionCheckedChanged);
 
-					groubox.Controls.Add(checkBox);
+						groubox.Controls.Add(checkBox);
 
-					controlIndex++;
-				});
+						controlIndex++;
+						rowCount = d.IndexY;
+					});
+				}
+				groubox.Height = 15 + rowCount * 33;
+				locationY += groubox.Height + 10;
 
+				this.panel1.Controls.Add(groubox);
 				rowIndex++;
 			});
-
-
-
 		}
 
 		/// <summary>
