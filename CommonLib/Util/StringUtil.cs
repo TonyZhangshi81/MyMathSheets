@@ -223,6 +223,35 @@
 		}
 
 		/// <summary>
+		/// 題型分類的名稱
+		/// </summary>
+		/// <param name="classify">題型分類</param>
+		/// <returns>題型分類的名稱</returns>
+		public static string ToClassifyName(this LayoutSetting.Classify classify)
+		{
+			string name = string.Empty;
+			switch (classify)
+			{
+				case LayoutSetting.Classify.Generally:
+					name = "一般计算";
+					break;
+				case LayoutSetting.Classify.Time:
+					name = "时间单位";
+					break;
+				case LayoutSetting.Classify.Extent:
+					name = "长度单位";
+					break;
+				case LayoutSetting.Classify.Currency:
+					name = "货币单位";
+					break;
+				default:
+					break;
+			}
+
+			return name;
+		}
+
+		/// <summary>
 		/// 返回題型的名稱
 		/// </summary>
 		/// <param name="type">題型</param>

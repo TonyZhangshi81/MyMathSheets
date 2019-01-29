@@ -123,12 +123,12 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// 獲取文件列表
 			root.GetFiles().ToList().ForEach(d =>
 			{
-				if(d.Name.IndexOf(filter) >= 0)
+				if (d.Name.IndexOf(filter) >= 0)
 				{
 					fileNames.Add(d.Name);
 				}
 			});
-			if(fileNames.Count > 0)
+			if (fileNames.Count > 0)
 			{
 				fileNames.Insert(0, string.Empty);
 			}
@@ -299,7 +299,8 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		{
 			// 題型編號
 			string identifier = string.Empty;
-			if (TopicManagementDictionary.ContainsKey(preview.ToString())){
+			if (TopicManagementDictionary.ContainsKey(preview.ToString()))
+			{
 				// 題型編號取得
 				identifier = TopicManagementDictionary[preview.ToString()];
 			}
@@ -323,9 +324,24 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 				{
 					_controlList = new List<ControlInfo>();
 
+					string classifyName = string.Empty;
+
+
+
 					int indexX = 1, indexY = 1;
-					ComposerFactory.AssemblyInfoCache.OrderBy(c => c.Key).ToList().ForEach(d =>
+					ComposerFactory.AssemblyInfoCache
+						.OrderBy(b => b.Value.Classify, new ClassifyComparer())
+						.ThenBy(c => c.Key, new PreviewComparer()).ToList()
+						.ForEach(d =>
 					{
+						// 題型大類不同的場合，坐標初期化設定
+						if (!classifyName.Equals(d.Value.Classify.ToString()))
+						{
+							indexX = 1;
+							indexY = 1;
+							classifyName = d.Value.Classify.ToString();
+						}
+
 						_controlList.Add(new ControlInfo()
 						{
 							IndexX = indexX,
@@ -334,6 +350,8 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 							ControlId = d.Value.Preview.ToString(),
 							// 控件標題設定
 							Title = d.Value.Description,
+							// 題型分類
+							Classify = d.Value.Classify,
 							// 題型類型
 							Preview = d.Value.Preview
 						});
@@ -347,6 +365,62 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 					});
 				}
 				return _controlList;
+			}
+		}
+	}
+
+	/// <summary>
+	/// 自定題型排序類（按照題型種類的序號進行排序）
+	/// </summary>
+	public class ClassifyComparer : IComparer<LayoutSetting.Classify>
+	{
+		/// <summary>
+		/// 方法重寫，將兩個字符串進行比較并返回相應結果
+		/// </summary>
+		/// <param name="x">字符串</param>
+		/// <param name="y">字符串</param>
+		/// <returns>比較結果</returns>
+		public int Compare(LayoutSetting.Classify x, LayoutSetting.Classify y)
+		{
+			if ((int)x > (int)y)
+			{
+				return 1;
+			}
+			else if ((int)x < (int)y)
+			{
+				return -1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
+
+	/// <summary>
+	/// 自定題型排序類（按照題型的序號進行排序）
+	/// </summary>
+	public class PreviewComparer : IComparer<string>
+	{
+		/// <summary>
+		/// 方法重寫，將兩個字符串進行比較并返回相應結果
+		/// </summary>
+		/// <param name="x">字符串</param>
+		/// <param name="y">字符串</param>
+		/// <returns>比較結果</returns>
+		public int Compare(string x, string y)
+		{
+			if ((int)Enum.Parse(typeof(LayoutSetting.Preview), x) > (int)Enum.Parse(typeof(LayoutSetting.Preview), y))
+			{
+				return 1;
+			}
+			else if ((int)Enum.Parse(typeof(LayoutSetting.Preview), x) < (int)Enum.Parse(typeof(LayoutSetting.Preview), y))
+			{
+				return -1;
+			}
+			else
+			{
+				return 0;
 			}
 		}
 	}
@@ -373,6 +447,11 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 控件標題
 		/// </summary>
 		public string Title { get; set; }
+
+		/// <summary>
+		/// 題型分類
+		/// </summary>
+		public LayoutSetting.Classify Classify { get; set; }
 
 		/// <summary>
 		/// 題型類型

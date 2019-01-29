@@ -32,11 +32,12 @@
 			this.flpPreview = new System.Windows.Forms.FlowLayoutPanel();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.cmbWorkPages = new System.Windows.Forms.ComboBox();
+			this.btnClose = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnSure
 			// 
-			this.btnSure.Location = new System.Drawing.Point(324, 370);
+			this.btnSure.Location = new System.Drawing.Point(261, 371);
 			this.btnSure.Name = "btnSure";
 			this.btnSure.Size = new System.Drawing.Size(57, 23);
 			this.btnSure.TabIndex = 0;
@@ -65,18 +66,29 @@
 			// 
 			this.cmbWorkPages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbWorkPages.FormattingEnabled = true;
-			this.cmbWorkPages.Location = new System.Drawing.Point(130, 372);
+			this.cmbWorkPages.Location = new System.Drawing.Point(62, 373);
 			this.cmbWorkPages.Margin = new System.Windows.Forms.Padding(2);
 			this.cmbWorkPages.Name = "cmbWorkPages";
 			this.cmbWorkPages.Size = new System.Drawing.Size(189, 20);
 			this.cmbWorkPages.TabIndex = 29;
 			this.cmbWorkPages.SelectedIndexChanged += new System.EventHandler(this.WorkPagesSelectedIndexChanged);
 			// 
+			// btnClose
+			// 
+			this.btnClose.Location = new System.Drawing.Point(324, 370);
+			this.btnClose.Name = "btnClose";
+			this.btnClose.Size = new System.Drawing.Size(57, 23);
+			this.btnClose.TabIndex = 30;
+			this.btnClose.Text = "关闭";
+			this.btnClose.UseVisualStyleBackColor = true;
+			this.btnClose.Click += new System.EventHandler(this.CloseClick);
+			// 
 			// FrmMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(856, 405);
+			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.cmbWorkPages);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.flpPreview);
@@ -94,6 +106,7 @@
 		private System.Windows.Forms.FlowLayoutPanel flpPreview;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.ComboBox cmbWorkPages;
+		private System.Windows.Forms.Button btnClose;
 	}
 }
 

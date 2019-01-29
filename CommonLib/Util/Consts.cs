@@ -809,6 +809,33 @@
 	public class LayoutSetting
 	{
 		/// <summary>
+		/// 題型分類
+		/// </summary>
+		public enum Classify : int
+		{
+			/// <summary>
+			/// 未定义
+			/// </summary>
+			Default = 0,
+			/// <summary>
+			/// 一般運算
+			/// </summary>
+			Generally,
+			/// <summary>
+			/// 貨幣單位
+			/// </summary>
+			Currency,
+			/// <summary>
+			/// 長度單位
+			/// </summary>
+			Extent,
+			/// <summary>
+			/// 時間單位
+			/// </summary>
+			Time
+		}
+
+		/// <summary>
 		/// 題型類型/瀏覽設定
 		/// </summary>
 		public enum Preview : int
@@ -892,7 +919,7 @@
 			/// <summary>
 			/// 基礎填空
 			/// </summary>
-			GapFillingProblems, 
+			GapFillingProblems,
 			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>

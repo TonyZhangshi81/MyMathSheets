@@ -5,9 +5,11 @@ using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.MathSheetsSettingApp.Properties;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Configuration;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -70,25 +72,44 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// </summary>
 		private void CreateQuestionCheckBoxList()
 		{
+			int rowIndex = 0;
 			int controlIndex = 0;
-			_process.ControlList.ForEach(d =>
+			// 題型分類集合
+			List<LayoutSetting.Classify> classifyList = _process.ControlList.GroupBy(d => d.Classify).Select(d => d.Key).ToList();
+
+			classifyList.ForEach(c =>
 			{
-				CheckBox checkBox = new CheckBox
+				GroupBox groubox = new GroupBox();
+				groubox.Name = "gbDemo" + rowIndex.ToString();
+				groubox.Width = 354;
+				groubox.Text = c.ToClassifyName();
+				groubox.Location = new Point(4, (15 + rowIndex * 40));
+				this.panel1.Controls.Add(groubox);
+
+				_process.ControlList.Where(d => c == d.Classify).ToList().ForEach(d =>
 				{
-					AutoSize = true,
-					Location = new System.Drawing.Point((10 + ((d.IndexX - 1) * 120)), ((12 + (d.IndexY - 1) * 33))),
-					Name = d.ControlId,
-					Size = new System.Drawing.Size(72, 16),
-					Text = d.Title,
-					TabIndex = controlIndex,
-					UseVisualStyleBackColor = true
-				};
-				checkBox.CheckedChanged += new EventHandler(QuestionCheckedChanged);
+					CheckBox checkBox = new CheckBox
+					{
+						AutoSize = true,
+						Location = new Point((10 + ((d.IndexX - 1) * 120)), ((12 + (d.IndexY - 1) * 33))),
+						Name = d.ControlId,
+						Size = new Size(72, 16),
+						Text = d.Title,
+						TabIndex = controlIndex,
+						UseVisualStyleBackColor = true
+					};
+					checkBox.CheckedChanged += new EventHandler(QuestionCheckedChanged);
 
-				this.panel1.Controls.Add(checkBox);
+					groubox.Controls.Add(checkBox);
 
-				controlIndex++;
+					controlIndex++;
+				});
+
+				rowIndex++;
 			});
+
+
+
 		}
 
 		/// <summary>
@@ -199,6 +220,17 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				control.Enabled = !(cmbWorkPages.SelectedIndex > 0);
 			}
+		}
+
+		/// <summary>
+		/// 畫面關閉事件
+		/// </summary>
+		/// <param name="sender">關閉按鈕</param>
+		/// <param name="e">關閉事件</param>
+		private void CloseClick(object sender, EventArgs e)
+		{
+			// 退出系統
+			Environment.Exit(0);
 		}
 	}
 }

@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MathSheetMarker(SystemModel.TheFormulaShows, LayoutSetting.Preview.LearnLengthUnit)]
+[assembly: MathSheetMarker(SystemModel.TheFormulaShows, LayoutSetting.Classify.Extent, LayoutSetting.Preview.LearnLengthUnit)]

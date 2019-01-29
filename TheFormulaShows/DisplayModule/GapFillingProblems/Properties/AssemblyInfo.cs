@@ -36,4 +36,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: MathSheetMarker(SystemModel.TheFormulaShows, LayoutSetting.Preview.GapFillingProblems)]
+[assembly: MathSheetMarker(SystemModel.TheFormulaShows, LayoutSetting.Classify.Generally, LayoutSetting.Preview.GapFillingProblems)]
