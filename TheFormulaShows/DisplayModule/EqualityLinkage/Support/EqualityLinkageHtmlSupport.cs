@@ -11,7 +11,7 @@ using System.Text;
 namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 {
 	/// <summary>
-	/// 
+	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport(LayoutSetting.Preview.EqualityLinkage)]
 	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/EqualityLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
@@ -26,7 +26,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// <summary>
 		/// 標題HTML模板
 		/// </summary>
-		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
 
 		/// <summary>
 		/// 左側計算式坐標列表（限定5個坐標）

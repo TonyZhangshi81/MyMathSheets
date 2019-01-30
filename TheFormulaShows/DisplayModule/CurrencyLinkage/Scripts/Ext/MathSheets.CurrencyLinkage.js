@@ -363,7 +363,7 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 			var parent = $(chk).parent();
 			if ($(chk).is(':checked')) {
 				$(chk).prop('checked', false);
-				parent.css('background-color', '#9fcfff');
+				parent.css('background-color', 'turquoise');
 			} else {
 				$(chk).prop('checked', true);
 				parent.css('background-color', '#00ff90');

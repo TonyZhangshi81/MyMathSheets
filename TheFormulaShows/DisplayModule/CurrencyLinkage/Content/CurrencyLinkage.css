@@ -4,7 +4,7 @@
 	width: 400px !important;
 	height: 500px !important;
 	display: inline-block;
-	left: 50px;
+	left: 30px;
 }
 
 .drawLine-panel-currency-crosswise {
@@ -13,7 +13,6 @@
 	width: 700px !important;
 	height: 250px !important;
 	display: inline-block;
-	left: 50px;
 }
 
 .OKCurrencyLinkage-lengthways {
@@ -46,7 +45,7 @@
 
 .divDrawLine-currency {
 	position: absolute;
-	background: #9fcfff;
+	background: turquoise;
 	width: 110px;
 	height: 60px;
 	border-radius: 10px;

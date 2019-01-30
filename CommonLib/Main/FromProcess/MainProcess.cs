@@ -326,8 +326,6 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 
 					string classifyName = string.Empty;
 
-
-
 					int indexX = 1, indexY = 1;
 					ComposerFactory.AssemblyInfoCache
 						.OrderBy(b => b.Value.Classify, new ClassifyComparer())

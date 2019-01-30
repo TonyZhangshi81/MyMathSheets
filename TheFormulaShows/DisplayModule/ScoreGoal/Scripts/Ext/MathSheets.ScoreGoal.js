@@ -150,7 +150,7 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 			});
 
 			// 验证输入值是否与答案一致
-			_arithmeticCorrecting(fault);
+			_scoreGoalCorrecting(fault);
 
 			return fault;
 		},
@@ -169,11 +169,11 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 				}
 			});
 			// 验证输入值是否与答案一致
-			_arithmeticCorrecting(fault);
+			_scoreGoalCorrecting(fault);
 		},
 
 		// 验证输入值是否与答案一致
-		_arithmeticCorrecting = function (fault) {
+		_scoreGoalCorrecting = function (fault) {
 			// 验证输入值是否与答案一致
 			if (fault == 0) {
 				// 动错题集中移除当前项目
@@ -185,7 +185,7 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 				// 移除圖片抖動特效
 				$('#imgNoScoreGoal').removeClass("shake shake-slow");
 			} else {
-				
+
 				// 对错图片显示和隐藏
 				$('#imgOKScoreGoal').hide();
 				$('#imgNoScoreGoal').show();

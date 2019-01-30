@@ -25,7 +25,7 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 		/// <summary>
 		/// 標題HTML模板
 		/// </summary>
-		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
 
 		/// <summary>
 		/// 題型HTML模板作成
@@ -48,8 +48,8 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 			foreach (NumericSortingFormula item in p.Formulas)
 			{
 				rowHtml.Length = 0;
-				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
-				rowHtml.AppendLine("<ul class=\"list-group list-group-ext\">");
+				rowHtml.AppendLine("<div class=\"col-md-9 form-inline\">");
+				rowHtml.AppendLine("<ul class=\"list-group list-group-number list-group-ext\">");
 				rowHtml.AppendLine("<li class=\"list-group-item\">");
 				rowHtml.AppendLine("<h5>");
 				item.NumberList.ForEach(d =>
@@ -58,10 +58,6 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 				});
 				rowHtml.AppendLine(string.Format("<input type=\"hidden\" id=\"hidNsAnswer{0}\" value=\"{1}\" />", parentControlIndex, GetAnswer(item.AnswerList)));
 				rowHtml.AppendLine("</h5>");
-				rowHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
-				rowHtml.AppendLine(string.Format("<img id=\"imgOKNumericSorting{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", parentControlIndex));
-				rowHtml.AppendLine(string.Format("<img id=\"imgNoNumericSorting{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", parentControlIndex));
-				rowHtml.AppendLine("</div>");
 				rowHtml.AppendLine("</li>");
 				rowHtml.AppendLine("<li class=\"list-group-item\">");
 				rowHtml.AppendLine("<h5>");
@@ -81,6 +77,13 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 				rowHtml.AppendLine("</ul>");
 				rowHtml.AppendLine("</div>");
 
+				rowHtml.AppendLine("<div class=\"col-md-3\">");
+				rowHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
+				rowHtml.AppendLine(string.Format("<img id=\"imgOKNumericSorting{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", parentControlIndex));
+				rowHtml.AppendLine(string.Format("<img id=\"imgNoNumericSorting{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", parentControlIndex));
+				rowHtml.AppendLine("</div>");
+				rowHtml.AppendLine("</div>");
+
 				colHtml.Append(rowHtml.ToString());
 
 				parentControlIndex++;
@@ -92,6 +95,8 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 
 			if (html.Length != 0)
 			{
+				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
+				html.AppendLine().Append("</div>");
 				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.NumericSorting.ToString(), LayoutSetting.Preview.NumericSorting.ToComputationalStrategyName()));
 			}
 			return html.ToString();

@@ -54,6 +54,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\default.css" />
     <Content Include="Content\image\bookmark.png" />
+    <Content Include="Content\image\checkCorrectResult.png" />
+    <Content Include="Content\image\checkFaultResult.png" />
     <Content Include="Content\image\favicon.ico" />
     <Content Include="Content\image\calculator.png" />
     <Content Include="Content\image\char-less.png" />
@@ -80,7 +82,9 @@
     <Content Include="Content\image\navigate-down.png" />
     <Content Include="Content\image\navigate-up.png" />
     <Content Include="Content\image\Plus.png" />
+    <Content Include="Content\image\score.png" />
     <Content Include="Content\image\Subtraction.png" />
+    <Content Include="Content\image\time.png" />
     <Content Include="Content\image\timg.png" />
     <Content Include="Content\image\triangle.png" />
     <Content Include="Content\switcher\MathSheets.css" />

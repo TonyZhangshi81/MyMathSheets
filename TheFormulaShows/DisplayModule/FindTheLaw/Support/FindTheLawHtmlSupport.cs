@@ -26,7 +26,7 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 		/// <summary>
 		/// 標題HTML模板
 		/// </summary>
-		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
 		/// <summary>
 		/// 題型答案項目HTML模板
 		/// </summary>
@@ -97,6 +97,8 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 
 			if (html.Length != 0)
 			{
+				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
+				html.AppendLine().Append("</div>");
 				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.FindTheLaw.ToString(), LayoutSetting.Preview.FindTheLaw.ToComputationalStrategyName()));
 			}
 

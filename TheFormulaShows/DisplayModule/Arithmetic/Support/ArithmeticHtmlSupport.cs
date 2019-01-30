@@ -25,7 +25,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		/// <summary>
 		/// 標題HTML模板
 		/// </summary>
-		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
 		/// <summary>
 		/// 等號HTML模板
 		/// </summary>
@@ -131,8 +131,8 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 
 				colHtml.AppendLine("</h5>");
 				colHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
-				colHtml.AppendLine(string.Format("<img id=\"imgOKArithmetic{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));
-				colHtml.AppendLine(string.Format("<img id=\"imgNoArithmetic{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex));
+				colHtml.AppendLine(string.Format("<img id=\"imgOKArithmetic{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex.ToString().PadLeft(2, '0')));
+				colHtml.AppendLine(string.Format("<img id=\"imgNoArithmetic{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex.ToString().PadLeft(2, '0')));
 				colHtml.AppendLine("</div>");
 				colHtml.AppendLine("</div>");
 
@@ -166,6 +166,8 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 
 			if (html.Length != 0)
 			{
+				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
+				html.AppendLine().Append("</div>");
 				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.Arithmetic.ToString(), LayoutSetting.Preview.Arithmetic.ToComputationalStrategyName()));
 			}
 
@@ -239,8 +241,8 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 			var html = string.Empty;
 			if (item == gap)
 			{
-				html += string.Format("<input id=\"inputAc{0}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", index);
-				html += string.Format("<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>", index, Base64.EncodeBase64(parameter.ToString()));
+				html += string.Format("<input id=\"inputAc{0}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", index.ToString().PadLeft(2, '0'));
+				html += string.Format("<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>", index.ToString().PadLeft(2, '0'), Base64.EncodeBase64(parameter.ToString()));
 			}
 			else
 			{

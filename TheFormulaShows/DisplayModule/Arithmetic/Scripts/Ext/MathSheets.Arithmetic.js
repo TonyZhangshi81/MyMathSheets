@@ -72,7 +72,7 @@ MathSheets.Arithmetic = MathSheets.Arithmetic || (function () {
 			var fault = 0;
 			$("input[id*='inputAc']").each(function (index, element) {
 				// 答题验证
-				if (!_arithmeticCorrecting(index, element)) {
+				if (!_arithmeticCorrecting(index.toString().PadLeft(2, '0'), element)) {
 					// 答题错误时,错误件数加一
 					fault++;
 				}
@@ -84,7 +84,7 @@ MathSheets.Arithmetic = MathSheets.Arithmetic || (function () {
 		theirPapers = function () {
 			$("input[id*='inputAc']").each(function (index, element) {
 				// 答题验证
-				if (!_arithmeticCorrecting(index, element)) {
+				if (!_arithmeticCorrecting(index.toString().PadLeft(2, '0'), element)) {
 					// 答题错误时,错误件数加一
 					__isFault++;
 				} else {

@@ -27,7 +27,7 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 		/// <summary>
 		/// 標題HTML模板
 		/// </summary>
-		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
 		/// <summary>
 		/// 輸入框HTML模板
 		/// </summary>
@@ -35,7 +35,7 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 		/// <summary>
 		/// 輸入框HTML模板（計算式輸入框（200px））
 		/// </summary>
-		private const string INPUT3_HTML_FORMAT = "<input id=\"inputGfp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-3\" disabled=\"disabled\" />";
+		private const string INPUT3_HTML_FORMAT = "<input id=\"inputGfp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-7\" disabled=\"disabled\" />";
 		/// <summary>
 		/// 文字表示HTML模板
 		/// </summary>
@@ -133,7 +133,7 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 			foreach (GapFillingProblemsFormula item in p.Formulas)
 			{
 				rowHtml.AppendLine("<div class=\"col-md-12 form-inline\">");
-				rowHtml.AppendLine("<p class=\"text-info\">");
+				rowHtml.AppendLine("<p class=\"text-info-ext text-left\">");
 				// 題號
 				rowHtml.AppendLine(string.Format("<span class=\"label label-default\">{0}. </span>", parentControlIndex + 1));
 
@@ -153,12 +153,11 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 				// 答題答案
 				answer.Length -= 1;
 				rowHtml.AppendLine(string.Format(ANSWER_HIDDEN_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), answer));
-
-				rowHtml.AppendLine("</p>");
 				rowHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
 				rowHtml.AppendLine(string.Format("<img id=\"imgOKGapFillingProblems{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", parentControlIndex.ToString().PadLeft(2, '0')));
 				rowHtml.AppendLine(string.Format("<img id=\"imgNoGapFillingProblems{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", parentControlIndex.ToString().PadLeft(2, '0')));
 				rowHtml.AppendLine("</div>");
+				rowHtml.AppendLine("</p>");
 				rowHtml.AppendLine("</div>");
 
 				parentControlIndex++;
@@ -173,6 +172,8 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 
 			if (html.Length != 0)
 			{
+				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
+				html.AppendLine().Append("</div>");
 				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.GapFillingProblems.ToString(), LayoutSetting.Preview.GapFillingProblems.ToComputationalStrategyName()));
 			}
 

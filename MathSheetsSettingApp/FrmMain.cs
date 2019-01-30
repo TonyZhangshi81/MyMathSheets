@@ -141,7 +141,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			PictureBox picBox = new PictureBox
 			{
 				// 獲取題型項目的縮略圖
-				Image = (System.Drawing.Bitmap)ImgResources.ResourceManager.GetObject(name.ToString()),
+				Image = (Bitmap)ImgResources.ResourceManager.GetObject(name.ToString()),
 				Tag = name.ToString(),
 				SizeMode = PictureBoxSizeMode.StretchImage,
 				Width = flpPreview.Width - 20,
@@ -197,7 +197,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		}
 
 		/// <summary>
-		/// 四則運算題型選擇事件
+		/// 題型選擇事件
 		/// </summary>
 		/// <param name="sender">選擇框</param>
 		/// <param name="e">選擇事件</param>
@@ -216,19 +216,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			// 刷新題型預覽區域
 			PreviewReflash();
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void WorkPagesSelectedIndexChanged(object sender, EventArgs e)
-		{
-			foreach (CheckBox control in this.panel1.Controls)
-			{
-				control.Enabled = !(cmbWorkPages.SelectedIndex > 0);
-			}
 		}
 
 		/// <summary>

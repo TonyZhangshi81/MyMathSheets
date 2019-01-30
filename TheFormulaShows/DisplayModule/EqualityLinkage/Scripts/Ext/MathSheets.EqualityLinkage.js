@@ -363,7 +363,7 @@ MathSheets.EqualityLinkage = MathSheets.EqualityLinkage || (function () {
             var parent = $(chk).parent();
             if ($(chk).is(':checked')) {
                 $(chk).prop('checked', false);
-                parent.css('background-color', '#9fcfff');
+				parent.css('background-color', 'navajowhite');
             } else {
                 $(chk).prop('checked', true);
                 parent.css('background-color', '#00ff90');

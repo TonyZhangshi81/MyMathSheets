@@ -130,21 +130,22 @@
 	<div class="container theme-showcase main-ext" role="main" id="divContainer">
 		<!-- 標題歡迎畫面 -->
 		<div class="jumbotron-ext">
-			<div style="margin-bottom: 50px;"><span class="label label-default label-title">你好！我们一起做练习</span></div>
+			<div style="margin-bottom: 50px;"><span class="label label-default label-title">我们一起做练习</span></div>
+			<br />
 			<div class="div-famousPeople">
 				<h6>
-					<span class="text-info-ext">普罗克拉斯：哪里有数，哪里就有美。</span>
+					<span class="text-info-famousPeople">普罗克拉斯：哪里有数，哪里就有美。</span>
 					<br />
-					<span class="text-info-ext">罗素：数学，如果正常的看它，不但拥有真理，而且也具有至高的美，正如雕塑的美，是一种冷而严肃的美。"</span>
+					<span class="text-info-famousPeople">罗素：数学，如果正常的看它，不但拥有真理，而且也具有至高的美，正如雕塑的美，是一种冷而严肃的美。"</span>
 					<br />
-					<span class="text-info-ext">华罗庚：数学是壮丽多彩、千姿百态、引人入胜的，认为数学枯燥乏味的人，只是看到了数学的严谨性，而没有体会出数学的内在美。"</span>
+					<span class="text-info-famousPeople">华罗庚：数学是壮丽多彩、千姿百态、引人入胜的，认为数学枯燥乏味的人，只是看到了数学的严谨性，而没有体会出数学的内在美。"</span>
 				</h6>
 			</div>
 			<hr class="hr-Ext" />
-			<div class="text-info-ext">
-				前一次做题用时：<span id="spanOld" style="padding-left:10px;">00：00：00</span>
-				<span style="padding-left:20px;">答对:</span><span id="spanOldOK" style="padding-left:10px;"></span>题
-				<span style="padding-left:20px;">答错:</span><span id="spanOldNo" style="padding-left:10px;"></span>题
+			<div class="text-info-result-top">
+				<img src="../Content/image/time.png" class="imgCheckResult" /><span id="spanOld" style="padding-left:10px;">00：00：00</span>
+				<span style="padding-left:20px;"></span><img src="../Content/image/checkCorrectResult.png" class="imgCheckResult" /><span id="spanOldOK" style="padding-left:10px;"></span>题
+				<span style="padding-left:20px;"></span><img src="../Content/image/checkFaultResult.png" class="imgCheckResult" /><span id="spanOldNo" style="padding-left:10px;"></span>题
 			</div>
 			<div class="plugin-butterfly">
 				<iframe frameborder="0" scrolling="no" src="../Plugin/butterfly.html" width="320" height="250"></iframe>
@@ -154,7 +155,7 @@
 		<div id="divPrintContent">
 			<!--CONTENT-->
 		</div>
-		<HR>
+		<hr>
 		<!-- 按鍵操作區 -->
 		<div class="row">
 			<div class="col-md-12 col-md-offset-3">
@@ -169,11 +170,11 @@
 		</div>
 		<!-- 答題評分區 -->
 		<div class="page-header">
-			<div class="row text-left">
-				<div class="col-md-2">
-					<h5>答题情况</h5>
+			<div class="row text-info-result div-score">
+				<div class="col-md-1">
+					<img src="../Content/image/score.png" class="imgCheckResult-2" data-toggle="tooltip" title="答题情况" />
 				</div>
-				<div class="col-md-9">
+				<div class="col-md-11">
 					<div class="rating-stars block" id="more-rating" style="display: none;">
 						<input type="hidden" id="hidPracticeScore" value="0" class="rating-value" />
 						<div class="rating-stars-container">
@@ -213,13 +214,18 @@
 			</div>
 		</div>
 		<!-- 答題統計 -->
-		<div class="row text-left">
-			<div class="col-md-12">
-				<h7>
-					用时：<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
-					<br />答对：<span id="spanOK" style="width: 30px; display:inline; padding-left:20px;"></span>题
-					<br />答错：<span id="spanNo" style="width: 30px; display:inline; padding-left:20px;"></span>题
-				</h7>
+		<div class="row text-left div-check-result">
+			<div class="col-md-3">
+				<img src="../Content/image/time.png" class="imgCheckResult" data-toggle="tooltip" title="答题用时" />
+				<u><span id="spanHH" style="padding-left:10px;">00</span></u>时
+				<u><span id="spanMM" style="padding-left:10px;">00</span></u>分
+				<u><span id="spanSS" style="padding-left:10px;">00</span></u>秒
+			</div>
+			<div class="col-md-2">
+				<img src="../Content/image/checkCorrectResult.png" class="imgCheckResult" data-toggle="tooltip" title="答对" /><u><span id="spanOK" style="width: 30px; display:inline; padding-left:20px;"></span></u>题
+			</div>
+			<div class="col-md-2">
+				<img src="../Content/image/checkFaultResult.png" class="imgCheckResult" data-toggle="tooltip" title="答错" /><u><span id="spanNo" style="width: 30px; display:inline; padding-left:20px;"></span></u>题
 			</div>
 		</div>
 	</div>

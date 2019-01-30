@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 
 .divBall {
 	z-index: 2;
@@ -62,5 +62,5 @@
 	width: 900px !important;
 	height: 300px !important;
 	display: inline-block;
-	left: 100px;
+	left: 50px;
 }

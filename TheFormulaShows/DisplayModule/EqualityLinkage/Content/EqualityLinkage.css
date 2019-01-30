@@ -4,7 +4,7 @@
 	width: 400px !important;
 	height: 300px !important;
 	display: inline-block;
-	left: 50px;
+	left: 30px;
 }
 
 .OKEqualityLinkage-lengthways {
@@ -46,7 +46,7 @@
 
 .divDrawLine {
 	position: absolute;
-	background: #9fcfff;
+	background: navajowhite;
 	width: 110px;
 	height: 30px;
 	border-radius: 10px;

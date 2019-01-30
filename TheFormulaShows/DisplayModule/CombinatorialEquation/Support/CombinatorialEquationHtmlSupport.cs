@@ -27,7 +27,7 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 		/// <summary>
 		/// 標題HTML模板
 		/// </summary>
-		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span style=\"padding: 8px\">{1}</span></h4></div><hr />";
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
 		/// <summary>
 		/// 標籤HTML模板
 		/// </summary>
@@ -61,21 +61,21 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 
 				listGroupHtml.AppendLine("<div class=\"col-md-4 form-inline\">");
 				listGroupHtml.AppendLine("<ul class=\"list-group list-group-ext\">");
-				listGroupHtml.AppendLine("<li class=\"list-group-item\">");
+				listGroupHtml.AppendLine("<li class=\"list-group-item list-group-item-number\">");
 				listGroupHtml.AppendLine("<h4>");
 				listGroupHtml.AppendLine(string.Format(SPAN_BADGE_HTML_FORMAT, "badge-warning", item.ParameterA));
 				listGroupHtml.AppendLine(string.Format(SPAN_BADGE_HTML_FORMAT, "badge-success", item.ParameterB));
 				listGroupHtml.AppendLine(string.Format(SPAN_BADGE_HTML_FORMAT, "badge-primary", item.ParameterC));
 				listGroupHtml.AppendLine(string.Format(SPAN_BADGE_HTML_FORMAT, "badge-info", item.ParameterD));
 				listGroupHtml.AppendLine("</h4>");
-				listGroupHtml.AppendLine("<div class=\"divCorrectOrFault-3\">");
-				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKCombinatorial{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));
-				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoCombinatorial{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex));
-				listGroupHtml.AppendLine("</div>");
 				listGroupHtml.AppendLine(string.Format("<input id=\"hiddenCe{0}\" type=\"hidden\" value=\"{1}\" />", controlIndex, GetAnswer(item.CombinatorialFormulas)));
 				listGroupHtml.AppendLine("</li>");
 				listGroupHtml.AppendLine(GetHtml(item.CombinatorialFormulas, controlIndex));
 				listGroupHtml.AppendLine("</ul>");
+				listGroupHtml.AppendLine("<div class=\"divCorrectOrFault-3\">");
+				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKCombinatorial{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex));
+				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoCombinatorial{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex));
+				listGroupHtml.AppendLine("</div>");
 				listGroupHtml.AppendLine("</div>");
 
 				controlIndex++;
@@ -106,6 +106,8 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 
 			if (html.Length != 0)
 			{
+				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
+				html.AppendLine().Append("</div>");
 				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CombinatorialEquation.ToString(), LayoutSetting.Preview.CombinatorialEquation.ToComputationalStrategyName()));
 			}
 

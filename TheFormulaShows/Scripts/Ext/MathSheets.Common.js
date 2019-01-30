@@ -100,7 +100,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 		lastTimeRestore = function (oldSpanId, rightSpanId, faultSpanId) {
 			// 獲取內容
 			var result = store.get('result');
-			if (typeof result !== typeof undefined && result !== false) {
+		if (typeof result !== typeof undefined && result !== false) {
+			console.log(result.time);
 				// 前次用時顯示
 				$(_getId(oldSpanId)).text(result.time);
 				// 前次答對數顯示
@@ -573,11 +574,11 @@ MathSheets.Common = MathSheets.Common || (function () {
 			switch (__game) {
 				case 1:
 					// 貪吃蛇遊戲
-					_openWindow("../Games/snake/snake-game.html", "貪吃蛇", 440, 470);
+					_openWindow("../Games/snake/snake-game.html", "贪吃蛇", 440, 470);
 					break;
 				case 2:
 					// 打方塊遊戲
-					_openWindow("../Games/break the bricks/index.html", "打方塊", 810, 605);
+					_openWindow("../Games/break the bricks/index.html", "打方块", 810, 605);
 					break;
 			}
 		},
