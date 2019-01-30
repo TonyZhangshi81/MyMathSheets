@@ -230,8 +230,16 @@
 		</div>
 	</div>
 	<!-- 網頁版權 -->
-	<div class="div-company">
+	<div class="row div-company">
+		<div class="col-md-12 text-center">
+			<img src="../Content/image/logo.png" style="width: 50px;" />
+		</div>
+		<div class="col-md-12 text-center">
+			使用条款和隐私条款。版权所有，保留一切权利。
+		</div>
+		<div class="col-md-12 text-center">
 			&copy; MyMathSheets.HOME 2018
+		</div>
 	</div>
 	<!-- 置頂按鍵 -->
 	<a href="javascript:" class="totop"></a>

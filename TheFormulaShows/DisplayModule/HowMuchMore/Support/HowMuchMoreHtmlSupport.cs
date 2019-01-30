@@ -97,10 +97,6 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 				listGroupHtml.AppendLine("<h4>");
 				listGroupHtml.AppendLine(GetProblemHtml(item));
 				listGroupHtml.AppendLine("</h4>");
-				listGroupHtml.AppendLine("<div class=\"divCorrectOrFault-3\">");
-				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKHmm{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-3\" />", controlIndex));
-				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoHmm{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-3\" />", controlIndex));
-				listGroupHtml.AppendLine("</div>");
 				listGroupHtml.AppendLine("</li>");
 
 				// 表示項目顯示
@@ -119,6 +115,10 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 
 				// 結束符
 				listGroupHtml.AppendLine("</ul>");
+				listGroupHtml.AppendLine("<div class=\"divCorrectOrFault-4\">");
+				listGroupHtml.AppendLine(string.Format("<img id=\"imgOKHmm{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-4\" />", controlIndex));
+				listGroupHtml.AppendLine(string.Format("<img id=\"imgNoHmm{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-4\" />", controlIndex));
+				listGroupHtml.AppendLine("</div>");
 				listGroupHtml.AppendLine("</div>");
 
 				// 答案項目

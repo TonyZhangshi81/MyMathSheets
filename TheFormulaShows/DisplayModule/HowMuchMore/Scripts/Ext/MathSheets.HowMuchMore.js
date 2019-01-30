@@ -71,8 +71,8 @@ MathSheets.HowMuchMore = MathSheets.HowMuchMore || (function () {
 			$('#imgOKHmm' + pIndex).hide();
 			$('#imgNoHmm' + pIndex).show();
 			$('#imgNoHmm' + pIndex).animate({
-				width: "30px",
-				height: "30px",
+				width: "60px",
+				height: "60px",
 				marginLeft: "0px",
 				marginTop: "0px"
 			}, 1000, function () {

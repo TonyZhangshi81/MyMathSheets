@@ -13,7 +13,7 @@
 	text-align: right;
 	font-family: inherit;
 	font-size: xx-small;
-	margin-top: 30px;
+	margin-top: 40px;
 }
 
 .div-check-result {
@@ -257,6 +257,7 @@
 	border-radius: 0.8rem;
 	background: url("../Content/image/timg.png") no-repeat;
 	background-size: 100% 100%;
+	-webkit-box-shadow: 0 0 8px;
 }
 
 .main-ext {
