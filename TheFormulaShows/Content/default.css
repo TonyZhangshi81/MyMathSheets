@@ -268,7 +268,7 @@
 
 .plugin-shake-head-area {
 	position: fixed;
-	top: 3%;
+	top: 0px;
 	right: -15px;
 	z-index: 70;
 }

@@ -232,13 +232,14 @@ MathSheets.Common = MathSheets.Common || (function () {
 
 		// 顯示獎章
 		_setAward = function () {
-			$("#tony-shake-head").css("top", 200).css("right", 400);
+
+			// 恭喜答對滿分過關
+			MathSheets.HelloMrTony.doCelebrate();
+
 			// 如果答題滿分的話則顯示獎章
 			if (__isFault != 0) {
 				return;
 			}
-
-			$("#tony-shake-head").css("top", 200).css("right", 400);
 
 			// 置頂處理
 			toTop();

@@ -30,6 +30,7 @@
 	<script src="../Scripts/jquery.rating-stars.min.js"></script>
 	<script src="../Scripts/jquery.easing.1.3.js"></script>
 	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
+	<script src="../Scripts/Ext/MathSheets.HelloMrTony.js" charset="utf-8"></script>
 	<!--SCRIPT-->
 	<title>一起数学</title>
 

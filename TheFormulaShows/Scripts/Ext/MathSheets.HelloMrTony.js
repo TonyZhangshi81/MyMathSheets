@@ -1,27 +1,18 @@
 ﻿
-var __tony;
-
 var MathSheets = MathSheets || {};
 MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
-	// 指定并找到老師
-	teacher = function () {
-		if (__tony == null) {
-			__tony = $("#divShakeHead");
-		}
-		return __tony;
-	}
-
 	// 恭喜你,滿分過關
 	doCelebrate = function () {
+		var $teacher = $("#divShakeHead");
 		// 頭像居中設置
-		teacher.css("top", "200px").css("right", "400px");
-		// 刪除默認會話
-		teacher.attr("title", "");
+		$teacher.css("top", "100px").css("right", "400px");
+		// 撤銷默認會話
+		$teacher.tooltip('destroy');
 	};
-	
+
 	return {
-		teacher: teacher,
+		// 恭喜答對滿分過關
 		doCelebrate: doCelebrate
-};
+	};
 }());
