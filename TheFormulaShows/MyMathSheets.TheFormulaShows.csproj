@@ -79,6 +79,7 @@
     <Content Include="Content\image\lighton.png" />
     <Content Include="Content\image\logo.png" />
     <Content Include="Content\image\Multiple.png" />
+    <Content Include="Content\image\musicPlayer.png" />
     <Content Include="Content\image\navigate-down.png" />
     <Content Include="Content\image\navigate-up.png" />
     <Content Include="Content\image\Plus.png" />
@@ -97,7 +98,6 @@
     <Content Include="Content\switcher\MathSheets-eyeshieldgreen.css" />
     <Content Include="Demo\ALL.html" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
-    <Content Include="Demo\snake-game.html" />
     <Content Include="Games\break the bricks\css\default.css" />
     <Content Include="Games\break the bricks\css\normalize.css" />
     <Content Include="Games\break the bricks\fonts\icomoon.svg" />
@@ -106,6 +106,8 @@
     <Content Include="Games\snake\ball_blue.png" />
     <Content Include="Games\snake\ball_purple.png" />
     <Content Include="Games\snake\snake-game.html" />
+    <Content Include="Plugin\TonyShakeHead\css\style.css" />
+    <Content Include="Plugin\TonyShakeHead\index.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -142,9 +144,9 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Plugin\butterfly.html" />
-    <Content Include="Plugin\css\reset.min.css" />
-    <Content Include="Plugin\css\style.css" />
+    <Content Include="Plugin\Butterfly\butterfly.html" />
+    <Content Include="Plugin\Butterfly\css\reset.min.css" />
+    <Content Include="Plugin\Butterfly\css\style.css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Content\bootstrap-grid.css.map" />

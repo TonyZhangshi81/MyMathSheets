@@ -100,8 +100,8 @@ MathSheets.Common = MathSheets.Common || (function () {
 		lastTimeRestore = function (oldSpanId, rightSpanId, faultSpanId) {
 			// 獲取內容
 			var result = store.get('result');
-		if (typeof result !== typeof undefined && result !== false) {
-			console.log(result.time);
+			if (typeof result !== typeof undefined && result !== false) {
+				console.log(result.time);
 				// 前次用時顯示
 				$(_getId(oldSpanId)).text(result.time);
 				// 前次答對數顯示
@@ -232,17 +232,20 @@ MathSheets.Common = MathSheets.Common || (function () {
 
 		// 顯示獎章
 		_setAward = function () {
+			$("#tony-shake-head").css("top", 200).css("right", 400);
 			// 如果答題滿分的話則顯示獎章
 			if (__isFault != 0) {
 				return;
 			}
 
+			$("#tony-shake-head").css("top", 200).css("right", 400);
+
 			// 置頂處理
 			toTop();
-			// 精彩瞬間應該先等上4秒鐘 :-!
+			// 精彩瞬間應該先等上2秒鐘 :-!
 			setTimeout(function () {
 				// 隨機設定獎章
-				var path = String.format("../Content/image/honor/award{0}.png", _getRandom(8));
+				var path = String.format("../Content/image/honor/award{0}.png", _getRandom(10));
 				$(".imgAward").attr('src', path);
 				// 顯示獎章 :-)
 				$(".imgAward").fadeIn(500, function () {
@@ -279,6 +282,10 @@ MathSheets.Common = MathSheets.Common || (function () {
 		// 鼠標移入頁面頂端導航區域時，浮動菜單顯示
 		overNavbarShow = function () {
 			$(".box").slideDown(500, function () {
+				var realTimeClData = setInterval(function () {
+					$(".box").slideUp(500);
+					clearInterval(realTimeClData);
+				}, 3000);
 			});
 		},
 
@@ -583,6 +590,13 @@ MathSheets.Common = MathSheets.Common || (function () {
 			}
 		},
 
+		// 點擊托尼后影藏
+		//setShakeHeadHide = function () {
+		//	$(this).slideDown(500, function () {
+		//		$('#divTonyMusic').show();
+		//	});
+		//},
+
 		// 按鍵屏蔽防止刷新頁面
 		forbidKeyDown = function () {
 			$(document).bind("keydown", function (e) {
@@ -695,6 +709,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 		imgAwardClick: imgAwardClick,
 		ready: ready,
 		windowScroll: windowScroll,
+		//setShakeHeadHide: setShakeHeadHide,
 		removeInputElementArray: removeInputElementArray
 	};
 }());
@@ -773,6 +788,9 @@ $(document).ready(function () {
 	$('.switcher li').bind("click", function () { MathSheets.Common.styleSelect(this); });
 	// 獎牌點擊事件
 	$('.imgAward').bind("click", function () { MathSheets.Common.imgAwardClick(); });
+
+	// 點擊托尼后影藏
+	//$('#divShakeHead').bind("click", function () { MathSheets.Common.setShakeHeadHide(); });
 
 	// 計算式提示
 	$(function () { $("[data-toggle='tooltip']").tooltip(); });

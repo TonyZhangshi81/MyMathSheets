@@ -1,4 +1,5 @@
 ﻿@charset "utf-8";
+
 @media screen and (min-width: 1200px) {
 	.container {
 		max-width: 1000px !important;
@@ -14,7 +15,13 @@
 	font-family: inherit;
 	font-size: xx-small;
 	margin-top: 40px;
+	width: 100%;
 }
+
+	.div-company .imgCompany {
+		width: 80px;
+		border: 1px outset;
+	}
 
 .div-check-result {
 	color: floralwhite !important;
@@ -114,20 +121,28 @@
 	border: 1px solid black;
 }
 
-.switcher li:hover {
-	width: 30px;
-	height: 30px;
-	-webkit-box-shadow: 0 0 7px;
-}
+	.switcher li:hover {
+		width: 30px;
+		height: 30px;
+		-webkit-box-shadow: 0 0 7px;
+	}
 
 .bs-docs-sidebar {
 	position: fixed;
 	right: 0px;
 	background-color: transparent;
 	letter-spacing: 4px;
-	top: 250px;
+	top: 50%;
 	padding-right: 20px;
-	z-index: 70;
+	z-index: 72;
+	transform: translateY(-50%);
+}
+
+.tony-shake-head {
+	position: absolute;
+	background-color: transparent;
+	top: 0;
+	right: -160px;
 }
 
 .scrollHelper-up {
@@ -146,9 +161,9 @@
 	z-index: 80;
 }
 
-.scrollHelper-down div.help {
-	float: right;
-}
+	.scrollHelper-down div.help {
+		float: right;
+	}
 
 .scrollHelper-up div.help {
 	float: right;
@@ -164,6 +179,12 @@
 	-o-transform: rotate(17.5deg);
 	-webkit-transform: rotate(17.5deg);
 	-moz-transform: rotate(17.5deg);
+}
+
+.imgTonyMusic {
+	width: 40px;
+	height: 40px;
+	display: none;
 }
 
 .imgAward {
@@ -188,6 +209,7 @@
 	width: 20px;
 	height: 20px;
 }
+
 .imgCheckResult-2 {
 	width: 50px;
 	height: 50px;
@@ -208,12 +230,13 @@
 	border-radius: 0.8rem;
 	width: 10px;
 	height: 10px;
-	margin-right:3px;
+	margin-right: 3px;
 }
 
 .bs-docs-sidebar a:hover {
 	color: darkorange;
 }
+
 .bs-docs-sidebar a.active {
 	color: darkorange;
 }
@@ -228,19 +251,32 @@
 	right: 50px;
 	bottom: 50px;
 	display: none;
-	z-index: 70;
+	z-index: 71;
 }
 
-.totop:hover {
-	background: url(../Content/image/navigate-up.png) center no-repeat crimson;
-	background-size: 36px 36px;
-	-webkit-box-shadow: 0 0 10px;
+	.totop:hover {
+		background: url(../Content/image/navigate-up.png) center no-repeat crimson;
+		background-size: 36px 36px;
+		-webkit-box-shadow: 0 0 10px;
+	}
+
+.plugin-butterfly-area {
+	position: relative;
+	top: -230px;
+	left: -140px;
+}
+
+.plugin-shake-head-area {
+	position: fixed;
+	top: 3%;
+	right: -15px;
+	z-index: 70;
 }
 
 .plugin-butterfly {
 	position: absolute;
-	top: 10px;
-	left: 90px;
+	top: 0px;
+	left: 0px;
 }
 
 .row-margin-top {
@@ -248,7 +284,7 @@
 }
 
 .hr-Ext {
-	margin-top:0;
+	margin-top: 0;
 	margin-bottom: 0rem;
 }
 
@@ -291,7 +327,7 @@
 
 .input-addBorder {
 	border: 1px solid black;
-	width: 50px!important;
+	width: 50px !important;
 	text-align: center;
 }
 
@@ -385,7 +421,7 @@ svg {
 .imgBookmark {
 	width: 8px;
 	height: 8px;
-	margin-top:-30px;
+	margin-top: -30px;
 }
 
 .imgCorrect-1 {

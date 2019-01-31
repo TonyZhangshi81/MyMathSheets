@@ -31,9 +31,9 @@
 	<script src="../Scripts/jquery.easing.1.3.js"></script>
 	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
 	<!--SCRIPT-->
-	<title>題庫</title>
+	<title>一起数学</title>
 
-	<script>
+	<script type="text/javascript">
 		// 打印
 		function btnPrintClick() {
 			// 打印前頁面設定
@@ -110,6 +110,15 @@
 		<ul class="nav nav-ext">
 		</ul>
 	</div>
+	<!-- 托尼搖動的腦袋：） -->
+	<div class="plugin-shake-head-area">
+		<div class="tony-shake-head" id="divShakeHead" data-toggle="tooltip" title="I'm Tony. Hello! Eve.">
+			<iframe frameborder="0" scrolling="no" src="../Plugin/TonyShakeHead/index.html" width="500" height="300"></iframe>
+		</div>
+		<div class="tony-music" id="divTonyMusic">
+			<img src="../Content/image/musicPlayer.png" class="imgTonyMusic" />
+		</div>
+	</div>
 	<!-- 獎牌擺放區 -->
 	<div class="honorArea">
 		<img src="" class="imgAward" />
@@ -132,6 +141,7 @@
 		<div class="jumbotron-ext">
 			<div style="margin-bottom: 50px;"><span class="label label-default label-title">我们一起做练习</span></div>
 			<br />
+			<!-- 名人名言顯示 -->
 			<div class="div-famousPeople">
 				<h6>
 					<span class="text-info-famousPeople">普罗克拉斯：哪里有数，哪里就有美。</span>
@@ -141,14 +151,18 @@
 					<span class="text-info-famousPeople">华罗庚：数学是壮丽多彩、千姿百态、引人入胜的，认为数学枯燥乏味的人，只是看到了数学的严谨性，而没有体会出数学的内在美。"</span>
 				</h6>
 			</div>
+			<!-- 插件動畫顯示（父相子絕不留空位） -->
+			<div class="plugin-butterfly-area">
+				<div class="plugin-butterfly">
+					<iframe frameborder="0" scrolling="no" src="../Plugin/Butterfly/butterfly.html" width="320" height="250"></iframe>
+				</div>
+			</div>
 			<hr class="hr-Ext" />
+			<!-- 前次做題情況 -->
 			<div class="text-info-result-top">
-				<img src="../Content/image/time.png" class="imgCheckResult" /><span id="spanOld" style="padding-left:10px;">00：00：00</span>
+				<img src="../Content/image/time.png" class="imgCheckResult" data-toggle="tooltip" title="前次做题情况" /><span id="spanOld" style="padding-left:10px;">00：00：00</span>
 				<span style="padding-left:20px;"></span><img src="../Content/image/checkCorrectResult.png" class="imgCheckResult" /><span id="spanOldOK" style="padding-left:10px;"></span>题
 				<span style="padding-left:20px;"></span><img src="../Content/image/checkFaultResult.png" class="imgCheckResult" /><span id="spanOldNo" style="padding-left:10px;"></span>题
-			</div>
-			<div class="plugin-butterfly">
-				<iframe frameborder="0" scrolling="no" src="../Plugin/butterfly.html" width="320" height="250"></iframe>
 			</div>
 		</div>
 		<!-- 題型區 -->
@@ -232,13 +246,13 @@
 	<!-- 網頁版權 -->
 	<div class="row div-company">
 		<div class="col-md-12 text-center">
-			<img src="../Content/image/logo.png" style="width: 50px;" />
+			<img src="../Content/image/logo.png" class="imgCompany" />
 		</div>
 		<div class="col-md-12 text-center">
 			使用条款和隐私条款。版权所有，保留一切权利。
 		</div>
 		<div class="col-md-12 text-center">
-			&copy; MyMathSheets.HOME 2018
+			&copy; Tony's MathSheets 2018
 		</div>
 	</div>
 	<!-- 置頂按鍵 -->

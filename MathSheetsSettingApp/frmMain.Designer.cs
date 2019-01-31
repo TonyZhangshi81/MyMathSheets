@@ -106,7 +106,7 @@
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "一起做练习";
+			this.Text = "一起数学";
 			this.Load += new System.EventHandler(this.FormLoad);
 			this.ResumeLayout(false);
 
