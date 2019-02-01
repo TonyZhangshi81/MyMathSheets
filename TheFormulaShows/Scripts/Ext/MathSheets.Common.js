@@ -233,13 +233,13 @@ MathSheets.Common = MathSheets.Common || (function () {
 		// 顯示獎章
 		_setAward = function () {
 
-			// 恭喜答對滿分過關
-			MathSheets.HelloMrTony.doCelebrate();
-
 			// 如果答題滿分的話則顯示獎章
 			if (__isFault != 0) {
 				return;
 			}
+
+			// 恭喜答對滿分過關
+			MathSheets.HelloMrTony.doCelebrate();
 
 			// 置頂處理
 			toTop();
@@ -263,7 +263,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 							.animate({ "top": "-15px", }, 10)
 					});
 				});
-			}, 2000);
+			}, 3000);
 		},
 
 		// 隨機數取得
@@ -795,6 +795,8 @@ $(document).ready(function () {
 
 	// 計算式提示
 	$(function () { $("[data-toggle='tooltip']").tooltip(); });
+	MathSheets.HelloMrTony.initialize();
+
 	// 頁面主題初期化設置
 	MathSheets.Common.styleInitialize();
 });
