@@ -65,6 +65,9 @@ MathSheets.Common = MathSheets.Common || (function () {
 				// 頁面第一個輸入域設置Active
 				$('#divPrintContent').find(':text').first().focus();
 			}, 1000);
+
+			// 虛擬人物開始說話了
+			MathSheets.HelloMrTony.readyComplete();
 		},
 
 		// 頁面答應處理
@@ -243,15 +246,15 @@ MathSheets.Common = MathSheets.Common || (function () {
 
 			// 置頂處理
 			toTop();
-			// 精彩瞬間應該先等上2秒鐘 :-!
+			// 精彩瞬間應該先等上3秒鐘 :-!
 			setTimeout(function () {
 				// 隨機設定獎章
 				var path = String.format("../Content/image/honor/award{0}.png", _getRandom(10));
 				$(".imgAward").attr('src', path);
 				// 顯示獎章 :-)
-				$(".imgAward").fadeIn(500, function () {
+				$(".imgAward").fadeIn(2000, function () {
 					$(this).animate({ width: "290px", height: "290px" }, "slow", null, function () {
-						$(".honorArea").animate({ "top": "-30px", }, 100)
+						$(".honorArea").animate({ "top": "-30px", }, 300)
 							.animate({ "top": "-15px", }, 100)
 							.animate({ "top": "-28px", }, 100)
 							.animate({ "top": "-15px", }, 100)
