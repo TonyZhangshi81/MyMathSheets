@@ -69,7 +69,9 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 			__switch = onoff;
 
 			if (__switch == 'off') {
-				// 開啟虛擬人物
+				$teacher.tooltip('hide');
+				$teacher.attr('data-original-title', "");
+				// 關閉虛擬人物
 				$teacher.animate({
 					width: 0
 				}, "slow", "swing", function () { $teacher.hide(); });
@@ -89,10 +91,15 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
 		// 全局參數初期化設置
 		_initParameter = function (setDialogueArrayFunc, dialogueId, messageIsShowed, isCirculation, callbackFunc) {
+			// 回話序列
 			__dialogueArray = setDialogueArrayFunc();
+			// 當前會話所在集合的位置
 			__dialogueId = dialogueId;
+			// 會話是否已經顯示
 			__messageIsShowed = messageIsShowed;
+			// 是否無限循環執行
 			__isCirculation = isCirculation;
+			// 循環事件執行后的回調函數定義對象
 			__callbackFunc = callbackFunc;
 		},
 
