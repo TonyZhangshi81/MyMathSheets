@@ -283,13 +283,13 @@ MathSheets.Common = MathSheets.Common || (function () {
 			store.set('result', { time: timeStr, right: __isRight, fault: __isFault });
 		},
 
-		// 鼠標移入頁面頂端導航區域時，浮動菜單顯示
+		// 鼠標移入頁面頂端導航區域時，浮動菜單顯示（4秒后自動隱藏）
 		overNavbarShow = function () {
 			$(".box").slideDown(500, function () {
 				var realTimeClData = setInterval(function () {
 					$(".box").slideUp(500);
 					clearInterval(realTimeClData);
-				}, 3000);
+				}, 4000);
 			});
 		},
 
@@ -594,12 +594,16 @@ MathSheets.Common = MathSheets.Common || (function () {
 			}
 		},
 
-		// 點擊托尼后影藏
-		//setShakeHeadHide = function () {
-		//	$(this).slideDown(500, function () {
-		//		$('#divTonyMusic').show();
-		//	});
-		//},
+		// 是否啟用托尼
+		useClown = function () {
+			if ($('.imgClown').attr('src') == '../Content/image/clown-color.png') {
+				$('.imgClown').attr('src', '../Content/image/clown.png');
+				MathSheets.HelloMrTony.showMrTony('off');
+			} else {
+				$('.imgClown').attr('src', '../Content/image/clown-color.png');
+				MathSheets.HelloMrTony.showMrTony('on');
+			}
+		},
 
 		// 按鍵屏蔽防止刷新頁面
 		forbidKeyDown = function () {
@@ -713,7 +717,7 @@ MathSheets.Common = MathSheets.Common || (function () {
 		imgAwardClick: imgAwardClick,
 		ready: ready,
 		windowScroll: windowScroll,
-		//setShakeHeadHide: setShakeHeadHide,
+		useClown: useClown,
 		removeInputElementArray: removeInputElementArray
 	};
 }());
@@ -793,8 +797,8 @@ $(document).ready(function () {
 	// 獎牌點擊事件
 	$('.imgAward').bind("click", function () { MathSheets.Common.imgAwardClick(); });
 
-	// 點擊托尼后影藏
-	//$('#divShakeHead').bind("click", function () { MathSheets.Common.setShakeHeadHide(); });
+	// 是否啟用托尼
+	$('.imgClown').click(function () { MathSheets.Common.useClown(); });
 
 	// 計算式提示
 	$(function () { $("[data-toggle='tooltip']").tooltip(); });

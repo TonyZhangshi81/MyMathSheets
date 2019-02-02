@@ -1,4 +1,6 @@
 ﻿
+// 虛擬人物開關
+var __switch = 'on';
 // 回話序列
 var __dialogueArray = new Array();
 // 定時器執行后ID
@@ -6,7 +8,7 @@ var __timeId;
 // 當前會話所在集合的位置
 var __dialogueId = 0;
 // 會話是否已經顯示
-var __isShowed = false;
+var __messageIsShowed = false;
 // 是否無限循環執行
 var __isCirculation = false;
 // 循環事件執行后的回調函數定義對象
@@ -18,8 +20,17 @@ var MathSheets = MathSheets || {};
 
 MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
+	var _tonyWidth = 0;
+
 	// 回話顯示dialogue
 	_dialogue = function () {
+
+		if (__switch == 'off') {
+			// 停止計時
+			clearInterval(__timeId);
+			return;
+		}
+
 		if (!__isCirculation) {
 			if (__dialogueId >= __dialogueArray.length) {
 				__dialogueArray.length = 0;
@@ -41,23 +52,46 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 			return;
 		}
 
-		if (!__isShowed) {
+		if (!__messageIsShowed) {
 			$teacher.attr('data-original-title', __dialogueArray[__dialogueId]);
 			$teacher.tooltip('show');
-			__isShowed = true;
+			__messageIsShowed = true;
 		} else {
 			$teacher.tooltip('hide');
 			$teacher.attr('data-original-title', "");
 			__dialogueId++;
-			__isShowed = false;
+			__messageIsShowed = false;
 		}
 	},
 
+		// 開啟或者關閉虛擬人物
+		showMrTony = function (onoff) {
+			__switch = onoff;
+
+			if (__switch == 'off') {
+				// 開啟虛擬人物
+				$teacher.animate({
+					width: 0
+				}, "slow", "swing", function () { $teacher.hide(); });
+			} else {
+				// 如果虛擬人物的會話已經結束，則不顯示人物
+				if (__dialogueArray.length == 0) {
+					return;
+				}
+				// 人物顯示
+				$teacher.show();
+				// 自動播放
+				$teacher.animate({
+					width: _tonyWidth
+				}, "slow", "swing", autoPlay(4000));
+			}
+		},
+
 		// 全局參數初期化設置
-		_initParameter = function (setDialogueArrayFunc, dialogueId, isShowed, isCirculation, callbackFunc) {
+		_initParameter = function (setDialogueArrayFunc, dialogueId, messageIsShowed, isCirculation, callbackFunc) {
 			__dialogueArray = setDialogueArrayFunc();
 			__dialogueId = dialogueId;
-			__isShowed = isShowed;
+			__messageIsShowed = messageIsShowed;
 			__isCirculation = isCirculation;
 			__callbackFunc = callbackFunc;
 		},
@@ -71,6 +105,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 		initialize = function () {
 			$teacher = $("#divShakeHead");
 			$teacher.tooltip({ html: true });
+			_tonyWidth = parseInt($teacher.css('width'));
 
 			// 參數初期化設置
 			_initParameter(function () {
@@ -144,6 +179,8 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 		// 準備操作已經完成
 		readyComplete: readyComplete,
 		// 自動播放
-		autoPlay: autoPlay
+		autoPlay: autoPlay,
+		// 虛擬人物開關
+		showMrTony: showMrTony
 	};
 }());

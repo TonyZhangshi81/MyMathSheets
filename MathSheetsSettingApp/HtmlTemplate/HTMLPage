@@ -93,6 +93,7 @@
 	<div class="box">
 		<div class="box-content">
 			<a href="#" class="close close-ext" id="close">&times;</a>
+			<img src="../Content/image/womanHand1.png" class="imgWomanHand" />
 			<ul class="switcher">
 				<li style="background-color: lemonchiffon;" id="default"></li>
 				<li style="background-color: burlywood;" id="burlywood"></li>

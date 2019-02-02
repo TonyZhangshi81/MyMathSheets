@@ -56,6 +56,8 @@
     <Content Include="Content\image\bookmark.png" />
     <Content Include="Content\image\checkCorrectResult.png" />
     <Content Include="Content\image\checkFaultResult.png" />
+    <Content Include="Content\image\clown-color.png" />
+    <Content Include="Content\image\clown.png" />
     <Content Include="Content\image\favicon.ico" />
     <Content Include="Content\image\calculator.png" />
     <Content Include="Content\image\char-less.png" />
