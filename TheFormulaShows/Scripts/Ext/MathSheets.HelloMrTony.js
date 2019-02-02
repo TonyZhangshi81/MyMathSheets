@@ -24,10 +24,9 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
 	// 回話顯示dialogue
 	_dialogue = function () {
-
 		if (__switch == 'off') {
 			// 停止計時
-			clearInterval(__timeId);
+			clearTimeout(__timeId);
 			return;
 		}
 
@@ -44,7 +43,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 		// 當前沒有回話（沒什麼好說的:!）
 		if (__dialogueArray.length == 0) {
 			// 停止計時
-			clearInterval(__timeId);
+			clearTimeout(__timeId);
 			// 循環事件完成之後
 			if (typeof __callbackFunc != 'undefined' && __callbackFunc instanceof Function) {
 				__callbackFunc();
@@ -56,11 +55,13 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 			$teacher.attr('data-original-title', __dialogueArray[__dialogueId]);
 			$teacher.tooltip('show');
 			__messageIsShowed = true;
+			__timeId = setTimeout(_dialogue, 5000);
 		} else {
 			$teacher.tooltip('hide');
 			$teacher.attr('data-original-title', "");
 			__dialogueId++;
 			__messageIsShowed = false;
+			__timeId = setTimeout(_dialogue, 2000);
 		}
 	},
 
@@ -85,7 +86,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 				// 自動播放
 				$teacher.animate({
 					width: _tonyWidth
-				}, "slow", "swing", autoPlay(4000));
+				}, "slow", "swing", autoPlay(1000));
 			}
 		},
 
@@ -105,7 +106,11 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
 		// 循環定時播放
 		autoPlay = function (delay) {
-			__timeId = setInterval(_dialogue, delay);
+
+
+			__timeId = setTimeout(_dialogue, delay);
+
+			//__timeId = setInterval(_dialogue, delay);
 		},
 
 		// 初期設定
@@ -122,13 +127,13 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 				return __dialogueArray;
 			}, 0, false, true, null);
 			// 自動播放
-			autoPlay(3000);
+			autoPlay(1000);
 		},
 
 		// 準備操作已經完成
 		readyComplete = function () {
 			// 沒有初期化的情況下
-			if ($teacher == null) {
+			if ($teacher == null || __switch == 'off') {
 				return;
 			}
 
@@ -142,13 +147,48 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 				return __dialogueArray;
 			}, 0, false, true, null);
 			// 自動播放
-			autoPlay(4000);
+			autoPlay(1000);
+		},
+
+		// 交卷操作已經完成
+		theirPapersComplete = function (score) {
+			// 沒有初期化的情況下
+			if ($teacher == null || __switch == 'off') {
+				return;
+			}
+
+			__dialogueArray = [];
+			// 得分在8至10之間
+			if (score >= 8 && score < 10) {
+				__dialogueArray.push("<h5>再仔细一点<br/>你可以得到满分</h5>");
+				__dialogueArray.push("<h5>看看你的错题<br/>快去订正吧</h5>");
+				__dialogueArray.push("<h5>有不会做的题目吗?</h5>");
+			} else if (score >= 5 && score < 8) {
+				__dialogueArray.push("<h5>有不会做的题目吗?</h5>");
+				__dialogueArray.push("<h5>看看你的错题<br/>快去订正吧</h5>");
+				__dialogueArray.push("<h5>看来,你以后要多做练习</h5>");
+			} else if (score < 5) {
+				__dialogueArray.push("<h5>有不会做的题目吗?</h5>");
+				__dialogueArray.push("<h5>看看你的错题<br/>快去订正吧</h5>");
+				__dialogueArray.push("<h5>你有些退步了</h5>");
+				__dialogueArray.push("<h5>你需要努力了</h5>");
+				__dialogueArray.push("<h5>打开书本复习一下吧</h5>");
+			}
+
+			// 將當前的會話隱藏
+			$teacher.tooltip('hide');
+			// 參數初期化設置
+			_initParameter(function () {
+				return __dialogueArray;
+			}, 0, false, true, null);
+			// 自動播放
+			autoPlay(1000);
 		},
 
 		// 恭喜你,滿分過關
 		doCelebrate = function () {
 			// 沒有初期化的情況下
-			if ($teacher == null) {
+			if ($teacher == null || __switch == 'off') {
 				return;
 			}
 
@@ -174,7 +214,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 					return __dialogueArray;
 				}, 0, false, false, __callbackFunc);
 				// 自動播放
-				autoPlay(4000);
+				autoPlay(1000);
 			});
 		};
 
@@ -188,6 +228,8 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 		// 自動播放
 		autoPlay: autoPlay,
 		// 虛擬人物開關
-		showMrTony: showMrTony
+		showMrTony: showMrTony,
+		// 交卷操作已經完成
+		theirPapersComplete: theirPapersComplete
 	};
 }());

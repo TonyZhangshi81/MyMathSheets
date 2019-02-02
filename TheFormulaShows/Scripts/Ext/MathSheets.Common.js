@@ -104,7 +104,6 @@ MathSheets.Common = MathSheets.Common || (function () {
 			// 獲取內容
 			var result = store.get('result');
 			if (typeof result !== typeof undefined && result !== false) {
-				console.log(result.time);
 				// 前次用時顯示
 				$(_getId(oldSpanId)).text(result.time);
 				// 前次答對數顯示
@@ -207,6 +206,9 @@ MathSheets.Common = MathSheets.Common || (function () {
 			_faultInputElement();
 			// 如果答題滿分的話則顯示獎章
 			_setAward();
+
+			// 交卷操作已經完成
+			MathSheets.HelloMrTony.theirPapersComplete(score);
 		},
 
 		// 錯題項目獲得光標并選中
