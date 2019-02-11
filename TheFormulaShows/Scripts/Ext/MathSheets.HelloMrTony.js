@@ -61,7 +61,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 			$teacher.attr('data-original-title', "");
 			__dialogueId++;
 			__messageIsShowed = false;
-			__timeId = setTimeout(_dialogue, 2000);
+			__timeId = setTimeout(_dialogue, 5000);
 		}
 	},
 
@@ -106,10 +106,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
 		// 循環定時播放
 		autoPlay = function (delay) {
-
-
 			__timeId = setTimeout(_dialogue, delay);
-
 			//__timeId = setInterval(_dialogue, delay);
 		},
 
@@ -127,7 +124,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 				return __dialogueArray;
 			}, 0, false, true, null);
 			// 自動播放
-			autoPlay(1000);
+			autoPlay(5000);
 		},
 
 		// 準備操作已經完成
@@ -136,6 +133,9 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 			if ($teacher == null || __switch == 'off') {
 				return;
 			}
+
+			// 寬度設置
+			$teacher.children(":first").width(300);
 
 			// 將當前的會話隱藏
 			$teacher.tooltip('hide');
@@ -147,7 +147,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 				return __dialogueArray;
 			}, 0, false, true, null);
 			// 自動播放
-			autoPlay(1000);
+			autoPlay(5000);
 		},
 
 		// 交卷操作已經完成

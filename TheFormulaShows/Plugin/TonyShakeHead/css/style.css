@@ -30,12 +30,12 @@ body, html {
 }
 
 .border-circle {
-	width: 200px;
-	height: 200px;
+	width: 120px;
+	height: 120px;
 	border-radius: 100%;
 	position: absolute;
-	left: 55%;
-	top: 55%;
+	left: 57%;
+	top: 60%;
 	margin-left: -220px;
 	margin-top: -220px;
 	border: 10px solid #FCB040;

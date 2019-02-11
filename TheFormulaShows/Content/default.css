@@ -151,8 +151,9 @@
 	position: absolute;
 	background-color: transparent;
 	top: 20px;
-	right: -160px;
-	width: 500px;
+	right: -50px;
+	width: 400px;
+	text-align: right;
 }
 
 .scrollHelper-up {
