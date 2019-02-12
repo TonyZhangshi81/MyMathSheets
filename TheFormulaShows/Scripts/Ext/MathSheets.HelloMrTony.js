@@ -106,6 +106,15 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
 		// 循環定時播放
 		autoPlay = function (delay) {
+			// 虛擬人物被關閉，播放停止
+			if (__switch == 'off') {
+				if (__timeId != null) {
+					// 停止計時
+					clearTimeout(__timeId);
+				}
+				return;
+			}
+
 			__timeId = setTimeout(_dialogue, delay);
 			//__timeId = setInterval(_dialogue, delay);
 		},
@@ -129,12 +138,8 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
 		// 準備操作已經完成
 		readyComplete = function () {
-			// 沒有初期化的情況下
-			if ($teacher == null || __switch == 'off') {
-				return;
-			}
-
-			// 寬度設置
+			// 寬度設置（避免題目被虛擬人物遮擋）
+			$teacher.width(300);
 			$teacher.children(":first").width(300);
 
 			// 將當前的會話隱藏
@@ -152,11 +157,6 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
 		// 交卷操作已經完成
 		theirPapersComplete = function (score) {
-			// 沒有初期化的情況下
-			if ($teacher == null || __switch == 'off') {
-				return;
-			}
-
 			__dialogueArray = [];
 			// 得分在8至10之間
 			if (score >= 8 && score < 10) {
@@ -187,11 +187,6 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
 		// 恭喜你,滿分過關
 		doCelebrate = function () {
-			// 沒有初期化的情況下
-			if ($teacher == null || __switch == 'off') {
-				return;
-			}
-
 			// 將當前的會話隱藏
 			$teacher.tooltip('hide');
 			// 定義循環事件執行后的回調函數(1.向右躲閃 2.整體隱藏)
