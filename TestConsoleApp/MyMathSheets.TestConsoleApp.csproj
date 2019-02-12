@@ -101,6 +101,9 @@
     <Reference Include="MyMathSheets.ComputationalStrategy.LearnLengthUnit">
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.LearnLengthUnit.dll</HintPath>
     </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.MathUpright">
+      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.MathUpright.dll</HintPath>
+    </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.MathWordProblems, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.MathWordProblems.dll</HintPath>
@@ -145,6 +148,7 @@
       <DependentUpon>MsgResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Util\StringUtil.cs" />
+    <Compile Include="Write\MathUprightWrite.cs" />
     <Compile Include="Write\CurrencyLinkageWrite.cs" />
     <Compile Include="Write\FindTheLawFormulaWrite.cs" />
     <Compile Include="Write\CombinatorialFormulaWrite.cs" />

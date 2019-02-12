@@ -15,6 +15,7 @@ using MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
@@ -61,6 +62,7 @@ namespace MyMathSheets.TestConsoleApp
 			TimeCalculationParameter tcParameter = null;
 			LearnLengthUnitParameter lluParameter = null;
 			GapFillingProblemsParameter gfpParameter = null;
+			MathUprightParameter muParameter = null;
 
 			bool isShowMenu = !(args.Length > 0);
 
@@ -88,6 +90,7 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("時鐘學習板(SC001~SC004)");
 					Console.WriteLine("射門得分(SG001~SG004)");
 					Console.WriteLine("時間運算(TC001~TC006)");
+					Console.WriteLine("豎式計算(MU001~MU004)");
 					Console.WriteLine("    9-菜單    0-退出");
 					Console.WriteLine("");
 					Console.Write("");

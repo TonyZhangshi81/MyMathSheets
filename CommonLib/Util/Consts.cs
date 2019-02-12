@@ -921,6 +921,10 @@
 			/// </summary>
 			GapFillingProblems,
 			/// <summary>
+			/// 豎式計算
+			/// </summary>
+			MathUpright,
+			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
 			Ready,

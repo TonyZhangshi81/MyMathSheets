@@ -318,6 +318,9 @@
 				case LayoutSetting.Preview.GapFillingProblems:
 					name = "基础填空";
 					break;
+				case LayoutSetting.Preview.MathUpright:
+					name = "竖式计算";
+					break;
 				default:
 					break;
 			}

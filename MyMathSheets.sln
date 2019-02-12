@@ -197,6 +197,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.GapFillingProblems", "TheFormulaShows\DisplayModule\GapFillingProblems\MyMathSheets.TheFormulaShows.GapFillingProblems.csproj", "{5F879B95-C458-48ED-A7C2-889489DB2591}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.MathUpright", "TheFormulaShows\DisplayModule\MathUpright\MyMathSheets.TheFormulaShows.MathUpright.csproj", "{41486B43-37E3-406A-A032-974BAED36778}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.MathUpright", "ComputationalStrategy\TopicModule\MathUpright\MyMathSheets.ComputationalStrategy.MathUpright.csproj", "{B1181420-6BEA-4A5C-9751-806634F848D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -377,6 +381,14 @@ Global
 		{5F879B95-C458-48ED-A7C2-889489DB2591}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F879B95-C458-48ED-A7C2-889489DB2591}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F879B95-C458-48ED-A7C2-889489DB2591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41486B43-37E3-406A-A032-974BAED36778}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41486B43-37E3-406A-A032-974BAED36778}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41486B43-37E3-406A-A032-974BAED36778}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41486B43-37E3-406A-A032-974BAED36778}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1181420-6BEA-4A5C-9751-806634F848D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1181420-6BEA-4A5C-9751-806634F848D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1181420-6BEA-4A5C-9751-806634F848D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1181420-6BEA-4A5C-9751-806634F848D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -421,6 +433,8 @@ Global
 		{41486B43-37E3-406A-A032-974BAED36799} = {3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}
 		{3BFFE851-482C-43D6-9661-C32D20AF884D} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 		{5F879B95-C458-48ED-A7C2-889489DB2591} = {3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}
+		{41486B43-37E3-406A-A032-974BAED36778} = {3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}
+		{B1181420-6BEA-4A5C-9751-806634F848D5} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D308C80E-F93A-4F56-89CD-5A89344949B1}
