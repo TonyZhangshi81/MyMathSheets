@@ -21,26 +21,41 @@ MathSheets.MathUpright = MathSheets.MathUpright || (function () {
 			});
 		},
 
-		// 答题验证(正确:true  错误:false)
-		_MathUprightCorrecting = function (index, element) {
+		// 答題驗證(正確:true  錯誤:false)
+		_MathUprightCorrecting = function (pIndex, pElement) {
 			// 解密
-			var answer = $.base64.atob($('#hiddenMu' + index).val(), true);
-			// 验证输入值是否与答案一致(并且特殊情况下,答案值可以是任意值,此处以-999代替)
-			if ($(element).val() == answer
-				|| (parseInt(answer) == -999 && $(element).val() != '')) {
-				// 动错题集中移除当前项目
-				removeInputElementArray({ position: "mathSheetMathUpright", id: $(element).attr("id") });
+			//var answer = $.base64.atob($('#hiddenMu' + index).val(), true);
+			var inputAry = new Array();
+			var strId = pIndex.toString().PadLeft(2, '0');
+			// 答案數組
+			var answerAry = ($(pElement).val() || '').split(';');
+			var isOK = true;
+			$("input[id*='inputMu" + strId + "']").each(function (index, element) {
+				inputAry.push($(element));
+				var answer = $.base64.atob(answerAry[index], true);
+				if ($(element).val() != answer) {
+					isOK = false;
+				}
+			});
 
-				// 对错图片显示和隐藏
+			// 驗證輸入值是否與答案一致
+			if (isOK) {
+				// 在錯題集中移除當前項目并設置不可使用
+				inputAry.forEach(function (element, index) {
+					removeInputElementArray({ position: "mathSheetMathUpright", id: $(element).attr("id") });
+					$(element).attr("disabled", "disabled");
+				});
+
+				// 對錯圖示顯示和隱藏
 				$('#imgOKMathUpright' + index).show();
 				$('#imgNoMathUpright' + index).hide();
 				// 移除圖片抖動特效
 				$('#imgNoMathUpright' + index).removeClass("shake shake-slow");
 				$(element).attr("disabled", "disabled");
-				// 正确:true
+				// 正確:true
 				return true;
 			} else {
-				// 对错图片显示和隐藏
+				// 對錯圖示顯示和隱藏
 				$('#imgOKMathUpright' + index).hide();
 				$('#imgNoMathUpright' + index).show();
 				$('#imgNoMathUpright' + index).animate({
@@ -52,12 +67,12 @@ MathSheets.MathUpright = MathSheets.MathUpright || (function () {
 					// 添加圖片抖動特效（只針對錯題）
 					$(this).addClass("shake shake-slow");
 				});
-				// 错误:false
+				// 錯誤:false
 				return false;
 			}
 		},
 
-		// 设定页面所有输入域为可用状态(四则运算)
+		// 設定頁面所有輸入域可用狀態(豎式計算)
 		ready = function () {
 			$("input[id*='inputMu']").each(function (index, element) {
 				// 收集所有可輸入項目ID
@@ -67,25 +82,25 @@ MathSheets.MathUpright = MathSheets.MathUpright || (function () {
 			});
 		},
 
-		// 订正(四则运算题)
+		// 訂正(豎式計算題)
 		makeCorrections = function () {
 			var fault = 0;
-			$("input[id*='inputMu']").each(function (index, element) {
-				// 答题验证
-				if (!_MathUprightCorrecting(index.toString().PadLeft(2, '0'), element)) {
-					// 答题错误时,错误件数加一
+			$("input[id*='hiddenMuAnswer']").each(function (pIndex, pElement) {
+				// 答題驗證
+				if (!_MathUprightCorrecting(pIndex, pElement)) {
+					// 答題錯誤時，錯題件數加一
 					fault++;
 				}
 			});
 			return fault;
 		},
 
-		// 四则运算交卷
+		// 豎式計算交卷
 		theirPapers = function () {
-			$("input[id*='inputMu']").each(function (index, element) {
-				// 答题验证
-				if (!_MathUprightCorrecting(index.toString().PadLeft(2, '0'), element)) {
-					// 答题错误时,错误件数加一
+			$("input[id*='inputMuAnswer']").each(function (pIndex, pElement) {
+				// 答題驗證
+				if (!_MathUprightCorrecting(pIndex, pElement)) {
+					// 答題錯誤時，錯題件數加一
 					__isFault++;
 				} else {
 					__isRight++;
