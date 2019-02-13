@@ -5,6 +5,7 @@ using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.MathUpright.Item;
 using MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
@@ -16,9 +17,32 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 	public class MathUpright : OperationBase
 	{
 		/// <summary>
+		/// 填空的位置
+		/// </summary>
+		private readonly List<int> FillPositions;
+		/// <summary>
 		/// 反推判定次數（如果大於五次則認為此題無法作成繼續下一題）
 		/// </summary>
 		private const int INVERSE_NUMBER = 5;
+
+		/// <summary>
+		/// 參數初期化
+		/// </summary>
+		/// <remarks>
+		/// 位置信息：
+		/// 14 -> [1]5 + 2[3] = 38
+		/// 23 -> 1[5] + [2]3 = 38
+		/// 16 -> [1]5 + 23 = 3[8]
+		/// 25 -> 1[5] + 23 = [3]8
+		/// 36 -> 15 + [2]3 = 3[8]
+		/// 45 -> 15 + 2[3] = [3]8
+		/// 56 -> 15 + 23 = [3][8]
+		/// </remarks>
+		public MathUpright()
+		{
+			// 位置信息
+			FillPositions = new List<int>() { 14, 23, 16, 25, 36, 45, 56 };
+		}
 
 		/// <summary>
 		/// 算式作成
@@ -35,25 +59,16 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				strategy = CalculateManager(signFunc());
+				// 運算式作成
 				Formula formula = strategy.CreateFormula(new CalculateParameter()
 				{
 					MaximumLimit = p.MaximumLimit,
 					QuestionType = p.QuestionType,
-					MinimumLimit = 0
+					MinimumLimit = 1
 				});
-				// 隨機設定是否帶小括號(當參數配置允許小括號)
-				formula.IsNeedBracket = p.IsNeedBracket ? CommonUtil.GetRandomNumber(false, true) : false;
-
-				Formula multFormula = null;
-				// 是否使用多級運算式
-				if (p.Multistage)
-				{
-					// 第二級計算式作成
-					multFormula = GetMultistageFormula(p, formula, () => { return signFunc(); });
-				}
 
 				// 判定是否需要反推并重新作成計算式
-				if (CheckIsNeedInverseMethod(p, formula, multFormula))
+				if (CheckIsNeedInverseMethod(p, formula))
 				{
 					defeated++;
 					// 如果大於五次則認為此題無法作成繼續下一題
@@ -70,12 +85,11 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 				// 計算式作成
 				p.Formulas.Add(new MathUprightFormula
 				{
-					// 四則運算式
 					Arithmetic = formula,
-					// 多級運算式
-					MultistageArithmetic = multFormula,
-					// 等式值是不是出現在右邊
-					AnswerIsRight = IsRight
+					// 如果是標準題型則將等式結果項目作為填空項目，以外的情況則隨機產生一個填空項目位置
+					FillPosition = (p.QuestionType == QuestionType.Standard) ? FillPositions.Last() : CommonUtil.GetRandomNumber(FillPositions),
+					// 計算式數據鏈作成
+					FormulaDataLink = CreatFormulaDataLink(formula)
 				});
 
 				defeated = 0;
@@ -83,37 +97,34 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 		}
 
 		/// <summary>
-		/// 多級運算式作成
+		/// 計算式數據鏈作成
 		/// </summary>
-		/// <param name="p">題型參數</param>
-		/// <param name="pervFormula">第一級計算式</param>
-		/// <param name="signFunc">運算符取得用的表達式</param>
-		/// <returns>四則運算式</returns>
-		private Formula GetMultistageFormula(MathUprightParameter p, Formula pervFormula, Func<SignOfOperation> signFunc)
+		/// <param name="formula">計算式</param>
+		/// <returns>計算式數據鏈</returns>
+		/// <remarks>
+		/// 數據鏈構成：
+		/// 15+23=38 -> [1,5,2,3,3,8]
+		/// 23-4=19 -> [2,3,null,4,1,9]
+		/// </remarks>
+		private List<int?> CreatFormulaDataLink(Formula formula)
 		{
-			// 隨機設定是否帶小括號(當參數配置允許小括號且第一級計算式不帶小括號的情況下)
-			bool isNeedBracket = (p.IsNeedBracket && !pervFormula.IsNeedBracket) ? CommonUtil.GetRandomNumber(false, true) : false;
-
-			// 隨機運算符取得
-			ICalculate strategy = CalculateManager(signFunc());
-			// 計算式作成（依據左邊算式的答案推算右邊的算式）
-			Formula formula = strategy.CreateFormulaWithAnswer(new CalculateParameter()
+			List<int?> link = new List<int?>
 			{
-				// 第一級計算式如果是減法並且第二級計算式不帶小括號，那麼第二級的結果最大值必須小於或等於第一級計算式中的被減數值
-				MaximumLimit = (pervFormula.Sign == SignOfOperation.Subtraction && !isNeedBracket) ? pervFormula.LeftParameter : p.MaximumLimit,
-				QuestionType = QuestionType.Default,
-				MinimumLimit = 0
-			}, pervFormula.RightParameter);
-			// 隨機設定是否帶小括號
-			formula.IsNeedBracket = isNeedBracket;
-			// 填空項目設定
-			if (pervFormula.Gap == GapFilling.Right)
-			{
-				formula.Gap = CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Right);
-				pervFormula.Gap = GapFilling.Default;
-			}
+				// 第一位
+				(formula.LeftParameter >= 10) ? formula.LeftParameter / 10 : (int?)null,
+				// 第二位
+				formula.LeftParameter % 10,
+				// 第三位
+				(formula.RightParameter >= 10) ? formula.RightParameter / 10 : (int?)null,
+				// 第四位
+				formula.RightParameter % 10,
+				// 第五位
+				(formula.Answer >= 10) ? formula.Answer / 10 : (int?)null,
+				// 第六位
+				formula.Answer % 10
+			};
 
-			return formula;
+			return link;
 		}
 
 		/// <summary>
@@ -129,40 +140,26 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 		}
 
 		/// <summary>
-		/// 等式值是不是出現在左邊
-		/// </summary>
-		public bool IsRight => CommonUtil.GetRandomNumber(LeftOrRight.Left, LeftOrRight.Right) == LeftOrRight.Right;
-
-		/// <summary>
 		/// 判定是否需要反推并重新作成計算式
 		/// </summary>
 		/// <remarks>
 		/// 情況1：算式存在一致
-		/// 情況2：全零的情況
-		/// 情況3：多級計算時，第二級計算式結果不能為零
+		/// 情況2：等式左邊的兩個數字都是一位數
+		/// 情況3：全零的情況
 		/// </remarks>
 		/// <param name="p">已得到的算式</param>
 		/// <param name="currentFormula">當前算式</param>
-		/// <param name="multFormula">第二級計算式</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
-		private bool CheckIsNeedInverseMethod(MathUprightParameter p, Formula currentFormula, Formula multFormula)
+		private bool CheckIsNeedInverseMethod(MathUprightParameter p, Formula currentFormula)
 		{
-			// 多級計算時，第二級計算式結果不能為零
-			if (p.Multistage)
-			{
-				if (currentFormula.RightParameter == 0)
-				{
-					return true;
-				}
-				// 全零的情況
-				if (multFormula.LeftParameter == 0 || multFormula.RightParameter == 0 || multFormula.Answer == 0)
-				{
-					return true;
-				}
-			}
-
 			// 全零的情況
 			if (currentFormula.LeftParameter == 0 || currentFormula.RightParameter == 0 || currentFormula.Answer == 0)
+			{
+				return true;
+			}
+
+			// 等式左邊的兩個數字必須有一個是兩位數
+			if (currentFormula.LeftParameter < 10 || currentFormula.RightParameter < 10 || (currentFormula.Sign == SignOfOperation.Subtraction && currentFormula.Answer < 10))
 			{
 				return true;
 			}
@@ -175,6 +172,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 			{
 				return true;
 			}
+
 			return false;
 		}
 	}

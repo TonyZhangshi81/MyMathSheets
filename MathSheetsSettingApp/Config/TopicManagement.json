@@ -17,5 +17,6 @@
 	"SchoolClock": "SG004",
 	"TimeCalculation": "TC003",
 	"LearnLengthUnit": "LLU005",
-	"GapFillingProblems": "GFP001"
+	"GapFillingProblems": "GFP001",
+	"MathUpright": "MU001"
 }

@@ -90,7 +90,7 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("時鐘學習板(SC001~SC004)");
 					Console.WriteLine("射門得分(SG001~SG004)");
 					Console.WriteLine("時間運算(TC001~TC006)");
-					Console.WriteLine("豎式計算(MU001~MU004)");
+					Console.WriteLine("豎式計算(MU001~MU003)");
 					Console.WriteLine("    9-菜單    0-退出");
 					Console.WriteLine("");
 					Console.Write("");
@@ -232,6 +232,13 @@ namespace MyMathSheets.TestConsoleApp
 						Console.WriteLine("時間運算");
 						tcParameter = (TimeCalculationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.TimeCalculation, key);
 						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.TimeCalculation, tcParameter.Formulas.ToList());
+						break;
+
+					case "MU0":
+						Console.WriteLine();
+						Console.WriteLine("豎式計算");
+						muParameter = (MathUprightParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.MathUpright, key);
+						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.MathUpright, muParameter.Formulas.ToList());
 						break;
 
 					case "900":

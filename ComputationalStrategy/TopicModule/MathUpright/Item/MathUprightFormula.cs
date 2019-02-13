@@ -1,9 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
+using System.Collections.Generic;
 
 namespace MyMathSheets.ComputationalStrategy.MathUpright.Item
 {
 	/// <summary>
-	/// 计算式对象构成
+	/// 計算式對象構成
 	/// </summary>
 	public class MathUprightFormula
 	{
@@ -12,12 +13,12 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Item
 		/// </summary>
 		public Formula Arithmetic { get; set; }
 		/// <summary>
-		/// 多級計算式
+		/// 計算式數據鏈（用於設置填空項目）
 		/// </summary>
-		public Formula MultistageArithmetic { get; set; }
+		public List<int?> FormulaDataLink { get; set; }
 		/// <summary>
-		/// 
+		/// 填空項目的位置
 		/// </summary>
-		public bool AnswerIsRight { get; set; }
+		public int FillPosition { get; set; }
 	}
 }

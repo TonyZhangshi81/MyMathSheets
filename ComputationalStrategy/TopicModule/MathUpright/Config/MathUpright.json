@@ -1,9 +1,23 @@
 [
 	{
 		"Identifier": "MU001",
-		"MaximumLimit": 40,
+		"MaximumLimit": 45,
 		"NumberOfQuestions": 8,
+		"QuestionType": 1,
+		"Signs": [ 0 ]
+	},
+	{
+		"Identifier": "MU002",
+		"MaximumLimit": 45,
+		"NumberOfQuestions": 8,
+		"QuestionType": 1,
+		"Signs": [ 1 ]
+	},
+	{
+		"Identifier": "MU003",
+		"MaximumLimit": 55,
+		"NumberOfQuestions": 10,
 		"QuestionType": 2,
-		"Signs": [ 0, 1]
+		"Signs": [ 0, 1 ]
 	}
 ]
