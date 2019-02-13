@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.MathUpright.Item;
 using MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters;
 using System.Text;
@@ -26,17 +27,13 @@ namespace MyMathSheets.TheFormulaShows.MathUpright.Support
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
 		/// <summary>
-		/// 等號HTML模板
-		/// </summary>
-		private const string EQUALTO_HTML_FORMAT = "<span class=\"label\">{0}</span>";
-		/// <summary>
 		/// LABEL標籤HTML模板
 		/// </summary>
 		private const string LABEL_HTML_FORMAT = "<span class=\"label\">{0}</span>";
 		/// <summary>
 		/// 輸入項目HTML模板
 		/// </summary>
-		private const string INPUT_HTML_FORMAT = "<input id=\"inputAc{0}{1}\" type=\"text\" placeholder=\" ? \" class=\"form-control input-addBorder\" style=\"width: 20px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputMu{0}{1}\" type=\"text\" placeholder=\" ? \" class=\"form-control input-addBorder\" style=\"width: 20px; text-align:center;\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
 
 		/// <summary>
 		/// 題型HTML模板作成
@@ -64,10 +61,17 @@ namespace MyMathSheets.TheFormulaShows.MathUpright.Support
 				isRowHtmlClosed = false;
 				colHtml.AppendLine("<div class=\"col-md-2 form-inline\">");
 				// 題型表格HTML模板作成
-				colHtml.AppendLine(CreateTeableHtml(item, controlIndex));
+				colHtml.Append(CreateTeableHtml(item, controlIndex));
+				// 題型答案項目HTML模板作成
+				colHtml.Append(CreateAnswerHtml(item, controlIndex));
 				colHtml.AppendLine("</div>");
 				// 間隔
-				colHtml.AppendLine("<div class=\"col-md-1\"></div>");
+				colHtml.AppendLine("<div class=\"col-md-1\">");
+				colHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
+				colHtml.AppendLine(string.Format("<img id=\"imgOKMathUpright{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex.ToString().PadLeft(2, '0')));
+				colHtml.AppendLine(string.Format("<img id=\"imgNoMathUpright{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex.ToString().PadLeft(2, '0')));
+				colHtml.AppendLine("</div>");
+				colHtml.AppendLine("</div>");
 
 				controlIndex++;
 				numberOfColumns++;
@@ -108,6 +112,19 @@ namespace MyMathSheets.TheFormulaShows.MathUpright.Support
 		}
 
 		/// <summary>
+		/// 答案項目HTML模板作成
+		/// </summary>
+		/// <param name="item"></param>
+		/// <param name="parentControlIndex"></param>
+		/// <returns></returns>
+		private string CreateAnswerHtml(MathUprightFormula item, int parentControlIndex)
+		{
+			StringBuilder answer = new StringBuilder();
+			answer.AppendFormat("{0};{1}", Base64.EncodeBase64(item.FormulaDataLink[(item.FillPosition / 10) - 1].ToString()), Base64.EncodeBase64(item.FormulaDataLink[(item.FillPosition % 10) - 1].ToString()));
+			return string.Format("<input id=\"hiddenMuAnswer{0}\" type=\"hidden\" value=\"{1}\"/>", parentControlIndex.ToString().PadLeft(2, '0'), answer.ToString());
+		}
+
+		/// <summary>
 		/// 題型表格HTML模板作成
 		/// </summary>
 		/// <param name="item">題型參數</param>
@@ -124,18 +141,18 @@ namespace MyMathSheets.TheFormulaShows.MathUpright.Support
 			html.AppendLine("<tr class=\"info\">");
 			html.AppendLine("<th><br /></th>");
 			// 第一個項目
-			html.AppendFormat("<th>{0}</th>", IsFillItem(1, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : item.FormulaDataLink[0].ToString()).AppendLine();
+			html.AppendFormat("<th>{0}</th>", IsFillItem(1, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : string.Format(LABEL_HTML_FORMAT, item.FormulaDataLink[0])).AppendLine();
 			// 第二個項目
-			html.AppendFormat("<th>{0}</th>", IsFillItem(2, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : item.FormulaDataLink[1].ToString()).AppendLine();
+			html.AppendFormat("<th>{0}</th>", IsFillItem(2, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : string.Format(LABEL_HTML_FORMAT, item.FormulaDataLink[1])).AppendLine();
 			html.AppendLine("</tr>");
 
 			// 第二行
 			html.AppendLine("<tr class=\"info\">");
 			html.AppendFormat("<th class=\"table-th-sign\">{0}</th>", item.Arithmetic.Sign.ToOperationUnicode()).AppendLine();
 			// 第三個項目
-			html.AppendFormat("<th>{0}</th>", IsFillItem(3, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : item.FormulaDataLink[2].ToString());
+			html.AppendFormat("<th>{0}</th>", IsFillItem(3, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : string.Format(LABEL_HTML_FORMAT, item.FormulaDataLink[2])).AppendLine();
 			// 第四個項目
-			html.AppendFormat("<th>{0}</th>", IsFillItem(4, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : item.FormulaDataLink[3].ToString());
+			html.AppendFormat("<th>{0}</th>", IsFillItem(4, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : string.Format(LABEL_HTML_FORMAT, item.FormulaDataLink[3])).AppendLine();
 			html.AppendLine("</tr>");
 
 			// 第三行
@@ -147,9 +164,9 @@ namespace MyMathSheets.TheFormulaShows.MathUpright.Support
 			html.AppendLine("<tr class=\"info table-tr-sum\">");
 			html.AppendLine("<th><br /></th>");
 			// 第五個項目
-			html.AppendFormat("<th>{0}</th>", IsFillItem(5, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : item.FormulaDataLink[4].ToString()).AppendLine();
+			html.AppendFormat("<th>{0}</th>", IsFillItem(5, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : string.Format(LABEL_HTML_FORMAT, item.FormulaDataLink[4])).AppendLine();
 			// 第六個項目
-			html.AppendFormat("<th>{0}</th>", IsFillItem(6, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : item.FormulaDataLink[5].ToString()).AppendLine();
+			html.AppendFormat("<th>{0}</th>", IsFillItem(6, item.FillPosition) ? string.Format(INPUT_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), controlIndex++) : string.Format(LABEL_HTML_FORMAT, item.FormulaDataLink[5])).AppendLine();
 			html.AppendLine("</tr>");
 
 			html.AppendLine("</tbody>");

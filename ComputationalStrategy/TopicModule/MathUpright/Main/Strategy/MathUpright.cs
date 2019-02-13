@@ -21,9 +21,9 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 		/// </summary>
 		private readonly List<int> FillPositions;
 		/// <summary>
-		/// 反推判定次數（如果大於五次則認為此題無法作成繼續下一題）
+		/// 反推判定次數（如果大於八次則認為此題無法作成繼續下一題）
 		/// </summary>
-		private const int INVERSE_NUMBER = 5;
+		private const int INVERSE_NUMBER = 8;
 
 		/// <summary>
 		/// 參數初期化
@@ -71,7 +71,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 				if (CheckIsNeedInverseMethod(p, formula))
 				{
 					defeated++;
-					// 如果大於五次則認為此題無法作成繼續下一題
+					// 如果大於八次則認為此題無法作成繼續下一題
 					if (defeated == INVERSE_NUMBER)
 					{
 						// 當前反推判定次數復原

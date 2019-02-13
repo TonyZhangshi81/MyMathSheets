@@ -16,15 +16,13 @@ MathSheets.MathUpright = MathSheets.MathUpright || (function () {
 		printAfterSetting = function () {
 			$("input[id*='inputMu']").each(function (index, element) {
 				$(element).removeClass('input-print');
-				$(element).attr('placeholder', '??');
+				$(element).attr('placeholder', '?');
 				$(element).attr("disabled", "disabled");
 			});
 		},
 
 		// 答題驗證(正確:true  錯誤:false)
-		_MathUprightCorrecting = function (pIndex, pElement) {
-			// 解密
-			//var answer = $.base64.atob($('#hiddenMu' + index).val(), true);
+		_mathUprightCorrecting = function (pIndex, pElement) {
 			var inputAry = new Array();
 			var strId = pIndex.toString().PadLeft(2, '0');
 			// 答案數組
@@ -32,6 +30,7 @@ MathSheets.MathUpright = MathSheets.MathUpright || (function () {
 			var isOK = true;
 			$("input[id*='inputMu" + strId + "']").each(function (index, element) {
 				inputAry.push($(element));
+				// 解密
 				var answer = $.base64.atob(answerAry[index], true);
 				if ($(element).val() != answer) {
 					isOK = false;
@@ -47,18 +46,17 @@ MathSheets.MathUpright = MathSheets.MathUpright || (function () {
 				});
 
 				// 對錯圖示顯示和隱藏
-				$('#imgOKMathUpright' + index).show();
-				$('#imgNoMathUpright' + index).hide();
+				$('#imgOKMathUpright' + strId).show();
+				$('#imgNoMathUpright' + strId).hide();
 				// 移除圖片抖動特效
-				$('#imgNoMathUpright' + index).removeClass("shake shake-slow");
-				$(element).attr("disabled", "disabled");
+				$('#imgNoMathUpright' + strId).removeClass("shake shake-slow");
 				// 正確:true
 				return true;
 			} else {
 				// 對錯圖示顯示和隱藏
-				$('#imgOKMathUpright' + index).hide();
-				$('#imgNoMathUpright' + index).show();
-				$('#imgNoMathUpright' + index).animate({
+				$('#imgOKMathUpright' + strId).hide();
+				$('#imgNoMathUpright' + strId).show();
+				$('#imgNoMathUpright' + strId).animate({
 					width: "40px",
 					height: "40px",
 					marginLeft: "0px",
@@ -87,7 +85,7 @@ MathSheets.MathUpright = MathSheets.MathUpright || (function () {
 			var fault = 0;
 			$("input[id*='hiddenMuAnswer']").each(function (pIndex, pElement) {
 				// 答題驗證
-				if (!_MathUprightCorrecting(pIndex, pElement)) {
+				if (!_mathUprightCorrecting(pIndex, pElement)) {
 					// 答題錯誤時，錯題件數加一
 					fault++;
 				}
@@ -97,9 +95,9 @@ MathSheets.MathUpright = MathSheets.MathUpright || (function () {
 
 		// 豎式計算交卷
 		theirPapers = function () {
-			$("input[id*='inputMuAnswer']").each(function (pIndex, pElement) {
+			$("input[id*='hiddenMuAnswer']").each(function (pIndex, pElement) {
 				// 答題驗證
-				if (!_MathUprightCorrecting(pIndex, pElement)) {
+				if (!_mathUprightCorrecting(pIndex, pElement)) {
 					// 答題錯誤時，錯題件數加一
 					__isFault++;
 				} else {

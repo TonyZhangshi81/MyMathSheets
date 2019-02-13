@@ -42,12 +42,12 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
 		// 當前沒有回話（沒什麼好說的:!）
 		if (__dialogueArray.length == 0) {
-			// 停止計時
-			clearTimeout(__timeId);
 			// 循環事件完成之後
 			if (typeof __callbackFunc != 'undefined' && __callbackFunc instanceof Function) {
 				__callbackFunc();
 			}
+			// 停止計時
+			clearTimeout(__timeId);
 			return;
 		}
 
@@ -190,7 +190,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 			// 將當前的會話隱藏
 			$teacher.tooltip('hide');
 			// 定義循環事件執行后的回調函數(1.向右躲閃 2.整體隱藏)
-			__callbackFunc = function () {
+			var callbackFunc = function () {
 				$teacher.animate({
 					width: 0
 				}, "slow", "swing", function () { $teacher.hide(); })
@@ -199,7 +199,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 			// 循環事件執行并最後完成上述回調事件
 			$teacher.animate({
 				top: 150,
-				right: 400
+				right: 500
 			}, 1000, "easeOutQuint", function () {
 				// 參數初期化設置
 				_initParameter(function () {
@@ -207,9 +207,9 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 					__dialogueArray.push("<h5>真厉害全部答对了！<br/>给你一枚奖章...</h5>");
 					__dialogueArray.push("<h5>可以玩游戏哦！<br/>我先走了,再见!</h5>");
 					return __dialogueArray;
-				}, 0, false, false, __callbackFunc);
+				}, 0, false, false, callbackFunc);
 				// 自動播放
-				autoPlay(1000);
+				autoPlay(2000);
 			});
 		};
 
