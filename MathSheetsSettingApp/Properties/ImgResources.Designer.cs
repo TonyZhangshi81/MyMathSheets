@@ -203,6 +203,16 @@ namespace MyMathSheets.MathSheetsSettingApp.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap MathUpright {
+            get {
+                object obj = ResourceManager.GetObject("MathUpright", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap MathWordProblems {
             get {
                 object obj = ResourceManager.GetObject("MathWordProblems", resourceCulture);
