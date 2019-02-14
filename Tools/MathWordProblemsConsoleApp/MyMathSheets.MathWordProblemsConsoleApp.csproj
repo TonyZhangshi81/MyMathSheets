@@ -66,6 +66,7 @@
     <Compile Include="WorkProcess\AttendanceManagement.cs" />
     <Compile Include="WorkProcess\Item\GapFillingProblems.cs" />
     <Compile Include="WorkProcess\Item\MathWordProblems.cs" />
+    <Compile Include="WorkProcess\Item\TopicManagement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

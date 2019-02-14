@@ -13,6 +13,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Main.FromProcess
@@ -82,12 +83,12 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// 读取资料库
 			using (System.IO.StreamReader file = System.IO.File.OpenText(ConfigurationManager.AppSettings.Get("TopicManagement")))
 			{
-				TopicManagementDictionary = JsonConvert.DeserializeObject<Dictionary<string, string>>(file.ReadToEnd());
+				TopicManagementList = JsonConvert.DeserializeObject<List<TopicManagement>>(file.ReadToEnd());
 			};
 		}
 
 		/// <summary>題型參數</summary>
-		private Dictionary<string, string> TopicManagementDictionary { get; set; }
+		private List<TopicManagement> TopicManagementList { get; set; }
 		/// <summary>樣式庫引用注入點</summary>
 		private StringBuilder Stylesheet { get; set; }
 		/// <summary>腳本引用注入</summary>
@@ -297,13 +298,8 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// <returns>替換內容</returns>
 		private Dictionary<SubstituteType, string> GetHtmlReplaceContentMaps(LayoutSetting.Preview preview)
 		{
-			// 題型編號
-			string identifier = string.Empty;
-			if (TopicManagementDictionary.ContainsKey(preview.ToString()))
-			{
-				// 題型編號取得
-				identifier = TopicManagementDictionary[preview.ToString()];
-			}
+			// 題型編號取得
+			string identifier = TopicManagementList.Where(d => d.Name.Equals(preview.ToString())).First().Number;
 
 			// 構造題型并取得結果
 			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview, identifier);
@@ -455,5 +451,24 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 題型類型
 		/// </summary>
 		public LayoutSetting.Preview Preview { get; set; }
+	}
+
+	/// <summary>
+	/// 題型參數類
+	/// </summary>
+	[DataContract]
+	public class TopicManagement
+	{
+		/// <summary>
+		/// 題型名稱
+		/// </summary>
+		[DataMember(Name = "name")]
+		public string Name { get; set; }
+
+		/// <summary>
+		/// 提醒編號
+		/// </summary>
+		[DataMember(Name = "number")]
+		public string Number { get; set; }
 	}
 }

@@ -39,6 +39,10 @@ namespace MyMathSheets.MathWordProblemsConsoleApp
 						case "GapFillingProblems":
 							att.SetGapFillingProblemsJson("GapFillingProblemsLibrary");
 							break;
+
+						case "TopicManagement":
+							att.SetTopicManagementJson("TopicManagement");
+							break;
 					}
 				}
 

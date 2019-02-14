@@ -18,7 +18,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 		/// xls公共處理類（當掐活動的SHEET對象）
 		/// </summary>
 		private SpireXls _xls { get; set; }
-		
+
 		/// <summary>
 		/// 構造函數
 		/// </summary>
@@ -26,6 +26,43 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 		public AttendanceManagement(SpireXls xls)
 		{
 			_xls = xls;
+		}
+
+		/// <summary>
+		/// 讀取文件并轉換為特定類（題型參數類）
+		/// </summary>
+		/// <param name="jsonFileName">新作成的JSON文件名</param>
+		public void SetTopicManagementJson(string jsonFileName)
+		{
+			List<TopicManagement> list = new List<TopicManagement>();
+
+			var rowIndex = 12;
+			while (true)
+			{
+				rowIndex++;
+				if (string.IsNullOrWhiteSpace(_xls.GetRangeText(string.Format("B{0}", rowIndex))))
+				{
+					break;
+				}
+
+				bool isMake = "是".Equals(_xls.GetRangeText(string.Format("F{0}", rowIndex)));
+				if (isMake)
+				{
+					// 構造
+					list.Add(new TopicManagement()
+					{
+						// 題型名稱(英文名)
+						Name = _xls.GetRangeText(string.Format("D{0}", rowIndex)),
+						// 題型編號
+						Number = _xls.GetRangeText(string.Format("G{0}", rowIndex)).Substring(0, 5)
+					});
+				}
+			}
+			Console.WriteLine();
+			// JSON轉換處理
+			string content = list.GetJsonByObject();
+			// 寫文件（作成json文件）
+			Write(content, jsonFileName);
 		}
 
 		/// <summary>
@@ -45,7 +82,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 					break;
 				}
 
-				if("off".Equals(_xls.GetRangeText(string.Format("A{0}", rowIndex))))
+				if ("off".Equals(_xls.GetRangeText(string.Format("A{0}", rowIndex))))
 				{
 					continue;
 				}
@@ -163,7 +200,8 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 
 			// 公式中的坐標取得
 			List<string> cellNameList = formula.Split(new char[4] { '+', '-', '*', '/' }).ToList();
-			cellNameList.ForEach(d => {
+			cellNameList.ForEach(d =>
+			{
 				// 遍歷坐標并取得相應的值，替換至公式中
 				formula = formula.Replace(d, _xls.GetRangeText(d));
 			});
