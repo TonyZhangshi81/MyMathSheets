@@ -67,7 +67,7 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 
 			StringBuilder completed = new StringBuilder();
 			// 填空題內容中的參數拼接
-			item.GapFillingProblem.Split(new string[3] { "IPT1", "IPT5", "IMG1" }, StringSplitOptions.None).ToList().ForEach(d =>
+			item.GapFillingProblem.Split(new string[4] { "IPT1", "IPT5", "IMG1", "LFBR" }, StringSplitOptions.None).ToList().ForEach(d =>
 			{
 				// 文字描述部分
 				rowHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, d));
@@ -102,6 +102,10 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 						// 圖形內容
 						rowHtml.AppendLine(string.Format(IMAGE_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), chindControlIndex, item.Parameters[parameterIndex]));
 						parameterIndex++;
+						break;
+					case "LFBR":
+						// 添加換行
+						rowHtml.AppendLine("<BR/>");
 						break;
 				}
 

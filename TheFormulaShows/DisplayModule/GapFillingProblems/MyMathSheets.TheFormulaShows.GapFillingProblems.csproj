@@ -60,6 +60,7 @@
     <Content Include="Content\image\fill\010201.png" />
     <Content Include="Content\image\fill\010301.png" />
     <Content Include="Content\image\fill\010401.png" />
+    <Content Include="Content\image\fill\010501.png" />
     <Content Include="Scripts\Ext\MathSheets.GapFillingProblems.js" />
     <Content Include="Template\GapFillingProblems.html" />
   </ItemGroup>
