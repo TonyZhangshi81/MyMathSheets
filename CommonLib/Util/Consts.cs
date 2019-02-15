@@ -613,7 +613,11 @@
 		/// <summary>
 		/// 排球
 		/// </summary>
-		Volleyball
+		Volleyball,
+		/// <summary>
+		/// 炸彈：！
+		/// </summary>
+		Bomb
 	}
 
 	/// <summary>

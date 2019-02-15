@@ -51,7 +51,8 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 				Balls.Golf,
 				Balls.Rugby,
 				Balls.Tennis,
-				Balls.Volleyball
+				Balls.Volleyball,
+				Balls.Bomb
 			};
 
 			// 可拖動球類圖片初期化坐標集合
@@ -65,7 +66,8 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 				new Coordinate(){ Left = 140, Top = 230 },
 				new Coordinate(){ Left = 170, Top = 90 },
 				new Coordinate(){ Left = 10, Top = 90 },
-				new Coordinate(){ Left = 5, Top = 180 }
+				new Coordinate(){ Left = 5, Top = 180 },
+				new Coordinate(){ Left = 185, Top = 165 }
 			};
 
 			// 隨機排序

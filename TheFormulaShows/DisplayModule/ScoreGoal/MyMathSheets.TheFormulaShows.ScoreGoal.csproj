@@ -54,6 +54,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\image\sport\Bomb.png" />
     <Content Include="Content\ScoreGoal.css" />
     <Content Include="Content\image\sport\ball.png" />
     <Content Include="Content\image\sport\Basketball.png" />
