@@ -369,6 +369,16 @@ MathSheets.Common = MathSheets.Common || (function () {
 			} else {
 				$("link[title='default']").removeAttr("disabled");
 			}
+
+			// 是否顯示虛擬人物
+			var isShowTony = store.get('isTony');
+			if (isShowTony == 'show') {
+				$('.imgClown').attr('src', '../Content/image/clown-color.png');
+				MathSheets.HelloMrTony.showMrTony('on');
+			} else {
+				$('.imgClown').attr('src', '../Content/image/clown.png');
+				MathSheets.HelloMrTony.showMrTony('off');
+			}
 		},
 
 		// 右側導航欄的初期化設置
@@ -601,9 +611,11 @@ MathSheets.Common = MathSheets.Common || (function () {
 			if ($('.imgClown').attr('src') == '../Content/image/clown-color.png') {
 				$('.imgClown').attr('src', '../Content/image/clown.png');
 				MathSheets.HelloMrTony.showMrTony('off');
+				store.set('isTony', 'hide');
 			} else {
 				$('.imgClown').attr('src', '../Content/image/clown-color.png');
 				MathSheets.HelloMrTony.showMrTony('on');
+				store.set('isTony', 'show');
 			}
 		},
 
