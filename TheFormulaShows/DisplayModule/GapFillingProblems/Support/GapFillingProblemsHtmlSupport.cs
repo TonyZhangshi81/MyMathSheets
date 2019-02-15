@@ -48,6 +48,10 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 		/// 圖片表示HTML模板
 		/// </summary>
 		private const string IMAGE_HTML_FORMAT = "<img id=\"imgGfp{0}{1}\" src=\"../Content/image/fill/{2}.png\" />";
+		/// <summary>
+		/// 換行HTML模板
+		/// </summary>
+		private const string BR_HTML = "<br /><span style=\"padding-left: 8px;\" />";
 
 		/// <summary>
 		/// 填空題內容作成
@@ -105,7 +109,7 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 						break;
 					case "LFBR":
 						// 添加換行
-						rowHtml.AppendLine("<BR/>");
+						rowHtml.AppendLine(BR_HTML);
 						break;
 				}
 
