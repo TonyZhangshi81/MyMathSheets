@@ -16,3 +16,23 @@
 	border: unset;
 	background-color: transparent;
 }
+
+.jumbotron-ext {
+	padding: 2rem 3rem;
+	border-radius: 0.8rem;
+	background: url("../../Content/image/theme_2.png") no-repeat;
+	background-size: 100% 100%;
+}
+
+.label-title {
+	margin-bottom: 0.5rem;
+	font-family: inherit;
+	font-weight: 900;
+	line-height: 1.2;
+	font-size: 2.5rem;
+	color: gold;
+}
+
+.div-famousPeople {
+	margin-left: 400px;
+}

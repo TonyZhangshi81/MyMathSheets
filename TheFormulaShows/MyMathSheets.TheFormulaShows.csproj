@@ -88,8 +88,13 @@
     <Content Include="Content\image\Plus.png" />
     <Content Include="Content\image\score.png" />
     <Content Include="Content\image\Subtraction.png" />
+    <Content Include="Content\image\theme_2.png" />
+    <Content Include="Content\image\theme_3.png" />
+    <Content Include="Content\image\theme_4.png" />
+    <Content Include="Content\image\theme_5.png" />
+    <Content Include="Content\image\theme_6.png" />
     <Content Include="Content\image\time.png" />
-    <Content Include="Content\image\timg.png" />
+    <Content Include="Content\image\theme.png" />
     <Content Include="Content\image\triangle.png" />
     <Content Include="Content\switcher\MathSheets.css" />
     <Content Include="Content\font-awesome.css" />

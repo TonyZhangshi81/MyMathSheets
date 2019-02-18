@@ -66,16 +66,19 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 	},
 
 		// 開啟或者關閉虛擬人物
-		showMrTony = function (onoff) {
+		showMrTony = function (onoff, isAnimate = true) {
 			__switch = onoff;
 
 			if (__switch == 'off') {
 				$teacher.tooltip('hide');
 				$teacher.attr('data-original-title', "");
-				// 關閉虛擬人物
-				$teacher.animate({
-					width: 0
-				}, "slow", "swing", function () { $teacher.hide(); });
+
+				if (isAnimate) {
+					// 關閉虛擬人物
+					$teacher.animate({
+						width: 0
+					}, "slow", "swing", function () { $teacher.hide(); });
+				}
 			} else {
 				// 如果虛擬人物的會話已經結束，則不顯示人物
 				if (__dialogueArray.length == 0) {
@@ -83,10 +86,12 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 				}
 				// 人物顯示
 				$teacher.show();
-				// 自動播放
-				$teacher.animate({
-					width: _tonyWidth
-				}, "slow", "swing", autoPlay(1000));
+				if (isAnimate) {
+					// 自動播放
+					$teacher.animate({
+						width: _tonyWidth
+					}, "slow", "swing", autoPlay(1000));
+				}
 			}
 		},
 
