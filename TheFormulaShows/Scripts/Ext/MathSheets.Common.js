@@ -243,11 +243,12 @@ MathSheets.Common = MathSheets.Common || (function () {
 				return;
 			}
 
-			// 恭喜答對滿分過關
-			MathSheets.HelloMrTony.doCelebrate();
-
 			// 置頂處理
 			toTop();
+
+			// 恭喜答對滿分過關
+			setTimeout(MathSheets.HelloMrTony.doCelebrate(), 1000);
+
 			// 精彩瞬間應該先等上3秒鐘 :-!
 			setTimeout(function () {
 				// 隨機設定獎章

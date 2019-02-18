@@ -7,8 +7,8 @@ var __dialogueArray = new Array();
 var __timeId;
 // 當前會話所在集合的位置
 var __dialogueId = 0;
-// 會話是否已經顯示
-var __messageIsShowed = false;
+// 會話是否已經顯示(0沒有顯示，1顯示過，2等待)
+var __messageIsShowed = 0;
 // 是否無限循環執行
 var __isCirculation = false;
 // 循環事件執行后的回調函數定義對象
@@ -21,29 +21,45 @@ var MathSheets = MathSheets || {};
 MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 
 	var _tonyWidth = 0;
+	// 會話顯示的時間點
+	var _smarktime = 0;
+	// 會話隱藏的時間點
+	var _emarktime = 0;
+	// 等待間隔時間(5秒)
+	var _offset = 5000;
 
-	// 回話顯示dialogue
+	// 回話顯示處理如下
+	// 1.當前會話保持顯示5秒鐘
+	// 2.5秒后隱藏當前會話
+	// 3.按照上述處理過程逐個處理會話列表中的內容
+	// 4.關閉虛擬人物時停止上述處理但保留會話狀態
+	// 5.會話輪詢處理分為循環播放和非循環播放（在調用時設定該播放參數）
 	_dialogue = function () {
+		// 如果虛擬人物被關閉則暫停會話（不清除之前的回話狀態）
 		if (__switch == 'off') {
 			// 停止計時
 			clearTimeout(__timeId);
 			return;
 		}
 
+		// 判斷是否循環播放
 		if (!__isCirculation) {
+			// 如果會話播放完畢則釋放當前會話列表的內容
 			if (__dialogueId >= __dialogueArray.length) {
 				__dialogueArray.length = 0;
 			}
 		} else {
+			// 會話循環模式開啟
 			if (__dialogueId >= __dialogueArray.length) {
 				__dialogueId = 0;
 			}
 		}
 
-		// 當前沒有回話（沒什麼好說的:!）
+		// 當前沒有回話則停止計時器
 		if (__dialogueArray.length == 0) {
-			// 循環事件完成之後
+			// 在停止計時之前執行回調函數（如果有回調函數的情況則執行）
 			if (typeof __callbackFunc != 'undefined' && __callbackFunc instanceof Function) {
+				// 執行回調函數
 				__callbackFunc();
 			}
 			// 停止計時
@@ -51,19 +67,50 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 			return;
 		}
 
-		if (!__messageIsShowed) {
+		// 判斷是否已經顯示過會話，如果是（0沒有執行顯示）則激活當前會話并執行顯示
+		if (__messageIsShowed == 0) {
 			$teacher.attr('data-original-title', __dialogueArray[__dialogueId]);
 			$teacher.tooltip('show');
-			__messageIsShowed = true;
-			__timeId = setTimeout(_dialogue, 5000);
-		} else {
+			// 設置為已經執行過顯示（避免遞歸時再次執行上述顯示處理）
+			__messageIsShowed = 1;
+		}
+
+		//console.log('s:' + (new Date().getTime() - _smarktime));
+		// 保持上述顯示處理（延遲時間為默認的5秒鐘），5秒后執行後續處理
+		if ((new Date().getTime() - _smarktime) < _offset) {
+			__timeId = setTimeout(_dialogue, 1000);
+			return;
+		}
+
+		// 清除開始執行的時間點
+		_smarktime = 0;
+		// 判斷是否已經顯示過會話，如果是（1已經執行過顯示）則隱藏當前會話
+		if (__messageIsShowed == 1) {
+			// 用於隱藏處理的時間點初始化設定
+			_emarktime = new Date().getTime();
+			// 隱藏會話
 			$teacher.tooltip('hide');
 			$teacher.attr('data-original-title', "");
-			__dialogueId++;
-			__messageIsShowed = false;
-			__timeId = setTimeout(_dialogue, 5000);
+			// 設置為等待執行狀態（避免遞歸時再次執行上述顯示或隱藏處理）
+			__messageIsShowed = 2;
 		}
+
+		//console.log('e:' + (new Date().getTime() - _emarktime));
+		// 保持上述隱藏處理（延遲時間為默認的5秒鐘），5秒后執行後續處理
+		if ((new Date().getTime() - _emarktime) < _offset) {
+			__timeId = setTimeout(_dialogue, 1000);
+			return;
+		}
+
+		// 會話指針
+		__dialogueId++;
+		// 回復顯示初始狀態（0表示沒有執行過顯示處理）
+		__messageIsShowed = 0;
+		_smarktime = new Date().getTime();
+		// 再次輪詢會話（情況1：會話結束 情況2：會話重新開始）
+		__timeId = setTimeout(_dialogue, 1000);
 	},
+
 
 		// 開啟或者關閉虛擬人物
 		showMrTony = function (onoff, isAnimate = true) {
@@ -90,7 +137,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 					// 自動播放
 					$teacher.animate({
 						width: _tonyWidth
-					}, "slow", "swing", autoPlay(1000));
+					}, "slow", "swing", autoPlay(5000));
 				}
 			}
 		},
@@ -120,8 +167,11 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 				return;
 			}
 
+			// 執行間隔時間
+			_offset = delay;
+			// 記錄會話開始的時間
+			_smarktime = new Date().getTime();
 			__timeId = setTimeout(_dialogue, delay);
-			//__timeId = setInterval(_dialogue, delay);
 		},
 
 		// 初期設定
@@ -187,7 +237,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 				return __dialogueArray;
 			}, 0, false, true, null);
 			// 自動播放
-			autoPlay(1000);
+			autoPlay(5000);
 		},
 
 		// 恭喜你,滿分過關
@@ -205,7 +255,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 			$teacher.animate({
 				top: 150,
 				right: 500
-			}, 1000, "easeOutQuint", function () {
+			}, 500, "easeOutQuint", function () {
 				// 參數初期化設置
 				_initParameter(function () {
 					__dialogueArray = [];
@@ -214,7 +264,7 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 					return __dialogueArray;
 				}, 0, false, false, callbackFunc);
 				// 自動播放
-				autoPlay(2000);
+				autoPlay(3000);
 			});
 		};
 
