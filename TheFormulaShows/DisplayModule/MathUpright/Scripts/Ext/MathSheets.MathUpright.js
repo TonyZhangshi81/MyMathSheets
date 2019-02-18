@@ -70,6 +70,12 @@ MathSheets.MathUpright = MathSheets.MathUpright || (function () {
 			}
 		},
 
+		// 當光標落在文本輸入框中的時候發生的事件
+		inputOnFocus = function (e) {
+			MathSheets.HelloMrTony.setDialogueArray("<h5>仔细看看是加法还是减法</h5>");
+			MathSheets.HelloMrTony.help();
+		},
+
 		// 設定頁面所有輸入域可用狀態(豎式計算)
 		ready = function () {
 			$("input[id*='inputMu']").each(function (index, element) {
@@ -111,6 +117,7 @@ MathSheets.MathUpright = MathSheets.MathUpright || (function () {
 		printAfterSetting: printAfterSetting,
 		ready: ready,
 		makeCorrections: makeCorrections,
+		inputOnFocus: inputOnFocus,
 		theirPapers: theirPapers
 	};
 }());

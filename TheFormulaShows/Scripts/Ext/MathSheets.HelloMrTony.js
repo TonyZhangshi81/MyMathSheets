@@ -204,8 +204,9 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 				__dialogueArray = [];
 				__dialogueArray.push("<h5>练习已经开始了<br/>请认真看题哦</h5>");
 				__dialogueArray.push("<h5>加油!<br/>我会帮助你的</h5>");
+				__dialogueArray.push("<h5>如果打搅你了我可以去喝杯茶</h5>");
 				return __dialogueArray;
-			}, 0, false, true, null);
+			}, 0, false, false, null);
 			// 自動播放
 			autoPlay(5000);
 		},
@@ -238,6 +239,22 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 			}, 0, false, true, null);
 			// 自動播放
 			autoPlay(5000);
+		},
+
+		// 設定會話列表
+		setDialogueArray = function (dialogue) {
+			__dialogueArray = [];
+			__dialogueArray.push(dialogue);
+		},
+
+		// 幫助提示
+		help = function () {
+			// 參數初期化設置
+			_initParameter(function () {
+				return __dialogueArray;
+			}, 0, false, false, null);
+			// 自動播放
+			autoPlay(3000);
 		},
 
 		// 恭喜你,滿分過關
@@ -280,6 +297,10 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
 		// 虛擬人物開關
 		showMrTony: showMrTony,
 		// 交卷操作已經完成
-		theirPapersComplete: theirPapersComplete
+		theirPapersComplete: theirPapersComplete,
+		// 設定會話列表
+		setDialogueArray: setDialogueArray,
+		// 幫助提示
+		help: help
 	};
 }());
