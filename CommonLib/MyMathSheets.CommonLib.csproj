@@ -99,6 +99,9 @@
     <Compile Include="Main\OperationStrategy\OperationNotFoundException.cs" />
     <Compile Include="Main\OperationStrategy\OperationStrategyHelper.cs" />
     <Compile Include="Main\OperationStrategy\ParameterBase.cs" />
+    <Compile Include="Main\VirtualHelper\HelperDialogue.cs" />
+    <Compile Include="Main\VirtualHelper\IVirtualHelper.cs" />
+    <Compile Include="Main\VirtualHelper\VirtualHelperBase.cs" />
     <Compile Include="Message\MessageUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main\ExportAttributes\SystemMarker\MathSheetMarkerAttribute.cs" />

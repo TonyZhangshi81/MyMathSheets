@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Item;
 using System;
@@ -25,6 +26,10 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters
 		/// 是否使用括號（小括號）
 		/// </summary>
 		public bool IsNeedBracket { get; set; }
+		/// <summary>
+		/// 智能提示
+		/// </summary>
+		public HelperDialogue BrainpowerHint { get; set; }
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

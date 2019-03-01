@@ -1,8 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Item;
+using MyMathSheets.ComputationalStrategy.Arithmetic.Main.Helper;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters;
 using System;
 using System.Linq;
@@ -126,6 +128,10 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 
 			// 算式作成
 			MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(p.Signs.ToList()); });
+
+			// 智能提示作成
+			VirtualHelperBase<ArithmeticFormula> helper = new ArithmeticDialogue();
+			p.BrainpowerHint = helper.CreateHelperDialogue(p.Formulas);
 		}
 
 		/// <summary>

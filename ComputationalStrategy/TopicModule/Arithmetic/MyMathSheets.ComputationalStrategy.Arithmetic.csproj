@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Item\ArithmeticFormula.cs" />
+    <Compile Include="Main\Helper\ArithmeticDialogue.cs" />
     <Compile Include="Main\Parameters\ArithmeticParameter.cs" />
     <Compile Include="Main\Strategy\Arithmetic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
