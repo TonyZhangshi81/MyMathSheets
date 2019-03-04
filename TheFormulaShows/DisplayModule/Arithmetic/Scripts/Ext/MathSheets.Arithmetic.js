@@ -21,6 +21,13 @@ MathSheets.Arithmetic = MathSheets.Arithmetic || (function () {
 			});
 		},
 
+		// 當光標落在文本輸入框中的時候發生的事件
+		inputOnFocus = function (e, index) {
+			var dialogueAry = ($("#hiddenAcTony").val() || '').split(';');
+			MathSheets.HelloMrTony.setDialogueArray("<h5>" + dialogueAry[index] + "</h5>");
+			MathSheets.HelloMrTony.help();
+		},
+
 		// 答题验证(正确:true  错误:false)
 		_arithmeticCorrecting = function (index, element) {
 			// 解密
@@ -97,6 +104,7 @@ MathSheets.Arithmetic = MathSheets.Arithmetic || (function () {
 		printSetting: printSetting,
 		printAfterSetting: printAfterSetting,
 		ready: ready,
+		inputOnFocus: inputOnFocus,
 		makeCorrections: makeCorrections,
 		theirPapers: theirPapers
 	};

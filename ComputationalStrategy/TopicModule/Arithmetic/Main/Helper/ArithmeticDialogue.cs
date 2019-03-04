@@ -1,5 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.VirtualHelper;
+using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Item;
+using MyMathSheets.ComputationalStrategy.Arithmetic.Properties;
 using System.Collections.Generic;
 
 namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Helper
@@ -16,9 +18,56 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Helper
 		/// <returns>會話內容列表</returns>
 		protected override List<string> CreateDialogue(List<int> formulaIndex)
 		{
-			// TODO
+			List<string> dialogues = new List<string>();
+			formulaIndex.ForEach(d =>
+			{
+				DialogueType type = CommonUtil.GetRandomNumber(DialogueType.General, DialogueType.ResultHelper);
+				switch (type)
+				{
+					case DialogueType.General:
+						dialogues.Add(MsgResources.AC001);
+						break;
+					case DialogueType.ResultHelper:
+						var formula = base.Formulas[d];
+						dialogues.Add(string.Format(MsgResources.AC002, GetGapValue(formula)));
+						break;
+				}
+			});
 
-			return new List<string>();
+			return dialogues;
+		}
+
+		/// <summary>
+		/// 找到填空項目并返回其值
+		/// </summary>
+		/// <param name="item">答題集合</param>
+		/// <returns>填空項目的值</returns>
+		private int GetGapValue(ArithmeticFormula item)
+		{
+			if (item.MultistageArithmetic != null)
+			{
+				switch (item.MultistageArithmetic.Gap)
+				{
+					case GapFilling.Answer:
+						return item.MultistageArithmetic.Answer;
+					case GapFilling.Left:
+						return item.MultistageArithmetic.LeftParameter;
+					case GapFilling.Right:
+						return item.MultistageArithmetic.RightParameter;
+				}
+			}
+
+			switch (item.Arithmetic.Gap)
+			{
+				case GapFilling.Answer:
+					return item.Arithmetic.Answer;
+				case GapFilling.Left:
+					return item.Arithmetic.LeftParameter;
+				case GapFilling.Right:
+					return item.Arithmetic.RightParameter;
+			}
+
+			return 0;
 		}
 	}
 }

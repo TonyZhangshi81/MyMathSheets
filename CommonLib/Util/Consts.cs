@@ -808,6 +808,21 @@
 	}
 
 	/// <summary>
+	/// 會話提示類型
+	/// </summary>
+	public enum DialogueType : int
+	{
+		/// <summary>
+		/// 一般回話（提示題型注意點）
+		/// </summary>
+		General = 0,
+		/// <summary>
+		/// 結果提示
+		/// </summary>
+		ResultHelper
+	}
+
+	/// <summary>
 	/// 題型類型
 	/// </summary>
 	public class LayoutSetting

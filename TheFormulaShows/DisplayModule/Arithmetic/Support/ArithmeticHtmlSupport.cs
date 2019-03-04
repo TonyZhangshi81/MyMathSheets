@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Item;
@@ -34,6 +35,28 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		/// LABEL標籤HTML模板
 		/// </summary>
 		private const string LABEL_HTML_FORMAT = "<span class=\"label\">{0}</span>";
+		/// <summary>
+		/// 答題提示JS事件註冊模板
+		/// </summary>
+		private const string DIALOGUE_JS_HTML_FORMAT = "onFocus=\"MathSheets.Arithmetic.inputOnFocus(this, {0});\"";
+		/// <summary>
+		/// 答題提示項目HTML模板
+		/// </summary>
+		private const string DIALOGUE_CONTENT_HTML_FORMAT = "<input id=\"hiddenAcTony\" type=\"hidden\" value=\"{0}\"/>";
+		/// <summary>
+		/// 答題結果項目HTML模板
+		/// </summary>
+		private const string ANSWER_HTML_FORMAT = "<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>";
+		/// <summary>
+		/// 輸入項目HTML模板
+		/// </summary>
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputAc{0}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" {1} onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+
+		/// <summary>
+		/// 智能提示
+		/// </summary>
+		private HelperDialogue _brainpowerHint { get; set; }
+		private int _brainpowerIndex;
 
 		/// <summary>
 		/// 題型HTML模板作成
@@ -51,6 +74,8 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 
 			int numberOfColumns = 0;
 			bool isRowHtmlClosed = false;
+			_brainpowerHint = p.BrainpowerHint;
+			_brainpowerIndex = 0;
 
 			int controlIndex = 0;
 			StringBuilder html = new StringBuilder();
@@ -167,9 +192,32 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 			if (html.Length != 0)
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
+				// 會話提示內容保存至畫面
+				html.AppendLine(string.Format(DIALOGUE_CONTENT_HTML_FORMAT, GetArithmeticDialogue()));
 				html.AppendLine().Append("</div>");
 				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.Arithmetic.ToString(), LayoutSetting.Preview.Arithmetic.ToComputationalStrategyName()));
 			}
+
+			return html.ToString();
+		}
+
+		/// <summary>
+		/// 會話提示內容保存至畫面
+		/// </summary>
+		/// <returns>HTML模板信息</returns>
+		private string GetArithmeticDialogue()
+		{
+			if (_brainpowerHint == null)
+			{
+				return string.Empty;
+			}
+
+			StringBuilder html = new StringBuilder();
+			_brainpowerHint.Dialogues.ForEach(d =>
+			{
+				html.AppendFormat("{0};", d);
+			});
+			html.Length -= 1;
 
 			return html.ToString();
 		}
@@ -183,48 +231,48 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		/// <returns>四則運算打印顯示信息</returns>
 		private string GetMultistageFormula(Formula leftFormula, Formula multistageFormula, int controlIndex)
 		{
-			var html = string.Empty;
+			StringBuilder html = new StringBuilder();
 
 			// 第二級計算式中是否使用括號
 			if (multistageFormula.IsNeedBracket)
 			{
 				// 左括號
-				html += string.Format(LABEL_HTML_FORMAT, "(");
+				html.AppendFormat(LABEL_HTML_FORMAT, "(");
 			}
 
 			// 第二級計算式的左側值
-			html += GetHtml(multistageFormula.Gap, multistageFormula.LeftParameter, GapFilling.Left, controlIndex);
+			html.Append(GetHtml(multistageFormula.Gap, multistageFormula.LeftParameter, GapFilling.Left, controlIndex));
 
 			// 第一級計算式中是否使用括號
 			if (leftFormula.IsNeedBracket)
 			{
 				// 右括號（注意：左括號在第一級計算式中）
-				html += string.Format(LABEL_HTML_FORMAT, ")");
+				html.AppendFormat(LABEL_HTML_FORMAT, ")");
 			}
 
 			// 前一級運算符是減法的話,下一級的運算符需要變換
 			if (leftFormula.Sign == SignOfOperation.Subtraction && !multistageFormula.IsNeedBracket)
 			{
 				// 運算符
-				html += (multistageFormula.Sign == SignOfOperation.Plus) ? string.Format(LABEL_HTML_FORMAT, SignOfOperation.Subtraction.ToOperationUnicode()) : string.Format(LABEL_HTML_FORMAT, SignOfOperation.Plus.ToOperationUnicode());
+				html.Append((multistageFormula.Sign == SignOfOperation.Plus) ? string.Format(LABEL_HTML_FORMAT, SignOfOperation.Subtraction.ToOperationUnicode()) : string.Format(LABEL_HTML_FORMAT, SignOfOperation.Plus.ToOperationUnicode()));
 			}
 			else
 			{
 				// 運算符
-				html += string.Format(LABEL_HTML_FORMAT, multistageFormula.Sign.ToOperationUnicode());
+				html.AppendFormat(LABEL_HTML_FORMAT, multistageFormula.Sign.ToOperationUnicode());
 			}
 
 			// 第二級計算式的右側值
-			html += GetHtml(multistageFormula.Gap, multistageFormula.RightParameter, GapFilling.Right, controlIndex);
+			html.Append(GetHtml(multistageFormula.Gap, multistageFormula.RightParameter, GapFilling.Right, controlIndex));
 
 			// 第二級計算式中是否使用括號
 			if (multistageFormula.IsNeedBracket)
 			{
 				// 左括號
-				html += string.Format(LABEL_HTML_FORMAT, ")");
+				html.AppendFormat(LABEL_HTML_FORMAT, ")");
 			}
 
-			return html;
+			return html.ToString();
 		}
 
 		/// <summary>
@@ -238,18 +286,25 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		/// <returns>HTML模板信息</returns>
 		private string GetHtml(GapFilling item, int parameter, GapFilling gap, int index, bool isMultistage = false)
 		{
-			var html = string.Empty;
+			StringBuilder html = new StringBuilder();
 			if (item == gap)
 			{
-				html += string.Format("<input id=\"inputAc{0}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />", index.ToString().PadLeft(2, '0'));
-				html += string.Format("<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>", index.ToString().PadLeft(2, '0'), Base64.EncodeBase64(parameter.ToString()));
+				if(_brainpowerHint.FormulaIndex.Count > _brainpowerIndex && _brainpowerHint.FormulaIndex[_brainpowerIndex] == index)
+				{
+					html.AppendFormat(INPUT_HTML_FORMAT, index.ToString().PadLeft(2, '0'), string.Format(DIALOGUE_JS_HTML_FORMAT, _brainpowerIndex++));
+				}
+				else
+				{
+					html.AppendFormat(INPUT_HTML_FORMAT, index.ToString().PadLeft(2, '0'), string.Empty);
+				}
+				html.AppendFormat(ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), Base64.EncodeBase64(parameter.ToString()));
 			}
 			else
 			{
-				html = string.Format(LABEL_HTML_FORMAT, parameter);
+				html.AppendFormat(LABEL_HTML_FORMAT, parameter);
 			}
 
-			return html;
+			return html.ToString();
 		}
 	}
 }

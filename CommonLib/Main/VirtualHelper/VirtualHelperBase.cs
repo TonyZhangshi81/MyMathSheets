@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Util;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace MyMathSheets.CommonLib.Main.VirtualHelper
@@ -23,7 +24,7 @@ namespace MyMathSheets.CommonLib.Main.VirtualHelper
 		{
 			if (formulas.Count == 0)
 			{
-				return null;
+				return new HelperDialogue() { Dialogues = new List<string>(), FormulaIndex = new List<int>() };
 			}
 
 			// 答題集合
@@ -33,8 +34,8 @@ namespace MyMathSheets.CommonLib.Main.VirtualHelper
 			SettingParameterInit();
 
 			// 智能提示會話內容作成
-			var formulaIndex = CreateFormulaIndex();
-			var dialogues = CreateDialogue(formulaIndex);
+			List<int> formulaIndex = CreateFormulaIndex();
+			List<string> dialogues = CreateDialogue(formulaIndex);
 			return new HelperDialogue() { Dialogues = dialogues, FormulaIndex = formulaIndex };
 		}
 
@@ -64,9 +65,16 @@ namespace MyMathSheets.CommonLib.Main.VirtualHelper
 			List<int> formulaIndex = new List<int>();
 			for (int index = 0; index < _dialogueMaxCount; index++)
 			{
-				formulaIndex.Add(CommonUtil.GetRandomNumber(1, Formulas.Count));
+				var number = CommonUtil.GetRandomNumber(0, Formulas.Count - 1);
+				if(formulaIndex.Any(d => d == number))
+				{
+					index--;
+					continue;
+				}
+				formulaIndex.Add(number);
 			}
 
+			formulaIndex.Sort();
 			return formulaIndex;
 		}
 
