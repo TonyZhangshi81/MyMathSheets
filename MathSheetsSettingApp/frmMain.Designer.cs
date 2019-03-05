@@ -91,7 +91,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.ControlLight;
 			this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-			this.ClientSize = new System.Drawing.Size(856, 471);
+			this.ClientSize = new System.Drawing.Size(904, 452);
 			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.cmbWorkPages);
 			this.Controls.Add(this.panel1);
@@ -110,8 +110,6 @@
 			this.Load += new System.EventHandler(this.FormLoad);
 			this.ResumeLayout(false);
 
-			this.Width = 920;
-			this.Height = 490;
 		}
 
 		#endregion

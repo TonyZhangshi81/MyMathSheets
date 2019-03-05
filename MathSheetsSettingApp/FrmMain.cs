@@ -50,6 +50,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0001A));
 
+			this.Owner.Hide();
+
 			// 題型縮略瀏覽初期化
 			PreviewInit();
 

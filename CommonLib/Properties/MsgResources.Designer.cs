@@ -322,7 +322,7 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
-        ///   I0029L:模塊識別子信息（{0}） に類似しているローカライズされた文字列を検索します。
+        ///   I0029L:模塊識別信息（{0}） に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string I0029L {
             get {

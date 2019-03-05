@@ -29,9 +29,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
 			Thread.GetDomain().UnhandledException += new UnhandledExceptionEventHandler(ConsoleMain_UnhandledException);
-
-			ComposerFactory.Init();
-			Application.Run(new FrmMain());
+		
+			Application.Run(new FrmModelLoad());
 		}
 
 		/// <summary>

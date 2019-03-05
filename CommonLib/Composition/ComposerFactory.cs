@@ -19,6 +19,31 @@ namespace MyMathSheets.CommonLib.Composition
 	/// </summary>
 	public static class ComposerFactory
 	{
+		/// <summary>
+		/// 模塊加載委託
+		/// </summary>
+		/// <param name="current">當前加載對象計數</param>
+		public delegate void ModelLoadEventHandler(int current);
+
+		/// <summary>
+		/// 模塊信息檢索委託
+		/// </summary>
+		/// <param name="modelCount">預加載對象合計數</param>
+		public delegate void SearchModelEventHandler(int modelCount);
+
+
+		/// <summary>
+		/// 模塊加載事件
+		/// </summary>
+		public static event ModelLoadEventHandler ModelLoadEvent;
+		/// <summary>
+		/// 模塊信息檢索事件
+		/// </summary>
+		public static event SearchModelEventHandler SearchModelEvent;
+
+		/// <summary>
+		/// 文件名檢索用關鍵字
+		/// </summary>
 		const string SEARCH_PATTERN = "MyMathSheets.*.dll";
 		/// <summary>
 		/// 日誌對象作成
@@ -49,43 +74,49 @@ namespace MyMathSheets.CommonLib.Composition
 		}
 
 		/// <summary>
-		/// 
+		/// 獨佔模式開啟
 		/// </summary>
 		private static readonly object Sync = new object();
 
 		/// <summary>
-		/// 
+		/// 模塊記載初期化處理
 		/// </summary>
 		public static void Init()
 		{
+			int currentIndex = 1;
 			// 用於檢查題型注入的完整性（具備策略模塊和展示模塊）
 			List<LayoutSetting.Preview> checkCache = new List<LayoutSetting.Preview>();
 
-			var action = new Action<FileInfo>(f =>
+			var action = new Action<FileInfo>(file =>
 			{
-				var assembly = Assembly.LoadFile(f.FullName);
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0028L, f.FullName));
+				var assembly = Assembly.LoadFile(file.FullName);
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0028L, file.FullName));
 
 				MathSheetMarkerAttribute attr = assembly.GetCustomAttributes(typeof(MathSheetMarkerAttribute), false)
 					.Cast<MathSheetMarkerAttribute>()
 					.FirstOrDefault();
 				if (attr == null)
 				{
-					log.Debug(MessageUtil.GetException(() => MsgResources.E0027L, f.FullName));
+					log.Debug(MessageUtil.GetException(() => MsgResources.E0027L, file.FullName));
 					throw new Exception();
 				}
 				var valueFunc = new Func<string, Composer>(c =>
 				{
 					lock (Sync)
 					{
+						System.Threading.Thread.Sleep(50);
+
+						// 模塊加載事件傳播
+						ModelLoadEvent?.Invoke(currentIndex++);
 						return new Composer(assembly);
 					}
 				});
 
+				// 模塊識別號(模塊識別ID + 題型識別號)
 				string composerKey = (attr.Preview == LayoutSetting.Preview.Null) ? attr.SystemId.ToString() : string.Format("{0}::{1}", attr.SystemId, attr.Preview);
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0029L, composerKey));
 
 				ComposerCache.GetOrAdd(composerKey, valueFunc);
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0029L, composerKey));
 
 				// （為確保模塊的完成性，規定同一個題型必須具備策略模塊和展示模塊）
 				if (checkCache.Any(d => d == attr.Preview))
@@ -106,9 +137,14 @@ namespace MyMathSheets.CommonLib.Composition
 
 			var basePath = AppDomain.CurrentDomain.BaseDirectory;
 			DirectoryInfo directory = new DirectoryInfo(basePath);
-			directory.GetFiles(SEARCH_PATTERN).ToList().ForEach(f => action(f));
+			List<FileInfo> files = directory.GetFiles(SEARCH_PATTERN).ToList();
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0030L, checkCache.Count));
+			// 模塊信息事件傳播
+			SearchModelEvent?.Invoke(files.Count);
+
+			files.ForEach(f => action(f));
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0030L, files.Count));
 		}
 
 		/// <summary>
