@@ -147,6 +147,9 @@
   <data name="E0026L" xml:space="preserve">
     <value>E0026L:指定小時數{0}越界</value>
   </data>
+  <data name="E0027L" xml:space="preserve">
+    <value>E0027L:指定{0}文件的MathSheetMarker屬性未定義</value>
+  </data>
   <data name="I0001L" xml:space="preserve">
     <value>I0001L:指定運算符實例準備作成</value>
   </data>
@@ -198,5 +201,17 @@
   </data>
   <data name="I0017L" xml:space="preserve">
     <value>I0017L:靜態HTML文件作成</value>
+  </data>
+  <data name="I0028L" xml:space="preserve">
+    <value>I0028L:指定{0}文件被讀取加載</value>
+  </data>
+  <data name="I0029L" xml:space="preserve">
+    <value>I0029L:模塊識別子信息（{0}）</value>
+  </data>
+  <data name="I0030L" xml:space="preserve">
+    <value>I0030L:模塊讀取處理完畢（共計：{0}個）</value>
+  </data>
+  <data name="I0031L" xml:space="preserve">
+    <value>I0031L:模塊讀取處理開始</value>
   </data>
 </root>

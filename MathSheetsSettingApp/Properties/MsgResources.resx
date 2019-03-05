@@ -121,7 +121,7 @@
     <value>E0001A:系統異常</value>
   </data>
   <data name="I0001A" xml:space="preserve">
-    <value>I0001A:畫面初期化</value>
+    <value>I0001A:畫面初期化開始</value>
   </data>
   <data name="I0002A" xml:space="preserve">
     <value>I0002A:開始出題</value>
@@ -143,5 +143,8 @@
   </data>
   <data name="I0007A" xml:space="preserve">
     <value>I0007A:{0}題型移除</value>
+  </data>
+  <data name="I0008A" xml:space="preserve">
+    <value>I0008A:畫面初期化處理完畢</value>
   </data>
 </root>

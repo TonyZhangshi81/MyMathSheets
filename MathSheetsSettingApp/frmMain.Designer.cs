@@ -110,6 +110,8 @@
 			this.Load += new System.EventHandler(this.FormLoad);
 			this.ResumeLayout(false);
 
+			this.Width = 920;
+			this.Height = 490;
 		}
 
 		#endregion

@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Message;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using System;
@@ -19,6 +20,10 @@ namespace MyMathSheets.CommonLib.Composition
 	public static class ComposerFactory
 	{
 		const string SEARCH_PATTERN = "MyMathSheets.*.dll";
+		/// <summary>
+		/// 日誌對象作成
+		/// </summary>
+		private static readonly Log log = Log.LogReady(typeof(ComposerFactory));
 
 		/// <summary>
 		/// 
@@ -59,11 +64,14 @@ namespace MyMathSheets.CommonLib.Composition
 			var action = new Action<FileInfo>(f =>
 			{
 				var assembly = Assembly.LoadFile(f.FullName);
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0028L, f.FullName));
+
 				MathSheetMarkerAttribute attr = assembly.GetCustomAttributes(typeof(MathSheetMarkerAttribute), false)
 					.Cast<MathSheetMarkerAttribute>()
 					.FirstOrDefault();
 				if (attr == null)
 				{
+					log.Debug(MessageUtil.GetException(() => MsgResources.E0027L, f.FullName));
 					throw new Exception();
 				}
 				var valueFunc = new Func<string, Composer>(c =>
@@ -75,6 +83,7 @@ namespace MyMathSheets.CommonLib.Composition
 				});
 
 				string composerKey = (attr.Preview == LayoutSetting.Preview.Null) ? attr.SystemId.ToString() : string.Format("{0}::{1}", attr.SystemId, attr.Preview);
+				log.Debug(MessageUtil.GetException(() => MsgResources.I0029L, composerKey));
 
 				ComposerCache.GetOrAdd(composerKey, valueFunc);
 
@@ -93,9 +102,13 @@ namespace MyMathSheets.CommonLib.Composition
 				}
 			});
 
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0031L));
+
 			var basePath = AppDomain.CurrentDomain.BaseDirectory;
 			DirectoryInfo directory = new DirectoryInfo(basePath);
 			directory.GetFiles(SEARCH_PATTERN).ToList().ForEach(f => action(f));
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0030L, checkCache.Count));
 		}
 
 		/// <summary>

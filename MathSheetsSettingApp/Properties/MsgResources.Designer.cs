@@ -70,7 +70,7 @@ namespace MyMathSheets.MathSheetsSettingApp.Properties {
         }
         
         /// <summary>
-        ///   I0001A:畫面初期化 に類似しているローカライズされた文字列を検索します。
+        ///   I0001A:畫面初期化開始 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string I0001A {
             get {
@@ -129,6 +129,15 @@ namespace MyMathSheets.MathSheetsSettingApp.Properties {
         internal static string I0007A {
             get {
                 return ResourceManager.GetString("I0007A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0008A:畫面初期化處理完畢 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0008A {
+            get {
+                return ResourceManager.GetString("I0008A", resourceCulture);
             }
         }
     }

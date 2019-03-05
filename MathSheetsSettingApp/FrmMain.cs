@@ -50,16 +50,16 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0001A));
 
-			this.Width = 920;
-			this.Height = 490;
-
 			// 題型縮略瀏覽初期化
 			PreviewInit();
+
 			// 歷屆題型試卷初期化顯示
 			WorkPagesDisplay();
 
 			// 創建題型選擇控件
 			CreateQuestionCheckBoxList();
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0008A));
 		}
 
 		/// <summary>
@@ -84,11 +84,13 @@ namespace MyMathSheets.MathSheetsSettingApp
 			int rowCount = 0;
 			classifyList.ForEach(c =>
 			{
-				GroupBox groubox = new GroupBox();
-				groubox.Name = "groubox" + rowIndex.ToString();
-				groubox.Width = 360;
-				groubox.Text = c.ToClassifyName();
-				groubox.Location = new Point(0, locationY);
+				GroupBox groubox = new GroupBox
+				{
+					Name = "groubox" + rowIndex.ToString(),
+					Width = 360,
+					Text = c.ToClassifyName(),
+					Location = new Point(0, locationY)
+				};
 
 				var controlList = _process.ControlList.Where(d => c == d.Classify).ToList();
 				if (controlList.Count > 0)
