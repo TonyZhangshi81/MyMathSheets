@@ -37,20 +37,22 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 
 			this.progressBar.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
 			this.progressBar.Location = new System.Drawing.Point(0, 0);
+			this.progressBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.progressBar.Name = "progressBar";
-			this.progressBar.Size = new System.Drawing.Size(420, 18);
+			this.progressBar.Size = new System.Drawing.Size(600, 15);
 			this.progressBar.Step = 1;
 			this.progressBar.TabIndex = 0;
 			// 
 			// FrmModelLoad
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.White;
-			this.ClientSize = new System.Drawing.Size(420, 24);
+			this.ClientSize = new System.Drawing.Size(600, 18);
 			this.ControlBox = false;
 			this.Controls.Add(this.progressBar);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
 			this.Name = "FrmModelLoad";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.TransparencyKey = System.Drawing.Color.White;

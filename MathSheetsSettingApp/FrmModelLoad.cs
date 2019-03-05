@@ -28,7 +28,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			MethodInvoker invoker = () =>
 			{
-				progressBar.Value = 1;
+				progressBar.Value = 0;
+				progressBar.Minimum = 0;
 				progressBar.Maximum = modelCount;
 			};
 
@@ -53,7 +54,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 				progressBar.Value = current;
 				if (progressBar.Value == progressBar.Maximum)
 				{
-					progressBar.Value = progressBar.Maximum;
 					var frmMain = new FrmMain();
 					frmMain.ShowDialog(this);
 					this.Close();
