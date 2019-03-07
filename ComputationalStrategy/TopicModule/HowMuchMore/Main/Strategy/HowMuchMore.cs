@@ -1,8 +1,10 @@
 using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Item;
+using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Helper;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +64,10 @@ namespace MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Strategy
 				// 計算式作成
 				p.Formulas.Add(howMuchMoreFormula);
 			}
+
+			// 智能提示作成
+			VirtualHelperBase<HowMuchMoreFormula> helper = new HowMuchMoreDialogue();
+			p.BrainpowerHint = helper.CreateHelperDialogue(p.Formulas);
 		}
 
 		/// <summary>

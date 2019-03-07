@@ -31,7 +31,7 @@ namespace MyMathSheets.CommonLib.Main.VirtualHelper
 			Formulas = formulas;
 
 			// 根據答題集合數量配置智能提示所需參數
-			SettingParameterInit();
+			_dialogueMaxCount = SettingParameterInit();
 
 			// 智能提示會話內容作成
 			List<int> formulaIndex = CreateFormulaIndex();
@@ -50,10 +50,10 @@ namespace MyMathSheets.CommonLib.Main.VirtualHelper
 		/// <remarks>
 		/// 智能提示最大條數: 每5題有一個提示
 		/// </remarks>
-		protected virtual void SettingParameterInit()
+		protected virtual int SettingParameterInit()
 		{
 			// 智能提示最大條數
-			_dialogueMaxCount = Convert.ToInt32(Math.Ceiling(Formulas.Count / 5.0m));
+			return Convert.ToInt32(Math.Ceiling(Formulas.Count / 5.0m));
 		}
 
 		/// <summary>

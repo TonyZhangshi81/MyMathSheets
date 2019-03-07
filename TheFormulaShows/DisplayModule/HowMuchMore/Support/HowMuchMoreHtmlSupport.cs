@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Item;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
@@ -32,6 +33,14 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 		/// 比较HTML模板
 		/// </summary>
 		private const string SPAN_MORE_LITTLE_HTML_FORMAT = "<span>{0}</span>";
+		/// <summary>
+		/// 答題提示項目HTML模板
+		/// </summary>
+		private const string DIALOGUE_CONTENT_HTML_FORMAT = "<input id=\"hiddenHmmTony\" type=\"hidden\" value=\"{0}\"/>";
+		/// <summary>
+		/// 答題提示JS事件註冊模板
+		/// </summary>
+		private const string DIALOGUE_JS_HTML_FORMAT = "onmouseover=\"MathSheets.HowMuchMore.ulMouseOver(this, {0});\"";
 
 		/// <summary>
 		/// 可選圖片列表
@@ -41,6 +50,12 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 		/// 填空題中可以選擇的圖片集合
 		/// </summary>
 		private StringBuilder _gapFillingItems;
+
+		/// <summary>
+		/// 智能提示
+		/// </summary>
+		private HelperDialogue _brainpowerHint { get; set; }
+		private int _brainpowerIndex;
 
 		/// <summary>
 		/// 構造體
@@ -77,6 +92,8 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 
 			int numberOfColumns = 0;
 			bool isRowHtmlClosed = false;
+			_brainpowerHint = p.BrainpowerHint;
+			_brainpowerIndex = 0;
 
 			int controlIndex = 0;
 			StringBuilder html = new StringBuilder();
@@ -92,7 +109,15 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 				isRowHtmlClosed = false;
 
 				listGroupHtml.AppendLine("<div class=\"col-md-6 form-inline\">");
-				listGroupHtml.AppendLine("<ul class=\"list-group list-group-ext\">");
+
+				if (_brainpowerHint.FormulaIndex.Count > _brainpowerIndex && _brainpowerHint.FormulaIndex[_brainpowerIndex] == controlIndex)
+				{
+					listGroupHtml.AppendLine(string.Format("<ul {0} class=\"list-group list-group-ext\">", string.Format(DIALOGUE_JS_HTML_FORMAT, _brainpowerIndex++)));
+				}
+				else
+				{
+					listGroupHtml.AppendLine("<ul class=\"list-group list-group-ext\">");
+				}
 				listGroupHtml.AppendLine("<li class=\"list-group-item list-group-item-ext-1\">");
 				listGroupHtml.AppendLine("<h4>");
 				listGroupHtml.AppendLine(GetProblemHtml(item));
@@ -160,10 +185,33 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 				head.AppendLine(string.Format("<input type=\"hidden\" id=\"hidImgHmmHelpArray\" value=\"{0}\" />", _gapFillingItems.ToString()));
 
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
+				// 會話提示內容保存至畫面
+				html.AppendLine(string.Format(DIALOGUE_CONTENT_HTML_FORMAT, GetDialogue()));
 				html.AppendLine().Append("</div>");
 
 				html.Insert(0, head);
 			}
+			return html.ToString();
+		}
+
+		/// <summary>
+		/// 會話提示內容保存至畫面
+		/// </summary>
+		/// <returns>HTML模板信息</returns>
+		private string GetDialogue()
+		{
+			if (_brainpowerHint == null)
+			{
+				return string.Empty;
+			}
+
+			StringBuilder html = new StringBuilder();
+			_brainpowerHint.Dialogues.ForEach(d =>
+			{
+				html.AppendFormat("{0};", d);
+			});
+			html.Length -= 1;
+
 			return html.ToString();
 		}
 
