@@ -71,7 +71,7 @@
 			// 
 			this.panel1.Location = new System.Drawing.Point(23, 12);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(367, 384);
+			this.panel1.Size = new System.Drawing.Size(368, 384);
 			this.panel1.TabIndex = 28;
 			// 
 			// cmbWorkPages
@@ -102,7 +102,7 @@
 			this.picCity.Image = ((System.Drawing.Image)(resources.GetObject("picCity.Image")));
 			this.picCity.Location = new System.Drawing.Point(0, 0);
 			this.picCity.Name = "picCity";
-			this.picCity.Size = new System.Drawing.Size(367, 88);
+			this.picCity.Size = new System.Drawing.Size(368, 88);
 			this.picCity.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.picCity.TabIndex = 31;
 			this.picCity.TabStop = false;
@@ -131,7 +131,7 @@
 			this.panel2.Controls.Add(this.picCar);
 			this.panel2.Location = new System.Drawing.Point(23, 372);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(367, 88);
+			this.panel2.Size = new System.Drawing.Size(368, 88);
 			this.panel2.TabIndex = 33;
 			// 
 			// picCityNext
@@ -140,7 +140,7 @@
 			this.picCityNext.Image = ((System.Drawing.Image)(resources.GetObject("picCityNext.Image")));
 			this.picCityNext.Location = new System.Drawing.Point(3, -3);
 			this.picCityNext.Name = "picCityNext";
-			this.picCityNext.Size = new System.Drawing.Size(367, 88);
+			this.picCityNext.Size = new System.Drawing.Size(368, 88);
 			this.picCityNext.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.picCityNext.TabIndex = 33;
 			this.picCityNext.TabStop = false;

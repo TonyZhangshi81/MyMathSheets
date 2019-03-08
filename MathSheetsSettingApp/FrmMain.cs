@@ -241,8 +241,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// </summary>
 		private void ScrollCityInit()
 		{
-			CarMoveUnit = 5;
-			CityMoveUnit = 5;
+			CarMoveUnit = 4;
+			CityMoveUnit = 4;
 			IsInCity = true;
 
 			picCity.Controls.Add(picCar);
@@ -268,37 +268,45 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			picCar.Location = new Point(picCar.Location.X + CarMoveUnit, picCar.Location.Y);
 
-			// 小車在第一份城市背景中並且所剩路程已不足40的時候，減速慢行
-			if ((IsInCity && (picCity.Width - picCar.Location.X <= 80)) ||
-				(!IsInCity && (picCityNext.Width - picCar.Location.X <= 80)))
+			// 小車在城市背景中所剩路程已不足80的時候，減速慢行
+			if ((IsInCity && (picCity.Width - picCar.Location.X <= 120)) ||
+				(!IsInCity && (picCityNext.Width - picCar.Location.X <= 120)))
 			{
 				CarMoveUnit = 2;
 			}
+			else if ((IsInCity && (picCity.Width - picCar.Location.X <= 250) && (picCity.Width - picCar.Location.X > 120)) ||
+			   (!IsInCity && (picCityNext.Width - picCar.Location.X <= 250) && (picCityNext.Width - picCar.Location.X > 120)))
+			{
+				// 小車在城市背景中所剩路程已不足160的時候，勻速行駛
+				CarMoveUnit = 4;
+			}
 
-			if (picCity.Location.X * -1 >= panel2.Width - 2)
+			if (picCity.Location.X * -1 >= panel2.Width)
 			{
 				picCity.Controls.Remove(picCar);
 				picCity.Location = new Point(panel2.Width, 0);
 
 				IsInCity = false;
 				picCityNext.Controls.Add(picCar);
-				picCar.Location = new Point(-30, 66);
+				picCar.Location = new Point(-46, 66);
 				picCar.BackColor = Color.Transparent;
 
-				CarMoveUnit = 6;
+				// 小車已經離開城市背景的時候,急速追趕
+				CarMoveUnit = 8;
 			}
 
-			if (picCityNext.Location.X * -1 >= panel2.Width - 5)
+			if (picCityNext.Location.X * -1 >= panel2.Width)
 			{
 				picCityNext.Controls.Remove(picCar);
 				picCityNext.Location = new Point(panel2.Width, 0);
 
 				IsInCity = true;
 				picCity.Controls.Add(picCar);
-				picCar.Location = new Point(-30, 66);
+				picCar.Location = new Point(-46, 66);
 				picCar.BackColor = Color.Transparent;
 
-				CarMoveUnit = 6;
+				// 小車已經離開城市背景的時候,急速追趕
+				CarMoveUnit = 8;
 			}
 		}
 
