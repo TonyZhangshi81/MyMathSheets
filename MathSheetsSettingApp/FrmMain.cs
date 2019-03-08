@@ -52,6 +52,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			this.Owner.Hide();
 
+			// 城市背景滾動效果初期化設定
+			ScrollCityInit();
+
 			// 題型縮略瀏覽初期化
 			PreviewInit();
 
@@ -232,5 +235,87 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 退出系統
 			Environment.Exit(0);
 		}
+
+		/// <summary>
+		/// 城市背景滾動效果初期化設定
+		/// </summary>
+		private void ScrollCityInit()
+		{
+			CarMoveUnit = 5;
+			CityMoveUnit = 5;
+			IsInCity = true;
+
+			picCity.Controls.Add(picCar);
+			picCar.Location = new Point(30, 66);
+			picCar.BackColor = Color.Transparent;
+
+			panel2.Controls.Add(picCity);
+			picCity.Location = new Point(0, 0);
+
+			panel2.Controls.Add(picCityNext);
+			picCityNext.Location = new Point(panel2.Width, 0);
+		}
+
+		/// <summary>
+		/// 用於播放城市背景滾動
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void TimerTick(object sender, EventArgs e)
+		{
+			picCity.Location = new Point(picCity.Location.X - CityMoveUnit, picCity.Location.Y);
+			picCityNext.Location = new Point(picCityNext.Location.X - CityMoveUnit, picCity.Location.Y);
+
+			picCar.Location = new Point(picCar.Location.X + CarMoveUnit, picCar.Location.Y);
+
+			// 小車在第一份城市背景中並且所剩路程已不足40的時候，減速慢行
+			if ((IsInCity && (picCity.Width - picCar.Location.X <= 80)) ||
+				(!IsInCity && (picCityNext.Width - picCar.Location.X <= 80)))
+			{
+				CarMoveUnit = 2;
+			}
+
+			if (picCity.Location.X * -1 >= panel2.Width - 2)
+			{
+				picCity.Controls.Remove(picCar);
+				picCity.Location = new Point(panel2.Width, 0);
+
+				IsInCity = false;
+				picCityNext.Controls.Add(picCar);
+				picCar.Location = new Point(-30, 66);
+				picCar.BackColor = Color.Transparent;
+
+				CarMoveUnit = 6;
+			}
+
+			if (picCityNext.Location.X * -1 >= panel2.Width - 5)
+			{
+				picCityNext.Controls.Remove(picCar);
+				picCityNext.Location = new Point(panel2.Width, 0);
+
+				IsInCity = true;
+				picCity.Controls.Add(picCar);
+				picCar.Location = new Point(-30, 66);
+				picCar.BackColor = Color.Transparent;
+
+				CarMoveUnit = 6;
+			}
+		}
+
+
+		/// <summary>
+		/// 小車是否在城市背景中
+		/// </summary>
+		private bool IsInCity { get; set; }
+
+		/// <summary>
+		/// 小車移動單位
+		/// </summary>
+		private int CarMoveUnit { get; set; }
+
+		/// <summary>
+		/// 城市背景移動單位
+		/// </summary>
+		private int CityMoveUnit { get; set; }
 	}
 }

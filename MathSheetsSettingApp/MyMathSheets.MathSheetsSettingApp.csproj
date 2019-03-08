@@ -105,10 +105,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\image\car.png" />
     <Content Include="Content\image\CurrencyLinkage.png" />
     <Content Include="Content\image\CurrencyOperation.png" />
     <None Include="Content\image\GapFillingProblems.png" />
     <Content Include="Content\image\MathUpright.png" />
+    <Content Include="Content\image\plane.png" />
     <Content Include="Content\image\TimeCalculation.png" />
     <None Include="Content\image\Arithmetic.png" />
     <None Include="Content\image\ComputingConnection.png" />
