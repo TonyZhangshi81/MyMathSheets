@@ -107,11 +107,15 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			picCity.Controls.Add(picCar);
 			picCity.Controls.Add(picPlane);
+			picCity.Controls.Add(picWeatherWind);
+			picWeatherWind.Visible = false;
 
 			picCar.Location = new Point(0, 174);
 			picCar.BackColor = Color.Transparent;
 			picPlane.Location = new Point(picCity.Width - 60, 30);
 			picPlane.BackColor = Color.Transparent;
+			picWeatherWind.Location = new Point(picCity.Width - 430, 30);
+			picWeatherWind.BackColor = Color.Transparent;
 
 			timer1.Start();
 
@@ -124,17 +128,31 @@ namespace MyMathSheets.MathSheetsSettingApp
 		}
 
 		/// <summary>
-		/// 
+		/// 計時器（開場紙飛機動畫）
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void TimerTick(object sender, EventArgs e)
 		{
-			//double x, y;
-			//_number += 5;
-			//x = 10 * Math.Sin(_number);
-			//y = 10 * Math.Cos(_number);
-			picPlane.Location = new Point(picPlane.Location.X - 8, 30);
+			int locationY = 0;
+			// 使用餘弦函數計算弧度
+			double y = Math.Cos(Math.PI * picPlane.Location.X / 180.0);
+			// 正負值計算y軸的相對偏移量（20是小飛機的高度）
+			if (y < 0)
+			{
+				locationY = (int)((y * -1 * 90) * 0.7) + 20;
+			}
+			else
+			{
+				locationY = (int)((y * 90) * 0.7) + 20;
+				if (locationY < 30)
+				{
+					locationY = 25;
+					picWeatherWind.Visible = true;
+				}
+			}
+			// 位置移動
+			picPlane.Location = new Point(picPlane.Location.X - 3, locationY);
 		}
 	}
 }

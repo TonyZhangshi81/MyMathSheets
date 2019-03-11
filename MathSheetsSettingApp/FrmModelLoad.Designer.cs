@@ -36,9 +36,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 			this.picCar = new System.Windows.Forms.PictureBox();
 			this.picPlane = new System.Windows.Forms.PictureBox();
 			this.timer1 = new System.Windows.Forms.Timer(this.components);
+			this.picWeatherWind = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.picCity)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.picCar)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.picPlane)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.picWeatherWind)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// picCity
@@ -76,7 +78,20 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 
 			// timer1
 			// 
+			this.timer1.Interval = 35;
 			this.timer1.Tick += new System.EventHandler(this.TimerTick);
+			// 
+			// picWeatherWind
+			// 
+			this.picWeatherWind.BackColor = System.Drawing.Color.Transparent;
+			this.picWeatherWind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+			this.picWeatherWind.Image = ((System.Drawing.Image)(resources.GetObject("picWeatherWind.Image")));
+			this.picWeatherWind.Location = new System.Drawing.Point(203, 31);
+			this.picWeatherWind.Name = "picWeatherWind";
+			this.picWeatherWind.Size = new System.Drawing.Size(112, 44);
+			this.picWeatherWind.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.picWeatherWind.TabIndex = 8;
+			this.picWeatherWind.TabStop = false;
 			// 
 			// FrmModelLoad
 			// 
@@ -85,6 +100,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			this.BackColor = System.Drawing.Color.White;
 			this.ClientSize = new System.Drawing.Size(502, 186);
 			this.ControlBox = false;
+			this.Controls.Add(this.picWeatherWind);
 			this.Controls.Add(this.picPlane);
 			this.Controls.Add(this.picCar);
 			this.Controls.Add(this.picCity);
@@ -96,6 +112,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			((System.ComponentModel.ISupportInitialize)(this.picCity)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.picCar)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.picPlane)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.picWeatherWind)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -105,5 +122,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 		private System.Windows.Forms.PictureBox picCar;
 		private System.Windows.Forms.PictureBox picPlane;
 		private System.Windows.Forms.Timer timer1;
+		private System.Windows.Forms.PictureBox picWeatherWind;
 	}
 }

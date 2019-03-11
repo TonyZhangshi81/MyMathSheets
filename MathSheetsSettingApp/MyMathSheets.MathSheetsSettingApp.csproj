@@ -80,6 +80,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MsgResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +100,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Config\TopicManagement.json" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -108,6 +117,7 @@
     <Content Include="Content\image\car.png" />
     <Content Include="Content\image\CurrencyLinkage.png" />
     <Content Include="Content\image\CurrencyOperation.png" />
+    <Content Include="Content\image\WeatherWind.png" />
     <None Include="Content\image\GapFillingProblems.png" />
     <Content Include="Content\image\MathUpright.png" />
     <Content Include="Content\image\plane.png" />
