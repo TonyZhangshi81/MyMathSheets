@@ -29,7 +29,7 @@
 
 ![MyMathSheets](https://github.com/TonyZhangshi81/MyMathSheets/blob/master/Read/help02.jpg)
 
-## 目前已經事項的題型
+## 目前已經完成的題型
 > 1. Arithmetic 四則運算 AC
 > 2. EqualityComparison 運算比大小 EC
 > 3. ComputingConnection 等式接龍 CC
