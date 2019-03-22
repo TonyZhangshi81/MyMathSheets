@@ -24,7 +24,7 @@
 >3. TestConsoleApp 以控制台的形式測試個題型策略是否正確（在得到頁面顯示模塊支持之間，題型參數的正確性是最重要的）
 >4. TheFormulaShows 頁面顯示模塊（對題型策略類得到的各題型參數進行HTML化）
 >5. MathSheetsSettingApp 提供窗口方式的題型選擇界面（以插件方式動態顯示各題型）
->6. Tools 題型參數化輔助配置工具（所有參數以json形式進行配置和管理）
+>6. Tools 題型參數化輔助配置工具（所有參數以json形式進行配置和管理）<br/>
 上述模塊之間（除主框架模塊）彼此沒有引用關係，所以一般新題型設計完成後只需針對新題型完成策略類、頁面顯示類、題型測試類既可以上線（Lib文件夾統一管理各Assembly資源）。。。。當然，目前小組中就我一人：|
 
 ![MyMathSheets](https://github.com/TonyZhangshi81/MyMathSheets/blob/master/Read/help02.jpg)
