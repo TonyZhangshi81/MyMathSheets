@@ -10,7 +10,6 @@ namespace MyMathSheets.CommonLib.Main.VirtualHelper
 		/// <summary>
 		/// 對應指定題型數據類型作成幫助提示
 		/// </summary>
-		/// <typeparam name="T">題型數據類型</typeparam>
 		/// <param name="formulas">答題集合</param>
 		/// <returns>智能提示對象</returns>
 		HelperDialogue CreateHelperDialogue(IList<T> formulas);
