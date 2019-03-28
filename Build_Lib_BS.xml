@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" VisualStudioVersion="15.0" DefaultTargets="BuildAndRelease" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<!--
+			ここに記載されている値は変数として使用されます。
+			MSBuild.exeの引数で/property:name=value と指定することで置き換えることが可能です。
+			必要に応じて、ここの定義を修正・拡張してください。
+		-->
+		<!-- 実行環境のルートディレクトリ -->
+		<RootDir>$(MSBuildProjectDirectory)</RootDir>
+		
+		<!-- ビルドするソリューションファイルの一覧 -->
+		<Solution_BS0>$(MSBuildProjectDirectory)\LIB_BS\BS0.sln</Solution_BS0>
+		<Solution_BS1>$(MSBuildProjectDirectory)\LIB_BS\BS1.sln</Solution_BS1>
+		<Solution_BS2>$(MSBuildProjectDirectory)\LIB_BS\BS2.sln</Solution_BS2>
+		<Solution_BS3>$(MSBuildProjectDirectory)\LIB_BS\BS3.sln</Solution_BS3>
+		<Solution_BS4>$(MSBuildProjectDirectory)\LIB_BS\BS4.sln</Solution_BS4>
+		
+		<!-- ビルドするプロジェクトファイルの一覧 -->
+		<Project_BS0_CO>$(MSBuildProjectDirectory)\LIB_BS\BS0\Isid.BankR4s.BS.BS0.CO\Isid.BankR4s.BS.BS0.CO.csproj</Project_BS0_CO>
+
+		<Project_BS1_BC>$(MSBuildProjectDirectory)\LIB_BS\BS1\Isid.BankR4s.BS.BS1.BC\Isid.BankR4s.BS.BS1.BC.csproj</Project_BS1_BC>
+		<Project_BS1_Dac>$(MSBuildProjectDirectory)\LIB_BS\BS1\Isid.BankR4s.BS.BS1.Dac\Isid.BankR4s.BS.BS1.Dac.csproj</Project_BS1_Dac>
+		<Project_BS1_FC>$(MSBuildProjectDirectory)\LIB_BS\BS1\Isid.BankR4s.BS.BS1.FC\Isid.BankR4s.BS.BS1.FC.csproj</Project_BS1_FC>
+		
+		<Project_BS2_BC>$(MSBuildProjectDirectory)\LIB_BS\BS2\Isid.BankR4s.BS.BS2.BC\Isid.BankR4s.BS.BS2.BC.csproj</Project_BS2_BC>
+		<Project_BS2_Dac>$(MSBuildProjectDirectory)\LIB_BS\BS2\Isid.BankR4s.BS.BS2.Dac\Isid.BankR4s.BS.BS2.Dac.csproj</Project_BS2_Dac>
+		<Project_BS2_FC>$(MSBuildProjectDirectory)\LIB_BS\BS2\Isid.BankR4s.BS.BS2.FC\Isid.BankR4s.BS.BS2.FC.csproj</Project_BS2_FC>
+		
+		<Project_BS3_BC>$(MSBuildProjectDirectory)\LIB_BS\BS3\Isid.BankR4s.BS.BS3.BC\Isid.BankR4s.BS.BS3.BC.csproj</Project_BS3_BC>
+		<Project_BS3_Dac>$(MSBuildProjectDirectory)\LIB_BS\BS3\Isid.BankR4s.BS.BS3.Dac\Isid.BankR4s.BS.BS3.Dac.csproj</Project_BS3_Dac>
+		<Project_BS3_FC>$(MSBuildProjectDirectory)\LIB_BS\BS3\Isid.BankR4s.BS.BS3.FC\Isid.BankR4s.BS.BS3.FC.csproj</Project_BS3_FC>
+				
+		<Project_BS4_BC>$(MSBuildProjectDirectory)\LIB_BS\BS4\Isid.BankR4s.BS.BS4.BC\Isid.BankR4s.BS.BS4.BC.csproj</Project_BS4_BC>
+		<Project_BS4_Dac>$(MSBuildProjectDirectory)\LIB_BS\BS4\Isid.BankR4s.BS.BS4.Dac\Isid.BankR4s.BS.BS4.Dac.csproj</Project_BS4_Dac>
+		<Project_BS4_FC>$(MSBuildProjectDirectory)\LIB_BS\BS4\Isid.BankR4s.BS.BS4.FC\Isid.BankR4s.BS.BS4.FC.csproj</Project_BS4_FC>
+		
+		<!-- ビルドする際の構成名：Debug, Releaseが一般的 -->
+		<Build_Configuration>Debug</Build_Configuration>
+		
+		<!-- 使用するデータベースフォルダ名：Oracle, SqlClient -->
+		<Db>SqlClient</Db>
+		
+	</PropertyGroup>
+
+	<!-- 全ソリューションに対するビルド実行 -->
+
+	<!-- 前回ビルド済ファイルの削除 -->
+	<Target Name="Delete_BS0">
+		<ItemGroup>
+			<BS0_Bin Include="$(RootDir)\Lib_BS\BS0\Isid.BankR4s.BS.BS0.CO\bin;
+				$(RootDir)\Lib_BS\BS0\Isid.BankR4s.BS.BS0.CO.UT\bin;
+				$(RootDir)\Lib_BS\BS0\Isid.BankR4s.BS.BS0.TestSupport\bin;" />
+			<BS0_Obj Include="$(RootDir)\Lib_BS\BS0\Isid.BankR4s.BS.BS0.CO\obj;
+				$(RootDir)\Lib_BS\BS0\Isid.BankR4s.BS.BS0.CO.UT\obj;
+				$(RootDir)\Lib_BS\BS0\Isid.BankR4s.BS.BS0.TestSupport\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS0_Bin)" />
+		<RemoveDir Directories="@(BS0_Bin)" />
+	</Target>
+
+	<Target Name="Delete_BS1_BC">
+		<ItemGroup>
+			<BS1_BC_Bin Include="$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.BC\bin;
+				$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.BC.UT\bin;" />
+			<BS1_BC_Obj Include="$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.BC\obj;
+				$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.BC.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS1_BC_Bin)" />
+		<RemoveDir Directories="@(BS1_BC_Obj)" />
+	</Target>
+	<Target Name="Delete_BS1_Dac">
+		<ItemGroup>
+			<BS1_Dac_Bin Include="$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.Dac\bin;
+				$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.Dac.UT\bin;" />
+			<BS1_Dac_Obj Include="$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.Dac\obj;
+				$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.Dac.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS1_Dac_Bin)" />
+		<RemoveDir Directories="@(BS1_Dac_Obj)" />
+	</Target>
+	<Target Name="Delete_BS1_FC">
+		<ItemGroup>
+			<BS1_FC_Bin Include="$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.FC\bin;
+				$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.FC.UT\bin;" />
+			<BS1_FC_Obj Include="$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.FC\obj;
+				$(RootDir)\Lib_BS\BS1\Isid.BankR4s.BS.BS1.FC.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS1_FC_Bin)" />
+		<RemoveDir Directories="@(BS1_FC_Obj)" />
+	</Target>
+	<Target Name="Delete_BS1">
+		<RemoveDir Directories="@(BS1_BC_Bin)" />
+		<RemoveDir Directories="@(BS1_BC_Obj)" />
+		<RemoveDir Directories="@(BS1_Dac_Bin)" />
+		<RemoveDir Directories="@(BS1_Dac_Obj)" />
+		<RemoveDir Directories="@(BS1_FC_Bin)" />
+		<RemoveDir Directories="@(BS1_FC_Obj)" />
+	</Target>
+	
+	<Target Name="Delete_BS2_BC">
+		<ItemGroup>
+			<BS2_BC_Bin Include="$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.BC\bin;
+				$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.BC.UT\bin;" />
+			<BS2_BC_Obj Include="$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.BC\obj;
+				$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.BC.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS2_BC_Bin)" />
+		<RemoveDir Directories="@(BS2_BC_Obj)" />
+	</Target>
+	<Target Name="Delete_BS2_Dac">
+		<ItemGroup>
+			<BS2_Dac_Bin Include="$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.Dac\bin;
+				$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.Dac.UT\bin;" />
+			<BS2_Dac_Obj Include="$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.Dac\obj;
+				$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.Dac.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS2_Dac_Bin)" />
+		<RemoveDir Directories="@(BS2_Dac_Obj)" />
+	</Target>
+	<Target Name="Delete_BS2_FC">
+		<ItemGroup>
+			<BS2_FC_Bin Include="$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.FC\bin;
+				$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.FC.UT\bin;" />
+			<BS2_FC_Obj Include="$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.FC\obj;
+				$(RootDir)\Lib_BS\BS2\Isid.BankR4s.BS.BS2.FC.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS2_FC_Bin)" />
+		<RemoveDir Directories="@(BS2_FC_Obj)" />
+	</Target>
+	<Target Name="Delete_BS2">
+		<RemoveDir Directories="@(BS2_BC_Bin)" />
+		<RemoveDir Directories="@(BS2_BC_Obj)" />
+		<RemoveDir Directories="@(BS2_Dac_Bin)" />
+		<RemoveDir Directories="@(BS2_Dac_Obj)" />		
+		<RemoveDir Directories="@(BS2_FC_Bin)" />
+		<RemoveDir Directories="@(BS2_FC_Obj)" />
+	</Target>
+
+	<Target Name="Delete_BS3_BC">
+		<ItemGroup>
+			<BS3_BC_Bin Include="$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.BC\bin;
+				$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.BC.UT\bin;" />
+			<BS3_BC_Obj Include="$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.BC\obj;
+				$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.BC.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS3_BC_Bin)" />
+		<RemoveDir Directories="@(BS3_BC_Obj)" />
+	</Target>
+	<Target Name="Delete_BS3_Dac">
+		<ItemGroup>
+			<BS3_Dac_Bin Include="$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.Dac\bin;
+				$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.Dac.UT\bin;" />
+			<BS3_Dac_Obj Include="$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.Dac\obj;
+				$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.Dac.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS3_Dac_Bin)" />
+		<RemoveDir Directories="@(BS3_Dac_Obj)" />
+	</Target>
+	<Target Name="Delete_BS3_FC">
+		<ItemGroup>
+			<BS3_FC_Bin Include="$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.FC\bin;
+				$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.FC.UT\bin;" />
+			<BS3_FC_Obj Include="$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.FC\obj;
+				$(RootDir)\Lib_BS\BS3\Isid.BankR4s.BS.BS3.FC.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS3_FC_Bin)" />
+		<RemoveDir Directories="@(BS3_FC_Obj)" />
+	</Target>
+	<Target Name="Delete_BS3">
+		<RemoveDir Directories="@(BS3_BC_Bin)" />
+		<RemoveDir Directories="@(BS3_BC_Obj)" />
+		<RemoveDir Directories="@(BS3_Dac_Bin)" />
+		<RemoveDir Directories="@(BS3_Dac_Obj)" />		
+		<RemoveDir Directories="@(BS3_FC_Bin)" />
+		<RemoveDir Directories="@(BS3_FC_Obj)" />
+	</Target>
+
+	<Target Name="Delete_BS4_BC">
+		<ItemGroup>
+			<BS4_BC_Bin Include="$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.BC\bin;
+				$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.BC.UT\bin;" />
+			<BS4_BC_Obj Include="$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.BC\obj;
+				$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.BC.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS4_BC_Bin)" />
+		<RemoveDir Directories="@(BS4_BC_Obj)" />
+	</Target>
+	<Target Name="Delete_BS4_Dac">
+		<ItemGroup>
+			<BS4_Dac_Bin Include="$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.Dac\bin;
+				$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.Dac.UT\bin;" />
+			<BS4_Dac_Obj Include="$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.Dac\obj;
+				$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.Dac.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS4_Dac_Bin)" />
+		<RemoveDir Directories="@(BS4_Dac_Obj)" />
+	</Target>
+	<Target Name="Delete_BS4_FC">
+		<ItemGroup>
+			<BS4_FC_Bin Include="$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.FC\bin;
+				$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.FC.UT\bin;" />
+			<BS4_FC_Obj Include="$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.FC\obj;
+				$(RootDir)\Lib_BS\BS4\Isid.BankR4s.BS.BS4.FC.UT\obj;" />
+		</ItemGroup>
+		<RemoveDir Directories="@(BS4_FC_Bin)" />
+		<RemoveDir Directories="@(BS4_FC_Obj)" />
+	</Target>
+	<Target Name="Delete_BS4">
+		<RemoveDir Directories="@(BS4_BC_Bin)" />
+		<RemoveDir Directories="@(BS4_BC_Obj)" />
+		<RemoveDir Directories="@(BS4_Dac_Bin)" />
+		<RemoveDir Directories="@(BS4_Dac_Obj)" />
+		<RemoveDir Directories="@(BS4_FC_Bin)" />
+		<RemoveDir Directories="@(BS4_FC_Obj)" />
+	</Target>
+	
+	<!-- 全体ビルド -->
+	<Target Name="Build_All">
+		<CallTarget Targets="Delete_BS0" />
+		<CallTarget Targets="Delete_BS1" />
+		<CallTarget Targets="Delete_BS2" />
+		<CallTarget Targets="Delete_BS3" />
+		<CallTarget Targets="Delete_BS4" />
+		<CallTarget Targets="Build_Solution_BS0" />
+		<CallTarget Targets="Build_Solution_BS1" />
+		<CallTarget Targets="Build_Solution_BS2" />
+		<CallTarget Targets="Build_Solution_BS3" />
+		<CallTarget Targets="Build_Solution_BS4" />
+	</Target>
+	
+	<!-- ソリューション単位のビルド -->	
+	<Target Name="Build_BS0">
+		<CallTarget Targets="Delete_BS0" />
+		<CallTarget Targets="Build_Solution_BS0" />
+	</Target>		
+	<Target Name="Build_BS1">
+		<CallTarget Targets="Delete_BS1" />
+		<CallTarget Targets="Build_Solution_BS1" />
+	</Target>
+	<Target Name="Build_BS2">
+		<CallTarget Targets="Delete_BS2" />
+		<CallTarget Targets="Build_Solution_BS2" />
+	</Target>
+	<Target Name="Build_BS3">
+		<CallTarget Targets="Delete_BS3" />
+		<CallTarget Targets="Build_Solution_BS3" />
+	</Target>
+	<Target Name="Build_BS4">
+		<CallTarget Targets="Delete_BS4" />
+		<CallTarget Targets="Build_Solution_BS4" />
+	</Target>
+	<Target Name="Build_BSX">
+		<CallTarget Targets="Delete_BSX" />
+		<CallTarget Targets="Build_Solution_BSX" />
+	</Target>
+		
+	<!-- プロジェクト単位のビルド -->
+	<Target Name="Build_BS0_CO">
+		<CallTarget Targets="Delete_BS0" />
+		<CallTarget Targets="Build_Project_BS0_CO" />
+	</Target>
+		
+	<Target Name="Build_BS1_BC">
+		<CallTarget Targets="Delete_BS1_BC" />
+		<CallTarget Targets="Build_Project_BS1_BC" />
+	</Target>	
+	<Target Name="Build_BS1_Dac">
+		<CallTarget Targets="Delete_BS1_Dac" />
+		<CallTarget Targets="Build_Project_BS1_Dac" />
+	</Target>
+	<Target Name="Build_BS1_FC">
+		<CallTarget Targets="Delete_BS1_FC" />
+		<CallTarget Targets="Build_Project_BS1_FC" />
+	</Target>
+		
+	<Target Name="Build_BS2_BC">
+		<CallTarget Targets="Delete_BS2_BC" />
+		<CallTarget Targets="Build_Project_BS2_BC" />
+	</Target>	
+	<Target Name="Build_BS2_Dac">
+		<CallTarget Targets="Delete_BS2_Dac" />
+		<CallTarget Targets="Build_Project_BS2_Dac" />
+	</Target>
+	<Target Name="Build_BS2_FC">
+		<CallTarget Targets="Delete_BS2_FC" />
+		<CallTarget Targets="Build_Project_BS2_FC" />
+	</Target>
+		
+	<Target Name="Build_BS3_BC">
+		<CallTarget Targets="Delete_BS3_BC" />
+		<CallTarget Targets="Build_Project_BS3_BC" />
+	</Target>	
+	<Target Name="Build_BS3_Dac">
+		<CallTarget Targets="Delete_BS3_Dac" />
+		<CallTarget Targets="Build_Project_BS3_Dac" />
+	</Target>
+	<Target Name="Build_BS3_FC">
+		<CallTarget Targets="Delete_BS3_FC" />
+		<CallTarget Targets="Build_Project_BS3_FC" />
+	</Target>
+		
+	<Target Name="Build_BS4_BC">
+		<CallTarget Targets="Delete_BS4_BC" />
+		<CallTarget Targets="Build_Project_BS4_BC" />
+	</Target>	
+	<Target Name="Build_BS4_Dac">
+		<CallTarget Targets="Delete_BS4_Dac" />
+		<CallTarget Targets="Build_Project_BS4_Dac" />
+	</Target>
+	<Target Name="Build_BS4_FC">
+		<CallTarget Targets="Delete_BS4_FC" />
+		<CallTarget Targets="Build_Project_BS4_FC" />
+	</Target>
+					
+	<!-- ソリューションのビルド設定 -->
+	<Target Name="Build_Solution_BS0">		
+		<MSBuild Projects="$(Solution_BS0)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+	<Target Name="Build_Solution_BS1">
+		<MSBuild Projects="$(Solution_BS1)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+	<Target Name="Build_Solution_BS2">
+		<MSBuild Projects="$(Solution_BS2)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+	<Target Name="Build_Solution_BS3">
+		<MSBuild Projects="$(Solution_BS3)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+	<Target Name="Build_Solution_BS4">
+		<MSBuild Projects="$(Solution_BS4)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+		
+	<!-- プロジェクトのビルド設定 -->
+	<Target Name="Build_Project_BS0_CO">
+		<MSBuild Projects="$(Project_BS0_CO)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>	
+	<Target Name="Build_Project_BS1_BC">
+		<MSBuild Projects="$(Project_BS1_BC)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+	<Target Name="Build_Project_BS1_Dac">
+		<MSBuild Projects="$(Project_BS1_Dac)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>	
+	<Target Name="Build_Project_BS1_FC">
+		<MSBuild Projects="$(Project_BS1_FC)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+		
+	<Target Name="Build_Project_BS2_BC">
+		<MSBuild Projects="$(Project_BS2_BC)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+	<Target Name="Build_Project_BS2_Dac">
+		<MSBuild Projects="$(Project_BS2_Dac)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>	
+	<Target Name="Build_Project_BS2_FC">
+		<MSBuild Projects="$(Project_BS2_FC)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+	
+	<Target Name="Build_Project_BS3_BC">
+		<MSBuild Projects="$(Project_BS3_BC)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+	<Target Name="Build_Project_BS3_Dac">
+		<MSBuild Projects="$(Project_BS3_Dac)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>	
+	<Target Name="Build_Project_BS3_FC">
+		<MSBuild Projects="$(Project_BS3_FC)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+	
+	<Target Name="Build_Project_BS4_BC">
+		<MSBuild Projects="$(Project_BS4_BC)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+	<Target Name="Build_Project_BS4_Dac">
+		<MSBuild Projects="$(Project_BS4_Dac)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>	
+	<Target Name="Build_Project_BS4_FC">
+		<MSBuild Projects="$(Project_BS4_FC)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+</Project>

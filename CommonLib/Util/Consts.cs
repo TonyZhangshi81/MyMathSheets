@@ -944,10 +944,6 @@
 			/// </summary>
 			MathUpright,
 			/// <summary>
-			/// 多元四則運算
-			/// </summary>
-			MultArithmetic, 
-			/// <summary>
 			/// 答題結束瀏覽
 			/// </summary>
 			Ready,

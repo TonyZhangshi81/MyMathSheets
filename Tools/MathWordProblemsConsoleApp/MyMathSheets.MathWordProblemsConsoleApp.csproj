@@ -72,12 +72,12 @@
     <None Include="App.config" />
     <None Include="App_Data\GapFillingProblems.xlsx" />
     <None Include="App_Data\MathWordProblems.xlsx" />
+    <None Include="App_Data\output\jsoncopy.bat" />
     <None Include="App_Data\TopicManagement.xlsx" />
+    <None Include="bin\run.bat" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\output\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

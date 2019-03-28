@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<!--
+			ここに記載されている値は変数として使用されます。
+
+			MSBuild.exeの引数で/property:name=value と指定することで置き換えることが可能です。
+
+			必要に応じて、ここの定義を修正・拡張してください。
+
+		-->
+		
+		<TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+		
+		<!-- 実行環境のルートディレクトリ -->
+		<RootDir>$(MSBuildProjectDirectory)</RootDir>
+		
+		<!-- ビルドするソリューションファイルの一覧 -->
+		<Solution_Lib_GR0>$(RootDir)\Common\Grp_Red\GR0\Isid.BankRSuccess.GR0.sln</Solution_Lib_GR0>
+		<Solution_Lib_GR3>$(RootDir)\Common\Grp_Red\GR3\Isid.BankRSuccess.GR3.sln</Solution_Lib_GR3>
+		<Solution_Lib_GR4>$(RootDir)\Common\Grp_Red\GR4\Isid.BankRSuccess.GR4.sln</Solution_Lib_GR4>
+		<Solution_Lib_GR1>$(RootDir)\Common\Grp_Red\GR1\Isid.BankRSuccess.GR1.sln</Solution_Lib_GR1>
+		<Solution_Lib_GR2>$(RootDir)\Common\Grp_Red\GR2\Isid.BankRSuccess.GR2.sln</Solution_Lib_GR2>
+		<Solution_Lib_GR5>$(RootDir)\Common\Grp_Red\GR5\Isid.BankRSuccess.GR5.sln</Solution_Lib_GR5>
+		<Solution_Lib_GR6>$(RootDir)\Common\Grp_Red\GR6\Isid.BankRSuccess.GR6.sln</Solution_Lib_GR6>
+		<Solution_Lib_GR7>$(RootDir)\Common\Grp_Red\GR7\Isid.BankRSuccess.GR7.sln</Solution_Lib_GR7>
+		<Solution_Lib_GR8>$(RootDir)\Common\Grp_Red\GR8\Isid.BankRSuccess.GR8.sln</Solution_Lib_GR8>
+		
+		<Solution_Lib_GW0>$(RootDir)\Online\Grp_White\GW0\Isid.BankRSuccess.GW0.sln</Solution_Lib_GW0>
+		<Solution_Lib_GW1>$(RootDir)\Online\Grp_White\GW1\Isid.BankRSuccess.GW1.sln</Solution_Lib_GW1>
+		<Solution_Lib_GW2>$(RootDir)\Online\Grp_White\GW2\Isid.BankRSuccess.GW2.sln</Solution_Lib_GW2>
+		
+		<Solution_Lib_BS>$(RootDir)\Online\Lib_BS\Isid.BankRSuccess.BS.sln</Solution_Lib_BS>
+		
+		<Solution_Lib_SM0>$(RootDir)\Online\Lib_SM\SM0\Isid.BankRSuccess.SM.SM0.sln</Solution_Lib_SM0>
+		<Solution_Lib_SM9>$(RootDir)\Online\Lib_SM\SM9\Isid.BankRSuccess.SM.SM9.sln</Solution_Lib_SM9>
+		
+		<Solution_Lib_CI0>$(RootDir)\Online\Lib_CI\CI0\Isid.BankRSuccess.CI.CI0.sln</Solution_Lib_CI0>
+		<Solution_Lib_CIB>$(RootDir)\Online\Lib_CI\CIB\Isid.BankRSuccess.CI.CIB.sln</Solution_Lib_CIB>
+		
+		<Solution_Lib_FO0>$(RootDir)\Online\Lib_FO\FO0\Isid.BankRSuccess.FO.FO0.sln</Solution_Lib_FO0>
+		<Solution_Lib_FOM>$(RootDir)\Online\Lib_FO\FOM\Isid.BankRSuccess.FO.FOM.sln</Solution_Lib_FOM>
+		<Solution_Lib_FON>$(RootDir)\Online\Lib_FO\FON\Isid.BankRSuccess.FO.FON.sln</Solution_Lib_FON>
+		<Solution_Lib_FOP>$(RootDir)\Online\Lib_FO\FOP\Isid.BankRSuccess.FO.FOP.sln</Solution_Lib_FOP>
+		
+		<Solution_Web>$(MSBuildProjectDirectory)\Online\Web\Isid.BankRSuccess.Web.sln</Solution_Web>
+		
+		<!-- ビルドする際の構成名：Debug, Releaseが一般的 -->
+		<Build_Configuration>Debug</Build_Configuration>
+		
+		<!-- SQLフォルダ-->
+		<SQL_Lib_BS>$(RootDir)\Online\Lib_BS\</SQL_Lib_BS>
+		<SQL_Lib_SM>$(RootDir)\Online\Lib_SM\</SQL_Lib_SM>
+		<SQL_Lib_CI>$(RootDir)\Online\Lib_CI\</SQL_Lib_CI>
+		<SQL_Lib_FO>$(RootDir)\Online\Lib_FO\</SQL_Lib_FO>
+		<SQL_Grp_Red>$(RootDir)\Common\Grp_Red\</SQL_Grp_Red>
+		<SQL_Grp_White>$(RootDir)\Online\Grp_White\</SQL_Grp_White>
+		<SQL_WEB>$(RootDir)\Online\Web\Sql\</SQL_WEB>
+
+		<!-- Webプロジェクトのフォルダ指定：Webプロジェクトのルートフォルダ -->
+		<Compile_WebDir>$(MSBuildProjectDirectory)\Online\Web\UI</Compile_WebDir>
+		<!-- Webプロジェクトのフォルダ指定：WebプロジェクトからWeb発行する先のフォルダ -->
+		<Publish_WebDir>$(MSBuildProjectDirectory)\Online\Web\UI</Publish_WebDir>
+		<!-- Webプロジェクトのフォルダ指定：Web発行されたフォルダを、プリコンパイルしたファイルの出力先フォルダ -->
+		<Release_WebDir>$(MSBuildProjectDirectory)\Online\Web\UI</Release_WebDir>
+		<!-- Webプロジェクトのフォルダ指定：リリース対象の設定ファイルの出力先フォルダ -->
+		<Release_SettingDir>$(Release_WebDir)\..\Setting</Release_SettingDir>
+		<!-- Webプロジェクトのフォルダ指定：リリース対象のSQLファイルの出力先フォルダ -->
+		<Release_SqlDir>$(Release_WebDir)\..\Sql</Release_SqlDir>
+		<!-- Webプロジェクトのフォルダ指定：デバッグ対象の設定ファイルの出力先フォルダ -->
+		<Debug_SettingDir>$(Compile_WebDir)\..\Setting</Debug_SettingDir>
+		<!-- Webプロジェクトのフォルダ指定：デバッグ対象のSQLファイルの出力先フォルダ -->
+		<Debug_SqlDir>$(Compile_WebDir)\..\Sql</Debug_SqlDir>
+
+		<!-- 基本設計書フォルダ -->
+		<BDDoc_BaseDir>D:\SurugaBank\設計書</BDDoc_BaseDir>
+		<!-- Configフォルダ -->
+		<ConfigFileDir>$(RootDir)\..\..\040_Definitions\Config</ConfigFileDir>
+	</PropertyGroup>
+
+    <Target Name="BuildAndReleaseAll">
+		<CallTarget Targets="BuildAndRelease" />
+		<CallTarget Targets="Release_Doc" />
+		<CallTarget Targets="Release_Sql" />
+		<CallTarget Targets="Remove_UnnecessaryDll" />
+    </Target>
+
+    <Target Name="BuildAndDebugAll">
+		<CallTarget Targets="Build" />
+		<CallTarget Targets="DebugCopy_Doc" />
+		<CallTarget Targets="DebugCopy_Setting" />
+		<CallTarget Targets="Remove_UnnecessaryDll" />
+    </Target>
+
+	<!-- リリース用設計書のコピー -->
+	<Target Name="Release_Doc">
+		<ItemGroup>
+			<ViewDocTargetFiles
+				Include="$(BDDoc_BaseDir)/画面設計/**/BDD03*.xlsx"
+			/>
+			<ReportDocTargetFiles
+				Include="$(BDDoc_BaseDir)/帳票設計/**/BDP03*.xlsx"
+			/>
+			<OverlayDocTargetFiles
+				Include="$(BDDoc_BaseDir)/帳票設計/**/BDP02*.xls"
+			/>
+		</ItemGroup>
+		<Copy SourceFiles="@(ViewDocTargetFiles)" DestinationFolder="$(Release_SettingDir)\Speca\View" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(ReportDocTargetFiles)" DestinationFolder="$(Release_SettingDir)\Speca\Report" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(OverlayDocTargetFiles)" DestinationFolder="$(Release_SettingDir)\Overlay" SkipUnchangedFiles="true" />
+	</Target>
+
+	<!-- デバッグ用設計書のコピー -->
+	<Target Name="DebugCopy_Doc">
+		<ItemGroup>
+			<ViewDocTargetFiles
+				Include="$(BDDoc_BaseDir)*/**/BDD03*.xlsx"
+			/>
+			<ReportDocTargetFiles
+				Include="$(BDDoc_BaseDir)*/**/BDP03*.xlsx"
+			/>
+			<OverlayDocTargetFiles
+				Include="$(BDDoc_BaseDir)*/**/BDP02*.xls"
+			/>
+		</ItemGroup>
+		<Copy SourceFiles="@(ViewDocTargetFiles)" DestinationFolder="$(Debug_SettingDir)\Speca\View" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(ReportDocTargetFiles)" DestinationFolder="$(Debug_SettingDir)\Speca\Report" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(OverlayDocTargetFiles)" DestinationFolder="$(Debug_SettingDir)\Overlay" SkipUnchangedFiles="true" />
+	</Target>
+
+	<!-- デバッグ用定義ファイル類のコピー -->
+	<Target Name="DebugCopy_Setting">
+		<ItemGroup>
+			<NDocConfigFile
+				Include="$(ConfigFileDir)/NLog.config"
+			/>
+		</ItemGroup>
+		<Copy SourceFiles="@(NDocConfigFile)" DestinationFiles="@(NDocConfigFile->'$(Debug_SettingDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<ItemGroup>
+			<WebConfigFile
+				Include="$(ConfigFileDir)/Web.config"
+			/>
+		</ItemGroup>
+		<Copy SourceFiles="@(WebConfigFile)" DestinationFiles="@(WebConfigFile->'$(MSBuildProjectDirectory)\Web\UI\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<ItemGroup>
+			<MessageFile
+				Include="$(ConfigFileDir)/Message/DDX01_ALL_メッセージ一覧.xlsx"
+			/>
+		</ItemGroup>
+		<Copy SourceFiles="@(MessageFile)" DestinationFiles="@(MessageFile->'$(Debug_SettingDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+	</Target>
+
+	<!-- リリース用SQLファイル類のコピー -->
+	<Target Name="Release_Sql">
+		<ItemGroup>
+			<WebSqlTargetFiles Include="$(SQL_WEB)\**\*.sql"/>
+		</ItemGroup>		
+		<Copy SourceFiles="@(WebSqlTargetFiles)" DestinationFolder="$(Release_SqlDir)" />
+	</Target>
+
+	<!-- ビルド＆リリース用ファイルの作成を一括して実行 -->
+	<Target Name="BuildAndRelease">
+		<CallTarget Targets="Build" />
+		<CallTarget Targets="Release" />
+	</Target>
+
+	<!-- 全ソリューションに対するビルド実行 -->
+	<Target Name="Build">
+		<CallTarget Targets="Build_Lib_Grp_Red" />
+		<CallTarget Targets="Build_Lib_Grp_White" />
+		<CallTarget Targets="Build_Lib_BS" />
+		<CallTarget Targets="Build_Lib_SM" />
+		<CallTarget Targets="Build_Lib_CI" />
+		<CallTarget Targets="Build_Lib_FO" />
+		<CallTarget Targets="Copy_Sql" />
+		<CallTarget Targets="Build_Web" />
+	</Target>
+	
+	<!-- ビルドされたWebプロジェクトの発行とリリース用ファイルの作成 -->
+	<Target Name="Release">
+		<CallTarget Targets="Publish_Web" />
+		<CallTarget Targets="Release_Web" />
+	</Target>
+	
+	<Target Name="Copy_Sql">
+		<ItemGroup>
+			<LibBSSqlTargetFiles
+				Include="$(SQL_Lib_BS)\**\*.sql"/>
+			<LibSMSqlTargetFiles
+				Include="$(SQL_Lib_SM)\**\*.sql"/>
+			<LibCISqlTargetFiles
+				Include="$(SQL_Lib_CI)\**\*.sql"/>
+			<LibFOSqlTargetFiles
+				Include="$(SQL_Lib_FO)\**\*.sql"/>
+			<GrpRedSqlTargetFiles
+				Include="$(SQL_Grp_Red)\**\*.sql"/>
+			<GrpWhiteSqlTargetFiles
+				Include="$(SQL_Grp_White)\**\*.sql"/>
+		</ItemGroup>		
+		<Copy SourceFiles="@(LibBSSqlTargetFiles)" DestinationFolder="$(SQL_WEB)" OverwriteReadOnlyFiles="true" />
+		<Copy SourceFiles="@(LibSMSqlTargetFiles)" DestinationFolder="$(SQL_WEB)" OverwriteReadOnlyFiles="true" />
+		<Copy SourceFiles="@(LibCISqlTargetFiles)" DestinationFolder="$(SQL_WEB)" OverwriteReadOnlyFiles="true" />
+		<Copy SourceFiles="@(LibFOSqlTargetFiles)" DestinationFolder="$(SQL_WEB)" OverwriteReadOnlyFiles="true" />
+		<Copy SourceFiles="@(GrpRedSqlTargetFiles)" DestinationFolder="$(SQL_WEB)" OverwriteReadOnlyFiles="true" />
+		<Copy SourceFiles="@(GrpWhiteSqlTargetFiles)" DestinationFolder="$(SQL_WEB)" OverwriteReadOnlyFiles="true" />
+	</Target>
+
+	<Target Name="Build_Lib_Grp_Red">
+		<MSBuild Projects="$(Solution_Lib_GR0)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+		<MSBuild Projects="$(Solution_Lib_GR3)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+		<MSBuild Projects="$(Solution_Lib_GR4)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+		<MSBuild Projects="$(Solution_Lib_GR1)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+		<MSBuild Projects="$(Solution_Lib_GR2)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+		<MSBuild Projects="$(Solution_Lib_GR5)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+		<MSBuild Projects="$(Solution_Lib_GR6)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+		<MSBuild Projects="$(Solution_Lib_GR7)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+		<MSBuild Projects="$(Solution_Lib_GR8)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+
+	<Target Name="Build_Lib_Grp_White">
+		<MSBuild Projects="$(Solution_Lib_GW0)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+		<MSBuild Projects="$(Solution_Lib_GW1)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+		<MSBuild Projects="$(Solution_Lib_GW2)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+	
+	<Target Name="Build_Lib_BS">
+		<MSBuild Projects="$(Solution_Lib_BS)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+
+	<!-- ライブラリ群のビルド -->
+	<Target Name="Build_Lib_SM">
+		<CallTarget Targets="Build_Lib_SM0" />
+		<CallTarget Targets="Build_Lib_SM9" />
+	</Target>
+	<Target Name="Build_Lib_SM0">
+		<MSBuild Projects="$(Solution_Lib_SM0)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+	<Target Name="Build_Lib_SM9">
+		<MSBuild Projects="$(Solution_Lib_SM9)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+	<Target Name="Build_Lib_CI">
+		<CallTarget Targets="Build_Lib_CI0" />
+		<CallTarget Targets="Build_Lib_CIB" />
+	</Target>
+	<Target Name="Build_Lib_CI0">
+		<MSBuild Projects="$(Solution_Lib_CI0)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+	<Target Name="Build_Lib_CIB">
+		<MSBuild Projects="$(Solution_Lib_CIB)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+	<Target Name="Build_Lib_FO">
+		<CallTarget Targets="Build_Lib_FO0" />
+		<CallTarget Targets="Build_Lib_FOM" />
+		<CallTarget Targets="Build_Lib_FON" />
+		<CallTarget Targets="Build_Lib_FOP" />
+	</Target>
+
+	<Target Name="Build_Lib_FO0">
+		<MSBuild Projects="$(Solution_Lib_FO0)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+	<Target Name="Build_Lib_FOM">
+		<MSBuild Projects="$(Solution_Lib_FOM)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+	<Target Name="Build_Lib_FON">
+		<MSBuild Projects="$(Solution_Lib_FON)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+	<Target Name="Build_Lib_FOP">
+		<MSBuild Projects="$(Solution_Lib_FOP)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+
+	<!-- Webプロジェクトのビルド -->
+	<Target Name="Build_Web">
+		<MSBuild Projects="$(Solution_Web)" Properties="Configuration=$(Build_Configuration);" Targets="Clean;Rebuild" />
+	</Target>
+
+	<!-- リリース用に必要なファイルだけを指定フォルダにコピーする（Web発行の代用） -->
+	<Target Name="Publish_Web">
+		<RemoveDir Directories="$(Publish_WebDir)"/>
+		<MakeDir Directories="$(Publish_WebDir)"/>
+		<ItemGroup>
+			<!--
+				除外対象の説明
+
+					xml		：NDoc用として出力されるため不要
+
+					cs		：dllに含まれるため
+					csproj	：dll生成時に必要なだけで実行時には不要
+
+					sln		：プロジェクト構成を管理するためのファイル
+					user	：ローカル環境用定義情報ファイル
+					scc		：VSSで使用されているファイル
+					vspscc	：同上
+
+					obj		：ビルド時に使用される一時フォルダ
+					bin		：UI.*以下に配置されている、ビルド後のdllが配置されるフォルダ。ビルドするとUI\binにコピーされるので不要
+
+					BS0_DM001.master	：UI直下のファイルのみ必要。UI.*以下に配置されるものはすべてVS.NETでデザイナ表示するためだけに必要なもの
+					BS0_DM002.master	：同上
+
+					css\bankr-core.css				：同上
+
+					css\bankr.css			：同上
+
+					css\ui.css				：同上
+
+			-->
+			<WebTargetFiles
+				Include="$(Compile_WebDir)\**\*.*"
+				Exclude="
+					$(Compile_WebDir)\**\*.xml;
+					$(Compile_WebDir)\**\*.cs;
+					$(Compile_WebDir)\**\*.csproj;
+					$(Compile_WebDir)\**\*.sln;
+					$(Compile_WebDir)\**\*.user;
+					$(Compile_WebDir)\**\*.scc;
+					$(Compile_WebDir)\**\*.vspscc;
+					$(Compile_WebDir)\**\obj\**;
+					$(Compile_WebDir)\UI.*\bin\**;
+					$(Compile_WebDir)\UI.*\**\bin\**;
+					$(Compile_WebDir)\UI.*\BS0_DM001.master;
+					$(Compile_WebDir)\UI.*\BS0_DM002.Master;
+					$(Compile_WebDir)\UI.*\css\bankr-core.css;
+					$(Compile_WebDir)\UI.*\css\bankr.css;
+					$(Compile_WebDir)\UI.*\css\ui.css;
+					$(Compile_WebDir)\**\.svn\**;
+					" />
+		</ItemGroup>
+		<Copy SourceFiles="@(WebTargetFiles)" DestinationFiles="@(WebTargetFiles->'$(Publish_WebDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+	</Target>
+	
+	<!-- 必要なファイルだけになったフォルダを元に、Webアプリケーション関連ファイルをプリコンパイルする -->
+	<Target Name="Release_Web">
+		<RemoveDir Directories="$(Release_WebDir)"/>
+		<MakeDir Directories= "$(Release_WebDir)"/>
+		<AspNetCompiler VirtualPath="/" PhysicalPath="$(Publish_WebDir)" TargetPath="$(Release_WebDir)" Force="true" Debug="false" Updateable="true" />
+	</Target>
+
+	<!-- HDDのファイルサイズを小さくするためWEBデバッグに関して不要なBinとObjを削除する -->
+	<Target Name="Remove_UnnecessaryDll">
+		<ItemGroup>
+			<UnnecessaryTargetFiles_Obj
+				Include="$(RootDir)\Lib_*/**/obj/**/*;$(RootDir)\Grp_*/**/obj/**/*;$(RootDir)\Web\UI\UI.*/**/obj/**/*"
+			/>
+		</ItemGroup>
+		<Delete Files="@(UnnecessaryTargetFiles_Obj)" />
+		<ItemGroup>
+			<UnnecessaryTargetFiles_Bin
+				Include="$(RootDir)\Lib_*/**/bin/*;$(RootDir)\Grp_*/**/bin/*;$(RootDir)\Web\UI\UI.*/**/bin/*" Exclude="$(RootDir)\Lib_*/**/bin/Isid.BankRSuccess*.*;$(RootDir)\Grp_*/**/bin/Isid.BankRSuccess*.*;$(RootDir)\Web\UI\UI.*/**/bin/Isid.BankRSuccess*.*"
+			/>
+		</ItemGroup>
+		<Delete Files="@(UnnecessaryTargetFiles_Bin)" />
+		<ItemGroup>
+			<UnnecessaryTargetFiles_TestBin
+				Include="$(RootDir)\Lib_*/**/*.UT/bin/*;$(RootDir)\Grp_*/**/*.UT/bin/*"
+			/>
+		</ItemGroup>
+		<Delete Files="@(UnnecessaryTargetFiles_TestBin)" />
+	</Target>
+
+</Project>

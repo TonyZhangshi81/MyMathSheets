@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Publish" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+		<RootDir>$(MSBuildProjectDirectory)</RootDir>
+		<Project_CommonLib>$(RootDir)\CommonLib\MyMathSheets.CommonLib.csproj</Project_CommonLib>
+		<Project_BasicOperationsLib>$(RootDir)\ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj</Project_BasicOperationsLib>
+		<Build_Configuration>Release</Build_Configuration>
+		<Publish_Dir>$(RootDir)\Publish</Publish_Dir>
+	</PropertyGroup>
+
+	<Target Name="Publish">
+		<RemoveDir Directories="$(Publish_Dir)"/>
+		<MakeDir Directories="$(Publish_Dir)"/>
+
+		<CallTarget Targets="Build_CommonLib" />
+		<CallTarget Targets="Build_BasicOperationsLib" />
+		<CallTarget Targets="Remove_UnnecessaryDll" />
+	</Target>
+
+	<Target Name="Build_CommonLib">
+		<MSBuild Projects="$(Project_CommonLib)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+
+	<Target Name="Build_BasicOperationsLib">
+		<MSBuild Projects="$(Project_BasicOperationsLib)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+	</Target>
+
+	<Target Name="Remove_UnnecessaryDll">
+		<ItemGroup>
+			<UnnecessaryTargetFiles_Obj Include="$(Publish_Dir)\*.xml;$(Publish_Dir)\*.pdb;" />
+		</ItemGroup>
+		<Delete Files="@(UnnecessaryTargetFiles_Obj)" />
+	</Target>
+
+</Project>
+
+
+
+

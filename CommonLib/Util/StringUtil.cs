@@ -321,9 +321,6 @@
 				case LayoutSetting.Preview.MathUpright:
 					name = "竖式计算";
 					break;
-				case LayoutSetting.Preview.MultArithmetic:
-					name = "多元四則運算";
-					break;
 				default:
 					break;
 			}
