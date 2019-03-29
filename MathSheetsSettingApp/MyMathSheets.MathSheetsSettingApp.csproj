@@ -149,7 +149,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
-copy "$(SolutionDir)Lib\*.dll" "$(TargetDir)\TopicModule" /y
+copy "$(SolutionDir)Lib\*.dll" "$(TargetDir)" /y
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>

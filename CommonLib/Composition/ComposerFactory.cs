@@ -58,11 +58,15 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <summary>
 		/// 
 		/// </summary>
-		private static readonly ConcurrentDictionary<string, Composer> ComposerCache;
+		private static ConcurrentDictionary<string, Composer> ComposerCache;
 		/// <summary>
 		/// 
 		/// </summary>
 		internal static readonly ConcurrentDictionary<string, MathSheetMarkerAttribute> AssemblyInfoCache;
+		/// <summary>
+		/// 
+		/// </summary>
+		private static readonly List<FileInfo> LoadTopicModuleFiles;
 
 		/// <summary>
 		/// 
@@ -71,6 +75,9 @@ namespace MyMathSheets.CommonLib.Composition
 		{
 			ComposerCache = new ConcurrentDictionary<string, Composer>();
 			AssemblyInfoCache = new ConcurrentDictionary<string, MathSheetMarkerAttribute>();
+
+			LoadTopicModuleFiles = new List<FileInfo>();
+			GetDirectoryFiles(AppDomain.CurrentDomain.BaseDirectory, LoadTopicModuleFiles);
 		}
 
 		/// <summary>
@@ -135,16 +142,12 @@ namespace MyMathSheets.CommonLib.Composition
 
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0031L));
 
-			var basePath = AppDomain.CurrentDomain.BaseDirectory;
-			DirectoryInfo directory = new DirectoryInfo(basePath);
-			List<FileInfo> files = directory.GetFiles(SEARCH_PATTERN).ToList();
-
 			// 模塊信息事件傳播
-			SearchModelEvent?.Invoke(files.Count);
+			SearchModelEvent?.Invoke(LoadTopicModuleFiles.Count);
 
-			files.ForEach(f => action(f));
+			LoadTopicModuleFiles.ForEach(f => action(f));
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0030L, files.Count));
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0030L, LoadTopicModuleFiles.Count));
 		}
 
 		/// <summary>
@@ -194,9 +197,7 @@ namespace MyMathSheets.CommonLib.Composition
 				}
 			});
 
-			var basePath = AppDomain.CurrentDomain.BaseDirectory;
-			DirectoryInfo directory = new DirectoryInfo(basePath);
-			directory.GetFiles(SEARCH_PATTERN).ToList().ForEach(f => action(f));
+			LoadTopicModuleFiles.ForEach(f => action(f));
 
 			if (TempAssembly == null)
 			{
@@ -205,6 +206,20 @@ namespace MyMathSheets.CommonLib.Composition
 				throw new ComposerException(sb.ToString());
 			}
 			return TempAssembly;
+		}
+
+		/// <summary>
+		/// 獲取指定目錄下所有文件的列表信息
+		/// </summary>
+		/// <param name="path">指定目錄</param>
+		/// <param name="files">文件列表信息</param>
+		private static void GetDirectoryFiles(string path, List<FileInfo> files)
+		{
+			DirectoryInfo theFolder = new DirectoryInfo(@path);
+			// 遍歷文件
+			theFolder.GetFiles(SEARCH_PATTERN).ToList().ForEach(f => files.Add(f));
+			// 遍歷文件夾
+			theFolder.GetDirectories().ToList().ForEach(d => GetDirectoryFiles(d.FullName, files));
 		}
 
 		/// <summary>

@@ -204,8 +204,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
-rem copy "$(TargetFileName)" "$(SolutionDir)\Lib" /Y
-rem copy "$(SolutionDir)\Lib\*.dll" "$(SolutionDir)\Lib\Release\" /Y
 copy "..\Template\HTMLPage" "$(SolutionDir)\MathSheetsSettingApp\HtmlTemplate" /Y
 xcopy "..\Scripts\Ext" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\Ext" /C /E /H /K /R /Y
 xcopy "..\Plugin" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Plugin" /C /E /H /K /R /Y

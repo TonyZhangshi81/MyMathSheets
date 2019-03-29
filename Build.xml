@@ -8,8 +8,6 @@
 		<Build_Configuration>Release</Build_Configuration>
 		<!-- 部署位置：Bin文件夾 -->
 		<Publish_Bin_Dir>$(RootDir)\Publish\bin</Publish_Bin_Dir>
-		<!-- 部署位置：Bin文件夾 -->
-		<Publish_TopicModule_Dir>$(RootDir)\Publish\bin\TopicModule</Publish_TopicModule_Dir>
 		<!-- 部署位置：前台運用程序Image文件夾 -->
 		<Publish_AppImage_Dir>$(RootDir)\Publish\Content\image</Publish_AppImage_Dir>
 		<!-- 部署位置：Config文件夾 -->
@@ -28,6 +26,10 @@
 		<Publish_Fonts_Dir>$(Publish_Content_Dir)\fonts</Publish_Fonts_Dir>
 		<!-- 部署位置：switcher文件夾 -->
 		<Publish_Switcher_Dir>$(Publish_Content_Dir)\switcher</Publish_Switcher_Dir>
+		<!-- 部署位置：Games文件夾 -->
+		<Publish_Games_Dir>$(RootDir)\Publish\App_Data\Work\Games</Publish_Games_Dir>
+		<!-- 部署位置：Plugin文件夾 -->
+		<Publish_Plugin_Dir>$(RootDir)\Publish\App_Data\Work\Plugin</Publish_Plugin_Dir>
 
 		<!-- 個編譯項目所在目錄位置 -->
 		<Project_CommonLib_Dir>$(RootDir)\CommonLib</Project_CommonLib_Dir>
@@ -124,17 +126,17 @@
 
 	<Target Name="Publish">
 		<!-- 編譯結果刪除 -->
-		<RemoveDir Directories="$(Publish_Bin_Dir);$(Publish_TopicModule_Dir);"/>
-		
+		<RemoveDir Directories="$(Publish_Bin_Dir)"/>
+
 		<!-- 創建部署所需的文件目錄 -->
 		<MakeDir Directories="
 				 $(Publish_Bin_Dir);
-				 $(Publish_TopicModule_Dir);
 				 $(Publish_Config_Dir);
 				 $(Publish_Scripts_Dir)\Ext;
 				 $(Publish_Images_Dir);
 				 $(Publish_Page_Dir);
 				 $(Publish_HtmlTemplate_Dir);
+				 $(Publish_Games_Dir);
 				 "/>
 
 		<!-- 編譯項目依次執行 -->
@@ -145,11 +147,69 @@
 
 		<!-- 資源部署 -->
 		<CallTarget Targets="Copy_Resources" />
+		<!-- 游戏部署 -->
+		<CallTarget Targets="Copy_Game_Resources" />
+		<!-- 插件部署 -->
+		<CallTarget Targets="Copy_Plugin_Resources" />
 
 		<!-- 刪除編譯後不需要的文件 -->
 		<CallTarget Targets="Remove_UnnecessaryDll" />
 	</Target>
 
+	<!-- 插件部署 -->
+	<Target Name="Copy_Plugin_Resources">
+		<!-- 蝴蝶 -->
+		<CallTarget Targets="Copy_Plugin_Butterfly" />
+		<!-- 虛擬人物 -->
+		<CallTarget Targets="Copy_Plugin_TonyShakeHead" />
+	</Target>
+
+	<Target Name="Copy_Plugin_Butterfly">
+		<ItemGroup>
+			<ButterflyHtmlTargetFiles Include="$(Project_TheFormulaShows_Dir)\Plugin\Butterfly\*.html" />
+			<ButterflyCssTargetFiles Include="$(Project_TheFormulaShows_Dir)\Plugin\Butterfly\**\*.css" />
+		</ItemGroup>
+		<Copy SourceFiles="@(ButterflyHtmlTargetFiles)" DestinationFolder="$(Publish_Plugin_Dir)\Butterfly" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(ButterflyCssTargetFiles)" DestinationFolder="$(Publish_Plugin_Dir)\Butterfly\css" SkipUnchangedFiles="true" />
+	</Target>
+
+	<Target Name="Copy_Plugin_TonyShakeHead">
+		<ItemGroup>
+			<TonyShakeHeadHtmlTargetFiles Include="$(Project_TheFormulaShows_Dir)\Plugin\TonyShakeHead\*.html" />
+			<TonyShakeHeadCssTargetFiles Include="$(Project_TheFormulaShows_Dir)\Plugin\TonyShakeHead\**\*.css" />
+		</ItemGroup>
+		<Copy SourceFiles="@(TonyShakeHeadHtmlTargetFiles)" DestinationFolder="$(Publish_Plugin_Dir)\TonyShakeHead" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(TonyShakeHeadCssTargetFiles)" DestinationFolder="$(Publish_Plugin_Dir)\TonyShakeHead\css" SkipUnchangedFiles="true" />
+	</Target>
+
+	<!-- 游戏部署 -->
+	<Target Name="Copy_Game_Resources">
+		<!-- 打方塊 -->
+		<CallTarget Targets="Copy_Game_BreakTheBricks" />
+		<!-- 貪吃蛇 -->
+		<CallTarget Targets="Copy_Game_Snake" />
+	</Target>
+
+	<Target Name="Copy_Game_BreakTheBricks">
+		<ItemGroup>
+			<BreakTheBricksHtmlTargetFiles Include="$(Project_TheFormulaShows_Dir)\Games\break the bricks\*.html" />
+			<BreakTheBricksCssTargetFiles Include="$(Project_TheFormulaShows_Dir)\Games\break the bricks\**\*.css" />
+			<BreakTheBricksFontsTargetFiles Include="$(Project_TheFormulaShows_Dir)\Games\break the bricks\fonts\*.*" />
+			<BreakTheBricksJsTargetFiles Include="$(Project_TheFormulaShows_Dir)\Games\break the bricks\**\*.js" />
+		</ItemGroup>
+		<Copy SourceFiles="@(BreakTheBricksHtmlTargetFiles)" DestinationFolder="$(Publish_Games_Dir)\break the bricks" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(BreakTheBricksCssTargetFiles)" DestinationFolder="$(Publish_Games_Dir)\break the bricks\css" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(BreakTheBricksFontsTargetFiles)" DestinationFolder="$(Publish_Games_Dir)\break the bricks\fonts" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(BreakTheBricksJsTargetFiles)" DestinationFolder="$(Publish_Games_Dir)\break the bricks\js" SkipUnchangedFiles="true" />
+	</Target>
+
+	<Target Name="Copy_Game_Snake">
+		<ItemGroup>
+			<SnakeHtmlTargetFiles Include="$(Project_TheFormulaShows_Dir)\Games\snake\*.*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(SnakeHtmlTargetFiles)" DestinationFolder="$(Publish_Games_Dir)\snake" SkipUnchangedFiles="true" />
+	</Target>
+	
 	<!-- 編譯項目詳細設定 -->
 	<Target Name="Build_CommonLib">
 		<MSBuild Projects="$(Project_CommonLib)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
@@ -283,9 +343,9 @@
 	<!-- 四則運算題型 -->
 	<Target Name="Build_ArithmeticLib">
 		<!-- 題型策略模塊 -->
-		<MSBuild Projects="$(Project_Topic_Arithmetic)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_Arithmetic)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<!-- 題型顯示模塊 -->
-		<MSBuild Projects="$(Project_Show_Arithmetic)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_Arithmetic)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 
 		<!-- 配置文件的部署 -->
 		<ItemGroup>
@@ -298,8 +358,8 @@
 
 	<!-- 算式組合題型 -->
 	<Target Name="Build_CombinatorialEquationLib">
-		<MSBuild Projects="$(Project_Topic_CombinatorialEquation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_CombinatorialEquation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_CombinatorialEquation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_CombinatorialEquation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_CombinatorialEquation_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_CombinatorialEquation_Dir)\Scripts\**\*.js" />
@@ -310,8 +370,8 @@
 
 	<!-- 等式接龍題型 -->
 	<Target Name="Build_ComputingConnectionLib">
-		<MSBuild Projects="$(Project_Topic_ComputingConnection)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_ComputingConnection)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_ComputingConnection)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_ComputingConnection)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_ComputingConnection_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_ComputingConnection_Dir)\Scripts\**\*.js" />
@@ -322,8 +382,8 @@
 
 	<!-- 運算比大小題型 -->
 	<Target Name="Build_EqualityComparisonLib">
-		<MSBuild Projects="$(Project_Topic_EqualityComparison)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_EqualityComparison)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_EqualityComparison)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_EqualityComparison)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_EqualityComparison_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_EqualityComparison_Dir)\Scripts\**\*.js" />
@@ -334,8 +394,8 @@
 
 	<!-- 算式連一連題型 -->
 	<Target Name="Build_EqualityLinkageLib">
-		<MSBuild Projects="$(Project_Topic_EqualityLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_EqualityLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_EqualityLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_EqualityLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_EqualityLinkage_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_EqualityLinkage_Dir)\Scripts\**\*.js" />
@@ -352,8 +412,8 @@
 
 	<!-- 找到最近的數字題型 -->
 	<Target Name="Build_FindNearestNumberLib">
-		<MSBuild Projects="$(Project_Topic_FindNearestNumber)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_FindNearestNumber)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_FindNearestNumber)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_FindNearestNumber)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_FindNearestNumber_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_FindNearestNumber_Dir)\Scripts\**\*.js" />
@@ -364,8 +424,8 @@
 
 	<!-- 找規律題型 -->
 	<Target Name="Build_FindTheLawLib">
-		<MSBuild Projects="$(Project_Topic_FindTheLaw)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_FindTheLaw)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_FindTheLaw)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_FindTheLaw)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_FindTheLaw_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_FindTheLaw_Dir)\Scripts\**\*.js" />
@@ -376,8 +436,8 @@
 
 	<!-- 認識價格題型 -->
 	<Target Name="Build_CurrencyLinkageLib">
-		<MSBuild Projects="$(Project_Topic_CurrencyLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_CurrencyLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_CurrencyLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_CurrencyLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_CurrencyLinkage_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_CurrencyLinkage_Dir)\Scripts\**\*.js" />
@@ -394,8 +454,8 @@
 
 	<!-- 貨幣運算題型 -->
 	<Target Name="Build_CurrencyOperationLib">
-		<MSBuild Projects="$(Project_Topic_CurrencyOperation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_CurrencyOperation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_CurrencyOperation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_CurrencyOperation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_CurrencyOperation_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_CurrencyOperation_Dir)\Scripts\**\*.js" />
@@ -406,8 +466,8 @@
 
 	<!-- 水果連連看題型 -->
 	<Target Name="Build_FruitsLinkageLib">
-		<MSBuild Projects="$(Project_Topic_FruitsLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_FruitsLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_FruitsLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_FruitsLinkage)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_FruitsLinkage_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_FruitsLinkage_Dir)\Scripts\**\*.js" />
@@ -424,8 +484,8 @@
 
 	<!-- 基礎填空題型 -->
 	<Target Name="Build_GapFillingProblemsLib">
-		<MSBuild Projects="$(Project_Topic_GapFillingProblems)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_GapFillingProblems)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_GapFillingProblems)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_GapFillingProblems)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_GapFillingProblems_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_GapFillingProblems_Dir)\Scripts\**\*.js" />
@@ -440,8 +500,8 @@
 
 	<!-- 比多少題型 -->
 	<Target Name="Build_HowMuchMoreLib">
-		<MSBuild Projects="$(Project_Topic_HowMuchMore)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_HowMuchMore)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_HowMuchMore)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_HowMuchMore)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_HowMuchMore_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_HowMuchMore_Dir)\Scripts\**\*.js" />
@@ -458,8 +518,8 @@
 
 	<!-- 認識貨幣題型 -->
 	<Target Name="Build_LearnCurrencyLib">
-		<MSBuild Projects="$(Project_Topic_LearnCurrency)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_LearnCurrency)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_LearnCurrency)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_LearnCurrency)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_LearnCurrency_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_LearnCurrency_Dir)\Scripts\**\*.js" />
@@ -474,8 +534,8 @@
 
 	<!-- 認識長度單位題型 -->
 	<Target Name="Build_LearnLengthUnitLib">
-		<MSBuild Projects="$(Project_Topic_LearnLengthUnit)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_LearnLengthUnit)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_LearnLengthUnit)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_LearnLengthUnit)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_LearnLengthUnit_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_LearnLengthUnit_Dir)\Scripts\**\*.js" />
@@ -486,8 +546,8 @@
 
 	<!-- 豎式計算題型 -->
 	<Target Name="Build_MathUprightLib">
-		<MSBuild Projects="$(Project_Topic_MathUpright)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_MathUpright)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_MathUpright)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_MathUpright)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_MathUpright_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_MathUpright_Dir)\Scripts\**\*.js" />
@@ -500,8 +560,8 @@
 
 	<!-- 算式應用題題型 -->
 	<Target Name="Build_MathWordProblemsLib">
-		<MSBuild Projects="$(Project_Topic_MathWordProblems)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_MathWordProblems)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_MathWordProblems)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_MathWordProblems)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_MathWordProblems_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_MathWordProblems_Dir)\Scripts\**\*.js" />
@@ -512,8 +572,8 @@
 
 	<!-- 數字排序題型 -->
 	<Target Name="Build_NumericSortingLib">
-		<MSBuild Projects="$(Project_Topic_NumericSorting)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_NumericSorting)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_NumericSorting)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_NumericSorting)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_NumericSorting_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_NumericSorting_Dir)\Scripts\**\*.js" />
@@ -524,8 +584,8 @@
 
 	<!-- 時鐘學習板題型 -->
 	<Target Name="Build_SchoolClockLib">
-		<MSBuild Projects="$(Project_Topic_SchoolClock)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_SchoolClock)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_SchoolClock)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_SchoolClock)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_SchoolClock_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_SchoolClock_Dir)\Scripts\**\*.js" />
@@ -542,8 +602,8 @@
 
 	<!-- 射門得分題型 -->
 	<Target Name="Build_ScoreGoalLib">
-		<MSBuild Projects="$(Project_Topic_ScoreGoal)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_ScoreGoal)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_ScoreGoal)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_ScoreGoal)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_ScoreGoal_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_ScoreGoal_Dir)\Scripts\**\*.js" />
@@ -560,8 +620,8 @@
 
 	<!-- 時間運算題型 -->
 	<Target Name="Build_TimeCalculationLib">
-		<MSBuild Projects="$(Project_Topic_TimeCalculation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
-		<MSBuild Projects="$(Project_Show_TimeCalculation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_TopicModule_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Topic_TimeCalculation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
+		<MSBuild Projects="$(Project_Show_TimeCalculation)" Properties="Configuration=$(Build_Configuration);OutputPath=$(Publish_Bin_Dir);" Targets="Clean;Rebuild" BuildInParallel="$(BuildInParallel)" />
 		<ItemGroup>
 			<ConfigTargetFiles Include="$(Project_Topic_TimeCalculation_Dir)\Config\*.json" />
 			<ScriptTargetFiles Include="$(Project_Show_TimeCalculation_Dir)\Scripts\**\*.js" />
@@ -578,12 +638,6 @@
 			<UnnecessaryTargetFiles_Obj Include="
 										$(Publish_Bin_Dir)\*.xml;
 										$(Publish_Bin_Dir)\*.pdb;
-										$(Publish_TopicModule_Dir)\*.xml;
-										$(Publish_TopicModule_Dir)\*.pdb;
-										$(Publish_TopicModule_Dir)\log4net.dll;
-										$(Publish_TopicModule_Dir)\MyMathSheets.BasicOperationsLib.dll;
-										$(Publish_TopicModule_Dir)\MyMathSheets.CommonLib.dll;
-										$(Publish_TopicModule_Dir)\Newtonsoft.Json.dll;
 										" />
 		</ItemGroup>
 		<Delete Files="@(UnnecessaryTargetFiles_Obj)" />
