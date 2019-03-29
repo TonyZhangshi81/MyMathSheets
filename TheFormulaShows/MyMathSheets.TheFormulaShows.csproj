@@ -58,12 +58,12 @@
     <Content Include="Content\image\checkFaultResult.png" />
     <Content Include="Content\image\clown-color.png" />
     <Content Include="Content\image\clown.png" />
-    <Content Include="Content\image\favicon.ico" />
     <Content Include="Content\image\calculator.png" />
     <Content Include="Content\image\char-less.png" />
     <Content Include="Content\image\char-more.png" />
     <Content Include="Content\image\Division.png" />
     <Content Include="Content\image\fault.png" />
+    <Content Include="Content\image\favicon.ico" />
     <Content Include="Content\image\help.png" />
     <Content Include="Content\image\correct.png" />
     <Content Include="Content\image\homework.png" />
@@ -203,7 +203,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>rem copy "$(TargetFileName)" "$(SolutionDir)\Lib" /Y
+    <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
+rem copy "$(TargetFileName)" "$(SolutionDir)\Lib" /Y
 rem copy "$(SolutionDir)\Lib\*.dll" "$(SolutionDir)\Lib\Release\" /Y
 copy "..\Template\HTMLPage" "$(SolutionDir)\MathSheetsSettingApp\HtmlTemplate" /Y
 xcopy "..\Scripts\Ext" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\Ext" /C /E /H /K /R /Y
@@ -227,7 +228,6 @@ if not exist "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\snap" md
 copy "..\Scripts\snap\snap.svg-min.js" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Scripts\snap" /Y
 copy "..\Content\bootstrap.min.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\font-awesome.min.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
-copy "..\Content\MathSheets.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\SchoolClock.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\EqualityLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\CurrencyLinkage.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
@@ -237,7 +237,9 @@ copy "..\Content\ScoreGoal.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Wo
 copy "..\Content\HowMuchMore.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\default.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\Shake.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\TimeCalculation.css" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content" /Y
 xcopy "..\Content\image" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\image" /C /E /H /K /R /Y
-xcopy "..\Content\switcher" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\switcher" /C /E /H /K /R /Y</PostBuildEvent>
+xcopy "..\Content\switcher" "$(SolutionDir)\MathSheetsSettingApp\App_Data\Work\Content\switcher" /C /E /H /K /R /Y
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>

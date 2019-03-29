@@ -222,25 +222,5 @@ namespace MyMathSheets.CommonLib.Composition
 			}
 		}
 
-		/// <summary>
-		/// UT用にコンテナーをリセットします。
-		/// </summary>
-		/// <remarks>
-		/// UT以外では呼び出されることはありません。
-		/// </remarks>
-		internal static void Reset()
-		{
-			lock (Sync)
-			{
-				foreach (var keyValue in ComposerCache)
-				{
-					if (keyValue.Value is IDisposable value)
-					{
-						value.Dispose();
-					}
-				}
-				ComposerCache.Clear();
-			}
-		}
 	}
 }

@@ -87,9 +87,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)Lib" /Y
+    <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
+copy "$(TargetFileName)" "$(SolutionDir)Lib" /Y
 copy "..\Scripts\Ext\*.js" "..\..\..\Scripts\Ext\" /Y
 xcopy "..\Content" "..\..\..\Content" /C /E /H /K /R /Y
-copy "..\Template\*.html" "$(SolutionDir)TheFormulaShows\Template" /Y</PostBuildEvent>
+copy "..\Template\*.html" "$(SolutionDir)TheFormulaShows\Template" /Y
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>

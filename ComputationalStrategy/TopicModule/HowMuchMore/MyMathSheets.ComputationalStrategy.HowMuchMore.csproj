@@ -78,8 +78,10 @@
   <PropertyGroup>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)\Lib" /Y
+    <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
+copy "$(TargetFileName)" "$(SolutionDir)\Lib" /Y
 copy "..\Config\*.json" "$(SolutionDir)MathSheetsSettingApp\Config" /Y
-copy "..\Config\*.json" "$(SolutionDir)TestConsoleApp\Config" /Y</PostBuildEvent>
+copy "..\Config\*.json" "$(SolutionDir)TestConsoleApp\Config" /Y
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>

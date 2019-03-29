@@ -55,8 +55,6 @@
     <Content Include="Content\image\clock\Sun.png" />
     <Content Include="Content\SchoolClock.css" />
     <Content Include="Scripts\Ext\MathSheets.SchoolClock.js" />
-    <Content Include="Scripts\snap\snap.svg-min.js" />
-    <Content Include="Scripts\snap\snap.svg.js" />
     <Content Include="Template\SchoolClock.html" />
   </ItemGroup>
   <ItemGroup />
@@ -79,9 +77,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)Lib" /Y
+    <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
+copy "$(TargetFileName)" "$(SolutionDir)Lib" /Y
 copy "..\Scripts\Ext\*.js" "..\..\..\Scripts\Ext\" /Y
 xcopy "..\Content" "..\..\..\Content" /C /E /H /K /R /Y
-copy "..\Template\*.html" "$(SolutionDir)TheFormulaShows\Template" /Y</PostBuildEvent>
+copy "..\Template\*.html" "$(SolutionDir)TheFormulaShows\Template" /Y
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>
