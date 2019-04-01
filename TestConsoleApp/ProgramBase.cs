@@ -258,6 +258,7 @@ namespace MyMathSheets.TestConsoleApp
 						isShowMenu = true;
 						break;
 				}
+				args[0] = Console.ReadLine();
 			}
 		}
 
