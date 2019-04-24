@@ -112,6 +112,8 @@
     <Content Include="Games\break the bricks\fonts\icomoon.svg" />
     <Content Include="Games\break the bricks\index.html" />
     <Content Include="Games\break the bricks\js\BlockBlaster.js" />
+    <Content Include="Games\poker\index.html" />
+    <Content Include="Games\poker\js\MathSheets.GamesPoker.js" />
     <Content Include="Games\snake\ball_blue.png" />
     <Content Include="Games\snake\ball_purple.png" />
     <Content Include="Games\snake\snake-game.html" />
