@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>牌面</title>
+	<link href="../../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+	<script src="../../Scripts/jquery-3.3.1.min.js"></script>
+	<script src="../../Scripts/bootstrap.min.js" charset="utf-8"></script>
+	<script src="js/MathSheets.GamesPoker.js"></script>
+
+	<script>
+
+		$(document).ready(function () {
+
+			pokerInitialize();
+
+			$('#btnAgain').hide();
+			$('.divGuessArea').hide();
+
+			$('#btnDeal').click(function () { btnDealOnClick(this); });
+			$('#btnAgain').click(function () { btnAgainClick(this); });
+
+			$('.hand1').click(function () { pushHand(this); });
+			$('.hand2').click(function () { pushHand(this); });
+			$('.hand3').click(function () { pushHand(this); });
+		});
+
+		pushHand = function (e) {
+
+			guess++;
+			doClearUp();
+
+			var hand = $(e).attr('class');
+			var line = hand.charAt(hand.length - 1);
+			// 收牌
+			MathSheets.GamesPoker.doClearUp(parseInt(line));
+
+
+			if (guess == 4) {
+				$(".divGuessArea").hide(1000, function () {
+
+					var result = MathSheets.GamesPoker.getResult();
+
+					$(".divResultArea").show();
+					$(".imgAward").attr('src', "../poker/image/" + result + ".png");
+
+					$(".imgAward").fadeIn(2000, function () {
+						$(this).animate({ width: "200px", height: "200px" }, "slow", null);
+					});
+
+					doClearUp();
+				});
+				return;
+			}
+
+			// 發牌
+			MathSheets.GamesPoker.doDeal();
+
+			index = 0;
+			col = 0;
+			row = 1;
+			doDeal();
+		}
+
+		doClearUp = function () {
+			$("div[class='poker'").animate({ "top": 0, "left": 0 }, 100);
+		}
+
+		btnAgainClick = function () {
+			window.location.reload();
+		}
+
+		btnDealOnClick = function (e) {
+
+			$('#btnAgain').show();
+			$(e).hide();
+
+			guess++;
+			// 發牌
+			MathSheets.GamesPoker.doDeal();
+
+			doDeal();
+		}
+
+		var index = 0;
+		var col = 0;
+		var row = 1;
+		var guess = 0;
+		doDeal = function () {
+
+			if (index == __pokers.length) {
+				$(".divGuessArea").fadeIn(1000);
+				return false;
+			}
+
+			var top = 100 * row;
+			var left = 100 * col;
+
+			var speed = 20;
+			switch (row) {
+				case 1:
+					$("#div" + __deal1[col]).animate({ "top": top, "left": left }, speed);
+					break;
+				case 2:
+					$("#div" + __deal2[col]).animate({ "top": top, "left": left }, speed);
+					break;
+				case 3:
+					$("#div" + __deal3[col]).animate({ "top": top, "left": left }, speed);
+					break;
+			}
+
+			index++;
+			row++;
+
+			if (row == 4) {
+				row = 1;
+				col++;
+			}
+
+			setTimeout("doDeal()", speed * 2);
+		}
+
+		pokerInitialize = function () {
+			__pokers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 22, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+			MathSheets.GamesPoker.pokerInitialize();
+
+			createPokerHtml();
+		}
+
+		createPokerHtml = function () {
+			var html = "";
+			var htmlFormat = '<div id="div#" class="poker"><img src ="../poker/image/#.png" class="img-responsive" alt="Responsive image" /></div>';
+			for (var i = __pokers.length - 1; i >= 0; i--) {
+				html += htmlFormat.replace(/#/g, __pokers[i]);
+			}
+			$(".divBlankArea").append(html);
+		}
+
+	</script>
+
+	<style>
+		.divContent {
+			position: absolute;
+			background-color: bisque;
+			height: 100%;
+			width: 100%;
+		}
+
+		.divDealArea {
+			position: relative;
+			top: 120px;
+			left: 200px;
+			width: 750px;
+			height: 105px;
+			background-color: lightblue;
+		}
+
+		.divPokerArea {
+			position: absolute;
+			top: 225px;
+			left: 200px;
+			width: 750px;
+			height: 300px;
+			background-color: lightsteelblue;
+		}
+
+		.divGuessArea {
+			position: absolute;
+			top: 225px;
+			left: 950px;
+			width: 80px;
+			height: 300px;
+			background-color: bisque;
+		}
+
+		.divResultArea {
+			position: absolute;
+			top: 255px;
+			left: 470px;
+			width: 80px;
+			height: 300px;
+			z-index: 99;
+			display: none;
+		}
+
+		.divBlankArea {
+			position: absolute;
+			top: 10px;
+			left: 0px;
+		}
+
+		.divBtnDeal {
+			position: absolute;
+			top: 40px;
+			left: 150px;
+		}
+
+		.blank {
+			z-index: 1;
+		}
+
+		.poker {
+			z-index: 2;
+		}
+
+		.blank, .poker {
+			position: absolute;
+			background-color: transparent;
+			top: 0px;
+			left: 0px;
+		}
+
+		.hand1 {
+			position: absolute;
+			background-color: transparent;
+			background: url(../poker/image/OK-no.png) center no-repeat;
+			background-size: contain;
+			width: 90px;
+			height: 90px;
+			top: 0px;
+			left: 0px;
+		}
+
+			.hand1:hover {
+				position: absolute;
+				background-color: transparent;
+				background: url(../poker/image/OK-yes.png) center no-repeat;
+				background-size: contain;
+				width: 90px;
+				height: 90px;
+				top: 0px;
+				left: 0px;
+			}
+
+		.hand2 {
+			position: absolute;
+			background-color: transparent;
+			background: url(../poker/image/OK-no.png) center no-repeat;
+			background-size: contain;
+			width: 90px;
+			height: 90px;
+			top: 100px;
+			left: 0px;
+		}
+
+			.hand2:hover {
+				position: absolute;
+				background-color: transparent;
+				background: url(../poker/image/OK-yes.png) center no-repeat;
+				background-size: contain;
+				width: 90px;
+				height: 90px;
+				top: 100px;
+				left: 0px;
+			}
+
+		.hand3 {
+			position: absolute;
+			background-color: transparent;
+			background: url(../poker/image/OK-no.png) center no-repeat;
+			background-size: contain;
+			width: 90px;
+			height: 90px;
+			top: 200px;
+			left: 0px;
+		}
+
+			.hand3:hover {
+				position: absolute;
+				background-color: transparent;
+				background: url(../poker/image/OK-yes.png) center no-repeat;
+				background-size: contain;
+				width: 90px;
+				height: 90px;
+				top: 200px;
+				left: 0px;
+			}
+
+		.imgAward {
+			width: 440px;
+			height: 440px;
+			display: none;
+		}
+
+		div.divDealArea img {
+			width: 90px;
+			height: 90px;
+		}
+	</style>
+</head>
+<body>
+	<div class="divContent">
+		<div class="divDealArea">
+			<div class="divBlankArea">
+				<div class="blank">
+					<img src="../poker/image/12.png" class="img-responsive" alt="Responsive image" />
+				</div>
+			</div>
+			<div class="divBtnDeal">
+				<button id="btnDeal" type="button" class="btn btn-lg btn-success">发牌</button>
+				<button id="btnAgain" type="button" class="btn btn-lg btn-success">再来一次</button>
+			</div>
+		</div>
+		<div class="divPokerArea">
+		</div>
+		<div class="divGuessArea">
+			<div class="hand1">
+			</div>
+			<div class="hand2">
+			</div>
+			<div class="hand3">
+			</div>
+		</div>
+		<div class="divResultArea">
+			<img src="" class="imgAward" />
+		</div>
+	</div>
+</body>
+</html>
