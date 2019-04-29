@@ -115,19 +115,19 @@ MathSheets.Common = MathSheets.Common || (function () {
      * @private
 	 * @property {int} _scrollHeight 頁面總高度
 	 */
-    var _scrollHeight;
+    //var _scrollHeight;
 
 	/**
 	 * @description 窗體顯示的高度
      * @private
 	 * @property {int} _windowHeight 窗體顯示的高度
 	 */
-    var _windowHeight;
+    //var _windowHeight;
 
 	/**
 	 * @description 用於記錄遊戲序號，確保答題全對後只能玩指定序號的遊戲
      * @private
-	 * @property {int} _gameId 遊戲序號（1：貪吃蛇 2：打方塊）
+	 * @property {int} _gameId 遊戲序號（1：貪吃蛇 2：打方塊 3：21張牌猜牌）
 	 * @default null
 	 */
     var _gameId;
@@ -708,12 +708,12 @@ MathSheets.Common = MathSheets.Common || (function () {
             var scrollTop = $(window).scrollTop();
 
             //debug
-            //console.log(scrollTop + "|" + (scrollTop + _windowHeight) + "|" + _windowHeight);
+            //console.log(scrollTop + "|" + (scrollTop + $(window).height()) + "|" + $(window).height());
 
             // 可視範圍查詢
             var searchList = $.Enumerable.From(_itemTops)
                 .Where(function (v) {
-                    return scrollTop <= v.begin && scrollTop + _windowHeight > v.end
+                    return scrollTop <= v.begin && scrollTop + $(window).height() > v.end
                 }).ToArray();
             // 優先考慮可視範圍內的模塊設置高亮、其後再考慮接近窗體頂端的模塊
             if (searchList.length > 0) {
@@ -756,7 +756,7 @@ MathSheets.Common = MathSheets.Common || (function () {
             // 窗體顯示的高度
             //var windowHeight = $(window).height();
             // 如果滾動條已經到達頁面底部，則關閉當前自動移動
-            if (scrollTop + _windowHeight == _scrollHeight) {
+        if (scrollTop + $(window).height() == $(document).height()) {
                 // 向下箭頭隱藏
                 $(".imgHelper-down").hide();
                 return;
@@ -791,13 +791,13 @@ MathSheets.Common = MathSheets.Common || (function () {
             // 窗體顯示的高度
             //var windowHeight = $(window).height();
             // 指定區域內顯示顯示
-            if (clientY > (_windowHeight * 0.7)) {
+        if (clientY > ($(window).height() * 0.7)) {
                 // 滾動條高度
                 var scrollTop = $(window).scrollTop();
                 // 頁面總高度
                 //var scrollHeight = $(document).height();
                 // 如果滾動條已經到達頁面底部，則關閉當前自動移動
-                if (scrollTop + _windowHeight >= _scrollHeight - 1) {
+            if (scrollTop + $(window).height() >= $(document).height() - 1) {
                     // 向下箭頭隱藏
                     $(".imgHelper-down").hide();
                     return;
@@ -1024,11 +1024,11 @@ $(document).ready(function () {
     $(document).bind("contextmenu", function (e) { return false; });
 
     // 窗體顯示的高度
-    _windowHeight = window.innerHeight;//$(window).height();
+    //_windowHeight = $(window).height();
     // 頁面總高度
-    _scrollHeight = $(document).height();
+    //_scrollHeight = $(document).height();
     // 當頁面超長時顯示輔助滾輪
-    if (_scrollHeight > _windowHeight) {
+    if ($(document).height() > $(window).height()) {
 		/* 
 		 * 與 mouseover 事件不同，只有在鼠標指針穿過被選中的元素時，才會觸發 mouseenter 事件。
 		 * 如果鼠標指針穿過任何子元素，同樣會觸發 mouseover 事件。 
