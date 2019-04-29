@@ -847,7 +847,7 @@ MathSheets.Common = MathSheets.Common || (function () {
         imgAwardClick = function () {
             // 避免遊戲外洩（一次做題玩盡所有遊戲！）
             if (_gameId == null) {
-                _gameId = _getRandomInt(2);
+                _gameId = _getRandomInt(3);
             }
             switch (_gameId) {
                 case 0:
@@ -857,6 +857,10 @@ MathSheets.Common = MathSheets.Common || (function () {
                 case 1:
                     // 打方塊遊戲
                     _openWindow("../Games/break the bricks/index.html", "打方块", 810, 605);
+                    break;
+                case 2:
+                    // 21張牌猜牌
+                    _openWindow("../Games/poker/desk.html", "21张牌猜牌", 810, 605);
                     break;
             }
         },

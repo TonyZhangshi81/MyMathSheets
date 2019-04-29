@@ -188,6 +188,8 @@
 		<CallTarget Targets="Copy_Game_BreakTheBricks" />
 		<!-- 貪吃蛇 -->
 		<CallTarget Targets="Copy_Game_Snake" />
+		<!-- 21張牌猜牌 -->
+		<CallTarget Targets="Copy_Game_Poker" />
 	</Target>
 
 	<Target Name="Copy_Game_BreakTheBricks">
@@ -208,6 +210,19 @@
 			<SnakeHtmlTargetFiles Include="$(Project_TheFormulaShows_Dir)\Games\snake\*.*" />
 		</ItemGroup>
 		<Copy SourceFiles="@(SnakeHtmlTargetFiles)" DestinationFolder="$(Publish_Games_Dir)\snake" SkipUnchangedFiles="true" />
+	</Target>
+	
+	<Target Name="Copy_Game_Poker">
+		<ItemGroup>
+			<PokerHtmlTargetFiles Include="$(Project_TheFormulaShows_Dir)\Games\poker\*.html" />
+			<PokerCssTargetFiles Include="$(Project_TheFormulaShows_Dir)\Games\poker\**\*.css" />
+			<PokerImagesTargetFiles Include="$(Project_TheFormulaShows_Dir)\Games\poker\image\*.*" />
+			<PokerJsTargetFiles Include="$(Project_TheFormulaShows_Dir)\Games\poker\**\*.js" />
+		</ItemGroup>
+		<Copy SourceFiles="@(PokerHtmlTargetFiles)" DestinationFolder="$(Publish_Games_Dir)\poker" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(PokerCssTargetFiles)" DestinationFolder="$(Publish_Games_Dir)\poker\css" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(PokerImagesTargetFiles)" DestinationFolder="$(Publish_Games_Dir)\poker\image" SkipUnchangedFiles="true" />
+		<Copy SourceFiles="@(PokerJsTargetFiles)" DestinationFolder="$(Publish_Games_Dir)\poker\js" SkipUnchangedFiles="true" />
 	</Target>
 	
 	<!-- 編譯項目詳細設定 -->

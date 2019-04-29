@@ -64,7 +64,7 @@ MathSheets.GamesPoker = MathSheets.GamesPoker || (function () {
         },
 
         /**
-         * @description 收牌
+         * @description 洗牌
          * @method doClearUp
          * @param line {int} 想定的牌面所在列數
          */
