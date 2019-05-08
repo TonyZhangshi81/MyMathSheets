@@ -100,9 +100,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.MathWordProblems.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.MultArithmetic">
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.MultArithmetic.dll</HintPath>
-    </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.NumericSorting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.NumericSorting.dll</HintPath>

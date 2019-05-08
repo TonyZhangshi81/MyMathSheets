@@ -19,10 +19,25 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		{
 			_formula = base.CreateFormula(parameter);
 
-			_formula.LeftParameter = GetLeftParameter(parameter.MaximumLimit);
+			if (parameter.MaximumLimit == 0)
+			{
+				_formula.LeftParameter = GetParameterWithScope(parameter.LeftScope);
+				_formula.RightParameter = GetParameterWithScope(parameter.RightScope);
+
+			}
+			else
+			{
+				_formula.LeftParameter = GetLeftParameter(parameter.MaximumLimit);
+				_formula.RightParameter = GetRightParameter(_formula.LeftParameter);
+			}
 			_formula.Sign = SignOfOperation.Subtraction;
-			_formula.RightParameter = GetRightParameter(_formula.LeftParameter);
 			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
+
+			if(_formula.Answer < 0)
+			{
+				// 負數值
+				_formula.IsNoSolution = true;
+			}
 
 			return _formula;
 		}

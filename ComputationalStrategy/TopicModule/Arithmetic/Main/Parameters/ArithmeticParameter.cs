@@ -31,6 +31,11 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters
 		/// </summary>
 		public HelperDialogue BrainpowerHint { get; set; }
 		/// <summary>
+		/// 等式值是不是出現在右邊
+		/// </summary>
+		public bool? AnswerIsRight { get; set; }
+
+		/// <summary>
 		/// 初期化參數
 		/// </summary>
 		public override void InitParameter()
@@ -48,6 +53,8 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters
 			{
 				IsNeedBracket = false;
 			}
+
+			AnswerIsRight = (JsonExtension.GetPropertyByJson(Reserve, "AnswerIsRight") == null) ? (bool?)null : Convert.ToBoolean(JsonExtension.GetPropertyByJson(Reserve, "AnswerIsRight"));
 
 			// 四則運算結合實例化
 			Formulas = new List<ArithmeticFormula>();

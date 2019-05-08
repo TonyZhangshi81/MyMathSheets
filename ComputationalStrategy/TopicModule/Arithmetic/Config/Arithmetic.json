@@ -9,11 +9,12 @@
 	},
 	{
 		"Identifier": "AC002",
-		"MaximumLimit": 30,
 		"NumberOfQuestions": 10,
 		"QuestionType": 1,
-		"Signs": [ 0 ],
-		"Reserve": "{\"Multistage\" : 0, \"Bracket\" : 0}"
+		"Signs": [ 1 ],
+		"LeftScope": [ 10, 30 ],
+		"RightScope": [ 5, 20 ],
+		"Reserve": "{\"AnswerIsRight\" : 1, \"Multistage\" : 0, \"Bracket\" : 0}"
 	},
 	{
 		"Identifier": "AC003",

@@ -41,7 +41,9 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 				{
 					MaximumLimit = p.MaximumLimit,
 					QuestionType = p.QuestionType,
-					MinimumLimit = 0
+					MinimumLimit = 0,
+					LeftScope = p.LeftScope,
+					RightScope = p.RightScope
 				});
 				// 隨機設定是否帶小括號(當參數配置允許小括號)
 				formula.IsNeedBracket = p.IsNeedBracket ? CommonUtil.GetRandomNumber(false, true) : false;
@@ -76,8 +78,8 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 					Arithmetic = formula,
 					// 多級運算式
 					MultistageArithmetic = multFormula,
-					// 等式值是不是出現在右邊
-					AnswerIsRight = IsRight
+					// 等式值是不是出現在右邊（如果未指定則隨機產生）
+					AnswerIsRight = p.AnswerIsRight ?? IsRight
 				});
 
 				defeated = 0;
@@ -153,6 +155,11 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 		/// <returns>需要反推：true  正常情況: false</returns>
 		private bool CheckIsNeedInverseMethod(ArithmeticParameter p, Formula currentFormula, Formula multFormula)
 		{
+			if (currentFormula.IsNoSolution)
+			{
+				return true;
+			}
+
 			// 多級計算時，第二級計算式結果不能為零
 			if (p.Multistage)
 			{

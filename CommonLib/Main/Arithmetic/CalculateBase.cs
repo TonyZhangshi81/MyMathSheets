@@ -34,6 +34,17 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <summary>
 		/// 
 		/// </summary>
+		/// <param name="parameterScope"></param>
+		/// <returns></returns>
+		protected virtual int GetParameterWithScope(int[] parameterScope)
+		{
+			var number = CommonUtil.GetRandomNumber(parameterScope[0], parameterScope[1]);
+			return number;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
 		/// <param name="maximumLimit"></param>
 		/// <param name="leftParameter"></param>
 		/// <returns></returns>

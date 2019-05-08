@@ -43,6 +43,16 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		public string Reserve { get; set; }
 
 		/// <summary>
+		/// 推算範圍（基於算式第一參數指定範圍的推算）
+		/// </summary>
+		public int[] LeftScope { get; set; }
+
+		/// <summary>
+		/// 推算範圍（基於算式第二參數指定範圍的推算）
+		/// </summary>
+		public int[] RightScope { get; set; }
+
+		/// <summary>
 		/// 
 		/// </summary>
 		public virtual void InitParameter()
@@ -59,6 +69,8 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			MaximumLimit = parameter.MaximumLimit;
 			NumberOfQuestions = parameter.NumberOfQuestions;
 			Reserve = parameter.Reserve;
+			LeftScope = parameter.LeftScope;
+			RightScope = parameter.RightScope;
 		}
 	}
 }
