@@ -169,11 +169,34 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <param name="e">事件處理</param>
 		private void SureClick(object sender, EventArgs e)
 		{
+			TopMost = true;
+
+			// 使用IE打開已作成的靜態頁面
+			Process cmdProcess = new Process();
+			// 命令
+			cmdProcess.StartInfo.FileName = ConfigurationManager.AppSettings.Get("Preview");
+			// 顯示DOC界面
+			cmdProcess.StartInfo.CreateNoWindow = true;
+			// 啟動Exited事件
+			cmdProcess.EnableRaisingEvents = true;
+			// 註冊進程結束事件
+			//cmdProcess.Exited += new EventHandler((s, v) =>
+			//{
+				// 註冊進程結束事件
+				//Environment.Exit(0);
+			//});
+
 			if (cmbWorkPages.SelectedIndex > 0)
 			{
-				Process.Start(ConfigurationManager.AppSettings.Get("Preview"), "\"" + Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") + cmbWorkPages.SelectedValue.ToString()) + "\"");
-				// 退出系統
+				// 參數
+				cmdProcess.StartInfo.Arguments = ("\"" + Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") + cmbWorkPages.SelectedValue.ToString()) + "\"");
+				cmdProcess.Start();
+
+				cmdProcess.WaitForExit(5000);
+
 				Environment.Exit(0);
+
+				return;
 			}
 
 			// 選題情況
@@ -184,11 +207,16 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 
 			log.Debug(MessageUtil.GetException(() => MsgResources.I0002A));
+
 			// 出題按鍵點擊事件
 			var destFileName = _process.SureClick();
-			// 使用IE打開已作成的靜態頁面
-			Process.Start(ConfigurationManager.AppSettings.Get("Preview"), "\"" + Path.GetFullPath(@destFileName) + "\"");
-			// 退出系統
+
+			// 參數
+			cmdProcess.StartInfo.Arguments = ("\"" + Path.GetFullPath(@destFileName) + "\"");
+			cmdProcess.Start();
+
+			cmdProcess.WaitForExit(5000);
+
 			Environment.Exit(0);
 		}
 

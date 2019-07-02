@@ -152,7 +152,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 				}
 			}
 			// 位置移動
-			picPlane.Location = new Point(picPlane.Location.X - 3, locationY);
+			picPlane.Location = new Point(picPlane.Location.X - 2, locationY);
 		}
 	}
 }
