@@ -15,10 +15,18 @@ using System.Text;
 namespace MyMathSheets.CommonLib.Composition
 {
 	/// <summary>
-	/// 
+	/// 用於緩存程序集為單位<see cref="Composer"/>的工廠類
 	/// </summary>
+	/// <remarks>
+	/// 定義並讀取優先順序的組建
+	/// </remarks>
 	public static class ComposerFactory
 	{
+		/// <summary>
+		/// 日誌對象作成
+		/// </summary>
+		private static readonly Log log = Log.LogReady(typeof(ComposerFactory));
+
 		/// <summary>
 		/// 模塊加載委託
 		/// </summary>
@@ -45,10 +53,6 @@ namespace MyMathSheets.CommonLib.Composition
 		/// 文件名檢索用關鍵字
 		/// </summary>
 		const string SEARCH_PATTERN = "MyMathSheets.*.dll";
-		/// <summary>
-		/// 日誌對象作成
-		/// </summary>
-		private static readonly Log log = Log.LogReady(typeof(ComposerFactory));
 
 		/// <summary>
 		/// 
@@ -56,13 +60,13 @@ namespace MyMathSheets.CommonLib.Composition
 		private static Assembly TempAssembly;
 
 		/// <summary>
-		/// 
+		/// 以程序集為單位的組合器<see cref="Composer"/>緩存
 		/// </summary>
 		private static ConcurrentDictionary<string, Composer> ComposerCache;
 		/// <summary>
-		/// 
+		/// 以系統模塊為單位<see cref="SystemModel"/>的組合器緩存
 		/// </summary>
-		internal static readonly ConcurrentDictionary<string, MathSheetMarkerAttribute> AssemblyInfoCache;
+		internal static readonly ConcurrentDictionary<string, MathSheetMarkerAttribute> SystemModelInfoCache;
 		/// <summary>
 		/// 
 		/// </summary>
@@ -74,7 +78,7 @@ namespace MyMathSheets.CommonLib.Composition
 		static ComposerFactory()
 		{
 			ComposerCache = new ConcurrentDictionary<string, Composer>();
-			AssemblyInfoCache = new ConcurrentDictionary<string, MathSheetMarkerAttribute>();
+			SystemModelInfoCache = new ConcurrentDictionary<string, MathSheetMarkerAttribute>();
 
 			LoadTopicModuleFiles = new List<FileInfo>();
 			GetDirectoryFiles(AppDomain.CurrentDomain.BaseDirectory, LoadTopicModuleFiles);
@@ -131,7 +135,7 @@ namespace MyMathSheets.CommonLib.Composition
 					// 獲取題型模塊信息并保存
 					if ((attr.SystemId == SystemModel.TheFormulaShows || attr.SystemId == SystemModel.ComputationalStrategy) && !string.IsNullOrEmpty(attr.Description))
 					{
-						AssemblyInfoCache.GetOrAdd(attr.Preview.ToString(), attr);
+						SystemModelInfoCache.GetOrAdd(attr.Preview.ToString(), attr);
 					}
 				}
 				else
@@ -223,9 +227,9 @@ namespace MyMathSheets.CommonLib.Composition
 		}
 
 		/// <summary>
-		/// アプリケーション基盤での優先順位付けされたアセンブリの順序で生成されたコンテナを返します。
+		/// 對當前應用程序域按照程序集的參照優先順序生成容器並返回
 		/// </summary>
-		/// <param name="path"></param>
+		/// <param name="path">程序集目錄</param>
 		/// <returns></returns>
 		public static IEnumerable<ComposablePartCatalog> GetCatalog(string path)
 		{

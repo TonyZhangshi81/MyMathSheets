@@ -323,7 +323,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 					string classifyName = string.Empty;
 
 					int indexX = 1, indexY = 1;
-					ComposerFactory.AssemblyInfoCache
+					ComposerFactory.SystemModelInfoCache
 						.OrderBy(b => b.Value.Classify, new ClassifyComparer())
 						.ThenBy(c => c.Key, new PreviewComparer()).ToList()
 						.ForEach(d =>
