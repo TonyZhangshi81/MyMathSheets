@@ -174,12 +174,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\ConsoleFormulas.xml" />
-    <Content Include="test\debug.html" />
-    <Content Include="test\JavaScript.js" />
-    <Content Include="test\JavaScript1.js" />
-    <Content Include="test\js\jquery-3.3.1.min.js" />
-    <Content Include="test\js\test01.js" />
-    <Content Include="test\js\test02.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\MsgResources.resx">
