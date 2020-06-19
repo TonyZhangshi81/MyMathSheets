@@ -119,6 +119,7 @@
     <Compile Include="Util\Consts.cs" />
     <Compile Include="Util\ConvertHelper.cs" />
     <Compile Include="Util\CurrencyUtil.cs" />
+    <Compile Include="Util\ExpressCalculateUtil.cs" />
     <Compile Include="Util\JsonExtension.cs" />
     <Compile Include="Util\RandomNumber\RandomNumberComposition.cs" />
     <Compile Include="Util\ReflectionUtil.cs" />
