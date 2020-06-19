@@ -429,6 +429,13 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 					html.Append(GetCentimeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
+				// 毫米到米
+				case LengthUnitTransform.MM2M:
+					html.Append(GetMillimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
+					html.AppendLine(EQUALTO_HTML);
+					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
+					break;
+
 				// 毫米到米分米
 				case LengthUnitTransform.MM2MD:
 					html.Append(GetMillimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));

@@ -39,7 +39,7 @@ namespace MyMathSheets.TestConsoleApp
 		/// <param name="formulas">各題型類的輸出結果對象</param>
 		public static void ConsoleFormulas<T>(LayoutSetting.Preview preview, T formulas)
 		{
-			var writer = FormulasConsolerFactory.Instance.CreateConsoleWriter(preview, formulas);
+			var writer = FormulasConsolerFactory.Instance.CreateConsoleWriter<T>(preview);
 			writer.ConsoleFormulas(formulas);
 		}
 	}

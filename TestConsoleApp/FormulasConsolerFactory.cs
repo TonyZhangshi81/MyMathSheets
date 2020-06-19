@@ -14,7 +14,7 @@ namespace MyMathSheets.TestConsoleApp
 	/// </summary>
 	public class FormulasConsolerFactory
 	{
-		private static Log log = Log.LogReady(typeof(FormulasConsolerFactory));
+		private static readonly Log log = Log.LogReady(typeof(FormulasConsolerFactory));
 
 		/// <summary>
 		/// 輸出類注入配置文件所在路徑
@@ -74,7 +74,7 @@ namespace MyMathSheets.TestConsoleApp
 		/// </summary>
 		/// <param name="preview">設定題型</param>
 		/// <param name="formulas">題型輸出結果</param>
-		public IConsoleWrite<T> CreateConsoleWriter<T>(LayoutSetting.Preview preview, T formulas)
+		public IConsoleWrite<T> CreateConsoleWriter<T>(LayoutSetting.Preview preview)
 		{
 			if (_objectFactory == null)
 			{
