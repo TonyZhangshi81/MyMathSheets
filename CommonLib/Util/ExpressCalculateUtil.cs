@@ -9,12 +9,17 @@ namespace MyMathSheets.CommonLib.Util
 	public class ExpressCalculateUtil
 	{
 		/// <summary>
-		///
+		/// 所有操作符
 		/// </summary>
-		/// <param name="x"></param>
-		/// <param name="y"></param>
-		/// <param name="operators"></param>
-		/// <returns></returns>
+		private readonly string[] Operateors = new string[] { "+", "-", "*", "/", "(", ")", "[", "]", "{", "}", "#" };
+
+		/// <summary>
+		/// 四則運算處理
+		/// </summary>
+		/// <param name="x">參數1</param>
+		/// <param name="y">餐數2</param>
+		/// <param name="operators">運算符</param>
+		/// <returns>計算結果</returns>
 		public string Arithmetic(string x, string y, string operators)
 		{
 			var a = decimal.Parse(x);
@@ -44,87 +49,99 @@ namespace MyMathSheets.CommonLib.Util
 		}
 
 		/// <summary>
-		///
+		/// 根據計算式後序表達式列表推算出計算式結果
 		/// </summary>
-		/// <param name="PostorderExpress"></param>
-		/// <param name="result"></param>
-		/// <returns></returns>
-		public bool IsResult(List<string> PostorderExpress, out decimal result)
+		/// <param name="postorderExpress">計算式後序表達式列表</param>
+		/// <param name="result">計算式結果</param>
+		/// <returns>推算成功:TRUE返回</returns>
+		public bool IsResult(List<string> postorderExpress, out decimal result)
 		{
-			if (PostorderExpress != null)
+			if (postorderExpress != null)
 			{
 				try
 				{
-					PostorderExpress.Add("#");
-					string[] tempArry = PostorderExpress.ToArray();
-					int length = tempArry.Length;
-					int i = 0;
-					while (tempArry[i] != "#")
+					postorderExpress.Add("#");
+
+					var aryExpress = postorderExpress.ToArray();
+					var length = aryExpress.Length;
+					var i = 0;
+					while (aryExpress[i] != "#")
 					{
-						if (IsOperateors(tempArry[i]))
+						if (IsOperateors(aryExpress[i]))
 						{
-							tempArry[i - 2] = Arithmetic(tempArry[i - 2], tempArry[i - 1], tempArry[i]);
+							aryExpress[i - 2] = Arithmetic(aryExpress[i - 2], aryExpress[i - 1], aryExpress[i]);
 							for (int j = i; j < length; j++)
 							{
 								if (j + 1 < length)
-									tempArry[j - 1] = tempArry[j + 1];
+								{
+									aryExpress[j - 1] = aryExpress[j + 1];
+								}
 							}
 							length -= 2;
 							i -= 2;
 						}
 						i++;
 					}
-					result = decimal.Parse(tempArry[0]);
+					result = decimal.Parse(aryExpress[0]);
 					return true;
 				}
 				catch
 				{
-					result = 0;
-					return false;
 				}
 			}
-			else
-			{
-				result = 0;
-				return false;
-			}
+			result = 0;
+			return false;
 		}
 
 		/// <summary>
-		///
+		/// 中序表達式轉後序表達式列表
 		/// </summary>
-		/// <param name="q"></param>
-		/// <returns></returns>
-		public List<string> InorderToPostorder(Queue<string> q)
+		/// <param name="expressQueue">中序表達式隊列</param>
+		/// <returns>後序表達式列表</returns>
+		public List<string> InorderToPostorder(Queue<string> expressQueue)
 		{
-			List<string> posterOrder = new List<string>();
-			Stack<string> inOrder = new Stack<string>();
+			// 操作符棧（後進先出）
+			var inOrder = new Stack<string>();
+			// 初期棧頂元素設置為#
 			inOrder.Push("#");
-			int count = q.Count;
-			for (int i = 0; i < count; i++)
+
+			// 中序表達式列表
+			var posterOrder = new List<string>();
+
+			// 隊列長度
+			var count = expressQueue.Count;
+			var i = 0;
+			// 順序讀取中序表達式隊列
+			while (i < count)
 			{
-				string item = q.Dequeue();
+				// 隊列中讀取並刪除一個元素
+				var item = expressQueue.Dequeue();
+				// 該元素是不是操作符
 				if (IsOperateors(item))
 				{
-					string m = inOrder.First();
-					int n = Priority.IsPriority(inOrder.First(), item);
+					int n = Priority.GetPriority(inOrder.First(), item);
+					// 操作符優先級為大於的情況
 					while (n == 1)
 					{
-						string temp = inOrder.Pop();
-						if (temp != "(" && temp != ")")
+						var top = inOrder.Pop();
+						if (top != "(" && top != ")" && top != "[" && top != "]" && top != "{" && top != "}")
 						{
-							posterOrder.Add(temp);
+							posterOrder.Add(top);
 						}
-						n = Priority.IsPriority(inOrder.First(), item);
+						n = Priority.GetPriority(inOrder.First(), item);
 					}
+
+					// 操作符優先級為等於號的情況
 					if (n == 2)
 					{
 						inOrder.Pop();
 					}
+					// 操作符優先級為小於號的情況
 					else if (n != -1)
 					{
 						inOrder.Push(item);
 					}
+					// 操作符優先級無效的情況（不匹配）
 					else
 					{
 						return null;
@@ -132,72 +149,98 @@ namespace MyMathSheets.CommonLib.Util
 				}
 				else
 				{
+					// 將數值加入中序表達式列表
 					posterOrder.Add(item);
 				}
+
+				i++;
 			}
 			return inOrder.Count == 0 ? posterOrder : null;
 		}
 
 		/// <summary>
-		///
+		/// 分割表達式並入隊列
 		/// </summary>
-		/// <param name="express"></param>
-		/// <returns></returns>
+		/// <param name="express">表達式</param>
+		/// <returns>中序表達式隊列</returns>
 		public Queue<string> SplitExpress(string express)
 		{
 			express += "#";
 
-			Queue<string> q = new Queue<string>();
-			char[] arryExpress = express.ToArray();
+			// 隊列定義（先進先出）
+			var expressQueue = new Queue<string>();
+			// 表達式字符分解
+			var arryExpress = express.ToArray();
 
-			int i = 0;
-			int j = 0;
+			var i = 0;
+			var j = 0;
 			while (j < express.Length)
 			{
+				// 判斷當前字符是不是操作符
 				if (IsOperateors(arryExpress[j].ToString()))
 				{
 					if (i != j)
 					{
+						// 數值入棧
 						string tempNum = express.Substring(i, j - i);
-						q.Enqueue(tempNum);
-						q.Enqueue(arryExpress[j].ToString());
+						expressQueue.Enqueue(tempNum);
+						expressQueue.Enqueue(arryExpress[j].ToString());
 						i = j + 1;
 					}
 					else
 					{
-						q.Enqueue(arryExpress[j].ToString());
+						// 操作符入棧
+						expressQueue.Enqueue(arryExpress[j].ToString());
 						i++;
 					}
 				}
 				j++;
 			}
-			return q;
+			// 中序表達式隊列
+			return expressQueue;
 		}
 
 		/// <summary>
-		///
+		/// 判斷是否為操作符
 		/// </summary>
-		/// <param name="input"></param>
-		/// <returns></returns>
+		/// <param name="input">輸入參數</param>
+		/// <returns>操作:TRUE返回</returns>
 		public bool IsOperateors(string input)
 		{
-			if (input == "+" || input == "-" || input == "*" || input == "/" || input == "(" || input == ")" || input == "#")
-			{
-				return true;
-			}
-			return false;
+			return Operateors.Any(d => d.Equals(input));
 		}
 	}
 
 	/// <summary>
-	///
+	/// 優先級定義
 	/// </summary>
+	/// <remarks>
+	/// 行為入棧運算符；列為棧頂運算符；
+	/// 2表示等於號；1表示大於號；0表示小於號；-1表示不匹配；
+	///       '+'  '-'  '*'  '/'  '('  ')'  '['  ']'  '{'  '}'  '#'
+	///      -------------------------------------------------------
+	/// '+'  | 1    1    0    0    0    1    0    1    0    1    1 |
+	/// '-'  | 1    1    0    0    0    1    0    1    0    1    1 |
+	/// '*'  | 1    1    1    1    0    1    0    1    0    1    1 |
+	/// '/'  | 1    1    1    1    0    1    0    1    0    1    1 |
+	/// '('  | 0    0    0    0    0    2    0    1    0    1   -1 |
+	/// ')'  | 0    0    0    0   -1    1    0    1    0    1    1 |
+	/// '['  | 0    0    0    0    0    0    0    2    0    1   -1 |
+	/// ']'  | 0    0    0    0    0    0   -1    1    0    1    1 |
+	/// '{'  | 0    0    0    0    0    0    0    0    0    2   -1 |
+	/// '}'  | 0    0    0    0    0    0    0    0   -1    1    1 |
+	/// '#'  | 0    0    0    0    0   -1    0   -1    0   -1    2 |
+	///      -------------------------------------------------------
+	/// </remarks>
 	internal static class Priority
 	{
+		/// <summary>
+		/// 優先級字典表定義
+		/// </summary>
 		private static readonly Dictionary<string, Dictionary<string, int>> DicOperators = new Dictionary<string, Dictionary<string, int>>();
 
 		/// <summary>
-		///
+		/// 初期化處理 - 構築操作符優先級關係列表
 		/// </summary>
 		static Priority()
 		{
@@ -207,74 +250,163 @@ namespace MyMathSheets.CommonLib.Util
 			DicOperators.Add("/", new Dictionary<string, int>());
 			DicOperators.Add("(", new Dictionary<string, int>());
 			DicOperators.Add(")", new Dictionary<string, int>());
+			DicOperators.Add("[", new Dictionary<string, int>());
+			DicOperators.Add("]", new Dictionary<string, int>());
+			DicOperators.Add("{", new Dictionary<string, int>());
+			DicOperators.Add("}", new Dictionary<string, int>());
 			DicOperators.Add("#", new Dictionary<string, int>());
 
+			// 加法優先級列表
 			DicOperators["+"].Add("+", 1);
 			DicOperators["+"].Add("-", 1);
 			DicOperators["+"].Add("*", 0);
 			DicOperators["+"].Add("/", 0);
 			DicOperators["+"].Add("(", 0);
 			DicOperators["+"].Add(")", 1);
+			DicOperators["+"].Add("[", 0);
+			DicOperators["+"].Add("]", 1);
+			DicOperators["+"].Add("{", 0);
+			DicOperators["+"].Add("}", 1);
 			DicOperators["+"].Add("#", 1);
 
+			// 減法優先級列表
 			DicOperators["-"].Add("+", 1);
 			DicOperators["-"].Add("-", 1);
 			DicOperators["-"].Add("*", 0);
 			DicOperators["-"].Add("/", 0);
 			DicOperators["-"].Add("(", 0);
 			DicOperators["-"].Add(")", 1);
+			DicOperators["-"].Add("[", 0);
+			DicOperators["-"].Add("]", 1);
+			DicOperators["-"].Add("{", 0);
+			DicOperators["-"].Add("}", 1);
 			DicOperators["-"].Add("#", 1);
 
+			// 乘法優先級列表
 			DicOperators["*"].Add("+", 1);
 			DicOperators["*"].Add("-", 1);
 			DicOperators["*"].Add("*", 1);
 			DicOperators["*"].Add("/", 1);
 			DicOperators["*"].Add("(", 0);
 			DicOperators["*"].Add(")", 1);
+			DicOperators["*"].Add("[", 0);
+			DicOperators["*"].Add("]", 1);
+			DicOperators["*"].Add("{", 0);
+			DicOperators["*"].Add("}", 1);
 			DicOperators["*"].Add("#", 1);
 
+			// 除法優先級列表
 			DicOperators["/"].Add("+", 1);
 			DicOperators["/"].Add("-", 1);
 			DicOperators["/"].Add("*", 1);
 			DicOperators["/"].Add("/", 1);
 			DicOperators["/"].Add("(", 0);
 			DicOperators["/"].Add(")", 1);
+			DicOperators["/"].Add("[", 0);
+			DicOperators["/"].Add("]", 1);
+			DicOperators["/"].Add("{", 0);
+			DicOperators["/"].Add("}", 1);
 			DicOperators["/"].Add("#", 1);
 
+			// 左(小)括號優先級列表
 			DicOperators["("].Add("+", 0);
 			DicOperators["("].Add("-", 0);
 			DicOperators["("].Add("*", 0);
 			DicOperators["("].Add("/", 0);
 			DicOperators["("].Add("(", 0);
 			DicOperators["("].Add(")", 2);
+			DicOperators["("].Add("[", 0);
+			DicOperators["("].Add("]", 1);
+			DicOperators["("].Add("{", 0);
+			DicOperators["("].Add("}", 1);
 			DicOperators["("].Add("#", -1);
 
+			// 右(小)括號優先級列表
 			DicOperators[")"].Add("+", 0);
 			DicOperators[")"].Add("-", 0);
 			DicOperators[")"].Add("*", 0);
 			DicOperators[")"].Add("/", 0);
 			DicOperators[")"].Add("(", -1);
 			DicOperators[")"].Add(")", 1);
+			DicOperators[")"].Add("[", 0);
+			DicOperators[")"].Add("]", 1);
 			DicOperators[")"].Add("#", 1);
 
+			// 左(中)括號優先級列表
+			DicOperators["["].Add("+", 0);
+			DicOperators["["].Add("-", 0);
+			DicOperators["["].Add("*", 0);
+			DicOperators["["].Add("/", 0);
+			DicOperators["["].Add("(", 0);
+			DicOperators["["].Add(")", 0);
+			DicOperators["["].Add("[", 0);
+			DicOperators["["].Add("]", 2);
+			DicOperators["["].Add("{", 0);
+			DicOperators["["].Add("}", 1);
+			DicOperators["["].Add("#", -1);
+
+			// 右(中)括號優先級列表
+			DicOperators["]"].Add("+", 0);
+			DicOperators["]"].Add("-", 0);
+			DicOperators["]"].Add("*", 0);
+			DicOperators["]"].Add("/", 0);
+			DicOperators["]"].Add("(", 0);
+			DicOperators["]"].Add(")", 0);
+			DicOperators["]"].Add("[", -1);
+			DicOperators["]"].Add("]", 1);
+			DicOperators["]"].Add("{", 0);
+			DicOperators["]"].Add("}", 1);
+			DicOperators["]"].Add("#", 1);
+
+			// 左(大)括號優先級列表
+			DicOperators["{"].Add("+", 0);
+			DicOperators["{"].Add("-", 0);
+			DicOperators["{"].Add("*", 0);
+			DicOperators["{"].Add("/", 0);
+			DicOperators["{"].Add("(", 0);
+			DicOperators["{"].Add(")", 0);
+			DicOperators["{"].Add("[", 0);
+			DicOperators["{"].Add("]", 0);
+			DicOperators["{"].Add("{", 0);
+			DicOperators["{"].Add("}", 2);
+			DicOperators["{"].Add("#", -1);
+
+			// 右(大)括號優先級列表
+			DicOperators["}"].Add("+", 0);
+			DicOperators["}"].Add("-", 0);
+			DicOperators["}"].Add("*", 0);
+			DicOperators["}"].Add("/", 0);
+			DicOperators["}"].Add("(", 0);
+			DicOperators["}"].Add(")", 0);
+			DicOperators["}"].Add("[", 0);
+			DicOperators["}"].Add("]", 0);
+			DicOperators["}"].Add("{", -1);
+			DicOperators["}"].Add("}", 1);
+			DicOperators["}"].Add("#", 1);
+
+			// 默認優先級列表
 			DicOperators["#"].Add("+", 0);
 			DicOperators["#"].Add("-", 0);
 			DicOperators["#"].Add("*", 0);
 			DicOperators["#"].Add("/", 0);
 			DicOperators["#"].Add("(", 0);
 			DicOperators["#"].Add(")", -1);
+			DicOperators["#"].Add("[", 0);
+			DicOperators["#"].Add("]", -1);
+			DicOperators["#"].Add("{", 0);
+			DicOperators["#"].Add("}", -1);
 			DicOperators["#"].Add("#", 2);
 		}
 
 		/// <summary>
-		///
+		/// 取得優先級
 		/// </summary>
-		/// <param name="operator1"></param>
-		/// <param name="operator2"></param>
-		/// <returns></returns>
-		public static int IsPriority(string operator1, string operator2)
+		/// <param name="inputOpt">入棧運算符</param>
+		/// <param name="topOpt">棧頂運算符</param>
+		/// <returns>優先級</returns>
+		public static int GetPriority(string inputOpt, string topOpt)
 		{
-			return DicOperators[operator1][operator2];
+			return DicOperators[inputOpt][topOpt];
 		}
 	}
 }
