@@ -19,7 +19,7 @@ namespace MyMathSheets.CommonLib.Properties {
     // または Visual Studio のようなツールを使用して自動生成されました。
     // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
     // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class MsgResources {
@@ -345,6 +345,24 @@ namespace MyMathSheets.CommonLib.Properties {
         internal static string I0031L {
             get {
                 return ResourceManager.GetString("I0031L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0032L:指定題型編號為空，默認使用{0}作為題型編號 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0032L {
+            get {
+                return ResourceManager.GetString("I0032L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0033L:指定題型編號{0}不存在，默認使用{1}作為題型編號 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0033L {
+            get {
+                return ResourceManager.GetString("I0033L", resourceCulture);
             }
         }
     }

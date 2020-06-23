@@ -9,6 +9,11 @@ namespace MyMathSheets.CommonLib.Util.Test
 	public class ExpressCalculateUtilTest
 	{
 		/// <summary>
+		/// 測試用計算表達式
+		/// </summary>
+		private string Express { get; set; }
+
+		/// <summary>
 		///
 		/// </summary>
 		[TestMethod()]
@@ -27,8 +32,10 @@ namespace MyMathSheets.CommonLib.Util.Test
 		[TestMethod()]
 		public void SplitExpressTest01()
 		{
+			Express = "(3+1)*5+6/2";
+
 			var calc = new ExpressCalculateUtil();
-			var express = calc.SplitExpress("(3+1)*5+6/2");
+			var express = calc.SplitExpress(Express);
 			Assert.AreEqual(12, express.Count);
 
 			// 中序表達式隊列
@@ -49,7 +56,7 @@ namespace MyMathSheets.CommonLib.Util.Test
 			var list = calc.InorderToPostorder(express);
 			Assert.AreEqual(9, list.Count);
 
-			calc.IsResult(list, out decimal result);
+			Assert.IsTrue(calc.IsResult(list, out decimal result));
 			Assert.AreEqual(23, result);
 		}
 
@@ -59,10 +66,12 @@ namespace MyMathSheets.CommonLib.Util.Test
 		[TestMethod()]
 		public void SplitExpressTest02()
 		{
+			Express = "(30+10)*50+60/20";
+
 			var calc = new ExpressCalculateUtil();
-			var express = calc.SplitExpress("(30+10)*50+60/20");
+			var express = calc.SplitExpress(Express);
 			var list = calc.InorderToPostorder(express);
-			calc.IsResult(list, out decimal result);
+			Assert.IsTrue(calc.IsResult(list, out decimal result));
 			Assert.AreEqual(2003, result);
 		}
 
@@ -72,10 +81,12 @@ namespace MyMathSheets.CommonLib.Util.Test
 		[TestMethod()]
 		public void SplitExpressTest03()
 		{
+			Express = "40+(60-1)*5";
+
 			var calc = new ExpressCalculateUtil();
-			var express = calc.SplitExpress("40+(60-1)*5");
+			var express = calc.SplitExpress(Express);
 			var list = calc.InorderToPostorder(express);
-			calc.IsResult(list, out decimal result);
+			Assert.IsTrue(calc.IsResult(list, out decimal result));
 			Assert.AreEqual(335, result);
 		}
 
@@ -88,23 +99,39 @@ namespace MyMathSheets.CommonLib.Util.Test
 			var calc = new ExpressCalculateUtil();
 			var express = calc.SplitExpress("40+5");
 			var list = calc.InorderToPostorder(express);
-			calc.IsResult(list, out decimal result01);
+			Assert.IsTrue(calc.IsResult(list, out decimal result01));
 			Assert.AreEqual(45, result01);
+
+			Assert.IsTrue(calc.IsResult("40+5", out result01));
+			Assert.AreEqual(45, result01);
+
 
 			express = calc.SplitExpress("40/5");
 			list = calc.InorderToPostorder(express);
-			calc.IsResult(list, out decimal result02);
+			Assert.IsTrue(calc.IsResult(list, out decimal result02));
 			Assert.AreEqual(8, result02);
+
+			Assert.IsTrue(calc.IsResult("40/5", out result02));
+			Assert.AreEqual(8, result02);
+
 
 			express = calc.SplitExpress("40*5");
 			list = calc.InorderToPostorder(express);
-			calc.IsResult(list, out decimal result03);
+			Assert.IsTrue(calc.IsResult(list, out decimal result03));
 			Assert.AreEqual(200, result03);
+
+			Assert.IsTrue(calc.IsResult("40*5", out result03));
+			Assert.AreEqual(200, result03);
+
 
 			express = calc.SplitExpress("40-5");
 			list = calc.InorderToPostorder(express);
-			calc.IsResult(list, out decimal result04);
+			Assert.IsTrue(calc.IsResult(list, out decimal result04));
 			Assert.AreEqual(35, result04);
+
+			Assert.IsTrue(calc.IsResult("40-5", out result04));
+			Assert.AreEqual(35, result04);
+
 		}
 
 		/// <summary>
@@ -113,10 +140,15 @@ namespace MyMathSheets.CommonLib.Util.Test
 		[TestMethod()]
 		public void SplitExpressTest05()
 		{
+			Express = "40+(60-10/2)*5";
+
 			var calc = new ExpressCalculateUtil();
-			var express = calc.SplitExpress("40+(60-10/2)*5");
+			var express = calc.SplitExpress(Express);
 			var list = calc.InorderToPostorder(express);
-			calc.IsResult(list, out decimal result);
+			Assert.IsTrue(calc.IsResult(list, out decimal result));
+			Assert.AreEqual(315, result);
+
+			Assert.IsTrue(calc.IsResult(Express, out result));
 			Assert.AreEqual(315, result);
 		}
 
@@ -126,10 +158,15 @@ namespace MyMathSheets.CommonLib.Util.Test
 		[TestMethod()]
 		public void SplitExpressTest06()
 		{
+			Express = "(40+(60-10/2))*5";
+
 			var calc = new ExpressCalculateUtil();
-			var express = calc.SplitExpress("(40+(60-10/2))*5");
+			var express = calc.SplitExpress(Express);
 			var list = calc.InorderToPostorder(express);
-			calc.IsResult(list, out decimal result);
+			Assert.IsTrue(calc.IsResult(list, out decimal result));
+			Assert.AreEqual(475, result);
+
+			Assert.IsTrue(calc.IsResult(Express, out result));
 			Assert.AreEqual(475, result);
 		}
 
@@ -139,10 +176,15 @@ namespace MyMathSheets.CommonLib.Util.Test
 		[TestMethod()]
 		public void SplitExpressTest07()
 		{
+			Express = "[40+(60-10/2)]*5";
+
 			var calc = new ExpressCalculateUtil();
-			var express = calc.SplitExpress("[40+(60-10/2)]*5");
+			var express = calc.SplitExpress(Express);
 			var list = calc.InorderToPostorder(express);
-			calc.IsResult(list, out decimal result);
+			Assert.IsTrue(calc.IsResult(list, out decimal result));
+			Assert.AreEqual(475, result);
+
+			Assert.IsTrue(calc.IsResult(Express, out result));
 			Assert.AreEqual(475, result);
 		}
 
@@ -152,10 +194,15 @@ namespace MyMathSheets.CommonLib.Util.Test
 		[TestMethod()]
 		public void SplitExpressTest08()
 		{
+			Express = "100+{10+[40+(60-10/2)]}*5";
+
 			var calc = new ExpressCalculateUtil();
-			var express = calc.SplitExpress("100+{10+[40+(60-10/2)]}*5");
+			var express = calc.SplitExpress(Express);
 			var list = calc.InorderToPostorder(express);
-			calc.IsResult(list, out decimal result);
+			Assert.IsTrue(calc.IsResult(list, out decimal result));
+			Assert.AreEqual(625, result);
+
+			Assert.IsTrue(calc.IsResult(Express, out result));
 			Assert.AreEqual(625, result);
 		}
 	}

@@ -214,4 +214,10 @@
   <data name="I0031L" xml:space="preserve">
     <value>I0031L:模塊讀取處理開始</value>
   </data>
+  <data name="I0032L" xml:space="preserve">
+    <value>I0032L:指定題型編號為空，默認使用{0}作為題型編號</value>
+  </data>
+  <data name="I0033L" xml:space="preserve">
+    <value>I0033L:指定題型編號{0}不存在，默認使用{1}作為題型編號</value>
+  </data>
 </root>

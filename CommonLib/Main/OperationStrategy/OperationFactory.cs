@@ -18,7 +18,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 	[Export(typeof(IOperationFactory))]
 	public class OperationFactory : IOperationFactory
 	{
-		private static Log log = Log.LogReady(typeof(OperationFactory));
+		private static readonly Log log = Log.LogReady(typeof(OperationFactory));
 
 		/// <summary>
 		/// 以防止重複注入（減少損耗）
@@ -129,7 +129,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			// 參數初期化處理（依據Provider配置）
 			parameter.InitParameter();
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0005L, key));
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0005L, parameter.Identifier));
 
 			return parameter;
 		}

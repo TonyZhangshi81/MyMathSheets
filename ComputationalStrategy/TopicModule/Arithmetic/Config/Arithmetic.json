@@ -4,8 +4,7 @@
 		"MaximumLimit": 50,
 		"NumberOfQuestions": 20,
 		"QuestionType": 2,
-		"Signs": [ 0, 1, 2, 3 ],
-		"Reserve": "{\"Multistage\" : 0, \"Bracket\" : 0}"
+		"Signs": [ 0, 1, 2, 3 ]
 	},
 	{
 		"Identifier": "AC002",
@@ -14,54 +13,34 @@
 		"Signs": [ 1 ],
 		"LeftScope": [ 10, 30 ],
 		"RightScope": [ 5, 20 ],
-		"Reserve": "{\"AnswerIsRight\" : 1, \"Multistage\" : 0, \"Bracket\" : 0}"
+		"Reserve": "{\"AnswerIsRight\" : 1}"
 	},
 	{
 		"Identifier": "AC003",
 		"MaximumLimit": 40,
 		"NumberOfQuestions": 15,
 		"QuestionType": 2,
-		"Signs": [ 1 ],
-		"Reserve": "{\"Multistage\" : 0, \"Bracket\" : 0}"
+		"Signs": [ 1 ]
 	},
 	{
 		"Identifier": "AC004",
 		"MaximumLimit": 81,
 		"NumberOfQuestions": 10,
 		"QuestionType": 1,
-		"Signs": [ 2 ],
-		"Reserve": "{\"Multistage\" : 0, \"Bracket\" : 0}"
+		"Signs": [ 2 ]
 	},
 	{
 		"Identifier": "AC005",
 		"MaximumLimit": 81,
 		"NumberOfQuestions": 10,
 		"QuestionType": 1,
-		"Signs": [ 3 ],
-		"Reserve": "{\"Multistage\" : 0, \"Bracket\" : 0}"
+		"Signs": [ 3 ]
 	},
 	{
 		"Identifier": "AC006",
 		"MaximumLimit": 20,
 		"NumberOfQuestions": 20,
 		"QuestionType": 2,
-		"Signs": [ 0, 1 ],
-		"Reserve": "{\"Multistage\" : 1, \"Bracket\" : 0}"
-	},
-	{
-		"Identifier": "AC007",
-		"MaximumLimit": 20,
-		"NumberOfQuestions": 20,
-		"QuestionType": 2,
-		"Signs": [ 0, 1 ],
-		"Reserve": "{\"Multistage\" : 1, \"Bracket\" : 1}"
-	},
-	{
-		"Identifier": "AC008",
-		"MaximumLimit": 20,
-		"NumberOfQuestions": 30,
-		"QuestionType": 2,
-		"Signs": [ 0, 1 ],
-		"Reserve": "{\"Multistage\" : 0, \"Bracket\" : 0}"
+		"Signs": [ 0, 1 ]
 	}
 ]

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using static MyMathSheets.CommonLib.Util.Priority;
 
 namespace MyMathSheets.CommonLib.Util
 {
@@ -46,6 +47,20 @@ namespace MyMathSheets.CommonLib.Util
 					break;
 			}
 			return result.ToString();
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="express">表達式</param>
+		/// <param name="result">計算式結果</param>
+		/// <returns>推算成功:TRUE返回</returns>
+		public bool IsResult(string express, out decimal result)
+		{
+			var expressQueue = SplitExpress(express);
+			var list = InorderToPostorder(expressQueue);
+
+			return IsResult(list, out result);
 		}
 
 		/// <summary>
@@ -119,25 +134,25 @@ namespace MyMathSheets.CommonLib.Util
 				// 該元素是不是操作符
 				if (IsOperateors(item))
 				{
-					int n = Priority.GetPriority(inOrder.First(), item);
+					var priority = Priority.GetPriority(inOrder.First(), item);
 					// 操作符優先級為大於的情況
-					while (n == 1)
+					while (priority == PriorityType.Larger)
 					{
 						var top = inOrder.Pop();
 						if (top != "(" && top != ")" && top != "[" && top != "]" && top != "{" && top != "}")
 						{
 							posterOrder.Add(top);
 						}
-						n = Priority.GetPriority(inOrder.First(), item);
+						priority = Priority.GetPriority(inOrder.First(), item);
 					}
 
 					// 操作符優先級為等於號的情況
-					if (n == 2)
+					if (priority == PriorityType.Equal)
 					{
 						inOrder.Pop();
 					}
 					// 操作符優先級為小於號的情況
-					else if (n != -1)
+					else if (priority != PriorityType.Unmatched)
 					{
 						inOrder.Push(item);
 					}
@@ -237,165 +252,193 @@ namespace MyMathSheets.CommonLib.Util
 		/// <summary>
 		/// 優先級字典表定義
 		/// </summary>
-		private static readonly Dictionary<string, Dictionary<string, int>> DicOperators = new Dictionary<string, Dictionary<string, int>>();
+		private static readonly Dictionary<string, Dictionary<string, PriorityType>> DicOperators = new Dictionary<string, Dictionary<string, PriorityType>>();
+
+		/// <summary>
+		/// 優先級
+		/// </summary>
+		public enum PriorityType : int
+		{
+			/// <summary>
+			/// 不匹配
+			/// </summary>
+			Unmatched = -1,
+
+			/// <summary>
+			/// 小於
+			/// </summary>
+			Less = 0,
+
+			/// <summary>
+			/// 大於
+			/// </summary>
+			Larger = 1,
+
+			/// <summary>
+			/// 等於
+			/// </summary>
+			Equal = 2
+		}
 
 		/// <summary>
 		/// 初期化處理 - 構築操作符優先級關係列表
 		/// </summary>
 		static Priority()
 		{
-			DicOperators.Add("+", new Dictionary<string, int>());
-			DicOperators.Add("-", new Dictionary<string, int>());
-			DicOperators.Add("*", new Dictionary<string, int>());
-			DicOperators.Add("/", new Dictionary<string, int>());
-			DicOperators.Add("(", new Dictionary<string, int>());
-			DicOperators.Add(")", new Dictionary<string, int>());
-			DicOperators.Add("[", new Dictionary<string, int>());
-			DicOperators.Add("]", new Dictionary<string, int>());
-			DicOperators.Add("{", new Dictionary<string, int>());
-			DicOperators.Add("}", new Dictionary<string, int>());
-			DicOperators.Add("#", new Dictionary<string, int>());
+			DicOperators.Add("+", new Dictionary<string, PriorityType>());
+			DicOperators.Add("-", new Dictionary<string, PriorityType>());
+			DicOperators.Add("*", new Dictionary<string, PriorityType>());
+			DicOperators.Add("/", new Dictionary<string, PriorityType>());
+			DicOperators.Add("(", new Dictionary<string, PriorityType>());
+			DicOperators.Add(")", new Dictionary<string, PriorityType>());
+			DicOperators.Add("[", new Dictionary<string, PriorityType>());
+			DicOperators.Add("]", new Dictionary<string, PriorityType>());
+			DicOperators.Add("{", new Dictionary<string, PriorityType>());
+			DicOperators.Add("}", new Dictionary<string, PriorityType>());
+			DicOperators.Add("#", new Dictionary<string, PriorityType>());
 
 			// 加法優先級列表
-			DicOperators["+"].Add("+", 1);
-			DicOperators["+"].Add("-", 1);
-			DicOperators["+"].Add("*", 0);
-			DicOperators["+"].Add("/", 0);
-			DicOperators["+"].Add("(", 0);
-			DicOperators["+"].Add(")", 1);
-			DicOperators["+"].Add("[", 0);
-			DicOperators["+"].Add("]", 1);
-			DicOperators["+"].Add("{", 0);
-			DicOperators["+"].Add("}", 1);
-			DicOperators["+"].Add("#", 1);
+			DicOperators["+"].Add("+", PriorityType.Larger);
+			DicOperators["+"].Add("-", PriorityType.Larger);
+			DicOperators["+"].Add("*", PriorityType.Less);
+			DicOperators["+"].Add("/", PriorityType.Less);
+			DicOperators["+"].Add("(", PriorityType.Less);
+			DicOperators["+"].Add(")", PriorityType.Larger);
+			DicOperators["+"].Add("[", PriorityType.Less);
+			DicOperators["+"].Add("]", PriorityType.Larger);
+			DicOperators["+"].Add("{", PriorityType.Less);
+			DicOperators["+"].Add("}", PriorityType.Larger);
+			DicOperators["+"].Add("#", PriorityType.Larger);
 
 			// 減法優先級列表
-			DicOperators["-"].Add("+", 1);
-			DicOperators["-"].Add("-", 1);
-			DicOperators["-"].Add("*", 0);
-			DicOperators["-"].Add("/", 0);
-			DicOperators["-"].Add("(", 0);
-			DicOperators["-"].Add(")", 1);
-			DicOperators["-"].Add("[", 0);
-			DicOperators["-"].Add("]", 1);
-			DicOperators["-"].Add("{", 0);
-			DicOperators["-"].Add("}", 1);
-			DicOperators["-"].Add("#", 1);
+			DicOperators["-"].Add("+", PriorityType.Larger);
+			DicOperators["-"].Add("-", PriorityType.Larger);
+			DicOperators["-"].Add("*", PriorityType.Less);
+			DicOperators["-"].Add("/", PriorityType.Less);
+			DicOperators["-"].Add("(", PriorityType.Less);
+			DicOperators["-"].Add(")", PriorityType.Larger);
+			DicOperators["-"].Add("[", PriorityType.Less);
+			DicOperators["-"].Add("]", PriorityType.Larger);
+			DicOperators["-"].Add("{", PriorityType.Less);
+			DicOperators["-"].Add("}", PriorityType.Larger);
+			DicOperators["-"].Add("#", PriorityType.Larger);
 
 			// 乘法優先級列表
-			DicOperators["*"].Add("+", 1);
-			DicOperators["*"].Add("-", 1);
-			DicOperators["*"].Add("*", 1);
-			DicOperators["*"].Add("/", 1);
-			DicOperators["*"].Add("(", 0);
-			DicOperators["*"].Add(")", 1);
-			DicOperators["*"].Add("[", 0);
-			DicOperators["*"].Add("]", 1);
-			DicOperators["*"].Add("{", 0);
-			DicOperators["*"].Add("}", 1);
-			DicOperators["*"].Add("#", 1);
+			DicOperators["*"].Add("+", PriorityType.Larger);
+			DicOperators["*"].Add("-", PriorityType.Larger);
+			DicOperators["*"].Add("*", PriorityType.Larger);
+			DicOperators["*"].Add("/", PriorityType.Larger);
+			DicOperators["*"].Add("(", PriorityType.Less);
+			DicOperators["*"].Add(")", PriorityType.Larger);
+			DicOperators["*"].Add("[", PriorityType.Less);
+			DicOperators["*"].Add("]", PriorityType.Larger);
+			DicOperators["*"].Add("{", PriorityType.Less);
+			DicOperators["*"].Add("}", PriorityType.Larger);
+			DicOperators["*"].Add("#", PriorityType.Larger);
 
 			// 除法優先級列表
-			DicOperators["/"].Add("+", 1);
-			DicOperators["/"].Add("-", 1);
-			DicOperators["/"].Add("*", 1);
-			DicOperators["/"].Add("/", 1);
-			DicOperators["/"].Add("(", 0);
-			DicOperators["/"].Add(")", 1);
-			DicOperators["/"].Add("[", 0);
-			DicOperators["/"].Add("]", 1);
-			DicOperators["/"].Add("{", 0);
-			DicOperators["/"].Add("}", 1);
-			DicOperators["/"].Add("#", 1);
+			DicOperators["/"].Add("+", PriorityType.Larger);
+			DicOperators["/"].Add("-", PriorityType.Larger);
+			DicOperators["/"].Add("*", PriorityType.Larger);
+			DicOperators["/"].Add("/", PriorityType.Larger);
+			DicOperators["/"].Add("(", PriorityType.Less);
+			DicOperators["/"].Add(")", PriorityType.Larger);
+			DicOperators["/"].Add("[", PriorityType.Less);
+			DicOperators["/"].Add("]", PriorityType.Larger);
+			DicOperators["/"].Add("{", PriorityType.Less);
+			DicOperators["/"].Add("}", PriorityType.Larger);
+			DicOperators["/"].Add("#", PriorityType.Larger);
 
 			// 左(小)括號優先級列表
-			DicOperators["("].Add("+", 0);
-			DicOperators["("].Add("-", 0);
-			DicOperators["("].Add("*", 0);
-			DicOperators["("].Add("/", 0);
-			DicOperators["("].Add("(", 0);
-			DicOperators["("].Add(")", 2);
-			DicOperators["("].Add("[", 0);
-			DicOperators["("].Add("]", 1);
-			DicOperators["("].Add("{", 0);
-			DicOperators["("].Add("}", 1);
-			DicOperators["("].Add("#", -1);
+			DicOperators["("].Add("+", PriorityType.Less);
+			DicOperators["("].Add("-", PriorityType.Less);
+			DicOperators["("].Add("*", PriorityType.Less);
+			DicOperators["("].Add("/", PriorityType.Less);
+			DicOperators["("].Add("(", PriorityType.Less);
+			DicOperators["("].Add(")", PriorityType.Equal);
+			DicOperators["("].Add("[", PriorityType.Less);
+			DicOperators["("].Add("]", PriorityType.Larger);
+			DicOperators["("].Add("{", PriorityType.Less);
+			DicOperators["("].Add("}", PriorityType.Larger);
+			DicOperators["("].Add("#", PriorityType.Unmatched);
 
 			// 右(小)括號優先級列表
-			DicOperators[")"].Add("+", 0);
-			DicOperators[")"].Add("-", 0);
-			DicOperators[")"].Add("*", 0);
-			DicOperators[")"].Add("/", 0);
-			DicOperators[")"].Add("(", -1);
-			DicOperators[")"].Add(")", 1);
-			DicOperators[")"].Add("[", 0);
-			DicOperators[")"].Add("]", 1);
-			DicOperators[")"].Add("#", 1);
+			DicOperators[")"].Add("+", PriorityType.Less);
+			DicOperators[")"].Add("-", PriorityType.Less);
+			DicOperators[")"].Add("*", PriorityType.Less);
+			DicOperators[")"].Add("/", PriorityType.Less);
+			DicOperators[")"].Add("(", PriorityType.Unmatched);
+			DicOperators[")"].Add(")", PriorityType.Larger);
+			DicOperators[")"].Add("[", PriorityType.Less);
+			DicOperators[")"].Add("]", PriorityType.Larger);
+			DicOperators[")"].Add("{", PriorityType.Less);
+			DicOperators[")"].Add("}", PriorityType.Larger);
+			DicOperators[")"].Add("#", PriorityType.Larger);
 
 			// 左(中)括號優先級列表
-			DicOperators["["].Add("+", 0);
-			DicOperators["["].Add("-", 0);
-			DicOperators["["].Add("*", 0);
-			DicOperators["["].Add("/", 0);
-			DicOperators["["].Add("(", 0);
-			DicOperators["["].Add(")", 0);
-			DicOperators["["].Add("[", 0);
-			DicOperators["["].Add("]", 2);
-			DicOperators["["].Add("{", 0);
-			DicOperators["["].Add("}", 1);
-			DicOperators["["].Add("#", -1);
+			DicOperators["["].Add("+", PriorityType.Less);
+			DicOperators["["].Add("-", PriorityType.Less);
+			DicOperators["["].Add("*", PriorityType.Less);
+			DicOperators["["].Add("/", PriorityType.Less);
+			DicOperators["["].Add("(", PriorityType.Less);
+			DicOperators["["].Add(")", PriorityType.Less);
+			DicOperators["["].Add("[", PriorityType.Less);
+			DicOperators["["].Add("]", PriorityType.Equal);
+			DicOperators["["].Add("{", PriorityType.Less);
+			DicOperators["["].Add("}", PriorityType.Larger);
+			DicOperators["["].Add("#", PriorityType.Unmatched);
 
 			// 右(中)括號優先級列表
-			DicOperators["]"].Add("+", 0);
-			DicOperators["]"].Add("-", 0);
-			DicOperators["]"].Add("*", 0);
-			DicOperators["]"].Add("/", 0);
-			DicOperators["]"].Add("(", 0);
-			DicOperators["]"].Add(")", 0);
-			DicOperators["]"].Add("[", -1);
-			DicOperators["]"].Add("]", 1);
-			DicOperators["]"].Add("{", 0);
-			DicOperators["]"].Add("}", 1);
-			DicOperators["]"].Add("#", 1);
+			DicOperators["]"].Add("+", PriorityType.Less);
+			DicOperators["]"].Add("-", PriorityType.Less);
+			DicOperators["]"].Add("*", PriorityType.Less);
+			DicOperators["]"].Add("/", PriorityType.Less);
+			DicOperators["]"].Add("(", PriorityType.Less);
+			DicOperators["]"].Add(")", PriorityType.Less);
+			DicOperators["]"].Add("[", PriorityType.Unmatched);
+			DicOperators["]"].Add("]", PriorityType.Larger);
+			DicOperators["]"].Add("{", PriorityType.Less);
+			DicOperators["]"].Add("}", PriorityType.Larger);
+			DicOperators["]"].Add("#", PriorityType.Larger);
 
 			// 左(大)括號優先級列表
-			DicOperators["{"].Add("+", 0);
-			DicOperators["{"].Add("-", 0);
-			DicOperators["{"].Add("*", 0);
-			DicOperators["{"].Add("/", 0);
-			DicOperators["{"].Add("(", 0);
-			DicOperators["{"].Add(")", 0);
-			DicOperators["{"].Add("[", 0);
-			DicOperators["{"].Add("]", 0);
-			DicOperators["{"].Add("{", 0);
-			DicOperators["{"].Add("}", 2);
-			DicOperators["{"].Add("#", -1);
+			DicOperators["{"].Add("+", PriorityType.Less);
+			DicOperators["{"].Add("-", PriorityType.Less);
+			DicOperators["{"].Add("*", PriorityType.Less);
+			DicOperators["{"].Add("/", PriorityType.Less);
+			DicOperators["{"].Add("(", PriorityType.Less);
+			DicOperators["{"].Add(")", PriorityType.Less);
+			DicOperators["{"].Add("[", PriorityType.Less);
+			DicOperators["{"].Add("]", PriorityType.Less);
+			DicOperators["{"].Add("{", PriorityType.Less);
+			DicOperators["{"].Add("}", PriorityType.Equal);
+			DicOperators["{"].Add("#", PriorityType.Unmatched);
 
 			// 右(大)括號優先級列表
-			DicOperators["}"].Add("+", 0);
-			DicOperators["}"].Add("-", 0);
-			DicOperators["}"].Add("*", 0);
-			DicOperators["}"].Add("/", 0);
-			DicOperators["}"].Add("(", 0);
-			DicOperators["}"].Add(")", 0);
-			DicOperators["}"].Add("[", 0);
-			DicOperators["}"].Add("]", 0);
-			DicOperators["}"].Add("{", -1);
-			DicOperators["}"].Add("}", 1);
-			DicOperators["}"].Add("#", 1);
+			DicOperators["}"].Add("+", PriorityType.Less);
+			DicOperators["}"].Add("-", PriorityType.Less);
+			DicOperators["}"].Add("*", PriorityType.Less);
+			DicOperators["}"].Add("/", PriorityType.Less);
+			DicOperators["}"].Add("(", PriorityType.Less);
+			DicOperators["}"].Add(")", PriorityType.Less);
+			DicOperators["}"].Add("[", PriorityType.Less);
+			DicOperators["}"].Add("]", PriorityType.Less);
+			DicOperators["}"].Add("{", PriorityType.Unmatched);
+			DicOperators["}"].Add("}", PriorityType.Larger);
+			DicOperators["}"].Add("#", PriorityType.Larger);
 
 			// 默認優先級列表
-			DicOperators["#"].Add("+", 0);
-			DicOperators["#"].Add("-", 0);
-			DicOperators["#"].Add("*", 0);
-			DicOperators["#"].Add("/", 0);
-			DicOperators["#"].Add("(", 0);
-			DicOperators["#"].Add(")", -1);
-			DicOperators["#"].Add("[", 0);
-			DicOperators["#"].Add("]", -1);
-			DicOperators["#"].Add("{", 0);
-			DicOperators["#"].Add("}", -1);
-			DicOperators["#"].Add("#", 2);
+			DicOperators["#"].Add("+", PriorityType.Less);
+			DicOperators["#"].Add("-", PriorityType.Less);
+			DicOperators["#"].Add("*", PriorityType.Less);
+			DicOperators["#"].Add("/", PriorityType.Less);
+			DicOperators["#"].Add("(", PriorityType.Less);
+			DicOperators["#"].Add(")", PriorityType.Unmatched);
+			DicOperators["#"].Add("[", PriorityType.Less);
+			DicOperators["#"].Add("]", PriorityType.Unmatched);
+			DicOperators["#"].Add("{", PriorityType.Less);
+			DicOperators["#"].Add("}", PriorityType.Unmatched);
+			DicOperators["#"].Add("#", PriorityType.Equal);
 		}
 
 		/// <summary>
@@ -404,7 +447,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// <param name="inputOpt">入棧運算符</param>
 		/// <param name="topOpt">棧頂運算符</param>
 		/// <returns>優先級</returns>
-		public static int GetPriority(string inputOpt, string topOpt)
+		public static PriorityType GetPriority(string inputOpt, string topOpt)
 		{
 			return DicOperators[inputOpt][topOpt];
 		}

@@ -14,11 +14,11 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <summary>
 		/// 随机下限值取得（默认值为0）
 		/// </summary>
-		protected int _minimumLimit { get; set; }
+		protected int MinimumLimit { get; set; }
 		/// <summary>
 		/// 
 		/// </summary>
-		protected Formula _formula { get; set; }
+		protected Formula Formula { get; set; }
 
 		/// <summary>
 		/// 
@@ -27,7 +27,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <returns></returns>
 		protected virtual int GetLeftParameter(int maximumLimit)
 		{
-			var number = CommonUtil.GetRandomNumber(_minimumLimit, maximumLimit);
+			var number = CommonUtil.GetRandomNumber(MinimumLimit, maximumLimit);
 			return number;
 		}
 
@@ -50,7 +50,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <returns></returns>
 		protected virtual int GetRightParameter(int maximumLimit, int leftParameter = 0)
 		{
-			var number = CommonUtil.GetRandomNumber(_minimumLimit, maximumLimit - leftParameter);
+			var number = CommonUtil.GetRandomNumber(MinimumLimit, maximumLimit - leftParameter);
 			return number;
 		}
 
@@ -62,12 +62,12 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <returns></returns>
 		protected virtual int GetAnswer(int leftParameter, int rightParameter)
 		{
-			if (_formula == null)
+			if (Formula == null)
 			{
 				throw new NullReferenceException(MessageUtil.GetException(() => MsgResources.E0023L));
 			}
 
-			switch (_formula.Sign)
+			switch (Formula.Sign)
 			{
 				case SignOfOperation.Plus:
 					return (leftParameter + rightParameter);
@@ -78,7 +78,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 				case SignOfOperation.Division:
 					return (leftParameter / rightParameter);
 				default:
-					throw new ArgumentOutOfRangeException(MessageUtil.GetException(() => MsgResources.E0024L, _formula.Sign.ToString()));
+					throw new ArgumentOutOfRangeException(MessageUtil.GetException(() => MsgResources.E0024L, Formula.Sign.ToString()));
 			}
 		}
 
@@ -89,21 +89,19 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public virtual Formula CreateFormula(CalculateParameter parameter)
 		{
-			_formula = new Formula();
+			Formula = new Formula();
 
 			// 随机下限值
-			_minimumLimit = parameter.MinimumLimit;
+			MinimumLimit = parameter.MinimumLimit;
 			// 默認填空項是答案項
-			_formula.Gap = GapFilling.Answer;
-			// 默認計算式不帶小括號
-			_formula.IsNeedBracket = false;
+			Formula.Gap = GapFilling.Answer;
 			if (parameter.QuestionType == QuestionType.GapFilling)
 			{
 				// 對在等式中的三個數值隨機產生填空項（用於填空題型）
-				_formula.Gap = CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Answer);
+				Formula.Gap = CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Answer);
 			}
 
-			return _formula;
+			return Formula;
 		}
 
 

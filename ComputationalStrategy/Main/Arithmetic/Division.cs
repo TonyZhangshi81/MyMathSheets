@@ -17,15 +17,15 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public override Formula CreateFormula(CalculateParameter parameter)
 		{
-			_formula = base.CreateFormula(parameter);
+			Formula = base.CreateFormula(parameter);
 
-			_formula.RightParameter = GetLeftParameter(9);
-			_formula.Sign = SignOfOperation.Division;
-			_formula.LeftParameter = GetRightParameter(9, _formula.RightParameter);
-			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
+			Formula.RightParameter = GetLeftParameter(9);
+			Formula.Sign = SignOfOperation.Division;
+			Formula.LeftParameter = GetRightParameter(9, Formula.RightParameter);
+			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
 			// 结果特殊处理(当被除数为0时,求解值可以为任何数)  只在随机除法填空题型且分子为0的情况下
 			ResultSpecialHandling();
-			return _formula;
+			return Formula;
 		}
 
 		/// <summary>
@@ -36,11 +36,11 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public override Formula CreateFormula(CalculateParameter parameter, Formula previousFormula)
 		{
-			_formula = base.CreateFormula(parameter, previousFormula);
+			Formula = base.CreateFormula(parameter, previousFormula);
 
 			// TODO
 
-			return _formula;
+			return Formula;
 		}
 
 		/// <summary>
@@ -51,21 +51,21 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public override Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
 		{
-			_formula = base.CreateFormulaWithAnswer(parameter, answer);
+			Formula = base.CreateFormulaWithAnswer(parameter, answer);
 
-			_formula.Answer = answer;
-			_formula.Sign = SignOfOperation.Division;
-			_formula.LeftParameter = GetLeftParameter(9);
+			Formula.Answer = answer;
+			Formula.Sign = SignOfOperation.Division;
+			Formula.LeftParameter = GetLeftParameter(9);
 			// 判定是否超出九九乘法口訣上限值
-			if (_formula.Answer > 81)
+			if (Formula.Answer > 81)
 			{
 				// 無解計算式（結果無法被整除）
-				_formula.IsNoSolution = true;
-				return _formula;
+				Formula.IsNoSolution = true;
+				return Formula;
 			}
-			_formula.RightParameter = _formula.Answer * _formula.LeftParameter;
+			Formula.RightParameter = Formula.Answer * Formula.LeftParameter;
 
-			return _formula;
+			return Formula;
 		}
 
 		/// <summary>
@@ -73,9 +73,9 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// </summary>
 		private void ResultSpecialHandling()
 		{
-			if (_formula.Gap == GapFilling.Right && _formula.RightParameter == 0)
+			if (Formula.Gap == GapFilling.Right && Formula.RightParameter == 0)
 			{
-				_formula.RightParameter = -999;
+				Formula.RightParameter = -999;
 			}
 		}
 
@@ -87,7 +87,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns></returns>
 		protected override int GetRightParameter(int maximumLimit, int rightParameter)
 		{
-			var number = CommonUtil.GetRandomNumber(_minimumLimit, maximumLimit);
+			var number = CommonUtil.GetRandomNumber(MinimumLimit, maximumLimit);
 			return number * rightParameter;
 		}
 

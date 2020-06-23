@@ -44,19 +44,6 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Helper
 		/// <returns>填空項目的值</returns>
 		private int GetGapValue(ArithmeticFormula item)
 		{
-			if (item.MultistageArithmetic != null)
-			{
-				switch (item.MultistageArithmetic.Gap)
-				{
-					case GapFilling.Answer:
-						return item.MultistageArithmetic.Answer;
-					case GapFilling.Left:
-						return item.MultistageArithmetic.LeftParameter;
-					case GapFilling.Right:
-						return item.MultistageArithmetic.RightParameter;
-				}
-			}
-
 			switch (item.Arithmetic.Gap)
 			{
 				case GapFilling.Answer:

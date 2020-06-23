@@ -17,29 +17,29 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public override Formula CreateFormula(CalculateParameter parameter)
 		{
-			_formula = base.CreateFormula(parameter);
+			Formula = base.CreateFormula(parameter);
 
 			if (parameter.MaximumLimit == 0)
 			{
-				_formula.LeftParameter = GetParameterWithScope(parameter.LeftScope);
-				_formula.RightParameter = GetParameterWithScope(parameter.RightScope);
+				Formula.LeftParameter = GetParameterWithScope(parameter.LeftScope);
+				Formula.RightParameter = GetParameterWithScope(parameter.RightScope);
 
 			}
 			else
 			{
-				_formula.LeftParameter = GetLeftParameter(parameter.MaximumLimit);
-				_formula.RightParameter = GetRightParameter(_formula.LeftParameter);
+				Formula.LeftParameter = GetLeftParameter(parameter.MaximumLimit);
+				Formula.RightParameter = GetRightParameter(Formula.LeftParameter);
 			}
-			_formula.Sign = SignOfOperation.Subtraction;
-			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
+			Formula.Sign = SignOfOperation.Subtraction;
+			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
 
-			if(_formula.Answer < 0)
+			if(Formula.Answer < 0)
 			{
 				// 負數值
-				_formula.IsNoSolution = true;
+				Formula.IsNoSolution = true;
 			}
 
-			return _formula;
+			return Formula;
 		}
 
 		/// <summary>
@@ -50,15 +50,15 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public override Formula CreateFormula(CalculateParameter parameter, Formula previousFormula)
 		{
-			_formula = base.CreateFormula(parameter, previousFormula);
+			Formula = base.CreateFormula(parameter, previousFormula);
 
 			// 如果当前是第一层计算式,需要随机获取计算式最左边的值
-			_formula.LeftParameter = (previousFormula == null) ? GetLeftParameter(parameter.MaximumLimit) : previousFormula.Answer;
-			_formula.Sign = SignOfOperation.Subtraction;
-			_formula.RightParameter = GetRightParameter(_formula.LeftParameter);
-			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
+			Formula.LeftParameter = (previousFormula == null) ? GetLeftParameter(parameter.MaximumLimit) : previousFormula.Answer;
+			Formula.Sign = SignOfOperation.Subtraction;
+			Formula.RightParameter = GetRightParameter(Formula.LeftParameter);
+			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
 
-			return _formula;
+			return Formula;
 		}
 
 		/// <summary>
@@ -69,16 +69,16 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public override Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
 		{
-			_formula = base.CreateFormulaWithAnswer(parameter, answer);
+			Formula = base.CreateFormulaWithAnswer(parameter, answer);
 
-			_formula.Answer = answer;
-			_formula.Sign = SignOfOperation.Subtraction;
+			Formula.Answer = answer;
+			Formula.Sign = SignOfOperation.Subtraction;
 			// 计算式左侧项目的取值范围（答案值至最大计算值）
-			_minimumLimit = answer;
-			_formula.LeftParameter = GetLeftParameter(parameter.MaximumLimit);
-			_formula.RightParameter = _formula.LeftParameter - _formula.Answer;
+			MinimumLimit = answer;
+			Formula.LeftParameter = GetLeftParameter(parameter.MaximumLimit);
+			Formula.RightParameter = Formula.LeftParameter - Formula.Answer;
 
-			return _formula;
+			return Formula;
 		}
 	}
 }

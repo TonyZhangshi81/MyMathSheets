@@ -53,10 +53,10 @@ namespace MyMathSheets.TestConsoleApp.Util
 					flag = "-";
 					break;
 				case SignOfOperation.Division:
-					flag = "×";
+					flag = "÷";
 					break;
 				case SignOfOperation.Multiple:
-					flag = "÷";
+					flag = "×";
 					break;
 				case SignOfOperation.Before:
 					flag = "之前";

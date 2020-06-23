@@ -21,7 +21,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 		/// <returns>秒數</returns>
 		protected override int GetAnswer(int leftParameter, int rightParameter)
 		{
-			if (_formula == null)
+			if (Formula == null)
 			{
 				throw new NullReferenceException(MessageUtil.GetException(() => MsgResources.E0001L));
 			}
@@ -39,14 +39,14 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 		/// <returns>計算式對象</returns>
 		public override Formula CreateFormula(CalculateParameter parameter)
 		{
-			_formula = base.CreateFormula(parameter);
+			Formula = base.CreateFormula(parameter);
 
-			_formula.LeftParameter = parameter.MaximumLimit;
-			_formula.Sign = SignOfOperation.Plus;
-			_formula.RightParameter = parameter.MinimumLimit;
-			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
+			Formula.LeftParameter = parameter.MaximumLimit;
+			Formula.Sign = SignOfOperation.Plus;
+			Formula.RightParameter = parameter.MinimumLimit;
+			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
 
-			return _formula;
+			return Formula;
 		}
 
 		/// <summary>

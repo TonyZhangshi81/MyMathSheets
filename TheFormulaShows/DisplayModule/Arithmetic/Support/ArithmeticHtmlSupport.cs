@@ -55,7 +55,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		/// <summary>
 		/// 智能提示
 		/// </summary>
-		private HelperDialogue _brainpowerHint { get; set; }
+		private HelperDialogue BrainpowerHint { get; set; }
 		private int _brainpowerIndex;
 
 		/// <summary>
@@ -74,7 +74,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 
 			int numberOfColumns = 0;
 			bool isRowHtmlClosed = false;
-			_brainpowerHint = p.BrainpowerHint;
+			BrainpowerHint = p.BrainpowerHint;
 			_brainpowerIndex = 0;
 
 			int controlIndex = 0;
@@ -90,11 +90,11 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 				if (item.AnswerIsRight)
 				{
 					// 第一級計算式中是否使用括號
-					if (item.Arithmetic.IsNeedBracket)
-					{
-						// 左括號（注意：右括號在第二級計算式中）
-						colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, "("));
-					}
+					//if (item.Arithmetic.IsNeedBracket)
+					//{
+					//	// 左括號（注意：右括號在第二級計算式中）
+					//	colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, "("));
+					//}
 
 					// 第一級計算式左側的值
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.LeftParameter, GapFilling.Left, controlIndex));
@@ -103,16 +103,16 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.Arithmetic.Sign.ToOperationUnicode()));
 
 					// 是否運用多級四則運算
-					if (item.MultistageArithmetic is null)
-					{
+					//if (item.MultistageArithmetic is null)
+					//{
 						// 第一級計算式右側的值
 						colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
-					}
-					else
-					{
-						// 第二級計算式
-						colHtml.AppendLine(GetMultistageFormula(item.Arithmetic, item.MultistageArithmetic, controlIndex));
-					}
+					//}
+					//else
+					//{
+					//	// 第二級計算式
+					//	colHtml.AppendLine(GetMultistageFormula(item.Arithmetic, item.MultistageArithmetic, controlIndex));
+					//}
 
 					// 等號
 					colHtml.AppendLine(string.Format(EQUALTO_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareString()));
@@ -129,11 +129,11 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 					colHtml.AppendLine(string.Format(EQUALTO_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareString()));
 
 					// 第一級計算式中是否使用括號
-					if (item.Arithmetic.IsNeedBracket)
-					{
-						// 左括號（注意：右括號在第二級計算式中）
-						colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, "("));
-					}
+					//if (item.Arithmetic.IsNeedBracket)
+					//{
+					//	// 左括號（注意：右括號在第二級計算式中）
+					//	colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, "("));
+					//}
 
 					// 第一級計算式左側的值
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.LeftParameter, GapFilling.Left, controlIndex));
@@ -142,16 +142,16 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.Arithmetic.Sign.ToOperationUnicode()));
 
 					// 是否運用多級四則運算
-					if (item.MultistageArithmetic is null)
-					{
+					//if (item.MultistageArithmetic is null)
+					//{
 						// 第一級計算式右側的值
 						colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
-					}
-					else
-					{
-						// 第二級計算式
-						colHtml.AppendLine(GetMultistageFormula(item.Arithmetic, item.MultistageArithmetic, controlIndex));
-					}
+					//}
+					//else
+					//{
+					//	// 第二級計算式
+					//	colHtml.AppendLine(GetMultistageFormula(item.Arithmetic, item.MultistageArithmetic, controlIndex));
+					//}
 				}
 
 				colHtml.AppendLine("</h5>");
@@ -207,70 +207,17 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		/// <returns>HTML模板信息</returns>
 		private string GetArithmeticDialogue()
 		{
-			if (_brainpowerHint == null)
+			if (BrainpowerHint == null)
 			{
 				return string.Empty;
 			}
 
 			StringBuilder html = new StringBuilder();
-			_brainpowerHint.Dialogues.ForEach(d =>
+			BrainpowerHint.Dialogues.ForEach(d =>
 			{
 				html.AppendFormat("{0};", d);
 			});
 			html.Length -= 1;
-
-			return html.ToString();
-		}
-
-		/// <summary>
-		/// 第二級四則運算打印顯示
-		/// </summary>
-		/// <param name="leftFormula">前一級運算式</param>
-		/// <param name="multistageFormula">第二級運算式</param>
-		/// <param name="controlIndex">控件索引號</param>
-		/// <returns>四則運算打印顯示信息</returns>
-		private string GetMultistageFormula(Formula leftFormula, Formula multistageFormula, int controlIndex)
-		{
-			StringBuilder html = new StringBuilder();
-
-			// 第二級計算式中是否使用括號
-			if (multistageFormula.IsNeedBracket)
-			{
-				// 左括號
-				html.AppendFormat(LABEL_HTML_FORMAT, "(");
-			}
-
-			// 第二級計算式的左側值
-			html.Append(GetHtml(multistageFormula.Gap, multistageFormula.LeftParameter, GapFilling.Left, controlIndex));
-
-			// 第一級計算式中是否使用括號
-			if (leftFormula.IsNeedBracket)
-			{
-				// 右括號（注意：左括號在第一級計算式中）
-				html.AppendFormat(LABEL_HTML_FORMAT, ")");
-			}
-
-			// 前一級運算符是減法的話,下一級的運算符需要變換
-			if (leftFormula.Sign == SignOfOperation.Subtraction && !multistageFormula.IsNeedBracket)
-			{
-				// 運算符
-				html.Append((multistageFormula.Sign == SignOfOperation.Plus) ? string.Format(LABEL_HTML_FORMAT, SignOfOperation.Subtraction.ToOperationUnicode()) : string.Format(LABEL_HTML_FORMAT, SignOfOperation.Plus.ToOperationUnicode()));
-			}
-			else
-			{
-				// 運算符
-				html.AppendFormat(LABEL_HTML_FORMAT, multistageFormula.Sign.ToOperationUnicode());
-			}
-
-			// 第二級計算式的右側值
-			html.Append(GetHtml(multistageFormula.Gap, multistageFormula.RightParameter, GapFilling.Right, controlIndex));
-
-			// 第二級計算式中是否使用括號
-			if (multistageFormula.IsNeedBracket)
-			{
-				// 左括號
-				html.AppendFormat(LABEL_HTML_FORMAT, ")");
-			}
 
 			return html.ToString();
 		}
@@ -282,14 +229,13 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		/// <param name="parameter">計算式中的數值</param>
 		/// <param name="gap">當前顯示項目所在計算式中的位置</param>
 		/// <param name="index">控件索引號</param>
-		/// <param name="isMultistage">是否使用多集計算</param>
 		/// <returns>HTML模板信息</returns>
-		private string GetHtml(GapFilling item, int parameter, GapFilling gap, int index, bool isMultistage = false)
+		private string GetHtml(GapFilling item, int parameter, GapFilling gap, int index)
 		{
 			StringBuilder html = new StringBuilder();
 			if (item == gap)
 			{
-				if(_brainpowerHint.FormulaIndex.Count > _brainpowerIndex && _brainpowerHint.FormulaIndex[_brainpowerIndex] == index)
+				if(BrainpowerHint.FormulaIndex.Count > _brainpowerIndex && BrainpowerHint.FormulaIndex[_brainpowerIndex] == index)
 				{
 					html.AppendFormat(INPUT_HTML_FORMAT, index.ToString().PadLeft(2, '0'), string.Format(DIALOGUE_JS_HTML_FORMAT, _brainpowerIndex++));
 				}

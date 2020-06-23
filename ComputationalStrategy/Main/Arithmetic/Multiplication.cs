@@ -17,16 +17,16 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public override Formula CreateFormula(CalculateParameter parameter)
 		{
-			_formula = base.CreateFormula(parameter);
+			Formula = base.CreateFormula(parameter);
 
-			_formula.LeftParameter = GetLeftParameter(9);
-			_formula.Sign = SignOfOperation.Multiple;
-			_formula.RightParameter = GetRightParameter(9);
-			_formula.Answer = GetAnswer(_formula.LeftParameter, _formula.RightParameter);
+			Formula.LeftParameter = GetLeftParameter(9);
+			Formula.Sign = SignOfOperation.Multiple;
+			Formula.RightParameter = GetRightParameter(9);
+			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
 			// 结果特殊处理（在乘法式中其中一个数值为零，那另一个值可以是任意一个数值）
 			ResultSpecialHandling();
 
-			return _formula;
+			return Formula;
 		}
 
 		/// <summary>
@@ -37,11 +37,11 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public override Formula CreateFormula(CalculateParameter parameter, Formula previousFormula)
 		{
-			_formula = base.CreateFormula(parameter, previousFormula);
+			Formula = base.CreateFormula(parameter, previousFormula);
 
 			// TODO
 
-			return _formula;
+			return Formula;
 		}
 
 		/// <summary>
@@ -52,21 +52,21 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public override Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
 		{
-			_formula = base.CreateFormulaWithAnswer(parameter, answer);
+			Formula = base.CreateFormulaWithAnswer(parameter, answer);
 
-			_formula.Answer = answer;
-			_formula.Sign = SignOfOperation.Multiple;
-			_formula.LeftParameter = GetLeftParameter(9);
+			Formula.Answer = answer;
+			Formula.Sign = SignOfOperation.Multiple;
+			Formula.LeftParameter = GetLeftParameter(9);
 			// 判定是否能被整除
-			if(_formula.Answer % _formula.LeftParameter != 0)
+			if(Formula.Answer % Formula.LeftParameter != 0)
 			{
 				// 無解計算式（結果無法被整除）
-				_formula.IsNoSolution = true;
-				return _formula;
+				Formula.IsNoSolution = true;
+				return Formula;
 			}
-			_formula.RightParameter = _formula.Answer / _formula.LeftParameter;
+			Formula.RightParameter = Formula.Answer / Formula.LeftParameter;
 
-			return _formula;
+			return Formula;
 		}
 
 		/// <summary>
@@ -74,14 +74,14 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// </summary>
 		private void ResultSpecialHandling()
 		{
-			if (_formula.Gap == GapFilling.Left && _formula.RightParameter == 0)
+			if (Formula.Gap == GapFilling.Left && Formula.RightParameter == 0)
 			{
-				_formula.LeftParameter = -999;
+				Formula.LeftParameter = -999;
 			}
 
-			if (_formula.Gap == GapFilling.Right && _formula.LeftParameter == 0)
+			if (Formula.Gap == GapFilling.Right && Formula.LeftParameter == 0)
 			{
-				_formula.RightParameter = -999;
+				Formula.RightParameter = -999;
 			}
 		}
 	}

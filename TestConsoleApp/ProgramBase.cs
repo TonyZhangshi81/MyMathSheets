@@ -71,7 +71,7 @@ namespace MyMathSheets.TestConsoleApp
 				if (isShowMenu)
 				{
 					Console.WriteLine("參數選擇：");
-					Console.WriteLine("四則運算(AC001~AC007)");
+					Console.WriteLine("四則運算(AC001~AC006)");
 					Console.WriteLine("算式組合(CE001)");
 					Console.WriteLine("等式接龍(CC001~CC003)");
 					Console.WriteLine("認識價格(CL001~CL002)");
@@ -258,7 +258,6 @@ namespace MyMathSheets.TestConsoleApp
 						isShowMenu = true;
 						break;
 				}
-				args[0] = Console.ReadLine();
 			}
 		}
 

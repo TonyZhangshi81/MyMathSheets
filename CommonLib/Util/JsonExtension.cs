@@ -33,6 +33,11 @@ namespace MyMathSheets.CommonLib.Util
 		/// <returns>屬性值</returns>
 		public static object GetPropertyByJson(this string jsonString, string propertyName)
 		{
+			if (string.IsNullOrEmpty(jsonString))
+			{
+				return null;
+			}
+
 			JObject jObj = JObject.Parse(jsonString);
 
 			return jObj[propertyName];

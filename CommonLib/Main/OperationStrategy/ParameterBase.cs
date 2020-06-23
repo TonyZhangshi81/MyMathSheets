@@ -71,6 +71,8 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			Reserve = parameter.Reserve;
 			LeftScope = parameter.LeftScope;
 			RightScope = parameter.RightScope;
+			// 對應因題型參數標識不正確時會使用默認的題型參數配置中的標識
+			Identifier = string.Format(identifiers[0] + "::" + parameter.Identifier);
 		}
 	}
 }
