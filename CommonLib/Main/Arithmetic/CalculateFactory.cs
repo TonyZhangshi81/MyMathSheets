@@ -18,7 +18,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 	[Export(typeof(ICalculateFactory))]
 	public class CalculateFactory : ICalculateFactory
 	{
-		private static Log log = Log.LogReady(typeof(CalculateFactory));
+		private static readonly Log log = Log.LogReady();
 
 		/// <summary>
 		/// 以防止重複注入（減少損耗）

@@ -365,5 +365,23 @@ namespace MyMathSheets.CommonLib.Properties {
                 return ResourceManager.GetString("I0033L", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   I0034L:指定ID【{0}】計算式作成處理開始，以下計算式列舉： に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0034L {
+            get {
+                return ResourceManager.GetString("I0034L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0035L:指定ID【{0}】計算式作成處理結束 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0035L {
+            get {
+                return ResourceManager.GetString("I0035L", resourceCulture);
+            }
+        }
     }
 }

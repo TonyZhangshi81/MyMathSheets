@@ -1,4 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using System.ComponentModel.Composition;
 
@@ -9,6 +12,11 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 	/// </summary>
 	public class OperationHelper
 	{
+		/// <summary>
+		/// 日誌處理
+		/// </summary>
+		private static Log log = Log.LogReady(typeof(OperationHelper));
+
 		/// <summary>
 		/// 以防止重複注入（減少損耗）
 		/// </summary>
@@ -66,8 +74,13 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			IOperation instance = CreateOperationInstance(preview);
 			// 計算式所需參數
 			ParameterBase parameter = OperationFactory.CreateOperationParameterInstance(preview, identifier);
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0006L));
+
 			// 構築計算式集合
 			instance.Build(parameter);
+
+			log.Debug(MessageUtil.GetException(() => MsgResources.I0007L));
 
 			return parameter;
 		}

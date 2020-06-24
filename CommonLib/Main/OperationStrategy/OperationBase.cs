@@ -1,25 +1,21 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Message;
-using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public abstract class OperationBase : IOperation
 	{
-		private static Log log = Log.LogReady(typeof(OperationBase));
-
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		private CalculateHelper _helper;
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		protected CalculateHelper Helper => _helper ?? (_helper = new CalculateHelper());
 
@@ -34,20 +30,47 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="parameter"></param>
 		public virtual void Build(ParameterBase parameter)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0006L));
+			PreExecute(parameter);
 
-			MarkFormulaList(parameter);
-
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0007L));
+			LogUtil.LogBeginFormulaList(parameter.Identifier);
+			try
+			{
+				MarkFormulaList(parameter);
+			}
+			catch
+			{
+				throw;
+			}
+			finally
+			{
+				PostExecute(parameter);
+				LogUtil.LogEndFormulaList(parameter.Identifier);
+			}
 		}
 
 		/// <summary>
-		/// 
+		/// 計算式作成後的處理
+		/// </summary>
+		/// <param name="p"></param>
+		public virtual void PostExecute(ParameterBase p)
+		{
+		}
+
+		/// <summary>
+		/// 計算式作成前的處理
+		/// </summary>
+		/// <param name="p"></param>
+		public virtual void PreExecute(ParameterBase p)
+		{
+		}
+
+		/// <summary>
+		/// 計算式作成處理
 		/// </summary>
 		/// <param name="parameter"></param>
 		protected abstract void MarkFormulaList(ParameterBase parameter);

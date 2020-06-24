@@ -61,15 +61,15 @@
 					break;
 				// −
 				case SignOfOperation.Subtraction:
-					flag = "−";
+					flag = "-";
 					break;
 				// ÷
 				case SignOfOperation.Division:
-					flag = "÷";
+					flag = "/";
 					break;
 				// ×
 				case SignOfOperation.Multiple:
-					flag = "×";
+					flag = "*";
 					break;
 				// 之前
 				case SignOfOperation.Before:

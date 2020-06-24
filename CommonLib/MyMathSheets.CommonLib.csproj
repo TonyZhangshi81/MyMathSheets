@@ -59,6 +59,7 @@
     <Compile Include="Composition\ComposerFactory.cs" />
     <Compile Include="Logging\ILogging.cs" />
     <Compile Include="Logging\Log.cs" />
+    <Compile Include="Logging\LogUtil.cs" />
     <Compile Include="Main\Arithmetic\CalculateFactory.cs" />
     <Compile Include="Main\Arithmetic\CalculateBase.cs" />
     <Compile Include="Main\Arithmetic\CalculateNotFoundException.cs" />

@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Main.VirtualHelper;
@@ -71,6 +72,8 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 					// 等式值是不是出現在右邊（如果未指定則隨機產生）
 					AnswerIsRight = p.AnswerIsRight ?? IsRight
 				});
+
+				LogUtil.LogFormula(formula);
 
 				defeated = 0;
 			}

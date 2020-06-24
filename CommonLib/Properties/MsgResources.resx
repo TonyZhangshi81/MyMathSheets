@@ -220,4 +220,10 @@
   <data name="I0033L" xml:space="preserve">
     <value>I0033L:指定題型編號{0}不存在，默認使用{1}作為題型編號</value>
   </data>
+  <data name="I0034L" xml:space="preserve">
+    <value>I0034L:指定ID【{0}】計算式作成處理開始，以下計算式列舉：</value>
+  </data>
+  <data name="I0035L" xml:space="preserve">
+    <value>I0035L:指定ID【{0}】計算式作成處理結束</value>
+  </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using log4net;
 using MyMathSheets.CommonLib.Util;
 using System;
+using System.Diagnostics;
 
 namespace MyMathSheets.CommonLib.Logging
 {
@@ -10,7 +11,7 @@ namespace MyMathSheets.CommonLib.Logging
 	public class Log : ILogging
 	{
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		static Log()
 		{
@@ -24,8 +25,22 @@ namespace MyMathSheets.CommonLib.Logging
 			get;
 			private set;
 		}
+
 		/// <summary>
-		/// 
+		///
+		/// </summary>
+		/// <returns></returns>
+		public static Log LogReady()
+		{
+			StackFrame stackFrame = new StackFrame(1, false);
+			Type type = stackFrame.GetMethod().DeclaringType;
+
+			Instance = LogManager.GetLogger(type);
+			return new Log();
+		}
+
+		/// <summary>
+		///
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
@@ -36,7 +51,7 @@ namespace MyMathSheets.CommonLib.Logging
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="message"></param>
 		public void Debug(string message)
@@ -45,7 +60,7 @@ namespace MyMathSheets.CommonLib.Logging
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="message"></param>
 		/// <param name="exception"></param>
@@ -55,7 +70,7 @@ namespace MyMathSheets.CommonLib.Logging
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="message"></param>
 		public void Output(string message)
@@ -64,7 +79,7 @@ namespace MyMathSheets.CommonLib.Logging
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="message"></param>
 		/// <param name="exception"></param>
@@ -90,24 +105,28 @@ namespace MyMathSheets.CommonLib.Logging
 						logger.Debug(message, exception);
 					}
 					break;
+
 				case MessageLevel.Error:
 					if (logger.IsErrorEnabled)
 					{
 						logger.Error(message, exception);
 					}
 					break;
+
 				case MessageLevel.Fatal:
 					if (logger.IsFatalEnabled)
 					{
 						logger.Fatal(message, exception);
 					}
 					break;
+
 				case MessageLevel.Info:
 					if (logger.IsInfoEnabled)
 					{
 						logger.Info(message, exception);
 					}
 					break;
+
 				case MessageLevel.Warn:
 					if (logger.IsWarnEnabled)
 					{
