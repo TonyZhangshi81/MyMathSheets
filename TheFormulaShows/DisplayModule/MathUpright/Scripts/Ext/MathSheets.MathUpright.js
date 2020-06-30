@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.MathUpright = MathSheets.MathUpright || (function () {
-
 	// 打印設置
 	printSetting = function () {
 		$("input[id*='inputMu']").each(function (index, element) {

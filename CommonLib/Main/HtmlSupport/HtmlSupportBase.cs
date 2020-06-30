@@ -15,8 +15,6 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 	/// </summary>
 	public abstract class HtmlSupportBase : IHtmlSupport
 	{
-		private static Log log = Log.LogReady(typeof(HtmlSupportBase));
-
 		/// <summary>
 		/// HTML模板信息作成并返回
 		/// </summary>
@@ -24,7 +22,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <returns>HTML模板信息</returns>
 		public virtual Dictionary<SubstituteType, string> Make(ParameterBase parameter)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0009L));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0009L));
 
 			// 題型識別子取得
 			string identifier = parameter.Identifier.Split(':')[0];
@@ -36,7 +34,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 			// JS模板內容替換
 			MarkJavaScriptReplaceContent(htmlMaps, identifier);
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0010L));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0010L));
 
 			return htmlMaps;
 		}

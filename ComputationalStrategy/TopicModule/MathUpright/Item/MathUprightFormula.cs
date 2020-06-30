@@ -12,10 +12,12 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Item
 		/// 默認情況計算式有解
 		/// </summary>
 		public Formula Arithmetic { get; set; }
+
 		/// <summary>
 		/// 計算式數據鏈（用於設置填空項目）
 		/// </summary>
 		public List<int?> FormulaDataLink { get; set; }
+
 		/// <summary>
 		/// 填空項目的位置
 		/// </summary>

@@ -11,10 +11,12 @@ namespace MyMathSheets.CommonLib.Util
 		/// 声明一个静态整数变量 通过他的改变 为使随机数不再紧靠（即：随机数虽然不同但是接近）
 		/// </summary>
 		private static int randomCount = 0;
+
 		/// <summary>
 		/// 随机上限值
 		/// </summary>
 		private readonly int _maxValue;
+
 		/// <summary>
 		/// 随机下限值
 		/// </summary>

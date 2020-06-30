@@ -13,11 +13,6 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 	public class OperationHelper
 	{
 		/// <summary>
-		/// 日誌處理
-		/// </summary>
-		private static Log log = Log.LogReady(typeof(OperationHelper));
-
-		/// <summary>
 		/// 以防止重複注入（減少損耗）
 		/// </summary>
 		private bool _composed = false;
@@ -28,7 +23,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		private readonly Composer _composer;
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		private void ComposeThis()
 		{
@@ -63,7 +58,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="preview">策略種類</param>
 		/// <param name="identifier">參數識別ID（如果沒有指定參數標識，則默認返回當前參數序列的第一個參數項目）</param>
@@ -75,12 +70,12 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			// 計算式所需參數
 			ParameterBase parameter = OperationFactory.CreateOperationParameterInstance(preview, identifier);
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0006L));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0006L));
 
 			// 構築計算式集合
 			instance.Build(parameter);
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0007L));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0007L));
 
 			return parameter;
 		}

@@ -23,8 +23,10 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 
 		// 左邊水果算式實例
 		private readonly IList<Formula> _fruitsFormulas;
+
 		// 右邊容器算式實例
 		private readonly IList<Formula> _containersFormulas;
+
 		// 各計算式編號的集合
 		private readonly IList<int> _seats;
 
@@ -174,7 +176,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="seats"></param>
 		/// <returns></returns>

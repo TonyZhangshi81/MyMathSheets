@@ -3,7 +3,7 @@
 namespace MyMathSheets.CommonLib.Provider
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public abstract class OperationParameterProvider
 	{

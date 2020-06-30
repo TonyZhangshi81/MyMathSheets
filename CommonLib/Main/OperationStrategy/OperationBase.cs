@@ -1,5 +1,4 @@
-﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Arithmetic;
+﻿using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.CommonLib.Main.OperationStrategy
@@ -37,7 +36,6 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		{
 			PreExecute(parameter);
 
-			LogUtil.LogBeginFormulaList(parameter.Identifier);
 			try
 			{
 				MarkFormulaList(parameter);
@@ -49,7 +47,6 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			finally
 			{
 				PostExecute(parameter);
-				LogUtil.LogEndFormulaList(parameter.Identifier);
 			}
 		}
 

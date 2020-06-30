@@ -14,15 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class FindNearestNumberWrite : IConsoleWrite<List<NearestNumberFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(FindNearestNumberWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<NearestNumberFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "等式比大小"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "等式比大小"));
 
 			formulas.ToList().ForEach(d =>
 			{

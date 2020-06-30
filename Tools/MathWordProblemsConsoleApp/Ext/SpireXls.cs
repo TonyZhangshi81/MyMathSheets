@@ -10,16 +10,17 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Ext
 	public class SpireXls : ISpireExt, IDisposable
 	{
 		/// <summary>
-		/// 
+		///
 		/// </summary>
-		Workbook _workBook { get; set; }
+		private Workbook _workBook { get; set; }
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		private Worksheet _workSheet;
+
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		public Worksheet Sheet
 		{
@@ -61,7 +62,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Ext
 			_workBook.LoadFromFile(fileName, ExcelVersion.Version2007);
 		}
 
-		#endregion
+		#endregion Load the Excel file
 
 		/// <summary>
 		/// 返回指定單元格的值（加密處理）
@@ -72,7 +73,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Ext
 		public string GetRangeText(string cellName, bool isEncrypt)
 		{
 			string result = GetRangeText(cellName);
-			return (isEncrypt)? Base64.EncodeBase64(result) : result;
+			return (isEncrypt) ? Base64.EncodeBase64(result) : result;
 		}
 
 		/// <summary>
@@ -125,6 +126,6 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Ext
 			}
 		}
 
-		#endregion
+		#endregion Release resources
 	}
 }

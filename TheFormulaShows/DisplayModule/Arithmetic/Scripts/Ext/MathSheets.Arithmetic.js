@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.Arithmetic = MathSheets.Arithmetic || (function () {
-
 	// 打印設置
 	printSetting = function () {
 		$("input[id*='inputAc']").each(function (index, element) {

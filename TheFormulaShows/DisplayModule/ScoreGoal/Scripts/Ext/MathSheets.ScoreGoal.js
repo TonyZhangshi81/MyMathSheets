@@ -14,7 +14,6 @@ var __goalsArrayHiddenControlId = '';
 
 var MathSheets = MathSheets || {};
 MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
-
 	// 球門號數組化
 	_goalsArrayInit = function () {
 		// 球門號設置場所(eg:0,1,1,1,0,0,0 => [0,1,1,1,0,0,0])
@@ -185,7 +184,6 @@ MathSheets.ScoreGoal = MathSheets.ScoreGoal || (function () {
 				// 移除圖片抖動特效
 				$('#imgNoScoreGoal').removeClass("shake shake-slow");
 			} else {
-
 				// 对错图片显示和隐藏
 				$('#imgOKScoreGoal').hide();
 				$('#imgNoScoreGoal').show();

@@ -28,6 +28,7 @@ namespace MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Helper
 					case DialogueType.General:
 						dialogues.Add(MsgResources.HMM003);
 						break;
+
 					case DialogueType.ResultHelper:
 						dialogues.Add(GetDialogue(base.Formulas[d]));
 						break;

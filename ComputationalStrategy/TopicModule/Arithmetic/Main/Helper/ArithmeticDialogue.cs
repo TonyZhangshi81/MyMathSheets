@@ -27,6 +27,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Helper
 					case DialogueType.General:
 						dialogues.Add(MsgResources.AC001);
 						break;
+
 					case DialogueType.ResultHelper:
 						var formula = base.Formulas[d];
 						dialogues.Add(string.Format(MsgResources.AC002, GetGapValue(formula)));
@@ -48,8 +49,10 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Helper
 			{
 				case GapFilling.Answer:
 					return item.Arithmetic.Answer;
+
 				case GapFilling.Left:
 					return item.Arithmetic.LeftParameter;
+
 				case GapFilling.Right:
 					return item.Arithmetic.RightParameter;
 			}

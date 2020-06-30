@@ -25,18 +25,22 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 		/// 標題HTML模板
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
+
 		/// <summary>
 		/// 輸入項目HTML模板
 		/// </summary>
 		private const string INPUT_HTML_FORMAT = "<input id=\"inputLc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-2\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+
 		/// <summary>
 		/// 貨幣單位HTML模板
 		/// </summary>
 		private const string CURRENCY_UNIT_HTML_FORMAT = "<span class=\"label p-2\">{0}</span>";
+
 		/// <summary>
 		/// 符號HTML模板
 		/// </summary>
 		private const string SPAN_HTML_FORMAT = "<span class=\"label\">{0}</span>";
+
 		/// <summary>
 		/// 等號HTML模板
 		/// </summary>

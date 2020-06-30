@@ -4,12 +4,12 @@ using System.Threading;
 namespace MyMathSheets.CommonLib.Util
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public static class ConvertHelper
 	{
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="conversionType"></param>
@@ -20,7 +20,7 @@ namespace MyMathSheets.CommonLib.Util
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="obj"></param>
 		/// <param name="conversionType"></param>

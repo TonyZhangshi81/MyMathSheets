@@ -31,6 +31,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 		/// 時鐘答題輸出區域HTML作成
 		/// </summary>
 		private const string INPUT_HTML_ON_SCRIPT_FORMAT = "<input id=\"inputClock{0}{1}\" type=\"text\" placeholder=\"{2}\" class=\"form-control input-addBorder {3}\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" onFocus=\"MathSheets.SchoolClock.inputOnFocus(this);\" onBlur=\"MathSheets.SchoolClock.inputOnBlur(this);\" />";
+
 		private const string SPAN_HTML = "<span class=\"label\">:</span>";
 
 		/// <summary>
@@ -132,7 +133,6 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 
 			return html.ToString();
 		}
-
 
 		/// <summary>
 		/// 消息提示信息HTML作成

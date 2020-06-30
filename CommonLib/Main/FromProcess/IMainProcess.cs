@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 namespace MyMathSheets.CommonLib.Main.FromProcess
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public interface IMainProcess
 	{

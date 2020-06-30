@@ -32,10 +32,12 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 		/// 商品圖片列表
 		/// </summary>
 		private readonly List<Shop> ShopsArray;
+
 		/// <summary>
 		/// 左側坐標列表（限定5個坐標）
 		/// </summary>
 		private readonly Dictionary<DivQueueType, List<string>> LeftCurrencysArray;
+
 		/// <summary>
 		/// 右側坐標列表（限定5個坐標）
 		/// </summary>
@@ -149,38 +151,47 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 		/// 線型HTML模板
 		/// </summary>
 		private const string LINE_HTML_FORMAT = "<line id=\"lineCl{0}\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"0\" stroke=\"#ff006e\" stroke-width=\"1\" />";
+
 		/// <summary>
 		/// 起始點（結束點）DIV的HTML模板
 		/// </summary>
 		private const string DIVDRAWLINE_HTML_FORMAT = "<div class=\"divDrawLine-currency\" style=\"{0}\" id=\"divCl{1}{2}\">{3}</div>";
+
 		/// <summary>
 		/// 右側(下面)HTML模板
 		/// </summary>
 		private const string RIGHT_CURRENCY_HTML_FORMAT = "<h6><span class=\"label\">{0}</span></h6>";
+
 		/// <summary>
 		/// 左側(上面)HTML模板
 		/// </summary>
 		private const string LEFT_CURRENCY_HTML_FORMAT = "<h6><span class=\"label\">{0}</span></h6>";
+
 		/// <summary>
 		/// 右側(下面)貨幣圖片
 		/// </summary>
 		private const string RIGHT_IMAGE_HTML = "<img src=\"../Content/image/shop/Money.png\" width=\"60\" height=\"60\" />";
+
 		/// <summary>
 		/// 左側(上面)隨機抽取商品圖片
 		/// </summary>
 		private const string LEFT_IMAGE_HTML_FORMAT = "<img src=\"../Content/image/shop/{0}.png\" width=\"60\" height=\"60\" />";
+
 		/// <summary>
 		/// 選擇控件HTML模板
 		/// </summary>
 		private const string CHECKBOX_HTML_FORMAT = "<input type=\"checkbox\" id=\"chkdivCl{0}{1}\" style=\"display: none;\" />";
+
 		/// <summary>
 		/// 起始點（結束點）DIV的線型名稱模板
 		/// </summary>
 		private const string DIV_LINE_HTML_FORMAT = "<input type=\"hidden\" value=\"lineCl{0}\" />";
+
 		/// <summary>
 		/// 初期化參數HTML模板
 		/// </summary>
 		private const string INIT_SETTINGS_HTML_FORMAT = "<input type = \"hidden\" id=\"hidCurrencyInitSettings\" value=\"{0}\" />";
+
 		/// <summary>
 		/// 題型答案HTML模板
 		/// </summary>
@@ -222,6 +233,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 		/// 答案列表
 		/// </summary>
 		private StringBuilder _answerString { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

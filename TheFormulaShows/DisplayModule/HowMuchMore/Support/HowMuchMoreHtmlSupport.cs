@@ -29,14 +29,17 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 		/// 標題HTML模板
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
+
 		/// <summary>
 		/// 比较HTML模板
 		/// </summary>
 		private const string SPAN_MORE_LITTLE_HTML_FORMAT = "<span>{0}</span>";
+
 		/// <summary>
 		/// 答題提示項目HTML模板
 		/// </summary>
 		private const string DIALOGUE_CONTENT_HTML_FORMAT = "<input id=\"hiddenHmmTony\" type=\"hidden\" value=\"{0}\"/>";
+
 		/// <summary>
 		/// 答題提示JS事件註冊模板
 		/// </summary>
@@ -46,6 +49,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 		/// 可選圖片列表
 		/// </summary>
 		private List<HowMuchMoreType> _moreTypeArray;
+
 		/// <summary>
 		/// 填空題中可以選擇的圖片集合
 		/// </summary>
@@ -55,6 +59,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 		/// 智能提示
 		/// </summary>
 		private HelperDialogue _brainpowerHint { get; set; }
+
 		private int _brainpowerIndex;
 
 		/// <summary>
@@ -216,7 +221,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="item"></param>
 		/// <returns></returns>
@@ -288,6 +293,5 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 
 			return html.ToString();
 		}
-
 	}
 }

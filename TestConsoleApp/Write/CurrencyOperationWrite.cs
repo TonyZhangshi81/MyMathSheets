@@ -14,15 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class CurrencyOperationWrite : IConsoleWrite<List<CurrencyOperationFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(CurrencyOperationWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<CurrencyOperationFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "貨幣運算"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "貨幣運算"));
 
 			formulas.ToList().ForEach(d =>
 			{

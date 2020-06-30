@@ -17,6 +17,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 	{
 		// 球類算式實例
 		private Dictionary<Formula, int> _ballsFormulas;
+
 		// 球門算式實例
 		private IList<Formula> _goalsFormulas;
 

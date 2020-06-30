@@ -61,7 +61,7 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Strategy
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="list"></param>
 		/// <param name="maximumLimit"></param>

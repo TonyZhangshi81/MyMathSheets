@@ -337,6 +337,5 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 			// 結果返回
 			return formula;
 		}
-
 	}
 }

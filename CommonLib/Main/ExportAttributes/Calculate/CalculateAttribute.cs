@@ -12,7 +12,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 	public class CalculateAttribute : ExportAttribute
 	{
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="sign"></param>
 		public CalculateAttribute(SignOfOperation sign) : base(typeof(CalculateBase))
@@ -21,7 +21,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		public SignOfOperation Sign
 		{

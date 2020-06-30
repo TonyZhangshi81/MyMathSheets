@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
-
 	// 打印設置
 	printSetting = function () {
 		$("input[id*='inputCo']").each(function (index, element) {

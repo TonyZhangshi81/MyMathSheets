@@ -14,15 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class FruitsLinkageWrite : IConsoleWrite<FruitsLinkageFormula>
 	{
-		private static Log log = Log.LogReady(typeof(FruitsLinkageWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(FruitsLinkageFormula formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "水果連連看"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "水果連連看"));
 
 			int index = 0;
 			formulas.FruitsFormulas.ToList().ForEach(d =>

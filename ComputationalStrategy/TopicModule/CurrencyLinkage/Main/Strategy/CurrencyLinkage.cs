@@ -54,7 +54,7 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Strategy
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="seats"></param>
 		/// <returns></returns>

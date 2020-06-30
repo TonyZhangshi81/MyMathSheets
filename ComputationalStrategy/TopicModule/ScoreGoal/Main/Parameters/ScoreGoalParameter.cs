@@ -1,7 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Item;
-using System;
 
 namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters
 {

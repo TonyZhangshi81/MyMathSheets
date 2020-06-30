@@ -1,8 +1,8 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
-using MyMathSheets.CommonLib.Message;
-using MyMathSheets.CommonLib.Properties;
+﻿using Common.Logging;
+using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Util;
+using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Logging
@@ -13,43 +13,167 @@ namespace MyMathSheets.CommonLib.Logging
 	public static class LogUtil
 	{
 		/// <summary>
-		/// 日誌處理：計算式作成處理開始
+		/// 日誌輸出
 		/// </summary>
-		/// <param name="identifier">識別ID</param>
-		public static void LogBeginFormulaList(string identifier)
+		/// <param name="logs">日誌實例</param>
+		/// <param name="createContext">日誌信息</param>
+		public static void LogDebug(IEnumerable<Common.Logging.ILog> logs, Func<LogContext> createContext)
 		{
-			var log = Log.LogReady(typeof(OperationBase));
+			LogDebug(logs, () => createContext(), null);
+		}
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0034L, identifier));
+		/// <summary>
+		/// 日誌輸出
+		/// </summary>
+		/// <param name="logs">日誌實例</param>
+		/// <param name="createContext">日誌信息</param>
+		/// <param name="exception">異常</param>
+		public static void LogDebug(IEnumerable<Common.Logging.ILog> logs, Func<LogContext> createContext, Exception exception)
+		{
+			LogContext context = null;
+
+			foreach (var log in logs)
+			{
+				if (log.IsDebugEnabled)
+				{
+					if (context == null)
+					{
+						context = createContext();
+					}
+					log.Debug(context, exception);
+				}
+			}
 		}
 
 		/// <summary>
 		///
 		/// </summary>
-		/// <param name="formula"></param>
-		public static void LogFormula(Formula formula)
+		/// <param name="args"></param>
+		/// <returns></returns>
+		private static string BuildArguments(Dictionary<string, string> args)
 		{
-			var log = Log.LogReady(typeof(OperationBase));
+			var line = new StringBuilder();
+			foreach (var arg in args)
+			{
+				line.AppendFormat("<{0}> {1}; ", arg.Key, arg.Value);
+			}
+			return line.ToString();
+		}
 
-			StringBuilder context = new StringBuilder();
-			context.Append(formula.LeftParameter);
-			context.Append(formula.Sign.ToOperationString());
-			context.Append(formula.RightParameter);
-			context.Append(SignOfCompare.Equal.ToSignOfCompareString());
-			context.Append(formula.Answer);
+		#region Calculate
 
-			log.Debug(context.ToString());
+		/// <summary>
+		/// 計算式日誌處理
+		/// </summary>
+		private static readonly IList<Common.Logging.ILog> CalculateLoggings = new List<Common.Logging.ILog>() { Common.Logging.LogManager.GetLogger("Calculate") };
+
+		private const string CalculateEventContextItemName = "Formula";
+
+		/// <summary>
+		/// 日誌處理：計算式作成處理
+		/// </summary>
+		/// <param name="formula">计算式</param>
+		public static void LogCalculate(Formula formula)
+		{
+			LogDebug(
+				CalculateLoggings,
+				() =>
+					{
+						var dump = new StringBuilder();
+						dump.Append(formula.LeftParameter);
+						dump.Append(formula.Sign.ToOperationString());
+						dump.Append(formula.RightParameter);
+						dump.Append(SignOfCompare.Equal.ToSignOfCompareString());
+						dump.Append(formula.Answer);
+
+						var context = new LogContext("Formula");
+						context.Properties.Add(CalculateEventContextItemName, dump);
+						return context;
+					});
+		}
+
+		#endregion Calculate
+
+		#region Debug
+
+		internal const string DebugDumpEventContextItemName = "Dump";
+
+		/// <summary>
+		/// 調試日誌輸出
+		/// </summary>
+		private static readonly IList<Common.Logging.ILog> DebugLoggings = new List<Common.Logging.ILog> { LogManager.GetLogger("Debug") };
+
+		/// <summary>
+		/// 日誌輸出
+		/// </summary>
+		/// <param name="message">日誌信息</param>
+		public static void LogDebug(string message)
+		{
+			LogDebug(DebugLoggings,
+				() =>
+				{
+					var context = new LogContext(message);
+					return context;
+				},
+				null);
 		}
 
 		/// <summary>
-		/// 日誌處理：計算式作成處理結束
+		/// 日誌輸出
 		/// </summary>
-		/// <param name="identifier">識別ID</param>
-		public static void LogEndFormulaList(string identifier)
+		/// <param name="message">日誌信息</param>
+		/// <param name="args">參數</param>
+		public static void LogDebug(string message, Dictionary<string, string> args)
 		{
-			var log = Log.LogReady(typeof(OperationBase));
-
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0035L, identifier));
+			LogDebug(DebugLoggings,
+				() =>
+				{
+					var context = new LogContext(message);
+					if (args != null)
+					{
+						context.Properties.Add(DebugDumpEventContextItemName, BuildArguments(args));
+					}
+					return context;
+				},
+				null);
 		}
+
+		/// <summary>
+		/// 日誌輸出
+		/// </summary>
+		/// <param name="message">日誌信息</param>
+		/// <param name="exception">異常對象</param>
+		/// <param name="args">參數</param>
+		public static void LogDebug(string message, Exception exception, Dictionary<string, string> args)
+		{
+			LogDebug(DebugLoggings,
+				() =>
+				{
+					var context = new LogContext(message);
+					if (args != null)
+					{
+						context.Properties.Add(DebugDumpEventContextItemName, BuildArguments(args));
+					}
+					return context;
+				},
+				exception);
+		}
+
+		#endregion Debug
+
+		#region Error
+
+		/// <summary>
+		/// 日誌輸出
+		/// </summary>
+		/// <param name="message">日誌信息</param>
+		/// <param name="exception">異常對象</param>
+		public static void LogError(string message, Exception exception)
+		{
+			Log log = (Log)Log.Instance;
+			log.Output(message, MessageLevel.Error, exception);
+		}
+
+		#endregion Error
 	}
 }

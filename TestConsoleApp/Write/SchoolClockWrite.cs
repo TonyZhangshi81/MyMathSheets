@@ -14,15 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class SchoolClockWrite : IConsoleWrite<List<SchoolClockFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(SchoolClockWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<SchoolClockFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "時鐘學習板"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "時鐘學習板"));
 
 			formulas.ToList().ForEach(d =>
 			{

@@ -13,15 +13,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class CurrencyLinkageWrite : IConsoleWrite<CurrencyLinkageFormula>
 	{
-		private static Log log = Log.LogReady(typeof(EqualityLinkageWrite));
-
 		/// <summary>
 		/// 題型结果显示输出
 		/// </summary>
 		/// <param name="currencys">價格</param>
 		public void ConsoleFormulas(CurrencyLinkageFormula currencys)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "認識價格"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "認識價格"));
 
 			int index = 0;
 			currencys.LeftCurrencys.ToList().ForEach(d =>

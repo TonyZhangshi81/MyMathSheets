@@ -13,8 +13,10 @@ namespace MyMathSheets.CommonLib.Main.Item
 		/// <summary>
 		/// 時間段類型
 		/// </summary>
-		public TimeIntervalType TimeInterval {
-			get {
+		public TimeIntervalType TimeInterval
+		{
+			get
+			{
 				if (!Hours.HasValue)
 				{
 					throw new ArgumentNullException(MessageUtil.GetException(() => MsgResources.E0025L));
@@ -24,12 +26,14 @@ namespace MyMathSheets.CommonLib.Main.Item
 				{
 					case 0:
 						return TimeIntervalType.Midnight;
+
 					case 1:
 					case 2:
 					case 3:
 					case 4:
 					case 5:
 						return TimeIntervalType.WeeHours;
+
 					case 6:
 					case 7:
 					case 8:
@@ -37,8 +41,10 @@ namespace MyMathSheets.CommonLib.Main.Item
 					case 10:
 					case 11:
 						return TimeIntervalType.Forenoon;
+
 					case 12:
 						return TimeIntervalType.Nooning;
+
 					case 13:
 					case 14:
 					case 15:
@@ -46,13 +52,16 @@ namespace MyMathSheets.CommonLib.Main.Item
 					case 17:
 					case 18:
 						return TimeIntervalType.Afternoon;
+
 					case 19:
 					case 20:
 					case 21:
 						return TimeIntervalType.Night;
+
 					case 22:
 					case 23:
 						return TimeIntervalType.LateNight;
+
 					default:
 						throw new ArgumentNullException(MessageUtil.GetException(() => MsgResources.E0026L, Hours.Value.ToString()));
 				}
@@ -84,14 +93,17 @@ namespace MyMathSheets.CommonLib.Main.Item
 				}
 			}
 		}
+
 		/// <summary>
 		/// 小時數
 		/// </summary>
 		public int? Hours { get; set; }
+
 		/// <summary>
 		/// 分鐘數
 		/// </summary>
 		public int? Minutes { get; set; }
+
 		/// <summary>
 		/// 秒數
 		/// </summary>

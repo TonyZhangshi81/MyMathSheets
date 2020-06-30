@@ -15,15 +15,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class LearnLengthUnitWrite : IConsoleWrite<List<LearnLengthUnitFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(LearnLengthUnitWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<LearnLengthUnitFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "認識長度單位"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "認識長度單位"));
 
 			formulas.ToList().ForEach(d =>
 			{
@@ -88,6 +86,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 					case LengthUnitTransform.C2MDExt:
 						format.AppendFormat("({0})釐米 = ({1})米({2})分米({3})釐米  填空項目:{4}", d.LengthUnitItme.Centimeter, d.LengthUnitItme.Meter, d.LengthUnitItme.Decimetre, d.RemainderCentimeter, (d.Gap == GapFilling.Left) ? "釐米" : "米,分米,釐米");
 						break;
+
 					default:
 						break;
 

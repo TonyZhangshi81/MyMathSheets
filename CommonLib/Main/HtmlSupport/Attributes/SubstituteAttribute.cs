@@ -13,10 +13,12 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport.Attributes
 		/// 注入點
 		/// </summary>
 		private readonly SubstituteType _source;
+
 		/// <summary>
 		/// 注入信息
 		/// </summary>
 		private readonly string _target;
+
 		/// <summary>
 		/// 取得注入點
 		/// </summary>
@@ -24,6 +26,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport.Attributes
 		{
 			get { return _source; }
 		}
+
 		/// <summary>
 		/// 獲取注入信息
 		/// </summary>
@@ -31,6 +34,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport.Attributes
 		{
 			get { return _target; }
 		}
+
 		/// <summary>
 		/// 自定義HTML內容注入屬性構造函數
 		/// </summary>
@@ -52,6 +56,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport.Attributes
 		/// 注入點
 		/// </summary>
 		public SubstituteType Souce { get; set; }
+
 		/// <summary>
 		/// 取得注入點
 		/// </summary>

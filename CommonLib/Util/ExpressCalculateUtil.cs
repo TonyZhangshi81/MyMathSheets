@@ -50,7 +50,7 @@ namespace MyMathSheets.CommonLib.Util
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="express">表達式</param>
 		/// <param name="result">計算式結果</param>

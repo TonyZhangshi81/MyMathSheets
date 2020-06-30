@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.EqualityLinkage = MathSheets.EqualityLinkage || (function () {
-
     // DIV畫線點坐標列表
     var _arrDivPoints = new Array();
     // DIV連線狀態列表
@@ -97,7 +95,6 @@ MathSheets.EqualityLinkage = MathSheets.EqualityLinkage || (function () {
                     ? $(div.name).click(function () { _btnDivStartClick(this); })
                     : $(div.name).click(function () { _btnDivEndClick(this); });
             });
-
         },
 
         // 畫線區域初期化

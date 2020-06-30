@@ -11,6 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Item
 		/// 自然數列表
 		/// </summary>
 		public List<int> NumberList { get; set; }
+
 		/// <summary>
 		/// 隨機項目編號(填空項目)
 		/// </summary>

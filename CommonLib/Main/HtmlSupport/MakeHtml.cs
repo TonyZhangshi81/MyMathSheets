@@ -16,12 +16,11 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 	[Export(typeof(IMakeHtml))]
 	public class MakeHtml : IMakeHtml
 	{
-		private static Log log = Log.LogReady(typeof(MakeHtml));
-
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		private HtmlSupprtHelper _supprtHelper;
+
 		/// <summary>
 		/// 用於HTML支援類實例取得的HEPLER類
 		/// </summary>
@@ -35,12 +34,12 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <returns>模板替換內容</returns>
 		public Dictionary<SubstituteType, string> GetHtmlStatement<T>(LayoutSetting.Preview preview, T formulas) where T : ParameterBase
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0012L, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0012L, preview.ToString()));
 
 			// 指定题型大分类获得相应的题型HTML处理对象（实例）
 			IHtmlSupport support = SupprtHelper.CreateHtmlSupportInstance(preview);
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0013L, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0013L, preview.ToString()));
 
 			return support.Make(formulas);
 		}

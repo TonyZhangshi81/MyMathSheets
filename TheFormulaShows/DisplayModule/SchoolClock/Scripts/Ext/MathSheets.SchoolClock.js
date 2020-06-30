@@ -3,7 +3,6 @@
 var MathSheets = MathSheets || {};
 
 MathSheets.SchoolClock = MathSheets.SchoolClock || (function () {
-
 	// 打印設置
 	printSetting = function () {
 		$("input[id*='inputClock']").each(function (index, element) {

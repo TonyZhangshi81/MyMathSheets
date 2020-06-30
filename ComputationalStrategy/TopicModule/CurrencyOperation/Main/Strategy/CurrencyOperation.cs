@@ -131,6 +131,5 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			}
 			return false;
 		}
-
 	}
 }

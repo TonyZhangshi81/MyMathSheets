@@ -1,7 +1,6 @@
 ﻿var MathSheets = MathSheets || {};
 
 MathSheets.LearnCurrency = MathSheets.LearnCurrency || (function () {
-
 	// 打印設置
 	printSetting = function () {
 		$("input[id*='inputLc']").each(function (index, element) {

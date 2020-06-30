@@ -27,20 +27,25 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 		/// 標題HTML模板
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
+
 		/// <summary>
 		/// 輸入項目HTML模板
 		/// </summary>
 		private const string INPUT_HTML_FORMAT = "<input id=\"inputTc{0}{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+
 		private const string INPUT_HTML_ON_SCRIPT_FORMAT = "<input id=\"inputTc{0}{1}\" type=\"text\" placeholder=\"{2}\" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" onFocus=\"MathSheets.TimeCalculation.inputOnFocus(this);\" onBlur=\"MathSheets.TimeCalculation.inputOnBlur(this);\" />";
 		private const string SPAN_COLON_HTML = "<span class=\"label\">:</span>";
+
 		/// <summary>
 		/// 時間HTML模板(數字)
 		/// </summary>
 		private const string SPAN_TIME_NUM_HTML_FORMAT = "<span class=\"label p-2\">{0}</span>";
+
 		/// <summary>
 		/// 時間HTML模板(單位)
 		/// </summary>
 		private const string SPAN_TIME_CN_HTML_FORMAT = "<span class=\"label p-2\">{0}{1}</span>";
+
 		/// <summary>
 		/// 題型答案
 		/// </summary>
@@ -76,7 +81,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 				rowHtml.AppendLine(GetElapsedTimeHtml(item.ElapsedTime, item.Gap, item.Sign, controlIndex));
 				// 結果時間計算式
 				rowHtml.AppendLine(GetEndTimeHtml(item.EndTime, item.Gap, controlIndex));
-				
+
 				// 閉合
 				rowHtml.AppendLine("</h5>");
 				// 對錯結果圖示

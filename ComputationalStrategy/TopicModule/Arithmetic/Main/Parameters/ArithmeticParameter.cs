@@ -1,5 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Item;
@@ -18,10 +17,12 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters
 		/// 四則運算作成并輸出
 		/// </summary>
 		public IList<ArithmeticFormula> Formulas { get; set; }
+
 		/// <summary>
 		/// 智能提示
 		/// </summary>
 		public HelperDialogue BrainpowerHint { get; set; }
+
 		/// <summary>
 		/// 等式值是不是出現在右邊
 		/// </summary>

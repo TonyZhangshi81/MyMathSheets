@@ -15,15 +15,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class ComputingConnectionWrite : IConsoleWrite<List<ConnectionFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(ComputingConnectionWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<ConnectionFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "等式接龍"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "等式接龍"));
 
 			StringBuilder builder = new StringBuilder();
 			formulas.ToList().ForEach(d =>

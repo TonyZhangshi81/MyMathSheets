@@ -14,15 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class EqualityFormulaWrite : IConsoleWrite<List<EqualityFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(EqualityFormulaWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<EqualityFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "運算比大小"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "運算比大小"));
 
 			formulas.ToList().ForEach(d =>
 			{
@@ -36,6 +34,5 @@ namespace MyMathSheets.TestConsoleApp.Write
 					d.RightFormula.RightParameter));
 			});
 		}
-
 	}
 }

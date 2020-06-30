@@ -1,7 +1,7 @@
 ﻿namespace MyMathSheets.MathWordProblemsConsoleApp.Ext
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public interface ISpireExt
 	{
@@ -12,7 +12,7 @@
 		void Load(string fileName);
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="cellName"></param>
 		string GetRangeText(string cellName);

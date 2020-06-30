@@ -15,10 +15,12 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters
 		/// 算式連一連作成并輸出
 		/// </summary>
 		public EqualityLinkageFormula Formulas { get; set; }
+
 		/// <summary>
 		/// 是否為縱向排列(0:橫向 1:縱向)
 		/// </summary>
 		public DivQueueType QueueType { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

@@ -14,15 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class MathUprightWrite : IConsoleWrite<List<MathUprightFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(MathUprightWrite));
-
 		/// <summary>
 		/// 計算式結果顯示輸出
 		/// </summary>
 		/// <param name="formulas">豎式計算題型計算式</param>
 		public void ConsoleFormulas(List<MathUprightFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "豎式計算"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "豎式計算"));
 
 			formulas.ToList().ForEach(d =>
 			{

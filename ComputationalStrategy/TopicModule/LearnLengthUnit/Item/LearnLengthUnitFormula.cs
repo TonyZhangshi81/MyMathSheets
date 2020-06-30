@@ -12,18 +12,22 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Item
 		/// 長度單位
 		/// </summary>
 		public LengthUnit LengthUnitItme { get; set; }
+
 		/// <summary>
 		/// 填空項目種類(左邊或者右邊為填空項目)
 		/// </summary>
 		public GapFilling Gap { get; set; }
+
 		/// <summary>
 		/// 剩下的毫米
 		/// </summary>
 		public int? RemainderMillimeter { get; set; }
+
 		/// <summary>
 		/// 剩下的釐米
 		/// </summary>
 		public int? RemainderCentimeter { get; set; }
+
 		/// <summary>
 		/// 剩下的分米
 		/// </summary>

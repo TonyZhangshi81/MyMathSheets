@@ -2,30 +2,30 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<link rel="icon" href="../Content/image/favicon.ico">
-	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
-	<link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
-	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
-	<link href="../Content/ScoreGoal.css" rel="stylesheet" type="text/css" />
-	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
-	<script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
-	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
-	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
-	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
-	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
-	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
-	<script src="../Scripts/snap/snap.svg-min.js"></script>
-	<script src="../Scripts/jquery.rating-stars.min.js"></script>
-	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
-	<script src="../Scripts/Ext/MathSheets.ScoreGoal.js" charset="utf-8"></script>
-	<title>題庫</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../Content/image/favicon.ico">
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/ScoreGoal.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+    <script src="../Scripts/umd/popper.js" charset="utf-8"></script>
+    <script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
+    <script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
+    <script src="../Scripts/json2.min.js" charset="utf-8"></script>
+    <script src="../Scripts/snap/snap.svg-min.js"></script>
+    <script src="../Scripts/jquery.rating-stars.min.js"></script>
+    <script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
+    <script src="../Scripts/Ext/MathSheets.ScoreGoal.js" charset="utf-8"></script>
+    <title>題庫</title>
 
-	<script>
+    <script>
 		// 打印
 		function btnPrintClick() {
 
@@ -71,158 +71,157 @@
 			// 計時停止（答題結果設定）
 			MathSheets.Common.timeStop('spanSS', 'spanMM', 'spanHH');
 		}
-	</script>
+    </script>
 </head>
 <body>
-	<div class="container theme-showcase main-ext" role="main">
-		<div class="jumbotron-ext">
-			<div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
-			<div class="div-famousPeople">
-				<h6>
-					<span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
-					<br />
-					<span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
-					<br />
-					<span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
-				</h6>
-			</div>
-			<hr class="hr-Ext" />
-			<div class="text-info-ext">
-				前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
-				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
-				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
-			</div>
-			<div class="plugin-butterfly">
-				<iframe frameborder="0" scrolling="no" src="../Plugin/butterfly.html" width="320" height="250"></iframe>
-			</div>
-		</div>
-		<div id="divPrintContent">
-			<br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">射門得分</span></h4></div><hr /><input id="hidBallsArray" type="hidden" value="0,0,1,1,1,0" /><div class="easyui-panel easyui-panel-ScoreGoal-ext">
-				<div id="divBall0" class="divBall" style="position: absolute; left: 170px; top: 90px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Volleyball.png" width=40 height=40 data-toggle="tooltip" title="30-13">
-					<input id="divBall0Input" type="hidden" />
-					<input id="divBall0Result" type="hidden" value="ERROR" />
-				</div>
-				<div id="divBall1" class="divBall" style="position: absolute; left: 80px; top: 75px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Golf.png" width=40 height=40 data-toggle="tooltip" title="9+8">
-					<input id="divBall1Input" type="hidden" />
-					<input id="divBall1Result" type="hidden" value="ERROR" />
-				</div>
-				<div id="divBall2" class="divBall" style="position: absolute; left: 70px; top: 175px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Football.png" width=40 height=40 data-toggle="tooltip" title="24-17">
-					<input id="divBall2Input" type="hidden" />
-					<input id="divBall2Result" type="hidden" value="ERROR" />
-				</div>
-				<div id="divBall3" class="divBall" style="position: absolute; left: 140px; top: 230px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Tennis.png" width=40 height=40 data-toggle="tooltip" title="29-22">
-					<input id="divBall3Input" type="hidden" />
-					<input id="divBall3Result" type="hidden" value="ERROR" />
-				</div>
-				<div id="divBall4" class="divBall" style="position: absolute; left: 5px; top: 180px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/BeachBall.png" width=40 height=40 data-toggle="tooltip" title="1+6">
-					<input id="divBall4Input" type="hidden" />
-					<input id="divBall4Result" type="hidden" value="ERROR" />
-				</div>
-				<div id="divBall5" class="divBall" style="position: absolute; left: 130px; top: 35px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
-					<img src="../Content/image/sport/Ball.png" width=40 height=40 data-toggle="tooltip" title="16+1">
-					<input id="divBall5Input" type="hidden" />
-					<input id="divBall5Result" type="hidden" value="ERROR" />
-				</div>
+    <div class="container theme-showcase main-ext" role="main">
+        <div class="jumbotron-ext">
+            <div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
+            <div class="div-famousPeople">
+                <h6>
+                    <span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+                    <br />
+                    <span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+                    <br />
+                    <span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+                </h6>
+            </div>
+            <hr class="hr-Ext" />
+            <div class="text-info-ext">
+                前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+                <span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
+                <span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
+            </div>
+            <div class="plugin-butterfly">
+                <iframe frameborder="0" scrolling="no" src="../Plugin/butterfly.html" width="320" height="250"></iframe>
+            </div>
+        </div>
+        <div id="divPrintContent">
+            <br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">射門得分</span></h4></div><hr /><input id="hidBallsArray" type="hidden" value="0,0,1,1,1,0" /><div class="easyui-panel easyui-panel-ScoreGoal-ext">
+                <div id="divBall0" class="divBall" style="position: absolute; left: 170px; top: 90px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+                    <img src="../Content/image/sport/Volleyball.png" width=40 height=40 data-toggle="tooltip" title="30-13">
+                    <input id="divBall0Input" type="hidden" />
+                    <input id="divBall0Result" type="hidden" value="ERROR" />
+                </div>
+                <div id="divBall1" class="divBall" style="position: absolute; left: 80px; top: 75px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+                    <img src="../Content/image/sport/Golf.png" width=40 height=40 data-toggle="tooltip" title="9+8">
+                    <input id="divBall1Input" type="hidden" />
+                    <input id="divBall1Result" type="hidden" value="ERROR" />
+                </div>
+                <div id="divBall2" class="divBall" style="position: absolute; left: 70px; top: 175px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+                    <img src="../Content/image/sport/Football.png" width=40 height=40 data-toggle="tooltip" title="24-17">
+                    <input id="divBall2Input" type="hidden" />
+                    <input id="divBall2Result" type="hidden" value="ERROR" />
+                </div>
+                <div id="divBall3" class="divBall" style="position: absolute; left: 140px; top: 230px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+                    <img src="../Content/image/sport/Tennis.png" width=40 height=40 data-toggle="tooltip" title="29-22">
+                    <input id="divBall3Input" type="hidden" />
+                    <input id="divBall3Result" type="hidden" value="ERROR" />
+                </div>
+                <div id="divBall4" class="divBall" style="position: absolute; left: 5px; top: 180px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+                    <img src="../Content/image/sport/BeachBall.png" width=40 height=40 data-toggle="tooltip" title="1+6">
+                    <input id="divBall4Input" type="hidden" />
+                    <input id="divBall4Result" type="hidden" value="ERROR" />
+                </div>
+                <div id="divBall5" class="divBall" style="position: absolute; left: 130px; top: 35px;" data-options="onDrag:MathSheets.ScoreGoal.onDrag, onStopDrag:MathSheets.ScoreGoal.onStopDrag">
+                    <img src="../Content/image/sport/Ball.png" width=40 height=40 data-toggle="tooltip" title="16+1">
+                    <input id="divBall5Input" type="hidden" />
+                    <input id="divBall5Result" type="hidden" value="ERROR" />
+                </div>
 
-				<div id="divGoaler0" class="divGoaler divGoaler0">
-					<h5>
-						<span class="label">12+5</span>
-						<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;">
-					</h5>
-				</div>
-				<div id="divScore0" class="divScore divScore0">
-					<h2><span id="spanHomeScore"></span></h2>
-				</div>
-				<div id="divScore1" class="divScore divScore1">
-					<h2>
-						<span>:</span>
-					</h2>
-				</div>
-				<div id="divScore2" class="divScore divScore2">
-					<h2><span id="spanAwayScore"></span></h2>
-				</div>
-				<div id="divGoaler1" class="divGoaler divGoaler1">
-					<h5>
-						<span class="label">4+3</span>
-						<img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;">
-					</h5>
-				</div>
-				<div class="divScoreGoalResultImg">
-					<img id="imgOKScoreGoal" src="../Content/image/correct.png" style="width: 60px; height: 60px; display: none; " />
-					<img id="imgNoScoreGoal" src="../Content/image/fault.png" style="width: 60px; height: 60px; display: none; " />
-				</div>
-
-			</div>
-		</div>
-		<HR>
-		<div class="row">
-			<div class="col-md-12 col-md-offset-3">
-				<p class="text-center">
-					<button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
-					<button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
-					<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
-					<button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
-					<button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
-				</p>
-			</div>
-		</div>
-		<div class="page-header">
-			<div class="row text-center row-margin-top">
-				<div class="col-md-2">
-					<h4> 練習情況</h4>
-				</div>
-				<div class="col-md-9">
-					<div class="rating-stars block" id="more-rating" style="display: none;">
-						<input type="hidden" id="hidPracticeScore" value="0" class="rating-value" />
-						<div class="rating-stars-container">
-							<div class="rating-star">
-								<i class="fa fa-star"> </i>
-							</div>
-							<div class="rating-star">
-								<i class="fa fa-star"> </i>
-							</div>
-							<div class="rating-star">
-								<i class="fa fa-star"> </i>
-							</div>
-							<div class="rating-star">
-								<i class="fa fa-star"> </i>
-							</div>
-							<div class="rating-star">
-								<i class="fa fa-star"> </i>
-							</div>
-							<div class="rating-star">
-								<i class="fa fa-star"> </i>
-							</div>
-							<div class="rating-star">
-								<i class="fa fa-star"> </i>
-							</div>
-							<div class="rating-star">
-								<i class="fa fa-star"> </i>
-							</div>
-							<div class="rating-star">
-								<i class="fa fa-star"> </i>
-							</div>
-							<div class="rating-star">
-								<i class="fa fa-star"> </i>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="well">
-			<p>
-				做題用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
-				<br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
-				<br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
-			</p>
-		</div>
-	</div>
-	<a href="javascript:" class="totop"></a>
+                <div id="divGoaler0" class="divGoaler divGoaler0">
+                    <h5>
+                        <span class="label">12+5</span>
+                        <img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;">
+                    </h5>
+                </div>
+                <div id="divScore0" class="divScore divScore0">
+                    <h2><span id="spanHomeScore"></span></h2>
+                </div>
+                <div id="divScore1" class="divScore divScore1">
+                    <h2>
+                        <span>:</span>
+                    </h2>
+                </div>
+                <div id="divScore2" class="divScore divScore2">
+                    <h2><span id="spanAwayScore"></span></h2>
+                </div>
+                <div id="divGoaler1" class="divGoaler divGoaler1">
+                    <h5>
+                        <span class="label">4+3</span>
+                        <img src="../Content/image/sport/goalkeeper.png" width=200 height=100 style="margin-top:15px;">
+                    </h5>
+                </div>
+                <div class="divScoreGoalResultImg">
+                    <img id="imgOKScoreGoal" src="../Content/image/correct.png" style="width: 60px; height: 60px; display: none; " />
+                    <img id="imgNoScoreGoal" src="../Content/image/fault.png" style="width: 60px; height: 60px; display: none; " />
+                </div>
+            </div>
+        </div>
+        <HR>
+        <div class="row">
+            <div class="col-md-12 col-md-offset-3">
+                <p class="text-center">
+                    <button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
+                    <button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
+                    <button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
+                    <button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
+                    <button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
+                </p>
+            </div>
+        </div>
+        <div class="page-header">
+            <div class="row text-center row-margin-top">
+                <div class="col-md-2">
+                    <h4> 練習情況</h4>
+                </div>
+                <div class="col-md-9">
+                    <div class="rating-stars block" id="more-rating" style="display: none;">
+                        <input type="hidden" id="hidPracticeScore" value="0" class="rating-value" />
+                        <div class="rating-stars-container">
+                            <div class="rating-star">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="well">
+            <p>
+                做題用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+                <br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
+                <br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
+            </p>
+        </div>
+    </div>
+    <a href="javascript:" class="totop"></a>
 </body>
 </html>

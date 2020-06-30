@@ -17,10 +17,12 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters
 		/// 填空題作成并輸出
 		/// </summary>
 		public IList<GapFillingProblemsFormula> Formulas { get; set; }
+
 		/// <summary>
 		/// 基礎填空題型參數設置（級別選擇）
 		/// </summary>
 		public int[] Levels { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

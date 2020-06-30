@@ -2,8 +2,8 @@
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Item;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
 {

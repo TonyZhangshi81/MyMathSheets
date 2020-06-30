@@ -12,6 +12,7 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Item
 		/// 计算式集合
 		/// </summary>
 		public IList<Formula> ConfixFormulas { get; set; }
+
 		/// <summary>
 		/// 等式接龙的层数
 		/// </summary>

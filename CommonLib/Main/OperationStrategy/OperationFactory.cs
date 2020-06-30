@@ -18,12 +18,11 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 	[Export(typeof(IOperationFactory))]
 	public class OperationFactory : IOperationFactory
 	{
-		private static readonly Log log = Log.LogReady(typeof(OperationFactory));
-
 		/// <summary>
 		/// 以防止重複注入（減少損耗）
 		/// </summary>
 		private bool _composed = false;
+
 		/// <summary>
 		/// 運算符檢索用的composer
 		/// </summary>
@@ -92,7 +91,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 					throw new OperationNotFoundException(MessageUtil.GetException(() => MsgResources.E0018L, preview.ToString()));
 				}
 
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0003L));
+				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0003L));
 
 				// 運算符處理類型返回
 				return operations.First().Value.GetType();
@@ -122,14 +121,14 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 				// 指定的題型參數對象未找到
 				throw new OperationNotFoundException(MessageUtil.GetException(() => MsgResources.E0019L, preview.ToString()));
 			}
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004L));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004L));
 
 			ParameterBase parameter = parameters.First().Value;
 			parameter.Identifier = key;
 			// 參數初期化處理（依據Provider配置）
 			parameter.InitParameter();
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0005L, parameter.Identifier));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0005L, parameter.Identifier));
 
 			return parameter;
 		}

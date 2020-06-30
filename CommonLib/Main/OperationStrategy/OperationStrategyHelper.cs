@@ -1,10 +1,9 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
-using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public class OperationStrategyHelper
 	{
@@ -19,15 +18,14 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		private static readonly object locker = new object();
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		private OperationHelper _helper;
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		protected OperationHelper Helper => _helper ?? (_helper = new OperationHelper());
-
 
 		/// <summary>
 		/// 定義私有構造函數，使外界不能創建該類實例

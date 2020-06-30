@@ -23,8 +23,10 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 
 		// 左側計算式集合
 		private IList<Formula> _leftFormulas;
+
 		// 右側計算式集合
 		private IList<Formula> _rightFormulas;
+
 		// 各計算式編號的集合
 		private IList<int> _seats;
 
@@ -175,7 +177,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="seats"></param>
 		/// <returns></returns>

@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.EqualityComparison = MathSheets.EqualityComparison || (function () {
-
 	// 關係運算符的切換
 	_imgEqualityClick = function (element) {
 		if ($(element).attr("title") == 'help') {

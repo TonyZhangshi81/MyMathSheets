@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.NumericSorting = MathSheets.NumericSorting || (function () {
-
 		// 答题验证(正确:true  错误:false)
 		_NumericSortingCorrecting = function (pindex, pelement) {
 			var inputAry = new Array();

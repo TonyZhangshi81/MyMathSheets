@@ -1,5 +1,4 @@
-﻿using MyMathSheets.CommonLib.OperationStrategy;
-using MyMathSheets.CommonLib.Provider;
+﻿using MyMathSheets.CommonLib.Provider;
 using System;
 using System.ComponentModel.Composition;
 
@@ -13,7 +12,7 @@ namespace MyMathSheets.CommonLib.Main.Provider
 	public class ParameterProviderAttribute : ExportAttribute, IParameterProviderMetaDataView
 	{
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		public ParameterProviderAttribute(string name) : base(typeof(OperationParameterProvider))
 		{

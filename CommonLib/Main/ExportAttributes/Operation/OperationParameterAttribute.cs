@@ -19,6 +19,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		{
 			Layout = layout;
 		}
+
 		/// <summary>
 		/// 題型種類
 		/// </summary>

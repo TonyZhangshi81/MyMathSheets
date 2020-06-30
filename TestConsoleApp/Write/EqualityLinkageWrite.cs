@@ -14,15 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class EqualityLinkageWrite : IConsoleWrite<EqualityLinkageFormula>
 	{
-		private static Log log = Log.LogReady(typeof(EqualityLinkageWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(EqualityLinkageFormula formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "算式連一連"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "算式連一連"));
 
 			int index = 0;
 			formulas.LeftFormulas.ToList().ForEach(d =>

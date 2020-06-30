@@ -14,8 +14,6 @@ namespace MyMathSheets.TestConsoleApp
 	/// </summary>
 	public class FormulasConsolerFactory
 	{
-		private static readonly Log log = Log.LogReady(typeof(FormulasConsolerFactory));
-
 		/// <summary>
 		/// 輸出類注入配置文件所在路徑
 		/// </summary>
@@ -67,7 +65,7 @@ namespace MyMathSheets.TestConsoleApp
 		/// <summary>
 		/// spring對象工廠
 		/// </summary>
-		IObjectFactory _objectFactory;
+		private IObjectFactory _objectFactory;
 
 		/// <summary>
 		/// spring對象工廠實例作成
@@ -82,15 +80,15 @@ namespace MyMathSheets.TestConsoleApp
 				IResource input = new FileSystemResource(CONSOLE_FORMULAS_XML_RESOURCE_NAME);
 				_objectFactory = new XmlObjectFactory(input);
 
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0001T));
+				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0001T));
 			}
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0002T, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0002T, preview.ToString()));
 
 			// 創建對象實例并返回
 			IConsoleWrite<T> writer = _objectFactory.GetObject(preview.ToString()) as IConsoleWrite<T>;
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0003T, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0003T, preview.ToString()));
 
 			return writer;
 		}

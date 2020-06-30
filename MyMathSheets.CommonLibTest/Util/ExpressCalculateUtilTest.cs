@@ -105,7 +105,6 @@ namespace MyMathSheets.CommonLib.Util.Test
 			Assert.IsTrue(calc.IsResult("40+5", out result01));
 			Assert.AreEqual(45, result01);
 
-
 			express = calc.SplitExpress("40/5");
 			list = calc.InorderToPostorder(express);
 			Assert.IsTrue(calc.IsResult(list, out decimal result02));
@@ -113,7 +112,6 @@ namespace MyMathSheets.CommonLib.Util.Test
 
 			Assert.IsTrue(calc.IsResult("40/5", out result02));
 			Assert.AreEqual(8, result02);
-
 
 			express = calc.SplitExpress("40*5");
 			list = calc.InorderToPostorder(express);
@@ -123,7 +121,6 @@ namespace MyMathSheets.CommonLib.Util.Test
 			Assert.IsTrue(calc.IsResult("40*5", out result03));
 			Assert.AreEqual(200, result03);
 
-
 			express = calc.SplitExpress("40-5");
 			list = calc.InorderToPostorder(express);
 			Assert.IsTrue(calc.IsResult(list, out decimal result04));
@@ -131,7 +128,6 @@ namespace MyMathSheets.CommonLib.Util.Test
 
 			Assert.IsTrue(calc.IsResult("40-5", out result04));
 			Assert.AreEqual(35, result04);
-
 		}
 
 		/// <summary>

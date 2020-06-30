@@ -36,7 +36,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 			// 讀取出題資料庫
 			GetAllProblemsFromResource(p.Levels);
 			// 題庫為空的情況
-			if(_allProblems.Count == 0)
+			if (_allProblems.Count == 0)
 			{
 				return;
 			}
@@ -44,7 +44,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 			// 按照指定數量作成相應的數學計算式
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
-				if(_allProblems.Count == 0)
+				if (_allProblems.Count == 0)
 				{
 					break;
 				}

@@ -33,8 +33,6 @@ namespace MyMathSheets.TestConsoleApp
 	/// </summary>
 	public class ProgramBase
 	{
-		private static Log log = Log.LogReady(typeof(ProgramBase));
-
 		/// <summary>
 		/// 啟動時所使用的函數
 		/// </summary>
@@ -65,7 +63,6 @@ namespace MyMathSheets.TestConsoleApp
 			MathUprightParameter muParameter = null;
 
 			bool isShowMenu = !(args.Length > 0);
-
 			while (1 == 1)
 			{
 				if (isShowMenu)
@@ -261,9 +258,8 @@ namespace MyMathSheets.TestConsoleApp
 			}
 		}
 
-
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		protected ProgramBase()
 		{
@@ -271,7 +267,7 @@ namespace MyMathSheets.TestConsoleApp
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
@@ -279,12 +275,11 @@ namespace MyMathSheets.TestConsoleApp
 		{
 			var exception = (Exception)e.ExceptionObject;
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.E0001T), exception);
+			LogUtil.LogError(MessageUtil.GetException(() => MsgResources.E0001T), exception);
 
 			Console.WriteLine(exception.Message);
 			Console.ReadKey();
 			Environment.Exit(-1);
 		}
 	}
-
 }

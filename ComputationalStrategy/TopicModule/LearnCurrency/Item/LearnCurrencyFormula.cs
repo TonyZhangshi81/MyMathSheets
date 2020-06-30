@@ -12,6 +12,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Item
 		/// 貨幣單位
 		/// </summary>
 		public Currency CurrencyUnit { get; set; }
+
 		/// <summary>
 		/// 填空項目種類(左邊或者右邊為填空項目)
 		/// </summary>
@@ -21,6 +22,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Item
 		/// 剩下的角
 		/// </summary>
 		public int? RemainderJiao { get; set; }
+
 		/// <summary>
 		/// 剩下的角
 		/// </summary>

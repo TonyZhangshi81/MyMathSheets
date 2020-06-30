@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
-
 	// DIV畫線點坐標列表
 	var _arrCurrencyDivPoints = new Array();
 	// DIV連線狀態列表
@@ -97,7 +95,6 @@ MathSheets.CurrencyLinkage = MathSheets.CurrencyLinkage || (function () {
 					? $(div.name).click(function () { MathSheets.CurrencyLinkage.btnDivStartClick(this); })
 					: $(div.name).click(function () { MathSheets.CurrencyLinkage.btnDivEndClick(this); });
 			});
-
 		},
 
 		// 畫線區域初期化

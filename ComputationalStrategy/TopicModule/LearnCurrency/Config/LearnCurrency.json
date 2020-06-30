@@ -1,51 +1,51 @@
 [
-	{
-		"Identifier": "LC001",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 10,
-		"QuestionType": 1,
-		"Reserve": "{\"Type\" : '0,1'}"
-	},
-	{
-		"Identifier": "LC002",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 10,
-		"QuestionType": 1,
-		"Reserve": "{\"Type\" : '2,3'}"
-	},
-	{
-		"Identifier": "LC003",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 10,
-		"QuestionType": 1,
-		"Reserve": "{\"Type\" : '5,6'}"
-	},
-	{
-		"Identifier": "LC004",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 15,
-		"QuestionType": 2,
-		"Reserve": "{\"Type\" : '0,1,2,3,5,6'}"
-	},
-	{
-		"Identifier": "LC005",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 10,
-		"QuestionType": 2,
-		"Reserve": "{\"Type\" : '4,7'}"
-	},
-	{
-		"Identifier": "LC006",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 10,
-		"QuestionType": 2,
-		"Reserve": "{\"Type\" : '4,7,8,9'}"
-	},
-	{
-		"Identifier": "LC007",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 10,
-		"QuestionType": 1,
-		"Reserve": "{\"Type\" : '0,1,2,3,5,6'}"
-	}
+  {
+    "Identifier": "LC001",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 10,
+    "QuestionType": 1,
+    "Reserve": "{\"Type\" : '0,1'}"
+  },
+  {
+    "Identifier": "LC002",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 10,
+    "QuestionType": 1,
+    "Reserve": "{\"Type\" : '2,3'}"
+  },
+  {
+    "Identifier": "LC003",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 10,
+    "QuestionType": 1,
+    "Reserve": "{\"Type\" : '5,6'}"
+  },
+  {
+    "Identifier": "LC004",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 15,
+    "QuestionType": 2,
+    "Reserve": "{\"Type\" : '0,1,2,3,5,6'}"
+  },
+  {
+    "Identifier": "LC005",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 10,
+    "QuestionType": 2,
+    "Reserve": "{\"Type\" : '4,7'}"
+  },
+  {
+    "Identifier": "LC006",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 10,
+    "QuestionType": 2,
+    "Reserve": "{\"Type\" : '4,7,8,9'}"
+  },
+  {
+    "Identifier": "LC007",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 10,
+    "QuestionType": 1,
+    "Reserve": "{\"Type\" : '0,1,2,3,5,6'}"
+  }
 ]

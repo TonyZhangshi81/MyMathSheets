@@ -1,22 +1,22 @@
 [
-	{
-		"Identifier": "FTL01",
-		"NumberOfQuestions": 4,
-		"Reserve": "{\"Type\" : '0,1,7'}"
-	},
-	{
-		"Identifier": "FTL02",
-		"NumberOfQuestions": 6,
-		"Reserve": "{\"Type\" : '0,1,2,3,4,7'}"
-	},
-	{
-		"Identifier": "FTL03",
-		"NumberOfQuestions": 8,
-		"Reserve": "{\"Type\" : '2,3,4,5,6'}"
-	},
-	{
-		"Identifier": "FTL04",
-		"NumberOfQuestions": 10,
-		"Reserve": "{\"Type\" : '0,1,2,3,4,5,6'}"
-	}
+  {
+    "Identifier": "FTL01",
+    "NumberOfQuestions": 4,
+    "Reserve": "{\"Type\" : '0,1,7'}"
+  },
+  {
+    "Identifier": "FTL02",
+    "NumberOfQuestions": 6,
+    "Reserve": "{\"Type\" : '0,1,2,3,4,7'}"
+  },
+  {
+    "Identifier": "FTL03",
+    "NumberOfQuestions": 8,
+    "Reserve": "{\"Type\" : '2,3,4,5,6'}"
+  },
+  {
+    "Identifier": "FTL04",
+    "NumberOfQuestions": 10,
+    "Reserve": "{\"Type\" : '0,1,2,3,4,5,6'}"
+  }
 ]

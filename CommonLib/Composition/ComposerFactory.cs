@@ -23,11 +23,6 @@ namespace MyMathSheets.CommonLib.Composition
 	public static class ComposerFactory
 	{
 		/// <summary>
-		/// 日誌對象作成
-		/// </summary>
-		private static readonly Log log = Log.LogReady(typeof(ComposerFactory));
-
-		/// <summary>
 		/// 模塊加載委託
 		/// </summary>
 		/// <param name="current">當前加載對象計數</param>
@@ -39,11 +34,11 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <param name="modelCount">預加載對象合計數</param>
 		public delegate void SearchModelEventHandler(int modelCount);
 
-
 		/// <summary>
 		/// 模塊加載事件
 		/// </summary>
 		public static event ModelLoadEventHandler ModelLoadEvent;
+
 		/// <summary>
 		/// 模塊信息檢索事件
 		/// </summary>
@@ -52,28 +47,30 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <summary>
 		/// 文件名檢索用關鍵字
 		/// </summary>
-		const string SEARCH_PATTERN = "MyMathSheets.*.dll";
+		private const string SEARCH_PATTERN = "MyMathSheets.*.dll";
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		private static Assembly TempAssembly;
 
 		/// <summary>
 		/// 以程序集為單位的組合器<see cref="Composer"/>緩存
 		/// </summary>
-		private static ConcurrentDictionary<string, Composer> ComposerCache;
+		private static readonly ConcurrentDictionary<string, Composer> ComposerCache;
+
 		/// <summary>
 		/// 以系統模塊為單位<see cref="SystemModel"/>的組合器緩存
 		/// </summary>
 		internal static readonly ConcurrentDictionary<string, MathSheetMarkerAttribute> SystemModelInfoCache;
+
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		private static readonly List<FileInfo> LoadTopicModuleFiles;
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		static ComposerFactory()
 		{
@@ -101,14 +98,14 @@ namespace MyMathSheets.CommonLib.Composition
 			var action = new Action<FileInfo>(file =>
 			{
 				var assembly = Assembly.LoadFile(file.FullName);
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0028L, file.FullName));
+				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0028L, file.FullName));
 
 				MathSheetMarkerAttribute attr = assembly.GetCustomAttributes(typeof(MathSheetMarkerAttribute), false)
 					.Cast<MathSheetMarkerAttribute>()
 					.FirstOrDefault();
 				if (attr == null)
 				{
-					log.Debug(MessageUtil.GetException(() => MsgResources.E0027L, file.FullName));
+					LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.E0027L, file.FullName));
 					throw new Exception();
 				}
 				var valueFunc = new Func<string, Composer>(c =>
@@ -127,7 +124,7 @@ namespace MyMathSheets.CommonLib.Composition
 				string composerKey = (attr.Preview == LayoutSetting.Preview.Null) ? attr.SystemId.ToString() : string.Format("{0}::{1}", attr.SystemId, attr.Preview);
 
 				ComposerCache.GetOrAdd(composerKey, valueFunc);
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0029L, composerKey));
+				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0029L, composerKey));
 
 				// （為確保模塊的完成性，規定同一個題型必須具備策略模塊和展示模塊）
 				if (checkCache.Any(d => d == attr.Preview))
@@ -144,18 +141,18 @@ namespace MyMathSheets.CommonLib.Composition
 				}
 			});
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0031L));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0031L));
 
 			// 模塊信息事件傳播
 			SearchModelEvent?.Invoke(LoadTopicModuleFiles.Count);
 
 			LoadTopicModuleFiles.ForEach(f => action(f));
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0030L, LoadTopicModuleFiles.Count));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0030L, LoadTopicModuleFiles.Count));
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="systemId"></param>
 		/// <param name="preview"></param>
@@ -184,7 +181,7 @@ namespace MyMathSheets.CommonLib.Composition
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="systemId"></param>
 		/// <param name="preview"></param>
@@ -240,6 +237,5 @@ namespace MyMathSheets.CommonLib.Composition
 				yield return new DirectoryCatalog(path, fi.Name);
 			}
 		}
-
 	}
 }

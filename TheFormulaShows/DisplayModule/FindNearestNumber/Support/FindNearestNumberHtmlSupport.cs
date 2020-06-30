@@ -103,10 +103,8 @@ namespace MyMathSheets.TheFormulaShows.FindNearestNumber.Support
 			return html.ToString();
 		}
 
-
-
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="parameter"></param>

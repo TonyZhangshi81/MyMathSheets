@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
-using System;
 using System.Collections.Generic;
 
 namespace MyMathSheets.CommonLib.Main.HtmlSupport

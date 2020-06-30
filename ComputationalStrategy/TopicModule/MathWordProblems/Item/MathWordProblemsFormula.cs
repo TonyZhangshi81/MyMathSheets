@@ -12,10 +12,12 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Item
 		/// 應用題文字內容
 		/// </summary>
 		public string MathWordProblem { get; set; }
+
 		/// <summary>
 		/// 標準計算式
 		/// </summary>
 		public List<string> Answers { get; set; }
+
 		/// <summary>
 		/// 單位Verify
 		/// </summary>

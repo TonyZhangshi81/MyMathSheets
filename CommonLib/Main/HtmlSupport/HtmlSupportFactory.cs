@@ -18,12 +18,11 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 	[Export(typeof(IHtmlSupportFactory))]
 	public class HtmlSupportFactory : IHtmlSupportFactory
 	{
-		private static Log log = Log.LogReady(typeof(HtmlSupportFactory));
-
 		/// <summary>
 		/// 以防止重複注入（減少損耗）
 		/// </summary>
 		private bool _composed = false;
+
 		/// <summary>
 		/// HTML支援類檢索用的composer
 		/// </summary>
@@ -86,12 +85,12 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 
 				// 取得指定類型下的支援類類型參數
 				IEnumerable<Lazy<HtmlSupportBase, IHtmlSupportMetaDataView>> supports = Supports.Where(d => d.Metadata.Layout == preview);
-				if(supports.Count() == 0)
+				if (supports.Count() == 0)
 				{
 					throw new HtmlSupportNotFoundException(MessageUtil.GetException(() => MsgResources.E0021L, preview.ToString()));
 				}
 
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0008L));
+				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0008L));
 
 				return supports.First().Value;
 			});

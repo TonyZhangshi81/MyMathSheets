@@ -6,12 +6,12 @@ using System.Text;
 namespace MyMathSheets.MathWordProblemsConsoleApp.Util
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public static class JsonExtension
 	{
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="obj"></param>
@@ -43,7 +43,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Util
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="jsonString"></param>
@@ -66,7 +66,6 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Util
 			{
 				return default(T);
 			}
-
 		}
 	}
 }

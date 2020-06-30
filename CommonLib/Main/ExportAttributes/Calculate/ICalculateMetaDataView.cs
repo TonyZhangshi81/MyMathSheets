@@ -1,9 +1,4 @@
 ﻿using MyMathSheets.CommonLib.Util;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MyMathSheets.CommonLib.Main.Arithmetic
 {

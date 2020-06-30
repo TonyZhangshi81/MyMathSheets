@@ -15,6 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters
 		/// 尋找最近的數字作成并輸出
 		/// </summary>
 		public IList<NearestNumberFormula> Formulas { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

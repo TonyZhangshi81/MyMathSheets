@@ -3,12 +3,12 @@
 namespace MyMathSheets.TestConsoleApp
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public static class CommonUtil
 	{
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="parameter"></param>
@@ -20,7 +20,7 @@ namespace MyMathSheets.TestConsoleApp
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="parameter"></param>

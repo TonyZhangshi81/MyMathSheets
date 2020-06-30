@@ -10,7 +10,7 @@ namespace MyMathSheets.CommonLib.Provider
 	public class FormOperationParameterProvider : OperationParameterProvider
 	{
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="identifier"></param>
 		public override ParameterBase Initialize(string identifier)

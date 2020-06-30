@@ -14,15 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class FindTheLawFormulaWrite : IConsoleWrite<List<FindTheLawFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(FindTheLawFormulaWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">找規律题型计算式</param>
 		public void ConsoleFormulas(List<FindTheLawFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "找規律"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "找規律"));
 
 			StringBuilder builder = new StringBuilder();
 			formulas.ToList().ForEach(d =>

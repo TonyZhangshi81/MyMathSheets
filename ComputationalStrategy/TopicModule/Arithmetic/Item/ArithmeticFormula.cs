@@ -11,8 +11,9 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Item
 		/// 默認情況計算式有解
 		/// </summary>
 		public Formula Arithmetic { get; set; }
+
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		public bool AnswerIsRight { get; set; }
 	}

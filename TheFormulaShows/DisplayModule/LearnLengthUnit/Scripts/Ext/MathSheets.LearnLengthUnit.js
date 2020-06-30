@@ -1,7 +1,6 @@
 ﻿var MathSheets = MathSheets || {};
 
 MathSheets.LearnLengthUnit = MathSheets.LearnLengthUnit || (function () {
-
 	// 打印設置
 	printSetting = function () {
 		$("input[id*='inputLlu']").each(function (index, element) {

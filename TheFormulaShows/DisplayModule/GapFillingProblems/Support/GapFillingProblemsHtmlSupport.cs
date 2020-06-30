@@ -8,7 +8,6 @@ using MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters;
 using System;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 {
@@ -28,26 +27,32 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 		/// 標題HTML模板
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
+
 		/// <summary>
 		/// 輸入框HTML模板
 		/// </summary>
 		private const string INPUT1_HTML_FORMAT = "<input id=\"inputGfp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" />";
+
 		/// <summary>
 		/// 輸入框HTML模板（計算式輸入框（200px））
 		/// </summary>
 		private const string INPUT3_HTML_FORMAT = "<input id=\"inputGfp{0}{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-7\" disabled=\"disabled\" />";
+
 		/// <summary>
 		/// 文字表示HTML模板
 		/// </summary>
 		private const string LABEL_HTML_FORMAT = "<span class=\"label\">{0}</span>";
+
 		/// <summary>
 		/// 答題答案HTML模板
 		/// </summary>
 		private const string ANSWER_HIDDEN_HTML_FORMAT = "<input id=\"hiddenGfpAnswer{0}\" type=\"hidden\" value=\"{1}\" />";
+
 		/// <summary>
 		/// 圖片表示HTML模板
 		/// </summary>
 		private const string IMAGE_HTML_FORMAT = "<img id=\"imgGfp{0}{1}\" src=\"../Content/image/fill/{2}.png\" />";
+
 		/// <summary>
 		/// 換行HTML模板
 		/// </summary>
@@ -95,6 +100,7 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 						answer.AppendFormat("{0};", Base64.EncodeBase64(item.Answers[answerIndex]));
 						answerIndex++;
 						break;
+
 					case "IPT5":
 						// 答題輸入框
 						rowHtml.AppendLine(string.Format(INPUT3_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), chindControlIndex));
@@ -102,11 +108,13 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 						answer.AppendFormat("{0};", Base64.EncodeBase64(item.Answers[answerIndex]));
 						answerIndex++;
 						break;
+
 					case "IMG1":
 						// 圖形內容
 						rowHtml.AppendLine(string.Format(IMAGE_HTML_FORMAT, parentControlIndex.ToString().PadLeft(2, '0'), chindControlIndex, item.Parameters[parameterIndex]));
 						parameterIndex++;
 						break;
+
 					case "LFBR":
 						// 添加換行
 						rowHtml.AppendLine(BR_HTML);
@@ -118,7 +126,6 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 
 				chindControlIndex++;
 			});
-
 		}
 
 		/// <summary>

@@ -2,33 +2,33 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<link rel="icon" href="../Content/favicon.ico">
-	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
-	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
-	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
-	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
-	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
-	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
-	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
-	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
-	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
-	<!--ARITHMETICSCRIPT-->
-	<!--EQUALITYCOMPARISONSCRIPT-->
-	<!--COMPUTINGCONNECTIONSCRIPT-->
-	<!--MATHWORDPROBLEMSSCRIPT-->
-	<!--FRUITSLINKAGESCRIPT-->
-	<!--FINDNEARESTNUMBERSCRIPT-->
-	<!--COMBINATORIALEQUATIONSCRIPT-->
-	<!--SCOREGOALSCRIPT-->
-	<script src="../Scripts/Ext/MathSheets.HowMuchMore.js" charset="utf-8"></script>
-	<title>題庫</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../Content/favicon.ico">
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+    <script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+    <script src="../Scripts/umd/popper.js" charset="utf-8"></script>
+    <script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
+    <script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
+    <script src="../Scripts/json2.min.js" charset="utf-8"></script>
+    <script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
+    <!--ARITHMETICSCRIPT-->
+    <!--EQUALITYCOMPARISONSCRIPT-->
+    <!--COMPUTINGCONNECTIONSCRIPT-->
+    <!--MATHWORDPROBLEMSSCRIPT-->
+    <!--FRUITSLINKAGESCRIPT-->
+    <!--FINDNEARESTNUMBERSCRIPT-->
+    <!--COMBINATORIALEQUATIONSCRIPT-->
+    <!--SCOREGOALSCRIPT-->
+    <script src="../Scripts/Ext/MathSheets.HowMuchMore.js" charset="utf-8"></script>
+    <title>題庫</title>
 
-	<script>
+    <script>
 		// 頁面啟動后加載
 		$(document).ready(function () {
 			// 準備
@@ -156,237 +156,228 @@
 			// 計時停止（答題結果設定）
 			MathSheets.Common.timeStop('spanSS', 'spanMM', 'spanHH');
 		}
-	</script>
+    </script>
 </head>
 <body>
-	<div class="container theme-showcase main-ext" role="main">
-		<div class="jumbotron-ext">
-			<div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
-			<div class="div-famousPeople">
-				<h6>
-					<span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
-					<br />
-					<span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
-					<br />
-					<span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
-				</h6>
-			</div>
-			<hr class="hr-Ext" />
-			<div class="text-info-ext">
-				前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
-				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
-				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
-			</div>
-		</div>
-		<div id="divPrintContent">
-		<!--ARITHMETIC-->
-		<!--EQUALITYCOMPARISON-->
-		<!--COMPUTINGCONNECTION-->
-		<!--MATHWORDPROBLEMS-->
-		<!--FRUITSLINKAGE-->
-		<!--FINDNEARESTNUMBER-->
-		<!--COMBINATORIALEQUATION-->
-		<!--SCOREGOAL-->
-		<br/><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">比多少</span></h4></div><hr />
-<input type="hidden" id="hidImgHmmHelpArray" value="Square,Fish,Like,Circle" />
-<div class="row text-center row-margin-top">
-<div class="col-md-6 form-inline">
-<ul class="list-group list-group-ext">
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/more/Square.png" width="30" height="30" />
-<span>比</span>
-<img src="../Content/image/more/Like.png" width="30" height="30" />
-<span>多</span>
-<span>1個</span>
+    <div class="container theme-showcase main-ext" role="main">
+        <div class="jumbotron-ext">
+            <div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
+            <div class="div-famousPeople">
+                <h6>
+                    <span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+                    <br />
+                    <span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+                    <br />
+                    <span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+                </h6>
+            </div>
+            <hr class="hr-Ext" />
+            <div class="text-info-ext">
+                前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+                <span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
+                <span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
+            </div>
+        </div>
+        <div id="divPrintContent">
+            <!--ARITHMETIC-->
+            <!--EQUALITYCOMPARISON-->
+            <!--COMPUTINGCONNECTION-->
+            <!--MATHWORDPROBLEMS-->
+            <!--FRUITSLINKAGE-->
+            <!--FINDNEARESTNUMBER-->
+            <!--COMBINATORIALEQUATION-->
+            <!--SCOREGOAL-->
+            <br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">比多少</span></h4></div><hr />
+            <input type="hidden" id="hidImgHmmHelpArray" value="Square,Fish,Like,Circle" />
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <ul class="list-group list-group-ext">
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/more/Square.png" width="30" height="30" />
+                                <span>比</span>
+                                <img src="../Content/image/more/Like.png" width="30" height="30" />
+                                <span>多</span>
+                                <span>1個</span>
 
-<img id="imgOKHmm0" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
-<img id="imgNoHmm0" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
-</h4>
-</li>
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/more/Like.png" width="30" height="30" />
-<img src="../Content/image/more/Like.png" width="30" height="30" />
-<img src="../Content/image/more/Like.png" width="30" height="30" />
+                                <img id="imgOKHmm0" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
+                                <img id="imgNoHmm0" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
+                            </h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/more/Like.png" width="30" height="30" />
+                                <img src="../Content/image/more/Like.png" width="30" height="30" />
+                                <img src="../Content/image/more/Like.png" width="30" height="30" />
+                            </h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/help.png" id="imgHmmHelp00" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp01" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp02" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp03" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp04" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp05" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp06" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp07" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp08" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp09" width="30" height="30" title="help" />
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+                <input type="hidden" id="hidHmmAnswer0" value="4" />
+                <div class="col-md-6 form-inline">
+                    <ul class="list-group list-group-ext">
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <span>比</span>
+                                <img src="../Content/image/more/Square.png" width="30" height="30" />
+                                <span>少</span>
+                                <span>3個</span>
 
-</h4>
-</li>
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/help.png" id="imgHmmHelp00" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp01" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp02" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp03" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp04" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp05" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp06" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp07" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp08" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp09" width="30" height="30" title="help" />
+                                <img id="imgOKHmm1" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
+                                <img id="imgNoHmm1" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
+                            </h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/more/Square.png" width="30" height="30" />
+                                <img src="../Content/image/more/Square.png" width="30" height="30" />
+                                <img src="../Content/image/more/Square.png" width="30" height="30" />
+                                <img src="../Content/image/more/Square.png" width="30" height="30" />
+                                <img src="../Content/image/more/Square.png" width="30" height="30" />
+                                <img src="../Content/image/more/Square.png" width="30" height="30" />
+                                <img src="../Content/image/more/Square.png" width="30" height="30" />
+                            </h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/help.png" id="imgHmmHelp10" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp11" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp12" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp13" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp14" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp15" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp16" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp17" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp18" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp19" width="30" height="30" title="help" />
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+                <input type="hidden" id="hidHmmAnswer1" value="4" />
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <ul class="list-group list-group-ext">
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <span>比</span>
+                                <img src="../Content/image/more/Like.png" width="30" height="30" />
+                                <span>少</span>
+                                <span>3個</span>
 
-</h4>
-</li>
-</ul>
-</div>
-<input type="hidden" id="hidHmmAnswer0" value="4" />
-<div class="col-md-6 form-inline">
-<ul class="list-group list-group-ext">
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<span>比</span>
-<img src="../Content/image/more/Square.png" width="30" height="30" />
-<span>少</span>
-<span>3個</span>
+                                <img id="imgOKHmm2" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
+                                <img id="imgNoHmm2" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
+                            </h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                            </h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/help.png" id="imgHmmHelp20" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp21" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp22" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp23" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp24" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp25" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp26" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp27" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp28" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp29" width="30" height="30" title="help" />
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+                <input type="hidden" id="hidHmmAnswer2" value="5" />
+                <div class="col-md-6 form-inline">
+                    <ul class="list-group list-group-ext">
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/more/Circle.png" width="30" height="30" />
+                                <span>比</span>
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <span>少</span>
+                                <span>8個</span>
 
-<img id="imgOKHmm1" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
-<img id="imgNoHmm1" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
-</h4>
-</li>
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/more/Square.png" width="30" height="30" />
-<img src="../Content/image/more/Square.png" width="30" height="30" />
-<img src="../Content/image/more/Square.png" width="30" height="30" />
-<img src="../Content/image/more/Square.png" width="30" height="30" />
-<img src="../Content/image/more/Square.png" width="30" height="30" />
-<img src="../Content/image/more/Square.png" width="30" height="30" />
-<img src="../Content/image/more/Square.png" width="30" height="30" />
-
-</h4>
-</li>
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/help.png" id="imgHmmHelp10" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp11" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp12" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp13" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp14" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp15" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp16" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp17" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp18" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp19" width="30" height="30" title="help" />
-
-</h4>
-</li>
-</ul>
-</div>
-<input type="hidden" id="hidHmmAnswer1" value="4" />
-</div>
-<div class="row text-center row-margin-top">
-<div class="col-md-6 form-inline">
-<ul class="list-group list-group-ext">
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<span>比</span>
-<img src="../Content/image/more/Like.png" width="30" height="30" />
-<span>少</span>
-<span>3個</span>
-
-<img id="imgOKHmm2" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
-<img id="imgNoHmm2" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
-</h4>
-</li>
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-
-</h4>
-</li>
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/help.png" id="imgHmmHelp20" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp21" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp22" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp23" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp24" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp25" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp26" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp27" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp28" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp29" width="30" height="30" title="help" />
-
-</h4>
-</li>
-</ul>
-</div>
-<input type="hidden" id="hidHmmAnswer2" value="5" />
-<div class="col-md-6 form-inline">
-<ul class="list-group list-group-ext">
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/more/Circle.png" width="30" height="30" />
-<span>比</span>
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<span>少</span>
-<span>8個</span>
-
-<img id="imgOKHmm3" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
-<img id="imgNoHmm3" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
-</h4>
-</li>
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-<img src="../Content/image/more/Fish.png" width="30" height="30" />
-
-</h4>
-</li>
-<li class="list-group-item">
-<h4>
-<img src="../Content/image/help.png" id="imgHmmHelp30" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp31" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp32" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp33" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp34" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp35" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp36" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp37" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp38" width="30" height="30" title="help" />
-<img src="../Content/image/help.png" id="imgHmmHelp39" width="30" height="30" title="help" />
-
-</h4>
-</li>
-</ul>
-</div>
-<input type="hidden" id="hidHmmAnswer3" value="1" />
-</div>
-
-		</div>
-		<HR>
-		<div class="row">
-			<div class="col-md-12 col-md-offset-3">
-				<p class="text-center">
-					<button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
-					<button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
-					<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
-					<button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
-					<button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
-				</p>
-			</div>
-		</div>
-		<div class="page-header">
-			<h4>練習情況</h4>
-		</div>
-		<div class="well">
-			<p>
-				做題用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
-				<br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
-				<br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
-			</p>
-		</div>
-	</div>
-	<a href="javascript:" class="totop"></a>
+                                <img id="imgOKHmm3" src="../Content/image/correct.png" style="width: 30px; height: 30px; display: none; " />
+                                <img id="imgNoHmm3" src="../Content/image/fault.png" style="width: 30px; height: 30px; display: none; " />
+                            </h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                                <img src="../Content/image/more/Fish.png" width="30" height="30" />
+                            </h4>
+                        </li>
+                        <li class="list-group-item">
+                            <h4>
+                                <img src="../Content/image/help.png" id="imgHmmHelp30" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp31" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp32" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp33" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp34" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp35" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp36" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp37" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp38" width="30" height="30" title="help" />
+                                <img src="../Content/image/help.png" id="imgHmmHelp39" width="30" height="30" title="help" />
+                            </h4>
+                        </li>
+                    </ul>
+                </div>
+                <input type="hidden" id="hidHmmAnswer3" value="1" />
+            </div>
+        </div>
+        <HR>
+        <div class="row">
+            <div class="col-md-12 col-md-offset-3">
+                <p class="text-center">
+                    <button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
+                    <button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
+                    <button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
+                    <button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
+                    <button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
+                </p>
+            </div>
+        </div>
+        <div class="page-header">
+            <h4>練習情況</h4>
+        </div>
+        <div class="well">
+            <p>
+                做題用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+                <br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
+                <br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
+            </p>
+        </div>
+    </div>
+    <a href="javascript:" class="totop"></a>
 </body>
 </html>

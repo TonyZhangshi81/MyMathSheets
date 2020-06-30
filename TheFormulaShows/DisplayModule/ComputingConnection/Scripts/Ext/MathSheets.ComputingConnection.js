@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.ComputingConnection = MathSheets.ComputingConnection || (function () {
-
 	// 答题验证(正确:true  错误:false)
 	_computingConnectionCorrecting = function (pIndex, element) {
 		var isErr = false;

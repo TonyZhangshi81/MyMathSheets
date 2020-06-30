@@ -52,7 +52,7 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 					ParameterC = formula.RightParameter,
 					ParameterD = invalidParameter
 				});
-				if(formula.Sign == SignOfOperation.Plus)
+				if (formula.Sign == SignOfOperation.Plus)
 				{
 					// 加法算式組合序列
 					p.Formulas.Last().CombinatorialFormulas = new List<Formula>() {
@@ -62,7 +62,7 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 						new Formula(){ LeftParameter =  formula.Answer, RightParameter = formula.RightParameter, Answer = formula.LeftParameter, Gap = GapFilling.Default, Sign = SignOfOperation.Subtraction }
 					};
 				}
-				else if(formula.Sign == SignOfOperation.Subtraction)
+				else if (formula.Sign == SignOfOperation.Subtraction)
 				{
 					// 減法算式組合序列
 					p.Formulas.Last().CombinatorialFormulas = new List<Formula>() {
@@ -135,7 +135,7 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 				// 隨機數中選取無效參數
 				var parameter = CommonUtil.GetRandomNumber(1, 9);
 				// 無效參數不能出現在計算式中
-				if (parameter != formula.LeftParameter && parameter != formula.RightParameter && parameter != formula.Answer 
+				if (parameter != formula.LeftParameter && parameter != formula.RightParameter && parameter != formula.Answer
 					&& IsInvalidParameter(formula, parameter))
 				{
 					isFind = true;
@@ -204,7 +204,7 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 			}
 
 			// 情況3
-			if(parameterA == parameterB || parameterB == parameterC || parameterA == parameterC)
+			if (parameterA == parameterB || parameterB == parameterC || parameterA == parameterC)
 			{
 				return true;
 			}

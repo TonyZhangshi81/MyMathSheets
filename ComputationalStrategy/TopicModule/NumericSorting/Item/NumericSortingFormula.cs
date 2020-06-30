@@ -12,10 +12,12 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Item
 		/// 排序數列
 		/// </summary>
 		public List<int> NumberList { get; set; }
+
 		/// <summary>
 		/// 答案數列
 		/// </summary>
 		public List<int> AnswerList { get; set; }
+
 		/// <summary>
 		/// 大於小於符號
 		/// </summary>

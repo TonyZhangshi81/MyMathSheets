@@ -19,6 +19,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
 		/// </summary>
 		private const int INVERSE_NUMBER = 3;
+
 		/// <summary>
 		/// 應用題庫文件所在路徑
 		/// </summary>

@@ -15,6 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters
 		/// 豎式計算作成并輸出
 		/// </summary>
 		public IList<MathUprightFormula> Formulas { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

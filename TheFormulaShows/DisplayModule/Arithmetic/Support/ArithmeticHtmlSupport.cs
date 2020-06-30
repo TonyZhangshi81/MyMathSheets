@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
@@ -27,26 +26,32 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		/// 標題HTML模板
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
+
 		/// <summary>
 		/// 等號HTML模板
 		/// </summary>
 		private const string EQUALTO_HTML_FORMAT = "<span class=\"label\">{0}</span>";
+
 		/// <summary>
 		/// LABEL標籤HTML模板
 		/// </summary>
 		private const string LABEL_HTML_FORMAT = "<span class=\"label\">{0}</span>";
+
 		/// <summary>
 		/// 答題提示JS事件註冊模板
 		/// </summary>
 		private const string DIALOGUE_JS_HTML_FORMAT = "onFocus=\"MathSheets.Arithmetic.inputOnFocus(this, {0});\"";
+
 		/// <summary>
 		/// 答題提示項目HTML模板
 		/// </summary>
 		private const string DIALOGUE_CONTENT_HTML_FORMAT = "<input id=\"hiddenAcTony\" type=\"hidden\" value=\"{0}\"/>";
+
 		/// <summary>
 		/// 答題結果項目HTML模板
 		/// </summary>
 		private const string ANSWER_HTML_FORMAT = "<input id=\"hiddenAc{0}\" type=\"hidden\" value=\"{1}\"/>";
+
 		/// <summary>
 		/// 輸入項目HTML模板
 		/// </summary>
@@ -56,6 +61,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		/// 智能提示
 		/// </summary>
 		private HelperDialogue BrainpowerHint { get; set; }
+
 		private int _brainpowerIndex;
 
 		/// <summary>
@@ -105,8 +111,8 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 					// 是否運用多級四則運算
 					//if (item.MultistageArithmetic is null)
 					//{
-						// 第一級計算式右側的值
-						colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
+					// 第一級計算式右側的值
+					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
 					//}
 					//else
 					//{
@@ -144,8 +150,8 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 					// 是否運用多級四則運算
 					//if (item.MultistageArithmetic is null)
 					//{
-						// 第一級計算式右側的值
-						colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
+					// 第一級計算式右側的值
+					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
 					//}
 					//else
 					//{
@@ -235,7 +241,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 			StringBuilder html = new StringBuilder();
 			if (item == gap)
 			{
-				if(BrainpowerHint.FormulaIndex.Count > _brainpowerIndex && BrainpowerHint.FormulaIndex[_brainpowerIndex] == index)
+				if (BrainpowerHint.FormulaIndex.Count > _brainpowerIndex && BrainpowerHint.FormulaIndex[_brainpowerIndex] == index)
 				{
 					html.AppendFormat(INPUT_HTML_FORMAT, index.ToString().PadLeft(2, '0'), string.Format(DIALOGUE_JS_HTML_FORMAT, _brainpowerIndex++));
 				}

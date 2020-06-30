@@ -16,6 +16,7 @@ namespace MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters
 		/// 比多少作成并輸出
 		/// </summary>
 		public IList<HowMuchMoreFormula> Formulas { get; set; }
+
 		/// <summary>
 		/// 智能提示
 		/// </summary>

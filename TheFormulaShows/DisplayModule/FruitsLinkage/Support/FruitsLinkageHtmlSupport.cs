@@ -31,10 +31,12 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 		/// 水果序號列表
 		/// </summary>
 		private readonly List<Fruits> FruitsArray;
+
 		/// <summary>
 		/// 可拖動水果的初期坐標集合
 		/// </summary>
 		private readonly List<Coordinate> CoordinateArray;
+
 		/// <summary>
 		/// 構造體
 		/// </summary>
@@ -75,6 +77,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 			FruitsArray = FruitsArray.OrderBy(x => Guid.NewGuid()).ToList();
 			CoordinateArray = CoordinateArray.OrderBy(x => Guid.NewGuid()).ToList();
 		}
+
 		/// <summary>
 		/// 放置範圍上下限值設定
 		/// </summary>
@@ -170,11 +173,12 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 	public sealed class Coordinate
 	{
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		public int Left { get; set; }
+
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		public int Top { get; set; }
 	}

@@ -1,10 +1,9 @@
-﻿using MyMathSheets.CommonLib.Util;
-using MyMathSheets.CommonLib.Main.Item;
+﻿using MyMathSheets.CommonLib.Main.Item;
 
 namespace MyMathSheets.CommonLib.Main.Arithmetic
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public interface ICalculate
 	{

@@ -1,7 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Item;
-using System;
 
 namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters
 {
@@ -15,6 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters
 		/// 水果連連看作成并輸出
 		/// </summary>
 		public FruitsLinkageFormula Formulas { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

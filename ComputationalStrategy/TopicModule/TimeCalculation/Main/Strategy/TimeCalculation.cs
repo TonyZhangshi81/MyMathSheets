@@ -162,6 +162,5 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 			}
 			return false;
 		}
-
 	}
 }

@@ -1,14 +1,14 @@
 [
-	{
-		"Identifier": "NS001",
-		"MaximumLimit": 40,
-		"NumberOfQuestions": 4,
-		"Reserve": "{\"Numbers\" : 8}"
-	},
-	{
-		"Identifier": "NS002",
-		"MaximumLimit": 50,
-		"NumberOfQuestions": 4,
-		"Reserve": "{\"Numbers\" : 8}"
-	}
+  {
+    "Identifier": "NS001",
+    "MaximumLimit": 40,
+    "NumberOfQuestions": 4,
+    "Reserve": "{\"Numbers\" : 8}"
+  },
+  {
+    "Identifier": "NS002",
+    "MaximumLimit": 50,
+    "NumberOfQuestions": 4,
+    "Reserve": "{\"Numbers\" : 8}"
+  }
 ]

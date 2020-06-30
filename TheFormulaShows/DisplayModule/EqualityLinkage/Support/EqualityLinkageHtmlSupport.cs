@@ -32,6 +32,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// 左側計算式坐標列表（限定5個坐標）
 		/// </summary>
 		private readonly Dictionary<DivQueueType, List<string>> LeftFormulasArray;
+
 		/// <summary>
 		/// 右側計算式坐標列表（限定5個坐標）
 		/// </summary>
@@ -87,7 +88,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="parameter"></param>
 		/// <returns></returns>
@@ -122,30 +123,37 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// 線型HTML模板
 		/// </summary>
 		private const string LINE_HTML_FORMAT = "<line id=\"line{0}\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"0\" stroke=\"#ff006e\" stroke-width=\"1\" />";
+
 		/// <summary>
 		/// 起始點（結束點）DIV的HTML模板
 		/// </summary>
 		private const string DIVDRAWLINE_HTML_FORMAT = "<div class=\"divDrawLine\" style=\"{0}\" id=\"div{1}{2}\">{3}</div>";
+
 		/// <summary>
 		/// 算式HTML模板
 		/// </summary>
 		private const string FORMULA_HTML_FORMAT = "<span class=\"label\">{0} {1} {2}</span>";
+
 		/// <summary>
 		/// 算式圖標HTML
 		/// </summary>
 		private const string IMAGE_FORMULA_HTML = "<img src=\"../Content/image/project/Calculator.png\" width=\"16\" height=\"16\" />";
+
 		/// <summary>
 		/// 選擇控件HTML模板
 		/// </summary>
 		private const string CHECKBOX_HTML_FORMAT = "<input type=\"checkbox\" id=\"chkdiv{0}{1}\" style=\"display: none;\" />";
+
 		/// <summary>
 		/// 起始點（結束點）DIV的線型名稱模板
 		/// </summary>
 		private const string DIV_LINE_HTML_FORMAT = "<input type=\"hidden\" value=\"line{0}\" />";
+
 		/// <summary>
 		/// 初期化參數HTML模板
 		/// </summary>
 		private const string INIT_SETTINGS_HTML_FORMAT = "<input type = \"hidden\" id=\"hidInitSettings\" value=\"{0}\" />";
+
 		/// <summary>
 		/// 題型答案HTML模板
 		/// </summary>
@@ -192,6 +200,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// 答案列表
 		/// </summary>
 		private StringBuilder _answerString { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>
@@ -206,7 +215,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		{
 			StringBuilder html = new StringBuilder();
 
-			if(p.QueueType == DivQueueType.Lengthways)
+			if (p.QueueType == DivQueueType.Lengthways)
 			{
 				int divLastLastIndex = p.Formulas.RightFormulas.Count - 1;
 				_hidInitSettings.AppendFormat("#div00S,#div00E,#div{0}E,{1},#svg01", divLastLastIndex.ToString().PadLeft(2, '0'), (int)p.QueueType);

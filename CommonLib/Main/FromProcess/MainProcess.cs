@@ -24,15 +24,13 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 	[Export(typeof(IMainProcess))]
 	public class MainProcess : IMainProcess
 	{
-		private static Log log = Log.LogReady(typeof(MainProcess));
-
 		/// <summary>
 		/// 替換資源
 		/// </summary>
-		private Dictionary<string, Dictionary<SubstituteType, string>> _htmlMaps = new Dictionary<string, Dictionary<SubstituteType, string>>();
+		private readonly Dictionary<string, Dictionary<SubstituteType, string>> _htmlMaps = new Dictionary<string, Dictionary<SubstituteType, string>>();
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		[Import(typeof(IMakeHtml))]
 		public IMakeHtml MakeHtml { get; set; }
@@ -41,6 +39,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 題型預覽列表
 		/// </summary>
 		private List<LayoutSetting.Preview> _layoutSettingPreviewList;
+
 		/// <summary>
 		/// 題型預覽列表
 		/// </summary>
@@ -89,20 +88,28 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 
 		/// <summary>題型參數</summary>
 		private List<TopicManagement> TopicManagementList { get; set; }
+
 		/// <summary>樣式庫引用注入點</summary>
 		private StringBuilder Stylesheet { get; set; }
+
 		/// <summary>腳本引用注入</summary>
 		private StringBuilder Script { get; set; }
+
 		/// <summary>打印前設置事件注入</summary>
 		private StringBuilder PrintSettingEvent { get; set; }
+
 		/// <summary>打印后設置事件注入</summary>
 		private StringBuilder PrintAfterSettingEvent { get; set; }
+
 		/// <summary>準備事件注入</summary>
 		private StringBuilder ReadyEvent { get; set; }
+
 		/// <summary>答題訂正事件注入</summary>
 		private StringBuilder MakeCorrectionsEvent { get; set; }
+
 		/// <summary>交卷事件注入</summary>
 		private StringBuilder TictheirPapersEvent { get; set; }
+
 		/// <summary>題型正文注入</summary>
 		private StringBuilder Content { get; set; }
 
@@ -156,12 +163,12 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// 遍歷已選擇的題型
 			foreach (KeyValuePair<string, Dictionary<SubstituteType, string>> d in _htmlMaps)
 			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0016L, d.Key));
+				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0016L, d.Key));
 
 				// 替換HTML模板中的預留內容（HTML、JS注入操作）
 				foreach (KeyValuePair<SubstituteType, string> m in d.Value)
 				{
-					log.Debug(MessageUtil.GetException(() => MsgResources.I0015L, m.Key));
+					LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0015L, m.Key));
 
 					switch (m.Key)
 					{
@@ -197,6 +204,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 						case SubstituteType.Content:
 							Content.AppendLine(m.Value);
 							break;
+
 						default:
 							break;
 					}
@@ -219,7 +227,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// 題型正文注入
 			htmlTemplate.Replace("<!--CONTENT-->", Content.ToString());
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0017L));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0017L));
 
 			// 保存至靜態頁面
 			File.WriteAllText(destFileName, htmlTemplate.ToString(), Encoding.UTF8);
@@ -309,6 +317,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		}
 
 		private List<ControlInfo> _controlList;
+
 		/// <summary>
 		/// 控件基本屬性取得
 		/// </summary>
@@ -428,10 +437,12 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 坐標X
 		/// </summary>
 		public int IndexX { get; set; }
+
 		/// <summary>
 		/// 坐標Y
 		/// </summary>
 		public int IndexY { get; set; }
+
 		/// <summary>
 		/// 控件ID
 		/// </summary>

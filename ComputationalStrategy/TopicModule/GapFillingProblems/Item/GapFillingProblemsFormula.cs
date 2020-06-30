@@ -12,15 +12,18 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Item
 		/// 填空題文字內容
 		/// </summary>
 		public string GapFillingProblem { get; set; }
+
 		/// <summary>
 		/// 級別難易度（1至5級，級別越高難度越大）
 		/// </summary>
 		[DataMember(Name = "level")]
 		public int Level { get; set; }
+
 		/// <summary>
 		/// 答案集合
 		/// </summary>
 		public List<string> Answers { get; set; }
+
 		/// <summary>
 		/// 參數集合
 		/// </summary>

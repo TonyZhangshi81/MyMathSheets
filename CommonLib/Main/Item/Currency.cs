@@ -9,10 +9,12 @@
 		/// 元单位
 		/// </summary>
 		public int? Yuan { get; set; }
+
 		/// <summary>
 		/// 角单位
 		/// </summary>
 		public int? Jiao { get; set; }
+
 		/// <summary>
 		/// 分单位
 		/// </summary>

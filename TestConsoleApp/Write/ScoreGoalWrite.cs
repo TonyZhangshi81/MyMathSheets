@@ -13,15 +13,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class ScoreGoalWrite : IConsoleWrite<ScoreGoalFormula>
 	{
-		private static Log log = Log.LogReady(typeof(ScoreGoalWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(ScoreGoalFormula formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "射門得分"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "射門得分"));
 
 			int seat = 0;
 			// 信息打印

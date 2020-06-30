@@ -751,7 +751,6 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			formula.Gap = gap;
 		}
 
-
 		/// <summary>
 		/// 隨機編排填空項目
 		/// </summary>
@@ -767,8 +766,5 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			}
 			return gap;
 		}
-
-
-
 	}
 }

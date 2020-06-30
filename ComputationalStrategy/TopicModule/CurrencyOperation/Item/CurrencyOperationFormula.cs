@@ -1,5 +1,4 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.ComputationalStrategy.CurrencyOperation.Item
 {
@@ -12,6 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyOperation.Item
 		/// 貨幣運算方程式
 		/// </summary>
 		public Formula CurrencyArithmetic { get; set; }
+
 		/// <summary>
 		/// 計算式左右兩側是否互換位置
 		/// </summary>

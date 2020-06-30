@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function () {
-
 	// 运算符点击切换(>、<、=)
 	_imgCeClick = function (element) {
 		if ($(element).attr("title") == 'help') {
@@ -106,7 +104,6 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 				$("img[id*='imgCe" + parentIndex + "S']").each(function (index, element) {
 					$(element).replaceWith("<button id=\"btnCe" + parentIndex + "S" + index + "\" type=\"button\" class=\"btn btn-default btn-circle button-addBorder\"></button>");
 				});
-
 			});
 		},
 
@@ -125,7 +122,6 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
 					$(element).replaceWith("<img src=\"../Content/image/help.png\" id=\"imgCe" + parentIndex + "S" + index + "\" style=\"width: 30px; height: 30px; \" title=\"help\" />");
 				});
 			});
-
 		},
 
 		// 设定页面所有输入域为可用状态(算式組合)

@@ -7,7 +7,7 @@ using System;
 namespace MyMathSheets.CommonLib.Main.Arithmetic
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public abstract class CalculateBase : ICalculate
 	{
@@ -15,13 +15,14 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// 随机下限值取得（默认值为0）
 		/// </summary>
 		protected int MinimumLimit { get; set; }
+
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		protected Formula Formula { get; set; }
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="maximumLimit"></param>
 		/// <returns></returns>
@@ -32,7 +33,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="parameterScope"></param>
 		/// <returns></returns>
@@ -43,7 +44,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="maximumLimit"></param>
 		/// <param name="leftParameter"></param>
@@ -55,7 +56,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="leftParameter"></param>
 		/// <param name="rightParameter"></param>
@@ -71,12 +72,16 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 			{
 				case SignOfOperation.Plus:
 					return (leftParameter + rightParameter);
+
 				case SignOfOperation.Subtraction:
 					return (leftParameter - rightParameter);
+
 				case SignOfOperation.Multiple:
 					return (leftParameter * rightParameter);
+
 				case SignOfOperation.Division:
 					return (leftParameter / rightParameter);
+
 				default:
 					throw new ArgumentOutOfRangeException(MessageUtil.GetException(() => MsgResources.E0024L, Formula.Sign.ToString()));
 			}
@@ -103,7 +108,6 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 
 			return Formula;
 		}
-
 
 		/// <summary>
 		/// 構造用於計算接龍題型(即：計算式左邊值等於上一個計算式的結果值)

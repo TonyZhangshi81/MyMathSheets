@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.FindTheLaw = MathSheets.FindTheLaw || (function () {
-
 	// 打印設置
 	printSetting = function () {
 		$("input[id*='inputFtl']").each(function (index, element) {

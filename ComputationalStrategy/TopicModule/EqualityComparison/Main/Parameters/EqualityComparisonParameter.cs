@@ -15,6 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Parameters
 		/// 等式大小比较作成并輸出
 		/// </summary>
 		public IList<EqualityFormula> Formulas { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

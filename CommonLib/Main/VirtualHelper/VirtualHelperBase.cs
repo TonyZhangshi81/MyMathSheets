@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Util;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MyMathSheets.CommonLib.Main.VirtualHelper
 {
@@ -66,7 +66,7 @@ namespace MyMathSheets.CommonLib.Main.VirtualHelper
 			for (int index = 0; index < _dialogueMaxCount; index++)
 			{
 				var number = CommonUtil.GetRandomNumber(0, Formulas.Count - 1);
-				if(formulaIndex.Any(d => d == number))
+				if (formulaIndex.Any(d => d == number))
 				{
 					index--;
 					continue;

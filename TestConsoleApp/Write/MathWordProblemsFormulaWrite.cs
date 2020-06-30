@@ -13,22 +13,19 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class MathWordProblemsFormulaWrite : IConsoleWrite<List<MathWordProblemsFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(MathWordProblemsFormulaWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<MathWordProblemsFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "算式應用題"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "算式應用題"));
 
 			formulas.ToList().ForEach(d =>
 			{
-				Console.WriteLine(string.Format("{0} 答題：{1}", d.MathWordProblem, d.Answers[0], d.Unit) 
+				Console.WriteLine(string.Format("{0} 答題：{1}", d.MathWordProblem, d.Answers[0], d.Unit)
 					+ (String.IsNullOrEmpty(d.Unit) ? string.Empty : string.Format("({0})", d.Unit)));
 			});
 		}
-
 	}
 }

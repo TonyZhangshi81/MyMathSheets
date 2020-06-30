@@ -1,5 +1,4 @@
 ﻿using MyMathSheets.CommonLib.Composition;
-using MyMathSheets.CommonLib.Logging;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -12,14 +11,10 @@ namespace MyMathSheets.MathSheetsSettingApp
 	public partial class FrmModelLoad : Form
 	{
 		/// <summary>
-		/// 日誌作成
-		/// </summary>
-		private static Log log = Log.LogReady(typeof(FrmModelLoad));
-
-		/// <summary>
 		/// 單位步長
 		/// </summary>
 		private decimal UnitStep { get; set; }
+
 		/// <summary>
 		/// 模塊總件數
 		/// </summary>

@@ -13,15 +13,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class HowMuchMoreWrite : IConsoleWrite<List<HowMuchMoreFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(HowMuchMoreWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<HowMuchMoreFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "比多少"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "比多少"));
 
 			formulas.ToList().ForEach(d =>
 			{

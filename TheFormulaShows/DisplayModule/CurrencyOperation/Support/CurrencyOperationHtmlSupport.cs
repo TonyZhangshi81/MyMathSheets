@@ -30,18 +30,22 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 		/// 輸入項目HTML模板
 		/// </summary>
 		private const string INPUT_HTML_FORMAT = "<input id=\"inputCo{0}L{1}\" type = \"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+
 		/// <summary>
 		/// 等號HTML
 		/// </summary>
 		private const string CALCULATOR_HTML = "<img src=\"../Content/image/calculator.png\" width=\"30\" height=\"30\" />";
+
 		/// <summary>
 		/// 運算符HTML模板
 		/// </summary>
 		private const string SIGN_HTML_FORMAT = "<img src=\"../Content/image/{0}.png\" width=\"30\" height=\"30\" />";
+
 		/// <summary>
 		/// 對錯HTML模板
 		/// </summary>
 		private const string IMG_CURRENCY_OPERATION_HTML_FORMAT = "<img id=\"img{0}CurrencyOperation{1}\" src=\"../Content/image/{2}.png\" class=\"{3}\" />";
+
 		/// <summary>
 		/// SPAN標籤HTML模板
 		/// </summary>

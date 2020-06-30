@@ -2,34 +2,34 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<link rel="icon" href="../Content/favicon.ico">
-	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
-	<link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
-	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
-	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
-	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
-	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
-	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
-	<script src="../Scripts/json2.min.js" charset="utf-8"></script>
-	<script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
-	<!--ARITHMETICSCRIPT-->
-	<!--EQUALITYCOMPARISONSCRIPT-->
-	<!--COMPUTINGCONNECTIONSCRIPT-->
-	<!--MATHWORDPROBLEMSSCRIPT-->
-	<!--FRUITSLINKAGESCRIPT-->
-	<!--FINDNEARESTNUMBERSCRIPT-->
-	<!--COMBINATORIALEQUATIONSCRIPT-->
-	<!--SCOREGOALSCRIPT-->
-	<!--HOWMUCHMORESCRIPT-->
-	<script src="../Scripts/Ext/MathSheets.FindTheLaw.js" charset="utf-8"></script>
-	<title>題庫</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../Content/favicon.ico">
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+    <script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+    <script src="../Scripts/umd/popper.js" charset="utf-8"></script>
+    <script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
+    <script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
+    <script src="../Scripts/json2.min.js" charset="utf-8"></script>
+    <script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
+    <!--ARITHMETICSCRIPT-->
+    <!--EQUALITYCOMPARISONSCRIPT-->
+    <!--COMPUTINGCONNECTIONSCRIPT-->
+    <!--MATHWORDPROBLEMSSCRIPT-->
+    <!--FRUITSLINKAGESCRIPT-->
+    <!--FINDNEARESTNUMBERSCRIPT-->
+    <!--COMBINATORIALEQUATIONSCRIPT-->
+    <!--SCOREGOALSCRIPT-->
+    <!--HOWMUCHMORESCRIPT-->
+    <script src="../Scripts/Ext/MathSheets.FindTheLaw.js" charset="utf-8"></script>
+    <title>題庫</title>
 
-	<script>
+    <script>
 		// 頁面啟動后加載
 		$(document).ready(function () {
 			// 準備
@@ -165,181 +165,180 @@
 			// 計時停止（答題結果設定）
 			MathSheets.Common.timeStop('spanSS', 'spanMM', 'spanHH');
 		}
-	</script>
+    </script>
 </head>
 <body>
-	<div class="container theme-showcase main-ext" role="main">
-		<div class="jumbotron-ext">
-			<div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
-			<div class="div-famousPeople">
-				<h6>
-					<span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
-					<br />
-					<span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
-					<br />
-					<span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
-				</h6>
-			</div>
-			<hr class="hr-Ext" />
-			<div class="text-info-ext">
-				前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
-				<span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
-				<span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
-			</div>
-		</div>
-		<div id="divPrintContent">
-			<!--ARITHMETIC-->
-			<!--EQUALITYCOMPARISON-->
-			<!--COMPUTINGCONNECTION-->
-			<!--MATHWORDPROBLEMS-->
-			<!--FRUITSLINKAGE-->
-			<!--FINDNEARESTNUMBER-->
-			<!--COMBINATORIALEQUATION-->
-			<!--SCOREGOAL-->
-			<!--HOWMUCHMORE-->
-			<br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">找規律</span></h4></div><hr /><div class="row text-center row-margin-top">
-				<div class="col-md-4 form-inline">
-					<ul class="list-group list-group-ext">
-						<li class="list-group-item">
-							<h5>
-								<span class="badge badge-warning" style="width: 30px;">5</span>
-								<span class="badge badge-warning" style="width: 30px;">10</span>
-								<input id="inputFtl0L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<span class="badge badge-warning" style="width: 30px;">20</span>
-								<span class="badge badge-warning" style="width: 30px;">25</span>
-								<input id="inputFtl0L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputFtl0L6" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+    <div class="container theme-showcase main-ext" role="main">
+        <div class="jumbotron-ext">
+            <div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
+            <div class="div-famousPeople">
+                <h6>
+                    <span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+                    <br />
+                    <span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+                    <br />
+                    <span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+                </h6>
+            </div>
+            <hr class="hr-Ext" />
+            <div class="text-info-ext">
+                前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+                <span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
+                <span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
+            </div>
+        </div>
+        <div id="divPrintContent">
+            <!--ARITHMETIC-->
+            <!--EQUALITYCOMPARISON-->
+            <!--COMPUTINGCONNECTION-->
+            <!--MATHWORDPROBLEMS-->
+            <!--FRUITSLINKAGE-->
+            <!--FINDNEARESTNUMBER-->
+            <!--COMBINATORIALEQUATION-->
+            <!--SCOREGOAL-->
+            <!--HOWMUCHMORE-->
+            <br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">找規律</span></h4></div><hr /><div class="row text-center row-margin-top">
+                <div class="col-md-4 form-inline">
+                    <ul class="list-group list-group-ext">
+                        <li class="list-group-item">
+                            <h5>
+                                <span class="badge badge-warning" style="width: 30px;">5</span>
+                                <span class="badge badge-warning" style="width: 30px;">10</span>
+                                <input id="inputFtl0L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <span class="badge badge-warning" style="width: 30px;">20</span>
+                                <span class="badge badge-warning" style="width: 30px;">25</span>
+                                <input id="inputFtl0L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <input id="inputFtl0L6" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
 
-								<img id="imgOKFindTheLaw0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoFindTheLaw0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-							</h5>
-							<input id="hiddenFtl0" type="hidden" value="15,30,35" />
-						</li>
-					</ul>
-				</div>
-				<div class="col-md-4 form-inline">
-					<ul class="list-group list-group-ext">
-						<li class="list-group-item">
-							<h5>
-								<span class="badge badge-warning" style="width: 30px;">47</span>
-								<input id="inputFtl1L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<span class="badge badge-warning" style="width: 30px;">37</span>
-								<span class="badge badge-warning" style="width: 30px;">32</span>
-								<input id="inputFtl1L4" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputFtl1L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<span class="badge badge-warning" style="width: 30px;">17</span>
+                                <img id="imgOKFindTheLaw0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                                <img id="imgNoFindTheLaw0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                            </h5>
+                            <input id="hiddenFtl0" type="hidden" value="15,30,35" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <ul class="list-group list-group-ext">
+                        <li class="list-group-item">
+                            <h5>
+                                <span class="badge badge-warning" style="width: 30px;">47</span>
+                                <input id="inputFtl1L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <span class="badge badge-warning" style="width: 30px;">37</span>
+                                <span class="badge badge-warning" style="width: 30px;">32</span>
+                                <input id="inputFtl1L4" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <input id="inputFtl1L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <span class="badge badge-warning" style="width: 30px;">17</span>
 
-								<img id="imgOKFindTheLaw1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoFindTheLaw1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-							</h5>
-							<input id="hiddenFtl1" type="hidden" value="42,27,22" />
-						</li>
-					</ul>
-				</div>
-				<div class="col-md-4 form-inline">
-					<ul class="list-group list-group-ext">
-						<li class="list-group-item">
-							<h5>
-								<input id="inputFtl2L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputFtl2L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<span class="badge badge-warning" style="width: 30px;">26</span>
-								<span class="badge badge-warning" style="width: 30px;">21</span>
-								<span class="badge badge-warning" style="width: 30px;">16</span>
-								<span class="badge badge-warning" style="width: 30px;">11</span>
-								<input id="inputFtl2L6" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <img id="imgOKFindTheLaw1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                                <img id="imgNoFindTheLaw1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                            </h5>
+                            <input id="hiddenFtl1" type="hidden" value="42,27,22" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <ul class="list-group list-group-ext">
+                        <li class="list-group-item">
+                            <h5>
+                                <input id="inputFtl2L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <input id="inputFtl2L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <span class="badge badge-warning" style="width: 30px;">26</span>
+                                <span class="badge badge-warning" style="width: 30px;">21</span>
+                                <span class="badge badge-warning" style="width: 30px;">16</span>
+                                <span class="badge badge-warning" style="width: 30px;">11</span>
+                                <input id="inputFtl2L6" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
 
-								<img id="imgOKFindTheLaw2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoFindTheLaw2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-							</h5>
-							<input id="hiddenFtl2" type="hidden" value="36,31,6" />
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="row text-center row-margin-top">
-				<div class="col-md-4 form-inline">
-					<ul class="list-group list-group-ext">
-						<li class="list-group-item">
-							<h5>
-								<span class="badge badge-warning" style="width: 30px;">3</span>
-								<input id="inputFtl3L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputFtl3L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputFtl3L3" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<span class="badge badge-warning" style="width: 30px;">19</span>
-								<span class="badge badge-warning" style="width: 30px;">23</span>
-								<span class="badge badge-warning" style="width: 30px;">27</span>
+                                <img id="imgOKFindTheLaw2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                                <img id="imgNoFindTheLaw2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                            </h5>
+                            <input id="hiddenFtl2" type="hidden" value="36,31,6" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-4 form-inline">
+                    <ul class="list-group list-group-ext">
+                        <li class="list-group-item">
+                            <h5>
+                                <span class="badge badge-warning" style="width: 30px;">3</span>
+                                <input id="inputFtl3L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <input id="inputFtl3L2" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <input id="inputFtl3L3" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <span class="badge badge-warning" style="width: 30px;">19</span>
+                                <span class="badge badge-warning" style="width: 30px;">23</span>
+                                <span class="badge badge-warning" style="width: 30px;">27</span>
 
-								<img id="imgOKFindTheLaw3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoFindTheLaw3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-							</h5>
-							<input id="hiddenFtl3" type="hidden" value="7,11,15" />
-						</li>
-					</ul>
-				</div>
-				<div class="col-md-4 form-inline">
-					<ul class="list-group list-group-ext">
-						<li class="list-group-item">
-							<h5>
-								<input id="inputFtl4L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<span class="badge badge-warning" style="width: 30px;">16</span>
-								<span class="badge badge-warning" style="width: 30px;">24</span>
-								<span class="badge badge-warning" style="width: 30px;">32</span>
-								<span class="badge badge-warning" style="width: 30px;">40</span>
-								<input id="inputFtl4L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputFtl4L6" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <img id="imgOKFindTheLaw3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                                <img id="imgNoFindTheLaw3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                            </h5>
+                            <input id="hiddenFtl3" type="hidden" value="7,11,15" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <ul class="list-group list-group-ext">
+                        <li class="list-group-item">
+                            <h5>
+                                <input id="inputFtl4L0" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <span class="badge badge-warning" style="width: 30px;">16</span>
+                                <span class="badge badge-warning" style="width: 30px;">24</span>
+                                <span class="badge badge-warning" style="width: 30px;">32</span>
+                                <span class="badge badge-warning" style="width: 30px;">40</span>
+                                <input id="inputFtl4L5" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <input id="inputFtl4L6" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
 
-								<img id="imgOKFindTheLaw4" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoFindTheLaw4" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-							</h5>
-							<input id="hiddenFtl4" type="hidden" value="8,48,56" />
-						</li>
-					</ul>
-				</div>
-				<div class="col-md-4 form-inline">
-					<ul class="list-group list-group-ext">
-						<li class="list-group-item">
-							<h5>
-								<span class="badge badge-warning" style="width: 30px;">35</span>
-								<input id="inputFtl5L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<span class="badge badge-warning" style="width: 30px;">45</span>
-								<input id="inputFtl5L3" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<input id="inputFtl5L4" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-								<span class="badge badge-warning" style="width: 30px;">60</span>
-								<span class="badge badge-warning" style="width: 30px;">65</span>
+                                <img id="imgOKFindTheLaw4" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                                <img id="imgNoFindTheLaw4" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                            </h5>
+                            <input id="hiddenFtl4" type="hidden" value="8,48,56" />
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <ul class="list-group list-group-ext">
+                        <li class="list-group-item">
+                            <h5>
+                                <span class="badge badge-warning" style="width: 30px;">35</span>
+                                <input id="inputFtl5L1" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <span class="badge badge-warning" style="width: 30px;">45</span>
+                                <input id="inputFtl5L3" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <input id="inputFtl5L4" type="text" placeholder=" ?? " class="form-control input-addBorder" style="width: 50px; text-align:center;" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                                <span class="badge badge-warning" style="width: 30px;">60</span>
+                                <span class="badge badge-warning" style="width: 30px;">65</span>
 
-								<img id="imgOKFindTheLaw5" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
-								<img id="imgNoFindTheLaw5" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
-							</h5>
-							<input id="hiddenFtl5" type="hidden" value="40,50,55" />
-						</li>
-					</ul>
-				</div>
-			</div>
-
-		</div>
-		<HR>
-		<div class="row">
-			<div class="col-md-12 col-md-offset-3">
-				<p class="text-center">
-					<button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
-					<button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
-					<button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
-					<button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
-					<button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
-				</p>
-			</div>
-		</div>
-		<div class="page-header">
-			<h4>練習情況</h4>
-		</div>
-		<div class="well">
-			<p>
-				做題用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
-				<br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
-				<br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
-			</p>
-		</div>
-	</div>
-	<a href="javascript:" class="totop"></a>
+                                <img id="imgOKFindTheLaw5" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                                <img id="imgNoFindTheLaw5" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                            </h5>
+                            <input id="hiddenFtl5" type="hidden" value="40,50,55" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <HR>
+        <div class="row">
+            <div class="col-md-12 col-md-offset-3">
+                <p class="text-center">
+                    <button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
+                    <button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
+                    <button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
+                    <button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
+                    <button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
+                </p>
+            </div>
+        </div>
+        <div class="page-header">
+            <h4>練習情況</h4>
+        </div>
+        <div class="well">
+            <p>
+                做題用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+                <br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
+                <br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
+            </p>
+        </div>
+    </div>
+    <a href="javascript:" class="totop"></a>
 </body>
 </html>

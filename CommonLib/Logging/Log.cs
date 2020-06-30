@@ -1,24 +1,26 @@
-﻿using log4net;
+﻿using Common.Logging;
+using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using System;
-using System.Diagnostics;
 
 namespace MyMathSheets.CommonLib.Logging
 {
 	/// <summary>
 	/// LOG日誌功能實現類
 	/// </summary>
-	public class Log : ILogging
+	public class Log : ILog
 	{
 		/// <summary>
-		///
+		/// 日誌實例作成
 		/// </summary>
 		static Log()
 		{
+			Instance = new Log();
 		}
 
 		/// <summary>
-		/// ログ出力用のインスタンスを公開します。
+		/// 取得日誌實例
 		/// </summary>
 		public static ILog Instance
 		{
@@ -29,34 +31,10 @@ namespace MyMathSheets.CommonLib.Logging
 		/// <summary>
 		///
 		/// </summary>
-		/// <returns></returns>
-		public static Log LogReady()
-		{
-			StackFrame stackFrame = new StackFrame(1, false);
-			Type type = stackFrame.GetMethod().DeclaringType;
-
-			Instance = LogManager.GetLogger(type);
-			return new Log();
-		}
-
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="type"></param>
-		/// <returns></returns>
-		public static Log LogReady(Type type)
-		{
-			Instance = LogManager.GetLogger(type);
-			return new Log();
-		}
-
-		/// <summary>
-		///
-		/// </summary>
 		/// <param name="message"></param>
 		public void Debug(string message)
 		{
-			this.Output(message, MessageLevel.Debug, null);
+			Output(message, MessageLevel.Debug, null);
 		}
 
 		/// <summary>
@@ -66,16 +44,7 @@ namespace MyMathSheets.CommonLib.Logging
 		/// <param name="exception"></param>
 		public void Debug(string message, Exception exception)
 		{
-			this.Output(message, MessageLevel.Error, exception);
-		}
-
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="message"></param>
-		public void Output(string message)
-		{
-			this.Output(message, MessageLevel.Info, null);
+			Output(message, MessageLevel.Error, exception);
 		}
 
 		/// <summary>
@@ -83,40 +52,45 @@ namespace MyMathSheets.CommonLib.Logging
 		/// </summary>
 		/// <param name="message"></param>
 		/// <param name="exception"></param>
-		public void Output(string message, Exception exception)
+		/// <param name="bcp"></param>
+		public void Debug(string message, Exception exception, CalculateParameter bcp)
 		{
-			this.Output(message, MessageLevel.Error, exception);
+			throw new NotImplementedException();
 		}
 
 		/// <summary>
-		/// メッセージを、その出力レベルに合わせてログに出力します。
+		///
 		/// </summary>
-		/// <param name="message">メッセージ</param>
-		/// <param name="level">出力レベル</param>
-		/// <param name="exception">例外情報</param>
+		/// <param name="message"></param>
+		/// <param name="exception"></param>
+		/// <param name="bcp"></param>
+		public void Debug(string message, Exception exception, ParameterBase bcp)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="message"></param>
+		/// <param name="level"></param>
+		/// <param name="exception"></param>
 		internal void Output(object message, MessageLevel level, Exception exception)
 		{
-			var logger = Instance;
+			Common.Logging.ILog logger = LogManager.GetLogger(GetType());
 			switch (level)
 			{
+				case MessageLevel.Trace:
+					if (logger.IsTraceEnabled)
+					{
+						logger.Trace(message, exception);
+					}
+					break;
+
 				case MessageLevel.Debug:
 					if (logger.IsDebugEnabled)
 					{
 						logger.Debug(message, exception);
-					}
-					break;
-
-				case MessageLevel.Error:
-					if (logger.IsErrorEnabled)
-					{
-						logger.Error(message, exception);
-					}
-					break;
-
-				case MessageLevel.Fatal:
-					if (logger.IsFatalEnabled)
-					{
-						logger.Fatal(message, exception);
 					}
 					break;
 
@@ -131,6 +105,20 @@ namespace MyMathSheets.CommonLib.Logging
 					if (logger.IsWarnEnabled)
 					{
 						logger.Warn(message, exception);
+					}
+					break;
+
+				case MessageLevel.Error:
+					if (logger.IsErrorEnabled)
+					{
+						logger.Error(message, exception);
+					}
+					break;
+
+				case MessageLevel.Fatal:
+					if (logger.IsFatalEnabled)
+					{
+						logger.Fatal(message, exception);
 					}
 					break;
 			}

@@ -39,6 +39,7 @@
 				case SignOfOperation.Later:
 					flag = "&#20043;&#21518;";
 					break;
+
 				default:
 					break;
 			}
@@ -79,6 +80,7 @@
 				case SignOfOperation.Later:
 					flag = "之后";
 					break;
+
 				default:
 					break;
 			}
@@ -107,6 +109,7 @@
 				case SignOfCompare.Less:
 					flag = "&#60;";
 					break;
+
 				default:
 					break;
 			}
@@ -126,12 +129,15 @@
 				case SignOfCompare.Equal:
 					flag = "=";
 					break;
+
 				case SignOfCompare.Greater:
 					flag = ">";
 					break;
+
 				case SignOfCompare.Less:
 					flag = "<";
 					break;
+
 				default:
 					break;
 			}
@@ -151,12 +157,15 @@
 				case SignOfCompare.Equal:
 					flag = "calculator";
 					break;
+
 				case SignOfCompare.Greater:
 					flag = "char-more";
 					break;
+
 				case SignOfCompare.Less:
 					flag = "char-less";
 					break;
+
 				default:
 					break;
 			}
@@ -176,9 +185,11 @@
 				case TimeSystem.AM:
 					flag = "Sun";
 					break;
+
 				case TimeSystem.PM:
 					flag = "Moon";
 					break;
+
 				default:
 					break;
 			}
@@ -198,24 +209,31 @@
 				case TimeIntervalType.Midnight:
 					flag = "午夜";
 					break;
+
 				case TimeIntervalType.WeeHours:
 					flag = "凌晨";
 					break;
+
 				case TimeIntervalType.Forenoon:
 					flag = "上午";
 					break;
+
 				case TimeIntervalType.Nooning:
 					flag = "中午";
 					break;
+
 				case TimeIntervalType.Afternoon:
 					flag = "下午";
 					break;
+
 				case TimeIntervalType.Night:
 					flag = "晚上";
 					break;
+
 				case TimeIntervalType.LateNight:
 					flag = "深夜";
 					break;
+
 				default:
 					break;
 			}
@@ -235,15 +253,19 @@
 				case LayoutSetting.Classify.Generally:
 					name = "一般计算";
 					break;
+
 				case LayoutSetting.Classify.Time:
 					name = "时间单位";
 					break;
+
 				case LayoutSetting.Classify.Extent:
 					name = "长度单位";
 					break;
+
 				case LayoutSetting.Classify.Currency:
 					name = "货币单位";
 					break;
+
 				default:
 					break;
 			}
@@ -264,63 +286,83 @@
 				case LayoutSetting.Preview.Arithmetic:
 					name = "四则运算";
 					break;
+
 				case LayoutSetting.Preview.EqualityComparison:
 					name = "算式比大小";
 					break;
+
 				case LayoutSetting.Preview.ComputingConnection:
 					name = "等式接龙";
 					break;
+
 				case LayoutSetting.Preview.MathWordProblems:
 					name = "算式应用题";
 					break;
+
 				case LayoutSetting.Preview.FruitsLinkage:
 					name = "水果连连看";
 					break;
+
 				case LayoutSetting.Preview.FindNearestNumber:
 					name = "找到最近的数字";
 					break;
+
 				case LayoutSetting.Preview.CombinatorialEquation:
 					name = "算式组合";
 					break;
+
 				case LayoutSetting.Preview.ScoreGoal:
 					name = "射门得分";
 					break;
+
 				case LayoutSetting.Preview.HowMuchMore:
 					name = "比多少";
 					break;
+
 				case LayoutSetting.Preview.FindTheLaw:
 					name = "找规律";
 					break;
+
 				case LayoutSetting.Preview.NumericSorting:
 					name = "数字排序";
 					break;
+
 				case LayoutSetting.Preview.LearnCurrency:
 					name = "认识货币";
 					break;
+
 				case LayoutSetting.Preview.EqualityLinkage:
 					name = "算式连一连";
 					break;
+
 				case LayoutSetting.Preview.SchoolClock:
 					name = "时钟学习板";
 					break;
+
 				case LayoutSetting.Preview.CurrencyOperation:
 					name = "货币运算";
 					break;
+
 				case LayoutSetting.Preview.CurrencyLinkage:
 					name = "认识价格";
 					break;
+
 				case LayoutSetting.Preview.TimeCalculation:
 					name = "时间运算";
 					break;
+
 				case LayoutSetting.Preview.LearnLengthUnit:
 					name = "认识长度单位";
 					break;
+
 				case LayoutSetting.Preview.GapFillingProblems:
 					name = "基础填空";
 					break;
+
 				case LayoutSetting.Preview.MathUpright:
 					name = "竖式计算";
 					break;
+
 				default:
 					break;
 			}

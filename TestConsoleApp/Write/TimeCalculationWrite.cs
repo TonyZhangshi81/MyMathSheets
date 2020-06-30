@@ -13,15 +13,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class TimeCalculationWrite : IConsoleWrite<List<TimeCalculationFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(TimeCalculationWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<TimeCalculationFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "時間運算"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "時間運算"));
 
 			formulas.ForEach(d =>
 			{

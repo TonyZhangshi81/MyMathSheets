@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
-
 	// 打印設置
 	printSetting = function () {
 		$("input[id*='inputTc']").addClass('input-print').removeAttr('placeholder').removeAttr("disabled");
@@ -43,7 +41,6 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
 				// 正确:true
 				return true;
 			} else {
-
 				// 对错图片显示和隐藏
 				$('#imgOKTimeCalculation' + pIndex).hide();
 				$('#imgNoTimeCalculation' + pIndex).show();

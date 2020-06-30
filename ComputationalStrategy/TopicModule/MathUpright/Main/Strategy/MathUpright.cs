@@ -20,6 +20,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 		/// 填空的位置
 		/// </summary>
 		private readonly List<int> FillPositions;
+
 		/// <summary>
 		/// 反推判定次數（如果大於八次則認為此題無法作成繼續下一題）
 		/// </summary>

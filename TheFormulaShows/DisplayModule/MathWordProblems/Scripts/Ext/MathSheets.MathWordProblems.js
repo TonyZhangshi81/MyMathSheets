@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.MathWordProblems = MathSheets.MathWordProblems || (function () {
-
 	// 答题验证(正确:true  错误:false)
 	_mathWordProblemsCorrecting = function (strIndex, answerElement) {
 		var isRight = false;

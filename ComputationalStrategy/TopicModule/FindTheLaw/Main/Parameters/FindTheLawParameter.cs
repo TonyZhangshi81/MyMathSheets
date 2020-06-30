@@ -17,10 +17,12 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters
 		/// 找規律作成并輸出
 		/// </summary>
 		public IList<FindTheLawFormula> Formulas { get; set; }
+
 		/// <summary>
 		/// 找規律題型參數設置
 		/// </summary>
 		public int[] Types { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

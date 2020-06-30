@@ -452,8 +452,5 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			}
 			return gap;
 		}
-
-
-
 	}
 }

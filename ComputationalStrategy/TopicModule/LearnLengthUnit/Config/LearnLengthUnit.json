@@ -1,51 +1,51 @@
 [
-	{
-		"Identifier": "LLU01",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 10,
-		"QuestionType": 1,
-		"Reserve": "{\"Type\" : '0,1,2'}"
-	},
-	{
-		"Identifier": "LLU02",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 10,
-		"QuestionType": 1,
-		"Reserve": "{\"Type\" : '3,4,5'}"
-	},
-	{
-		"Identifier": "LLU03",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 10,
-		"QuestionType": 1,
-		"Reserve": "{\"Type\" : '8,9,10'}"
-	},
-	{
-		"Identifier": "LLU04",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 10,
-		"QuestionType": 1,
-		"Reserve": "{\"Type\" : '14,15,16'}"
-	},
-	{
-		"Identifier": "LLU05",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 15,
-		"QuestionType": 2,
-		"Reserve": "{\"Type\" : '0,1,2,3,4,5,8,9,10,14,15,16'}"
-	},
-	{
-		"Identifier": "LLU06",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 15,
-		"QuestionType": 2,
-		"Reserve": "{\"Type\" : '6,7,11,12,17'}"
-	},
-	{
-		"Identifier": "LLU07",
-		"FourOperationsType": 2,
-		"NumberOfQuestions": 15,
-		"QuestionType": 2,
-		"Reserve": "{\"Type\" : '13,18,19,20,21'}"
-	}
+  {
+    "Identifier": "LLU01",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 10,
+    "QuestionType": 1,
+    "Reserve": "{\"Type\" : '0,1,2'}"
+  },
+  {
+    "Identifier": "LLU02",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 10,
+    "QuestionType": 1,
+    "Reserve": "{\"Type\" : '3,4,5'}"
+  },
+  {
+    "Identifier": "LLU03",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 10,
+    "QuestionType": 1,
+    "Reserve": "{\"Type\" : '8,9,10'}"
+  },
+  {
+    "Identifier": "LLU04",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 10,
+    "QuestionType": 1,
+    "Reserve": "{\"Type\" : '14,15,16'}"
+  },
+  {
+    "Identifier": "LLU05",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 15,
+    "QuestionType": 2,
+    "Reserve": "{\"Type\" : '0,1,2,3,4,5,8,9,10,14,15,16'}"
+  },
+  {
+    "Identifier": "LLU06",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 15,
+    "QuestionType": 2,
+    "Reserve": "{\"Type\" : '6,7,11,12,17'}"
+  },
+  {
+    "Identifier": "LLU07",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 15,
+    "QuestionType": 2,
+    "Reserve": "{\"Type\" : '13,18,19,20,21'}"
+  }
 ]

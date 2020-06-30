@@ -15,15 +15,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class GapFillingProblemsWrite : IConsoleWrite<List<GapFillingProblemsFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(GapFillingProblemsWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<GapFillingProblemsFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "基礎填空題"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "基礎填空題"));
 
 			int index = 0;
 			StringBuilder content = new StringBuilder();
@@ -41,6 +39,5 @@ namespace MyMathSheets.TestConsoleApp.Write
 				index = 0;
 			});
 		}
-
 	}
 }

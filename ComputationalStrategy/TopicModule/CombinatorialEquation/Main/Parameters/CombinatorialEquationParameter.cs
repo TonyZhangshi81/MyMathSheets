@@ -15,6 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Paramete
 		/// 組合計算式作成并輸出
 		/// </summary>
 		public IList<CombinatorialFormula> Formulas { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

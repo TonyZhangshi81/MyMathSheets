@@ -12,19 +12,23 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Item
 		/// 計算開始時間
 		/// </summary>
 		public Time StartTime { get; set; }
+
 		/// <summary>
 		/// 計算結束時間
 		/// </summary>
 		public Time EndTime { get; set; }
+
 		/// <summary>
 		/// 經過的時間
 		/// </summary>
 		public Time ElapsedTime { get; set; }
+
 		/// <summary>
 		/// 运算符
 		/// </summary>
 		/// <see cref="SignOfOperation"/>
 		public SignOfOperation Sign { get; set; }
+
 		/// <summary>
 		/// 填空随机项目（运算符左边参数、运算符右边参数、等式结果）
 		/// </summary>

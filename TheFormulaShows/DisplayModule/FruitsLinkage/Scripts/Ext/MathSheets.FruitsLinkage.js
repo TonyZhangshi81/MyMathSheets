@@ -9,10 +9,8 @@ var __containerTopDown = 0;
 // 放置範圍上下限值的控件Id
 var __fruitsArrayHiddenControlId = '';
 
-
 var MathSheets = MathSheets || {};
 MathSheets.FruitsLinkage = MathSheets.FruitsLinkage || (function () {
-
 	// 座位號數組化
 	_fruitsArrayInit = function () {
 		// 座位號設置場所(eg:3,2,1,4,5,0,6 => [3,2,1,4,5,0,6])

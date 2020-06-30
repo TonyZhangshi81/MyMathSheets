@@ -10,7 +10,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp
 {
 	public class Program
 	{
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
 			if (args.Length == 0)
 			{
@@ -60,7 +60,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp
 			Environment.Exit(0);
 		}
 
-		static void RunCopyBat()
+		private static void RunCopyBat()
 		{
 			Process proc = null;
 			try

@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.GapFillingProblems = MathSheets.GapFillingProblems || (function () {
-
 	// 答题验证(正确:true  错误:false)
 	_gapFillingProblemsCorrecting = function (pIndex, pElement) {
 		var inputAry = new Array();
@@ -25,7 +23,7 @@ MathSheets.GapFillingProblems = MathSheets.GapFillingProblems || (function () {
 				removeInputElementArray({ position: "mathSheetGapFillingProblems", id: $(element).attr("id") });
 				$(element).attr("disabled", "disabled");
 			});
-			
+
 			// 對錯圖片顯示和影藏
 			$('#imgOKGapFillingProblems' + strId).show();
 			$('#imgNoGapFillingProblems' + strId).hide();

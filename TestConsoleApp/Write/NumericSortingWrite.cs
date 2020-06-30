@@ -14,15 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// </summary>
 	public class NumericSortingWrite : IConsoleWrite<List<NumericSortingFormula>>
 	{
-		private static Log log = Log.LogReady(typeof(NumericSortingWrite));
-
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<NumericSortingFormula> formulas)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0004T, "數字排序"));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "數字排序"));
 
 			formulas.ForEach(d =>
 			{
@@ -42,7 +40,6 @@ namespace MyMathSheets.TestConsoleApp.Write
 				// 有序字符串輸出
 				d.AnswerList.ForEach(n =>
 				{
-
 					str.AppendFormat("{0}{1}", n, d.Sign.ToSignOfCompareString());
 				});
 				str.Length -= 1;

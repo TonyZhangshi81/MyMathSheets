@@ -102,7 +102,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityComparison.Support
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="item"></param>
 		/// <param name="parameter"></param>

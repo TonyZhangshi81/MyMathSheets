@@ -1,8 +1,6 @@
-﻿
-var MathSheets = MathSheets || {};
+﻿var MathSheets = MathSheets || {};
 
 MathSheets.FindNearestNumber = MathSheets.FindNearestNumber || (function () {
-
 	// 打印設置
 	printSetting = function () {
 		$("input[id*='inputFnn']").each(function (index, element) {

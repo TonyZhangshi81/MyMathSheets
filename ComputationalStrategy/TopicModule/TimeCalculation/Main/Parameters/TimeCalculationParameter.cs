@@ -17,19 +17,23 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters
 		/// 時間運算題型參數
 		/// </summary>
 		public IList<TimeCalculationFormula> Formulas { get; set; }
+
 		/// <summary>
 		/// 秒數是否清零
 		/// </summary>
 		public bool IsShowSeconds { get; set; }
+
 		/// <summary>
 		/// 參數設置(間隔小時數的取值範圍)
 		/// </summary>
 		public int[] ElapsedHours { get; set; }
+
 		/// <summary>
 		/// 是否指定分針
 		/// 0：指定分針(以15分鐘為單位隨機抽取)  1：隨機取值
 		/// </summary>
 		public bool IsEssignMinutes { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

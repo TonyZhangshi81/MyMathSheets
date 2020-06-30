@@ -16,10 +16,12 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters
 		/// 時鐘學習板題型參數
 		/// </summary>
 		public IList<SchoolClockFormula> Formulas { get; set; }
+
 		/// <summary>
 		/// 秒數是否清零
 		/// </summary>
 		public bool IsShowSeconds { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

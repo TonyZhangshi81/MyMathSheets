@@ -87,7 +87,7 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 		}
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		/// <param name="item">当前处理项的位置</param>
 		/// <param name="parameter">算是值</param>

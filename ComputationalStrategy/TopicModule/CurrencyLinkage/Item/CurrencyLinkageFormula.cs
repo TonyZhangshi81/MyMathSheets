@@ -1,5 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.Item;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Item
 {

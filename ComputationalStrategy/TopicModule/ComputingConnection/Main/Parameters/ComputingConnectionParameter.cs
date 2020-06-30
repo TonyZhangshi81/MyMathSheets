@@ -16,10 +16,12 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters
 		/// 等式接龍作成并輸出
 		/// </summary>
 		public IList<ConnectionFormula> Formulas { get; set; }
+
 		/// <summary>
 		/// 層數設置
 		/// </summary>
 		public int SectionNumber { get; set; }
+
 		/// <summary>
 		/// 初期化參數
 		/// </summary>

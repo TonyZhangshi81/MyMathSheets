@@ -17,12 +17,10 @@ using System.Windows.Forms;
 namespace MyMathSheets.MathSheetsSettingApp
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public partial class FrmMain : Form
 	{
-		private static Log log = Log.LogReady(typeof(FrmMain));
-
 		/// <summary>
 		/// 畫面處理類
 		/// </summary>
@@ -48,7 +46,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <param name="e">事件處理</param>
 		private void FormLoad(object sender, EventArgs e)
 		{
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0001A));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0001A));
 
 			this.Owner.Hide();
 
@@ -64,7 +62,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 創建題型選擇控件
 			CreateQuestionCheckBoxList();
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0008A));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0008A));
 		}
 
 		/// <summary>
@@ -182,8 +180,8 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 註冊進程結束事件
 			//cmdProcess.Exited += new EventHandler((s, v) =>
 			//{
-				// 註冊進程結束事件
-				//Environment.Exit(0);
+			// 註冊進程結束事件
+			//Environment.Exit(0);
 			//});
 
 			if (cmbWorkPages.SelectedIndex > 0)
@@ -206,7 +204,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 				return;
 			}
 
-			log.Debug(MessageUtil.GetException(() => MsgResources.I0002A));
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0002A));
 
 			// 出題按鍵點擊事件
 			var destFileName = _process.SureClick();
@@ -241,11 +239,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 			CheckBox checkBox = (CheckBox)sender;
 			if (checkBox.Checked)
 			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0006A, checkBox.Text));
+				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0006A, checkBox.Text));
 			}
 			else
 			{
-				log.Debug(MessageUtil.GetException(() => MsgResources.I0007A, checkBox.Text));
+				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0007A, checkBox.Text));
 			}
 			_process.TopicCheckedChanged(checkBox.Checked, () => _process.ControlList.Where(d => d.ControlId.Equals(checkBox.Name)).First());
 
@@ -337,7 +335,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 				CarMoveUnit = 8;
 			}
 		}
-
 
 		/// <summary>
 		/// 小車是否在城市背景中

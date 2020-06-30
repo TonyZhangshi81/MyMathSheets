@@ -9,7 +9,7 @@ using System.Linq;
 namespace MyMathSheets.CommonLib.OperationStrategy
 {
 	/// <summary>
-	/// 
+	///
 	/// </summary>
 	public sealed class ParameterHepler
 	{

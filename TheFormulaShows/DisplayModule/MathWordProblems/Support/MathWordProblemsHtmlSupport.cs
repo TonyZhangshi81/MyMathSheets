@@ -25,10 +25,12 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 		/// 標題HTML模板
 		/// </summary>
 		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
+
 		/// <summary>
 		/// 輸入框HTML模板
 		/// </summary>
 		private const string INPUT_HTML_FORMAT = "<input id=\"inputMwp{0}{1}\" type = \"text\" placeholder=\" {2} \" class=\"form-control input-addBorder-7\" disabled=\"disabled\" />";
+
 		/// <summary>
 		/// 輸入框HTML模板
 		/// </summary>

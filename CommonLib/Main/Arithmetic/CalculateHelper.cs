@@ -20,7 +20,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		private readonly Composer _composer;
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		private void ComposeThis()
 		{
