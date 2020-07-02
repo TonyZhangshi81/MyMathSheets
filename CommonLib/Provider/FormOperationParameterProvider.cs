@@ -15,7 +15,6 @@ namespace MyMathSheets.CommonLib.Provider
 		/// <param name="identifier"></param>
 		public override ParameterBase Initialize(string identifier)
 		{
-			// TODO
 			return new ParameterBase();
 		}
 	}

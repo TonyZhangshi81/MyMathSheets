@@ -17,7 +17,7 @@ namespace MyMathSheets.CommonLib.Provider
 		}
 
 		/// <summary>
-		/// Property類型定義
+		/// Property 類型定義
 		/// </summary>
 		[ConfigurationProperty("type", IsRequired = true)]
 		public string ProviderType => this["type"] as string;
@@ -26,9 +26,6 @@ namespace MyMathSheets.CommonLib.Provider
 		/// 指定Property類型下所需要的參數（可以省略）
 		/// </summary>
 		[ConfigurationProperty("argument", IsRequired = false)]
-		public string Argument
-		{
-			get { return this["argument"] as string; }
-		}
+		public string Argument => this["argument"] as string;
 	}
 }

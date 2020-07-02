@@ -1,5 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Composition;
 using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.FromProcess.Support;
+using MyMathSheets.CommonLib.Main.FromProcess.Util;
 using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
@@ -38,21 +40,10 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// <summary>
 		/// 題型預覽列表
 		/// </summary>
-		private List<LayoutSetting.Preview> _layoutSettingPreviewList;
-
-		/// <summary>
-		/// 題型預覽列表
-		/// </summary>
-		List<LayoutSetting.Preview> IMainProcess.LayoutSettingPreviewList
+		public List<LayoutSetting.Preview> LayoutSettingPreviewList
 		{
-			get
-			{
-				return _layoutSettingPreviewList;
-			}
-			set
-			{
-				_layoutSettingPreviewList = value;
-			}
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -242,7 +233,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		public bool ChooseCheck()
 		{
 			// 選題情況
-			if (_layoutSettingPreviewList == null || _layoutSettingPreviewList.Count == 2)
+			if (LayoutSettingPreviewList == null || LayoutSettingPreviewList.Count == 2)
 			{
 				return false;
 			}
@@ -256,9 +247,9 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		public void SetLayoutSettingPreviewList(LayoutSetting.Preview name)
 		{
 			// 初期化
-			if (_layoutSettingPreviewList == null)
+			if (LayoutSettingPreviewList == null)
 			{
-				_layoutSettingPreviewList = new List<LayoutSetting.Preview>
+				LayoutSettingPreviewList = new List<LayoutSetting.Preview>
 				{
 					// 標題區
 					LayoutSetting.Preview.Title,
@@ -267,9 +258,9 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 				};
 			}
 			// 如果列表中不存在，則添加在答題區之前
-			if (!_layoutSettingPreviewList.Any(d => d == name))
+			if (!LayoutSettingPreviewList.Any(d => d == name))
 			{
-				_layoutSettingPreviewList.Insert(_layoutSettingPreviewList.Count - 1, name);
+				LayoutSettingPreviewList.Insert(LayoutSettingPreviewList.Count - 1, name);
 			}
 		}
 
@@ -293,7 +284,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			else
 			{
 				// 題型預覽移除
-				_layoutSettingPreviewList.Remove(info.Preview);
+				LayoutSettingPreviewList.Remove(info.Preview);
 				// 題型移除
 				_htmlMaps.Remove(info.ControlId);
 			}
@@ -333,8 +324,8 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 
 					int indexX = 1, indexY = 1;
 					ComposerFactory.SystemModelInfoCache
-						.OrderBy(b => b.Value.Classify, new ClassifyComparer())
-						.ThenBy(c => c.Key, new PreviewComparer()).ToList()
+						.OrderBy(b => b.Value.Classify, new ClassifyToIntComparer())
+						.ThenBy(c => c.Key, new PreviewToStringComparer()).ToList()
 						.ForEach(d =>
 					{
 						// 題型大類不同的場合，坐標初期化設定
@@ -372,114 +363,11 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		}
 	}
 
-	/// <summary>
-	/// 自定題型排序類（按照題型種類的序號進行排序）
-	/// </summary>
-	public class ClassifyComparer : IComparer<LayoutSetting.Classify>
-	{
-		/// <summary>
-		/// 方法重寫，將兩個字符串進行比較并返回相應結果
-		/// </summary>
-		/// <param name="x">字符串</param>
-		/// <param name="y">字符串</param>
-		/// <returns>比較結果</returns>
-		public int Compare(LayoutSetting.Classify x, LayoutSetting.Classify y)
-		{
-			if ((int)x > (int)y)
-			{
-				return 1;
-			}
-			else if ((int)x < (int)y)
-			{
-				return -1;
-			}
-			else
-			{
-				return 0;
-			}
-		}
-	}
 
-	/// <summary>
-	/// 自定題型排序類（按照題型的序號進行排序）
-	/// </summary>
-	public class PreviewComparer : IComparer<string>
-	{
-		/// <summary>
-		/// 方法重寫，將兩個字符串進行比較并返回相應結果
-		/// </summary>
-		/// <param name="x">字符串</param>
-		/// <param name="y">字符串</param>
-		/// <returns>比較結果</returns>
-		public int Compare(string x, string y)
-		{
-			if ((int)Enum.Parse(typeof(LayoutSetting.Preview), x) > (int)Enum.Parse(typeof(LayoutSetting.Preview), y))
-			{
-				return 1;
-			}
-			else if ((int)Enum.Parse(typeof(LayoutSetting.Preview), x) < (int)Enum.Parse(typeof(LayoutSetting.Preview), y))
-			{
-				return -1;
-			}
-			else
-			{
-				return 0;
-			}
-		}
-	}
 
-	/// <summary>
-	/// 控件基本信息
-	/// </summary>
-	public class ControlInfo
-	{
-		/// <summary>
-		/// 坐標X
-		/// </summary>
-		public int IndexX { get; set; }
 
-		/// <summary>
-		/// 坐標Y
-		/// </summary>
-		public int IndexY { get; set; }
 
-		/// <summary>
-		/// 控件ID
-		/// </summary>
-		public string ControlId { get; set; }
+	
 
-		/// <summary>
-		/// 控件標題
-		/// </summary>
-		public string Title { get; set; }
 
-		/// <summary>
-		/// 題型分類
-		/// </summary>
-		public LayoutSetting.Classify Classify { get; set; }
-
-		/// <summary>
-		/// 題型類型
-		/// </summary>
-		public LayoutSetting.Preview Preview { get; set; }
-	}
-
-	/// <summary>
-	/// 題型參數類
-	/// </summary>
-	[DataContract]
-	public class TopicManagement
-	{
-		/// <summary>
-		/// 題型名稱
-		/// </summary>
-		[DataMember(Name = "name")]
-		public string Name { get; set; }
-
-		/// <summary>
-		/// 提醒編號
-		/// </summary>
-		[DataMember(Name = "number")]
-		public string Number { get; set; }
-	}
 }

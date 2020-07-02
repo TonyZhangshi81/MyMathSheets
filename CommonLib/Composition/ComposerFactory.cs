@@ -121,7 +121,7 @@ namespace MyMathSheets.CommonLib.Composition
 				});
 
 				// 模塊識別號(模塊識別ID + 題型識別號)
-				string composerKey = (attr.Preview == LayoutSetting.Preview.Null) ? attr.SystemId.ToString() : string.Format("{0}::{1}", attr.SystemId, attr.Preview);
+				string composerKey = (attr.Preview == LayoutSetting.Preview.Null) ? attr.SystemId.ToString() : $"{attr.SystemId}::{attr.Preview}";
 
 				ComposerCache.GetOrAdd(composerKey, valueFunc);
 				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0029L, composerKey));
@@ -159,7 +159,7 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <returns></returns>
 		public static Composer GetComporser(SystemModel systemId, LayoutSetting.Preview preview = LayoutSetting.Preview.Null)
 		{
-			string composerKey = (preview == LayoutSetting.Preview.Null) ? systemId.ToString() : string.Format("{0}::{1}", systemId, preview);
+			string composerKey = (preview == LayoutSetting.Preview.Null) ? systemId.ToString() : $"{systemId}::{preview}";
 
 			if (ComposerCache.ContainsKey(composerKey))
 			{

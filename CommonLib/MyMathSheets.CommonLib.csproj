@@ -96,6 +96,10 @@
     <Compile Include="Main\ExportAttributes\Provider\ParameterProviderAttribute.cs" />
     <Compile Include="Main\FromProcess\IMainProcess.cs" />
     <Compile Include="Main\FromProcess\MainProcess.cs" />
+    <Compile Include="Main\FromProcess\Support\ControlInfo.cs" />
+    <Compile Include="Main\FromProcess\Support\TopicManagement.cs" />
+    <Compile Include="Main\FromProcess\Util\ClassifyToIntComparer.cs" />
+    <Compile Include="Main\FromProcess\Util\PreviewToStringComparer.cs" />
     <Compile Include="Main\HtmlSupport\Attributes\SubstituteAttribute.cs" />
     <Compile Include="Main\HtmlSupport\HtmlSupportNotFoundException.cs" />
     <Compile Include="Main\HtmlSupport\HtmlSupprtHelper.cs" />

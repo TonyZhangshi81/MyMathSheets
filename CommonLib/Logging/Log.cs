@@ -44,17 +44,6 @@ namespace MyMathSheets.CommonLib.Logging
 		/// <param name="exception">異常對象</param>
 		public void Output(string message, MessageLevel level, Exception exception)
 		{
-			Output(message, level, exception);
-		}
-
-		/// <summary>
-		/// 消息輸出
-		/// </summary>
-		/// <param name="message">消息</param>
-		/// <param name="level">級別</param>
-		/// <param name="exception">異常對象</param>
-		internal void Output(object message, MessageLevel level, Exception exception)
-		{
 			Common.Logging.ILog logger = LogManager.GetLogger(GetType());
 			switch (level)
 			{

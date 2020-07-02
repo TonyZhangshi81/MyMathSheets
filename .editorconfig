@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# CA2000: スコープを失う前にオブジェクトを破棄
+dotnet_diagnostic.CA2000.severity = none
+
+# CA1810: 参照型の静的フィールドをインラインで初期化します
+dotnet_diagnostic.CA1810.severity = none
+
+# CA2227: コレクション プロパティは読み取り専用でなければなりません
+dotnet_diagnostic.CA2227.severity = none

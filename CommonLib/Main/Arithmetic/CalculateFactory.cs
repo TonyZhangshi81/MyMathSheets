@@ -84,7 +84,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 
 				// 指定運算符并獲取處理類型
 				IEnumerable<Lazy<CalculateBase, ICalculateMetaDataView>> calculates = Calculates.Where(d => { return d.Metadata.Sign == sign; });
-				if (Calculates.Count() == 0)
+				if (!calculates.Any())
 				{
 					// 指定的題型參數對象未找到
 					throw new CalculateNotFoundException(MessageUtil.GetException(() => MsgResources.E0020L, sign.ToString()));

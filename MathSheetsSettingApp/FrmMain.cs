@@ -25,7 +25,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// 畫面處理類
 		/// </summary>
 		[Import(typeof(IMainProcess))]
-		private IMainProcess _process { get; set; }
+		private MainProcess _process { get; set; }
 
 		/// <summary>
 		/// 畫面構造函數

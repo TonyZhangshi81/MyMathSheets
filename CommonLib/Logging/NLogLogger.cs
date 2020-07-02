@@ -1,8 +1,11 @@
-﻿using NLog;
+﻿using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Properties;
+using NLog;
 using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 
 namespace MyMathSheets.CommonLib.Logging
 {
@@ -175,7 +178,7 @@ namespace MyMathSheets.CommonLib.Logging
 					return LogLevel.Off;
 
 				default:
-					throw new ArgumentOutOfRangeException("logLevel", logLevel, "unknown log level");
+					throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, MessageUtil.GetException(() => MsgResources.E0038L));
 			}
 		}
 	}

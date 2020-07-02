@@ -64,6 +64,10 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <param name="p"></param>
 		public virtual void PreExecute(ParameterBase p)
 		{
+			Guard.ArgumentNotNull(p, "ParameterBase");
+
+			Guard.ArgumentNotNull(p.Identifier, "Identifier");
+			Guard.ArgumentNotNull(p.Signs, "Signs");
 		}
 
 		/// <summary>

@@ -1,12 +1,15 @@
 ﻿using MyMathSheets.CommonLib.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
+using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
 	/// <summary>
-	///
+	/// 參數類型
 	/// </summary>
+	[JsonObject(MemberSerialization.OptOut)]
 	public class ParameterBase : IParameter
 	{
 		/// <summary>
@@ -47,12 +50,12 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 推算範圍（基於算式第一參數指定範圍的推算）
 		/// </summary>
-		public int[] LeftScope { get; set; }
+		public List<int> LeftScope { get; set; }
 
 		/// <summary>
 		/// 推算範圍（基於算式第二參數指定範圍的推算）
 		/// </summary>
-		public int[] RightScope { get; set; }
+		public List<int> RightScope { get; set; }
 
 		/// <summary>
 		///
@@ -60,10 +63,9 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		public virtual void InitParameter()
 		{
 			// 識別號(preview + "::" + identifier)
-			var identifiers = Identifier.Split(':');
+			string[] identifiers = Identifier.Split(':');
 
-			var hepler = new ParameterHepler();
-			ParameterBase parameter = hepler.CreateParameterProvider(identifiers[0]).Initialize(identifiers[2]);
+			ParameterBase parameter = ParameterHepler.CreateParameterProvider().Initialize(Identifier);
 
 			QuestionType = parameter.QuestionType;
 			Signs = parameter.Signs;
@@ -73,8 +75,9 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			Reserve = parameter.Reserve;
 			LeftScope = parameter.LeftScope;
 			RightScope = parameter.RightScope;
+
 			// 對應因題型參數標識不正確時會使用默認的題型參數配置中的標識
-			Identifier = string.Format(identifiers[0] + "::" + parameter.Identifier);
+			Identifier = $"{identifiers[0]}::{parameter.Identifier}";
 		}
 	}
 }

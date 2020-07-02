@@ -156,6 +156,9 @@
   <data name="E0037L" xml:space="preserve">
     <value>E0037L:指定對象為NULL</value>
   </data>
+  <data name="E0038L" xml:space="preserve">
+    <value>E0038L:未定義的日誌類型</value>
+  </data>
   <data name="I0001L" xml:space="preserve">
     <value>I0001L:指定運算符實例準備作成</value>
   </data>

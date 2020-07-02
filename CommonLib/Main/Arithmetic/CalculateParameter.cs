@@ -1,4 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Util;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace MyMathSheets.CommonLib.Main.Arithmetic
 {
@@ -25,11 +27,11 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <summary>
 		/// 推算範圍（基於算式第一參數指定範圍的推算）
 		/// </summary>
-		public int[] LeftScope { get; set; }
+		public List<int> LeftScope { get; set; }
 
 		/// <summary>
 		/// 推算範圍（基於算式第二參數指定範圍的推算）
 		/// </summary>
-		public int[] RightScope { get; set; }
+		public List<int> RightScope { get; set; }
 	}
 }

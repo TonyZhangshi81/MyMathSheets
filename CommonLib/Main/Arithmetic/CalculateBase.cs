@@ -3,6 +3,7 @@ using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using System;
+using System.Collections.Generic;
 
 namespace MyMathSheets.CommonLib.Main.Arithmetic
 {
@@ -37,8 +38,10 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// </summary>
 		/// <param name="parameterScope"></param>
 		/// <returns></returns>
-		protected virtual int GetParameterWithScope(int[] parameterScope)
+		protected virtual int GetParameterWithScope(List<int> parameterScope)
 		{
+			Guard.ArgumentNotNull(parameterScope, "parameterScope");
+
 			var number = CommonUtil.GetRandomNumber(parameterScope[0], parameterScope[1]);
 			return number;
 		}
@@ -94,6 +97,8 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public virtual Formula CreateFormula(CalculateParameter parameter)
 		{
+			Guard.ArgumentNotNull(parameter, "parameter");
+
 			Formula = new Formula();
 
 			// 随机下限值

@@ -48,12 +48,6 @@ namespace MyMathSheets.CommonLib.Composition
 					catalog.Catalogs.Add(new AssemblyCatalog(asm));
 					cache.Add(asm);
 				}
-
-				if (!cache.Contains(asm))
-				{
-					catalog.Catalogs.Add(new AssemblyCatalog(asm));
-					cache.Add(asm);
-				}
 			}
 
 			// 創建MEF容器

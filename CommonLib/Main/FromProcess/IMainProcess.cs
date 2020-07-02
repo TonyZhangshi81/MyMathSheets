@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Main.FromProcess.Support;
+using MyMathSheets.CommonLib.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -14,11 +15,6 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 控件基本屬性取得
 		/// </summary>
 		List<ControlInfo> ControlList { get; }
-
-		/// <summary>
-		/// 題型瀏覽內容列表
-		/// </summary>
-		List<LayoutSetting.Preview> LayoutSettingPreviewList { get; set; }
 
 		/// <summary>
 		/// 獲取指定文件夾下所有文件的文件名列表
