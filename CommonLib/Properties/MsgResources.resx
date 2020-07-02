@@ -150,6 +150,12 @@
   <data name="E0027L" xml:space="preserve">
     <value>E0027L:指定{0}文件的MathSheetMarker屬性未定義</value>
   </data>
+  <data name="E0036L" xml:space="preserve">
+    <value>E0036L:指定參數【{0}】的值為NULL</value>
+  </data>
+  <data name="E0037L" xml:space="preserve">
+    <value>E0037L:指定對象為NULL</value>
+  </data>
   <data name="I0001L" xml:space="preserve">
     <value>I0001L:指定運算符實例準備作成</value>
   </data>

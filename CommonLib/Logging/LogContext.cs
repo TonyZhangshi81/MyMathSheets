@@ -22,7 +22,7 @@ namespace MyMathSheets.CommonLib.Logging
 		public IDictionary<object, object> Properties
 		{
 			get;
-			set;
+			private set;
 		}
 
 		/// <summary>

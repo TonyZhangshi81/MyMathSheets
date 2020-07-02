@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Util;
 
@@ -11,6 +12,31 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 	public class Division : CalculateBase
 	{
 		/// <summary>
+		/// 反推判定次數（如果大於三次則認為此題無法作成繼續下一題）
+		/// </summary>
+		private const int INVERSE_NUMBER = 3;
+
+		/// <summary>
+		/// 創建計算式
+		/// </summary>
+		/// <param name="parameter">計算書參數類</param>
+		/// <returns>計算式成立: TRUE</returns>
+		private bool TryCreateFormula(CalculateParameter parameter)
+		{
+			Formula.RightParameter = GetLeftParameter(9);
+			Formula.Sign = SignOfOperation.Division;
+			Formula.LeftParameter = GetRightParameter(9, Formula.RightParameter);
+			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
+
+			// 结果特殊处理(当被除数为0时,求解值可以为任何数)  只在随机除法填空题型且分子为0的情况下
+			if (Formula.Gap == GapFilling.Right && Formula.RightParameter == 0)
+			{
+				return false;
+			}
+			return true;
+		}
+
+		/// <summary>
 		/// 構造函數
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
@@ -18,13 +44,31 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		public override Formula CreateFormula(CalculateParameter parameter)
 		{
 			Formula = base.CreateFormula(parameter);
+			// 創建計算式
+			var result = TryCreateFormula(parameter);
 
-			Formula.RightParameter = GetLeftParameter(9);
-			Formula.Sign = SignOfOperation.Division;
-			Formula.LeftParameter = GetRightParameter(9, Formula.RightParameter);
-			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
-			// 结果特殊处理(当被除数为0时,求解值可以为任何数)  只在随机除法填空题型且分子为0的情况下
-			ResultSpecialHandling();
+			// 當前反推判定次數
+			int _defeated = 0;
+			while (_defeated < INVERSE_NUMBER)
+			{
+				if (!result)
+				{
+					result = TryCreateFormula(parameter);
+				}
+				else
+				{
+					break;
+				}
+				_defeated++;
+
+				if (_defeated == INVERSE_NUMBER)
+				{
+					Formula.IsNoSolution = true;
+				}
+			}
+
+			LogUtil.LogCalculate(Formula);
+
 			return Formula;
 		}
 
@@ -40,6 +84,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 
 			// TODO
 
+			LogUtil.LogCalculate(Formula);
+
 			return Formula;
 		}
 
@@ -52,31 +98,53 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		public override Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
 		{
 			Formula = base.CreateFormulaWithAnswer(parameter, answer);
+			// 創建計算式
+			var result = TryCreateFormulaWithAnswer(parameter, answer);
 
+			// 當前反推判定數
+			int _defeated = 0;
+			while (_defeated < INVERSE_NUMBER)
+			{
+				if (!result)
+				{
+					result = TryCreateFormulaWithAnswer(parameter, answer);
+				}
+				else
+				{
+					break;
+				}
+				_defeated++;
+
+				if (_defeated == INVERSE_NUMBER)
+				{
+					// 無解計算式（結果無法被整除）
+					Formula.IsNoSolution = true;
+				}
+			}
+
+			LogUtil.LogCalculate(Formula);
+
+			return Formula;
+		}
+
+		/// <summary>
+		/// 創建計算式
+		/// </summary>
+		/// <param name="parameter">計算書參數類</param>
+		/// <param name="answer">計算結果</param>
+		/// <returns>計算式成立: TRUE</returns>
+		private bool TryCreateFormulaWithAnswer(CalculateParameter parameter, int answer)
+		{
 			Formula.Answer = answer;
 			Formula.Sign = SignOfOperation.Division;
 			Formula.LeftParameter = GetLeftParameter(9);
 			// 判定是否超出九九乘法口訣上限值
 			if (Formula.Answer > 81)
 			{
-				// 無解計算式（結果無法被整除）
-				Formula.IsNoSolution = true;
-				return Formula;
+				return false;
 			}
 			Formula.RightParameter = Formula.Answer * Formula.LeftParameter;
-
-			return Formula;
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		private void ResultSpecialHandling()
-		{
-			if (Formula.Gap == GapFilling.Right && Formula.RightParameter == 0)
-			{
-				Formula.RightParameter = -999;
-			}
+			return true;
 		}
 
 		/// <summary>

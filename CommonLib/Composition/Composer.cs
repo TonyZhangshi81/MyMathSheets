@@ -20,6 +20,8 @@ namespace MyMathSheets.CommonLib.Composition
 	/// </remarks>
 	public class Composer : IDisposable
 	{
+		private bool isDisposed;
+
 		/// <summary>
 		/// MEF容器
 		/// </summary>
@@ -31,6 +33,8 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <param name="assembly">程序集對象</param>
 		public Composer(Assembly assembly)
 		{
+			Guard.ArgumentNotNull(assembly, "Assembly");
+
 			// 對象元素目錄
 			var catalog = new AggregateCatalog();
 			var cache = new List<Assembly>();
@@ -253,12 +257,39 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <summary>
 		/// 資源釋放
 		/// </summary>
-		void IDisposable.Dispose()
+		public void Dispose()
 		{
-			if (_container != null)
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		/// <param name="disposing">是否正在釋放</param>
+		/// <remarks>資源自動回收時觸發析構函數，以下資源自動釋放(即isDisposed=true)</remarks>
+		protected virtual void Dispose(bool disposing)
+		{
+			if (isDisposed) return;
+
+			// 正在釋放資源
+			if (disposing)
 			{
-				_container.Dispose();
+				if (_container != null)
+				{
+					_container.Dispose();
+				}
 			}
+
+			isDisposed = true;
+		}
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		~Composer()
+		{
+			Dispose(false);
 		}
 
 		/// <summary>

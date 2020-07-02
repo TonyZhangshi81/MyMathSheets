@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Util;
 
@@ -10,6 +11,11 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 	[Calculate(SignOfOperation.Multiple)]
 	public class Multiplication : CalculateBase
 	{
+		/// <summary>
+		/// 反推判定次數
+		/// </summary>
+		private const int INVERSE_NUMBER = 3;
+
 		/// <summary>
 		/// 構造函數
 		/// </summary>
@@ -23,8 +29,19 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			Formula.Sign = SignOfOperation.Multiple;
 			Formula.RightParameter = GetRightParameter(9);
 			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
+
 			// 结果特殊处理（在乘法式中其中一个数值为零，那另一个值可以是任意一个数值）
-			ResultSpecialHandling();
+			if (Formula.Gap == GapFilling.Left && Formula.RightParameter == 0)
+			{
+				Formula.LeftParameter = -999;
+			}
+
+			if (Formula.Gap == GapFilling.Right && Formula.LeftParameter == 0)
+			{
+				Formula.RightParameter = -999;
+			}
+
+			LogUtil.LogCalculate(Formula);
 
 			return Formula;
 		}
@@ -41,6 +58,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 
 			// TODO
 
+			LogUtil.LogCalculate(Formula);
+
 			return Formula;
 		}
 
@@ -53,36 +72,54 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		public override Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
 		{
 			Formula = base.CreateFormulaWithAnswer(parameter, answer);
+			// 創建計算式
+			var result = TryCreateFormulaWithAnswer(parameter, answer);
 
-			Formula.Answer = answer;
-			Formula.Sign = SignOfOperation.Multiple;
-			Formula.LeftParameter = GetLeftParameter(9);
-			// 判定是否能被整除
-			if(Formula.Answer % Formula.LeftParameter != 0)
+			// 當前反推判定數
+			int _defeated = 0;
+			while (_defeated < INVERSE_NUMBER)
 			{
-				// 無解計算式（結果無法被整除）
-				Formula.IsNoSolution = true;
-				return Formula;
+				if (!result)
+				{
+					result = TryCreateFormulaWithAnswer(parameter, answer);
+				}
+				else
+				{
+					break;
+				}
+				_defeated++;
+
+				if (_defeated == INVERSE_NUMBER)
+				{
+					// 無解計算式（結果無法被整除）
+					Formula.IsNoSolution = true;
+				}
 			}
-			Formula.RightParameter = Formula.Answer / Formula.LeftParameter;
+
+			LogUtil.LogCalculate(Formula);
 
 			return Formula;
 		}
 
 		/// <summary>
-		/// 
+		/// 創建計算式
 		/// </summary>
-		private void ResultSpecialHandling()
+		/// <param name="parameter">計算書參數類</param>
+		/// <param name="answer">計算結果</param>
+		/// <returns>計算式成立: TRUE</returns>
+		private bool TryCreateFormulaWithAnswer(CalculateParameter parameter, int answer)
 		{
-			if (Formula.Gap == GapFilling.Left && Formula.RightParameter == 0)
+			Formula.Answer = answer;
+			Formula.Sign = SignOfOperation.Multiple;
+			Formula.LeftParameter = GetLeftParameter(9);
+			// 判定是否能被整除
+			if (Formula.Answer % Formula.LeftParameter != 0)
 			{
-				Formula.LeftParameter = -999;
+				return false;
 			}
+			Formula.RightParameter = Formula.Answer / Formula.LeftParameter;
 
-			if (Formula.Gap == GapFilling.Right && Formula.LeftParameter == 0)
-			{
-				Formula.RightParameter = -999;
-			}
+			return true;
 		}
 	}
 }

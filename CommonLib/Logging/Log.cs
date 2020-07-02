@@ -1,6 +1,4 @@
 ﻿using Common.Logging;
-using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using System;
 
@@ -29,52 +27,32 @@ namespace MyMathSheets.CommonLib.Logging
 		}
 
 		/// <summary>
-		///
+		/// 消息輸出
 		/// </summary>
-		/// <param name="message"></param>
-		public void Debug(string message)
+		/// <param name="message">消息</param>
+		/// <param name="level">級別</param>
+		public void Output(string message, MessageLevel level)
 		{
-			Output(message, MessageLevel.Debug, null);
+			Output(message, level, null);
 		}
 
 		/// <summary>
-		///
+		/// 消息輸出
 		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="exception"></param>
-		public void Debug(string message, Exception exception)
+		/// <param name="message">消息</param>
+		/// <param name="level">級別</param>
+		/// <param name="exception">異常對象</param>
+		public void Output(string message, MessageLevel level, Exception exception)
 		{
-			Output(message, MessageLevel.Error, exception);
+			Output(message, level, exception);
 		}
 
 		/// <summary>
-		///
+		/// 消息輸出
 		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="exception"></param>
-		/// <param name="bcp"></param>
-		public void Debug(string message, Exception exception, CalculateParameter bcp)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="exception"></param>
-		/// <param name="bcp"></param>
-		public void Debug(string message, Exception exception, ParameterBase bcp)
-		{
-			throw new NotImplementedException();
-		}
-
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="message"></param>
-		/// <param name="level"></param>
-		/// <param name="exception"></param>
+		/// <param name="message">消息</param>
+		/// <param name="level">級別</param>
+		/// <param name="exception">異常對象</param>
 		internal void Output(object message, MessageLevel level, Exception exception)
 		{
 			Common.Logging.ILog logger = LogManager.GetLogger(GetType());
@@ -122,6 +100,25 @@ namespace MyMathSheets.CommonLib.Logging
 					}
 					break;
 			}
+		}
+
+		/// <summary>
+		/// 調試日誌輸出
+		/// </summary>
+		/// <param name="message">調試信息</param>
+		public void Debug(string message)
+		{
+			LogUtil.LogDebug(message);
+		}
+
+		/// <summary>
+		/// 調試日誌輸出
+		/// </summary>
+		/// <param name="message">調試信息</param>
+		/// <param name="exception">異常對象</param>
+		public void Debug(string message, Exception exception)
+		{
+			LogUtil.LogDebug(message, exception, null);
 		}
 	}
 }

@@ -146,33 +146,33 @@ namespace MyMathSheets.CommonLib.Logging
 		/// NLog
 		///		OFF ＞ FATAL ＞ ERROR ＞ WARN ＞ INFO ＞ DEBUG  ＞   ＞   ＞ TRACE
 		/// </remarks>
-		private static NLog.LogLevel GetLevel(Common.Logging.LogLevel logLevel)
+		private static LogLevel GetLevel(Common.Logging.LogLevel logLevel)
 		{
 			switch (logLevel)
 			{
 				case Common.Logging.LogLevel.All:
-					return NLog.LogLevel.Trace;
+					return LogLevel.Trace;
 
 				case Common.Logging.LogLevel.Trace:
-					return NLog.LogLevel.Trace;
+					return LogLevel.Trace;
 
 				case Common.Logging.LogLevel.Debug:
-					return NLog.LogLevel.Debug;
+					return LogLevel.Debug;
 
 				case Common.Logging.LogLevel.Info:
-					return NLog.LogLevel.Info;
+					return LogLevel.Info;
 
 				case Common.Logging.LogLevel.Warn:
-					return NLog.LogLevel.Warn;
+					return LogLevel.Warn;
 
 				case Common.Logging.LogLevel.Error:
-					return NLog.LogLevel.Error;
+					return LogLevel.Error;
 
 				case Common.Logging.LogLevel.Fatal:
-					return NLog.LogLevel.Fatal;
+					return LogLevel.Fatal;
 
 				case Common.Logging.LogLevel.Off:
-					return NLog.LogLevel.Off;
+					return LogLevel.Off;
 
 				default:
 					throw new ArgumentOutOfRangeException("logLevel", logLevel, "unknown log level");

@@ -1,6 +1,8 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Util;
+using System.Security.Permissions;
 
 namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 {
@@ -11,14 +13,17 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 	public class Subtraction : CalculateBase
 	{
 		/// <summary>
-		/// 構造函數
+		/// 反推判定次數
 		/// </summary>
-		/// <param name="parameter">計算式參數類</param>
-		/// <returns>計算式對象</returns>
-		public override Formula CreateFormula(CalculateParameter parameter)
-		{
-			Formula = base.CreateFormula(parameter);
+		private const int INVERSE_NUMBER = 3;
 
+		/// <summary>
+		/// 創建計算式
+		/// </summary>
+		/// <param name="parameter">計算書參數類</param>
+		/// <returns>計算式成立: TRUE</returns>
+		private bool TryCreateFormula(CalculateParameter parameter)
+		{
 			if (parameter.MaximumLimit == 0)
 			{
 				Formula.LeftParameter = GetParameterWithScope(parameter.LeftScope);
@@ -33,11 +38,45 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			Formula.Sign = SignOfOperation.Subtraction;
 			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
 
-			if(Formula.Answer < 0)
+			if (Formula.Answer < 0)
 			{
-				// 負數值
-				Formula.IsNoSolution = true;
+				return false;
 			}
+			return true;
+		}
+
+		/// <summary>
+		/// 構造函數
+		/// </summary>
+		/// <param name="parameter">計算式參數類</param>
+		/// <returns>計算式對象</returns>
+		public override Formula CreateFormula(CalculateParameter parameter)
+		{
+			Formula = base.CreateFormula(parameter);
+			// 創建計算式
+			var result = TryCreateFormula(parameter);
+
+			// 當前反推判定數
+			int _defeated = 0;
+			while (_defeated < INVERSE_NUMBER)
+			{
+				if (!result)
+				{
+					result = TryCreateFormula(parameter);
+				}
+				else
+				{
+					break;
+				}
+				_defeated++;
+
+				if (_defeated == INVERSE_NUMBER)
+				{
+					Formula.IsNoSolution = true;
+				}
+			}
+
+			LogUtil.LogCalculate(Formula);
 
 			return Formula;
 		}
@@ -58,6 +97,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			Formula.RightParameter = GetRightParameter(Formula.LeftParameter);
 			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
 
+			LogUtil.LogCalculate(Formula);
+
 			return Formula;
 		}
 
@@ -77,6 +118,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			MinimumLimit = answer;
 			Formula.LeftParameter = GetLeftParameter(parameter.MaximumLimit);
 			Formula.RightParameter = Formula.LeftParameter - Formula.Answer;
+
+			LogUtil.LogCalculate(Formula);
 
 			return Formula;
 		}

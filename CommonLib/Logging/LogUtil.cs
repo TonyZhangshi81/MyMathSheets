@@ -17,7 +17,7 @@ namespace MyMathSheets.CommonLib.Logging
 		/// </summary>
 		/// <param name="logs">日誌實例</param>
 		/// <param name="createContext">日誌信息</param>
-		public static void LogDebug(IEnumerable<Common.Logging.ILog> logs, Func<LogContext> createContext)
+		private static void LogDebug(IEnumerable<Common.Logging.ILog> logs, Func<LogContext> createContext)
 		{
 			LogDebug(logs, () => createContext(), null);
 		}
@@ -28,7 +28,7 @@ namespace MyMathSheets.CommonLib.Logging
 		/// <param name="logs">日誌實例</param>
 		/// <param name="createContext">日誌信息</param>
 		/// <param name="exception">異常</param>
-		public static void LogDebug(IEnumerable<Common.Logging.ILog> logs, Func<LogContext> createContext, Exception exception)
+		private static void LogDebug(IEnumerable<Common.Logging.ILog> logs, Func<LogContext> createContext, Exception exception)
 		{
 			LogContext context = null;
 
@@ -62,12 +62,12 @@ namespace MyMathSheets.CommonLib.Logging
 
 		#region Calculate
 
+		private const string CalculateEventContextItemName = "Formula";
+
 		/// <summary>
 		/// 計算式日誌處理
 		/// </summary>
-		private static readonly IList<Common.Logging.ILog> CalculateLoggings = new List<Common.Logging.ILog>() { Common.Logging.LogManager.GetLogger("Calculate") };
-
-		private const string CalculateEventContextItemName = "Formula";
+		private static readonly IList<Common.Logging.ILog> CalculateLoggings = new List<Common.Logging.ILog>() { LogManager.GetLogger("Calculate") };
 
 		/// <summary>
 		/// 日誌處理：計算式作成處理
@@ -80,10 +80,10 @@ namespace MyMathSheets.CommonLib.Logging
 				() =>
 					{
 						var dump = new StringBuilder();
-						dump.Append(formula.LeftParameter);
-						dump.Append(formula.Sign.ToOperationString());
-						dump.Append(formula.RightParameter);
-						dump.Append(SignOfCompare.Equal.ToSignOfCompareString());
+						dump.Append(formula.LeftParameter).Append(" ");
+						dump.Append(formula.Sign.ToOperationString()).Append(" ");
+						dump.Append(formula.RightParameter).Append(" ");
+						dump.Append(SignOfCompare.Equal.ToSignOfCompareString()).Append(" ");
 						dump.Append(formula.Answer);
 
 						var context = new LogContext("Formula");

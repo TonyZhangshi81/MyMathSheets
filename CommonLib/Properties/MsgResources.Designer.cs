@@ -160,6 +160,24 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
+        ///   E0036L:指定參數【{0}】的值為NULL に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0036L {
+            get {
+                return ResourceManager.GetString("E0036L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   E0037L:指定對象為NULL に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0037L {
+            get {
+                return ResourceManager.GetString("E0037L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   I0001L:指定運算符實例準備作成 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string I0001L {

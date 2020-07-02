@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Util;
 
@@ -33,6 +34,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			}
 			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
 
+			LogUtil.LogCalculate(Formula);
+
 			return Formula;
 		}
 
@@ -52,6 +55,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			Formula.RightParameter = GetRightParameter(parameter.MaximumLimit, Formula.LeftParameter);
 			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
 
+			LogUtil.LogCalculate(Formula);
+
 			return Formula;
 		}
 
@@ -70,6 +75,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			Formula.Sign = SignOfOperation.Plus;
 			Formula.LeftParameter = GetLeftParameter(answer);
 			Formula.RightParameter = Formula.Answer - Formula.LeftParameter;
+
+			LogUtil.LogCalculate(Formula);
 
 			return Formula;
 		}
