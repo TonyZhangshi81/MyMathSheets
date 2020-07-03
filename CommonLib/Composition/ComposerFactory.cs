@@ -10,6 +10,7 @@ using System.ComponentModel.Composition.Primitives;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Composition
@@ -25,14 +26,16 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <summary>
 		/// 模塊加載委託
 		/// </summary>
+		/// <param name="sender"></param>
 		/// <param name="current">當前加載對象計數</param>
-		public delegate void ModelLoadEventHandler(int current);
+		public delegate void ModelLoadEventHandler(object sender, int current);
 
 		/// <summary>
 		/// 模塊信息檢索委託
 		/// </summary>
+		/// <param name="sender"></param>
 		/// <param name="modelCount">預加載對象合計數</param>
-		public delegate void SearchModelEventHandler(int modelCount);
+		public delegate void SearchModelEventHandler(object sender, int modelCount);
 
 		/// <summary>
 		/// 模塊加載事件
@@ -115,7 +118,7 @@ namespace MyMathSheets.CommonLib.Composition
 						System.Threading.Thread.Sleep(50);
 
 						// 模塊加載事件傳播
-						ModelLoadEvent?.Invoke(currentIndex++);
+						ModelLoadEvent?.Invoke(null, currentIndex++);
 						return new Composer(assembly);
 					}
 				});
@@ -144,7 +147,7 @@ namespace MyMathSheets.CommonLib.Composition
 			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0031L));
 
 			// 模塊信息事件傳播
-			SearchModelEvent?.Invoke(LoadTopicModuleFiles.Count);
+			SearchModelEvent?.Invoke(null, LoadTopicModuleFiles.Count);
 
 			LoadTopicModuleFiles.ForEach(f => action(f));
 

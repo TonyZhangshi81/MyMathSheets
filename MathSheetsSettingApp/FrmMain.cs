@@ -10,6 +10,7 @@ using System.ComponentModel.Composition;
 using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -93,7 +94,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				GroupBox groubox = new GroupBox
 				{
-					Name = "groubox" + rowIndex.ToString(),
+					Name = $"groubox{rowIndex}",
 					Width = 360,
 					Text = c.ToClassifyName(),
 					Location = new Point(0, locationY)
@@ -150,7 +151,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			PictureBox picBox = new PictureBox
 			{
 				// 獲取題型項目的縮略圖
-				Image = (Bitmap)ImgResources.ResourceManager.GetObject(name.ToString()),
+				Image = (Bitmap)ImgResources.ResourceManager.GetObject(name.ToString(), CultureInfo.CurrentCulture),
 				Tag = name.ToString(),
 				SizeMode = PictureBoxSizeMode.StretchImage,
 				Width = flpPreview.Width - 20,
@@ -204,7 +205,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 選題情況
 			if (!Process.ChooseCheck())
 			{
-				MessageBox.Show(this, "题型未选择");
+				MessageBox.Show(this, MessageUtil.GetException(() => MsgResources.I0009A));
 				return;
 			}
 
@@ -249,7 +250,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0007A, checkBox.Text));
 			}
-			Process.TopicCheckedChanged(checkBox.Checked, () => Process.ControlList.Where(d => d.ControlId.Equals(checkBox.Name)).First());
+
+			Process.TopicCheckedChanged(checkBox.Checked,
+					() => Process.ControlList.Where(d => d.ControlId.Equals(checkBox.Name, StringComparison.CurrentCultureIgnoreCase)).First());
 
 			// 刷新題型預覽區域
 			PreviewReflash();

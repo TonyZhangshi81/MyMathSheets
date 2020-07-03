@@ -19,7 +19,7 @@ namespace MyMathSheets.MathSheetsSettingApp.Properties {
     // または Visual Studio のようなツールを使用して自動生成されました。
     // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
     // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class MsgResources {
@@ -138,6 +138,15 @@ namespace MyMathSheets.MathSheetsSettingApp.Properties {
         internal static string I0008A {
             get {
                 return ResourceManager.GetString("I0008A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   I0009A:題型未選擇 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0009A {
+            get {
+                return ResourceManager.GetString("I0009A", resourceCulture);
             }
         }
     }

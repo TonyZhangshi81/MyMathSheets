@@ -31,8 +31,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <summary>
 		/// 模塊加載事件訂閱（獲取預加載的模塊總件數）
 		/// </summary>
+		/// <param name="sender"></param>
 		/// <param name="modelCount">模塊總件數</param>
-		private void SearchModelEvent(int modelCount)
+		private void SearchModelEvent(object sender, int modelCount)
 		{
 			// 創建一個線程用來描畫圖片的起始位置
 			MethodInvoker invoker = () =>
@@ -58,8 +59,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <summary>
 		/// 模塊加載事件訂閱（每加載一個模塊就會響應一次該事件）
 		/// </summary>
+		/// <param name="sender"></param>
 		/// <param name="current">當前加載的序號</param>
-		private void ModelLoadEvent(int current)
+		private void ModelLoadEvent(object sender, int current)
 		{
 			// 創建一個線程用來完成圖片移動（最終打開工作界面窗口）
 			MethodInvoker invoker = () =>

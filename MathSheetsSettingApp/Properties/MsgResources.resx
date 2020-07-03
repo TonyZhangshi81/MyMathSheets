@@ -147,4 +147,7 @@
   <data name="I0008A" xml:space="preserve">
     <value>I0008A:畫面初期化處理完畢</value>
   </data>
+  <data name="I0009A" xml:space="preserve">
+    <value>I0009A:題型未選擇</value>
+  </data>
 </root>
