@@ -45,11 +45,13 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			return true;
 		}
 
+
 		/// <summary>
 		/// 構造函數
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
 		/// <returns>計算式對象</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:パブリック メソッドの引数の検証", Justification = "<保留中>")]
 		public override Formula CreateFormula(CalculateParameter parameter)
 		{
 			Formula = base.CreateFormula(parameter);
@@ -81,12 +83,14 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			return Formula;
 		}
 
+
 		/// <summary>
 		/// 構造用於計算接龍題型(即：計算式左邊值等於上一個計算式的結果值)
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="previousFormula">前次推算的計算式對象</param>
 		/// <returns>計算式對象</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:パブリック メソッドの引数の検証", Justification = "<保留中>")]
 		public override Formula CreateFormula(CalculateParameter parameter, Formula previousFormula)
 		{
 			Formula = base.CreateFormula(parameter, previousFormula);
@@ -102,12 +106,14 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			return Formula;
 		}
 
+
 		/// <summary>
 		/// 由計算結果推算出計算式(使用場景:水果連連看)
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="answer">計算結果</param>
 		/// <returns>計算式對象</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:パブリック メソッドの引数の検証", Justification = "<保留中>")]
 		public override Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
 		{
 			Formula = base.CreateFormulaWithAnswer(parameter, answer);

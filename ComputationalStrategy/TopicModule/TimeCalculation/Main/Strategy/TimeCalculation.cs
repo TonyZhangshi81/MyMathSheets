@@ -19,7 +19,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		/// <summary>
 		/// 指定分鐘數值
 		/// </summary>
-		private readonly Dictionary<HourDivision, int> _assignMinutes;
+		private readonly Dictionary<HourDivisionType, int> _assignMinutes;
 
 		/// <summary>
 		/// 構造函數
@@ -27,11 +27,11 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		public TimeCalculation()
 		{
 			// 指定分鐘數值（0、15、30、45分鐘）
-			_assignMinutes = new Dictionary<HourDivision, int>() {
-				{ HourDivision.IntegralPoint, 0 },
-				{ HourDivision.Quarter, 15 },
-				{ HourDivision.Half, 30 },
-				{ HourDivision.ThreeQuarters, 45 }
+			_assignMinutes = new Dictionary<HourDivisionType, int>() {
+				{ HourDivisionType.IntegralPoint, 0 },
+				{ HourDivisionType.Quarter, 15 },
+				{ HourDivisionType.Half, 30 },
+				{ HourDivisionType.ThreeQuarters, 45 }
 			};
 		}
 
@@ -41,14 +41,14 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		/// <param name="p">題型參數</param>
 		/// <param name="startTime">開始時間</param>
 		/// <returns>開始時間(秒數)</returns>
-		private int GetStartTime(TimeCalculationParameter p, out Time startTime)
+		private int GetStartTime(TimeCalculationParameter p, out TimeType startTime)
 		{
-			startTime = new Time
+			startTime = new TimeType
 			{
 				// 小時數
 				Hours = CommonUtil.GetRandomNumber(0, 23),
 				// 分鐘數（減少難度而暫定的處理 -> 指定分鐘數值（0、15、30、45分鐘））
-				Minutes = _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)],
+				Minutes = _assignMinutes[CommonUtil.GetRandomNumber(HourDivisionType.IntegralPoint, HourDivisionType.ThreeQuarters)],
 				// 秒數
 				Seconds = (p.IsShowSeconds) ? 0 : CommonUtil.GetRandomNumber(0, 59)
 			};
@@ -62,14 +62,14 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		/// <param name="p">題型參數</param>
 		/// <param name="elapsedTime">經過時間</param>
 		/// <returns>經過時間(秒數)</returns>
-		private int GetElapsedTime(TimeCalculationParameter p, out Time elapsedTime)
+		private int GetElapsedTime(TimeCalculationParameter p, out TimeType elapsedTime)
 		{
-			elapsedTime = new Time
+			elapsedTime = new TimeType
 			{
 				// 小時數
 				Hours = CommonUtil.GetRandomNumber(p.ElapsedHours.ToList()),
 				// 分鐘數
-				Minutes = p.IsEssignMinutes ? _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)]
+				Minutes = p.IsEssignMinutes ? _assignMinutes[CommonUtil.GetRandomNumber(HourDivisionType.IntegralPoint, HourDivisionType.ThreeQuarters)]
 							: CommonUtil.GetRandomNumber(0, 59),
 				// 秒數
 				Seconds = (p.IsShowSeconds) ? 0 : CommonUtil.GetRandomNumber(0, 59)
@@ -85,21 +85,20 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		/// <param name="signFunc">運算符取得用的表達式</param>
 		private void MarkFormulaList(TimeCalculationParameter p, Func<SignOfOperation> signFunc)
 		{
-			ICalculate strategy = null;
 			// 按照指定數量作成相應的數學計算式
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				// 結束時間
-				Time endTime;
+				TimeType endTime;
 				SignOfOperation sign = signFunc();
 				// 對指定運算符實例化(時間計算:之前和之後)
-				strategy = CalculateManager(sign);
+				ICalculate strategy = CalculateManager(sign);
 				Formula formula = strategy.CreateFormula(new CalculateParameter()
 				{
 					// 開始時間
-					MaximumLimit = GetStartTime(p, out Time startTime),
+					MaximumLimit = GetStartTime(p, out TimeType startTime),
 					// 結束時間
-					MinimumLimit = GetElapsedTime(p, out Time elapsedTime)
+					MinimumLimit = GetElapsedTime(p, out TimeType elapsedTime)
 				});
 				endTime = formula.Answer.ToTime();
 
@@ -113,7 +112,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 					Gap = (p.QuestionType == QuestionType.GapFilling) ? CommonUtil.GetRandomNumber(GapFilling.Left, GapFilling.Answer) : GapFilling.Answer
 				};
 				// 判定是否需要反推并重新作成計算式
-				if (CheckIsNeedInverseMethod(p.Formulas, timeCalculationFormula))
+				if (CheckIsNeedInverseMethod(timeCalculationFormula))
 				{
 					i--;
 					continue;
@@ -150,10 +149,9 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		/// <remarks>
 		/// 情況1:時分秒全零
 		/// </remarks>
-		/// <param name="preFormulas">已得到的算式</param>
 		/// <param name="currentFormula">當前算式</param>
 		/// <returns>需要反推：true  正常情況: false</returns>
-		private bool CheckIsNeedInverseMethod(IList<TimeCalculationFormula> preFormulas, TimeCalculationFormula currentFormula)
+		private bool CheckIsNeedInverseMethod(TimeCalculationFormula currentFormula)
 		{
 			// 防止出現全零的情況
 			if (currentFormula.ElapsedTime.Hours == 0 && currentFormula.ElapsedTime.Minutes == 0 && currentFormula.ElapsedTime.Seconds == 0)

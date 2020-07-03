@@ -31,7 +31,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 		/// <summary>
 		/// 商品圖片列表
 		/// </summary>
-		private readonly List<Shop> ShopsArray;
+		private readonly List<ShopType> ShopsArray;
 
 		/// <summary>
 		/// 左側坐標列表（限定5個坐標）
@@ -42,6 +42,16 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 		/// 右側坐標列表（限定5個坐標）
 		/// </summary>
 		private readonly Dictionary<DivQueueType, List<string>> RightCurrencysArray;
+
+		/// <summary>
+		/// 答案列表
+		/// </summary>
+		private readonly StringBuilder _answerString;
+
+		/// <summary>
+		/// 初期化參數
+		/// </summary>
+		private readonly StringBuilder _hidCurrencyInitSettings;
 
 		/// <summary>
 		/// 構造體
@@ -93,20 +103,20 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 			};
 
 			// 商品圖片列表
-			ShopsArray = new List<Shop>()
+			ShopsArray = new List<ShopType>()
 			{
-				Shop.Mittens,
-				Shop.Book,
-				Shop.Christmas,
-				Shop.Hat,
-				Shop.Pencil,
-				Shop.Rubber,
-				Shop.RubiksCube,
-				Shop.Ruler,
-				Shop.Schoolbag,
-				Shop.Shirt,
-				Shop.Slipper,
-				Shop.Umbrella
+				ShopType.Mittens,
+				ShopType.Book,
+				ShopType.Christmas,
+				ShopType.Hat,
+				ShopType.Pencil,
+				ShopType.Rubber,
+				ShopType.RubiksCube,
+				ShopType.Ruler,
+				ShopType.Schoolbag,
+				ShopType.Shirt,
+				ShopType.Slipper,
+				ShopType.Umbrella
 			};
 			// 隨機排序
 			ShopsArray = ShopsArray.OrderBy(x => Guid.NewGuid()).ToList();
@@ -229,15 +239,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 			return html.ToString();
 		}
 
-		/// <summary>
-		/// 答案列表
-		/// </summary>
-		private StringBuilder _answerString { get; set; }
-
-		/// <summary>
-		/// 初期化參數
-		/// </summary>
-		private StringBuilder _hidCurrencyInitSettings { get; set; }
+		
 
 		/// <summary>
 		/// 初期化參數HTML作成

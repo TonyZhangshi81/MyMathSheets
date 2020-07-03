@@ -262,67 +262,67 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 			_answers.Length = 0;
 			StringBuilder html = new StringBuilder();
 
-			switch (item.CurrencyTransformType)
+			switch (item.CurrencyTransType)
 			{
 				// 元轉角
-				case CurrencyTransform.Y2J:
+				case CurrencyTransformType.Y2J:
 					html.Append(GetYuanHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetJiaoHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 				// 元轉分
-				case CurrencyTransform.Y2F:
+				case CurrencyTransformType.Y2F:
 					html.Append(GetYuanHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetFenHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 				// 角轉元
-				case CurrencyTransform.J2Y:
+				case CurrencyTransformType.J2Y:
 					html.Append(GetJiaoHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetYuanHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 				// 角轉分
-				case CurrencyTransform.J2F:
+				case CurrencyTransformType.J2F:
 					html.Append(GetJiaoHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetFenHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 				// 角轉元分
-				case CurrencyTransform.J2YF:
+				case CurrencyTransformType.J2YF:
 					html.Append(GetJiaoHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetYuanHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					html.Append(GetFenHtml(item, controlIndex, !(item.Gap == GapFilling.Left), "S1"));
 					break;
 				// 分轉元
-				case CurrencyTransform.F2Y:
+				case CurrencyTransformType.F2Y:
 					html.Append(GetFenHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetYuanHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 				// 分轉角
-				case CurrencyTransform.F2J:
+				case CurrencyTransformType.F2J:
 					html.Append(GetFenHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetJiaoHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 				// 分轉元角
-				case CurrencyTransform.F2YJ:
+				case CurrencyTransformType.F2YJ:
 					html.Append(GetFenHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetYuanHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					html.Append(GetJiaoHtml(item, controlIndex, !(item.Gap == GapFilling.Left), "S1"));
 					break;
 				// 角轉元（有剩餘）
-				case CurrencyTransform.J2YExt:
+				case CurrencyTransformType.J2YExt:
 					html.Append(GetJiaoHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetYuanHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					html.Append(GetRemainderJiaoHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 				// 分轉元角（有剩餘）
-				case CurrencyTransform.F2YJExt:
+				case CurrencyTransformType.F2YJExt:
 					html.Append(GetFenHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetYuanHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));

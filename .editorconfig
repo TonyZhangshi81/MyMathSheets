@@ -8,3 +8,9 @@ dotnet_diagnostic.CA1810.severity = none
 
 # CA2227: コレクション プロパティは読み取り専用でなければなりません
 dotnet_diagnostic.CA2227.severity = none
+
+# CA1707: 識別子はアンダースコアを含むことはできません
+dotnet_diagnostic.CA1707.severity = none
+
+# CA1724: 型名 Time は、名前空間の名前 'NLog.Time' と全体または部分的に競合します。競合を解消するには、どちらかの名前を変更してください。
+dotnet_diagnostic.CA1724.severity = none

@@ -25,7 +25,18 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		///
 		/// </summary>
-		protected OperationHelper Helper => _helper ?? (_helper = new OperationHelper());
+		protected OperationHelper Helper
+		{
+			get
+			{
+				if(_helper == null)
+				{
+					_helper = new OperationHelper();
+				}
+
+				return _helper;
+			}
+		}
 
 		/// <summary>
 		/// 定義私有構造函數，使外界不能創建該類實例

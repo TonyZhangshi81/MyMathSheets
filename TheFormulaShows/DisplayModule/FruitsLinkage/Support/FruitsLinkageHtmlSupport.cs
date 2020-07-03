@@ -30,7 +30,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 		/// <summary>
 		/// 水果序號列表
 		/// </summary>
-		private readonly List<Fruits> FruitsArray;
+		private readonly List<FruitType> FruitsArray;
 
 		/// <summary>
 		/// 可拖動水果的初期坐標集合
@@ -43,19 +43,19 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 		public FruitsLinkageHtmlSupport()
 		{
 			// 水果圖片列表
-			FruitsArray = new List<Fruits>()
+			FruitsArray = new List<FruitType>()
 			{
-				Fruits.Apple,
-				Fruits.Apricot,
-				Fruits.Banana,
-				Fruits.Cherry,
-				Fruits.Grape,
-				Fruits.Hamimelon,
-				Fruits.Orange,
-				Fruits.Peach,
-				Fruits.Pear,
-				Fruits.Strawberry,
-				Fruits.Watermelon
+				FruitType.Apple,
+				FruitType.Apricot,
+				FruitType.Banana,
+				FruitType.Cherry,
+				FruitType.Grape,
+				FruitType.Hamimelon,
+				FruitType.Orange,
+				FruitType.Peach,
+				FruitType.Pear,
+				FruitType.Strawberry,
+				FruitType.Watermelon
 			};
 
 			// 可拖動水果圖片初期化坐標集合

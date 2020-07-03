@@ -31,6 +31,6 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Item
 		/// <summary>
 		/// 貨幣轉換題型種類
 		/// </summary>
-		public CurrencyTransform CurrencyTransformType { get; set; }
+		public CurrencyTransformType CurrencyTransType { get; set; }
 	}
 }

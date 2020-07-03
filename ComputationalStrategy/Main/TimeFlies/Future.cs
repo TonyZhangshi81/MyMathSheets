@@ -32,11 +32,13 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 			return endTime.ToSeconds();
 		}
 
+
 		/// <summary>
 		/// 構造函數
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
 		/// <returns>計算式對象</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:パブリック メソッドの引数の検証", Justification = "<保留中>")]
 		public override Formula CreateFormula(CalculateParameter parameter)
 		{
 			Formula = base.CreateFormula(parameter);

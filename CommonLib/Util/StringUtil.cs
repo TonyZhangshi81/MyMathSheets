@@ -177,16 +177,16 @@
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
-		public static string ToTimeSystemString(this TimeSystem type)
+		public static string ToTimeSystemString(this TimeSystemType type)
 		{
 			var flag = string.Empty;
 			switch (type)
 			{
-				case TimeSystem.AM:
+				case TimeSystemType.AM:
 					flag = "Sun";
 					break;
 
-				case TimeSystem.PM:
+				case TimeSystemType.PM:
 					flag = "Moon";
 					break;
 

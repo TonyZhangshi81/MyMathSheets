@@ -19,9 +19,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <summary>
 		/// 創建計算式
 		/// </summary>
-		/// <param name="parameter">計算書參數類</param>
 		/// <returns>計算式成立: TRUE</returns>
-		private bool TryCreateFormula(CalculateParameter parameter)
+		private bool TryCreateFormula()
 		{
 			Formula.RightParameter = GetLeftParameter(9);
 			Formula.Sign = SignOfOperation.Division;
@@ -45,7 +44,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		{
 			Formula = base.CreateFormula(parameter);
 			// 創建計算式
-			var result = TryCreateFormula(parameter);
+			var result = TryCreateFormula();
 
 			// 當前反推判定次數
 			int _defeated = 0;
@@ -53,7 +52,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			{
 				if (!result)
 				{
-					result = TryCreateFormula(parameter);
+					result = TryCreateFormula();
 				}
 				else
 				{
@@ -99,7 +98,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		{
 			Formula = base.CreateFormulaWithAnswer(parameter, answer);
 			// 創建計算式
-			var result = TryCreateFormulaWithAnswer(parameter, answer);
+			var result = TryCreateFormulaWithAnswer(answer);
 
 			// 當前反推判定數
 			int _defeated = 0;
@@ -107,7 +106,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			{
 				if (!result)
 				{
-					result = TryCreateFormulaWithAnswer(parameter, answer);
+					result = TryCreateFormulaWithAnswer(answer);
 				}
 				else
 				{
@@ -130,10 +129,9 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <summary>
 		/// 創建計算式
 		/// </summary>
-		/// <param name="parameter">計算書參數類</param>
 		/// <param name="answer">計算結果</param>
 		/// <returns>計算式成立: TRUE</returns>
-		private bool TryCreateFormulaWithAnswer(CalculateParameter parameter, int answer)
+		private bool TryCreateFormulaWithAnswer(int answer)
 		{
 			Formula.Answer = answer;
 			Formula.Sign = SignOfOperation.Division;

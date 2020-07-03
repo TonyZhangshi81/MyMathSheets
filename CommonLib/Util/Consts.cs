@@ -1,10 +1,20 @@
-﻿namespace MyMathSheets.CommonLib.Util
+﻿using System;
+
+namespace MyMathSheets.CommonLib.Util
 {
 	/// <summary>
 	/// 常量定義
 	/// </summary>
-	public static class Consts
+	public sealed class Consts
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		private Consts()
+		{
+			throw new NotImplementedException();
+		}
+
 		/// <summary>
 		/// 長度單位（米）
 		/// </summary>
@@ -135,7 +145,7 @@
 	/// <summary>
 	/// 長度轉換題型種類
 	/// </summary>
-	public enum LengthUnitTransform : int
+	public enum LengthUnitTransformType : int
 	{
 		/// <summary>
 		/// 米到分米(eg:1米=>10分米)
@@ -252,7 +262,7 @@
 	/// 貨幣轉換題型種類
 	/// </summary>
 	/// <remarks>轉換的前提不出現小數點</remarks>
-	public enum CurrencyTransform : int
+	public enum CurrencyTransformType : int
 	{
 		/// <summary>
 		/// 元到角(eg:1元=>10角)
@@ -308,7 +318,7 @@
 	/// <summary>
 	/// 小時分割（0、1/4、1/2、3/4小時）
 	/// </summary>
-	public enum HourDivision : int
+	public enum HourDivisionType : int
 	{
 		/// <summary>
 		/// 小時整點(0分)
@@ -334,7 +344,7 @@
 	/// <summary>
 	/// 計時制（AM/PM）
 	/// </summary>
-	public enum TimeSystem : int
+	public enum TimeSystemType : int
 	{
 		/// <summary>
 		/// 上午[00:01~12:00]
@@ -344,7 +354,12 @@
 		/// <summary>
 		/// 下午[12:01~24:00]
 		/// </summary>
-		PM = 1
+		PM = 1,
+
+		/// <summary>
+		/// 溢出
+		/// </summary>
+		Overflow = 99
 	}
 
 	/// <summary>
@@ -385,7 +400,12 @@
 		/// <summary>
 		/// 深夜[22:XX~23:XX]
 		/// </summary>
-		LateNight = 6
+		LateNight = 6,
+
+		/// <summary>
+		/// 溢出
+		/// </summary>
+		Overflow = 99
 	}
 
 	/// <summary>
@@ -405,7 +425,7 @@
 	}
 
 	/// <summary>
-	/// Message消息級別
+	/// Message 消息級別
 	/// </summary>
 	public enum MessageLevel : int
 	{
@@ -672,7 +692,7 @@
 	/// <summary>
 	/// 球類
 	/// </summary>
-	public enum Balls : int
+	public enum BallType : int
 	{
 		/// <summary>
 		/// 棒球
@@ -728,7 +748,7 @@
 	/// <summary>
 	/// 商品
 	/// </summary>
-	public enum Shop : int
+	public enum ShopType : int
 	{
 		/// <summary>
 		/// 手套
@@ -799,7 +819,7 @@
 	/// <summary>
 	/// 水果
 	/// </summary>
-	public enum Fruits : int
+	public enum FruitType : int
 	{
 		/// <summary>
 		/// 蘋果
@@ -968,7 +988,7 @@
 	/// <summary>
 	/// 題型類型
 	/// </summary>
-	public class LayoutSetting
+	public static class LayoutSetting
 	{
 		/// <summary>
 		/// 題型分類

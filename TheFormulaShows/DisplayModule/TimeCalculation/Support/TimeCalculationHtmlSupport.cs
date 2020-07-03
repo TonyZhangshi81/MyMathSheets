@@ -111,7 +111,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 		/// <param name="gap">填空項目</param>
 		/// <param name="index">控件索引ID</param>
 		/// <returns>HTML模板信息</returns>
-		private string GetEndTimeHtml(Time endTime, GapFilling gap, int index)
+		private string GetEndTimeHtml(TimeType endTime, GapFilling gap, int index)
 		{
 			var html = string.Empty;
 			html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, "是");
@@ -145,7 +145,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 		/// <param name="gap">填空項目</param>
 		/// <param name="index">控件索引ID</param>
 		/// <returns>HTML模板信息</returns>
-		private string GetStartTimeHtml(Time startTime, GapFilling gap, int index)
+		private string GetStartTimeHtml(TimeType startTime, GapFilling gap, int index)
 		{
 			var html = string.Empty;
 			html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, "现在是");
@@ -179,7 +179,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 		/// <param name="sign">運算符(之前\之後)</param>
 		/// <param name="index">控件索引ID</param>
 		/// <returns>HTML模板信息</returns>
-		private string GetElapsedTimeHtml(Time elapsedTime, GapFilling gap, SignOfOperation sign, int index)
+		private string GetElapsedTimeHtml(TimeType elapsedTime, GapFilling gap, SignOfOperation sign, int index)
 		{
 			var html = string.Empty;
 			html += string.Format(SPAN_TIME_NUM_HTML_FORMAT, "在");

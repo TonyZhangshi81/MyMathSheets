@@ -1,4 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
+using System;
+using System.Globalization;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Util
@@ -15,28 +17,28 @@ namespace MyMathSheets.CommonLib.Util
 		/// <returns>貨幣類型</returns>
 		public static CurrencyOperationUnitType IntToCurrencyUnitType(this int value)
 		{
-			string str = value.ToString();
+			string str = value.ToString(CultureInfo.CurrentCulture);
 			if (str.Length == 1)
 			{
 				return CurrencyOperationUnitType.Fen;
 			}
-			else if (str.Length == 2 && "0".Equals(str.Substring(1)))
+			else if (str.Length == 2 && "0".Equals(str.Substring(1), StringComparison.CurrentCultureIgnoreCase))
 			{
 				return CurrencyOperationUnitType.Jiao;
 			}
-			else if (str.Length == 2 && !"0".Equals(str.Substring(1)))
+			else if (str.Length == 2 && !"0".Equals(str.Substring(1), StringComparison.CurrentCultureIgnoreCase))
 			{
 				return CurrencyOperationUnitType.JF;
 			}
-			else if (str.Length == 3 && "00".Equals(str.Substring(1)))
+			else if (str.Length == 3 && "00".Equals(str.Substring(1), StringComparison.CurrentCultureIgnoreCase))
 			{
 				return CurrencyOperationUnitType.Yuan;
 			}
-			else if (str.Length == 3 && "0".Equals(str.Substring(1, 1)))
+			else if (str.Length == 3 && "0".Equals(str.Substring(1, 1), StringComparison.CurrentCultureIgnoreCase))
 			{
 				return CurrencyOperationUnitType.YF;
 			}
-			else if (str.Length == 3 && "0".Equals(str.Substring(2, 1)))
+			else if (str.Length == 3 && "0".Equals(str.Substring(2, 1), StringComparison.CurrentCultureIgnoreCase))
 			{
 				return CurrencyOperationUnitType.YJ;
 			}
@@ -73,6 +75,8 @@ namespace MyMathSheets.CommonLib.Util
 		/// <returns>字符串</returns>
 		public static string CurrencyToString(this Currency currency)
 		{
+			Guard.ArgumentNotNull(currency, "currency");
+
 			StringBuilder builder = new StringBuilder();
 
 			// 元單位信息打印

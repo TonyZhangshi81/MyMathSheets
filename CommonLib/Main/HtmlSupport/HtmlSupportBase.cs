@@ -22,7 +22,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <returns>HTML模板信息</returns>
 		public virtual Dictionary<SubstituteType, string> Make(ParameterBase parameter)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0009L));
+			Guard.ArgumentNotNull(parameter, "parameter");
 
 			// 題型識別子取得
 			string identifier = parameter.Identifier.Split(':')[0];
@@ -31,6 +31,9 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 				// 題型HTML信息作成并對指定的HTML模板標識進行替換
 				{ SubstituteType.Content, MakeHtmlStatement(parameter) }
 			};
+
+			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0009L));
+
 			// JS模板內容替換
 			MarkJavaScriptReplaceContent(htmlMaps, identifier);
 

@@ -36,6 +36,6 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Item
 		/// <summary>
 		/// 長度轉換題型種類
 		/// </summary>
-		public LengthUnitTransform LengthUnitTransformType { get; set; }
+		public LengthUnitTransformType LengthUnitTransType { get; set; }
 	}
 }

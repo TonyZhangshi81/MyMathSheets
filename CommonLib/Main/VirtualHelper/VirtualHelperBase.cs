@@ -11,6 +11,11 @@ namespace MyMathSheets.CommonLib.Main.VirtualHelper
 	public abstract class VirtualHelperBase<T> : IVirtualHelper<T>
 	{
 		/// <summary>
+		/// 智能提示最大條數
+		/// </summary>
+		private int _dialogueMaxCount;
+
+		/// <summary>
 		/// 答題集合
 		/// </summary>
 		protected IList<T> Formulas { get; private set; }
@@ -22,6 +27,8 @@ namespace MyMathSheets.CommonLib.Main.VirtualHelper
 		/// <returns>智能提示對象</returns>
 		public HelperDialogue CreateHelperDialogue(IList<T> formulas)
 		{
+			Guard.ArgumentNotNull(formulas, "formulas");
+
 			if (formulas.Count == 0)
 			{
 				return new HelperDialogue() { Dialogues = new List<string>(), FormulaIndex = new List<int>() };
@@ -38,11 +45,6 @@ namespace MyMathSheets.CommonLib.Main.VirtualHelper
 			List<string> dialogues = CreateDialogue(formulaIndex);
 			return new HelperDialogue() { Dialogues = dialogues, FormulaIndex = formulaIndex };
 		}
-
-		/// <summary>
-		/// 智能提示最大條數
-		/// </summary>
-		private int _dialogueMaxCount { get; set; }
 
 		/// <summary>
 		/// 根據答題集合數量配置智能提示所需參數

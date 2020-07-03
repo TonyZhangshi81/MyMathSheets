@@ -25,7 +25,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// <summary>
 		/// 指定分鐘數值
 		/// </summary>
-		private readonly Dictionary<HourDivision, int> _assignMinutes;
+		private readonly Dictionary<HourDivisionType, int> _assignMinutes;
 
 		/// <summary>
 		/// 存儲貨幣轉換的實現方法集合
@@ -39,11 +39,11 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		public SchoolClock()
 		{
 			// 指定分鐘數值（0、15、30、45分鐘）
-			_assignMinutes = new Dictionary<HourDivision, int>() {
-				{ HourDivision.IntegralPoint, 0 },
-				{ HourDivision.Quarter, 15 },
-				{ HourDivision.Half, 30 },
-				{ HourDivision.ThreeQuarters, 45 }
+			_assignMinutes = new Dictionary<HourDivisionType, int>() {
+				{ HourDivisionType.IntegralPoint, 0 },
+				{ HourDivisionType.Quarter, 15 },
+				{ HourDivisionType.Half, 30 },
+				{ HourDivisionType.ThreeQuarters, 45 }
 			};
 
 			// 時間段類型-午夜
@@ -79,7 +79,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 				TimeIntervalType type = CommonUtil.GetRandomNumber(TimeIntervalType.Midnight, TimeIntervalType.LateNight);
 				SchoolClockFormula formula = new SchoolClockFormula
 				{
-					LatestTime = new Time() { Hours = 0, Minutes = 0, Seconds = 0 }
+					LatestTime = new TimeType() { Hours = 0, Minutes = 0, Seconds = 0 }
 				};
 				if (_timeIntervals.TryGetValue(type, out Action<SchoolClockFormula, FourOperationsType> timeInterval))
 				{
@@ -148,7 +148,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 			formula.LatestTime.Hours = 0;
 			// 分鐘數值
 			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivisionType.IntegralPoint, HourDivisionType.ThreeQuarters)];
 			// 秒數值
 			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
@@ -164,7 +164,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 			formula.LatestTime.Hours = CommonUtil.GetRandomNumber(1, 5);
 			// 分鐘數值
 			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivisionType.IntegralPoint, HourDivisionType.ThreeQuarters)];
 			// 秒數值
 			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
@@ -180,7 +180,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 			formula.LatestTime.Hours = CommonUtil.GetRandomNumber(6, 11);
 			// 分鐘數值
 			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivisionType.IntegralPoint, HourDivisionType.ThreeQuarters)];
 			// 秒數值
 			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
@@ -196,7 +196,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 			formula.LatestTime.Hours = 12;
 			// 分鐘數值
 			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivisionType.IntegralPoint, HourDivisionType.ThreeQuarters)];
 			// 秒數值
 			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
@@ -212,7 +212,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 			formula.LatestTime.Hours = CommonUtil.GetRandomNumber(13, 18);
 			// 分鐘數值
 			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivisionType.IntegralPoint, HourDivisionType.ThreeQuarters)];
 			// 秒數值
 			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
@@ -228,7 +228,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 			formula.LatestTime.Hours = CommonUtil.GetRandomNumber(19, 21);
 			// 分鐘數值
 			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivisionType.IntegralPoint, HourDivisionType.ThreeQuarters)];
 			// 秒數值
 			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}
@@ -244,7 +244,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 			formula.LatestTime.Hours = CommonUtil.GetRandomNumber(22, 23);
 			// 分鐘數值
 			formula.LatestTime.Minutes = type == FourOperationsType.Random ? CommonUtil.GetRandomNumber(0, 59)
-										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivision.IntegralPoint, HourDivision.ThreeQuarters)];
+										: _assignMinutes[CommonUtil.GetRandomNumber(HourDivisionType.IntegralPoint, HourDivisionType.ThreeQuarters)];
 			// 秒數值
 			formula.LatestTime.Seconds = CommonUtil.GetRandomNumber(0, 59);
 		}

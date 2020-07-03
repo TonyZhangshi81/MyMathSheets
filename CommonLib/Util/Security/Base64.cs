@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Properties;
+using System;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Util.Security
@@ -16,6 +18,8 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// <returns>加密后的字符串</returns>
 		public static string EncodeBase64(Encoding encode, string source)
 		{
+			Guard.ArgumentNotNull(encode, "encode");
+
 			byte[] bytes = encode.GetBytes(source);
 			try
 			{
@@ -23,7 +27,7 @@ namespace MyMathSheets.CommonLib.Util.Security
 			}
 			catch
 			{
-				return source;
+				throw new EncodeBase64Exception(MessageUtil.GetException(() => MsgResources.E0040L, source));
 			}
 		}
 
@@ -55,6 +59,8 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// <returns>解密后的字符串</returns>
 		public static string DecodeBase64(Encoding encode, string result)
 		{
+			Guard.ArgumentNotNull(encode, "encode");
+
 			byte[] bytes = DecodeBase64(result);
 			try
 			{
@@ -62,7 +68,7 @@ namespace MyMathSheets.CommonLib.Util.Security
 			}
 			catch
 			{
-				return result;
+				throw new EncodeBase64Exception(MessageUtil.GetException(() => MsgResources.E0041L, result));
 			}
 		}
 

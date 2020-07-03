@@ -29,7 +29,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 								d.LatestTime.Hours.ToString().PadLeft(2, '0'),
 								d.LatestTime.Minutes.ToString().PadLeft(2, '0'),
 								d.LatestTime.Seconds.ToString().PadLeft(2, '0'),
-								d.LatestTime.TimeType.ToString()));
+								d.LatestTime.GetTimeType.ToString()));
 			});
 		}
 	}

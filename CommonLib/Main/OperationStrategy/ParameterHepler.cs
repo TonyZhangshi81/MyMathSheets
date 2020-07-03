@@ -21,7 +21,10 @@ namespace MyMathSheets.CommonLib.OperationStrategy
 		{
 			var section = (OperationProviderConfigurationSection)ConfigurationManager.GetSection("Operation");
 
-			OperationParameterProvider provider = ComposerFactory.GetComporser(SystemModel.Common).GetExports<OperationParameterProvider, IParameterProviderMetaDataView>().Where(d => d.Metadata.Name.Equals(section.ProviderType)).FirstOrDefault().Value;
+			OperationParameterProvider provider = ComposerFactory.GetComporser(SystemModel.Common)
+														.GetExports<OperationParameterProvider, IParameterProviderMetaDataView>()
+														.Where(d => d.Metadata.Name.Equals(section.ProviderType, StringComparison.CurrentCultureIgnoreCase))
+														.FirstOrDefault().Value;
 
 			OperationParameterProvider instance = (OperationParameterProvider)Activator.CreateInstance(provider.GetType());
 			instance.Argument = section.Argument;

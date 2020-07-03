@@ -30,7 +30,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 		/// <summary>
 		/// 球類列表
 		/// </summary>
-		private readonly List<Balls> BallsImageArray;
+		private readonly List<BallType> BallsImageArray;
 
 		/// <summary>
 		/// 可拖動球類的初期坐標集合
@@ -43,18 +43,18 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 		public ScoreGoalHtmlSupport()
 		{
 			// 球類圖片列表
-			BallsImageArray = new List<Balls>()
+			BallsImageArray = new List<BallType>()
 			{
-				Balls.Ball,
-				Balls.Basketball,
-				Balls.BeachBall,
-				Balls.Bowling,
-				Balls.Football,
-				Balls.Golf,
-				Balls.Rugby,
-				Balls.Tennis,
-				Balls.Volleyball,
-				Balls.Bomb
+				BallType.Ball,
+				BallType.Basketball,
+				BallType.BeachBall,
+				BallType.Bowling,
+				BallType.Football,
+				BallType.Golf,
+				BallType.Rugby,
+				BallType.Tennis,
+				BallType.Volleyball,
+				BallType.Bomb
 			};
 
 			// 可拖動球類圖片初期化坐標集合

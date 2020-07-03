@@ -85,7 +85,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 
 				// 取得指定類型下的支援類類型參數
 				IEnumerable<Lazy<HtmlSupportBase, IHtmlSupportMetaDataView>> supports = Supports.Where(d => d.Metadata.Layout == preview);
-				if (supports.Count() == 0)
+				if (!supports.Any())
 				{
 					throw new HtmlSupportNotFoundException(MessageUtil.GetException(() => MsgResources.E0021L, preview.ToString()));
 				}

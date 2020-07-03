@@ -62,7 +62,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 				// 計算式作成（指定單個運算符實例）
 				Formula fruit = MakeLeftFormulas(_fruitsFormulas, p.MaximumLimit, signFunc);
 				// 計算式作成（依據水果算式的答案推算容器算式）
-				Formula container = MakeRightFormulas(_containersFormulas, p.MaximumLimit, fruit.Answer, signFunc);
+				MakeRightFormulas(_containersFormulas, p.MaximumLimit, fruit.Answer, signFunc);
 				// 各計算式編號的集合
 				_seats.Add(seatNumber);
 
@@ -135,8 +135,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 		/// <param name="maximumLimit">計算結果最大值</param>
 		/// <param name="leftFormulaAnswer">左側新作成計算式的結果值</param>
 		/// <param name="signFunc">運算符取得用的表達式</param>
-		/// <returns>新作成的計算式</returns>
-		private Formula MakeRightFormulas(IList<Formula> rightFormulas, int maximumLimit, int leftFormulaAnswer, Func<SignOfOperation> signFunc)
+		private void MakeRightFormulas(IList<Formula> rightFormulas, int maximumLimit, int leftFormulaAnswer, Func<SignOfOperation> signFunc)
 		{
 			ICalculate strategy = CalculateManager(signFunc());
 
@@ -148,8 +147,6 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 				MinimumLimit = 0
 			}, leftFormulaAnswer);
 			rightFormulas.Add(formula);
-
-			return formula;
 		}
 
 		/// <summary>

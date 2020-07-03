@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MyMathSheets.CommonLib.Main.Arithmetic;
 
 namespace MyMathSheets.CommonLib.Util.Test
 {

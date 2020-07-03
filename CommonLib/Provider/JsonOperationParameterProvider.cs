@@ -46,7 +46,7 @@ namespace MyMathSheets.CommonLib.Provider
 
 			// 指定的題型編號不存在的情況下,默認選用現有題型參數集中的第一個參數項目
 			List<ParameterBase> list = allProblems.ToList()
-										 .Where(d => d.Identifier.Equals(identifiers[2]))
+										 .Where(d => d.Identifier.Equals(identifiers[2], System.StringComparison.CurrentCultureIgnoreCase))
 										 .ToList();
 			if (list.Count == 0)
 			{

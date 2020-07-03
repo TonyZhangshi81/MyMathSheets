@@ -129,7 +129,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <param name="e"></param>
 		private void TimerTick(object sender, EventArgs e)
 		{
-			int locationY = 0;
+			int locationY;
 			// 使用餘弦函數計算弧度
 			double y = Math.Cos(Math.PI * picPlane.Location.X / 180.0);
 			// 正負值計算y軸的相對偏移量（20是小飛機的高度）

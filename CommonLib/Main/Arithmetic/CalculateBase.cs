@@ -122,6 +122,8 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public virtual Formula CreateFormula(CalculateParameter parameter, Formula previousFormula)
 		{
+			Guard.ArgumentNotNull(parameter, "parameter");
+
 			return CreateFormula(parameter);
 		}
 
@@ -133,6 +135,8 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <returns>計算式對象</returns>
 		public virtual Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
 		{
+			Guard.ArgumentNotNull(parameter, "parameter");
+
 			return CreateFormula(parameter);
 		}
 	}

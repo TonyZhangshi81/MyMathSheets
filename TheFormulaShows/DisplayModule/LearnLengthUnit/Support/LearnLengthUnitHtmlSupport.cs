@@ -313,52 +313,52 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 			_answers.Length = 0;
 			StringBuilder html = new StringBuilder();
 
-			switch (item.LengthUnitTransformType)
+			switch (item.LengthUnitTransType)
 			{
 				// 米到分米
-				case LengthUnitTransform.M2D:
+				case LengthUnitTransformType.M2D:
 					html.Append(GetMeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetDecimetreHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 米到釐米
-				case LengthUnitTransform.M2C:
+				case LengthUnitTransformType.M2C:
 					html.Append(GetMeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetCentimeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 米到毫米
-				case LengthUnitTransform.M2MM:
+				case LengthUnitTransformType.M2MM:
 					html.Append(GetMeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMillimeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 分米到米
-				case LengthUnitTransform.D2M:
+				case LengthUnitTransformType.D2M:
 					html.Append(GetDecimetreHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 分米到釐米
-				case LengthUnitTransform.D2C:
+				case LengthUnitTransformType.D2C:
 					html.Append(GetDecimetreHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetCentimeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 分米到毫米
-				case LengthUnitTransform.D2MM:
+				case LengthUnitTransformType.D2MM:
 					html.Append(GetDecimetreHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMillimeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 分米到米分米（有剩餘）
-				case LengthUnitTransform.D2MExt:
+				case LengthUnitTransformType.D2MExt:
 					html.Append(GetDecimetreHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
@@ -366,7 +366,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 					break;
 
 				// 分米到米釐米
-				case LengthUnitTransform.D2MC:
+				case LengthUnitTransformType.D2MC:
 					html.Append(GetDecimetreHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
@@ -374,28 +374,28 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 					break;
 
 				// 釐米到米
-				case LengthUnitTransform.C2M:
+				case LengthUnitTransformType.C2M:
 					html.Append(GetCentimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 釐米到分米
-				case LengthUnitTransform.C2D:
+				case LengthUnitTransformType.C2D:
 					html.Append(GetCentimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetDecimetreHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 釐米到毫米
-				case LengthUnitTransform.C2MM:
+				case LengthUnitTransformType.C2MM:
 					html.Append(GetCentimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMillimeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 釐米到米分米
-				case LengthUnitTransform.C2MD:
+				case LengthUnitTransformType.C2MD:
 					html.Append(GetCentimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
@@ -403,7 +403,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 					break;
 
 				// 釐米到分米毫米
-				case LengthUnitTransform.C2DMM:
+				case LengthUnitTransformType.C2DMM:
 					html.Append(GetCentimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetDecimetreHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
@@ -411,7 +411,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 					break;
 
 				// 釐米到米分米釐米（有剩餘）
-				case LengthUnitTransform.C2MDExt:
+				case LengthUnitTransformType.C2MDExt:
 					html.Append(GetCentimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
@@ -420,28 +420,28 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 					break;
 
 				// 毫米到分米
-				case LengthUnitTransform.MM2D:
+				case LengthUnitTransformType.MM2D:
 					html.Append(GetMillimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetDecimetreHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 毫米到釐米
-				case LengthUnitTransform.MM2C:
+				case LengthUnitTransformType.MM2C:
 					html.Append(GetMillimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetCentimeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 毫米到米
-				case LengthUnitTransform.MM2M:
+				case LengthUnitTransformType.MM2M:
 					html.Append(GetMillimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
 					break;
 
 				// 毫米到米分米
-				case LengthUnitTransform.MM2MD:
+				case LengthUnitTransformType.MM2MD:
 					html.Append(GetMillimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
@@ -449,7 +449,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 					break;
 
 				// 毫米到米分米釐米
-				case LengthUnitTransform.MM2MDC:
+				case LengthUnitTransformType.MM2MDC:
 					html.Append(GetMillimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
@@ -458,7 +458,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 					break;
 
 				// 毫米到分米釐米
-				case LengthUnitTransform.MM2DC:
+				case LengthUnitTransformType.MM2DC:
 					html.Append(GetMillimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetDecimetreHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
@@ -466,7 +466,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 					break;
 
 				// 毫米到米釐米
-				case LengthUnitTransform.MM2MC:
+				case LengthUnitTransformType.MM2MC:
 					html.Append(GetMillimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));
@@ -474,7 +474,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 					break;
 
 				// 毫米到米分米釐米毫米（有剩餘）
-				case LengthUnitTransform.MM2MDCExt:
+				case LengthUnitTransformType.MM2MDCExt:
 					html.Append(GetMillimeterHtml(item, controlIndex, (item.Gap == GapFilling.Left)));
 					html.AppendLine(EQUALTO_HTML);
 					html.Append(GetMeterHtml(item, controlIndex, !(item.Gap == GapFilling.Left)));

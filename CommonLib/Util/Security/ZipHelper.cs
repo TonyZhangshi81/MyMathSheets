@@ -7,7 +7,7 @@ namespace MyMathSheets.CommonLib.Util.Security
 	/// <summary>
 	/// 字符串壓縮工具類
 	/// </summary>
-	public class ZipHelper
+	public sealed class ZipHelper
 	{
 		/// <summary>
 		/// 將傳入字符串以GZip算法壓縮后，返回Base64編碼字符
@@ -32,6 +32,8 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// <returns>已壓縮的字符串字符集</returns>
 		public static byte[] Compress(byte[] data)
 		{
+			Guard.ArgumentNotNull(data, "data");
+
 			MemoryStream ms = new MemoryStream();
 			GZipStream compressedzipStream = new GZipStream(ms, CompressionMode.Compress, true);
 

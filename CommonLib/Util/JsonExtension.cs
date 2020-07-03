@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 namespace MyMathSheets.CommonLib.Util
 {
 	/// <summary>
-	/// JSON公共處理類(Newtonsoft類庫)
+	/// JSON公共處理類(Newtonsoft 類庫)
 	/// </summary>
 	public static class JsonExtension
 	{
@@ -12,16 +12,16 @@ namespace MyMathSheets.CommonLib.Util
 		/// 將指定對象轉換為JSON字符串
 		/// </summary>
 		/// <typeparam name="T">指定參數對象類型</typeparam>
-		/// <param name="obj">指定參數對象</param>
+		/// <param name="transObject">指定參數對象</param>
 		/// <returns>JSON字符串</returns>
-		public static string GetJsonByObject<T>(this T obj)
+		public static string GetJsonByObject<T>(this T transObject)
 		{
-			if (null == obj)
+			if (null == transObject)
 			{
 				return string.Empty;
 			}
 
-			return JsonConvert.SerializeObject(obj, typeof(T), null);
+			return JsonConvert.SerializeObject(transObject, typeof(T), null);
 		}
 
 		/// <summary>

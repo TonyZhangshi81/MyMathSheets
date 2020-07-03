@@ -83,6 +83,7 @@
     <Compile Include="Logging\NLogLoggerFactoryAdapter.cs" />
     <Compile Include="Main\Arithmetic\CalculateFactory.cs" />
     <Compile Include="Main\Arithmetic\CalculateBase.cs" />
+    <Compile Include="Main\Arithmetic\CalculateExpressException.cs" />
     <Compile Include="Main\Arithmetic\CalculateNotFoundException.cs" />
     <Compile Include="Main\Arithmetic\CalculateParameter.cs" />
     <Compile Include="Main\ExportAttributes\Calculate\CalculateAttribute.cs" />
@@ -112,7 +113,7 @@
     <Compile Include="Main\Item\Currency.cs" />
     <Compile Include="Main\Item\Formula.cs" />
     <Compile Include="Main\Item\LengthUnit.cs" />
-    <Compile Include="Main\Item\Time.cs" />
+    <Compile Include="Main\Item\TimeType.cs" />
     <Compile Include="Main\OperationStrategy\OperationHelper.cs" />
     <Compile Include="Main\OperationStrategy\OperationFactory.cs" />
     <Compile Include="Main\OperationStrategy\IOperationFactory.cs" />
@@ -145,12 +146,13 @@
     <Compile Include="Util\Consts.cs" />
     <Compile Include="Util\ConvertHelper.cs" />
     <Compile Include="Util\CurrencyUtil.cs" />
-    <Compile Include="Util\ExpressCalculateUtil.cs" />
+    <Compile Include="Main\Arithmetic\ExpressCalculateUtil.cs" />
     <Compile Include="Util\Guard.cs" />
     <Compile Include="Util\JsonExtension.cs" />
     <Compile Include="Util\RandomNumber\RandomNumberComposition.cs" />
     <Compile Include="Util\ReflectionUtil.cs" />
     <Compile Include="Util\Security\Base64.cs" />
+    <Compile Include="Util\Security\EncodeBase64Exception.cs" />
     <Compile Include="Util\Security\ZipHelper.cs" />
     <Compile Include="Util\StringUtil.cs" />
     <Compile Include="Util\TimeUtil.cs" />

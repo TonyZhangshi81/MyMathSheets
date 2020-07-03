@@ -1,8 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Properties;
+using MyMathSheets.CommonLib.Util;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using static MyMathSheets.CommonLib.Util.Priority;
+using System.Security.Permissions;
+using static MyMathSheets.CommonLib.Main.Arithmetic.Priority;
 
-namespace MyMathSheets.CommonLib.Util
+namespace MyMathSheets.CommonLib.Main.Arithmetic
 {
 	/// <summary>
 	///
@@ -14,6 +20,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// </summary>
 		private readonly string[] Operateors = new string[] { "+", "-", "*", "/", "(", ")", "[", "]", "{", "}", "#" };
 
+
 		/// <summary>
 		/// 四則運算處理
 		/// </summary>
@@ -21,10 +28,11 @@ namespace MyMathSheets.CommonLib.Util
 		/// <param name="y">餐數2</param>
 		/// <param name="operators">運算符</param>
 		/// <returns>計算結果</returns>
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:メンバーを static に設定します", Justification = "<保留中>")]
 		public string Arithmetic(string x, string y, string operators)
 		{
-			var a = decimal.Parse(x);
-			var b = decimal.Parse(y);
+			var a = decimal.Parse(x, CultureInfo.CurrentCulture);
+			var b = decimal.Parse(y, CultureInfo.CurrentCulture);
 
 			var result = 0m;
 
@@ -46,7 +54,7 @@ namespace MyMathSheets.CommonLib.Util
 					result = a / b;
 					break;
 			}
-			return result.ToString();
+			return result.ToString(CultureInfo.CurrentCulture);
 		}
 
 		/// <summary>
@@ -97,11 +105,12 @@ namespace MyMathSheets.CommonLib.Util
 						}
 						i++;
 					}
-					result = decimal.Parse(aryExpress[0]);
+					result = decimal.Parse(aryExpress[0], CultureInfo.CurrentCulture);
 					return true;
 				}
 				catch
 				{
+					throw new CalculateExpressException(MessageUtil.GetException(() => MsgResources.E0039L));
 				}
 			}
 			result = 0;
@@ -115,6 +124,8 @@ namespace MyMathSheets.CommonLib.Util
 		/// <returns>後序表達式列表</returns>
 		public List<string> InorderToPostorder(Queue<string> expressQueue)
 		{
+			Guard.ArgumentNotNull(expressQueue, "expressQueue");
+
 			// 操作符棧（後進先出）
 			var inOrder = new Stack<string>();
 			// 初期棧頂元素設置為#
@@ -192,20 +203,20 @@ namespace MyMathSheets.CommonLib.Util
 			while (j < express.Length)
 			{
 				// 判斷當前字符是不是操作符
-				if (IsOperateors(arryExpress[j].ToString()))
+				if (IsOperateors(arryExpress[j].ToString(CultureInfo.CurrentCulture)))
 				{
 					if (i != j)
 					{
 						// 數值入棧
 						string tempNum = express.Substring(i, j - i);
 						expressQueue.Enqueue(tempNum);
-						expressQueue.Enqueue(arryExpress[j].ToString());
+						expressQueue.Enqueue(arryExpress[j].ToString(CultureInfo.CurrentCulture));
 						i = j + 1;
 					}
 					else
 					{
 						// 操作符入棧
-						expressQueue.Enqueue(arryExpress[j].ToString());
+						expressQueue.Enqueue(arryExpress[j].ToString(CultureInfo.CurrentCulture));
 						i++;
 					}
 				}
@@ -222,7 +233,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// <returns>操作:TRUE返回</returns>
 		public bool IsOperateors(string input)
 		{
-			return Operateors.Any(d => d.Equals(input));
+			return Operateors.Any(d => d.Equals(input, StringComparison.CurrentCultureIgnoreCase));
 		}
 	}
 

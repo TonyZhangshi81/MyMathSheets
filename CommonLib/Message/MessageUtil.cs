@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyMathSheets.CommonLib.Util;
+using System;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -18,8 +20,10 @@ namespace MyMathSheets.CommonLib.Message
 		/// <exception cref="ArgumentNullException"><paramref name="messageKeyExpression"/>がnullの場合。</exception>
 		public static string GetException(Expression<Func<string>> messageKeyExpression, params object[] args)
 		{
+			Guard.ArgumentNotNull(messageKeyExpression, "messageKeyExpression");
+
 			var message = messageKeyExpression.Compile()();
-			var formattedMessage = string.Format(message, args.Select(_ => _ ?? string.Empty).ToArray());
+			var formattedMessage = string.Format(CultureInfo.CurrentCulture, message, args.Select(_ => _ ?? string.Empty).ToArray());
 			return formattedMessage;
 		}
 	}

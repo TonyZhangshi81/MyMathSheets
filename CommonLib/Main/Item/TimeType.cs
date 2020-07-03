@@ -2,13 +2,14 @@
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using System;
+using System.Globalization;
 
 namespace MyMathSheets.CommonLib.Main.Item
 {
 	/// <summary>
 	/// 時間對象(解決兩個時間之間的差值)
 	/// </summary>
-	public class Time
+	public class TimeType
 	{
 		/// <summary>
 		/// 時間段類型
@@ -19,7 +20,7 @@ namespace MyMathSheets.CommonLib.Main.Item
 			{
 				if (!Hours.HasValue)
 				{
-					throw new ArgumentNullException(MessageUtil.GetException(() => MsgResources.E0025L));
+					return TimeIntervalType.Overflow;
 				}
 
 				switch (Hours.Value)
@@ -63,7 +64,7 @@ namespace MyMathSheets.CommonLib.Main.Item
 						return TimeIntervalType.LateNight;
 
 					default:
-						throw new ArgumentNullException(MessageUtil.GetException(() => MsgResources.E0026L, Hours.Value.ToString()));
+						return TimeIntervalType.Overflow;
 				}
 			}
 		}
@@ -71,13 +72,13 @@ namespace MyMathSheets.CommonLib.Main.Item
 		/// <summary>
 		/// 計時制（AM/PM）
 		/// </summary>
-		public TimeSystem TimeType
+		public TimeSystemType GetTimeType
 		{
 			get
 			{
 				if (!Hours.HasValue || !Minutes.HasValue)
 				{
-					throw new ArgumentNullException(MessageUtil.GetException(() => MsgResources.E0025L));
+					return TimeSystemType.Overflow;
 				}
 
 				// 上午[00:01~12:00]
@@ -85,11 +86,11 @@ namespace MyMathSheets.CommonLib.Main.Item
 					|| (Hours == 12 && Minutes == 0)
 					|| (Hours == 0 && Minutes >= 1))
 				{
-					return TimeSystem.AM;
+					return TimeSystemType.AM;
 				}
 				else
 				{
-					return TimeSystem.PM;
+					return TimeSystemType.PM;
 				}
 			}
 		}
@@ -116,7 +117,10 @@ namespace MyMathSheets.CommonLib.Main.Item
 		{
 			get
 			{
-				return string.Format("{0}:{1}:{2}", Hours.Value.ToString().PadLeft(2, '0'), Minutes.Value.ToString().PadLeft(2, '0'), Seconds.Value.ToString().PadLeft(2, '0'));
+				return string.Format(CultureInfo.CurrentCulture, "{0}:{1}:{2}"
+									, Hours.Value.ToString(CultureInfo.CurrentCulture).PadLeft(2, '0')
+									, Minutes.Value.ToString(CultureInfo.CurrentCulture).PadLeft(2, '0')
+									, Seconds.Value.ToString(CultureInfo.CurrentCulture).PadLeft(2, '0'));
 			}
 		}
 
@@ -127,7 +131,7 @@ namespace MyMathSheets.CommonLib.Main.Item
 		{
 			get
 			{
-				return string.Format("{0}小時{1}分鐘{2}秒", Hours.Value, Minutes.Value, Seconds.Value);
+				return string.Format(CultureInfo.CurrentCulture, "{0}小時{1}分鐘{2}秒", Hours.Value, Minutes.Value, Seconds.Value);
 			}
 		}
 	}

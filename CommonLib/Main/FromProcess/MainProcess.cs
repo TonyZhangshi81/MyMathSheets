@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Configuration;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -30,6 +31,33 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 替換資源
 		/// </summary>
 		private readonly Dictionary<string, Dictionary<SubstituteType, string>> _htmlMaps = new Dictionary<string, Dictionary<SubstituteType, string>>();
+
+		/// <summary>題型參數</summary>
+		private List<TopicManagement> TopicManagementList { get; set; }
+
+		/// <summary>樣式庫引用注入點</summary>
+		private StringBuilder Stylesheet { get; set; }
+
+		/// <summary>腳本引用注入</summary>
+		private StringBuilder Script { get; set; }
+
+		/// <summary>打印前設置事件注入</summary>
+		private StringBuilder PrintSettingEvent { get; set; }
+
+		/// <summary>打印后設置事件注入</summary>
+		private StringBuilder PrintAfterSettingEvent { get; set; }
+
+		/// <summary>準備事件注入</summary>
+		private StringBuilder ReadyEvent { get; set; }
+
+		/// <summary>答題訂正事件注入</summary>
+		private StringBuilder MakeCorrectionsEvent { get; set; }
+
+		/// <summary>交卷事件注入</summary>
+		private StringBuilder TictheirPapersEvent { get; set; }
+
+		/// <summary>題型正文注入</summary>
+		private StringBuilder Content { get; set; }
 
 		/// <summary>
 		///
@@ -77,33 +105,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			};
 		}
 
-		/// <summary>題型參數</summary>
-		private List<TopicManagement> TopicManagementList { get; set; }
-
-		/// <summary>樣式庫引用注入點</summary>
-		private StringBuilder Stylesheet { get; set; }
-
-		/// <summary>腳本引用注入</summary>
-		private StringBuilder Script { get; set; }
-
-		/// <summary>打印前設置事件注入</summary>
-		private StringBuilder PrintSettingEvent { get; set; }
-
-		/// <summary>打印后設置事件注入</summary>
-		private StringBuilder PrintAfterSettingEvent { get; set; }
-
-		/// <summary>準備事件注入</summary>
-		private StringBuilder ReadyEvent { get; set; }
-
-		/// <summary>答題訂正事件注入</summary>
-		private StringBuilder MakeCorrectionsEvent { get; set; }
-
-		/// <summary>交卷事件注入</summary>
-		private StringBuilder TictheirPapersEvent { get; set; }
-
-		/// <summary>題型正文注入</summary>
-		private StringBuilder Content { get; set; }
-
+		
 		/// <summary>
 		/// 獲取指定文件夾下所有文件的文件名列表
 		/// </summary>
@@ -117,12 +119,12 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 				return fileNames;
 			}
 
-			string filter = DateTime.Now.ToString("yyyyMMdd");
+			string filter = DateTime.Now.ToString("yyyyMMdd", CultureInfo.CurrentCulture);
 			DirectoryInfo root = new DirectoryInfo(ConfigurationManager.AppSettings.Get("HtmlWork"));
 			// 獲取文件列表
 			root.GetFiles().ToList().ForEach(d =>
 			{
-				if (d.Name.IndexOf(filter) >= 0)
+				if (d.Name.IndexOf(filter, StringComparison.CurrentCultureIgnoreCase) >= 0)
 				{
 					fileNames.Add(d.Name);
 				}
@@ -144,7 +146,9 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// HTML模板存放路徑
 			string sourceFileName = Path.GetFullPath(ConfigurationManager.AppSettings.Get("Template"));
 			// 靜態頁面作成后存放的路徑（文件名：日期時間形式）
-			string destFileName = Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") + string.Format("{0}.html", DateTime.Now.ToString("yyyyMMddHHmmssfff")));
+			string destFileName = Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") 
+										+ string.Format(CultureInfo.CurrentCulture, "{0}.html", DateTime.Now.ToString("yyyyMMddHHmmssfff", CultureInfo.CurrentCulture)));
+
 			// 文件移動
 			File.Copy(sourceFileName, destFileName);
 
@@ -271,6 +275,8 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// <param name="expression">用以獲取控件基本信息對象</param>
 		public void TopicCheckedChanged(bool isChecked, Expression<Func<ControlInfo>> expression)
 		{
+			Guard.ArgumentNotNull(expression, "expression");
+
 			ControlInfo info = expression.Compile()();
 			if (isChecked)
 			{
@@ -298,7 +304,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		private Dictionary<SubstituteType, string> GetHtmlReplaceContentMaps(LayoutSetting.Preview preview)
 		{
 			// 題型編號取得
-			string identifier = TopicManagementList.Where(d => d.Name.Equals(preview.ToString())).First().Number;
+			string identifier = TopicManagementList.Where(d => d.Name.Equals(preview.ToString(), StringComparison.CurrentCultureIgnoreCase)).First().Number;
 
 			// 構造題型并取得結果
 			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview, identifier);
@@ -329,7 +335,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 						.ForEach(d =>
 					{
 						// 題型大類不同的場合，坐標初期化設定
-						if (!classifyName.Equals(d.Value.Classify.ToString()))
+						if (!classifyName.Equals(d.Value.Classify.ToString(), StringComparison.CurrentCultureIgnoreCase))
 						{
 							indexX = 1;
 							indexY = 1;

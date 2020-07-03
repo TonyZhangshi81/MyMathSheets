@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -25,6 +26,8 @@ namespace MyMathSheets.CommonLib.Util
 		{
 			yield return assembly;
 
+			Guard.ArgumentNotNull(assembly, "assembly");
+
 			foreach (var an in assembly.GetReferencedAssemblies())
 			{
 				// 獲取指定名稱下的程序集
@@ -46,15 +49,17 @@ namespace MyMathSheets.CommonLib.Util
 		/// <returns>程序集對象</returns>
 		public static Assembly GetAssembly(AssemblyName assemblyName)
 		{
+			Guard.ArgumentNotNull(assemblyName, "assemblyName");
+
 			// 只返回指定特征名稱的程序集對象(程序集名稱以“MyMathSheets.”開頭)
-			if (!assemblyName.FullName.StartsWith("MyMathSheets."))
+			if (!assemblyName.FullName.StartsWith("MyMathSheets.", StringComparison.CurrentCultureIgnoreCase))
 			{
 				return null;
 			}
 
 			// 獲取當前應用程序中的所有程序集
 			var assembly = AppDomain.CurrentDomain.GetAssemblies()
-				.FirstOrDefault(asm => asm.GetName().Name.Equals(assemblyName.Name));
+				.FirstOrDefault(asm => asm.GetName().Name.Equals(assemblyName.Name, StringComparison.CurrentCultureIgnoreCase));
 			if (assembly != null)
 			{
 				return assembly;
@@ -79,6 +84,8 @@ namespace MyMathSheets.CommonLib.Util
 		/// <returns>屬性值</returns>
 		public static object GetProperty(object source, string propertyName)
 		{
+			Guard.ArgumentNotNull(source, "source");
+
 			var pi = source.GetType().GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
 			if (pi == null)
 			{
@@ -88,7 +95,7 @@ namespace MyMathSheets.CommonLib.Util
 			var mi = pi.GetGetMethod(true);
 			if (mi == null)
 			{
-				throw new MissingMethodException(source.GetType().FullName, string.Format("get_{0}", propertyName));
+				throw new MissingMethodException(source.GetType().FullName, string.Format(CultureInfo.CurrentCulture, "get_{0}", propertyName));
 			}
 
 			return mi.Invoke(source, new object[0]);

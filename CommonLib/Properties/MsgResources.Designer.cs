@@ -187,6 +187,33 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
+        ///   E0039L:計算表達式不正確 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0039L {
+            get {
+                return ResourceManager.GetString("E0039L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   E0040L:明文【{0}】Base64加密錯誤 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0040L {
+            get {
+                return ResourceManager.GetString("E0040L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   E0041L:密文【{0}】Base64解密錯誤 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0041L {
+            get {
+                return ResourceManager.GetString("E0041L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   I0001L:指定運算符實例準備作成 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string I0001L {

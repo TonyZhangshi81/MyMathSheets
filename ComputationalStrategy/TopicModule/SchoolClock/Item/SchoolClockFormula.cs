@@ -10,6 +10,6 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Item
 		/// <summary>
 		/// 經過的時間
 		/// </summary>
-		public Time LatestTime { get; set; }
+		public TimeType LatestTime { get; set; }
 	}
 }

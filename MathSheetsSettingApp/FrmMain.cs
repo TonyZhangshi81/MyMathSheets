@@ -25,7 +25,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// 畫面處理類
 		/// </summary>
 		[Import(typeof(IMainProcess))]
-		private MainProcess _process { get; set; }
+		private MainProcess Process
+		{
+			get;
+			set;
+		}
 
 		/// <summary>
 		/// 畫面構造函數
@@ -70,7 +74,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// </summary>
 		private void WorkPagesDisplay()
 		{
-			cmbWorkPages.DataSource = _process.GetWorkPageFiles();
+			cmbWorkPages.DataSource = Process.GetWorkPageFiles();
 		}
 
 		/// <summary>
@@ -81,7 +85,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			int rowIndex = 0;
 			int controlIndex = 0;
 			// 題型分類集合
-			List<LayoutSetting.Classify> classifyList = _process.ControlList.GroupBy(d => d.Classify).Select(d => d.Key).ToList();
+			List<LayoutSetting.Classify> classifyList = Process.ControlList.GroupBy(d => d.Classify).Select(d => d.Key).ToList();
 
 			int locationY = 0;
 			int rowCount = 0;
@@ -95,7 +99,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 					Location = new Point(0, locationY)
 				};
 
-				var controlList = _process.ControlList.Where(d => c == d.Classify).ToList();
+				var controlList = Process.ControlList.Where(d => c == d.Classify).ToList();
 				if (controlList.Count > 0)
 				{
 					controlList.ForEach(d =>
@@ -198,7 +202,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			}
 
 			// 選題情況
-			if (!_process.ChooseCheck())
+			if (!Process.ChooseCheck())
 			{
 				MessageBox.Show(this, "题型未选择");
 				return;
@@ -207,7 +211,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0002A));
 
 			// 出題按鍵點擊事件
-			var destFileName = _process.SureClick();
+			var destFileName = Process.SureClick();
 
 			// 參數
 			cmdProcess.StartInfo.Arguments = ("\"" + Path.GetFullPath(@destFileName) + "\"");
@@ -226,7 +230,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			flpPreview.Controls.Clear();
 
 			// 瀏覽區域顯示
-			_process.LayoutSettingPreviewList.ForEach(d => PictureIntoFlowLayoutPanel(d));
+			Process.LayoutSettingPreviewList.ForEach(d => PictureIntoFlowLayoutPanel(d));
 		}
 
 		/// <summary>
@@ -245,7 +249,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0007A, checkBox.Text));
 			}
-			_process.TopicCheckedChanged(checkBox.Checked, () => _process.ControlList.Where(d => d.ControlId.Equals(checkBox.Name)).First());
+			Process.TopicCheckedChanged(checkBox.Checked, () => Process.ControlList.Where(d => d.ControlId.Equals(checkBox.Name)).First());
 
 			// 刷新題型預覽區域
 			PreviewReflash();

@@ -24,7 +24,18 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <summary>
 		/// 用於HTML支援類實例取得的HEPLER類
 		/// </summary>
-		protected HtmlSupprtHelper SupprtHelper => _supprtHelper ?? (_supprtHelper = new HtmlSupprtHelper());
+		protected HtmlSupprtHelper SupprtHelper
+		{
+			get
+			{
+				if (_supprtHelper == null)
+				{
+					_supprtHelper = new HtmlSupprtHelper();
+				}
+
+				return _supprtHelper;
+			}
+		}
 
 		/// <summary>
 		/// HTML模板替換內容作成

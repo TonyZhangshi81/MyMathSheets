@@ -143,7 +143,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 		{
 			StringBuilder html = new StringBuilder();
 
-			html.AppendLine(string.Format(TOOLTIP_HTML_FORMAT, item.LatestTime.TimeType.ToTimeSystemString(), item.LatestTime.TimeInterval.ToTimeIntervalTypeString()));
+			html.AppendLine(string.Format(TOOLTIP_HTML_FORMAT, item.LatestTime.GetTimeType.ToTimeSystemString(), item.LatestTime.TimeInterval.ToTimeIntervalTypeString()));
 
 			return html.ToString();
 		}

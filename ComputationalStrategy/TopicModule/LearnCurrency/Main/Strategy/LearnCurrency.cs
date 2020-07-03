@@ -25,8 +25,8 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		/// <summary>
 		/// 存儲貨幣轉換的實現方法集合
 		/// </summary>
-		private readonly Dictionary<CurrencyTransform, Action<LearnCurrencyFormula, QuestionType>> _currencys =
-			new Dictionary<CurrencyTransform, Action<LearnCurrencyFormula, QuestionType>>();
+		private readonly Dictionary<CurrencyTransformType, Action<LearnCurrencyFormula, QuestionType>> _currencys =
+			new Dictionary<CurrencyTransformType, Action<LearnCurrencyFormula, QuestionType>>();
 
 		/// <summary>
 		/// 構造函數
@@ -34,26 +34,26 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		public LearnCurrency()
 		{
 			// 元轉換為角
-			_currencys[CurrencyTransform.Y2J] = YuanConvertToJiao;
+			_currencys[CurrencyTransformType.Y2J] = YuanConvertToJiao;
 			// 元轉換為分
-			_currencys[CurrencyTransform.Y2F] = YuanConvertToFen;
+			_currencys[CurrencyTransformType.Y2F] = YuanConvertToFen;
 			// 角轉換為元
-			_currencys[CurrencyTransform.J2Y] = JiaoConvertToYuan;
+			_currencys[CurrencyTransformType.J2Y] = JiaoConvertToYuan;
 			// 角轉換為分
-			_currencys[CurrencyTransform.J2F] = JiaoConvertToFen;
+			_currencys[CurrencyTransformType.J2F] = JiaoConvertToFen;
 			// 角轉換為元分
-			_currencys[CurrencyTransform.J2YF] = JiaoConvertToYuanFen;
+			_currencys[CurrencyTransformType.J2YF] = JiaoConvertToYuanFen;
 			// 分轉換為元
-			_currencys[CurrencyTransform.F2Y] = FenConvertToYuan;
+			_currencys[CurrencyTransformType.F2Y] = FenConvertToYuan;
 			// 分轉換為角
-			_currencys[CurrencyTransform.F2J] = FenConvertToJiao;
+			_currencys[CurrencyTransformType.F2J] = FenConvertToJiao;
 			// 分轉換為元角
-			_currencys[CurrencyTransform.F2YJ] = FenConvertToYuanJiao;
+			_currencys[CurrencyTransformType.F2YJ] = FenConvertToYuanJiao;
 
 			// 角轉換為元（有剩餘）
-			_currencys[CurrencyTransform.J2YExt] = JiaoConvertToYuanExt;
+			_currencys[CurrencyTransformType.J2YExt] = JiaoConvertToYuanExt;
 			// 分轉換為元角（有剩餘）
-			_currencys[CurrencyTransform.F2YJExt] = FenConvertToYuanJiaoExt;
+			_currencys[CurrencyTransformType.F2YJExt] = FenConvertToYuanJiaoExt;
 		}
 
 		/// <summary>
@@ -61,7 +61,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		/// </summary>
 		/// <param name="p">題型參數</param>
 		/// <param name="currencyTransFunc">運算符取得用的表達式</param>
-		private void MarkFormulaList(LearnCurrencyParameter p, Func<CurrencyTransform> currencyTransFunc)
+		private void MarkFormulaList(LearnCurrencyParameter p, Func<CurrencyTransformType> currencyTransFunc)
 		{
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
@@ -70,9 +70,9 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				// 貨幣轉換類型
-				CurrencyTransform type = currencyTransFunc();
+				CurrencyTransformType type = currencyTransFunc();
 
-				LearnCurrencyFormula formula = new LearnCurrencyFormula() { CurrencyTransformType = type };
+				LearnCurrencyFormula formula = new LearnCurrencyFormula() { CurrencyTransType = type };
 				if (_currencys.TryGetValue(type, out Action<LearnCurrencyFormula, QuestionType> currency))
 				{
 					currency(formula, p.QuestionType);
@@ -111,12 +111,12 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
 				// 單一的貨幣轉換類型
-				MarkFormulaList(p, () => { return (CurrencyTransform)p.Types[0]; });
+				MarkFormulaList(p, () => { return (CurrencyTransformType)p.Types[0]; });
 			}
 			else
 			{
 				// 隨機獲取貨幣轉換集合中的一個轉換類型
-				MarkFormulaList(p, () => { return (CurrencyTransform)CommonUtil.GetRandomNumber(p.Types.ToList()); });
+				MarkFormulaList(p, () => { return (CurrencyTransformType)CommonUtil.GetRandomNumber(p.Types.ToList()); });
 			}
 		}
 
@@ -135,7 +135,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			if (preFormulas.ToList().Any(d => d.CurrencyUnit.Yuan == currentFormula.CurrencyUnit.Yuan
 				&& d.CurrencyUnit.Jiao == currentFormula.CurrencyUnit.Jiao
 				&& d.CurrencyUnit.Fen == currentFormula.CurrencyUnit.Fen
-				&& d.CurrencyTransformType == currentFormula.CurrencyTransformType))
+				&& d.CurrencyTransType == currentFormula.CurrencyTransType))
 			{
 				return true;
 			}
@@ -155,7 +155,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			if (fen % 10 == 0)
 			{
 				// 題型變換
-				formula.CurrencyTransformType = CurrencyTransform.F2YJ;
+				formula.CurrencyTransType = CurrencyTransformType.F2YJ;
 				// 分轉換為元角
 				FenConvertToYuanJiao(formula, type);
 				return;
@@ -163,7 +163,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			else if (fen % 100 == 0)
 			{
 				// 題型變換
-				formula.CurrencyTransformType = CurrencyTransform.F2Y;
+				formula.CurrencyTransType = CurrencyTransformType.F2Y;
 				// 分轉換為元
 				FenConvertToYuan(formula, type);
 				return;
@@ -338,7 +338,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			if (jiao % 10 == 0)
 			{
 				// 題型變換
-				formula.CurrencyTransformType = CurrencyTransform.J2Y;
+				formula.CurrencyTransType = CurrencyTransformType.J2Y;
 				// 角轉換為元
 				JiaoConvertToYuan(formula, type);
 				return;

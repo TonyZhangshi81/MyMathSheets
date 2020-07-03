@@ -25,8 +25,8 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 		/// <summary>
 		/// 存儲長度轉換的實現方法集合
 		/// </summary>
-		private readonly Dictionary<LengthUnitTransform, Action<LearnLengthUnitFormula, QuestionType>> _currencys =
-			new Dictionary<LengthUnitTransform, Action<LearnLengthUnitFormula, QuestionType>>();
+		private readonly Dictionary<LengthUnitTransformType, Action<LearnLengthUnitFormula, QuestionType>> _currencys =
+			new Dictionary<LengthUnitTransformType, Action<LearnLengthUnitFormula, QuestionType>>();
 
 		/// <summary>
 		/// 構造函數
@@ -34,49 +34,49 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 		public LearnLengthUnit()
 		{
 			// 米轉換為分米
-			_currencys[LengthUnitTransform.M2D] = MeterConvertToDecimetre;
+			_currencys[LengthUnitTransformType.M2D] = MeterConvertToDecimetre;
 			// 米轉換為釐米
-			_currencys[LengthUnitTransform.M2C] = MeterConvertToCentimeter;
+			_currencys[LengthUnitTransformType.M2C] = MeterConvertToCentimeter;
 			// 米轉換為毫米
-			_currencys[LengthUnitTransform.M2MM] = MeterConvertToMillimeter;
+			_currencys[LengthUnitTransformType.M2MM] = MeterConvertToMillimeter;
 			// 分米轉換為米
-			_currencys[LengthUnitTransform.D2M] = DecimetreConvertToMeter;
+			_currencys[LengthUnitTransformType.D2M] = DecimetreConvertToMeter;
 			// 分米轉換為釐米
-			_currencys[LengthUnitTransform.D2C] = DecimetreConvertToCentimeter;
+			_currencys[LengthUnitTransformType.D2C] = DecimetreConvertToCentimeter;
 			// 分米轉換為毫米
-			_currencys[LengthUnitTransform.D2MM] = DecimetreConvertToMillimeter;
+			_currencys[LengthUnitTransformType.D2MM] = DecimetreConvertToMillimeter;
 			// 分米到米分米
-			_currencys[LengthUnitTransform.D2MExt] = DecimetreConvertToMeterExt;
+			_currencys[LengthUnitTransformType.D2MExt] = DecimetreConvertToMeterExt;
 			// 分米到米釐米
-			_currencys[LengthUnitTransform.D2MC] = DecimetreConvertToMeterCentimeter;
+			_currencys[LengthUnitTransformType.D2MC] = DecimetreConvertToMeterCentimeter;
 			// 釐米到米
-			_currencys[LengthUnitTransform.C2M] = CentimeterConvertToMeter;
+			_currencys[LengthUnitTransformType.C2M] = CentimeterConvertToMeter;
 			// 釐米到分米
-			_currencys[LengthUnitTransform.C2D] = CentimeterConvertToDecimetre;
+			_currencys[LengthUnitTransformType.C2D] = CentimeterConvertToDecimetre;
 			// 釐米到毫米
-			_currencys[LengthUnitTransform.C2MM] = CentimeterConvertToMillimeter;
+			_currencys[LengthUnitTransformType.C2MM] = CentimeterConvertToMillimeter;
 			// 釐米到米分米
-			_currencys[LengthUnitTransform.C2MD] = CentimeterConvertToMeterDecimetre;
+			_currencys[LengthUnitTransformType.C2MD] = CentimeterConvertToMeterDecimetre;
 			// 釐米到分米毫米
-			_currencys[LengthUnitTransform.C2DMM] = CentimeterConvertToDecimetreMillimeter;
+			_currencys[LengthUnitTransformType.C2DMM] = CentimeterConvertToDecimetreMillimeter;
 			// 釐米到米分米釐米
-			_currencys[LengthUnitTransform.C2MDExt] = CentimeterConvertToMeterDecimetreExt;
+			_currencys[LengthUnitTransformType.C2MDExt] = CentimeterConvertToMeterDecimetreExt;
 			// 毫米到米
-			_currencys[LengthUnitTransform.MM2M] = MillimeterConvertToMeter;
+			_currencys[LengthUnitTransformType.MM2M] = MillimeterConvertToMeter;
 			// 毫米到分米
-			_currencys[LengthUnitTransform.MM2D] = MillimeterConvertToDecimetre;
+			_currencys[LengthUnitTransformType.MM2D] = MillimeterConvertToDecimetre;
 			// 毫米到釐米
-			_currencys[LengthUnitTransform.MM2C] = MillimeterConvertToCentimeter;
+			_currencys[LengthUnitTransformType.MM2C] = MillimeterConvertToCentimeter;
 			// 毫米到米分米
-			_currencys[LengthUnitTransform.MM2MD] = MillimeterConvertToMeterDecimetre;
+			_currencys[LengthUnitTransformType.MM2MD] = MillimeterConvertToMeterDecimetre;
 			// 毫米到米分米釐米
-			_currencys[LengthUnitTransform.MM2MDC] = MillimeterConvertToMeterDecimetreCentimeter;
+			_currencys[LengthUnitTransformType.MM2MDC] = MillimeterConvertToMeterDecimetreCentimeter;
 			// 毫米到分米釐米
-			_currencys[LengthUnitTransform.MM2DC] = MillimeterConvertToDecimetreCentimeter;
+			_currencys[LengthUnitTransformType.MM2DC] = MillimeterConvertToDecimetreCentimeter;
 			// 毫米到米釐米
-			_currencys[LengthUnitTransform.MM2MC] = MillimeterConvertToMeterCentimeter;
+			_currencys[LengthUnitTransformType.MM2MC] = MillimeterConvertToMeterCentimeter;
 			// 毫米轉換為米分米釐米毫米
-			_currencys[LengthUnitTransform.MM2MDCExt] = MillimeterConvertToMeterDecimetreCentimeterExt;
+			_currencys[LengthUnitTransformType.MM2MDCExt] = MillimeterConvertToMeterDecimetreCentimeterExt;
 		}
 
 		/// <summary>
@@ -84,7 +84,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 		/// </summary>
 		/// <param name="p">題型參數</param>
 		/// <param name="lengthUnitFunc">運算符取得用的表達式</param>
-		private void MarkFormulaList(LearnLengthUnitParameter p, Func<LengthUnitTransform> lengthUnitFunc)
+		private void MarkFormulaList(LearnLengthUnitParameter p, Func<LengthUnitTransformType> lengthUnitFunc)
 		{
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
@@ -92,9 +92,9 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				// 單一的長度轉換類型
-				LengthUnitTransform type = lengthUnitFunc();
+				LengthUnitTransformType type = lengthUnitFunc();
 
-				LearnLengthUnitFormula formula = new LearnLengthUnitFormula() { LengthUnitTransformType = type };
+				LearnLengthUnitFormula formula = new LearnLengthUnitFormula() { LengthUnitTransType = type };
 				if (_currencys.TryGetValue(type, out Action<LearnLengthUnitFormula, QuestionType> currency))
 				{
 					currency(formula, p.QuestionType);
@@ -133,12 +133,12 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
 				// 單一的長度轉換類型
-				MarkFormulaList(p, () => { return (LengthUnitTransform)p.Types[0]; });
+				MarkFormulaList(p, () => { return (LengthUnitTransformType)p.Types[0]; });
 			}
 			else
 			{
 				// 隨機獲取長度轉換集合中的一個轉換類型
-				MarkFormulaList(p, () => { return (LengthUnitTransform)CommonUtil.GetRandomNumber(p.Types.ToList()); });
+				MarkFormulaList(p, () => { return (LengthUnitTransformType)CommonUtil.GetRandomNumber(p.Types.ToList()); });
 			}
 		}
 
@@ -158,7 +158,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 				&& d.LengthUnitItme.Decimetre == currentFormula.LengthUnitItme.Decimetre
 				&& d.LengthUnitItme.Centimeter == currentFormula.LengthUnitItme.Centimeter
 				&& d.LengthUnitItme.Millimeter == currentFormula.LengthUnitItme.Millimeter
-				&& d.LengthUnitTransformType == currentFormula.LengthUnitTransformType))
+				&& d.LengthUnitTransType == currentFormula.LengthUnitTransType))
 			{
 				return true;
 			}

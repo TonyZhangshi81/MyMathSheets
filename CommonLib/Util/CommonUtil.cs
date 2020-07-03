@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace MyMathSheets.CommonLib.Util
 {
@@ -16,6 +17,8 @@ namespace MyMathSheets.CommonLib.Util
 		/// <returns>隨機取得的對象</returns>
 		public static T GetRandomNumber<T>(List<T> list)
 		{
+			Guard.ArgumentNotNull(list, "list");
+
 			return list[GetRandomNumber(0, list.Count - 1)];
 		}
 
@@ -28,9 +31,9 @@ namespace MyMathSheets.CommonLib.Util
 		public static T GetRandomNumber<T>(T upper, T lower)
 		{
 			// 隨機數處理對象
-			RandomNumberComposition random = new RandomNumberComposition(Convert.ToInt32(upper), Convert.ToInt32(lower));
+			RandomNumberComposition random = new RandomNumberComposition(Convert.ToInt32(upper, CultureInfo.CurrentCulture), Convert.ToInt32(lower, CultureInfo.CurrentCulture));
 			// 獲取隨機數并返回
-			return (T)ConvertHelper.ChangeType(random.GetRandomNumber(), typeof(T));
+			return (T)ConvertHelper.ChangeType(random.GetRandomNumber(), typeof(T), CultureInfo.CurrentCulture);
 		}
 
 		/// <summary>

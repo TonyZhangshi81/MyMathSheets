@@ -13,9 +13,9 @@ namespace MyMathSheets.CommonLib.Util
 		/// </summary>
 		/// <param name="dt">時間日期</param>
 		/// <returns>時間</returns>
-		public static Time ToTime(this DateTime dt)
+		public static TimeType ToTime(this DateTime dt)
 		{
-			return new Time() { Hours = dt.Hour, Minutes = dt.Minute, Seconds = dt.Second };
+			return new TimeType() { Hours = dt.Hour, Minutes = dt.Minute, Seconds = dt.Second };
 		}
 
 		/// <summary>
@@ -45,7 +45,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// </summary>
 		/// <param name="seconds">秒數</param>
 		/// <returns>轉換后的時間</returns>
-		public static Time ToTime(this int seconds)
+		public static TimeType ToTime(this int seconds)
 		{
 			DateTime dt = seconds.ToDateTime();
 			return dt.ToTime();
@@ -56,8 +56,10 @@ namespace MyMathSheets.CommonLib.Util
 		/// </summary>
 		/// <param name="dt">時間</param>
 		/// <returns>轉換后的秒數</returns>
-		public static int ToSeconds(this Time dt)
+		public static int ToSeconds(this TimeType dt)
 		{
+			Guard.ArgumentNotNull(dt, "dt");
+
 			return CommonUtil.Time2Second(dt.Hours ?? 0, dt.Minutes ?? 0, dt.Seconds ?? 0);
 		}
 	}

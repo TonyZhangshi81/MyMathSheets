@@ -11,17 +11,17 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Item
 		/// <summary>
 		/// 計算開始時間
 		/// </summary>
-		public Time StartTime { get; set; }
+		public TimeType StartTime { get; set; }
 
 		/// <summary>
 		/// 計算結束時間
 		/// </summary>
-		public Time EndTime { get; set; }
+		public TimeType EndTime { get; set; }
 
 		/// <summary>
 		/// 經過的時間
 		/// </summary>
-		public Time ElapsedTime { get; set; }
+		public TimeType ElapsedTime { get; set; }
 
 		/// <summary>
 		/// 运算符

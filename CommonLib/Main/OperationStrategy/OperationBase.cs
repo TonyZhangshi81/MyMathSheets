@@ -16,7 +16,18 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		///
 		/// </summary>
-		protected CalculateHelper Helper => _helper ?? (_helper = new CalculateHelper());
+		protected CalculateHelper Helper
+		{
+			get
+			{
+				if (_helper == null)
+				{
+					_helper = new CalculateHelper();
+				}
+
+				return _helper;
+			}
+		}
 
 		/// <summary>
 		/// 對指定運算符實例化
@@ -65,9 +76,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		public virtual void PreExecute(ParameterBase p)
 		{
 			Guard.ArgumentNotNull(p, "ParameterBase");
-
 			Guard.ArgumentNotNull(p.Identifier, "Identifier");
-			Guard.ArgumentNotNull(p.Signs, "Signs");
 		}
 
 		/// <summary>

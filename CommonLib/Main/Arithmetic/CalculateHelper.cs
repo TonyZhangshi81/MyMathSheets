@@ -24,7 +24,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// </summary>
 		private void ComposeThis()
 		{
-			// Helper實例后只需要收集一次
+			// Helper 實例后只需要收集一次
 			if (this._composed)
 			{
 				return;

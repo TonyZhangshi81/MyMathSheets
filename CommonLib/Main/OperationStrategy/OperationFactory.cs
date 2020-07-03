@@ -85,7 +85,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 
 				// 指定運算符并獲取處理類型
 				IEnumerable<Lazy<OperationBase, IOperationMetaDataView>> operations = Operations.Where(d => d.Metadata.Layout == preview);
-				if (operations.Count() == 0)
+				if (!operations.Any())
 				{
 					// 指定的題型策略對象未找到
 					throw new OperationNotFoundException(MessageUtil.GetException(() => MsgResources.E0018L, preview.ToString()));
@@ -112,11 +112,11 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		public virtual ParameterBase CreateOperationParameterInstance(LayoutSetting.Preview preview, string identifier)
 		{
 			// 運算符參數對象緩存區管理
-			string key = string.Format(preview.ToString() + "::" + identifier);
+			string key = $"{preview}::{identifier}";
 
 			// 注入運算符參數對象
 			IEnumerable<Lazy<ParameterBase, IOperationMetaDataView>> parameters = _composer.GetExports<ParameterBase, IOperationMetaDataView>();
-			if (parameters.Count() == 0)
+			if (!parameters.Any())
 			{
 				// 指定的題型參數對象未找到
 				throw new OperationNotFoundException(MessageUtil.GetException(() => MsgResources.E0019L, preview.ToString()));
