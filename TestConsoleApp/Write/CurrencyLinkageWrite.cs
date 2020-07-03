@@ -19,7 +19,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="currencys">價格</param>
 		public void ConsoleFormulas(CurrencyLinkageFormula currencys)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "認識價格"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "認識價格"));
 
 			int index = 0;
 			currencys.LeftCurrencys.ToList().ForEach(d =>

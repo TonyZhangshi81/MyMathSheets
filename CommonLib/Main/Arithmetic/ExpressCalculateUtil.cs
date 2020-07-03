@@ -20,7 +20,6 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// </summary>
 		private readonly string[] Operateors = new string[] { "+", "-", "*", "/", "(", ")", "[", "]", "{", "}", "#" };
 
-
 		/// <summary>
 		/// 四則運算處理
 		/// </summary>
@@ -110,7 +109,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 				}
 				catch
 				{
-					throw new CalculateExpressException(MessageUtil.GetException(() => MsgResources.E0039L));
+					throw new CalculateExpressException(MessageUtil.GetMessage(() => MsgResources.E0039L));
 				}
 			}
 			result = 0;
@@ -122,6 +121,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// </summary>
 		/// <param name="expressQueue">中序表達式隊列</param>
 		/// <returns>後序表達式列表</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="expressQueue"/>為NULL的情況</exception>
 		public List<string> InorderToPostorder(Queue<string> expressQueue)
 		{
 			Guard.ArgumentNotNull(expressQueue, "expressQueue");

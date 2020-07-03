@@ -65,7 +65,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 				}
 				else
 				{
-					throw new ArgumentException(MessageUtil.GetException(() => MsgResources.E0001L, lawLevel.ToString()));
+					throw new ArgumentException(MessageUtil.GetMessage(() => MsgResources.E0001L, lawLevel.ToString()));
 				}
 			}
 		}

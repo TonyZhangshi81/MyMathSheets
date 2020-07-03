@@ -178,7 +178,7 @@ namespace MyMathSheets.CommonLib.Logging
 					return LogLevel.Off;
 
 				default:
-					throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, MessageUtil.GetException(() => MsgResources.E0038L));
+					throw new ArgumentOutOfRangeException(nameof(logLevel), logLevel, MessageUtil.GetMessage(() => MsgResources.E0038L));
 			}
 		}
 	}

@@ -20,7 +20,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<NearestNumberFormula> formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "等式比大小"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "等式比大小"));
 
 			formulas.ToList().ForEach(d =>
 			{

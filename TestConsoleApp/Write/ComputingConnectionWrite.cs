@@ -21,7 +21,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<ConnectionFormula> formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "等式接龍"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "等式接龍"));
 
 			StringBuilder builder = new StringBuilder();
 			formulas.ToList().ForEach(d =>

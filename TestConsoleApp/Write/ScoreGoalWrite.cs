@@ -19,7 +19,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(ScoreGoalFormula formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "射門得分"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "射門得分"));
 
 			int seat = 0;
 			// 信息打印

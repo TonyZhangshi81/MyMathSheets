@@ -16,6 +16,8 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// <param name="encode">加密採用的編碼方式</param>
 		/// <param name="source">待加密的明文</param>
 		/// <returns>加密后的字符串</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="source"/>為NULL的情況</exception>
+		/// <exception cref="EncodeBase64Exception"><paramref name="source"/>無法加密的情況</exception>
 		public static string EncodeBase64(Encoding encode, string source)
 		{
 			Guard.ArgumentNotNull(encode, "encode");
@@ -27,7 +29,7 @@ namespace MyMathSheets.CommonLib.Util.Security
 			}
 			catch
 			{
-				throw new EncodeBase64Exception(MessageUtil.GetException(() => MsgResources.E0040L, source));
+				throw new EncodeBase64Exception(MessageUtil.GetMessage(() => MsgResources.E0040L, source));
 			}
 		}
 
@@ -57,6 +59,8 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// <param name="encode">解密採用的解密方式，注意和加密時採用的編碼方式一致</param>
 		/// <param name="result">待解密的密文</param>
 		/// <returns>解密后的字符串</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="result"/>為NULL的情況</exception>
+		/// <exception cref="DecodeBase64Exception"><paramref name="result"/>無法加密的情況</exception>
 		public static string DecodeBase64(Encoding encode, string result)
 		{
 			Guard.ArgumentNotNull(encode, "encode");
@@ -68,7 +72,7 @@ namespace MyMathSheets.CommonLib.Util.Security
 			}
 			catch
 			{
-				throw new EncodeBase64Exception(MessageUtil.GetException(() => MsgResources.E0041L, result));
+				throw new DecodeBase64Exception(MessageUtil.GetMessage(() => MsgResources.E0041L, result));
 			}
 		}
 

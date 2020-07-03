@@ -91,7 +91,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 				}
 				else
 				{
-					throw new ArgumentException(MessageUtil.GetException(() => MsgResources.E0002L, type.ToString()));
+					throw new ArgumentException(MessageUtil.GetMessage(() => MsgResources.E0002L, type.ToString()));
 				}
 
 				if (CheckIsNeedInverseMethod(p.Formulas, formula))

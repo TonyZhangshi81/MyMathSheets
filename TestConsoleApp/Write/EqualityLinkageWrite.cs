@@ -20,7 +20,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(EqualityLinkageFormula formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "算式連一連"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "算式連一連"));
 
 			int index = 0;
 			formulas.LeftFormulas.ToList().ForEach(d =>

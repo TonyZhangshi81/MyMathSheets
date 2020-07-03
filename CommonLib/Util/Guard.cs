@@ -19,11 +19,11 @@ namespace MyMathSheets.CommonLib.Util
 		{
 			if (parameterName == null)
 			{
-				throw new ArgumentNullException(MessageUtil.GetException(() => MsgResources.E0037L));
+				throw new ArgumentNullException(MessageUtil.GetMessage(() => MsgResources.E0037L));
 			}
 			if (argument == null)
 			{
-				throw new ArgumentNullException(parameterName, MessageUtil.GetException(() => MsgResources.E0036L, parameterName));
+				throw new ArgumentNullException(parameterName, MessageUtil.GetMessage(() => MsgResources.E0036L, parameterName));
 			}
 		}
 
@@ -36,11 +36,11 @@ namespace MyMathSheets.CommonLib.Util
 		{
 			if (parameterName == null)
 			{
-				throw new ArgumentNullException(MessageUtil.GetException(() => MsgResources.E0037L));
+				throw new ArgumentNullException(MessageUtil.GetMessage(() => MsgResources.E0037L));
 			}
 			if (string.IsNullOrEmpty(argument))
 			{
-				throw new ArgumentNullException(parameterName, MessageUtil.GetException(() => MsgResources.E0036L, parameterName));
+				throw new ArgumentNullException(parameterName, MessageUtil.GetMessage(() => MsgResources.E0036L, parameterName));
 			}
 		}
 	}

@@ -16,7 +16,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Runtime.Serialization;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Main.FromProcess
@@ -60,7 +59,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		private StringBuilder Content { get; set; }
 
 		/// <summary>
-		///
+		/// HTML 構築類實例
 		/// </summary>
 		[Import(typeof(IMakeHtml))]
 		public IMakeHtml MakeHtml { get; set; }
@@ -99,13 +98,12 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		private void TopicManagementInit()
 		{
 			// 读取资料库
-			using (System.IO.StreamReader file = System.IO.File.OpenText(ConfigurationManager.AppSettings.Get("TopicManagement")))
+			using (var file = File.OpenText(ConfigurationManager.AppSettings.Get("TopicManagement")))
 			{
 				TopicManagementList = JsonConvert.DeserializeObject<List<TopicManagement>>(file.ReadToEnd());
 			};
 		}
 
-		
 		/// <summary>
 		/// 獲取指定文件夾下所有文件的文件名列表
 		/// </summary>
@@ -146,7 +144,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// HTML模板存放路徑
 			string sourceFileName = Path.GetFullPath(ConfigurationManager.AppSettings.Get("Template"));
 			// 靜態頁面作成后存放的路徑（文件名：日期時間形式）
-			string destFileName = Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") 
+			string destFileName = Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork")
 										+ string.Format(CultureInfo.CurrentCulture, "{0}.html", DateTime.Now.ToString("yyyyMMddHHmmssfff", CultureInfo.CurrentCulture)));
 
 			// 文件移動
@@ -158,12 +156,12 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// 遍歷已選擇的題型
 			foreach (KeyValuePair<string, Dictionary<SubstituteType, string>> d in _htmlMaps)
 			{
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0016L, d.Key));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0016L, d.Key));
 
 				// 替換HTML模板中的預留內容（HTML、JS注入操作）
 				foreach (KeyValuePair<SubstituteType, string> m in d.Value)
 				{
-					LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0015L, m.Key));
+					LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0015L, m.Key));
 
 					switch (m.Key)
 					{
@@ -222,7 +220,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// 題型正文注入
 			htmlTemplate.Replace("<!--CONTENT-->", Content.ToString());
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0017L));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0017L));
 
 			// 保存至靜態頁面
 			File.WriteAllText(destFileName, htmlTemplate.ToString(), Encoding.UTF8);
@@ -273,6 +271,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// </summary>
 		/// <param name="isChecked">是否選擇</param>
 		/// <param name="expression">用以獲取控件基本信息對象</param>
+		/// <exception cref="ArgumentNullException"><paramref name="expression"/>為NULL的情況</exception>
 		public void TopicCheckedChanged(bool isChecked, Expression<Func<ControlInfo>> expression)
 		{
 			Guard.ArgumentNotNull(expression, "expression");
@@ -368,12 +367,4 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			}
 		}
 	}
-
-
-
-
-
-	
-
-
 }

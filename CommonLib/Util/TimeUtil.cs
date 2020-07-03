@@ -56,6 +56,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// </summary>
 		/// <param name="dt">時間</param>
 		/// <returns>轉換后的秒數</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="dt"/>為NULL的情況</exception>
 		public static int ToSeconds(this TimeType dt)
 		{
 			Guard.ArgumentNotNull(dt, "dt");

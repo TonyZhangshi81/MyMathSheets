@@ -10,7 +10,6 @@ using System.ComponentModel.Composition.Primitives;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Composition
@@ -101,14 +100,14 @@ namespace MyMathSheets.CommonLib.Composition
 			var action = new Action<FileInfo>(file =>
 			{
 				var assembly = Assembly.LoadFile(file.FullName);
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0028L, file.FullName));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0028L, file.FullName));
 
 				MathSheetMarkerAttribute attr = assembly.GetCustomAttributes(typeof(MathSheetMarkerAttribute), false)
 					.Cast<MathSheetMarkerAttribute>()
 					.FirstOrDefault();
 				if (attr == null)
 				{
-					LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.E0027L, file.FullName));
+					LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.E0027L, file.FullName));
 					throw new Exception();
 				}
 				var valueFunc = new Func<string, Composer>(c =>
@@ -127,7 +126,7 @@ namespace MyMathSheets.CommonLib.Composition
 				string composerKey = (attr.Preview == LayoutSetting.Preview.Null) ? attr.SystemId.ToString() : $"{attr.SystemId}::{attr.Preview}";
 
 				ComposerCache.GetOrAdd(composerKey, valueFunc);
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0029L, composerKey));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0029L, composerKey));
 
 				// （為確保模塊的完成性，規定同一個題型必須具備策略模塊和展示模塊）
 				if (checkCache.Any(d => d == attr.Preview))
@@ -144,14 +143,14 @@ namespace MyMathSheets.CommonLib.Composition
 				}
 			});
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0031L));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0031L));
 
 			// 模塊信息事件傳播
 			SearchModelEvent?.Invoke(null, LoadTopicModuleFiles.Count);
 
 			LoadTopicModuleFiles.ForEach(f => action(f));
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0030L, LoadTopicModuleFiles.Count));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0030L, LoadTopicModuleFiles.Count));
 		}
 
 		/// <summary>
@@ -206,7 +205,7 @@ namespace MyMathSheets.CommonLib.Composition
 			if (TempAssembly == null)
 			{
 				var sb = new StringBuilder();
-				sb.Append(MessageUtil.GetException(() => MsgResources.E0001L));
+				sb.Append(MessageUtil.GetMessage(() => MsgResources.E0001L));
 				throw new ComposerException(sb.ToString());
 			}
 			return TempAssembly;

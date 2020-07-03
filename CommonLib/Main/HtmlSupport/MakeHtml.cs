@@ -45,12 +45,12 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <returns>模板替換內容</returns>
 		public Dictionary<SubstituteType, string> GetHtmlStatement<T>(LayoutSetting.Preview preview, T formulas) where T : ParameterBase
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0012L, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0012L, preview.ToString()));
 
 			// 指定题型大分类获得相应的题型HTML处理对象（实例）
 			IHtmlSupport support = SupprtHelper.CreateHtmlSupportInstance(preview);
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0013L, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0013L, preview.ToString()));
 
 			return support.Make(formulas);
 		}

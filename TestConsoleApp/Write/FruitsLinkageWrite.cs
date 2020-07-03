@@ -20,7 +20,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(FruitsLinkageFormula formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "水果連連看"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "水果連連看"));
 
 			int index = 0;
 			formulas.FruitsFormulas.ToList().ForEach(d =>

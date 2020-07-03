@@ -20,6 +20,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// </summary>
 		/// <param name="parameter">計算式參數</param>
 		/// <returns>HTML模板信息</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="parameter"/>為NULL的情況</exception>
 		public virtual Dictionary<SubstituteType, string> Make(ParameterBase parameter)
 		{
 			Guard.ArgumentNotNull(parameter, "parameter");
@@ -32,12 +33,12 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 				{ SubstituteType.Content, MakeHtmlStatement(parameter) }
 			};
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0009L));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0009L));
 
 			// JS模板內容替換
 			MarkJavaScriptReplaceContent(htmlMaps, identifier);
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0010L));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0010L));
 
 			return htmlMaps;
 		}
@@ -52,7 +53,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 			var attrs = GetType().GetCustomAttributes(typeof(SubstituteAttribute), false).Cast<SubstituteAttribute>();
 			if (attrs == null)
 			{
-				throw new NotImplementedException(MessageUtil.GetException(() => MsgResources.E0022L, identifier));
+				throw new NotImplementedException(MessageUtil.GetMessage(() => MsgResources.E0022L, identifier));
 			}
 			attrs.ToList().ForEach(d =>
 			{

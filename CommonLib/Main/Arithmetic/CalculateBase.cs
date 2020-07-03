@@ -38,6 +38,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// </summary>
 		/// <param name="parameterScope"></param>
 		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"><paramref name="parameterScope"/>為NULL的情況</exception>
 		protected virtual int GetParameterWithScope(List<int> parameterScope)
 		{
 			Guard.ArgumentNotNull(parameterScope, "parameterScope");
@@ -68,7 +69,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		{
 			if (Formula == null)
 			{
-				throw new NullReferenceException(MessageUtil.GetException(() => MsgResources.E0023L));
+				throw new NullReferenceException(MessageUtil.GetMessage(() => MsgResources.E0023L));
 			}
 
 			switch (Formula.Sign)
@@ -86,7 +87,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 					return (leftParameter / rightParameter);
 
 				default:
-					throw new ArgumentOutOfRangeException(MessageUtil.GetException(() => MsgResources.E0024L, Formula.Sign.ToString()));
+					throw new ArgumentOutOfRangeException(MessageUtil.GetMessage(() => MsgResources.E0024L, Formula.Sign.ToString()));
 			}
 		}
 
@@ -95,6 +96,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
 		/// <returns>計算式對象</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="parameter"/>為NULL的情況</exception>
 		public virtual Formula CreateFormula(CalculateParameter parameter)
 		{
 			Guard.ArgumentNotNull(parameter, "parameter");
@@ -120,6 +122,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="previousFormula">前次推算的計算式對象</param>
 		/// <returns>計算式對象</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="parameter"/>為NULL的情況</exception>
 		public virtual Formula CreateFormula(CalculateParameter parameter, Formula previousFormula)
 		{
 			Guard.ArgumentNotNull(parameter, "parameter");
@@ -133,6 +136,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="answer">計算結果</param>
 		/// <returns>計算式對象</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="parameter"/>為NULL的情況</exception>
 		public virtual Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
 		{
 			Guard.ArgumentNotNull(parameter, "parameter");

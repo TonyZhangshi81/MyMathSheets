@@ -31,6 +31,7 @@ namespace MyMathSheets.CommonLib.Composition
 		/// 程序集對象以參照的順序添加至對象元素目錄
 		/// </summary>
 		/// <param name="assembly">程序集對象</param>
+		/// <exception cref="ArgumentNullException"><paramref name="assembly"/>為NULL的情況</exception>
 		public Composer(Assembly assembly)
 		{
 			Guard.ArgumentNotNull(assembly, "Assembly");
@@ -80,7 +81,7 @@ namespace MyMathSheets.CommonLib.Composition
 		public Exception CreateLogicComposerException(Type type, string contractName, Exception innerException)
 		{
 			var sb = new StringBuilder();
-			sb.Append(MessageUtil.GetException(() => MsgResources.E0001L));
+			sb.Append(MessageUtil.GetMessage(() => MsgResources.E0001L));
 			sb.Append(GetInnerExportedInfo(type, contractName));
 
 			// 返回特定例外

@@ -275,7 +275,7 @@ namespace MyMathSheets.TestConsoleApp
 		{
 			var exception = (Exception)e.ExceptionObject;
 
-			LogUtil.LogError(MessageUtil.GetException(() => MsgResources.E0001T), exception);
+			LogUtil.LogError(MessageUtil.GetMessage(() => MsgResources.E0001T), exception);
 
 			Console.WriteLine(exception.Message);
 			Console.ReadKey();

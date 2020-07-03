@@ -19,7 +19,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<MathWordProblemsFormula> formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "算式應用題"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "算式應用題"));
 
 			formulas.ToList().ForEach(d =>
 			{

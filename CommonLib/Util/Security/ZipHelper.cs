@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.IO.Compression;
 using System.Text;
 
@@ -30,6 +31,7 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// </summary>
 		/// <param name="data">未壓縮的字符串字符集</param>
 		/// <returns>已壓縮的字符串字符集</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="data"/>為NULL的情況</exception>
 		public static byte[] Compress(byte[] data)
 		{
 			Guard.ArgumentNotNull(data, "data");

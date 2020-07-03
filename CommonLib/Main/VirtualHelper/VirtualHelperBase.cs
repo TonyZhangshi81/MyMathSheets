@@ -25,6 +25,7 @@ namespace MyMathSheets.CommonLib.Main.VirtualHelper
 		/// </summary>
 		/// <param name="formulas">答題集合</param>
 		/// <returns>智能提示對象</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="formulas"/>為NULL的情況</exception>
 		public HelperDialogue CreateHelperDialogue(IList<T> formulas)
 		{
 			Guard.ArgumentNotNull(formulas, "formulas");

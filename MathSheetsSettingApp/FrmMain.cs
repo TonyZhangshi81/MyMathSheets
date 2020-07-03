@@ -51,7 +51,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <param name="e">事件處理</param>
 		private void FormLoad(object sender, EventArgs e)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0001A));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0001A));
 
 			this.Owner.Hide();
 
@@ -67,7 +67,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 創建題型選擇控件
 			CreateQuestionCheckBoxList();
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0008A));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0008A));
 		}
 
 		/// <summary>
@@ -205,11 +205,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 			// 選題情況
 			if (!Process.ChooseCheck())
 			{
-				MessageBox.Show(this, MessageUtil.GetException(() => MsgResources.I0009A));
+				MessageBox.Show(this, MessageUtil.GetMessage(() => MsgResources.I0009A));
 				return;
 			}
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0002A));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0002A));
 
 			// 出題按鍵點擊事件
 			var destFileName = Process.SureClick();
@@ -244,11 +244,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 			CheckBox checkBox = (CheckBox)sender;
 			if (checkBox.Checked)
 			{
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0006A, checkBox.Text));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0006A, checkBox.Text));
 			}
 			else
 			{
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0007A, checkBox.Text));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0007A, checkBox.Text));
 			}
 
 			Process.TopicCheckedChanged(checkBox.Checked,

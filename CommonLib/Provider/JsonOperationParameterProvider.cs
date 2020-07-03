@@ -5,6 +5,7 @@ using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,6 +21,7 @@ namespace MyMathSheets.CommonLib.Provider
 		/// 參數初期化
 		/// </summary>
 		/// <param name="identifier">參數標識ID（如果沒有指定參數標識，則默認返回當前參數序列的第一個參數項目）</param>
+		/// <exception cref="ArgumentNullException"><paramref name="identifier"/>為NULL的情況</exception>
 		public override ParameterBase Initialize(string identifier)
 		{
 			Guard.ArgumentNotNull(identifier, "identifier");
@@ -36,11 +38,10 @@ namespace MyMathSheets.CommonLib.Provider
 				allProblems = JsonConvert.DeserializeObject<List<ParameterBase>>(file.ReadToEnd());
 			};
 
-
 			// 如果沒有指定題型編號，則默認使用當前參數序列的第一個參數項目中的題型編號
 			if (string.IsNullOrEmpty(identifiers[2]))
 			{
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0032L, allProblems[0].Identifier));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0032L, allProblems[0].Identifier));
 				return allProblems[0];
 			}
 
@@ -50,7 +51,7 @@ namespace MyMathSheets.CommonLib.Provider
 										 .ToList();
 			if (list.Count == 0)
 			{
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0033L, identifiers[2], allProblems[0].Identifier));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0033L, identifiers[2], allProblems[0].Identifier));
 				return allProblems[0];
 			}
 

@@ -23,7 +23,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 		{
 			if (Formula == null)
 			{
-				throw new NullReferenceException(MessageUtil.GetException(() => MsgResources.E0001L));
+				throw new NullReferenceException(MessageUtil.GetMessage(() => MsgResources.E0001L));
 			}
 
 			// 開始時間
@@ -31,7 +31,6 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 			DateTime endTime = startTime.AddSeconds(rightParameter * -1);
 			return endTime.ToSeconds();
 		}
-
 
 		/// <summary>
 		/// 構造函數

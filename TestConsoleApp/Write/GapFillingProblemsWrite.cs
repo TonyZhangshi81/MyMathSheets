@@ -21,7 +21,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<GapFillingProblemsFormula> formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "基礎填空題"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "基礎填空題"));
 
 			int index = 0;
 			StringBuilder content = new StringBuilder();

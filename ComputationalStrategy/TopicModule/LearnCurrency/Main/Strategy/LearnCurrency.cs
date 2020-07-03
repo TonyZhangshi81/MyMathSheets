@@ -79,7 +79,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 				}
 				else
 				{
-					throw new ArgumentException(MessageUtil.GetException(() => MsgResources.E0001L, type.ToString()));
+					throw new ArgumentException(MessageUtil.GetMessage(() => MsgResources.E0001L, type.ToString()));
 				}
 
 				if (CheckIsNeedInverseMethod(p.Formulas, formula))

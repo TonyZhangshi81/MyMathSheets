@@ -21,7 +21,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<LearnLengthUnitFormula> formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "認識長度單位"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "認識長度單位"));
 
 			formulas.ToList().ForEach(d =>
 			{

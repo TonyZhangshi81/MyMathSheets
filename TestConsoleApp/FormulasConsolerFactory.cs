@@ -80,15 +80,15 @@ namespace MyMathSheets.TestConsoleApp
 				IResource input = new FileSystemResource(CONSOLE_FORMULAS_XML_RESOURCE_NAME);
 				_objectFactory = new XmlObjectFactory(input);
 
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0001T));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0001T));
 			}
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0002T, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0002T, preview.ToString()));
 
 			// 創建對象實例并返回
 			IConsoleWrite<T> writer = _objectFactory.GetObject(preview.ToString()) as IConsoleWrite<T>;
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0003T, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0003T, preview.ToString()));
 
 			return writer;
 		}

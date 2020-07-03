@@ -70,12 +70,12 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			// 計算式所需參數
 			ParameterBase parameter = OperationFactory.CreateOperationParameterInstance(preview, identifier);
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0006L));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0006L));
 
 			// 構築計算式集合
 			instance.Build(parameter);
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0007L));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0007L));
 
 			return parameter;
 		}

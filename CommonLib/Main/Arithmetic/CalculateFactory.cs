@@ -80,16 +80,16 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 				// 在MEF容器中收集本類的屬性信息（實際情況屬性只注入一次）
 				ComposeThis();
 
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0001L));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0001L));
 
 				// 指定運算符并獲取處理類型
 				IEnumerable<Lazy<CalculateBase, ICalculateMetaDataView>> calculates = Calculates.Where(d => { return d.Metadata.Sign == sign; });
 				if (!calculates.Any())
 				{
 					// 指定的題型參數對象未找到
-					throw new CalculateNotFoundException(MessageUtil.GetException(() => MsgResources.E0020L, sign.ToString()));
+					throw new CalculateNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0020L, sign.ToString()));
 				}
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0002L, sign.ToString()));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0002L, sign.ToString()));
 
 				return calculates.First().Value;
 			});

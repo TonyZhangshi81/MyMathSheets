@@ -19,7 +19,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<HowMuchMoreFormula> formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "比多少"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "比多少"));
 
 			formulas.ToList().ForEach(d =>
 			{

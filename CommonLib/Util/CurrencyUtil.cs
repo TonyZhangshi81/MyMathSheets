@@ -73,6 +73,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// </summary>
 		/// <param name="currency">貨幣對象</param>
 		/// <returns>字符串</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="currency"/>為NULL的情況</exception>
 		public static string CurrencyToString(this Currency currency)
 		{
 			Guard.ArgumentNotNull(currency, "currency");

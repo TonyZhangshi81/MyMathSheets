@@ -20,7 +20,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">豎式計算題型計算式</param>
 		public void ConsoleFormulas(List<MathUprightFormula> formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "豎式計算"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "豎式計算"));
 
 			formulas.ToList().ForEach(d =>
 			{

@@ -20,7 +20,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">找規律题型计算式</param>
 		public void ConsoleFormulas(List<FindTheLawFormula> formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "找規律"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "找規律"));
 
 			StringBuilder builder = new StringBuilder();
 			formulas.ToList().ForEach(d =>

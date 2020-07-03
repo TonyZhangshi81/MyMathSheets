@@ -15,6 +15,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// <typeparam name="T">集合類型</typeparam>
 		/// <param name="list">參數集合</param>
 		/// <returns>隨機取得的對象</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="list"/>為NULL的情況</exception>
 		public static T GetRandomNumber<T>(List<T> list)
 		{
 			Guard.ArgumentNotNull(list, "list");

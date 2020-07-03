@@ -38,7 +38,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				Exception ex = e.Exception;
 
-				LogUtil.LogError(MessageUtil.GetException(() => MsgResources.E0001A), ex);
+				LogUtil.LogError(MessageUtil.GetMessage(() => MsgResources.E0001A), ex);
 
 				MessageBox.Show(MsgResources.E0001A);
 			}
@@ -59,7 +59,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			{
 				Exception ex = (Exception)e.ExceptionObject;
 
-				LogUtil.LogError(MessageUtil.GetException(() => MsgResources.E0001A), ex);
+				LogUtil.LogError(MessageUtil.GetMessage(() => MsgResources.E0001A), ex);
 
 				MessageBox.Show(MsgResources.E0001A);
 			}

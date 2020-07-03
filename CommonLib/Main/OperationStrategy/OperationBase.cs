@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Util;
+using System;
 
 namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
@@ -73,6 +74,8 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 計算式作成前的處理
 		/// </summary>
 		/// <param name="p"></param>
+		/// <exception cref="ArgumentNullException"><paramref name="p"/>為NULL的情況</exception>
+		/// <exception cref="ArgumentNullException"><paramref name="p.Identifier"/>為NULL的情況</exception>
 		public virtual void PreExecute(ParameterBase p)
 		{
 			Guard.ArgumentNotNull(p, "ParameterBase");

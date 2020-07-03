@@ -20,7 +20,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">计算式</param>
 		public void ConsoleFormulas(List<NumericSortingFormula> formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "數字排序"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "數字排序"));
 
 			formulas.ForEach(d =>
 			{

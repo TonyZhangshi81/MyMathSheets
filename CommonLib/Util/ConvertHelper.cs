@@ -27,6 +27,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// <param name="conversionType"></param>
 		/// <param name="provider"></param>
 		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"><paramref name="obj"/>為NULL的情況</exception>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1720:識別子に型名が含まれます", Justification = "<保留中>")]
 		public static object ChangeType(object obj, Type conversionType, IFormatProvider provider)
 		{

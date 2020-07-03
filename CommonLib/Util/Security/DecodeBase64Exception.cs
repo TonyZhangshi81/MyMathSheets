@@ -4,15 +4,15 @@ using System.Runtime.Serialization;
 namespace MyMathSheets.CommonLib.Util.Security
 {
 	/// <summary>
-	/// 加密異常類
+	/// 解密異常類
 	/// </summary>
 	[Serializable]
-	public class EncodeBase64Exception : Exception
+	public class DecodeBase64Exception : Exception
 	{
 		/// <summary>
 		/// 實例初期化
 		/// </summary>
-		public EncodeBase64Exception()
+		public DecodeBase64Exception()
 			: base()
 		{
 		}
@@ -21,7 +21,7 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// 指定異常消息為參數的實例初期化
 		/// </summary>
 		/// <param name="message">異常消息</param>
-		public EncodeBase64Exception(string message)
+		public DecodeBase64Exception(string message)
 			: base(message)
 		{
 		}
@@ -31,7 +31,7 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// </summary>
 		/// <param name="info">可序列化的數據對象</param>
 		/// <param name="context">內容</param>
-		protected EncodeBase64Exception(SerializationInfo info, StreamingContext context)
+		protected DecodeBase64Exception(SerializationInfo info, StreamingContext context)
 			: base(info, context)
 		{
 		}
@@ -41,7 +41,7 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// </summary>
 		/// <param name="message">異常消息</param>
 		/// <param name="innerException">內部異常對象</param>
-		public EncodeBase64Exception(string message, System.Exception innerException)
+		public DecodeBase64Exception(string message, System.Exception innerException)
 			: base(message, innerException)
 		{
 		}

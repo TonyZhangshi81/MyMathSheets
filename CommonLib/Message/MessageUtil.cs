@@ -7,18 +7,18 @@ using System.Linq.Expressions;
 namespace MyMathSheets.CommonLib.Message
 {
 	/// <summary>
-	///
+	/// 信息內容取得(內容取自資源文件)
 	/// </summary>
 	public static class MessageUtil
 	{
 		/// <summary>
-		/// リソースメッセージを例外スロー用に書式加工して取得します。
+		/// 信息內容取得
 		/// </summary>
-		/// <param name="messageKeyExpression">メッセージキーを表す式、nullであってはいけません。</param>
-		/// <param name="args">0個以上の書式設定対象オブジェクトを含んだ<see cref="object"/>>配列。</param>
-		/// <returns>フォーマットされたメッセージ。</returns>
-		/// <exception cref="ArgumentNullException"><paramref name="messageKeyExpression"/>がnullの場合。</exception>
-		public static string GetException(Expression<Func<string>> messageKeyExpression, params object[] args)
+		/// <param name="messageKeyExpression">消息KEY</param>
+		/// <param name="args">消息中的參數信息<see cref="object"/>數組</param>
+		/// <returns>完整的消息內容</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="messageKeyExpression"/>為NULL的情況</exception>
+		public static string GetMessage(Expression<Func<string>> messageKeyExpression, params object[] args)
 		{
 			Guard.ArgumentNotNull(messageKeyExpression, "messageKeyExpression");
 

@@ -87,10 +87,10 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 				IEnumerable<Lazy<HtmlSupportBase, IHtmlSupportMetaDataView>> supports = Supports.Where(d => d.Metadata.Layout == preview);
 				if (!supports.Any())
 				{
-					throw new HtmlSupportNotFoundException(MessageUtil.GetException(() => MsgResources.E0021L, preview.ToString()));
+					throw new HtmlSupportNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0021L, preview.ToString()));
 				}
 
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0008L));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0008L));
 
 				return supports.First().Value;
 			});

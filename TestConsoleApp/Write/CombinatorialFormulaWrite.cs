@@ -20,7 +20,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// <param name="formulas">算式組合题型计算式</param>
 		public void ConsoleFormulas(List<CombinatorialFormula> formulas)
 		{
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004T, "算式組合"));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "算式組合"));
 
 			formulas.ToList().ForEach(d =>
 			{

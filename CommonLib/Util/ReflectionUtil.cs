@@ -22,6 +22,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// A1 ->(參照)-> A2 ->(參照)-> A3
 		///				  B1
 		/// </remarks>
+		/// <exception cref="ArgumentNullException"><paramref name="assembly"/>為NULL的情況</exception>
 		public static IEnumerable<Assembly> GetReferencedAssemblies(Assembly assembly)
 		{
 			yield return assembly;
@@ -47,6 +48,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// </summary>
 		/// <param name="assemblyName">程序集名稱</param>
 		/// <returns>程序集對象</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="assemblyName"/>為NULL的情況</exception>
 		public static Assembly GetAssembly(AssemblyName assemblyName)
 		{
 			Guard.ArgumentNotNull(assemblyName, "assemblyName");
@@ -82,6 +84,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// <param name="source">對象實例</param>
 		/// <param name="propertyName">屬性名稱</param>
 		/// <returns>屬性值</returns>
+		/// <exception cref="ArgumentNullException"><paramref name="source"/>為NULL的情況</exception>
 		public static object GetProperty(object source, string propertyName)
 		{
 			Guard.ArgumentNotNull(source, "source");

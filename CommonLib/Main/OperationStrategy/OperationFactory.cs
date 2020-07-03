@@ -88,10 +88,10 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 				if (!operations.Any())
 				{
 					// 指定的題型策略對象未找到
-					throw new OperationNotFoundException(MessageUtil.GetException(() => MsgResources.E0018L, preview.ToString()));
+					throw new OperationNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0018L, preview.ToString()));
 				}
 
-				LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0003L));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0003L));
 
 				// 運算符處理類型返回
 				return operations.First().Value.GetType();
@@ -119,16 +119,16 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			if (!parameters.Any())
 			{
 				// 指定的題型參數對象未找到
-				throw new OperationNotFoundException(MessageUtil.GetException(() => MsgResources.E0019L, preview.ToString()));
+				throw new OperationNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0019L, preview.ToString()));
 			}
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0004L));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004L));
 
 			ParameterBase parameter = parameters.First().Value;
 			parameter.Identifier = key;
 			// 參數初期化處理（依據Provider配置）
 			parameter.InitParameter();
 
-			LogUtil.LogDebug(MessageUtil.GetException(() => MsgResources.I0005L, parameter.Identifier));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0005L, parameter.Identifier));
 
 			return parameter;
 		}
