@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters
 	/// <summary>
 	/// 尋找最近的數字參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.FindNearestNumber)]
+	[OperationParameter("FindNearestNumber")]
 	public class FindNearestNumberParameter : ParameterBase
 	{
 		/// <summary>

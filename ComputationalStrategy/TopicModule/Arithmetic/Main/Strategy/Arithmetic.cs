@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 	/// <summary>
 	/// 四則遠算題
 	/// </summary>
-	[Operation(LayoutSetting.Preview.Arithmetic)]
+	[Operation("Arithmetic")]
 	public class Arithmetic : OperationBase
 	{
 		/// <summary>

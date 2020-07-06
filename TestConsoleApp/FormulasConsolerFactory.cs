@@ -72,7 +72,7 @@ namespace MyMathSheets.TestConsoleApp
 		/// </summary>
 		/// <param name="preview">設定題型</param>
 		/// <param name="formulas">題型輸出結果</param>
-		public IConsoleWrite<T> CreateConsoleWriter<T>(LayoutSetting.Preview preview)
+		public IConsoleWrite<T> CreateConsoleWriter<T>(string preview)
 		{
 			if (_objectFactory == null)
 			{
@@ -83,12 +83,12 @@ namespace MyMathSheets.TestConsoleApp
 				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0001T));
 			}
 
-			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0002T, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0002T, preview));
 
 			// 創建對象實例并返回
-			IConsoleWrite<T> writer = _objectFactory.GetObject(preview.ToString()) as IConsoleWrite<T>;
+			IConsoleWrite<T> writer = _objectFactory.GetObject(preview) as IConsoleWrite<T>;
 
-			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0003T, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0003T, preview));
 
 			return writer;
 		}

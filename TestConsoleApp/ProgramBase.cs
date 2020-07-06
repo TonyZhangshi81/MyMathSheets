@@ -41,27 +41,6 @@ namespace MyMathSheets.TestConsoleApp
 		{
 			Console.OutputEncoding = Encoding.Unicode;
 
-			ArithmeticParameter acParameter = null;
-			EqualityComparisonParameter ecParameter = null;
-			ComputingConnectionParameter ccParameter = null;
-			MathWordProblemsParameter mpParameter = null;
-			FruitsLinkageParameter flParameter = null;
-			FindNearestNumberParameter fnParameter = null;
-			CombinatorialEquationParameter ceParameter = null;
-			ScoreGoalParameter sgParameter = null;
-			HowMuchMoreParameter hmmParameter = null;
-			FindTheLawParameter ftlParameter = null;
-			NumericSortingParameter nsParameter = null;
-			LearnCurrencyParameter lcParameter = null;
-			EqualityLinkageParameter elParameter = null;
-			SchoolClockParameter scParameter = null;
-			CurrencyOperationParameter coParameter = null;
-			CurrencyLinkageParameter clParameter = null;
-			TimeCalculationParameter tcParameter = null;
-			LearnLengthUnitParameter lluParameter = null;
-			GapFillingProblemsParameter gfpParameter = null;
-			MathUprightParameter muParameter = null;
-
 			bool isShowMenu = !(args.Length > 0);
 			while (1 == 1)
 			{
@@ -101,141 +80,141 @@ namespace MyMathSheets.TestConsoleApp
 					case "AC0":
 						Console.WriteLine();
 						Console.WriteLine("四則運算");
-						acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.Arithmetic, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.Arithmetic, acParameter.Formulas.ToList());
+						ArithmeticParameter acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure("Arithmetic", key);
+						CommonUtil.ConsoleFormulas("Arithmetic", acParameter.Formulas.ToList());
 						break;
 
 					case "CE0":
 						Console.WriteLine();
 						Console.WriteLine("算式組合");
-						ceParameter = (CombinatorialEquationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CombinatorialEquation, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CombinatorialEquation, ceParameter.Formulas.ToList());
+						CombinatorialEquationParameter ceParameter = (CombinatorialEquationParameter)OperationStrategyHelper.Instance.Structure("CombinatorialEquation", key);
+						CommonUtil.ConsoleFormulas("CombinatorialEquation", ceParameter.Formulas.ToList());
 						break;
 
 					case "CC0":
 						Console.WriteLine();
 						Console.WriteLine("等式接龍");
-						ccParameter = (ComputingConnectionParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ComputingConnection, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ComputingConnection, ccParameter.Formulas.ToList());
+						ComputingConnectionParameter ccParameter = (ComputingConnectionParameter)OperationStrategyHelper.Instance.Structure("ComputingConnection", key);
+						CommonUtil.ConsoleFormulas("ComputingConnection", ccParameter.Formulas.ToList());
 						break;
 
 					case "CL0":
 						Console.WriteLine();
 						Console.WriteLine("認識價格");
-						clParameter = (CurrencyLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyLinkage, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyLinkage, clParameter.Currencys);
+						CurrencyLinkageParameter clParameter = (CurrencyLinkageParameter)OperationStrategyHelper.Instance.Structure("CurrencyLinkage", key);
+						CommonUtil.ConsoleFormulas("CurrencyLinkage", clParameter.Currencys);
 						break;
 
 					case "CO0":
 						Console.WriteLine();
 						Console.WriteLine("貨幣運算");
-						coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.CurrencyOperation, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.CurrencyOperation, coParameter.Formulas.ToList());
+						CurrencyOperationParameter coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure("CurrencyOperation", key);
+						CommonUtil.ConsoleFormulas("CurrencyOperation", coParameter.Formulas.ToList());
 						break;
 
 					case "EC0":
 						Console.WriteLine();
 						Console.WriteLine("算式比大小");
-						ecParameter = (EqualityComparisonParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityComparison, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityComparison, ecParameter.Formulas.ToList());
+						EqualityComparisonParameter ecParameter = (EqualityComparisonParameter)OperationStrategyHelper.Instance.Structure("EqualityComparison", key);
+						CommonUtil.ConsoleFormulas("EqualityComparison", ecParameter.Formulas.ToList());
 						break;
 
 					case "EL0":
 						Console.WriteLine();
 						Console.WriteLine("算式連一連");
-						elParameter = (EqualityLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.EqualityLinkage, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.EqualityLinkage, elParameter.Formulas);
+						EqualityLinkageParameter elParameter = (EqualityLinkageParameter)OperationStrategyHelper.Instance.Structure("EqualityLinkage", key);
+						CommonUtil.ConsoleFormulas("EqualityLinkage", elParameter.Formulas);
 						break;
 
 					case "MP0":
 						Console.WriteLine();
 						Console.WriteLine("算式應用題");
-						mpParameter = (MathWordProblemsParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.MathWordProblems, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.MathWordProblems, mpParameter.Formulas.ToList());
+						MathWordProblemsParameter mpParameter = (MathWordProblemsParameter)OperationStrategyHelper.Instance.Structure("MathWordProblems", key);
+						CommonUtil.ConsoleFormulas("MathWordProblems", mpParameter.Formulas.ToList());
 						break;
 
 					case "FL0":
 						Console.WriteLine();
 						Console.WriteLine("水果連連看");
-						flParameter = (FruitsLinkageParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FruitsLinkage, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FruitsLinkage, flParameter.Formulas);
+						FruitsLinkageParameter flParameter = (FruitsLinkageParameter)OperationStrategyHelper.Instance.Structure("FruitsLinkage", key);
+						CommonUtil.ConsoleFormulas("FruitsLinkage", flParameter.Formulas);
 						break;
 
 					case "FNN":
 						Console.WriteLine();
 						Console.WriteLine("找到最近的數字");
-						fnParameter = (FindNearestNumberParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindNearestNumber, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FindNearestNumber, fnParameter.Formulas.ToList());
+						FindNearestNumberParameter fnParameter = (FindNearestNumberParameter)OperationStrategyHelper.Instance.Structure("FindNearestNumber", key);
+						CommonUtil.ConsoleFormulas("FindNearestNumber", fnParameter.Formulas.ToList());
 						break;
 
 					case "FTL":
 						Console.WriteLine();
 						Console.WriteLine("找規律");
-						ftlParameter = (FindTheLawParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.FindTheLaw, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.FindTheLaw, ftlParameter.Formulas.ToList());
+						FindTheLawParameter ftlParameter = (FindTheLawParameter)OperationStrategyHelper.Instance.Structure("FindTheLaw", key);
+						CommonUtil.ConsoleFormulas("FindTheLaw", ftlParameter.Formulas.ToList());
 						break;
 
 					case "GFP":
 						Console.WriteLine();
 						Console.WriteLine("基礎填空題");
-						gfpParameter = (GapFillingProblemsParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.GapFillingProblems, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.GapFillingProblems, gfpParameter.Formulas.ToList());
+						GapFillingProblemsParameter gfpParameter = (GapFillingProblemsParameter)OperationStrategyHelper.Instance.Structure("GapFillingProblems", key);
+						CommonUtil.ConsoleFormulas("GapFillingProblems", gfpParameter.Formulas.ToList());
 						break;
 
 					case "HMM":
 						Console.WriteLine();
 						Console.WriteLine("比多少");
-						hmmParameter = (HowMuchMoreParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.HowMuchMore, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.HowMuchMore, hmmParameter.Formulas.ToList());
+						HowMuchMoreParameter hmmParameter = (HowMuchMoreParameter)OperationStrategyHelper.Instance.Structure("HowMuchMore", key);
+						CommonUtil.ConsoleFormulas("HowMuchMore", hmmParameter.Formulas.ToList());
 						break;
 
 					case "LC0":
 						Console.WriteLine();
 						Console.WriteLine("認識貨幣");
-						lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnCurrency, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnCurrency, lcParameter.Formulas.ToList());
+						LearnCurrencyParameter lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure("LearnCurrency", key);
+						CommonUtil.ConsoleFormulas("LearnCurrency", lcParameter.Formulas.ToList());
 						break;
 
 					case "LLU":
 						Console.WriteLine();
 						Console.WriteLine("認識長度單位");
-						lluParameter = (LearnLengthUnitParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.LearnLengthUnit, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.LearnLengthUnit, lluParameter.Formulas.ToList());
+						LearnLengthUnitParameter lluParameter = (LearnLengthUnitParameter)OperationStrategyHelper.Instance.Structure("LearnLengthUnit", key);
+						CommonUtil.ConsoleFormulas("LearnLengthUnit", lluParameter.Formulas.ToList());
 						break;
 
 					case "NS0":
 						Console.WriteLine();
 						Console.WriteLine("數字排序");
-						nsParameter = (NumericSortingParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.NumericSorting, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.NumericSorting, nsParameter.Formulas.ToList());
+						NumericSortingParameter nsParameter = (NumericSortingParameter)OperationStrategyHelper.Instance.Structure("NumericSorting", key);
+						CommonUtil.ConsoleFormulas("NumericSorting", nsParameter.Formulas.ToList());
 						break;
 
 					case "SC0":
 						Console.WriteLine();
 						Console.WriteLine("時鐘學習板");
-						scParameter = (SchoolClockParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.SchoolClock, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.SchoolClock, scParameter.Formulas.ToList());
+						SchoolClockParameter scParameter = (SchoolClockParameter)OperationStrategyHelper.Instance.Structure("SchoolClock", key);
+						CommonUtil.ConsoleFormulas("SchoolClock", scParameter.Formulas.ToList());
 						break;
 
 					case "SG0":
 						Console.WriteLine();
 						Console.WriteLine("射門得分");
-						sgParameter = (ScoreGoalParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.ScoreGoal, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.ScoreGoal, sgParameter.Formulas);
+						ScoreGoalParameter sgParameter = (ScoreGoalParameter)OperationStrategyHelper.Instance.Structure("ScoreGoal", key);
+						CommonUtil.ConsoleFormulas("ScoreGoal", sgParameter.Formulas);
 						break;
 
 					case "TC0":
 						Console.WriteLine();
 						Console.WriteLine("時間運算");
-						tcParameter = (TimeCalculationParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.TimeCalculation, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.TimeCalculation, tcParameter.Formulas.ToList());
+						TimeCalculationParameter tcParameter = (TimeCalculationParameter)OperationStrategyHelper.Instance.Structure("TimeCalculation", key);
+						CommonUtil.ConsoleFormulas("TimeCalculation", tcParameter.Formulas.ToList());
 						break;
 
 					case "MU0":
 						Console.WriteLine();
 						Console.WriteLine("豎式計算");
-						muParameter = (MathUprightParameter)OperationStrategyHelper.Instance.Structure(LayoutSetting.Preview.MathUpright, key);
-						CommonUtil.ConsoleFormulas(LayoutSetting.Preview.MathUpright, muParameter.Formulas.ToList());
+						MathUprightParameter muParameter = (MathUprightParameter)OperationStrategyHelper.Instance.Structure("MathUpright", key);
+						CommonUtil.ConsoleFormulas("MathUpright", muParameter.Formulas.ToList());
 						break;
 
 					case "900":

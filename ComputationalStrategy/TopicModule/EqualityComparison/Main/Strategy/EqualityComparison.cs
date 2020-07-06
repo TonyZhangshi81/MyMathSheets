@@ -11,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Strategy
 	/// <summary>
 	/// 等式大小比较
 	/// </summary>
-	[Operation(LayoutSetting.Preview.EqualityComparison)]
+	[Operation("EqualityComparison")]
 	public class EqualityComparison : OperationBase
 	{
 		/// <summary>

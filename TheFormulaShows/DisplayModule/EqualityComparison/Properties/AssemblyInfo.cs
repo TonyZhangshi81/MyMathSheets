@@ -35,4 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: MathSheetMarker(SystemModel.TheFormulaShows, LayoutSetting.Classify.Generally, LayoutSetting.Preview.EqualityComparison)]
+[assembly: MathSheetMarker(SystemModelType.TheFormulaShows, LayoutSetting.Classify.Generally, "EqualityComparison", "算式比大小")]

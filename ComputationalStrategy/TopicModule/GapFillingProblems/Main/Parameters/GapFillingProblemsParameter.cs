@@ -10,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters
 	/// <summary>
 	/// 填空題參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.GapFillingProblems)]
+	[OperationParameter("GapFillingProblems")]
 	public class GapFillingProblemsParameter : ParameterBase
 	{
 		/// <summary>

@@ -11,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Strategy
 	/// <summary>
 	/// 數值排序題型
 	/// </summary>
-	[Operation(LayoutSetting.Preview.NumericSorting)]
+	[Operation("NumericSorting")]
 	public class NumericSorting : OperationBase
 	{
 		/// <summary>

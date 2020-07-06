@@ -15,7 +15,7 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.CombinatorialEquation)]
+	[HtmlSupport("CombinatorialEquation")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.CombinatorialEquation.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.CombinatorialEquation.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.CombinatorialEquation.makeCorrections();")]
@@ -109,7 +109,7 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CombinatorialEquation.ToString(), LayoutSetting.Preview.CombinatorialEquation.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "CombinatorialEquation", "算式組合"));
 			}
 
 			return html.ToString();

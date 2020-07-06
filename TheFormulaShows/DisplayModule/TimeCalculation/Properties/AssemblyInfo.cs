@@ -35,4 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: MathSheetMarker(SystemModel.TheFormulaShows, LayoutSetting.Classify.Time, LayoutSetting.Preview.TimeCalculation)]
+[assembly: MathSheetMarker(SystemModelType.TheFormulaShows, LayoutSetting.Classify.Time, "TimeCalculation", "時間運算")]

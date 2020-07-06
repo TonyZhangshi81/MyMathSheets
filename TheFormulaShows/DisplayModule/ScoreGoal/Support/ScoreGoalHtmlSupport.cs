@@ -14,7 +14,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.ScoreGoal)]
+	[HtmlSupport("ScoreGoal")]
 	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/ScoreGoal.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.ScoreGoal.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "__goalsArrayHiddenControlId = 'hidBallsArray';MathSheets.ScoreGoal.ready('divBall', 'divGoaler');")]
@@ -144,7 +144,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.ScoreGoal.ToString(), LayoutSetting.Preview.ScoreGoal.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "ScoreGoal", "射門得分"));
 			}
 			return html.ToString();
 		}

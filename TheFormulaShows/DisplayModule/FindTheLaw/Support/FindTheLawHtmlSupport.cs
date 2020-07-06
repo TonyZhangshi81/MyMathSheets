@@ -14,7 +14,7 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 	/// <summary>
 	/// 找規律題型HTML支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.FindTheLaw)]
+	[HtmlSupport("FindTheLaw")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.FindTheLaw.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.FindTheLaw.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.FindTheLaw.makeCorrections();")]
@@ -100,7 +100,7 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.FindTheLaw.ToString(), LayoutSetting.Preview.FindTheLaw.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "FindTheLaw", "找規律"));
 			}
 
 			return html.ToString();

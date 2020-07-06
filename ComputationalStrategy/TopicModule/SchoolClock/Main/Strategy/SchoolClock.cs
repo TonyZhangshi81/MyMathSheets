@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 	/// <summary>
 	/// 時鐘學習板
 	/// </summary>
-	[Operation(LayoutSetting.Preview.SchoolClock)]
+	[Operation("SchoolClock")]
 	public class SchoolClock : OperationBase
 	{
 		/// <summary>

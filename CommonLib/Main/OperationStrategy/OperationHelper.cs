@@ -54,7 +54,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		public OperationHelper()
 		{
 			// 獲取共通處理模塊Composer
-			_composer = ComposerFactory.GetComporser(SystemModel.Common);
+			_composer = ComposerFactory.GetComporser(SystemModelType.Common);
 		}
 
 		/// <summary>
@@ -63,7 +63,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <param name="preview">策略種類</param>
 		/// <param name="identifier">參數識別ID（如果沒有指定參數標識，則默認返回當前參數序列的第一個參數項目）</param>
 		/// <returns></returns>
-		public ParameterBase Structure(LayoutSetting.Preview preview, string identifier = "")
+		public ParameterBase Structure(string preview, string identifier = "")
 		{
 			// 計算式策略
 			IOperation instance = CreateOperationInstance(preview);
@@ -85,7 +85,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// </summary>
 		/// <param name="preview">策略種類</param>
 		/// <returns>策略實例</returns>
-		private IOperation CreateOperationInstance(LayoutSetting.Preview preview)
+		private IOperation CreateOperationInstance(string preview)
 		{
 			// 本類中的屬性注入執行
 			ComposeThis();

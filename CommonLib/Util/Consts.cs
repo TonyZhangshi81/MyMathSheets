@@ -8,7 +8,7 @@ namespace MyMathSheets.CommonLib.Util
 	public sealed class Consts
 	{
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		private Consts()
 		{
@@ -463,7 +463,7 @@ namespace MyMathSheets.CommonLib.Util
 	/// <summary>
 	/// 系統模塊
 	/// </summary>
-	public enum SystemModel
+	public enum SystemModelType
 	{
 		/// <summary>
 		/// 共通定義模塊（含基類）
@@ -1019,127 +1019,6 @@ namespace MyMathSheets.CommonLib.Util
 			/// 時間單位
 			/// </summary>
 			Time
-		}
-
-		/// <summary>
-		/// 題型類型/瀏覽設定
-		/// </summary>
-		public enum Preview : int
-		{
-			/// <summary>
-			/// 標題瀏覽
-			/// </summary>
-			Title = 0,
-
-			/// <summary>
-			/// 四則運算 AC
-			/// </summary>
-			Arithmetic,
-
-			/// <summary>
-			/// 運算比大小 EC
-			/// </summary>
-			EqualityComparison,
-
-			/// <summary>
-			/// 等式接龍 CC
-			/// </summary>
-			ComputingConnection,
-
-			/// <summary>
-			/// 算式應用題 MP
-			/// </summary>
-			MathWordProblems,
-
-			/// <summary>
-			/// 水果連連看 FL
-			/// </summary>
-			FruitsLinkage,
-
-			/// <summary>
-			/// 找到最近的數字 FN
-			/// </summary>
-			FindNearestNumber,
-
-			/// <summary>
-			/// 算式組合 CE
-			/// </summary>
-			CombinatorialEquation,
-
-			/// <summary>
-			/// 射門得分 SG
-			/// </summary>
-			ScoreGoal,
-
-			/// <summary>
-			/// 比多少 HMM
-			/// </summary>
-			HowMuchMore,
-
-			/// <summary>
-			/// 找規律 FTL
-			/// </summary>
-			FindTheLaw,
-
-			/// <summary>
-			/// 數字排序 NS
-			/// </summary>
-			NumericSorting,
-
-			/// <summary>
-			/// 認識貨幣
-			/// </summary>
-			LearnCurrency,
-
-			/// <summary>
-			/// 算式連一連
-			/// </summary>
-			EqualityLinkage,
-
-			/// <summary>
-			/// 時鐘學習板
-			/// </summary>
-			SchoolClock,
-
-			/// <summary>
-			/// 貨幣運算
-			/// </summary>
-			CurrencyOperation,
-
-			/// <summary>
-			/// 認識價格
-			/// </summary>
-			CurrencyLinkage,
-
-			/// <summary>
-			/// 時間運算
-			/// </summary>
-			TimeCalculation,
-
-			/// <summary>
-			/// 認識長度單位
-			/// </summary>
-			LearnLengthUnit,
-
-			/// <summary>
-			/// 基礎填空
-			/// </summary>
-			GapFillingProblems,
-
-			/// <summary>
-			/// 豎式計算
-			/// </summary>
-			MathUpright,
-
-			/// <summary>
-			/// 答題結束瀏覽
-			/// </summary>
-			Ready,
-
-			/// <summary>
-			/// 未設定
-			/// </summary>
-			Null
 		}
 	}
 }

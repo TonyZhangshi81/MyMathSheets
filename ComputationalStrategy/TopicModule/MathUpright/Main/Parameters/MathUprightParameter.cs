@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters
 	/// <summary>
 	/// 豎式計算參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.MathUpright)]
+	[OperationParameter("MathUpright")]
 	public class MathUprightParameter : ParameterBase
 	{
 		/// <summary>

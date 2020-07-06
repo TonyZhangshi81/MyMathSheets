@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 	/// <summary>
 	/// 時間運算
 	/// </summary>
-	[Operation(LayoutSetting.Preview.TimeCalculation)]
+	[Operation("TimeCalculation")]
 	public class TimeCalculation : OperationBase
 	{
 		/// <summary>

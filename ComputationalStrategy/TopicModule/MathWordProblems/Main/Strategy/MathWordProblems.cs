@@ -12,7 +12,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 	/// <summary>
 	/// 應用題策略
 	/// </summary>
-	[Operation(LayoutSetting.Preview.MathWordProblems)]
+	[Operation("MathWordProblems")]
 	public class MathWordProblems : OperationBase
 	{
 		/// <summary>
@@ -28,7 +28,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// <summary>
 		/// 出題資料庫
 		/// </summary>
-		private List<Problems> _allProblems { get; set; }
+		private List<Problems> _allProblems;
 
 		/// <summary>
 		/// 算式作成

@@ -35,4 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: MathSheetMarker(SystemModel.ComputationalStrategy, LayoutSetting.Classify.Currency, LayoutSetting.Preview.LearnCurrency)]
+[assembly: MathSheetMarker(SystemModelType.ComputationalStrategy, LayoutSetting.Classify.Currency, "LearnCurrency", "認識貨幣")]

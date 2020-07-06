@@ -14,7 +14,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.FruitsLinkage)]
+	[HtmlSupport("FruitsLinkage")]
 	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/FruitsLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.FruitsLinkage.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "__fruitsArrayHiddenControlId = 'hidFruitsArray';MathSheets.FruitsLinkage.ready('divFruitDrag', 'divContainer');")]
@@ -160,7 +160,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.FruitsLinkage.ToString(), LayoutSetting.Preview.FruitsLinkage.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "FruitsLinkage", "水果連連看"));
 			}
 
 			return html.ToString();

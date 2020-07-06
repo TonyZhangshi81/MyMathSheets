@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 	/// <summary>
 	/// 豎式計算題
 	/// </summary>
-	[Operation(LayoutSetting.Preview.MathUpright)]
+	[Operation("MathUpright")]
 	public class MathUpright : OperationBase
 	{
 		/// <summary>
@@ -55,11 +55,10 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
 
-			ICalculate strategy = null;
 			// 按照指定數量作成相應的數學計算式
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
-				strategy = CalculateManager(signFunc());
+				ICalculate strategy = CalculateManager(signFunc());
 				// 運算式作成
 				Formula formula = strategy.CreateFormula(new CalculateParameter()
 				{

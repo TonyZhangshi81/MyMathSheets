@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 	/// <summary>
 	/// 認識貨幣題型
 	/// </summary>
-	[Operation(LayoutSetting.Preview.LearnCurrency)]
+	[Operation("LearnCurrency")]
 	public class LearnCurrency : OperationBase
 	{
 		/// <summary>

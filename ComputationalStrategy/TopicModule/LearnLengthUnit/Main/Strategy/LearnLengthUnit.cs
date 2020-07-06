@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 	/// <summary>
 	/// 認識長度題型
 	/// </summary>
-	[Operation(LayoutSetting.Preview.LearnLengthUnit)]
+	[Operation("LearnLengthUnit")]
 	public class LearnLengthUnit : OperationBase
 	{
 		/// <summary>

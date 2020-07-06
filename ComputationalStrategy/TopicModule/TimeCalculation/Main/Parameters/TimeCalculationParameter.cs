@@ -10,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters
 	/// <summary>
 	/// 時間運算參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.TimeCalculation)]
+	[OperationParameter("TimeCalculation")]
 	public class TimeCalculationParameter : ParameterBase
 	{
 		/// <summary>

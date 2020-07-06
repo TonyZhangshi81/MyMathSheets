@@ -35,4 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: MathSheetMarker(SystemModel.TheFormulaShows, LayoutSetting.Classify.Generally, LayoutSetting.Preview.FruitsLinkage)]
+[assembly: MathSheetMarker(SystemModelType.TheFormulaShows, LayoutSetting.Classify.Generally, "FruitsLinkage", "水果連連看")]

@@ -9,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters
 	/// <summary>
 	/// 時鐘學習板參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.SchoolClock)]
+	[OperationParameter("SchoolClock")]
 	public class SchoolClockParameter : ParameterBase
 	{
 		/// <summary>

@@ -12,7 +12,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 	/// <summary>
 	/// 根據題型輸出結果作成HTML模板信息
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.LearnLengthUnit)]
+	[HtmlSupport("LearnLengthUnit")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.LearnLengthUnit.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.LearnLengthUnit.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.LearnLengthUnit.makeCorrections();")]
@@ -118,7 +118,7 @@ namespace MyMathSheets.TheFormulaShows.LearnLengthUnit.Support
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
 				// 題型標題
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.LearnLengthUnit.ToString(), LayoutSetting.Preview.LearnLengthUnit.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "LearnLengthUnit", "認識長度單位"));
 			}
 
 			return html.ToString();

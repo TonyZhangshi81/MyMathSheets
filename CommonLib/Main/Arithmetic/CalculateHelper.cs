@@ -51,7 +51,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		public CalculateHelper()
 		{
 			// 獲取共通處理模塊Composer
-			_composer = ComposerFactory.GetComporser(SystemModel.Common);
+			_composer = ComposerFactory.GetComporser(SystemModelType.Common);
 		}
 
 		/// <summary>

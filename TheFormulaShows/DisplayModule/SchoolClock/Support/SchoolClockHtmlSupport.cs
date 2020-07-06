@@ -12,7 +12,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 	/// <summary>
 	/// 時鐘學習板題型HTML模板作成
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.SchoolClock)]
+	[HtmlSupport("SchoolClock")]
 	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/SchoolClock.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.SchoolClock.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.SchoolClock.ready();")]
@@ -106,7 +106,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 			{
 				clocksAnswer.Length -= 1;
 				html.AppendLine(string.Format("<input type=\"hidden\" id=\"hidClocksAnswer\" value=\"{0}\" />", clocksAnswer.ToString()));
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.SchoolClock.ToString(), LayoutSetting.Preview.SchoolClock.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "SchoolClock", "時鐘學習板"));
 			}
 
 			return html.ToString();

@@ -10,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters
 	/// <summary>
 	/// 應用題參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.MathWordProblems)]
+	[OperationParameter("MathWordProblems")]
 	public class MathWordProblemsParameter : ParameterBase
 	{
 		/// <summary>

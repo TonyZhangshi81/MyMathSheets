@@ -10,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
 	/// <summary>
 	/// 認識貨幣參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.LearnCurrency)]
+	[OperationParameter("LearnCurrency")]
 	public class LearnCurrencyParameter : ParameterBase
 	{
 		/// <summary>

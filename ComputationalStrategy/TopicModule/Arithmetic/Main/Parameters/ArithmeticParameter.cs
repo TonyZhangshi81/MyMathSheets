@@ -10,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters
 	/// <summary>
 	/// 四則運算參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.Arithmetic)]
+	[OperationParameter("Arithmetic")]
 	public class ArithmeticParameter : ParameterBase
 	{
 		/// <summary>

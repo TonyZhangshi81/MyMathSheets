@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Parameters
 	/// <summary>
 	/// 等式大小比较參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.EqualityComparison)]
+	[OperationParameter("EqualityComparison")]
 	public class EqualityComparisonParameter : ParameterBase
 	{
 		/// <summary>

@@ -13,7 +13,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.Arithmetic)]
+	[HtmlSupport("Arithmetic")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.Arithmetic.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.Arithmetic.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.Arithmetic.makeCorrections();")]
@@ -201,7 +201,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 				// 會話提示內容保存至畫面
 				html.AppendLine(string.Format(DIALOGUE_CONTENT_HTML_FORMAT, GetArithmeticDialogue()));
 				html.AppendLine().Append("</div>");
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.Arithmetic.ToString(), LayoutSetting.Preview.Arithmetic.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "Arithmetic", "四則運算"));
 			}
 
 			return html.ToString();

@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Parameters
 	/// <summary>
 	/// 認識價格參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.CurrencyLinkage)]
+	[OperationParameter("CurrencyLinkage")]
 	public class CurrencyLinkageParameter : ParameterBase
 	{
 		/// <summary>

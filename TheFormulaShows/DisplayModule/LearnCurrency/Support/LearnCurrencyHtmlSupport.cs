@@ -12,7 +12,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 	/// <summary>
 	/// 根據題型輸出結果作成HTML模板信息
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.LearnCurrency)]
+	[HtmlSupport("LearnCurrency")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.LearnCurrency.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.LearnCurrency.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.LearnCurrency.makeCorrections();")]
@@ -118,7 +118,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
 				// 題型標題
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.LearnCurrency.ToString(), LayoutSetting.Preview.LearnCurrency.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "LearnCurrency", "認識貨幣"));
 			}
 
 			return html.ToString();

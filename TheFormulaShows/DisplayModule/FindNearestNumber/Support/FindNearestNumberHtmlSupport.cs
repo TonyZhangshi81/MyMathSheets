@@ -12,7 +12,7 @@ namespace MyMathSheets.TheFormulaShows.FindNearestNumber.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.FindNearestNumber)]
+	[HtmlSupport("FindNearestNumber")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.FindNearestNumber.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.FindNearestNumber.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.FindNearestNumber.makeCorrections();")]
@@ -97,7 +97,7 @@ namespace MyMathSheets.TheFormulaShows.FindNearestNumber.Support
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.FindNearestNumber.ToString(), LayoutSetting.Preview.FindNearestNumber.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "FindNearestNumber", "找到最近的數字"));
 			}
 
 			return html.ToString();

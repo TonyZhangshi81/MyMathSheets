@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 	/// <summary>
 	/// 算式連一連題型構築
 	/// </summary>
-	[Operation(LayoutSetting.Preview.EqualityLinkage)]
+	[Operation("EqualityLinkage")]
 	public class EqualityLinkage : OperationBase
 	{
 		/// <summary>
@@ -22,13 +22,13 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 		private const int INVERSE_NUMBER = 3;
 
 		// 左側計算式集合
-		private IList<Formula> _leftFormulas;
+		private readonly IList<Formula> _leftFormulas;
 
 		// 右側計算式集合
-		private IList<Formula> _rightFormulas;
+		private readonly IList<Formula> _rightFormulas;
 
 		// 各計算式編號的集合
-		private IList<int> _seats;
+		private readonly IList<int> _seats;
 
 		/// <summary>
 		/// 構造函數
@@ -63,7 +63,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 				// 左側計算式集合作成（指定單個運算符實例）
 				Formula formula = MakeLeftFormulas(_leftFormulas, p.MaximumLimit, signFunc);
 				// 右側計算式集合作成（依據左邊算式的答案推算右邊的算式）
-				Formula container = MakeRightFormulas(_rightFormulas, p.MaximumLimit, formula.Answer, signFunc);
+				MakeRightFormulas(_rightFormulas, p.MaximumLimit, formula.Answer, signFunc);
 				// 各計算式編號的集合
 				_seats.Add(seatNumber);
 
@@ -136,8 +136,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 		/// <param name="maximumLimit">計算結果最大值</param>
 		/// <param name="leftFormulaAnswer">左側新作成計算式的結果值</param>
 		/// <param name="signFunc">運算符取得用的表達式</param>
-		/// <returns>新作成的計算式</returns>
-		private Formula MakeRightFormulas(IList<Formula> rightFormulas, int maximumLimit, int leftFormulaAnswer, Func<SignOfOperation> signFunc)
+		private void MakeRightFormulas(IList<Formula> rightFormulas, int maximumLimit, int leftFormulaAnswer, Func<SignOfOperation> signFunc)
 		{
 			ICalculate strategy = CalculateManager(signFunc());
 
@@ -149,8 +148,6 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 				MinimumLimit = 0
 			}, leftFormulaAnswer);
 			rightFormulas.Add(formula);
-
-			return formula;
 		}
 
 		/// <summary>

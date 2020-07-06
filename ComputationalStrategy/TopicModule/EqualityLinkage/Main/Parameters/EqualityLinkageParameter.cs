@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters
 	/// <summary>
 	/// 算式連一連參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.EqualityLinkage)]
+	[OperationParameter("EqualityLinkage")]
 	public class EqualityLinkageParameter : ParameterBase
 	{
 		/// <summary>

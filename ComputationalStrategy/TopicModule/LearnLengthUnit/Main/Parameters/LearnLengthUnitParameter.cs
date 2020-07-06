@@ -10,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters
 	/// <summary>
 	/// 認識長度參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.LearnLengthUnit)]
+	[OperationParameter("LearnLengthUnit")]
 	public class LearnLengthUnitParameter : ParameterBase
 	{
 		/// <summary>

@@ -13,7 +13,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.TimeCalculation)]
+	[HtmlSupport("TimeCalculation")]
 	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/TimeCalculation.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.TimeCalculation.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.TimeCalculation.ready();")]
@@ -98,7 +98,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 			html.Append(rowHtml);
 			if (html.Length != 0)
 			{
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.TimeCalculation.ToString(), LayoutSetting.Preview.TimeCalculation.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "TimeCalculation", "時間運算"));
 			}
 
 			return html.ToString();

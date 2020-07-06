@@ -43,14 +43,14 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <param name="preview">題型類型</param>
 		/// <param name="formulas">題型參數對象</param>
 		/// <returns>模板替換內容</returns>
-		public Dictionary<SubstituteType, string> GetHtmlStatement<T>(LayoutSetting.Preview preview, T formulas) where T : ParameterBase
+		public Dictionary<SubstituteType, string> GetHtmlStatement<T>(string preview, T formulas) where T : ParameterBase
 		{
-			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0012L, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0012L, preview));
 
 			// 指定题型大分类获得相应的题型HTML处理对象（实例）
 			IHtmlSupport support = SupprtHelper.CreateHtmlSupportInstance(preview);
 
-			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0013L, preview.ToString()));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0013L, preview));
 
 			return support.Make(formulas);
 		}

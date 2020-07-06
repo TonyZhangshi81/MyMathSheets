@@ -12,7 +12,7 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.MathWordProblems)]
+	[HtmlSupport("MathWordProblems")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.MathWordProblems.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.MathWordProblems.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.MathWordProblems.makeCorrections();")]
@@ -97,7 +97,7 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.MathWordProblems.ToString(), LayoutSetting.Preview.MathWordProblems.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "MathWordProblems", "算式應用題"));
 			}
 
 			return html.ToString();

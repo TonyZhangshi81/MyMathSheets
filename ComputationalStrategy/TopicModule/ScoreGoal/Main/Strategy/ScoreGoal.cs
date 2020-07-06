@@ -12,14 +12,14 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 	/// <summary>
 	/// 射門得分題型構築
 	/// </summary>
-	[Operation(LayoutSetting.Preview.ScoreGoal)]
+	[Operation("ScoreGoal")]
 	public class ScoreGoal : OperationBase
 	{
 		// 球類算式實例
-		private Dictionary<Formula, int> _ballsFormulas;
+		private readonly Dictionary<Formula, int> _ballsFormulas;
 
 		// 球門算式實例
-		private IList<Formula> _goalsFormulas;
+		private readonly IList<Formula> _goalsFormulas;
 
 		/// <summary>
 		/// 構造函數
@@ -33,11 +33,10 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 		/// <summary>
 		/// 左側計算式集合作成并返回當前新作成的計算式
 		/// </summary>
-		/// <param name="leftFormulas">左側計算式集合</param>
 		/// <param name="maximumLimit">計算結果最大值</param>
 		/// <param name="signFunc">運算符取得用的表達式</param>
 		/// <returns>新作成的計算式</returns>
-		private Formula MakeLeftFormulas(IList<Formula> leftFormulas, int maximumLimit, Func<SignOfOperation> signFunc)
+		private Formula MakeLeftFormulas(int maximumLimit, Func<SignOfOperation> signFunc)
 		{
 			ICalculate strategy = CalculateManager(signFunc());
 
@@ -55,13 +54,11 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 		/// <summary>
 		/// 右側計算式集合作成并返回當前新作成的計算式
 		/// </summary>
-		/// <param name="rightFormulas">右側計算式集合</param>
 		/// <param name="maximumLimit">計算結果最大值</param>
 		/// <param name="leftFormulaAnswer">左側新作成計算式的結果值</param>
-		/// <param name="seat">球門的位置編號</param>
 		/// <param name="signFunc">運算符取得用的表達式</param>
 		/// <returns>新作成的計算式</returns>
-		private Formula MakeRightFormulas(Dictionary<Formula, int> rightFormulas, int maximumLimit, int leftFormulaAnswer, int seat, Func<SignOfOperation> signFunc)
+		private Formula MakeRightFormulas(int maximumLimit, int leftFormulaAnswer, Func<SignOfOperation> signFunc)
 		{
 			ICalculate strategy = CalculateManager(signFunc());
 
@@ -87,7 +84,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 			for (int i = 0; i < 2; i++)
 			{
 				// 計算式作成
-				Formula goal = MakeLeftFormulas(_goalsFormulas, p.MaximumLimit, signFunc);
+				Formula goal = MakeLeftFormulas(p.MaximumLimit, signFunc);
 				// 判定是否需要反推并重新作成計算式
 				if (CheckIsNeedInverseMethodForGoals(goal, _goalsFormulas))
 				{
@@ -103,7 +100,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 				// 選取球門
 				int answer = GetGoal(_goalsFormulas, ref seat);
 				// 足球计算式
-				Formula formula = MakeRightFormulas(_ballsFormulas, p.MaximumLimit, answer, seat, signFunc);
+				Formula formula = MakeRightFormulas(p.MaximumLimit, answer, signFunc);
 				// 判定是否需要反推并重新作成計算式
 				if (CheckIsNeedInverseMethodForBalls(formula, _ballsFormulas))
 				{

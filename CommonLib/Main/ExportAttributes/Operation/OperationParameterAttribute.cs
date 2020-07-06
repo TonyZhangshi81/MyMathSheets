@@ -15,7 +15,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 自定義導出屬性
 		/// </summary>
 		/// <param name="layout">題型類別</param>
-		public OperationParameterAttribute(LayoutSetting.Preview layout) : base(typeof(ParameterBase))
+		public OperationParameterAttribute(string layout) : base(typeof(ParameterBase))
 		{
 			Layout = layout;
 		}
@@ -23,7 +23,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 題型種類
 		/// </summary>
-		public LayoutSetting.Preview Layout
+		public string Layout
 		{
 			get;
 			set;

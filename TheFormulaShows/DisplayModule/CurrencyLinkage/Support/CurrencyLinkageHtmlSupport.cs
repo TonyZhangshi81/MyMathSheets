@@ -13,7 +13,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.CurrencyLinkage)]
+	[HtmlSupport("CurrencyLinkage")]
 	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/CurrencyLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.CurrencyLinkage.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.CurrencyLinkage.ready();")]
@@ -152,7 +152,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 			html.AppendLine(string.Format("<img id=\"imgNoCurrencyLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" />", p.QueueType == DivQueueType.Lengthways ? "NoCurrencyLinkage-lengthways" : "NoCurrencyLinkage-crosswise"));
 			html.AppendLine("</div>");
 
-			html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CurrencyLinkage.ToString(), LayoutSetting.Preview.CurrencyLinkage.ToComputationalStrategyName()));
+			html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "CurrencyLinkage", "認識價格"));
 
 			return html.ToString();
 		}
@@ -238,8 +238,6 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 
 			return html.ToString();
 		}
-
-		
 
 		/// <summary>
 		/// 初期化參數HTML作成

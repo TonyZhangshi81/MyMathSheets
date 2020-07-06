@@ -10,7 +10,6 @@ using System.ComponentModel.Composition.Primitives;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace MyMathSheets.CommonLib.Composition
 {
@@ -23,28 +22,40 @@ namespace MyMathSheets.CommonLib.Composition
 	public static class ComposerFactory
 	{
 		/// <summary>
-		/// 模塊加載委託
+		/// 模塊加載
+		/// </summary>
+		/// <param name="sender">程序集對象</param>
+		/// <param name="current">當前加載對象計數</param>
+		public delegate void ModelLoadingEventHandler(object sender, int current);
+
+		/// <summary>
+		/// 模塊加載完畢
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="current">當前加載對象計數</param>
-		public delegate void ModelLoadEventHandler(object sender, int current);
+		public delegate void ModelLoadCompleteEventHandler(object sender, int current);
 
 		/// <summary>
-		/// 模塊信息檢索委託
+		/// 模塊信息檢索
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="modelCount">預加載對象合計數</param>
-		public delegate void SearchModelEventHandler(object sender, int modelCount);
+		public delegate void ModelInitializeEventHandler(object sender, int modelCount);
 
 		/// <summary>
 		/// 模塊加載事件
 		/// </summary>
-		public static event ModelLoadEventHandler ModelLoadEvent;
+		public static event ModelLoadingEventHandler ModelLoadingEvent;
+
+		/// <summary>
+		/// 模塊加載完畢事件
+		/// </summary>
+		public static event ModelLoadCompleteEventHandler ModelLoadCompleteEvent;
 
 		/// <summary>
 		/// 模塊信息檢索事件
 		/// </summary>
-		public static event SearchModelEventHandler SearchModelEvent;
+		public static event ModelInitializeEventHandler InitializeModelEvent;
 
 		/// <summary>
 		/// 文件名檢索用關鍵字
@@ -62,7 +73,7 @@ namespace MyMathSheets.CommonLib.Composition
 		private static readonly ConcurrentDictionary<string, Composer> ComposerCache;
 
 		/// <summary>
-		/// 以系統模塊為單位<see cref="SystemModel"/>的組合器緩存
+		/// 以系統模塊為單位<see cref="SystemModelType"/>的組合器緩存
 		/// </summary>
 		internal static readonly ConcurrentDictionary<string, MathSheetMarkerAttribute> SystemModelInfoCache;
 
@@ -93,9 +104,9 @@ namespace MyMathSheets.CommonLib.Composition
 		/// </summary>
 		public static void Init()
 		{
-			int currentIndex = 1;
+			int currentIndex = 0;
 			// 用於檢查題型注入的完整性（具備策略模塊和展示模塊）
-			List<LayoutSetting.Preview> checkCache = new List<LayoutSetting.Preview>();
+			List<string> checkCache = new List<string>();
 
 			var action = new Action<FileInfo>(file =>
 			{
@@ -107,9 +118,9 @@ namespace MyMathSheets.CommonLib.Composition
 					.FirstOrDefault();
 				if (attr == null)
 				{
-					LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.E0027L, file.FullName));
-					throw new Exception();
+					throw new ArgumentNullException(MessageUtil.GetMessage(() => MsgResources.E0027L, file.FullName));
 				}
+
 				var valueFunc = new Func<string, Composer>(c =>
 				{
 					lock (Sync)
@@ -117,40 +128,49 @@ namespace MyMathSheets.CommonLib.Composition
 						System.Threading.Thread.Sleep(50);
 
 						// 模塊加載事件傳播
-						ModelLoadEvent?.Invoke(null, currentIndex++);
+						ModelLoadingEvent?.Invoke(assembly, currentIndex++);
+
+						LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0029L, c));
+
 						return new Composer(assembly);
 					}
 				});
 
 				// 模塊識別號(模塊識別ID + 題型識別號)
-				string composerKey = (attr.Preview == LayoutSetting.Preview.Null) ? attr.SystemId.ToString() : $"{attr.SystemId}::{attr.Preview}";
-
+				string composerKey = string.IsNullOrEmpty(attr.Preview) ? attr.SystemMode.ToString() : $"{attr.SystemMode}::{attr.Preview}";
 				ComposerCache.GetOrAdd(composerKey, valueFunc);
-				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0029L, composerKey));
 
 				// （為確保模塊的完成性，規定同一個題型必須具備策略模塊和展示模塊）
-				if (checkCache.Any(d => d == attr.Preview))
+				if (checkCache.Any(d => d.Equals(attr.Preview, StringComparison.CurrentCultureIgnoreCase)))
 				{
 					// 獲取題型模塊信息并保存
-					if ((attr.SystemId == SystemModel.TheFormulaShows || attr.SystemId == SystemModel.ComputationalStrategy) && !string.IsNullOrEmpty(attr.Description))
+					if ((attr.SystemMode == SystemModelType.TheFormulaShows || attr.SystemMode == SystemModelType.ComputationalStrategy)
+						&& !string.IsNullOrEmpty(attr.Description))
 					{
-						SystemModelInfoCache.GetOrAdd(attr.Preview.ToString(), attr);
+						SystemModelInfoCache.GetOrAdd(attr.Preview, attr);
 					}
 				}
 				else
 				{
 					checkCache.Add(attr.Preview);
 				}
+
+				// 當最後一個模塊加載完畢的時候
+				if (currentIndex == LoadTopicModuleFiles.Count)
+				{
+					LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0030L, LoadTopicModuleFiles.Count));
+
+					// 模塊加載完畢事件傳播
+					ModelLoadCompleteEvent?.Invoke(null, LoadTopicModuleFiles.Count);
+				}
 			});
 
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0031L));
 
 			// 模塊信息事件傳播
-			SearchModelEvent?.Invoke(null, LoadTopicModuleFiles.Count);
+			InitializeModelEvent?.Invoke(null, LoadTopicModuleFiles.Count);
 
 			LoadTopicModuleFiles.ForEach(f => action(f));
-
-			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0030L, LoadTopicModuleFiles.Count));
 		}
 
 		/// <summary>
@@ -159,9 +179,9 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <param name="systemId"></param>
 		/// <param name="preview"></param>
 		/// <returns></returns>
-		public static Composer GetComporser(SystemModel systemId, LayoutSetting.Preview preview = LayoutSetting.Preview.Null)
+		public static Composer GetComporser(SystemModelType systemId, string preview = "")
 		{
-			string composerKey = (preview == LayoutSetting.Preview.Null) ? systemId.ToString() : $"{systemId}::{preview}";
+			string composerKey = string.IsNullOrEmpty(preview) ? systemId.ToString() : $"{systemId}::{preview}";
 
 			if (ComposerCache.ContainsKey(composerKey))
 			{
@@ -188,13 +208,13 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <param name="systemId"></param>
 		/// <param name="preview"></param>
 		/// <returns></returns>
-		private static Assembly GetAssembly(SystemModel systemId, LayoutSetting.Preview preview = LayoutSetting.Preview.Null)
+		private static Assembly GetAssembly(SystemModelType systemId, string preview = "")
 		{
 			var action = new Action<FileInfo>(f =>
 			{
 				var assembly = Assembly.LoadFile(f.FullName);
 				var attr = assembly.GetCustomAttributes(typeof(MathSheetMarkerAttribute), true).Cast<MathSheetMarkerAttribute>().FirstOrDefault();
-				if (attr != null && preview == attr.Preview && systemId.Equals(attr.SystemId))
+				if (attr != null && preview.Equals(attr.Preview, StringComparison.CurrentCultureIgnoreCase) && systemId.Equals(attr.SystemMode))
 				{
 					TempAssembly = assembly;
 				}
@@ -204,9 +224,7 @@ namespace MyMathSheets.CommonLib.Composition
 
 			if (TempAssembly == null)
 			{
-				var sb = new StringBuilder();
-				sb.Append(MessageUtil.GetMessage(() => MsgResources.E0001L));
-				throw new ComposerException(sb.ToString());
+				throw new ComposerException(MessageUtil.GetMessage(() => MsgResources.E0001L));
 			}
 			return TempAssembly;
 		}

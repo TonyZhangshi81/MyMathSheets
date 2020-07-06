@@ -12,6 +12,6 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// </summary>
 		/// <param name="preview">題型類型</param>
 		/// <returns>HTML支援類實例</returns>
-		IHtmlSupport CreateHtmlSupportInstance(LayoutSetting.Preview preview);
+		IHtmlSupport CreateHtmlSupportInstance(string preview);
 	}
 }

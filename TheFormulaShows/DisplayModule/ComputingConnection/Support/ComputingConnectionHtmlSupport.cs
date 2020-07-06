@@ -13,7 +13,7 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.ComputingConnection)]
+	[HtmlSupport("ComputingConnection")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.ComputingConnection.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.ComputingConnection.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.ComputingConnection.makeCorrections();")]
@@ -81,7 +81,7 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.ComputingConnection.ToString(), LayoutSetting.Preview.ComputingConnection.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "ComputingConnection", "等式接龍"));
 			}
 			return html.ToString();
 		}

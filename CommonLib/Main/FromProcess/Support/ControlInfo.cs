@@ -35,6 +35,6 @@ namespace MyMathSheets.CommonLib.Main.FromProcess.Support
 		/// <summary>
 		/// 題型類型
 		/// </summary>
-		public LayoutSetting.Preview Preview { get; set; }
+		public string Preview { get; set; }
 	}
 }

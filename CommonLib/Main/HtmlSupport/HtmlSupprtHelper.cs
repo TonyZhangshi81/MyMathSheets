@@ -52,7 +52,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		public HtmlSupprtHelper()
 		{
 			// 獲取共通處理模塊Composer
-			_composer = ComposerFactory.GetComporser(SystemModel.Common);
+			_composer = ComposerFactory.GetComporser(SystemModelType.Common);
 		}
 
 		/// <summary>
@@ -60,7 +60,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// </summary>
 		/// <param name="preview">題型種類</param>
 		/// <returns>運算符實例</returns>
-		public IHtmlSupport CreateHtmlSupportInstance(LayoutSetting.Preview preview)
+		public IHtmlSupport CreateHtmlSupportInstance(string preview)
 		{
 			// 本類中的屬性注入執行
 			ComposeThis();

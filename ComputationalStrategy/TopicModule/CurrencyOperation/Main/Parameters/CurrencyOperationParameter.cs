@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
 	/// <summary>
 	/// 貨幣運算參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.CurrencyOperation)]
+	[OperationParameter("CurrencyOperation")]
 	public class CurrencyOperationParameter : ParameterBase
 	{
 		/// <summary>

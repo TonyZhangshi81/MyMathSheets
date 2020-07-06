@@ -7,7 +7,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters
 	/// <summary>
 	/// 射門得分參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.ScoreGoal)]
+	[OperationParameter("ScoreGoal")]
 	public class ScoreGoalParameter : ParameterBase
 	{
 		/// <summary>

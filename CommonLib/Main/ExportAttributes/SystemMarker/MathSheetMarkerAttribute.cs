@@ -15,13 +15,13 @@ namespace MyMathSheets.CommonLib
 		/// <param name="id">模塊識別號</param>
 		/// <param name="classify">題型分類</param>
 		/// <param name="preview">子模塊識別號（題型模塊化對應）</param>
-		public MathSheetMarkerAttribute(SystemModel id, LayoutSetting.Classify classify = LayoutSetting.Classify.Default, LayoutSetting.Preview preview = LayoutSetting.Preview.Null)
+		/// <param name="description">題型名稱</param>
+		public MathSheetMarkerAttribute(SystemModelType id, LayoutSetting.Classify classify = LayoutSetting.Classify.Default, string preview = "", string description = "")
 		{
-			this.SystemId = id;
+			this.SystemMode = id;
 			this.Preview = preview;
 			this.Classify = classify;
-			// 題型名稱
-			this.Description = preview.ToComputationalStrategyName();
+			this.Description = description;
 		}
 
 		/// <summary>
@@ -36,7 +36,7 @@ namespace MyMathSheets.CommonLib
 		/// <summary>
 		/// 識別號
 		/// </summary>
-		public SystemModel SystemId
+		public SystemModelType SystemMode
 		{
 			get;
 			set;
@@ -45,7 +45,7 @@ namespace MyMathSheets.CommonLib
 		/// <summary>
 		/// 子模塊識別號（題型模塊化對應）
 		/// </summary>
-		public LayoutSetting.Preview Preview
+		public string Preview
 		{
 			get;
 			set;

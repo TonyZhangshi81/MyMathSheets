@@ -15,7 +15,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// 自定義導出屬性
 		/// </summary>
 		/// <param name="layout">題型類別</param>
-		public HtmlSupportAttribute(LayoutSetting.Preview layout) : base(typeof(HtmlSupportBase))
+		public HtmlSupportAttribute(string layout) : base(typeof(HtmlSupportBase))
 		{
 			Layout = layout;
 		}
@@ -23,7 +23,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <summary>
 		/// 題型類別
 		/// </summary>
-		public LayoutSetting.Preview Layout
+		public string Layout
 		{
 			get;
 			set;

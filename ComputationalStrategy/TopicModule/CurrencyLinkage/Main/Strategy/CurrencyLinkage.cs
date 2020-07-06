@@ -11,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Strategy
 	/// <summary>
 	/// 認識價格題型構築
 	/// </summary>
-	[Operation(LayoutSetting.Preview.CurrencyLinkage)]
+	[Operation("CurrencyLinkage")]
 	public class CurrencyLinkage : OperationBase
 	{
 		/// <summary>

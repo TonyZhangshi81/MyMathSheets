@@ -13,12 +13,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <summary>
 		/// 單位步長
 		/// </summary>
-		private decimal UnitStep { get; set; }
-
-		/// <summary>
-		/// 模塊總件數
-		/// </summary>
-		private int ModelCount { get; set; }
+		private decimal _unitStep;
 
 		/// <summary>
 		/// 窗口初期化
@@ -33,13 +28,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="modelCount">模塊總件數</param>
-		private void SearchModelEvent(object sender, int modelCount)
+		private void InitializeModelEvent(object sender, int modelCount)
 		{
 			// 創建一個線程用來描畫圖片的起始位置
 			MethodInvoker invoker = () =>
 			{
-				ModelCount = modelCount;
-				UnitStep = picCity.Width / modelCount;
+				_unitStep = picCity.Width / (modelCount + 1);
 				picCar.Location = new Point(0, 174);
 			};
 
@@ -61,20 +55,35 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="current">當前加載的序號</param>
-		private void ModelLoadEvent(object sender, int current)
+		private void ModelLoadingEvent(object sender, int current)
 		{
 			// 創建一個線程用來完成圖片移動（最終打開工作界面窗口）
-			MethodInvoker invoker = () =>
-			{
-				// 最後一個動畫跳過以避免因界面描畫線程阻塞產生車尾的殘影
-				if (ModelCount - current > 1)
+			MethodInvoker invoker =
+				() =>
 				{
 					// 小車移動
-					picCar.Location = new Point(picCar.Location.X + Convert.ToInt32(Math.Floor(UnitStep)), 174);
-				}
+					picCar.Location = new Point(picCar.Location.X + Convert.ToInt32(Math.Floor(_unitStep)), 174);
+				};
 
-				// 當最後一個模塊加載完畢的時候
-				if (current == ModelCount)
+			if (picCar.InvokeRequired)
+			{
+				picCar.Invoke(invoker);
+			}
+			else
+			{
+				invoker();
+			}
+		}
+
+		/// <summary>
+		/// 模塊加載完畢後的事件訂閱（關閉模塊加載進程顯示窗口）
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="current"></param>
+		private void ModelLoadCompleteEvent(object sender, int current)
+		{
+			MethodInvoker invoker =
+				() =>
 				{
 					timer1.Stop();
 					// 工作界面窗口顯示
@@ -82,8 +91,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 					frmMain.ShowDialog(this);
 					// 關閉模塊加載進程顯示窗口（父畫面）
 					this.Close();
-				}
-			};
+				};
 
 			if (picCar.InvokeRequired)
 			{
@@ -116,8 +124,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			timer1.Start();
 
-			ComposerFactory.ModelLoadEvent += new ComposerFactory.ModelLoadEventHandler(ModelLoadEvent);
-			ComposerFactory.SearchModelEvent += new ComposerFactory.SearchModelEventHandler(SearchModelEvent);
+			ComposerFactory.ModelLoadingEvent += new ComposerFactory.ModelLoadingEventHandler(ModelLoadingEvent);
+			ComposerFactory.ModelLoadCompleteEvent += new ComposerFactory.ModelLoadCompleteEventHandler(ModelLoadCompleteEvent);
+			ComposerFactory.InitializeModelEvent += new ComposerFactory.ModelInitializeEventHandler(InitializeModelEvent);
 
 			// 異步處理
 			Action handler = new Action(ComposerFactory.Init);

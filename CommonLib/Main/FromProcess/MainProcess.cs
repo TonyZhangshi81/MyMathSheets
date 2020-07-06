@@ -67,7 +67,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// <summary>
 		/// 題型預覽列表
 		/// </summary>
-		public List<LayoutSetting.Preview> LayoutSettingPreviewList
+		public List<string> LayoutSettingPreviewList
 		{
 			get;
 			private set;
@@ -246,21 +246,21 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 題型預覽列表設置
 		/// </summary>
 		/// <param name="name">題型名稱</param>
-		public void SetLayoutSettingPreviewList(LayoutSetting.Preview name)
+		public void SetLayoutSettingPreviewList(string name)
 		{
 			// 初期化
 			if (LayoutSettingPreviewList == null)
 			{
-				LayoutSettingPreviewList = new List<LayoutSetting.Preview>
+				LayoutSettingPreviewList = new List<string>()
 				{
 					// 標題區
-					LayoutSetting.Preview.Title,
+					"Title",
 					// 答題區
-					LayoutSetting.Preview.Ready
+					"Ready"
 				};
 			}
 			// 如果列表中不存在，則添加在答題區之前
-			if (!LayoutSettingPreviewList.Any(d => d == name))
+			if (!LayoutSettingPreviewList.Any(d => d.Equals(name, StringComparison.CurrentCultureIgnoreCase)))
 			{
 				LayoutSettingPreviewList.Insert(LayoutSettingPreviewList.Count - 1, name);
 			}
@@ -300,10 +300,10 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// </summary>
 		/// <param name="preview">題型種類</param>
 		/// <returns>替換內容</returns>
-		private Dictionary<SubstituteType, string> GetHtmlReplaceContentMaps(LayoutSetting.Preview preview)
+		private Dictionary<SubstituteType, string> GetHtmlReplaceContentMaps(string preview)
 		{
 			// 題型編號取得
-			string identifier = TopicManagementList.Where(d => d.Name.Equals(preview.ToString(), StringComparison.CurrentCultureIgnoreCase)).First().Number;
+			string identifier = TopicManagementList.Where(d => d.Name.Equals(preview, StringComparison.CurrentCultureIgnoreCase)).First().Number;
 
 			// 構造題型并取得結果
 			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview, identifier);
@@ -330,7 +330,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 					int indexX = 1, indexY = 1;
 					ComposerFactory.SystemModelInfoCache
 						.OrderBy(b => b.Value.Classify, new ClassifyToIntComparer())
-						.ThenBy(c => c.Key, new PreviewToStringComparer()).ToList()
+						.ThenBy(c => c.Key).ToList()
 						.ForEach(d =>
 					{
 						// 題型大類不同的場合，坐標初期化設定
@@ -346,7 +346,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 							IndexX = indexX,
 							IndexY = indexY,
 							// 控件ID設定
-							ControlId = d.Value.Preview.ToString(),
+							ControlId = d.Value.Preview,
 							// 控件標題設定
 							Title = d.Value.Description,
 							// 題型分類

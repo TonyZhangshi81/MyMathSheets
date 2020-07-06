@@ -12,7 +12,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 	/// <summary>
 	/// 貨幣運算題型HTML支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.CurrencyOperation)]
+	[HtmlSupport("CurrencyOperation")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.CurrencyOperation.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.CurrencyOperation.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.CurrencyOperation.makeCorrections();")]
@@ -145,7 +145,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.CurrencyOperation.ToString(), LayoutSetting.Preview.CurrencyOperation.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "CurrencyOperation", "貨幣運算"));
 			}
 
 			return html.ToString();

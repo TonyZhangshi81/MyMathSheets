@@ -13,7 +13,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.EqualityLinkage)]
+	[HtmlSupport("EqualityLinkage")]
 	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/EqualityLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.EqualityLinkage.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.EqualityLinkage.ready();")]
@@ -43,44 +43,48 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// </summary>
 		public EqualityLinkageHtmlSupport()
 		{
-			LeftFormulasArray = new Dictionary<DivQueueType, List<string>>();
-			// 左側計算式坐標列表(縱向連線)
-			LeftFormulasArray[DivQueueType.Lengthways] = new List<string>()
+			LeftFormulasArray = new Dictionary<DivQueueType, List<string>>
 			{
-				"left: 30px; top:10px;",
-				"left: 30px; top:70px;",
-				"left: 30px; top:130px;",
-				"left: 30px; top:190px;",
-				"left: 30px; top:250px;"
-			};
-			// 上位計算式坐標列表(橫向連線)
-			LeftFormulasArray[DivQueueType.Crosswise] = new List<string>()
-			{
-				"left: 30px; top:10px;",
-				"left: 160px; top:10px;",
-				"left: 290px; top:10px;",
-				"left: 420px; top:10px;",
-				"left: 550px; top:10px;"
+				// 左側計算式坐標列表(縱向連線)
+				[DivQueueType.Lengthways] = new List<string>()
+				{
+					"left: 30px; top:10px;",
+					"left: 30px; top:70px;",
+					"left: 30px; top:130px;",
+					"left: 30px; top:190px;",
+					"left: 30px; top:250px;"
+				},
+				// 上位計算式坐標列表(橫向連線)
+				[DivQueueType.Crosswise] = new List<string>()
+				{
+					"left: 30px; top:10px;",
+					"left: 160px; top:10px;",
+					"left: 290px; top:10px;",
+					"left: 420px; top:10px;",
+					"left: 550px; top:10px;"
+				}
 			};
 
-			RightFormulasArray = new Dictionary<DivQueueType, List<string>>();
-			// 右側計算式坐標列表(縱向連線)
-			RightFormulasArray[DivQueueType.Lengthways] = new List<string>()
+			RightFormulasArray = new Dictionary<DivQueueType, List<string>>
 			{
-				"left: 250px; top:10px;",
-				"left: 250px; top:70px;",
-				"left: 250px; top:130px;",
-				"left: 250px; top:190px;",
-				"left: 250px; top:250px;"
-			};
-			// 下位計算式坐標列表(橫向連線)
-			RightFormulasArray[DivQueueType.Crosswise] = new List<string>()
-			{
-				"left: 30px; top:150px;",
-				"left: 160px; top:150px;",
-				"left: 290px; top:150px;",
-				"left: 420px; top:150px;",
-				"left: 550px; top:150px;"
+				// 右側計算式坐標列表(縱向連線)
+				[DivQueueType.Lengthways] = new List<string>()
+				{
+					"left: 250px; top:10px;",
+					"left: 250px; top:70px;",
+					"left: 250px; top:130px;",
+					"left: 250px; top:190px;",
+					"left: 250px; top:250px;"
+				},
+				// 下位計算式坐標列表(橫向連線)
+				[DivQueueType.Crosswise] = new List<string>()
+				{
+					"left: 30px; top:150px;",
+					"left: 160px; top:150px;",
+					"left: 290px; top:150px;",
+					"left: 420px; top:150px;",
+					"left: 550px; top:150px;"
+				}
 			};
 
 			_answerString = new StringBuilder();
@@ -114,7 +118,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 			html.AppendLine(string.Format("<img id=\"imgNoEqualityLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "NoEqualityLinkage-lengthways" : "NoEqualityLinkage-crosswise"));
 			html.AppendLine("</div>");
 
-			html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.EqualityLinkage.ToString(), LayoutSetting.Preview.EqualityLinkage.ToComputationalStrategyName()));
+			html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "EqualityLinkage", "算式連一連"));
 
 			return html.ToString();
 		}
@@ -199,12 +203,12 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// <summary>
 		/// 答案列表
 		/// </summary>
-		private StringBuilder _answerString { get; set; }
+		private readonly StringBuilder _answerString;
 
 		/// <summary>
 		/// 初期化參數
 		/// </summary>
-		private StringBuilder _hidInitSettings { get; set; }
+		private readonly StringBuilder _hidInitSettings;
 
 		/// <summary>
 		/// 初期化參數HTML作成

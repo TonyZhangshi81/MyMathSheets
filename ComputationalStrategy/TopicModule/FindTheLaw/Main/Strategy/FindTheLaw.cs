@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 	/// <summary>
 	/// 找規律題
 	/// </summary>
-	[Operation(LayoutSetting.Preview.FindTheLaw)]
+	[Operation("FindTheLaw")]
 	public class FindTheLaw : OperationBase
 	{
 		/// <summary>
@@ -95,8 +95,10 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 			}
 
 			// 構成
-			List<int> numberList = new List<int>();
-			numberList.Add(Convert.ToInt32(string.Format("{0}{1}{2}{3}", numbers[0], numbers[1], numbers[2], numbers[3])));
+			List<int> numberList = new List<int>
+			{
+				Convert.ToInt32(string.Format("{0}{1}{2}{3}", numbers[0], numbers[1], numbers[2], numbers[3]))
+			};
 
 			count = 0;
 			// 數字隊列集合作成

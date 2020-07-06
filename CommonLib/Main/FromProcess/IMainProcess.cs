@@ -38,7 +38,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 題型預覽列表設置
 		/// </summary>
 		/// <param name="name">題型名稱</param>
-		void SetLayoutSettingPreviewList(LayoutSetting.Preview name);
+		void SetLayoutSettingPreviewList(string name);
 
 		/// <summary>
 		/// 題型項目選擇事件

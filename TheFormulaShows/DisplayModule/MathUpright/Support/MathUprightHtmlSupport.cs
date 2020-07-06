@@ -12,7 +12,7 @@ namespace MyMathSheets.TheFormulaShows.MathUpright.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.MathUpright)]
+	[HtmlSupport("MathUpright")]
 	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/MathUpright.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.MathUpright.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.MathUpright.ready();")]
@@ -107,7 +107,7 @@ namespace MyMathSheets.TheFormulaShows.MathUpright.Support
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.MathUpright.ToString(), LayoutSetting.Preview.MathUpright.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "MathUpright", "豎式計算"));
 			}
 
 			return html.ToString();

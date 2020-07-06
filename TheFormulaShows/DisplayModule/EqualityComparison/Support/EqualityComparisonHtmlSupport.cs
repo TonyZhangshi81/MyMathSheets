@@ -11,7 +11,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityComparison.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.EqualityComparison)]
+	[HtmlSupport("EqualityComparison")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.EqualityComparison.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.EqualityComparison.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.EqualityComparison.makeCorrections();")]
@@ -96,7 +96,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityComparison.Support
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.EqualityComparison.ToString(), LayoutSetting.Preview.EqualityComparison.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "EqualityComparison", "算式比大小"));
 			}
 			return html.ToString();
 		}

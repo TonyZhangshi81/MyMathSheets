@@ -10,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters
 	/// <summary>
 	/// 找規律參數類
 	/// </summary>
-	[OperationParameter(LayoutSetting.Preview.FindTheLaw)]
+	[OperationParameter("FindTheLaw")]
 	public class FindTheLawParameter : ParameterBase
 	{
 		/// <summary>

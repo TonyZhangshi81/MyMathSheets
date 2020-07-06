@@ -12,14 +12,9 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 	/// <summary>
 	/// 貨幣運算題型
 	/// </summary>
-	[Operation(LayoutSetting.Preview.CurrencyOperation)]
+	[Operation("CurrencyOperation")]
 	public class CurrencyOperation : OperationBase
 	{
-		/// <summary>
-		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
-		/// </summary>
-		private const int INVERSE_NUMBER = 3;
-
 		/// <summary>
 		/// 加減算式作成
 		/// </summary>
@@ -28,7 +23,6 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		{
 			CurrencyOperationParameter p = parameter as CurrencyOperationParameter;
 
-			ICalculate strategy = null;
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
@@ -39,7 +33,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 				}
 
 				// 指定單個運算符實例
-				strategy = CalculateManager(p.Signs[0]);
+				ICalculate strategy = CalculateManager(p.Signs[0]);
 				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
@@ -72,7 +66,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 					// 混合題型（加減運算符實例隨機抽取）
 					SignOfOperation sign = CommonUtil.GetRandomNumber(SignOfOperation.Plus, SignOfOperation.Subtraction);
 					// 對運算符實例進行cache管理
-					strategy = CalculateManager(sign);
+					ICalculate strategy = CalculateManager(sign);
 
 					var formula = strategy.CreateFormula(new CalculateParameter()
 					{

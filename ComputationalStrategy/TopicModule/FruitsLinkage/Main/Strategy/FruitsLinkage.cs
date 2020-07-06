@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 	/// <summary>
 	/// 水果連連看題型構築
 	/// </summary>
-	[Operation(LayoutSetting.Preview.FruitsLinkage)]
+	[Operation("FruitsLinkage")]
 	public class FruitsLinkage : OperationBase
 	{
 		/// <summary>

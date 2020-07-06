@@ -12,7 +12,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 	/// <summary>
 	/// 填空題策略
 	/// </summary>
-	[Operation(LayoutSetting.Preview.GapFillingProblems)]
+	[Operation("GapFillingProblems")]
 	public class GapFillingProblems : OperationBase
 	{
 		/// <summary>
@@ -23,7 +23,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 		/// <summary>
 		/// 出題資料庫
 		/// </summary>
-		private List<GapFillingProblemsLibrary> _allProblems { get; set; }
+		private List<GapFillingProblemsLibrary> _allProblems;
 
 		/// <summary>
 		/// 題型作成

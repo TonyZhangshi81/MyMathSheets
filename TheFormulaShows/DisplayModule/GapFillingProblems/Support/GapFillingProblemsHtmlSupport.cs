@@ -14,7 +14,7 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.GapFillingProblems)]
+	[HtmlSupport("GapFillingProblems")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.GapFillingProblems.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.GapFillingProblems.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.GapFillingProblems.makeCorrections();")]
@@ -189,7 +189,7 @@ namespace MyMathSheets.TheFormulaShows.GapFillingProblems.Support
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.GapFillingProblems.ToString(), LayoutSetting.Preview.GapFillingProblems.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "GapFillingProblems".ToString(), "基礎填空"));
 			}
 
 			return html.ToString();

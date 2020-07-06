@@ -25,11 +25,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TestConsoleApp
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.MathSheetsSettingApp", "MathSheetsSettingApp\MyMathSheets.MathSheetsSettingApp.csproj", "{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}"
-	ProjectSection(ProjectDependencies) = postProject
-		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.MathWordProblemsConsoleApp", "Tools\MathWordProblemsConsoleApp\MyMathSheets.MathWordProblemsConsoleApp.csproj", "{C89B91C6-DB3A-4698-842D-4BA979C14AE1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLib", "CommonLib\MyMathSheets.CommonLib.csproj", "{076E9C76-BEB2-4024-8A09-5183D0D65EC3}"
@@ -203,6 +198,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLibTest", "MyMathSheets.CommonLibTest\MyMathSheets.CommonLibTest.csproj", "{ED81771C-7232-43D3-843A-62D32B00A705}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.MathSheetsSettingApp", "MathSheetsSettingApp\MyMathSheets.MathSheetsSettingApp.csproj", "{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -220,10 +217,6 @@ Global
 		{B0727C1F-9FE4-4E61-B559-3D67772EA24E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B0727C1F-9FE4-4E61-B559-3D67772EA24E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0727C1F-9FE4-4E61-B559-3D67772EA24E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C89B91C6-DB3A-4698-842D-4BA979C14AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C89B91C6-DB3A-4698-842D-4BA979C14AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C89B91C6-DB3A-4698-842D-4BA979C14AE1}.Release|Any CPU.Build.0 = Release|Any CPU
@@ -395,6 +388,10 @@ Global
 		{ED81771C-7232-43D3-843A-62D32B00A705}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED81771C-7232-43D3-843A-62D32B00A705}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED81771C-7232-43D3-843A-62D32B00A705}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,7 +15,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 	/// <summary>
 	/// 比多少題型HTML支援類,動態作成html并按照一定的格式注入html模板中
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.HowMuchMore)]
+	[HtmlSupport("HowMuchMore")]
 	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/HowMuchMore.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.HowMuchMore.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.HowMuchMore.ready();")]
@@ -58,7 +58,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 		/// <summary>
 		/// 智能提示
 		/// </summary>
-		private HelperDialogue _brainpowerHint { get; set; }
+		private HelperDialogue _brainpowerHint;
 
 		private int _brainpowerIndex;
 
@@ -184,7 +184,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 			{
 				StringBuilder head = new StringBuilder();
 				// 題目標題顯示
-				head.AppendLine(string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.HowMuchMore.ToString(), LayoutSetting.Preview.HowMuchMore.ToComputationalStrategyName()));
+				head.AppendLine(string.Format(PAGE_HEADER_HTML_FORMAT, "HowMuchMore", "比多少"));
 				// 答案項目
 				_gapFillingItems.Length -= 1;
 				head.AppendLine(string.Format("<input type=\"hidden\" id=\"hidImgHmmHelpArray\" value=\"{0}\" />", _gapFillingItems.ToString()));

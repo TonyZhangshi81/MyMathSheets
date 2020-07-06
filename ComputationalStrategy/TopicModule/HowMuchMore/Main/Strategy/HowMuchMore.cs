@@ -15,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Strategy
 	/// <summary>
 	/// 比多少題
 	/// </summary>
-	[Operation(LayoutSetting.Preview.HowMuchMore)]
+	[Operation("HowMuchMore")]
 	public class HowMuchMore : OperationBase
 	{
 		/// <summary>

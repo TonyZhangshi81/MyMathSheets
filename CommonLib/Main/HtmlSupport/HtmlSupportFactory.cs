@@ -31,7 +31,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <summary>
 		/// HTML支援類對象緩存區
 		/// </summary>
-		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<LayoutSetting.Preview, IHtmlSupport>> HtmlSupportCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<LayoutSetting.Preview, IHtmlSupport>>();
+		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<string, IHtmlSupport>> HtmlSupportCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<string, IHtmlSupport>>();
 
 		/// <summary>
 		/// 構造函數
@@ -68,13 +68,13 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// </summary>
 		/// <param name="preview">題型類型</param>
 		/// <returns>HTML支援類實例</returns>
-		public IHtmlSupport CreateHtmlSupportInstance(LayoutSetting.Preview preview)
+		public IHtmlSupport CreateHtmlSupportInstance(string preview)
 		{
 			// 獲取HTML支援類Composer
-			_composer = ComposerFactory.GetComporser(SystemModel.TheFormulaShows, preview);
+			_composer = ComposerFactory.GetComporser(SystemModelType.TheFormulaShows, preview);
 
 			// HTML支援類對象緩存區管理
-			ConcurrentDictionary<LayoutSetting.Preview, IHtmlSupport> cache = HtmlSupportCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, IHtmlSupport>());
+			ConcurrentDictionary<string, IHtmlSupport> cache = HtmlSupportCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<string, IHtmlSupport>());
 			// HTML支援模塊是否已經注入 <- 初次注入允許MEF容器注入本類的屬性信息（注入HTML支援類屬性）
 			_composed = cache.ContainsKey(preview);
 			// 返回緩衝區中的支援類對象
@@ -84,10 +84,10 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 				ComposeThis();
 
 				// 取得指定類型下的支援類類型參數
-				IEnumerable<Lazy<HtmlSupportBase, IHtmlSupportMetaDataView>> supports = Supports.Where(d => d.Metadata.Layout == preview);
+				IEnumerable<Lazy<HtmlSupportBase, IHtmlSupportMetaDataView>> supports = Supports.Where(d => d.Metadata.Layout.Equals(preview, StringComparison.CurrentCultureIgnoreCase));
 				if (!supports.Any())
 				{
-					throw new HtmlSupportNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0021L, preview.ToString()));
+					throw new HtmlSupportNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0021L, preview));
 				}
 
 				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0008L));

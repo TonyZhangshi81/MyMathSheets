@@ -12,7 +12,7 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 	/// <summary>
 	/// 組合計算式
 	/// </summary>
-	[Operation(LayoutSetting.Preview.CombinatorialEquation)]
+	[Operation("CombinatorialEquation")]
 	public class CombinatorialEquation : OperationBase
 	{
 		/// <summary>
@@ -23,11 +23,10 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 		{
 			CombinatorialEquationParameter p = parameter as CombinatorialEquationParameter;
 
-			ICalculate strategy = null;
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				// 對四則運算符實例進行cache管理
-				strategy = CalculateManager(p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)]);
+				ICalculate strategy = CalculateManager(p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)]);
 				// 計算式作成
 				Formula formula = strategy.CreateFormula(new CalculateParameter()
 				{

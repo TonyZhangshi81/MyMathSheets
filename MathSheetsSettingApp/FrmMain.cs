@@ -40,7 +40,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			InitializeComponent();
 
 			// 獲取HTML支援類Composer
-			Composer composer = ComposerFactory.GetComporser(SystemModel.Common);
+			Composer composer = ComposerFactory.GetComporser(SystemModelType.Common);
 			composer.Compose(this);
 		}
 
@@ -137,16 +137,16 @@ namespace MyMathSheets.MathSheetsSettingApp
 		private void PreviewInit()
 		{
 			// 標題瀏覽
-			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Title);
+			PictureIntoFlowLayoutPanel("Title");
 			// 答題結束瀏覽
-			PictureIntoFlowLayoutPanel(LayoutSetting.Preview.Ready);
+			PictureIntoFlowLayoutPanel("Ready");
 		}
 
 		/// <summary>
 		/// 添加題型模塊至瀏覽項目
 		/// </summary>
 		/// <param name="name">題型的名字</param>
-		private void PictureIntoFlowLayoutPanel(LayoutSetting.Preview name)
+		private void PictureIntoFlowLayoutPanel(string name)
 		{
 			PictureBox picBox = new PictureBox
 			{

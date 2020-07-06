@@ -31,7 +31,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 運算符處理類型緩存區
 		/// </summary>
-		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<LayoutSetting.Preview, Type>> OperationCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<LayoutSetting.Preview, Type>>();
+		private static readonly ConcurrentDictionary<Composer, ConcurrentDictionary<string, Type>> OperationCache = new ConcurrentDictionary<Composer, ConcurrentDictionary<string, Type>>();
 
 		/// <summary>
 		/// 構造函數
@@ -68,13 +68,13 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// </summary>
 		/// <param name="preview">策略種類</param>
 		/// <returns>策略實例</returns>
-		public virtual IOperation CreateOperationInstance(LayoutSetting.Preview preview)
+		public virtual IOperation CreateOperationInstance(string preview)
 		{
 			// 獲取計算式策略模塊Compsero
-			_composer = ComposerFactory.GetComporser(SystemModel.ComputationalStrategy, preview);
+			_composer = ComposerFactory.GetComporser(SystemModelType.ComputationalStrategy, preview);
 
 			// 運算符對象緩存區管理
-			ConcurrentDictionary<LayoutSetting.Preview, Type> cache = OperationCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<LayoutSetting.Preview, Type>());
+			ConcurrentDictionary<string, Type> cache = OperationCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<string, Type>());
 			// 題型模塊是否已經注入 <- 初次注入允許MEF容器注入本類的屬性信息（注入運算符屬性）
 			_composed = cache.ContainsKey(preview);
 			// 返回緩衝區中的運算符對象
@@ -84,11 +84,11 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 				ComposeThis();
 
 				// 指定運算符并獲取處理類型
-				IEnumerable<Lazy<OperationBase, IOperationMetaDataView>> operations = Operations.Where(d => d.Metadata.Layout == preview);
+				IEnumerable<Lazy<OperationBase, IOperationMetaDataView>> operations = Operations.Where(d => d.Metadata.Layout.Equals(preview, StringComparison.CurrentCultureIgnoreCase));
 				if (!operations.Any())
 				{
 					// 指定的題型策略對象未找到
-					throw new OperationNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0018L, preview.ToString()));
+					throw new OperationNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0018L, preview));
 				}
 
 				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0003L));
@@ -109,7 +109,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <param name="preview">題型種類</param>
 		/// <param name="identifier">參數識別ID</param>
 		/// <returns>對象實例</returns>
-		public virtual ParameterBase CreateOperationParameterInstance(LayoutSetting.Preview preview, string identifier)
+		public virtual ParameterBase CreateOperationParameterInstance(string preview, string identifier)
 		{
 			// 運算符參數對象緩存區管理
 			string key = $"{preview}::{identifier}";
@@ -119,7 +119,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			if (!parameters.Any())
 			{
 				// 指定的題型參數對象未找到
-				throw new OperationNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0019L, preview.ToString()));
+				throw new OperationNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0019L, preview));
 			}
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004L));
 

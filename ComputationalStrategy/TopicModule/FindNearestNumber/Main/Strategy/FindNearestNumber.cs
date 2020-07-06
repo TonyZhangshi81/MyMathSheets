@@ -11,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 	/// <summary>
 	/// 找最相近的数字題型構築
 	/// </summary>
-	[Operation(LayoutSetting.Preview.FindNearestNumber)]
+	[Operation("FindNearestNumber")]
 	public class FindNearestNumber : OperationBase
 	{
 		/// <summary>

@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 	/// <summary>
 	/// 等式接龍題型（當前版本實現了加減法接龍）
 	/// </summary>
-	[Operation(LayoutSetting.Preview.ComputingConnection)]
+	[Operation("ComputingConnection")]
 	public class ComputingConnection : OperationBase
 	{
 		/// <summary>
@@ -31,8 +31,6 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
 
-			ICalculate strategy = null;
-
 			// 按照指定數量作成相應的數學計算式
 			for (int i = 0; i < p.NumberOfQuestions; i++)
 			{
@@ -42,7 +40,7 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 				for (int j = 0; j < p.SectionNumber; j++)
 				{
 					// 指定運算符實例作成
-					strategy = CalculateManager(signFunc());
+					ICalculate strategy = CalculateManager(signFunc());
 					Formula formula = strategy.CreateFormula(new CalculateParameter()
 					{
 						MaximumLimit = p.MaximumLimit,

@@ -13,7 +13,7 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 	/// <summary>
 	/// 題型模板支援類
 	/// </summary>
-	[HtmlSupport(LayoutSetting.Preview.NumericSorting)]
+	[HtmlSupport("NumericSorting")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.NumericSorting.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.NumericSorting.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.NumericSorting.makeCorrections();")]
@@ -97,7 +97,7 @@ namespace MyMathSheets.TheFormulaShows.NumericSorting.Support
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
 				html.AppendLine().Append("</div>");
-				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, LayoutSetting.Preview.NumericSorting.ToString(), LayoutSetting.Preview.NumericSorting.ToComputationalStrategyName()));
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "NumericSorting", "數字排序"));
 			}
 			return html.ToString();
 		}

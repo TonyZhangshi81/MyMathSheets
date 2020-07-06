@@ -10,6 +10,6 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 題型類別
 		/// </summary>
-		LayoutSetting.Preview Layout { get; }
+		string Layout { get; }
 	}
 }
