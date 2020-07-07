@@ -12,10 +12,10 @@ namespace MyMathSheets.CommonLib
 		/// <summary>
 		/// 構造函數
 		/// </summary>
-		/// <param name="id">模塊識別號</param>
-		public MathSheetMarkerAttribute(SystemModelType id)
+		/// <param name="model">模塊識別號</param>
+		public MathSheetMarkerAttribute(SystemModelType model)
 		{
-			this.SystemMode = id;
+			this.SystemModel = model;
 			this.Preview = string.Empty;
 			this.Classify = LayoutSetting.Classify.Default;
 			this.Description = string.Empty;
@@ -24,13 +24,13 @@ namespace MyMathSheets.CommonLib
 		/// <summary>
 		/// 構造函數
 		/// </summary>
-		/// <param name="id">模塊識別號</param>
+		/// <param name="model">模塊識別號</param>
 		/// <param name="classify">題型分類</param>
 		/// <param name="preview">子模塊識別號（題型模塊化對應）</param>
 		/// <param name="description">題型名稱</param>
-		public MathSheetMarkerAttribute(SystemModelType id, LayoutSetting.Classify classify, string preview, string description)
+		public MathSheetMarkerAttribute(SystemModelType model, LayoutSetting.Classify classify, string preview, string description)
 		{
-			this.SystemMode = id;
+			this.SystemModel = model;
 			this.Preview = preview;
 			this.Classify = classify;
 			this.Description = description;
@@ -48,7 +48,7 @@ namespace MyMathSheets.CommonLib
 		/// <summary>
 		/// 識別號
 		/// </summary>
-		public SystemModelType SystemMode
+		public SystemModelType SystemModel
 		{
 			get;
 			set;
