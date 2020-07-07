@@ -9,10 +9,12 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Ext
 	/// </summary>
 	public class SpireXls : ISpireExt, IDisposable
 	{
+		private bool isDisposed;
+
 		/// <summary>
 		///
 		/// </summary>
-		private Workbook _workBook { get; set; }
+		private readonly Workbook _workBook;
 
 		/// <summary>
 		///
@@ -108,24 +110,46 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Ext
 			return string.Empty;
 		}
 
-		#region Release resources
-
-		/// <summary>
-		/// Release resources
-		/// </summary>
-		public void Dispose(Workbook workbook) => _workBook.Dispose();
+		#region Dispose resources
 
 		/// <summary>
 		/// Release resources
 		/// </summary>
 		public void Dispose()
 		{
-			if (_workBook != null)
-			{
-				Dispose(_workBook);
-			}
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 
-		#endregion Release resources
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		/// <param name="disposing">是否正在釋放</param>
+		/// <remarks>資源自動回收時觸發析構函數，以下資源自動釋放(即isDisposed=true)</remarks>
+		protected virtual void Dispose(bool disposing)
+		{
+			if (isDisposed) return;
+
+			// 正在釋放資源
+			if (disposing)
+			{
+				if (_workBook != null)
+				{
+					_workBook.Dispose();
+				}
+			}
+
+			isDisposed = true;
+		}
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		~SpireXls()
+		{
+			Dispose(false);
+		}
+
+		#endregion Dispose resources
 	}
 }

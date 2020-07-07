@@ -34,7 +34,7 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <exception cref="ArgumentNullException"><paramref name="assembly"/>為NULL的情況</exception>
 		public Composer(Assembly assembly)
 		{
-			Guard.ArgumentNotNull(assembly, "Assembly");
+			Guard.ArgumentNotNull(assembly, "assembly");
 
 			// 對象元素目錄
 			var catalog = new AggregateCatalog();
@@ -78,7 +78,7 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <param name="contractName">契約名稱</param>
 		/// <param name="innerException">例外</param>
 		/// <returns>特定例外</returns>
-		public Exception CreateLogicComposerException(Type type, string contractName, Exception innerException)
+		public Exception CreateComposerException(Type type, string contractName, Exception innerException)
 		{
 			var sb = new StringBuilder();
 			sb.Append(MessageUtil.GetMessage(() => MsgResources.E0001L));
@@ -130,7 +130,7 @@ namespace MyMathSheets.CommonLib.Composition
 			}
 			catch (Exception ex)
 			{
-				throw CreateLogicComposerException(typeof(T), null, ex);
+				throw CreateComposerException(typeof(T), null, ex);
 			}
 		}
 
@@ -148,7 +148,7 @@ namespace MyMathSheets.CommonLib.Composition
 			}
 			catch (Exception ex)
 			{
-				throw CreateLogicComposerException(typeof(T), contractName, ex);
+				throw CreateComposerException(typeof(T), contractName, ex);
 			}
 		}
 
@@ -166,7 +166,7 @@ namespace MyMathSheets.CommonLib.Composition
 			}
 			catch (Exception ex)
 			{
-				throw CreateLogicComposerException(typeof(T), contractName, ex);
+				throw CreateComposerException(typeof(T), contractName, ex);
 			}
 		}
 
@@ -183,7 +183,7 @@ namespace MyMathSheets.CommonLib.Composition
 			}
 			catch (Exception ex)
 			{
-				throw CreateLogicComposerException(typeof(T), null, ex);
+				throw CreateComposerException(typeof(T), null, ex);
 			}
 		}
 
@@ -202,7 +202,7 @@ namespace MyMathSheets.CommonLib.Composition
 			}
 			catch (Exception ex)
 			{
-				throw CreateLogicComposerException(typeof(T), contractName, ex);
+				throw CreateComposerException(typeof(T), contractName, ex);
 			}
 		}
 

@@ -7,9 +7,12 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Security.Permissions;
 
 namespace MyMathSheets.CommonLib.Composition
 {
@@ -60,7 +63,7 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <summary>
 		/// 文件名檢索用關鍵字
 		/// </summary>
-		private const string SEARCH_PATTERN = "MyMathSheets.*.dll";
+		private const string SEARCH_PATTERN = "MyMathSheets.*";
 
 		/// <summary>
 		///
@@ -87,6 +90,8 @@ namespace MyMathSheets.CommonLib.Composition
 		/// </summary>
 		static ComposerFactory()
 		{
+			Sync = new object();
+
 			ComposerCache = new ConcurrentDictionary<string, Composer>();
 			SystemModelInfoCache = new ConcurrentDictionary<string, MathSheetMarkerAttribute>();
 
@@ -97,7 +102,7 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <summary>
 		/// 獨佔模式開啟
 		/// </summary>
-		private static readonly object Sync = new object();
+		private static readonly object Sync;
 
 		/// <summary>
 		/// 模塊記載初期化處理
@@ -170,16 +175,35 @@ namespace MyMathSheets.CommonLib.Composition
 			// 模塊信息事件傳播
 			InitializeModelEvent?.Invoke(null, LoadTopicModuleFiles.Count);
 
+
+			var assemblysssss = AppDomain.CurrentDomain.GetAssemblies();
+
+
+
+
+
+
+
 			LoadTopicModuleFiles.ForEach(f => action(f));
 		}
 
 		/// <summary>
-		///
+		/// 返回指定模塊識別ID和題型編號下的<see cref="Composer"/>對象
 		/// </summary>
-		/// <param name="systemId"></param>
-		/// <param name="preview"></param>
-		/// <returns></returns>
-		public static Composer GetComporser(SystemModelType systemId, string preview = "")
+		/// <param name="systemId">模塊識別ID</param>
+		/// <returns><see cref="Composer"/>對象</returns>
+		public static Composer GetComporser(SystemModelType systemId)
+		{
+			return GetComporser(systemId, string.Empty);
+		}
+
+		/// <summary>
+		/// 返回指定模塊識別ID和題型編號下的<see cref="Composer"/>對象
+		/// </summary>
+		/// <param name="systemId">模塊識別ID</param>
+		/// <param name="preview">題型編號</param>
+		/// <returns><see cref="Composer"/>對象</returns>
+		public static Composer GetComporser(SystemModelType systemId, string preview)
 		{
 			string composerKey = string.IsNullOrEmpty(preview) ? systemId.ToString() : $"{systemId}::{preview}";
 
@@ -203,12 +227,12 @@ namespace MyMathSheets.CommonLib.Composition
 		}
 
 		/// <summary>
-		///
+		/// 返回指定模塊識別ID和題型編號下的<see cref="Assembly"/>對象
 		/// </summary>
-		/// <param name="systemId"></param>
-		/// <param name="preview"></param>
-		/// <returns></returns>
-		private static Assembly GetAssembly(SystemModelType systemId, string preview = "")
+		/// <param name="systemId">模塊識別ID</param>
+		/// <param name="preview">題型編號</param>
+		/// <returns><see cref="Assembly"/>對象</returns>
+		private static Assembly GetAssembly(SystemModelType systemId, string preview)
 		{
 			var action = new Action<FileInfo>(f =>
 			{
@@ -244,17 +268,58 @@ namespace MyMathSheets.CommonLib.Composition
 		}
 
 		/// <summary>
+		/// 獲取指定目錄下所有文件的列表信息
+		/// </summary>
+		/// <param name="path">指定目錄</param>
+		private static IEnumerable<FileInfo> GetAssemblyFiles(string path)
+		{
+			foreach (var fi in from _ in new DirectoryInfo(path).GetFiles(SEARCH_PATTERN)
+							   where _.Name.ToLower(CultureInfo.CurrentCulture).EndsWith(".dll", StringComparison.CurrentCultureIgnoreCase)
+							   orderby _.Name.Length descending
+							   select _)
+			{
+				yield return fi;
+			}
+		}
+
+		/// <summary>
 		/// 對當前應用程序域按照程序集的參照優先順序生成容器並返回
 		/// </summary>
 		/// <param name="path">程序集目錄</param>
 		/// <returns></returns>
 		public static IEnumerable<ComposablePartCatalog> GetCatalog(string path)
 		{
-			foreach (var fi in new DirectoryInfo(path)
-						.GetFiles(SEARCH_PATTERN)
-						.OrderByDescending(_ => _.Name.Length))
+			foreach (var fi in from _ in new DirectoryInfo(path).GetFiles(SEARCH_PATTERN)
+							   where _.Name.ToLower(CultureInfo.CurrentCulture).EndsWith(".dll", StringComparison.CurrentCultureIgnoreCase)
+							   orderby _.Name.Length descending
+							   select _)
 			{
 				yield return new DirectoryCatalog(path, fi.Name);
+			}
+		}
+
+		/// <summary>
+		/// 復原組合器並釋放<see cref="Composer"/>對象
+		/// </summary>
+		public static void Reset()
+		{
+			lock (Sync)
+			{
+				if (SystemModelInfoCache != null)
+				{
+					SystemModelInfoCache.Clear();
+				}
+
+				//if (LoadTopicModuleFiles != null)
+				//{
+				//	LoadTopicModuleFiles.Clear();
+				//}
+
+				foreach (KeyValuePair<string, Composer> item in ComposerCache)
+				{
+					((IDisposable)item.Value)?.Dispose();
+				}
+				ComposerCache.Clear();
 			}
 		}
 	}

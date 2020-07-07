@@ -35,4 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: MathSheetMarker(SystemModelType.ComputationalStrategy, LayoutSetting.Classify.Generally, "MathWordProblems")]
+[assembly: MathSheetMarker(SystemModelType.ComputationalStrategy, LayoutSetting.Classify.Generally, "MathWordProblems", "算式應用題")]
