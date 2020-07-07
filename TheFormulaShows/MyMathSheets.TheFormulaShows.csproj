@@ -243,6 +243,7 @@ xcopy "..\Scripts\Ext" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts
 xcopy "..\Plugin" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Plugin" /C /E /H /K /R /Y
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\fonts" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\fonts"
 xcopy "..\Content\fonts" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\fonts" /C /E /H /K /R /Y
+if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts"
 copy "..\Scripts\bootstrap.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.easyui.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery-3.3.1.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
@@ -270,7 +271,9 @@ copy "..\Content\HowMuchMore.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\W
 copy "..\Content\default.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\Shake.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\TimeCalculation.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
+if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\image" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\image"
 xcopy "..\Content\image" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\image" /C /E /H /K /R /Y
+if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\switcher" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\switcher"
 xcopy "..\Content\switcher" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\switcher" /C /E /H /K /R /Y
 )</PostBuildEvent>
   </PropertyGroup>
