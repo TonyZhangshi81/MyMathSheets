@@ -1,7 +1,6 @@
 ﻿using MyMathSheets.CommonLib.OperationStrategy;
 using MyMathSheets.CommonLib.Util;
 using Newtonsoft.Json;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace MyMathSheets.CommonLib.Main.OperationStrategy
@@ -12,6 +11,11 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 	[JsonObject(MemberSerialization.OptOut)]
 	public class ParameterBase : IParameter
 	{
+		/// <summary>
+		/// <see cref="ParameterBase"/>的實例
+		/// </summary>
+		private readonly ParameterHepler helper;
+
 		/// <summary>
 		/// 識別號(preview + "::" + identifier)
 		/// </summary>
@@ -58,14 +62,20 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		public List<int> RightScope { get; set; }
 
 		/// <summary>
-		///
+		/// <see cref="ParameterBase"/>的構造
+		/// </summary>
+		public ParameterBase() => helper = new ParameterHepler();
+
+		/// <summary>
+		/// 參數初期化處理
 		/// </summary>
 		public virtual void InitParameter()
 		{
 			// 識別號(preview + "::" + identifier)
 			string[] identifiers = Identifier.Split(':');
 
-			ParameterBase parameter = ParameterHepler.CreateParameterProvider().Initialize(Identifier);
+			// 參數配置json注入parameter
+			ParameterBase parameter = helper.CreateParameterProvider().Initialize(Identifier);
 
 			QuestionType = parameter.QuestionType;
 			Signs = parameter.Signs;

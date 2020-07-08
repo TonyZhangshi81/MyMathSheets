@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="E0001L" xml:space="preserve">
-    <value>E0001L:指定的信息與ExportAttribute不一致或者發現多個</value>
+    <value>E0001L:指定的{0}信息與ExportAttribute不一致或者發現多個</value>
   </data>
   <data name="E0018L" xml:space="preserve">
     <value>E0018L:指定的{0}題型策略對象未找到</value>

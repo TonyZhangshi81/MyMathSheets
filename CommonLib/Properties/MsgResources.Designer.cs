@@ -61,7 +61,7 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
-        ///   E0001L:指定的信息與ExportAttribute不一致或者發現多個 に類似しているローカライズされた文字列を検索します。
+        ///   E0001L:指定的{0}信息與ExportAttribute不一致或者發現多個 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string E0001L {
             get {

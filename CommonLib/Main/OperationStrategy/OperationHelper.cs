@@ -54,7 +54,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		public OperationHelper()
 		{
 			// 獲取共通處理模塊Composer
-			_composer = ComposerFactory.GetComporser(SystemModelType.Common);
+			_composer = ComposerFactory.GetComporser(this.GetType().Assembly);
 		}
 
 		/// <summary>

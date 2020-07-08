@@ -43,6 +43,16 @@ namespace MyMathSheets.CommonLib.Composition
 			// 遍歷程序集集合以參照的順序將程序集對象添加至對象元素目錄
 			foreach (var asm in ReflectionUtil.GetReferencedAssemblies(assembly))
 			{
+				// 優先讀取指定程序集下已設定的關聯程序集
+				foreach (var a in this.GetPriorAssemblyNames(asm))
+				{
+					if (!cache.Contains(a))
+					{
+						catalog.Catalogs.Add(new AssemblyCatalog(a));
+						cache.Add(a);
+					}
+				}
+
 				// 避免重複導入元素目錄
 				if (!cache.Contains(asm))
 				{
@@ -53,6 +63,27 @@ namespace MyMathSheets.CommonLib.Composition
 
 			// 創建MEF容器
 			_container = new CompositionContainer(catalog);
+		}
+
+		/// <summary>
+		/// 優先讀取指定程序集下已設定的關聯程序集
+		/// </summary>
+		/// <param name="assembly">程序集對象</param>
+		/// <returns>關聯程序集</returns>
+		private IEnumerable<Assembly> GetPriorAssemblyNames(Assembly assembly)
+		{
+			foreach (var name in assembly.GetCustomAttributes(false).OfType<ComposerAttribute>().Select(attr => attr.Name))
+			{
+				var asm = ReflectionUtil.GetAssembly(name);
+				if (asm != null)
+				{
+					yield return asm;
+					foreach (var a in this.GetPriorAssemblyNames(asm))
+					{
+						yield return a;
+					}
+				}
+			}
 		}
 
 		/// <summary>

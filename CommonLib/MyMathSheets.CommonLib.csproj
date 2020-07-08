@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Composition\Composer.cs" />
+    <Compile Include="Composition\ComposerAttribute.cs" />
     <Compile Include="Composition\ComposerException.cs" />
     <Compile Include="Composition\ComposerFactory.cs" />
     <Compile Include="Logging\ILogContext.cs" />

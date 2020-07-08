@@ -11,6 +11,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Permissions;
 
 namespace MyMathSheets.CommonLib.Composition
 {
@@ -181,11 +182,28 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <summary>
 		/// 返回指定模塊識別ID和題型編號下的<see cref="Composer"/>對象
 		/// </summary>
-		/// <param name="systemId">模塊識別ID</param>
+		/// <param name="assembly">模塊識別ID</param>
 		/// <returns><see cref="Composer"/>對象</returns>
-		public static Composer GetComporser(SystemModelType systemId)
+		public static Composer GetComporser(Assembly assembly)
 		{
-			return GetComporser(systemId, string.Empty);
+			Guard.ArgumentNotNull(assembly, "assembly");
+
+			var systemModel = assembly.GetCustomAttributes(typeof(MathSheetMarkerAttribute), true)
+										.Cast<MathSheetMarkerAttribute>()
+										.FirstOrDefault();
+			if (systemModel == null)
+			{
+				throw new ComposerException(MessageUtil.GetMessage(() => MsgResources.E0001L, assembly.GetName().FullName));
+			}
+
+			var valueFunc = new Func<string, Composer>(c =>
+			{
+				lock (Sync)
+				{
+					return new Composer(assembly);
+				}
+			});
+			return ComposerCache.GetOrAdd(systemModel.ToString(), valueFunc);
 		}
 
 		/// <summary>
@@ -218,6 +236,16 @@ namespace MyMathSheets.CommonLib.Composition
 		}
 
 		/// <summary>
+		/// 返回指定模塊識別ID和題型編號下的<see cref="Composer"/>對象
+		/// </summary>
+		/// <param name="systemModel">模塊識別ID</param>
+		/// <returns><see cref="Composer"/>對象</returns>
+		public static Composer GetComporser(SystemModelType systemModel)
+		{
+			return GetComporser(systemModel, string.Empty);
+		}
+
+		/// <summary>
 		/// 返回指定模塊識別ID和題型編號下的<see cref="Assembly"/>對象
 		/// </summary>
 		/// <param name="systemModel">模塊識別ID</param>
@@ -239,7 +267,7 @@ namespace MyMathSheets.CommonLib.Composition
 
 			if (TempAssembly == null)
 			{
-				throw new ComposerException(MessageUtil.GetMessage(() => MsgResources.E0001L));
+				throw new ComposerException(MessageUtil.GetMessage(() => MsgResources.E0001L, $"{systemModel}::{preview}"));
 			}
 			return TempAssembly;
 		}
@@ -251,26 +279,19 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <param name="files">文件列表信息</param>
 		private static void GetDirectoryFiles(string path, List<FileInfo> files)
 		{
-			DirectoryInfo theFolder = new DirectoryInfo(@path);
-			// 遍歷文件
-			theFolder.GetFiles(SEARCH_PATTERN).ToList().ForEach(f => files.Add(f));
-			// 遍歷文件夾
-			theFolder.GetDirectories().ToList().ForEach(d => GetDirectoryFiles(d.FullName, files));
-		}
+			DirectoryInfo theFolder = new DirectoryInfo(path);
 
-		/// <summary>
-		/// 獲取指定目錄下所有文件的列表信息
-		/// </summary>
-		/// <param name="path">指定目錄</param>
-		private static IEnumerable<FileInfo> GetAssemblyFiles(string path)
-		{
-			foreach (var fi in from _ in new DirectoryInfo(path).GetFiles(SEARCH_PATTERN)
+			// 遍歷文件
+			foreach (var fi in from _ in theFolder.GetFiles(SEARCH_PATTERN)
 							   where _.Name.ToLower(CultureInfo.CurrentCulture).EndsWith(".dll", StringComparison.CurrentCultureIgnoreCase)
 							   orderby _.Name.Length descending
 							   select _)
 			{
-				yield return fi;
+				files.Add(fi);
 			}
+
+			// 遍歷文件夾
+			theFolder.GetDirectories().ToList().ForEach(d => GetDirectoryFiles(d.FullName, files));
 		}
 
 		/// <summary>
