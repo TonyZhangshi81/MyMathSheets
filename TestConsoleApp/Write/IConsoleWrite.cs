@@ -1,15 +1,16 @@
-﻿namespace MyMathSheets.TestConsoleApp.Write
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+
+namespace MyMathSheets.TestConsoleApp.Write
 {
 	/// <summary>
 	///
 	/// </summary>
-	/// <typeparam name="T"></typeparam>
-	public interface IConsoleWrite<T>
+	public interface IConsoleWrite
 	{
 		/// <summary>
 		///
 		/// </summary>
-		/// <param name="formulas"></param>
-		void ConsoleFormulas(T formulas);
+		/// <param name="parameter"></param>
+		void ConsoleFormulas(ParameterBase parameter);
 	}
 }

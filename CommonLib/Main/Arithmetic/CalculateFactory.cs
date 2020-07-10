@@ -36,11 +36,14 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <summary>
 		/// 構造函數
 		/// </summary>
+		/// <remarks>
+		/// 使用<see cref="ComposerAttribute"/>依賴導入計算式策略模塊並取得相應的<see cref="Composer"/>對象
+		/// </remarks>
 		[ImportingConstructor]
 		public CalculateFactory()
 		{
 			// 獲取計算式策略模塊Composer
-			_composer = ComposerFactory.GetComporser(SystemModelType.BasicOperations);
+			_composer = ComposerFactory.GetComporser(GetType().Assembly);
 		}
 
 		/// <summary>

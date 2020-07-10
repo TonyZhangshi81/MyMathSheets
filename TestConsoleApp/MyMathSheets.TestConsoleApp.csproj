@@ -41,78 +41,71 @@
     <Reference Include="Common.Logging.NLog41, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.NLog41.3.4.1\lib\net40\Common.Logging.NLog41.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.Arithmetic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.Arithmetic.dll</HintPath>
+    <Reference Include="MyMathSheets.BasicOperationsLib">
+      <HintPath>..\Lib\MyMathSheets.BasicOperationsLib.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.CombinatorialEquation, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.CombinatorialEquation.dll</HintPath>
+    <Reference Include="MyMathSheets.CommonLib">
+      <HintPath>..\Lib\MyMathSheets.CommonLib.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.ComputingConnection, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.ComputingConnection.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.Arithmetic">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Arithmetic.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.CurrencyLinkage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.CurrencyLinkage.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.CombinatorialEquation">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.CombinatorialEquation.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.ComputingConnection">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.ComputingConnection.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.CurrencyLinkage">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.CurrencyLinkage.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.CurrencyOperation">
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.CurrencyOperation.dll</HintPath>
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.CurrencyOperation.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.EqualityComparison, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.EqualityComparison.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.EqualityComparison">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.EqualityComparison.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.EqualityLinkage">
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.EqualityLinkage.dll</HintPath>
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.EqualityLinkage.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.FindNearestNumber, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FindNearestNumber.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.FindNearestNumber">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.FindNearestNumber.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.FindTheLaw, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FindTheLaw.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.FindTheLaw">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.FindTheLaw.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.FruitsLinkage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.FruitsLinkage.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.FruitsLinkage">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.FruitsLinkage.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.GapFillingProblems">
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.GapFillingProblems.dll</HintPath>
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.GapFillingProblems.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.HowMuchMore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.HowMuchMore.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.HowMuchMore">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.HowMuchMore.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.LearnCurrency, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.LearnCurrency.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.LearnCurrency">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.LearnCurrency.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.LearnLengthUnit">
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.LearnLengthUnit.dll</HintPath>
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.LearnLengthUnit.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.MathUpright">
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.MathUpright.dll</HintPath>
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.MathUpright.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.MathWordProblems, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.MathWordProblems.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.MathWordProblems">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.MathWordProblems.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.NumericSorting, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.NumericSorting.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.NumericSorting">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.NumericSorting.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.SchoolClock">
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.SchoolClock.dll</HintPath>
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.SchoolClock.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.ScoreGoal, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.ScoreGoal.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.ScoreGoal">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.ScoreGoal.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.TimeCalculation">
-      <HintPath>..\Lib\MyMathSheets.ComputationalStrategy.TimeCalculation.dll</HintPath>
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.TimeCalculation.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -185,16 +178,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CommonLib\MyMathSheets.CommonLib.csproj">
-      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
-      <Name>MyMathSheets.CommonLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e1}</Project>
-      <Name>MyMathSheets.BasicOperationsLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

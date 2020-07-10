@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Logging;
+﻿using MyMathSheets.CommonLib.Configurations;
+using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
@@ -11,7 +12,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Security.Permissions;
+using System.Runtime.CompilerServices;
 
 namespace MyMathSheets.CommonLib.Composition
 {
@@ -95,7 +96,7 @@ namespace MyMathSheets.CommonLib.Composition
 			SystemModelInfoCache = new ConcurrentDictionary<string, MathSheetMarkerAttribute>();
 
 			LoadTopicModuleFiles = new List<FileInfo>();
-			GetDirectoryFiles(AppDomain.CurrentDomain.BaseDirectory, LoadTopicModuleFiles);
+			GetDirectoryFiles(Configuration.Current.ApplicationRootPath, LoadTopicModuleFiles);
 		}
 
 		/// <summary>
@@ -112,17 +113,15 @@ namespace MyMathSheets.CommonLib.Composition
 			// 用於檢查題型注入的完整性（具備策略模塊和展示模塊）
 			List<string> checkCache = new List<string>();
 
-			var action = new Action<FileInfo>(file =>
+			var action = new Action<FileInfo>(f =>
 			{
-				var assembly = Assembly.LoadFile(file.FullName);
-				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0028L, file.FullName));
+				var assembly = Assembly.LoadFile(f.FullName);
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0028L, f.FullName));
 
-				MathSheetMarkerAttribute attr = assembly.GetCustomAttributes(typeof(MathSheetMarkerAttribute), false)
-					.Cast<MathSheetMarkerAttribute>()
-					.FirstOrDefault();
+				MathSheetMarkerAttribute attr = assembly.GetCustomAttributes(typeof(MathSheetMarkerAttribute), false).OfType<MathSheetMarkerAttribute>().FirstOrDefault();
 				if (attr == null)
 				{
-					throw new ArgumentNullException(MessageUtil.GetMessage(() => MsgResources.E0027L, file.FullName));
+					throw new ArgumentNullException(MessageUtil.GetMessage(() => MsgResources.E0027L, f.FullName));
 				}
 
 				var valueFunc = new Func<string, Composer>(c =>
@@ -173,8 +172,6 @@ namespace MyMathSheets.CommonLib.Composition
 
 			// 模塊信息事件傳播
 			InitializeModelEvent?.Invoke(null, LoadTopicModuleFiles.Count);
-
-			var assemblysssss = AppDomain.CurrentDomain.GetAssemblies();
 
 			LoadTopicModuleFiles.ForEach(f => action(f));
 		}
@@ -262,6 +259,8 @@ namespace MyMathSheets.CommonLib.Composition
 					TempAssembly = assembly;
 				}
 			});
+
+			
 
 			LoadTopicModuleFiles.ForEach(f => action(f));
 

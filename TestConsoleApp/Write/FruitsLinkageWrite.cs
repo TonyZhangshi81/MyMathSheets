@@ -1,7 +1,9 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Item;
+using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
 using System;
@@ -12,7 +14,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 水果連連看题型计算式结果显示输出
 	/// </summary>
-	public class FruitsLinkageWrite : IConsoleWrite<FruitsLinkageFormula>
+	public class FruitsLinkageWrite : IConsoleWrite
 	{
 		/// <summary>
 		/// 计算式结果显示输出
@@ -46,6 +48,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 					CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, container.RightParameter, gap),
 					CommonUtil.GetValue(CommonLib.Util.GapFilling.Answer, container.Answer, gap)));
 			});
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="parameter"></param>
+		public void ConsoleFormulas(ParameterBase parameter)
+		{
+			FruitsLinkageParameter param = (FruitsLinkageParameter)parameter;
+
+			ConsoleFormulas(param.Formulas);
 		}
 	}
 }

@@ -1,6 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Item;
+using MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;
@@ -13,13 +15,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 填空題题型计算式结果显示输出
 	/// </summary>
-	public class GapFillingProblemsWrite : IConsoleWrite<List<GapFillingProblemsFormula>>
+	public class GapFillingProblemsWrite : IConsoleWrite
 	{
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
-		public void ConsoleFormulas(List<GapFillingProblemsFormula> formulas)
+		public void ConsoleFormulas(IList<GapFillingProblemsFormula> formulas)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "基礎填空題"));
 
@@ -38,6 +40,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 				content.Length = 0;
 				index = 0;
 			});
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="parameter"></param>
+		public void ConsoleFormulas(ParameterBase parameter)
+		{
+			GapFillingProblemsParameter param = (GapFillingProblemsParameter)parameter;
+
+			ConsoleFormulas(param.Formulas);
 		}
 	}
 }

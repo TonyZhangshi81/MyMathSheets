@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Configurations;
 using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.FromProcess;
 using MyMathSheets.CommonLib.Message;
@@ -7,7 +8,6 @@ using MyMathSheets.MathSheetsSettingApp.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -40,7 +40,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			InitializeComponent();
 
 			// 獲取HTML支援類Composer
-			Composer composer = ComposerFactory.GetComporser(SystemModelType.Common);
+			Composer composer = ComposerFactory.GetComporser(this.GetType().Assembly);
 			composer.Compose(this);
 		}
 
@@ -174,31 +174,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			TopMost = true;
 
-			// 使用IE打開已作成的靜態頁面
-			Process cmdProcess = new Process();
-			// 命令
-			cmdProcess.StartInfo.FileName = ConfigurationManager.AppSettings.Get("Preview");
-			// 顯示DOC界面
-			cmdProcess.StartInfo.CreateNoWindow = true;
-			// 啟動Exited事件
-			cmdProcess.EnableRaisingEvents = true;
-			// 註冊進程結束事件
-			//cmdProcess.Exited += new EventHandler((s, v) =>
-			//{
-			// 註冊進程結束事件
-			//Environment.Exit(0);
-			//});
-
 			if (cmbWorkPages.SelectedIndex > 0)
 			{
-				// 參數
-				cmdProcess.StartInfo.Arguments = ("\"" + Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork") + cmbWorkPages.SelectedValue.ToString()) + "\"");
-				cmdProcess.Start();
-
-				cmdProcess.WaitForExit(5000);
-
+				// 使用IE打開已作成的靜態頁面
+				CallCommondProcess(() => { return ("\"" + Path.GetFullPath(Configuration.Current.GetConfigValue("HtmlWork") + cmbWorkPages.SelectedValue.ToString()) + "\""); });
 				Environment.Exit(0);
-
 				return;
 			}
 
@@ -213,14 +193,37 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			// 出題按鍵點擊事件
 			var destFileName = Process.SureClick();
-
-			// 參數
-			cmdProcess.StartInfo.Arguments = ("\"" + Path.GetFullPath(@destFileName) + "\"");
-			cmdProcess.Start();
-
-			cmdProcess.WaitForExit(5000);
+			// 使用IE打開已作成的靜態頁面
+			CallCommondProcess(() => { return ("\"" + Path.GetFullPath(@destFileName) + "\""); });
 
 			Environment.Exit(0);
+		}
+
+		/// <summary>
+		/// 執行命令行
+		/// </summary>
+		/// <param name="getArguments">參數</param>
+		/// <param name="waitForExit">等待時間後關閉</param>
+		private void CallCommondProcess(Func<string> getArguments, int waitForExit = 2000)
+		{
+			Process cmdProcess = new Process();
+			// 命令
+			cmdProcess.StartInfo.FileName = Configuration.Current.GetConfigValue("Preview");
+			// 顯示DOC界面
+			cmdProcess.StartInfo.CreateNoWindow = true;
+			// 啟動Exited事件
+			cmdProcess.EnableRaisingEvents = true;
+			// 註冊進程結束事件
+			//cmdProcess.Exited += new EventHandler((s, v) =>
+			//{
+			// 註冊進程結束事件
+			//Environment.Exit(0);
+			//});
+
+			// 參數設定
+			cmdProcess.StartInfo.Arguments = getArguments();
+			cmdProcess.Start();
+			cmdProcess.WaitForExit(waitForExit);
 		}
 
 		/// <summary>

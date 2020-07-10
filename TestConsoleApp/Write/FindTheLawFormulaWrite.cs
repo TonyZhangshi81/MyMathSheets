@@ -1,6 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Item;
+using MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;
@@ -12,13 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 找規律题型计算式结果显示输出
 	/// </summary>
-	public class FindTheLawFormulaWrite : IConsoleWrite<List<FindTheLawFormula>>
+	public class FindTheLawFormulaWrite : IConsoleWrite
 	{
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">找規律题型计算式</param>
-		public void ConsoleFormulas(List<FindTheLawFormula> formulas)
+		public void ConsoleFormulas(IList<FindTheLawFormula> formulas)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "找規律"));
 
@@ -42,6 +44,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 				builder.Length -= 1;
 				Console.WriteLine(builder.ToString());
 			});
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="parameter"></param>
+		public void ConsoleFormulas(ParameterBase parameter)
+		{
+			FindTheLawParameter param = (FindTheLawParameter)parameter;
+
+			ConsoleFormulas(param.Formulas);
 		}
 	}
 }

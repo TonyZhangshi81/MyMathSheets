@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.CommonLib.Util;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Write;
 using Spring.Core.IO;
@@ -63,16 +62,15 @@ namespace MyMathSheets.TestConsoleApp
 		}
 
 		/// <summary>
-		/// spring對象工廠
+		/// spring 對象工廠
 		/// </summary>
 		private IObjectFactory _objectFactory;
 
 		/// <summary>
-		/// spring對象工廠實例作成
+		/// spring 對象工廠實例作成
 		/// </summary>
 		/// <param name="preview">設定題型</param>
-		/// <param name="formulas">題型輸出結果</param>
-		public IConsoleWrite<T> CreateConsoleWriter<T>(string preview)
+		public IConsoleWrite CreateConsoleWriter(string preview)
 		{
 			if (_objectFactory == null)
 			{
@@ -86,7 +84,7 @@ namespace MyMathSheets.TestConsoleApp
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0002T, preview));
 
 			// 創建對象實例并返回
-			IConsoleWrite<T> writer = _objectFactory.GetObject(preview) as IConsoleWrite<T>;
+			IConsoleWrite writer = _objectFactory.GetObject(preview) as IConsoleWrite;
 
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0003T, preview));
 

@@ -1,6 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Item;
+using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
 using System;
@@ -11,7 +13,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 射門得分题型计算式结果显示输出
 	/// </summary>
-	public class ScoreGoalWrite : IConsoleWrite<ScoreGoalFormula>
+	public class ScoreGoalWrite : IConsoleWrite
 	{
 		/// <summary>
 		/// 计算式结果显示输出
@@ -46,6 +48,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 				});
 				seat++;
 			});
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="parameter"></param>
+		public void ConsoleFormulas(ParameterBase parameter)
+		{
+			ScoreGoalParameter param = (ScoreGoalParameter)parameter;
+
+			ConsoleFormulas(param.Formulas);
 		}
 	}
 }

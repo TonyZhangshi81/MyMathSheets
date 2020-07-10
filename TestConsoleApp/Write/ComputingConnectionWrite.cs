@@ -1,10 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.ComputationalStrategy.ComputingConnection.Item;
+using MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -13,18 +13,20 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 等式接龍题型计算式结果显示输出
 	/// </summary>
-	public class ComputingConnectionWrite : IConsoleWrite<List<ConnectionFormula>>
+	public class ComputingConnectionWrite : IConsoleWrite
 	{
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
-		public void ConsoleFormulas(List<ConnectionFormula> formulas)
+		public void ConsoleFormulas(ParameterBase parameter)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "等式接龍"));
 
+			ComputingConnectionParameter param = (ComputingConnectionParameter)parameter;
+
 			StringBuilder builder = new StringBuilder();
-			formulas.ToList().ForEach(d =>
+			param.Formulas.ToList().ForEach(d =>
 			{
 				builder.Length = 0;
 				d.ConfixFormulas.ToList().ForEach(dd =>

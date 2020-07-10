@@ -1,10 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.ComputationalStrategy.Arithmetic.Item;
+using MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace MyMathSheets.TestConsoleApp.Write
@@ -12,17 +12,19 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 四則運算题型计算式结果显示输出
 	/// </summary>
-	public class FormulaWrite : IConsoleWrite<List<ArithmeticFormula>>
+	public class FormulaWrite : IConsoleWrite
 	{
 		/// <summary>
-		/// 计算式结果显示输出
+		/// 計算結果顯示輸出
 		/// </summary>
-		/// <param name="formulas">计算式</param>
-		public void ConsoleFormulas(List<ArithmeticFormula> formulas)
+		/// <param name="parameter">參數</param>
+		public void ConsoleFormulas(ParameterBase parameter)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "四則運算"));
 
-			formulas.ToList().ForEach(d =>
+			ArithmeticParameter param = (ArithmeticParameter)parameter;
+
+			param.Formulas.ToList().ForEach(d =>
 			{
 				if (d.AnswerIsRight)
 				{

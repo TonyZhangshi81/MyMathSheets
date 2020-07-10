@@ -1,7 +1,9 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Item;
+using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;
@@ -13,13 +15,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 認識長度單位题型计算式结果显示输出
 	/// </summary>
-	public class LearnLengthUnitWrite : IConsoleWrite<List<LearnLengthUnitFormula>>
+	public class LearnLengthUnitWrite : IConsoleWrite
 	{
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
-		public void ConsoleFormulas(List<LearnLengthUnitFormula> formulas)
+		public void ConsoleFormulas(IList<LearnLengthUnitFormula> formulas)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "認識長度單位"));
 
@@ -126,6 +128,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 
 				Console.WriteLine(format);
 			});
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="parameter"></param>
+		public void ConsoleFormulas(ParameterBase parameter)
+		{
+			LearnLengthUnitParameter param = (LearnLengthUnitParameter)parameter;
+
+			ConsoleFormulas(param.Formulas);
 		}
 	}
 }

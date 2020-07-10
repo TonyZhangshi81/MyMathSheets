@@ -1,6 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Item;
+using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
 using System;
@@ -12,13 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 等式比大小题型计算式结果显示输出
 	/// </summary>
-	public class FindNearestNumberWrite : IConsoleWrite<List<NearestNumberFormula>>
+	public class FindNearestNumberWrite : IConsoleWrite
 	{
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
-		public void ConsoleFormulas(List<NearestNumberFormula> formulas)
+		public void ConsoleFormulas(IList<NearestNumberFormula> formulas)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "等式比大小"));
 
@@ -33,6 +35,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 					d.RightFormula.Sign.ToOperationString(),
 					CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.RightFormula.RightParameter, d.RightFormula.Gap)));
 			});
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="parameter"></param>
+		public void ConsoleFormulas(ParameterBase parameter)
+		{
+			FindNearestNumberParameter param = (FindNearestNumberParameter)parameter;
+
+			ConsoleFormulas(param.Formulas);
 		}
 	}
 }

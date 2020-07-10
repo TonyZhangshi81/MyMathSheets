@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MyMathSheets.BasicOperationsLib">
+      <HintPath>..\..\..\Lib\MyMathSheets.BasicOperationsLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.CommonLib">
+      <HintPath>..\..\..\Lib\MyMathSheets.CommonLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -58,18 +64,13 @@
     <None Include="Config\MathWordProblemsLibrary.json" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">
-      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
-      <Name>MyMathSheets.CommonLib</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
-copy "$(TargetFileName)" "$(SolutionDir)\Lib" /y
+if not exist "$(SolutionDir)\Lib\StrategyModule" md "$(SolutionDir)\Lib\StrategyModule"
+copy "$(TargetFileName)" "$(SolutionDir)\Lib\StrategyModule" /y
 copy "..\Config\*.json" "..\..\..\..\TestConsoleApp\Config\" /Y
 copy "..\Config\*.json" "$(SolutionDir)MathSheetsSettingApp\Config" /Y
 copy "..\Config\*.json" "$(SolutionDir)TestConsoleApp\Config" /Y

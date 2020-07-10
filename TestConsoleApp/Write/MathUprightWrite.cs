@@ -1,7 +1,9 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.MathUpright.Item;
+using MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;
@@ -12,13 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 豎式計算題型計算式結果顯示輸出
 	/// </summary>
-	public class MathUprightWrite : IConsoleWrite<List<MathUprightFormula>>
+	public class MathUprightWrite : IConsoleWrite
 	{
 		/// <summary>
 		/// 計算式結果顯示輸出
 		/// </summary>
 		/// <param name="formulas">豎式計算題型計算式</param>
-		public void ConsoleFormulas(List<MathUprightFormula> formulas)
+		public void ConsoleFormulas(IList<MathUprightFormula> formulas)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "豎式計算"));
 
@@ -58,6 +60,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 
 				Console.WriteLine();
 			});
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="parameter"></param>
+		public void ConsoleFormulas(ParameterBase parameter)
+		{
+			MathUprightParameter param = (MathUprightParameter)parameter;
+
+			ConsoleFormulas(param.Formulas);
 		}
 	}
 }

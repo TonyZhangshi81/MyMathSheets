@@ -25,7 +25,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		private void ComposeThis()
 		{
 			// Helper 實例后只需要收集一次
-			if (this._composed)
+			if (_composed)
 			{
 				return;
 			}
@@ -51,7 +51,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		public CalculateHelper()
 		{
 			// 獲取共通處理模塊Composer
-			_composer = ComposerFactory.GetComporser(SystemModelType.Common);
+			_composer = ComposerFactory.GetComporser(GetType().Assembly);
 		}
 
 		/// <summary>
@@ -63,6 +63,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		{
 			// 本類中的屬性注入執行
 			ComposeThis();
+
 			// 運算符工廠實例化
 			return CalculateFactory.CreateCalculateInstance(sign);
 		}

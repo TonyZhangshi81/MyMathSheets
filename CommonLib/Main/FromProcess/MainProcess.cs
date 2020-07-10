@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Configurations;
 using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.FromProcess.Support;
 using MyMathSheets.CommonLib.Main.FromProcess.Util;
@@ -11,7 +12,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -98,7 +98,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		private void TopicManagementInit()
 		{
 			// 读取资料库
-			using (var file = File.OpenText(ConfigurationManager.AppSettings.Get("TopicManagement")))
+			using (var file = File.OpenText(Configuration.Current.TopicManagementConfig))
 			{
 				TopicManagementList = JsonConvert.DeserializeObject<List<TopicManagement>>(file.ReadToEnd());
 			};
@@ -110,15 +110,16 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// <returns>文件名列表</returns>
 		public List<string> GetWorkPageFiles()
 		{
-			List<string> fileNames = new List<string>();
+			var htmlWork = Configuration.Current.GetConfigValue("HtmlWork");
 			// 如果目錄不存在
-			if (!Directory.Exists(ConfigurationManager.AppSettings.Get("HtmlWork")))
+			if (!Directory.Exists(htmlWork))
 			{
-				return fileNames;
+				return new List<string>();
 			}
 
+			List<string> fileNames = new List<string>();
 			string filter = DateTime.Now.ToString("yyyyMMdd", CultureInfo.CurrentCulture);
-			DirectoryInfo root = new DirectoryInfo(ConfigurationManager.AppSettings.Get("HtmlWork"));
+			DirectoryInfo root = new DirectoryInfo(htmlWork);
 			// 獲取文件列表
 			root.GetFiles().ToList().ForEach(d =>
 			{
@@ -142,9 +143,9 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		public string SureClick()
 		{
 			// HTML模板存放路徑
-			string sourceFileName = Path.GetFullPath(ConfigurationManager.AppSettings.Get("Template"));
+			string sourceFileName = Path.GetFullPath(Configuration.Current.HtmlTemplatePath);
 			// 靜態頁面作成后存放的路徑（文件名：日期時間形式）
-			string destFileName = Path.GetFullPath(ConfigurationManager.AppSettings.Get("HtmlWork")
+			string destFileName = Path.GetFullPath(Configuration.Current.GetConfigValue("HtmlWork")
 										+ string.Format(CultureInfo.CurrentCulture, "{0}.html", DateTime.Now.ToString("yyyyMMddHHmmssfff", CultureInfo.CurrentCulture)));
 
 			// 文件移動

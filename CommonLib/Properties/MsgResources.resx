@@ -168,6 +168,9 @@
   <data name="E0041L" xml:space="preserve">
     <value>E0041L:密文【{0}】Base64解密錯誤</value>
   </data>
+  <data name="E0042L" xml:space="preserve">
+    <value>E0042L:運用程序配置文件中沒有找到{0}的定義</value>
+  </data>
   <data name="I0001L" xml:space="preserve">
     <value>I0001L:指定運算符實例準備作成</value>
   </data>

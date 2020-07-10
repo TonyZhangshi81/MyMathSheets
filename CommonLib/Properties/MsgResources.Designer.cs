@@ -214,6 +214,15 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
+        ///   E0042L:運用程序配置文件中沒有找到{0}的定義 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0042L {
+            get {
+                return ResourceManager.GetString("E0042L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   I0001L:指定運算符實例準備作成 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string I0001L {

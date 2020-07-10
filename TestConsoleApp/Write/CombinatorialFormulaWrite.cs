@@ -1,10 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item;
+using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace MyMathSheets.TestConsoleApp.Write
@@ -12,17 +12,19 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 算式組合题型计算式结果显示输出
 	/// </summary>
-	public class CombinatorialFormulaWrite : IConsoleWrite<List<CombinatorialFormula>>
+	public class CombinatorialFormulaWrite : IConsoleWrite
 	{
 		/// <summary>
-		/// 计算式结果显示输出
+		/// 計算結果顯示輸出
 		/// </summary>
-		/// <param name="formulas">算式組合题型计算式</param>
-		public void ConsoleFormulas(List<CombinatorialFormula> formulas)
+		/// <param name="parameter">參數</param>
+		public void ConsoleFormulas(ParameterBase parameter)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "算式組合"));
 
-			formulas.ToList().ForEach(d =>
+			CombinatorialEquationParameter param = (CombinatorialEquationParameter)parameter;
+
+			param.Formulas.ToList().ForEach(d =>
 			{
 				Console.WriteLine(string.Format("{0} {1} {2} {3}", d.ParameterA, d.ParameterB, d.ParameterC, d.ParameterD));
 				d.CombinatorialFormulas.ToList().ForEach(m =>

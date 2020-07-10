@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.TestConsoleApp
 {
@@ -34,13 +35,14 @@ namespace MyMathSheets.TestConsoleApp
 		/// <summary>
 		/// 題型測試結果輸出
 		/// </summary>
-		/// <typeparam name="T">各題型類的輸出結果類型參數</typeparam>
 		/// <param name="preview">題型種類</param>
-		/// <param name="formulas">各題型類的輸出結果對象</param>
-		public static void ConsoleFormulas<T>(string preview, T formulas)
+		/// <param name="args">調試用參數</param>
+		public static void ConsoleFormulas(string preview, string args)
 		{
-			var writer = FormulasConsolerFactory.Instance.CreateConsoleWriter<T>(preview);
-			writer.ConsoleFormulas(formulas);
+			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview, args);
+
+			var writer = FormulasConsolerFactory.Instance.CreateConsoleWriter(preview);
+			writer.ConsoleFormulas(parameter);
 		}
 	}
 }

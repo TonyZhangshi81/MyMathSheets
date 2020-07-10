@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MyMathSheets.BasicOperationsLib">
+      <HintPath>..\..\..\Lib\MyMathSheets.BasicOperationsLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.CommonLib">
+      <HintPath>..\..\..\Lib\MyMathSheets.CommonLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -64,14 +70,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">
-      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
-      <Name>MyMathSheets.CommonLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj">
-      <Project>{3206e500-28d2-4055-a14f-3de3cbd526e1}</Project>
-      <Name>MyMathSheets.BasicOperationsLib</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\SchoolClock\MyMathSheets.ComputationalStrategy.SchoolClock.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e9}</Project>
       <Name>MyMathSheets.ComputationalStrategy.SchoolClock</Name>
@@ -80,7 +78,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
-copy "$(TargetFileName)" "$(SolutionDir)Lib" /Y
+if not exist "$(SolutionDir)Lib\DisplayModule" md "$(SolutionDir)Lib\DisplayModule"
+copy "$(TargetFileName)" "$(SolutionDir)Lib\DisplayModule" /Y
 copy "..\Scripts\Ext\*.js" "..\..\..\Scripts\Ext\" /Y
 xcopy "..\Content" "..\..\..\Content" /C /E /H /K /R /Y
 copy "..\Template\*.html" "$(SolutionDir)TheFormulaShows\Template" /Y

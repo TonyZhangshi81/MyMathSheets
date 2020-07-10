@@ -1,35 +1,13 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
-using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
-using MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
-using System.Linq;
 using System.Text;
 
 namespace MyMathSheets.TestConsoleApp
 {
 	/// <summary>
-	/// Programの父類
+	/// <see cref="Program"/>的父類
 	/// </summary>
 	public class ProgramBase
 	{
@@ -80,141 +58,121 @@ namespace MyMathSheets.TestConsoleApp
 					case "AC0":
 						Console.WriteLine();
 						Console.WriteLine("四則運算");
-						ArithmeticParameter acParameter = (ArithmeticParameter)OperationStrategyHelper.Instance.Structure("Arithmetic", key);
-						CommonUtil.ConsoleFormulas("Arithmetic", acParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("Arithmetic", key);
 						break;
 
 					case "CE0":
 						Console.WriteLine();
 						Console.WriteLine("算式組合");
-						CombinatorialEquationParameter ceParameter = (CombinatorialEquationParameter)OperationStrategyHelper.Instance.Structure("CombinatorialEquation", key);
-						CommonUtil.ConsoleFormulas("CombinatorialEquation", ceParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("CombinatorialEquation", key);
 						break;
 
 					case "CC0":
 						Console.WriteLine();
 						Console.WriteLine("等式接龍");
-						ComputingConnectionParameter ccParameter = (ComputingConnectionParameter)OperationStrategyHelper.Instance.Structure("ComputingConnection", key);
-						CommonUtil.ConsoleFormulas("ComputingConnection", ccParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("ComputingConnection", key);
 						break;
 
 					case "CL0":
 						Console.WriteLine();
 						Console.WriteLine("認識價格");
-						CurrencyLinkageParameter clParameter = (CurrencyLinkageParameter)OperationStrategyHelper.Instance.Structure("CurrencyLinkage", key);
-						CommonUtil.ConsoleFormulas("CurrencyLinkage", clParameter.Currencys);
+						CommonUtil.ConsoleFormulas("CurrencyLinkage", key);
 						break;
 
 					case "CO0":
 						Console.WriteLine();
 						Console.WriteLine("貨幣運算");
-						CurrencyOperationParameter coParameter = (CurrencyOperationParameter)OperationStrategyHelper.Instance.Structure("CurrencyOperation", key);
-						CommonUtil.ConsoleFormulas("CurrencyOperation", coParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("CurrencyOperation", key);
 						break;
 
 					case "EC0":
 						Console.WriteLine();
 						Console.WriteLine("算式比大小");
-						EqualityComparisonParameter ecParameter = (EqualityComparisonParameter)OperationStrategyHelper.Instance.Structure("EqualityComparison", key);
-						CommonUtil.ConsoleFormulas("EqualityComparison", ecParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("EqualityComparison", key);
 						break;
 
 					case "EL0":
 						Console.WriteLine();
 						Console.WriteLine("算式連一連");
-						EqualityLinkageParameter elParameter = (EqualityLinkageParameter)OperationStrategyHelper.Instance.Structure("EqualityLinkage", key);
-						CommonUtil.ConsoleFormulas("EqualityLinkage", elParameter.Formulas);
+						CommonUtil.ConsoleFormulas("EqualityLinkage", key);
 						break;
 
 					case "MP0":
 						Console.WriteLine();
 						Console.WriteLine("算式應用題");
-						MathWordProblemsParameter mpParameter = (MathWordProblemsParameter)OperationStrategyHelper.Instance.Structure("MathWordProblems", key);
-						CommonUtil.ConsoleFormulas("MathWordProblems", mpParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("MathWordProblems", key);
 						break;
 
 					case "FL0":
 						Console.WriteLine();
 						Console.WriteLine("水果連連看");
-						FruitsLinkageParameter flParameter = (FruitsLinkageParameter)OperationStrategyHelper.Instance.Structure("FruitsLinkage", key);
-						CommonUtil.ConsoleFormulas("FruitsLinkage", flParameter.Formulas);
+						CommonUtil.ConsoleFormulas("FruitsLinkage", key);
 						break;
 
 					case "FNN":
 						Console.WriteLine();
 						Console.WriteLine("找到最近的數字");
-						FindNearestNumberParameter fnParameter = (FindNearestNumberParameter)OperationStrategyHelper.Instance.Structure("FindNearestNumber", key);
-						CommonUtil.ConsoleFormulas("FindNearestNumber", fnParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("FindNearestNumber", key);
 						break;
 
 					case "FTL":
 						Console.WriteLine();
 						Console.WriteLine("找規律");
-						FindTheLawParameter ftlParameter = (FindTheLawParameter)OperationStrategyHelper.Instance.Structure("FindTheLaw", key);
-						CommonUtil.ConsoleFormulas("FindTheLaw", ftlParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("FindTheLaw", key);
 						break;
 
 					case "GFP":
 						Console.WriteLine();
 						Console.WriteLine("基礎填空題");
-						GapFillingProblemsParameter gfpParameter = (GapFillingProblemsParameter)OperationStrategyHelper.Instance.Structure("GapFillingProblems", key);
-						CommonUtil.ConsoleFormulas("GapFillingProblems", gfpParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("GapFillingProblems", key);
 						break;
 
 					case "HMM":
 						Console.WriteLine();
 						Console.WriteLine("比多少");
-						HowMuchMoreParameter hmmParameter = (HowMuchMoreParameter)OperationStrategyHelper.Instance.Structure("HowMuchMore", key);
-						CommonUtil.ConsoleFormulas("HowMuchMore", hmmParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("HowMuchMore", key);
 						break;
 
 					case "LC0":
 						Console.WriteLine();
 						Console.WriteLine("認識貨幣");
-						LearnCurrencyParameter lcParameter = (LearnCurrencyParameter)OperationStrategyHelper.Instance.Structure("LearnCurrency", key);
-						CommonUtil.ConsoleFormulas("LearnCurrency", lcParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("LearnCurrency", key);
 						break;
 
 					case "LLU":
 						Console.WriteLine();
 						Console.WriteLine("認識長度單位");
-						LearnLengthUnitParameter lluParameter = (LearnLengthUnitParameter)OperationStrategyHelper.Instance.Structure("LearnLengthUnit", key);
-						CommonUtil.ConsoleFormulas("LearnLengthUnit", lluParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("LearnLengthUnit", key);
 						break;
 
 					case "NS0":
 						Console.WriteLine();
 						Console.WriteLine("數字排序");
-						NumericSortingParameter nsParameter = (NumericSortingParameter)OperationStrategyHelper.Instance.Structure("NumericSorting", key);
-						CommonUtil.ConsoleFormulas("NumericSorting", nsParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("NumericSorting", key);
 						break;
 
 					case "SC0":
 						Console.WriteLine();
 						Console.WriteLine("時鐘學習板");
-						SchoolClockParameter scParameter = (SchoolClockParameter)OperationStrategyHelper.Instance.Structure("SchoolClock", key);
-						CommonUtil.ConsoleFormulas("SchoolClock", scParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("SchoolClock", key);
 						break;
 
 					case "SG0":
 						Console.WriteLine();
 						Console.WriteLine("射門得分");
-						ScoreGoalParameter sgParameter = (ScoreGoalParameter)OperationStrategyHelper.Instance.Structure("ScoreGoal", key);
-						CommonUtil.ConsoleFormulas("ScoreGoal", sgParameter.Formulas);
+						CommonUtil.ConsoleFormulas("ScoreGoal", key);
 						break;
 
 					case "TC0":
 						Console.WriteLine();
 						Console.WriteLine("時間運算");
-						TimeCalculationParameter tcParameter = (TimeCalculationParameter)OperationStrategyHelper.Instance.Structure("TimeCalculation", key);
-						CommonUtil.ConsoleFormulas("TimeCalculation", tcParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("TimeCalculation", key);
 						break;
 
 					case "MU0":
 						Console.WriteLine();
 						Console.WriteLine("豎式計算");
-						MathUprightParameter muParameter = (MathUprightParameter)OperationStrategyHelper.Instance.Structure("MathUpright", key);
-						CommonUtil.ConsoleFormulas("MathUpright", muParameter.Formulas.ToList());
+						CommonUtil.ConsoleFormulas("MathUpright", key);
 						break;
 
 					case "900":

@@ -1,7 +1,9 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.EqualityLinkage.Item;
+using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
 using System;
@@ -12,7 +14,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 算式連一連题型计算式结果显示输出
 	/// </summary>
-	public class EqualityLinkageWrite : IConsoleWrite<EqualityLinkageFormula>
+	public class EqualityLinkageWrite : IConsoleWrite
 	{
 		/// <summary>
 		/// 计算式结果显示输出
@@ -46,6 +48,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 					CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, container.RightParameter, gap),
 					CommonUtil.GetValue(CommonLib.Util.GapFilling.Answer, container.Answer, gap)));
 			});
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="parameter"></param>
+		public void ConsoleFormulas(ParameterBase parameter)
+		{
+			EqualityLinkageParameter param = (EqualityLinkageParameter)parameter;
+
+			ConsoleFormulas(param.Formulas);
 		}
 	}
 }

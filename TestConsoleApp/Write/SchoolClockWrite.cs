@@ -1,6 +1,8 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Item;
+using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
 using System;
@@ -12,13 +14,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 時鐘學習板题型计算式结果显示输出
 	/// </summary>
-	public class SchoolClockWrite : IConsoleWrite<List<SchoolClockFormula>>
+	public class SchoolClockWrite : IConsoleWrite
 	{
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
-		public void ConsoleFormulas(List<SchoolClockFormula> formulas)
+		public void ConsoleFormulas(IList<SchoolClockFormula> formulas)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "時鐘學習板"));
 
@@ -31,6 +33,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 								d.LatestTime.Seconds.ToString().PadLeft(2, '0'),
 								d.LatestTime.GetTimeType.ToString()));
 			});
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="parameter"></param>
+		public void ConsoleFormulas(ParameterBase parameter)
+		{
+			SchoolClockParameter param = (SchoolClockParameter)parameter;
+
+			ConsoleFormulas(param.Formulas);
 		}
 	}
 }

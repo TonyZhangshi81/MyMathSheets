@@ -1,7 +1,9 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Item;
+using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
 using System.Collections.Generic;
@@ -13,13 +15,13 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 認識貨幣题型计算式结果显示输出
 	/// </summary>
-	public class LearnCurrencyWrite : IConsoleWrite<List<LearnCurrencyFormula>>
+	public class LearnCurrencyWrite : IConsoleWrite
 	{
 		/// <summary>
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
-		public void ConsoleFormulas(List<LearnCurrencyFormula> formulas)
+		public void ConsoleFormulas(IList<LearnCurrencyFormula> formulas)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "認識貨幣"));
 
@@ -74,6 +76,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 
 				Console.WriteLine(format);
 			});
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="parameter"></param>
+		public void ConsoleFormulas(ParameterBase parameter)
+		{
+			LearnCurrencyParameter param = (LearnCurrencyParameter)parameter;
+
+			ConsoleFormulas(param.Formulas);
 		}
 	}
 }

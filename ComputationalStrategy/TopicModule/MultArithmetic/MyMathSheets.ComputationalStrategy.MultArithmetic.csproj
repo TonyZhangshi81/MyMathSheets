@@ -32,8 +32,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    <Reference Include="MyMathSheets.BasicOperationsLib">
+      <HintPath>..\..\..\Lib\MyMathSheets.BasicOperationsLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MyMathSheets.CommonLib">
+      <HintPath>..\..\..\Lib\MyMathSheets.CommonLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -57,19 +60,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">
-      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
-      <Name>MyMathSheets.CommonLib</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Main\Helper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetFileName)" "$(SolutionDir)\Lib" /y
+    <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
+if not exist "$(SolutionDir)\Lib\StrategyModule" md "$(SolutionDir)\Lib\StrategyModule"
+copy "$(TargetFileName)" "$(SolutionDir)\Lib\StrategyModule" /y
 copy "..\Config\*.json" "$(SolutionDir)MathSheetsSettingApp\Config" /Y
 copy "..\Config\*.json" "$(SolutionDir)TestConsoleApp\Config" /Y</PostBuildEvent>
   </PropertyGroup>
