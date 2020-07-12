@@ -245,6 +245,7 @@ if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Plugin" md "$(Sol
 xcopy "..\Plugin" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Plugin" /C /E /H /K /R /Y
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\fonts" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\fonts"
 xcopy "..\Content\fonts" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\fonts" /C /E /H /K /R /Y
+if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Page" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Page"
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts"
 copy "..\Scripts\bootstrap.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.easyui.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y

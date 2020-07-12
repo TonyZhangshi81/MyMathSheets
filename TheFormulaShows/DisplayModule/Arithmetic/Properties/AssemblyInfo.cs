@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib;
+﻿using System.Resources;
+using MyMathSheets.CommonLib;
 using MyMathSheets.CommonLib.Util;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -7,13 +8,14 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("MyMathSheets.TheFormulaShows.Arithmetic")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("四则运算")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MyMathSheets.TheFormulaShows.Arithmetic")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: NeutralResourcesLanguage("zh-Hans")]
 
 // 将 ComVisible 设置为 false 会使此程序集中的类型
 //对 COM 组件不可见。如果需要从 COM 访问此程序集中的类型

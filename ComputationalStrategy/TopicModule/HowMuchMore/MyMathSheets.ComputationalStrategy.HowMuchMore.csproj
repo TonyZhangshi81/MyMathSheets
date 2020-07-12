@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MyMathSheets.ComputationalStrategy.HowMuchMore</RootNamespace>
-    <AssemblyName>MyMathSheets.ComputationalStrategy.HowMuchMore</AssemblyName>
+    <AssemblyName>MyMathSheets.ComputationalStrategy.Generally.HowMuchMore</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\MyMathSheets.ComputationalStrategy.HowMuchMore.xml</DocumentationFile>
+    <DocumentationFile>bin\MyMathSheets.ComputationalStrategy.Generally.HowMuchMore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MyMathSheets.BasicOperationsLib">
-      <HintPath>..\..\..\Lib\MyMathSheets.BasicOperationsLib.dll</HintPath>
-    </Reference>
     <Reference Include="MyMathSheets.CommonLib">
       <HintPath>..\..\..\Lib\MyMathSheets.CommonLib.dll</HintPath>
     </Reference>

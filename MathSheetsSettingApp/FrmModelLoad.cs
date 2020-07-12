@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Composition;
+﻿using MyMathSheets.CommonLib.Plugin;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -124,12 +124,20 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			timer1.Start();
 
+			PluginsManager pluginsManager = new PluginsManager();
+
+			pluginsManager.ModelLoadingEvent += new PluginsManager.ModelLoadingEventHandler(ModelLoadingEvent);
+			pluginsManager.ModelLoadCompleteEvent += new PluginsManager.ModelLoadCompleteEventHandler(ModelLoadCompleteEvent);
+			pluginsManager.InitializeModelEvent += new PluginsManager.ModelInitializeEventHandler(InitializeModelEvent);
+
+			/*
 			ComposerFactory.ModelLoadingEvent += new ComposerFactory.ModelLoadingEventHandler(ModelLoadingEvent);
 			ComposerFactory.ModelLoadCompleteEvent += new ComposerFactory.ModelLoadCompleteEventHandler(ModelLoadCompleteEvent);
 			ComposerFactory.InitializeModelEvent += new ComposerFactory.ModelInitializeEventHandler(InitializeModelEvent);
+			*/
 
 			// 異步處理
-			Action handler = new Action(ComposerFactory.Init);
+			Action handler = new Action(pluginsManager.Initialize);
 			handler.BeginInvoke(ar => handler.EndInvoke(ar), null);
 		}
 

@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Configurations;
 using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Plugin;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using System;
@@ -29,36 +30,36 @@ namespace MyMathSheets.CommonLib.Composition
 		/// </summary>
 		/// <param name="sender">程序集對象</param>
 		/// <param name="current">當前加載對象計數</param>
-		public delegate void ModelLoadingEventHandler(object sender, int current);
+		//public delegate void ModelLoadingEventHandler(object sender, int current);
 
 		/// <summary>
 		/// 模塊加載完畢
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="current">當前加載對象計數</param>
-		public delegate void ModelLoadCompleteEventHandler(object sender, int current);
+		//public delegate void ModelLoadCompleteEventHandler(object sender, int current);
 
 		/// <summary>
 		/// 模塊信息檢索
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="modelCount">預加載對象合計數</param>
-		public delegate void ModelInitializeEventHandler(object sender, int modelCount);
+		//public delegate void ModelInitializeEventHandler(object sender, int modelCount);
 
 		/// <summary>
 		/// 模塊加載事件
 		/// </summary>
-		public static event ModelLoadingEventHandler ModelLoadingEvent;
+		//public static event ModelLoadingEventHandler ModelLoadingEvent;
 
 		/// <summary>
 		/// 模塊加載完畢事件
 		/// </summary>
-		public static event ModelLoadCompleteEventHandler ModelLoadCompleteEvent;
+		//public static event ModelLoadCompleteEventHandler ModelLoadCompleteEvent;
 
 		/// <summary>
 		/// 模塊信息檢索事件
 		/// </summary>
-		public static event ModelInitializeEventHandler InitializeModelEvent;
+		//public static event ModelInitializeEventHandler InitializeModelEvent;
 
 		/// <summary>
 		/// 文件名檢索用關鍵字
@@ -68,7 +69,7 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <summary>
 		///
 		/// </summary>
-		private static Assembly TempAssembly;
+		//private static Assembly TempAssembly;
 
 		/// <summary>
 		/// 以程序集為單位的組合器<see cref="Composer"/>緩存
@@ -78,12 +79,12 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <summary>
 		/// 以系統模塊為單位<see cref="SystemModelType"/>的組合器緩存
 		/// </summary>
-		internal static readonly ConcurrentDictionary<string, MathSheetMarkerAttribute> SystemModelInfoCache;
+		//internal static readonly ConcurrentDictionary<string, MathSheetMarkerAttribute> SystemModelInfoCache;
 
 		/// <summary>
 		///
 		/// </summary>
-		private static readonly List<FileInfo> LoadTopicModuleFiles;
+		//private static readonly List<FileInfo> LoadTopicModuleFiles;
 
 		/// <summary>
 		///
@@ -93,10 +94,10 @@ namespace MyMathSheets.CommonLib.Composition
 			Sync = new object();
 
 			ComposerCache = new ConcurrentDictionary<string, Composer>();
-			SystemModelInfoCache = new ConcurrentDictionary<string, MathSheetMarkerAttribute>();
+			//SystemModelInfoCache = new ConcurrentDictionary<string, MathSheetMarkerAttribute>();
 
-			LoadTopicModuleFiles = new List<FileInfo>();
-			GetDirectoryFiles(Configuration.Current.ApplicationRootPath, LoadTopicModuleFiles);
+			//LoadTopicModuleFiles = new List<FileInfo>();
+			//GetDirectoryFiles(Configuration.Current.ApplicationRootPath, LoadTopicModuleFiles);
 		}
 
 		/// <summary>
@@ -104,6 +105,7 @@ namespace MyMathSheets.CommonLib.Composition
 		/// </summary>
 		private static readonly object Sync;
 
+		/*
 		/// <summary>
 		/// 模塊記載初期化處理
 		/// </summary>
@@ -175,6 +177,7 @@ namespace MyMathSheets.CommonLib.Composition
 
 			LoadTopicModuleFiles.ForEach(f => action(f));
 		}
+		*/
 
 		/// <summary>
 		/// 返回指定模塊識別ID和題型編號下的<see cref="Composer"/>對象
@@ -250,6 +253,7 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <returns><see cref="Assembly"/>對象</returns>
 		private static Assembly GetAssembly(SystemModelType systemModel, string preview)
 		{
+			/*
 			var action = new Action<FileInfo>(f =>
 			{
 				var assembly = Assembly.LoadFile(f.FullName);
@@ -260,8 +264,6 @@ namespace MyMathSheets.CommonLib.Composition
 				}
 			});
 
-			
-
 			LoadTopicModuleFiles.ForEach(f => action(f));
 
 			if (TempAssembly == null)
@@ -269,6 +271,17 @@ namespace MyMathSheets.CommonLib.Composition
 				throw new ComposerException(MessageUtil.GetMessage(() => MsgResources.E0001L, $"{systemModel}::{preview}"));
 			}
 			return TempAssembly;
+			*/
+
+			if (PluginsManager.InitPluginsModuleList.Count == 0)
+			{
+				var pluginsManager = new PluginsManager();
+				pluginsManager.Initialize();
+			}
+
+			var plugin = PluginsManager.InitPluginsModuleList.ToList().Where(d => systemModel.Equals(d.SystemModel) && preview.Equals(d.Preview, StringComparison.CurrentCultureIgnoreCase)).First();
+			var assembly = Assembly.LoadFile(plugin.FullName);
+			return assembly;
 		}
 
 		/// <summary>
@@ -316,15 +329,15 @@ namespace MyMathSheets.CommonLib.Composition
 		{
 			lock (Sync)
 			{
-				if (SystemModelInfoCache != null)
-				{
-					SystemModelInfoCache.Clear();
-				}
+				//if (SystemModelInfoCache != null)
+				//{
+				//	SystemModelInfoCache.Clear();
+				//}
 
-				if (LoadTopicModuleFiles != null)
-				{
-					LoadTopicModuleFiles.Clear();
-				}
+				//if (LoadTopicModuleFiles != null)
+				//{
+				//	LoadTopicModuleFiles.Clear();
+				//}
 
 				foreach (KeyValuePair<string, Composer> item in ComposerCache)
 				{

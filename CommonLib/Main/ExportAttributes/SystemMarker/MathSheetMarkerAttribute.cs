@@ -1,5 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Util;
 using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace MyMathSheets.CommonLib
 {
@@ -9,6 +11,17 @@ namespace MyMathSheets.CommonLib
 	[AttributeUsage(AttributeTargets.Assembly, AllowMultiple = false, Inherited = false)]
 	public sealed class MathSheetMarkerAttribute : Attribute
 	{
+		/// <summary>
+		/// 構造函數
+		/// </summary>
+		/// <param name="fileInfo">插件</param>
+		public MathSheetMarkerAttribute(FileInfo fileInfo)
+		{
+			Guard.ArgumentNotNull(fileInfo, "fileInfo");
+
+			this.Description = FileVersionInfo.GetVersionInfo(fileInfo.FullName).Comments;
+		}
+
 		/// <summary>
 		/// 構造函數
 		/// </summary>

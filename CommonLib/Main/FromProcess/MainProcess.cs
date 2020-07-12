@@ -6,6 +6,7 @@ using MyMathSheets.CommonLib.Main.FromProcess.Util;
 using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.Plugin;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using Newtonsoft.Json;
@@ -329,6 +330,43 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 					string classifyName = string.Empty;
 
 					int indexX = 1, indexY = 1;
+
+					foreach (var plugin in from _ in PluginsManager.InitPluginsModuleList
+										   where _.SystemModel == SystemModelType.TheFormulaShows
+										   orderby _.Classify ascending, _.Preview ascending
+										   select _)
+					{
+						// 題型大類不同的場合，坐標初期化設定
+						if (!classifyName.Equals(plugin.Classify.ToString(), StringComparison.CurrentCultureIgnoreCase))
+						{
+							indexX = 1;
+							indexY = 1;
+							classifyName = plugin.Classify.ToString();
+						}
+
+						_controlList.Add(new ControlInfo()
+						{
+							IndexX = indexX,
+							IndexY = indexY,
+							// 控件ID設定
+							ControlId = plugin.Preview,
+							// 控件標題設定
+							Title = plugin.Description,
+							// 題型分類
+							Classify = plugin.Classify,
+							// 題型類型
+							Preview = plugin.Preview
+						});
+
+						if (indexX == 3)
+						{
+							indexY++;
+							indexX = 0;
+						}
+						indexX++;
+					}
+
+					/*
 					ComposerFactory.SystemModelInfoCache
 						.OrderBy(b => b.Value.Classify, new ClassifyToIntComparer())
 						.ThenBy(c => c.Key).ToList()
@@ -363,6 +401,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 						}
 						indexX++;
 					});
+					*/
 				}
 				return _controlList;
 			}
