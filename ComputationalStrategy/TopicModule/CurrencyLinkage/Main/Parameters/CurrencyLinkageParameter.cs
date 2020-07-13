@@ -26,7 +26,6 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Parameters
 		/// </summary>
 		public override void InitParameter()
 		{
-			base.InitParameter();
 			// 是否為縱向排列
 			QueueType = (JsonExtension.GetPropertyByJson(Reserve, "DivQueueType") == null) ? DivQueueType.Lengthways : (DivQueueType)Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "DivQueueType"));
 

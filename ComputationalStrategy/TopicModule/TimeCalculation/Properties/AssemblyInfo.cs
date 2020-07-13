@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("MyMathSheets.ComputationalStrategy.TimeCalculation")]
-[assembly: AssemblyDescription("时间运算")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MyMathSheets.ComputationalStrategy.TimeCalculation")]
@@ -35,4 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: MathSheetMarker(SystemModelType.ComputationalStrategy, LayoutSetting.Classify.Time, "TimeCalculation", "時間運算")]
+[assembly: Plugin(SystemModelType.ComputationalStrategy, LayoutSetting.Classify.Time, "TimeCalculation", "時間運算")]

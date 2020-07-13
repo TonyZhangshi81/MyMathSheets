@@ -27,8 +27,6 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters
 		/// </summary>
 		public override void InitParameter()
 		{
-			base.InitParameter();
-
 			Numbers = Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "Numbers"));
 
 			// 數字排序集合實例化

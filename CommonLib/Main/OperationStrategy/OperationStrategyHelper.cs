@@ -1,6 +1,4 @@
-﻿using MyMathSheets.CommonLib.Util;
-
-namespace MyMathSheets.CommonLib.Main.OperationStrategy
+﻿namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
 	/// <summary>
 	///
@@ -74,11 +72,11 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 題型構築并返回結果
 		/// </summary>
-		/// <param name="preview">題型種類</param>
-		/// <param name="identifier">參數識別ID（如果沒有指定參數標識，則默認返回當前參數序列的第一個參數項目）</param>
-		public ParameterBase Structure(string preview, string identifier = "")
+		/// <param name="topicIdentifier">題型識別ID</param>
+		/// <param name="topicNumber">參數編號（如果沒有指定參數編號，則默認返回當前參數序列的第一個參數項目）</param>
+		public ParameterBase Structure(string topicIdentifier, string topicNumber = "")
 		{
-			return Helper.Structure(preview, identifier);
+			return Helper.Structure(topicIdentifier, topicNumber);
 		}
 	}
 }

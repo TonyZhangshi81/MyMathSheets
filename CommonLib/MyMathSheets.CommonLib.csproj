@@ -137,7 +137,7 @@
     <Compile Include="Plugin\PluginInfo.cs" />
     <Compile Include="Plugin\PluginsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Main\ExportAttributes\SystemMarker\MathSheetMarkerAttribute.cs" />
+    <Compile Include="Main\ExportAttributes\SystemMarker\PluginAttribute.cs" />
     <Compile Include="Provider\FormOperationParameterProvider.cs" />
     <Compile Include="Provider\OperationParameterProvider.cs" />
     <Compile Include="Provider\JsonOperationParameterProvider.cs" />

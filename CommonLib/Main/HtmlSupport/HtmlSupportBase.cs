@@ -25,18 +25,18 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		{
 			Guard.ArgumentNotNull(parameter, "parameter");
 
-			// 題型識別子取得
-			string identifier = parameter.Identifier.Split(':')[0];
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0009L));
+
 			Dictionary<SubstituteType, string> htmlMaps = new Dictionary<SubstituteType, string>()
 			{
 				// 題型HTML信息作成并對指定的HTML模板標識進行替換
 				{ SubstituteType.Content, MakeHtmlStatement(parameter) }
 			};
 
-			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0009L));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0043L, SubstituteType.Content));
 
 			// JS模板內容替換
-			MarkJavaScriptReplaceContent(htmlMaps, identifier);
+			MarkJavaScriptReplaceContent(htmlMaps);
 
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0010L));
 
@@ -47,18 +47,18 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// JS模板內容替換
 		/// </summary>
 		/// <param name="htmlMaps">替換標籤以及內容</param>
-		/// <param name="identifier">題型識別子</param>
-		protected virtual void MarkJavaScriptReplaceContent(Dictionary<SubstituteType, string> htmlMaps, string identifier)
+		protected virtual void MarkJavaScriptReplaceContent(Dictionary<SubstituteType, string> htmlMaps)
 		{
 			var attrs = GetType().GetCustomAttributes(typeof(SubstituteAttribute), false).Cast<SubstituteAttribute>();
-			if (attrs == null)
+			if(attrs != null)
 			{
-				throw new NotImplementedException(MessageUtil.GetMessage(() => MsgResources.E0022L, identifier));
+				attrs.ToList().ForEach(d =>
+				{
+					htmlMaps.Add(d.Source, d.Target);
+
+					LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0043L, d.Source));
+				});
 			}
-			attrs.ToList().ForEach(d =>
-			{
-				htmlMaps.Add(d.Source, d.Target);
-			});
 		}
 
 		/// <summary>

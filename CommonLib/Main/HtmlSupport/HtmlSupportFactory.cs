@@ -2,7 +2,6 @@
 using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
-using MyMathSheets.CommonLib.Util;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -66,28 +65,28 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <summary>
 		/// 題型指定獲取HTML支援類實例
 		/// </summary>
-		/// <param name="preview">題型類型</param>
+		/// <param name="topicIdentifier">題型類型</param>
 		/// <returns>HTML支援類實例</returns>
-		public IHtmlSupport CreateHtmlSupportInstance(string preview)
+		public IHtmlSupport CreateHtmlSupportInstance(string topicIdentifier)
 		{
 			// 獲取HTML支援類Composer
-			_composer = ComposerFactory.GetComporser(SystemModelType.TheFormulaShows, preview);
+			_composer = ComposerFactory.GetComporser(topicIdentifier);
 
 			// HTML支援類對象緩存區管理
 			ConcurrentDictionary<string, IHtmlSupport> cache = HtmlSupportCache.GetOrAdd(_composer, _ => new ConcurrentDictionary<string, IHtmlSupport>());
 			// HTML支援模塊是否已經注入 <- 初次注入允許MEF容器注入本類的屬性信息（注入HTML支援類屬性）
-			_composed = cache.ContainsKey(preview);
+			_composed = cache.ContainsKey(topicIdentifier);
 			// 返回緩衝區中的支援類對象
-			IHtmlSupport instance = cache.GetOrAdd(preview, (o) =>
+			IHtmlSupport instance = cache.GetOrAdd(topicIdentifier, (o) =>
 			{
 				// 在MEF容器中收集本類的屬性信息（實際情況屬性只注入一次）
 				ComposeThis();
 
 				// 取得指定類型下的支援類類型參數
-				IEnumerable<Lazy<HtmlSupportBase, IHtmlSupportMetaDataView>> supports = Supports.Where(d => d.Metadata.Layout.Equals(preview, StringComparison.CurrentCultureIgnoreCase));
+				IEnumerable<Lazy<HtmlSupportBase, IHtmlSupportMetaDataView>> supports = Supports.Where(d => d.Metadata.Layout.Equals(topicIdentifier, StringComparison.CurrentCultureIgnoreCase));
 				if (!supports.Any())
 				{
-					throw new HtmlSupportNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0021L, preview));
+					throw new HtmlSupportNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0021L, topicIdentifier));
 				}
 
 				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0008L));

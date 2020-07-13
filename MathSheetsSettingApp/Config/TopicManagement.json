@@ -1,82 +1,102 @@
 [
   {
-    "name": "Arithmetic",
+    "id": "Arithmetic",
+    "name": "四則運算",
     "number": "AC008"
   },
   {
-    "name": "CombinatorialEquation",
+    "id": "CombinatorialEquation",
+    "name": "算式組合",
     "number": "CE001"
   },
   {
-    "name": "ComputingConnection",
+    "id": "ComputingConnection",
+    "name": "等式接龍",
     "number": "CC001"
   },
   {
-    "name": "CurrencyLinkage",
+    "id": "CurrencyLinkage",
+    "name": "認識價格",
     "number": "CL001"
   },
   {
-    "name": "CurrencyOperation",
+    "id": "CurrencyOperation",
+    "name": "貨幣運算",
     "number": "CO001"
   },
   {
-    "name": "EqualityComparison",
+    "id": "EqualityComparison",
+    "name": "算式比大小",
     "number": "EC003"
   },
   {
-    "name": "EqualityLinkage",
+    "id": "EqualityLinkage",
+    "name": "算式連一連",
     "number": "EL004"
   },
   {
-    "name": "MathWordProblems",
+    "id": "MathWordProblems",
+    "name": "算式應用題",
     "number": "MP004"
   },
   {
-    "name": "FruitsLinkage",
+    "id": "FruitsLinkage",
+    "name": "水果連連看",
     "number": "FL003"
   },
   {
-    "name": "FindNearestNumber",
+    "id": "FindNearestNumber",
+    "name": "找到最近的數字",
     "number": "FNN03"
   },
   {
-    "name": "FindTheLaw",
+    "id": "FindTheLaw",
+    "name": "找規律",
     "number": "FTL02"
   },
   {
-    "name": "GapFillingProblems",
+    "id": "GapFillingProblems",
+    "name": "基礎填空題",
     "number": "GFP01"
   },
   {
-    "name": "HowMuchMore",
+    "id": "HowMuchMore",
+    "name": "比多少",
     "number": "HMM01"
   },
   {
-    "name": "LearnCurrency",
+    "id": "LearnCurrency",
+    "name": "認識貨幣",
     "number": "LC007"
   },
   {
-    "name": "LearnLengthUnit",
+    "id": "LearnLengthUnit",
+    "name": "認識長度單位",
     "number": "LLU05"
   },
   {
-    "name": "NumericSorting",
+    "id": "NumericSorting",
+    "name": "數字排序",
     "number": "NS001"
   },
   {
-    "name": "SchoolClock",
+    "id": "SchoolClock",
+    "name": "時鐘學習板",
     "number": "SC001"
   },
   {
-    "name": "ScoreGoal",
+    "id": "ScoreGoal",
+    "name": "射門得分",
     "number": "SG003"
   },
   {
-    "name": "TimeCalculation",
+    "id": "TimeCalculation",
+    "name": "時間運算",
     "number": "TC003"
   },
   {
-    "name": "MathUpright",
+    "id": "MathUpright",
+    "name": "豎式計算",
     "number": "MU001"
   }
 ]

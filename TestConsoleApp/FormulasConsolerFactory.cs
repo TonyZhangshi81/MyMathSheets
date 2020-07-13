@@ -69,8 +69,8 @@ namespace MyMathSheets.TestConsoleApp
 		/// <summary>
 		/// spring 對象工廠實例作成
 		/// </summary>
-		/// <param name="preview">設定題型</param>
-		public IConsoleWrite CreateConsoleWriter(string preview)
+		/// <param name="topicIdentifier">設定題型</param>
+		public IConsoleWrite CreateConsoleWriter(string topicIdentifier)
 		{
 			if (_objectFactory == null)
 			{
@@ -81,12 +81,12 @@ namespace MyMathSheets.TestConsoleApp
 				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0001T));
 			}
 
-			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0002T, preview));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0002T, topicIdentifier));
 
 			// 創建對象實例并返回
-			IConsoleWrite writer = _objectFactory.GetObject(preview) as IConsoleWrite;
+			IConsoleWrite writer = _objectFactory.GetObject(topicIdentifier) as IConsoleWrite;
 
-			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0003T, preview));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0003T, topicIdentifier));
 
 			return writer;
 		}

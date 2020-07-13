@@ -27,8 +27,6 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters
 		/// </summary>
 		public override void InitParameter()
 		{
-			base.InitParameter();
-
 			SectionNumber = Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "SectionNumber"));
 
 			// 等式接龍集合實例化

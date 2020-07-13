@@ -13,9 +13,9 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// 取得HTML模板信息
 		/// </summary>
 		/// <typeparam name="T">參數類型參數</typeparam>
-		/// <param name="preview">題型類型</param>
-		/// <param name="formulas">題型參數對象</param>
+		/// <param name="topicIdentifier">題型識別ID</param>
+		/// <param name="parameter">題型參數</param>
 		/// <returns></returns>
-		Dictionary<SubstituteType, string> GetHtmlStatement<T>(string preview, T formulas) where T : ParameterBase;
+		Dictionary<SubstituteType, string> GetHtmlStatement<T>(string topicIdentifier, T parameter) where T : ParameterBase;
 	}
 }

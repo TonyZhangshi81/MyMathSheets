@@ -40,19 +40,20 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <summary>
 		/// HTML模板替換內容作成
 		/// </summary>
-		/// <param name="preview">題型類型</param>
-		/// <param name="formulas">題型參數對象</param>
+		/// <param name="topicIdentifier">題型類型</param>
+		/// <param name="parameter">題型參數</param>
 		/// <returns>模板替換內容</returns>
-		public Dictionary<SubstituteType, string> GetHtmlStatement<T>(string preview, T formulas) where T : ParameterBase
+		public Dictionary<SubstituteType, string> GetHtmlStatement<T>(string topicIdentifier, T parameter) where T : ParameterBase
 		{
-			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0012L, preview));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0012L, topicIdentifier));
 
-			// 指定题型大分类获得相应的题型HTML处理对象（实例）
-			IHtmlSupport support = SupprtHelper.CreateHtmlSupportInstance(preview);
+			// HTML構築實例
+			IHtmlSupport support = SupprtHelper.CreateHtmlSupportInstance(topicIdentifier);
 
-			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0013L, preview));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0013L, topicIdentifier));
 
-			return support.Make(formulas);
+			// 根據參數構建HTML屬性信息
+			return support.Make(parameter);
 		}
 	}
 }

@@ -21,8 +21,6 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Paramete
 		/// </summary>
 		public override void InitParameter()
 		{
-			base.InitParameter();
-
 			// 組合計算式集合實例化
 			Formulas = new List<CombinatorialFormula>();
 		}

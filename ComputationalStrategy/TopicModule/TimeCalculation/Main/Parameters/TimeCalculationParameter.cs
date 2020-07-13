@@ -39,8 +39,6 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters
 		/// </summary>
 		public override void InitParameter()
 		{
-			base.InitParameter();
-
 			// 0：清零  1：不清零(保留隨機)
 			IsShowSeconds = Convert.ToInt32(JsonExtension.GetPropertyByJson(Reserve, "IsShowSeconds")) == 0;
 

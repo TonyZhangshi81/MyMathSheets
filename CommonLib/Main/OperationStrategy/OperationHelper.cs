@@ -2,7 +2,6 @@
 using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
-using MyMathSheets.CommonLib.Util;
 using System.ComponentModel.Composition;
 
 namespace MyMathSheets.CommonLib.Main.OperationStrategy
@@ -60,19 +59,19 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		///
 		/// </summary>
-		/// <param name="preview">策略種類</param>
-		/// <param name="identifier">參數識別ID（如果沒有指定參數標識，則默認返回當前參數序列的第一個參數項目）</param>
+		/// <param name="topicIdentifier">題型識別ID</param>
+		/// <param name="topicNumber">參數編號（如果沒有指定參數編號，則默認返回當前參數序列的第一個參數項目）</param>
 		/// <returns></returns>
-		public ParameterBase Structure(string preview, string identifier = "")
+		public ParameterBase Structure(string topicIdentifier, string topicNumber = "")
 		{
-			// 計算式策略
-			IOperation instance = CreateOperationInstance(preview);
+			// 題型實例
+			IOperation instance = CreateOperationInstance(topicIdentifier);
 			// 計算式所需參數
-			ParameterBase parameter = OperationFactory.CreateOperationParameterInstance(preview, identifier);
+			ParameterBase parameter = OperationFactory.CreateOperationParameterInstance(topicIdentifier, topicNumber);
 
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0006L));
 
-			// 構築計算式集合
+			// 根據參數構建題型
 			instance.Build(parameter);
 
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0007L));
@@ -81,17 +80,17 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		}
 
 		/// <summary>
-		/// 對指定計算式策略實例化
+		/// 對指定題型實例化並返回
 		/// </summary>
-		/// <param name="preview">策略種類</param>
-		/// <returns>策略實例</returns>
-		private IOperation CreateOperationInstance(string preview)
+		/// <param name="topicIdentifier">題型識別ID</param>
+		/// <returns>題型實例</returns>
+		private IOperation CreateOperationInstance(string topicIdentifier)
 		{
 			// 本類中的屬性注入執行
 			ComposeThis();
 
 			// 計算式策略工廠實例化
-			return OperationFactory.CreateOperationInstance(preview);
+			return OperationFactory.CreateOperationInstance(topicIdentifier);
 		}
 	}
 }

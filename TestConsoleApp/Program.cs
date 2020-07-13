@@ -1,4 +1,6 @@
-﻿namespace MyMathSheets.TestConsoleApp
+﻿using MyMathSheets.CommonLib.Plugin;
+
+namespace MyMathSheets.TestConsoleApp
 {
 	/// <summary>
 	///
@@ -11,6 +13,9 @@
 		/// <param name="args"></param>
 		private static void Main(string[] args)
 		{
+			var pluginsManager = new PluginsManager();
+			pluginsManager.Initialize();
+
 			// 主程序啟動
 			var program = new Program();
 			program.Start(args);

@@ -33,8 +33,6 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Parameters
 		/// </summary>
 		public override void InitParameter()
 		{
-			base.InitParameter();
-
 			AnswerIsRight = Convert.ToBoolean(Reserve.GetPropertyByJson("AnswerIsRight"));
 
 			// 四則運算結合實例化

@@ -1,5 +1,4 @@
-﻿using MyMathSheets.CommonLib.Util;
-using System;
+﻿using System;
 using System.ComponentModel.Composition;
 
 namespace MyMathSheets.CommonLib.Main.OperationStrategy

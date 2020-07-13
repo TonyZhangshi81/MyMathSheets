@@ -247,4 +247,7 @@
   <data name="I0035L" xml:space="preserve">
     <value>I0035L:指定ID【{0}】計算式作成處理結束</value>
   </data>
+  <data name="I0043L" xml:space="preserve">
+    <value>I0043L:指定內容【{0}】已注入</value>
+  </data>
 </root>

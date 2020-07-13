@@ -2,11 +2,12 @@
 using MyMathSheets.CommonLib.Util;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
 	/// <summary>
-	/// 參數類型
+	/// 題型參數類
 	/// </summary>
 	[JsonObject(MemberSerialization.OptOut)]
 	public class ParameterBase : IParameter
@@ -17,9 +18,10 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		private readonly ParameterHepler helper;
 
 		/// <summary>
-		/// 識別號(preview + "::" + identifier)
+		/// 題型參數識別號(topicIdentifier + "::" + identifier)
 		/// </summary>
-		public string Identifier { get; set; }
+		[JsonProperty(PropertyName = "Identifier")]
+		public string TopicArgumentsIdentifier { get; set; }
 
 		/// <summary>
 		/// 題型（標準、隨機填空）
@@ -69,13 +71,11 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <summary>
 		/// 參數初期化處理
 		/// </summary>
-		public virtual void InitParameter()
+		/// <param name="topicArgumentsIdentifier">題型參數識別ID</param>
+		internal void InitParameterBase(string topicArgumentsIdentifier)
 		{
-			// 識別號(preview + "::" + identifier)
-			string[] identifiers = Identifier.Split(':');
-
 			// 參數配置json注入parameter
-			ParameterBase parameter = helper.CreateParameterProvider().Initialize(Identifier);
+			ParameterBase parameter = helper.CreateParameterProvider().Initialize(topicArgumentsIdentifier);
 
 			QuestionType = parameter.QuestionType;
 			Signs = parameter.Signs;
@@ -85,9 +85,13 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 			Reserve = parameter.Reserve;
 			LeftScope = parameter.LeftScope;
 			RightScope = parameter.RightScope;
+		}
 
-			// 對應因題型參數標識不正確時會使用默認的題型參數配置中的標識
-			Identifier = $"{identifiers[0]}::{parameter.Identifier}";
+		/// <summary>
+		/// 參數初期化處理
+		/// </summary>
+		public virtual void InitParameter()
+		{
 		}
 	}
 }

@@ -1,25 +1,23 @@
-﻿using MyMathSheets.CommonLib.Util;
-
-namespace MyMathSheets.CommonLib.Main.OperationStrategy
+﻿namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
 	/// <summary>
-	/// 計算式策略對象生產工廠接口類
+	/// 題型實例工廠接口類
 	/// </summary>
 	public interface IOperationFactory
 	{
 		/// <summary>
-		/// 對指定計算式策略實例化
+		/// 指定題型識別ID並返回該題型的實例
 		/// </summary>
-		/// <param name="preview">策略種類</param>
-		/// <returns>策略實例</returns>
-		IOperation CreateOperationInstance(string preview);
+		/// <param name="topicIdentifier">題型識別ID</param>
+		/// <returns>題型實例</returns>
+		IOperation CreateOperationInstance(string topicIdentifier);
 
 		/// <summary>
-		/// 對指定計算式策略所需參數的對象實例化
+		/// 返回指定題型所需的題型參數實例
 		/// </summary>
-		/// <param name="preview"></param>
-		/// <param name="identifier">參數識別ID（如果沒有指定參數標識，則默認返回當前參數序列的第一個參數項目）</param>
-		/// <returns>對象實例</returns>
-		ParameterBase CreateOperationParameterInstance(string preview, string identifier = "");
+		/// <param name="topicIdentifier">題型識別ID</param>
+		/// <param name="topicNumber">題型參數（如果沒有指定題型參數，則默認返回當前參數序列的第一個參數項目）</param>
+		/// <returns>題型參數實例</returns>
+		ParameterBase CreateOperationParameterInstance(string topicIdentifier, string topicNumber = "");
 	}
 }

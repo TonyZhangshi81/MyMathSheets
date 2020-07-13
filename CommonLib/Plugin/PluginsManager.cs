@@ -4,7 +4,6 @@ using MyMathSheets.CommonLib.Properties;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -18,7 +17,7 @@ namespace MyMathSheets.CommonLib.Plugin
 		/// <summary>
 		/// 文件名檢索用關鍵字
 		/// </summary>
-		private const string SEARCH_PATTERN = "MyMathSheets.*";
+		private const string SEARCH_PATTERN = "MyMathSheets.TheFormulaShows.*.dll";
 
 		/// <summary>
 		/// 模塊
@@ -27,7 +26,7 @@ namespace MyMathSheets.CommonLib.Plugin
 			new[]
 				{
 					"MyMathSheets.CommonLib.dll",
-					"MyMathSheets.BasicOperationsLib.dll",
+					"MyMathSheets.BasicOperationsLib.dll"
 				};
 
 		/// <summary>
@@ -117,24 +116,6 @@ namespace MyMathSheets.CommonLib.Plugin
 
 				InitPluginsModuleList.Add(valueFunc(f));
 
-				/*
-				var pluginAttr = pluginAttrFunc(Path.GetFileNameWithoutExtension(f.FullName));
-				// （為確保模塊的完成性，規定同一個題型必須具備策略模塊和展示模塊）
-				if (checkCache.Any(d => d.Equals(pluginAttr.Preview, StringComparison.CurrentCultureIgnoreCase)))
-				{
-					// 獲取題型模塊信息并保存
-					if ((pluginAttr.SystemModel == SystemModelType.TheFormulaShows || pluginAttr.SystemModel == SystemModelType.ComputationalStrategy)
-						&& !string.IsNullOrEmpty(pluginAttr.Description))
-					{
-						InitPluginsModuleList.GetOrAdd(pluginAttr.Preview, pluginAttr);
-					}
-				}
-				else
-				{
-					checkCache.Add(pluginAttr.Preview);
-				}
-				*/
-
 				// 當最後一個模塊加載完畢的時候
 				if (currentIndex == plugins.Count)
 				{
@@ -174,7 +155,7 @@ namespace MyMathSheets.CommonLib.Plugin
 
 			// 遍歷文件
 			foreach (var fi in from _ in theFolder.GetFiles(SEARCH_PATTERN)
-							   where _.Name.ToLower(CultureInfo.CurrentCulture).EndsWith(".dll", StringComparison.CurrentCultureIgnoreCase) && !ExcludeAssemblies.Contains(_.Name)
+							   where !ExcludeAssemblies.Contains(_.Name)
 							   orderby _.Name.Length descending
 							   select _)
 			{

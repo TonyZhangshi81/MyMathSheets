@@ -28,8 +28,6 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters
 		/// </summary>
 		public override void InitParameter()
 		{
-			base.InitParameter();
-
 			object value = JsonExtension.GetPropertyByJson(Reserve, "Type");
 			Types = Convert.ToString(value).Split(',').Select(s => int.Parse(s)).ToArray();
 

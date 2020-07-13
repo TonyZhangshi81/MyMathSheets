@@ -35,13 +35,13 @@ namespace MyMathSheets.TestConsoleApp
 		/// <summary>
 		/// 題型測試結果輸出
 		/// </summary>
-		/// <param name="preview">題型種類</param>
+		/// <param name="topicIdentifier">題型識別ID</param>
 		/// <param name="args">調試用參數</param>
-		public static void ConsoleFormulas(string preview, string args)
+		public static void ConsoleFormulas(string topicIdentifier, string args)
 		{
-			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview, args);
+			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(topicIdentifier, args);
 
-			var writer = FormulasConsolerFactory.Instance.CreateConsoleWriter(preview);
+			var writer = FormulasConsolerFactory.Instance.CreateConsoleWriter(topicIdentifier);
 			writer.ConsoleFormulas(parameter);
 		}
 	}

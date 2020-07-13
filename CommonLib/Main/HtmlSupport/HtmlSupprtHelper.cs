@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Composition;
 using MyMathSheets.CommonLib.Main.HtmlSupport;
-using MyMathSheets.CommonLib.Util;
 using System.ComponentModel.Composition;
 
 namespace MyMathSheets.CommonLib.Main.Arithmetic
@@ -58,14 +57,15 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <summary>
 		/// 對指定HTML支援類實例化
 		/// </summary>
-		/// <param name="preview">題型種類</param>
+		/// <param name="topicIdentifier">題型識別ID</param>
 		/// <returns>運算符實例</returns>
-		public IHtmlSupport CreateHtmlSupportInstance(string preview)
+		public IHtmlSupport CreateHtmlSupportInstance(string topicIdentifier)
 		{
 			// 本類中的屬性注入執行
 			ComposeThis();
+
 			// 運算符工廠實例化
-			return HtmlSupportFactory.CreateHtmlSupportInstance(preview);
+			return HtmlSupportFactory.CreateHtmlSupportInstance(topicIdentifier);
 		}
 	}
 }

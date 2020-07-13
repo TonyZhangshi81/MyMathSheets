@@ -1,8 +1,6 @@
-﻿using MyMathSheets.CommonLib.Composition;
-using MyMathSheets.CommonLib.Configurations;
+﻿using MyMathSheets.CommonLib.Configurations;
 using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.FromProcess.Support;
-using MyMathSheets.CommonLib.Main.FromProcess.Util;
 using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Message;
@@ -300,17 +298,17 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// <summary>
 		/// 取得HTML和JS的替換內容
 		/// </summary>
-		/// <param name="preview">題型種類</param>
+		/// <param name="topicIdentifier">題型種類</param>
 		/// <returns>替換內容</returns>
-		private Dictionary<SubstituteType, string> GetHtmlReplaceContentMaps(string preview)
+		private Dictionary<SubstituteType, string> GetHtmlReplaceContentMaps(string topicIdentifier)
 		{
 			// 題型編號取得
-			string identifier = TopicManagementList.Where(d => d.Name.Equals(preview, StringComparison.CurrentCultureIgnoreCase)).First().Number;
+			string identifier = TopicManagementList.Where(d => topicIdentifier.Equals(d.TopicIdentifier, StringComparison.CurrentCultureIgnoreCase)).First().Number;
 
 			// 構造題型并取得結果
-			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(preview, identifier);
+			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(topicIdentifier, identifier);
 			// 題型HTML信息作成并對指定的HTML模板標識進行替換
-			Dictionary<SubstituteType, string> htmlMaps = MakeHtml.GetHtmlStatement(preview, parameter);
+			Dictionary<SubstituteType, string> htmlMaps = MakeHtml.GetHtmlStatement(topicIdentifier, parameter);
 			return htmlMaps;
 		}
 
@@ -331,10 +329,15 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 
 					int indexX = 1, indexY = 1;
 
-					foreach (var plugin in from _ in PluginsManager.InitPluginsModuleList
-										   where _.SystemModel == SystemModelType.TheFormulaShows
-										   orderby _.Classify ascending, _.Preview ascending
-										   select _)
+					foreach (var plugin in from p in PluginsManager.InitPluginsModuleList
+										   join t in TopicManagementList on p.TopicIdentifier equals t.TopicIdentifier
+										   orderby p.Classify ascending, p.TopicIdentifier ascending
+										   select new
+										   {
+											   p.Classify,
+											   p.TopicIdentifier,
+											   t.Name
+										   })
 					{
 						// 題型大類不同的場合，坐標初期化設定
 						if (!classifyName.Equals(plugin.Classify.ToString(), StringComparison.CurrentCultureIgnoreCase))
@@ -349,13 +352,13 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 							IndexX = indexX,
 							IndexY = indexY,
 							// 控件ID設定
-							ControlId = plugin.Preview,
+							ControlId = plugin.TopicIdentifier,
 							// 控件標題設定
-							Title = plugin.Description,
+							Title = plugin.Name,
 							// 題型分類
 							Classify = plugin.Classify,
 							// 題型類型
-							Preview = plugin.Preview
+							Preview = plugin.TopicIdentifier
 						});
 
 						if (indexX == 3)
@@ -365,43 +368,6 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 						}
 						indexX++;
 					}
-
-					/*
-					ComposerFactory.SystemModelInfoCache
-						.OrderBy(b => b.Value.Classify, new ClassifyToIntComparer())
-						.ThenBy(c => c.Key).ToList()
-						.ForEach(d =>
-					{
-						// 題型大類不同的場合，坐標初期化設定
-						if (!classifyName.Equals(d.Value.Classify.ToString(), StringComparison.CurrentCultureIgnoreCase))
-						{
-							indexX = 1;
-							indexY = 1;
-							classifyName = d.Value.Classify.ToString();
-						}
-
-						_controlList.Add(new ControlInfo()
-						{
-							IndexX = indexX,
-							IndexY = indexY,
-							// 控件ID設定
-							ControlId = d.Value.Preview,
-							// 控件標題設定
-							Title = d.Value.Description,
-							// 題型分類
-							Classify = d.Value.Classify,
-							// 題型類型
-							Preview = d.Value.Preview
-						});
-
-						if (indexX == 3)
-						{
-							indexY++;
-							indexX = 0;
-						}
-						indexX++;
-					});
-					*/
 				}
 				return _controlList;
 			}

@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Util;
 using System;
-using System.Diagnostics;
 using System.IO;
 
 namespace MyMathSheets.CommonLib.Plugin
@@ -31,7 +30,7 @@ namespace MyMathSheets.CommonLib.Plugin
 			Classify,
 
 			/// <summary>
-			/// 子模塊識別號
+			/// 題型名稱
 			/// </summary>
 			Preview
 		}
@@ -44,28 +43,18 @@ namespace MyMathSheets.CommonLib.Plugin
 		{
 			Guard.ArgumentNotNull(file, "file");
 
-			// 題型名稱
-			Description = FileVersionInfo.GetVersionInfo(file.FullName).Comments;
-
 			var subsection = file.Name.Split(new char[] { '.' }, StringSplitOptions.None);
-			// 系統功能模塊區分
-			SystemModel = (SystemModelType)Enum.Parse(typeof(SystemModelType), subsection[(int)SectionType.SystemModelType]);
-			// 題型分類
-			Classify = (LayoutSetting.Classify)Enum.Parse(typeof(LayoutSetting.Classify), subsection[(int)SectionType.Classify]);
-			// 子模塊識別號
-			Preview = subsection[(int)SectionType.Preview];
-
-			// 文件的完整目录
-			FullName = file.FullName;
-		}
-
-		/// <summary>
-		/// 获取目录或文件的完整目录
-		/// </summary>
-		public string FullName
-		{
-			get;
-			private set;
+			if (subsection.Length == 5)
+			{
+				// 題型名稱
+				Description = subsection[(int)SectionType.Preview];
+				// 題型分類
+				Classify = (LayoutSetting.Classify)Enum.Parse(typeof(LayoutSetting.Classify), subsection[(int)SectionType.Classify]);
+				// 題型識別ID
+				TopicIdentifier = subsection[(int)SectionType.Preview];
+				// 插件DLL的完整路徑
+				FullName = file.FullName;
+			}
 		}
 
 		/// <summary>
@@ -78,18 +67,18 @@ namespace MyMathSheets.CommonLib.Plugin
 		}
 
 		/// <summary>
-		/// 識別號
+		/// 題型識別ID
 		/// </summary>
-		public SystemModelType SystemModel
+		public string TopicIdentifier
 		{
 			get;
 			private set;
 		}
 
 		/// <summary>
-		/// 子模塊識別號（題型模塊化對應）
+		/// 插件DLL的完整路徑
 		/// </summary>
-		public string Preview
+		public string FullName
 		{
 			get;
 			private set;

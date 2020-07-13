@@ -1,7 +1,4 @@
-﻿using MyMathSheets.CommonLib.Message;
-using MyMathSheets.CommonLib.Properties;
-using MyMathSheets.CommonLib.Util;
-using System;
+﻿using MyMathSheets.CommonLib.Util;
 using System.Globalization;
 
 namespace MyMathSheets.CommonLib.Main.Item

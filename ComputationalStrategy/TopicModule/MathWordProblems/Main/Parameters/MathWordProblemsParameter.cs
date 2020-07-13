@@ -28,8 +28,6 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters
 		/// </summary>
 		public override void InitParameter()
 		{
-			base.InitParameter();
-
 			object value = JsonExtension.GetPropertyByJson(Reserve, "Level");
 			Levels = Convert.ToString(value).Split(',').Select(s => int.Parse(s)).ToArray();
 

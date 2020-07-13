@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Security.Permissions;
 using static MyMathSheets.CommonLib.Main.Arithmetic.Priority;
 
 namespace MyMathSheets.CommonLib.Main.Arithmetic

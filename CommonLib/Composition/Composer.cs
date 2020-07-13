@@ -66,6 +66,15 @@ namespace MyMathSheets.CommonLib.Composition
 		}
 
 		/// <summary>
+		///
+		/// </summary>
+		/// <param name="topicIdentifier"></param>
+		public Composer(string topicIdentifier)
+			: this(ReflectionUtil.GetAssembly(topicIdentifier))
+		{
+		}
+
+		/// <summary>
 		/// 優先讀取指定程序集下已設定的關聯程序集
 		/// </summary>
 		/// <param name="assembly">程序集對象</param>

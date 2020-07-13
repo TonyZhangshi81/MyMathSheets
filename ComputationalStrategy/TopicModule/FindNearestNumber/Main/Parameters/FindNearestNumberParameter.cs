@@ -21,8 +21,6 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters
 		/// </summary>
 		public override void InitParameter()
 		{
-			base.InitParameter();
-
 			// 集合實例化
 			Formulas = new List<NearestNumberFormula>();
 		}

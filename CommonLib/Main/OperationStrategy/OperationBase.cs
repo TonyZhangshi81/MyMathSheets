@@ -78,8 +78,6 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// <exception cref="ArgumentNullException"><paramref name="p.Identifier"/>為NULL的情況</exception>
 		public virtual void PreExecute(ParameterBase p)
 		{
-			Guard.ArgumentNotNull(p, "ParameterBase");
-			Guard.ArgumentNotNull(p.Identifier, "Identifier");
 		}
 
 		/// <summary>

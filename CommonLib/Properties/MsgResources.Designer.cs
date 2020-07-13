@@ -446,5 +446,14 @@ namespace MyMathSheets.CommonLib.Properties {
                 return ResourceManager.GetString("I0035L", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   I0043L:指定內容【{0}】已注入 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string I0043L {
+            get {
+                return ResourceManager.GetString("I0043L", resourceCulture);
+            }
+        }
     }
 }

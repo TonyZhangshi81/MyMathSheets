@@ -21,7 +21,6 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
 		/// </summary>
 		public override void InitParameter()
 		{
-			base.InitParameter();
 			// 貨幣運算集合實例化
 			Formulas = new List<CurrencyOperationFormula>();
 		}

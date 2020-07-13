@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyMathSheets.CommonLib.Plugin;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -44,7 +45,7 @@ namespace MyMathSheets.CommonLib.Util
 		}
 
 		/// <summary>
-		/// 返回指定名稱下的程序集
+		/// 返回指定名稱下的程序集對象
 		/// </summary>
 		/// <param name="assemblyName">程序集名稱</param>
 		/// <returns>程序集對象</returns>
@@ -67,14 +68,33 @@ namespace MyMathSheets.CommonLib.Util
 				return assembly;
 			}
 
-			var basePath = AppDomain.CurrentDomain.BaseDirectory;
+			var basePath = Path.GetFullPath(Configurations.Configuration.Current.ApplicationRootPath);
 			var dllName = assemblyName.Name + ".dll";
-			if (!File.Exists(Path.Combine(basePath, dllName)))
-			{
-				basePath = Path.Combine(basePath, "bin");
-			}
 			var dllPath = Path.Combine(basePath, dllName);
-			return File.Exists(dllPath) ? AppDomain.CurrentDomain.Load(assemblyName) : null;
+			if (!File.Exists(dllPath))
+			{
+				return null;
+			}
+
+			return Assembly.LoadFile(dllPath);
+		}
+
+		/// <summary>
+		/// 返回指定題型識別ID的程序集對象
+		/// </summary>
+		/// <param name="topicIdentifier">題型識別ID</param>
+		/// <returns>指定題型的程序集對象</returns>
+		public static Assembly GetAssembly(string topicIdentifier)
+		{
+			PluginInfo plugin = PluginsManager.InitPluginsModuleList.ToList()
+														   .Where(d => d.TopicIdentifier.EndsWith(topicIdentifier, StringComparison.CurrentCultureIgnoreCase))
+														   .First();
+			// 如果指定題型不存在或者插件DLL文件不存在
+			if (plugin == null || !File.Exists(plugin.FullName))
+			{
+				return null;
+			}
+			return Assembly.LoadFile(plugin.FullName);
 		}
 
 		/// <summary>

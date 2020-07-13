@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("MyMathSheets.ComputationalStrategy.LearnLengthUnit")]
-[assembly: AssemblyDescription("认识长度单位")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MyMathSheets.ComputationalStrategy.LearnLengthUnit")]
@@ -34,4 +34,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: MathSheetMarker(SystemModelType.ComputationalStrategy, LayoutSetting.Classify.Extent, "LearnLengthUnit", "認識長度單位")]
+[assembly: Plugin(SystemModelType.ComputationalStrategy, LayoutSetting.Classify.Extent, "LearnLengthUnit", "認識長度單位")]
