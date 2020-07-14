@@ -223,6 +223,15 @@ namespace MyMathSheets.CommonLib.Properties {
         }
         
         /// <summary>
+        ///   E0044L:配置參數ExcludeAssemblies的值【{0}】不符合JSON格式 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string E0044L {
+            get {
+                return ResourceManager.GetString("E0044L", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   I0001L:指定運算符實例準備作成 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string I0001L {

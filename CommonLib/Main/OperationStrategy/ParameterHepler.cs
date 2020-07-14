@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Configurations;
 using MyMathSheets.CommonLib.Main.Provider;
-using MyMathSheets.CommonLib.Provider;
+using MyMathSheets.CommonLib.OperationStrategy.Provider;
 using System;
 using System.Configuration;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace MyMathSheets.CommonLib.OperationStrategy
 
 			OperationParameterProvider provider = _composer
 													.GetExports<OperationParameterProvider, IParameterProviderMetaDataView>()
-													.Where(d => d.Metadata.Name.Equals(section.ProviderType, StringComparison.CurrentCultureIgnoreCase))
+													.Where(d => d.Metadata.Name.Equals(section.ImportType, StringComparison.CurrentCultureIgnoreCase))
 													.FirstOrDefault().Value;
 
 			OperationParameterProvider instance = (OperationParameterProvider)Activator.CreateInstance(provider.GetType());

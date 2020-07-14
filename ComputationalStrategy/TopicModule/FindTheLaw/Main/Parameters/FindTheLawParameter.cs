@@ -29,7 +29,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters
 		public override void InitParameter()
 		{
 			object value = JsonExtension.GetPropertyByJson(Reserve, "Type");
-			Types = Convert.ToString(value).Split(',').Select(s => int.Parse(s)).ToArray();
+			Types = Convert.ToString(value).Split(new char[] { ',' }, StringSplitOptions.None).Select(s => int.Parse(s)).ToArray();
 
 			// 找規律集合實例化
 			Formulas = new List<FindTheLawFormula>();

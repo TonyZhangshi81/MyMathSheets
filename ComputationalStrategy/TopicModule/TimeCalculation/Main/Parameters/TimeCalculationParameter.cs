@@ -47,7 +47,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters
 
 			// 經過小時數的取值範圍
 			object value = JsonExtension.GetPropertyByJson(Reserve, "ElapsedHours");
-			ElapsedHours = Convert.ToString(value).Split(',').Select(s => int.Parse(s)).ToArray();
+			ElapsedHours = Convert.ToString(value).Split(new char[] { ',' }, StringSplitOptions.None).Select(s => int.Parse(s)).ToArray();
 
 			// 時間運算集合實例化
 			Formulas = new List<TimeCalculationFormula>();

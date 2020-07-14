@@ -133,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormulasConsolerFactory.cs" />
+    <Compile Include="Plugin\PluginsManager.cs" />
     <Compile Include="ProgramBase.cs" />
     <Compile Include="Properties\MsgResources.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -29,7 +29,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters
 		public override void InitParameter()
 		{
 			object value = JsonExtension.GetPropertyByJson(Reserve, "Level");
-			Levels = Convert.ToString(value).Split(',').Select(s => int.Parse(s)).ToArray();
+			Levels = Convert.ToString(value).Split(new char[] { ',' }, StringSplitOptions.None).Select(s => int.Parse(s)).ToArray();
 
 			// 集合實例化
 			Formulas = new List<GapFillingProblemsFormula>();

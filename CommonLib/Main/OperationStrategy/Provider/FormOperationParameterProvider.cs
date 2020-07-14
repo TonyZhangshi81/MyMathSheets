@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Main.Provider;
 
-namespace MyMathSheets.CommonLib.Provider
+namespace MyMathSheets.CommonLib.OperationStrategy.Provider
 {
 	/// <summary>
 	/// 取得計算式初期參數的配置信息（從畫面中取得參數值）

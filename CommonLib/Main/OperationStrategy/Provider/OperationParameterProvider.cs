@@ -1,6 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
 
-namespace MyMathSheets.CommonLib.Provider
+namespace MyMathSheets.CommonLib.OperationStrategy.Provider
 {
 	/// <summary>
 	///

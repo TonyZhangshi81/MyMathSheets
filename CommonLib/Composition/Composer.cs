@@ -28,6 +28,19 @@ namespace MyMathSheets.CommonLib.Composition
 		private readonly CompositionContainer _container;
 
 		/// <summary>
+		/// MEF容器取得
+		/// </summary>
+		internal CompositionContainer Container => _container;
+
+		/// <summary>
+		/// <see cref="Composer"/>的實例化創建MEF容器實例
+		/// </summary>
+		public Composer()
+		{
+			_container = new CompositionContainer();
+		}
+
+		/// <summary>
 		/// 程序集對象以參照的順序添加至對象元素目錄
 		/// </summary>
 		/// <param name="assembly">程序集對象</param>
@@ -109,6 +122,16 @@ namespace MyMathSheets.CommonLib.Composition
 				// 對該部件進行導入
 				_container.SatisfyImportsOnce(part);
 			}
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		public bool HasType(Type type)
+		{
+			return _container.Catalog.Any((ComposablePartDefinition _) => _.ExportDefinitions.OfType<ICompositionElement>().Any((ICompositionElement __) => __.Origin.DisplayName == type.FullName));
 		}
 
 		/// <summary>

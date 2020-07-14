@@ -199,7 +199,7 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 			}
 
 			// 公式中的坐標取得
-			List<string> cellNameList = formula.Split(new char[4] { '+', '-', '*', '/' }).ToList();
+			List<string> cellNameList = formula.Split(new char[4] { '+', '-', '*', '/' }, StringSplitOptions.None).ToList();
 			cellNameList.ForEach(d =>
 			{
 				// 遍歷坐標并取得相應的值，替換至公式中

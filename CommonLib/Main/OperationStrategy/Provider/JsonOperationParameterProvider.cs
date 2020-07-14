@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Main.OperationStrategy;
 using MyMathSheets.CommonLib.Main.Provider;
 using MyMathSheets.CommonLib.Message;
+using MyMathSheets.CommonLib.OperationStrategy.Provider;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using Newtonsoft.Json;
@@ -10,7 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace MyMathSheets.CommonLib.Provider
+namespace MyMathSheets.CommonLi.OperationStrategy.Provider
 {
 	/// <summary>
 	/// 取得計算式初期參數的配置信息（從JSON中取得參數值）

@@ -1,19 +1,18 @@
-﻿using MyMathSheets.CommonLib;
-using MyMathSheets.CommonLib.Composition;
-using MyMathSheets.CommonLib.Util;
+﻿using MyMathSheets.CommonLib.Composition;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
+[assembly: CompilationRelaxations(8)]
+[assembly: RuntimeCompatibility(WrapNonExceptionThrows = true)]
+[assembly: AssemblyCompany("Free")]
+[assembly: AssemblyCopyright("Copyright © 2018")]
 [assembly: AssemblyTitle("MyMathSheets.CommonLib")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("MyMathSheets.CommonLib")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("zh-cn")]

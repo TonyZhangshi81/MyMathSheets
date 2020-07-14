@@ -86,15 +86,21 @@ namespace MyMathSheets.CommonLib.Util
 		/// <returns>指定題型的程序集對象</returns>
 		public static Assembly GetAssembly(string topicIdentifier)
 		{
-			PluginInfo plugin = PluginsManager.InitPluginsModuleList.ToList()
-														   .Where(d => d.TopicIdentifier.EndsWith(topicIdentifier, StringComparison.CurrentCultureIgnoreCase))
-														   .First();
-			// 如果指定題型不存在或者插件DLL文件不存在
-			if (plugin == null || !File.Exists(plugin.FullName))
+			PluginHelper helper = new PluginHelper();
+
+			var plugins = helper.GetManager().InitPluginsModuleList.ToList();
+			if (!plugins.Any())
 			{
 				return null;
 			}
-			return Assembly.LoadFile(plugin.FullName);
+
+			var plugin = plugins.Where(d => d.TopicIdentifier.EndsWith(topicIdentifier, StringComparison.CurrentCultureIgnoreCase));
+			// 如果指定題型不存在或者插件DLL文件不存在
+			if (!plugin.Any() || !File.Exists(plugin.First().FullName))
+			{
+				return null;
+			}
+			return Assembly.LoadFile(plugin.First().FullName);
 		}
 
 		/// <summary>

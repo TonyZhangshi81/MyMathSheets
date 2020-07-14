@@ -50,7 +50,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		protected virtual void MarkJavaScriptReplaceContent(Dictionary<SubstituteType, string> htmlMaps)
 		{
 			var attrs = GetType().GetCustomAttributes(typeof(SubstituteAttribute), false).Cast<SubstituteAttribute>();
-			if(attrs != null)
+			if (attrs != null)
 			{
 				attrs.ToList().ForEach(d =>
 				{

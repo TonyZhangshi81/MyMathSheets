@@ -28,7 +28,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="modelCount">模塊總件數</param>
-		private void InitializeModelEvent(object sender, int modelCount)
+		private void ModelPreLoadEvent(object sender, int modelCount)
 		{
 			// 創建一個線程用來描畫圖片的起始位置
 			MethodInvoker invoker = () =>
@@ -124,20 +124,14 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			timer1.Start();
 
-			PluginsManager pluginsManager = new PluginsManager();
-
-			pluginsManager.ModelLoadingEvent += new PluginsManager.ModelLoadingEventHandler(ModelLoadingEvent);
-			pluginsManager.ModelLoadCompleteEvent += new PluginsManager.ModelLoadCompleteEventHandler(ModelLoadCompleteEvent);
-			pluginsManager.InitializeModelEvent += new PluginsManager.ModelInitializeEventHandler(InitializeModelEvent);
-
-			/*
-			ComposerFactory.ModelLoadingEvent += new ComposerFactory.ModelLoadingEventHandler(ModelLoadingEvent);
-			ComposerFactory.ModelLoadCompleteEvent += new ComposerFactory.ModelLoadCompleteEventHandler(ModelLoadCompleteEvent);
-			ComposerFactory.InitializeModelEvent += new ComposerFactory.ModelInitializeEventHandler(InitializeModelEvent);
-			*/
+			PluginHelper helper = new PluginHelper();
+			PluginsManagerBase pluginsManage = helper.GetManager();
+			pluginsManage.ModelLoading += new PluginsManagerBase.ModelLoadingEventHandler(ModelLoadingEvent);
+			pluginsManage.ModelLoadComplete += new PluginsManagerBase.ModelLoadCompleteEventHandler(ModelLoadCompleteEvent);
+			pluginsManage.ModelPreLoad += new PluginsManagerBase.ModelPreLoadEventHandler(ModelPreLoadEvent);
 
 			// 異步處理
-			Action handler = new Action(pluginsManager.Initialize);
+			Action handler = new Action(pluginsManage.Initialize);
 			handler.BeginInvoke(ar => handler.EndInvoke(ar), null);
 		}
 

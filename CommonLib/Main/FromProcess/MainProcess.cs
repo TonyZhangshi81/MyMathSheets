@@ -329,7 +329,8 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 
 					int indexX = 1, indexY = 1;
 
-					foreach (var plugin in from p in PluginsManager.InitPluginsModuleList
+					PluginHelper helper = new PluginHelper();
+					foreach (var plugin in from p in helper.GetManager().InitPluginsModuleList
 										   join t in TopicManagementList on p.TopicIdentifier equals t.TopicIdentifier
 										   orderby p.Classify ascending, p.TopicIdentifier ascending
 										   select new
