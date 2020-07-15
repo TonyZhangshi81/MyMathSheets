@@ -97,7 +97,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		private void TopicManagementInit()
 		{
 			// 读取资料库
-			using (var file = File.OpenText(Configuration.Current.TopicManagementConfig))
+			using (var file = File.OpenText(ConfigurationUtil.TopicManagementConfig))
 			{
 				TopicManagementList = JsonConvert.DeserializeObject<List<TopicManagement>>(file.ReadToEnd());
 			};
@@ -109,7 +109,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// <returns>文件名列表</returns>
 		public List<string> GetWorkPageFiles()
 		{
-			var htmlWork = Configuration.Current.GetConfigValue("HtmlWork");
+			var htmlWork = ConfigurationUtil.GetKeyValue("HtmlWork");
 			// 如果目錄不存在
 			if (!Directory.Exists(htmlWork))
 			{
@@ -142,9 +142,9 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		public string SureClick()
 		{
 			// HTML模板存放路徑
-			string sourceFileName = Path.GetFullPath(Configuration.Current.HtmlTemplatePath);
+			string sourceFileName = Path.GetFullPath(ConfigurationUtil.HtmlTemplatePath);
 			// 靜態頁面作成后存放的路徑（文件名：日期時間形式）
-			string destFileName = Path.GetFullPath(Configuration.Current.GetConfigValue("HtmlWork")
+			string destFileName = Path.GetFullPath(ConfigurationUtil.GetKeyValue("HtmlWork")
 										+ string.Format(CultureInfo.CurrentCulture, "{0}.html", DateTime.Now.ToString("yyyyMMddHHmmssfff", CultureInfo.CurrentCulture)));
 
 			// 文件移動
@@ -329,8 +329,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 
 					int indexX = 1, indexY = 1;
 
-					PluginHelper helper = new PluginHelper();
-					foreach (var plugin in from p in helper.GetManager().InitPluginsModuleList
+					foreach (var plugin in from p in PluginHelper.GetManager().InitPluginsModuleList
 										   join t in TopicManagementList on p.TopicIdentifier equals t.TopicIdentifier
 										   orderby p.Classify ascending, p.TopicIdentifier ascending
 										   select new

@@ -11,7 +11,7 @@ namespace MyMathSheets.CommonLib.Configurations
 	/// <summary>
 	/// 自定義類型轉換器（JSON轉字符串集合）以獲取需要忽略程序集集合
 	/// </summary>
-	public class PluginSearchExcludeAssembliyMapsConverter : TypeConverter
+	public sealed class PluginSearchExcludeAssembliyMapsConverter : TypeConverter
 	{
 		/// <summary>
 		/// JSON轉字符串集合
@@ -22,9 +22,9 @@ namespace MyMathSheets.CommonLib.Configurations
 		/// <returns></returns>
 		public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
 		{
-			var data = value as string;
-			if (data != null)
+			if (value is string)
 			{
+				var data = value as string;
 				return GetPluginSearchExcludeAssembliyMaps(data);
 			}
 			return base.ConvertFrom(context, culture, value);
@@ -35,7 +35,7 @@ namespace MyMathSheets.CommonLib.Configurations
 		/// </summary>
 		/// <param name="dataValue">轉換內容</param>
 		/// <returns>轉換後結果</returns>
-		private List<string> GetPluginSearchExcludeAssembliyMaps(string dataValue)
+		private static List<string> GetPluginSearchExcludeAssembliyMaps(string dataValue)
 		{
 			List<string> list = new List<string>();
 			if (string.IsNullOrWhiteSpace(dataValue))

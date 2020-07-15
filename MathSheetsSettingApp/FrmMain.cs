@@ -177,7 +177,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			if (cmbWorkPages.SelectedIndex > 0)
 			{
 				// 使用IE打開已作成的靜態頁面
-				CallCommondProcess(() => { return ("\"" + Path.GetFullPath(Configuration.Current.GetConfigValue("HtmlWork") + cmbWorkPages.SelectedValue.ToString()) + "\""); });
+				CallCommondProcess(() => { return ("\"" + Path.GetFullPath(ConfigurationUtil.GetKeyValue("HtmlWork") + cmbWorkPages.SelectedValue.ToString()) + "\""); });
 				Environment.Exit(0);
 				return;
 			}
@@ -204,11 +204,11 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// </summary>
 		/// <param name="getArguments">參數</param>
 		/// <param name="waitForExit">等待時間後關閉</param>
-		private void CallCommondProcess(Func<string> getArguments, int waitForExit = 2000)
+		private static void CallCommondProcess(Func<string> getArguments, int waitForExit = 2000)
 		{
 			Process cmdProcess = new Process();
 			// 命令
-			cmdProcess.StartInfo.FileName = Configuration.Current.GetConfigValue("Preview");
+			cmdProcess.StartInfo.FileName = ConfigurationUtil.GetKeyValue("Preview");
 			// 顯示DOC界面
 			cmdProcess.StartInfo.CreateNoWindow = true;
 			// 啟動Exited事件

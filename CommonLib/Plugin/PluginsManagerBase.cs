@@ -146,7 +146,7 @@ namespace MyMathSheets.CommonLib.Plugin
 		public virtual IList<FileInfo> SearchPlugins()
 		{
 			var fileList = new List<FileInfo>();
-			GetDirectoryFiles(Configurations.Configuration.Current.ApplicationRootPath, fileList);
+			GetDirectoryFiles(Configurations.ConfigurationUtil.ApplicationRootPath, fileList);
 
 			return fileList;
 		}

@@ -26,8 +26,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <param name="y">餐數2</param>
 		/// <param name="operators">運算符</param>
 		/// <returns>計算結果</returns>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:メンバーを static に設定します", Justification = "<保留中>")]
-		public string Arithmetic(string x, string y, string operators)
+		public static string Arithmetic(string x, string y, string operators)
 		{
 			var a = decimal.Parse(x, CultureInfo.CurrentCulture);
 			var b = decimal.Parse(y, CultureInfo.CurrentCulture);

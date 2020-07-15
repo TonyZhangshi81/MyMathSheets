@@ -28,7 +28,6 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			{
 				Formula.LeftParameter = GetParameterWithScope(parameter.LeftScope);
 				Formula.RightParameter = GetParameterWithScope(parameter.RightScope);
-
 			}
 			else
 			{
@@ -45,18 +44,18 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			return true;
 		}
 
-
 		/// <summary>
 		/// 構造函數
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
 		/// <returns>計算式對象</returns>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:パブリック メソッドの引数の検証", Justification = "<保留中>")]
 		public override Formula CreateFormula(CalculateParameter parameter)
 		{
 			Formula = base.CreateFormula(parameter);
 			// 創建計算式
+#pragma warning disable CA1062 // base.CreateFormula已對parameter進行NULL判定處理
 			var result = TryCreateFormula(parameter);
+#pragma warning restore CA1062
 
 			// 當前反推判定數
 			int _defeated = 0;
@@ -83,20 +82,20 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			return Formula;
 		}
 
-
 		/// <summary>
 		/// 構造用於計算接龍題型(即：計算式左邊值等於上一個計算式的結果值)
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="previousFormula">前次推算的計算式對象</param>
 		/// <returns>計算式對象</returns>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:パブリック メソッドの引数の検証", Justification = "<保留中>")]
 		public override Formula CreateFormula(CalculateParameter parameter, Formula previousFormula)
 		{
 			Formula = base.CreateFormula(parameter, previousFormula);
 
 			// 如果当前是第一层计算式,需要随机获取计算式最左边的值
+#pragma warning disable CA1062 // base.CreateFormula已對parameter進行NULL判定處理
 			Formula.LeftParameter = (previousFormula == null) ? GetLeftParameter(parameter.MaximumLimit) : previousFormula.Answer;
+#pragma warning restore CA1062
 			Formula.Sign = SignOfOperation.Subtraction;
 			Formula.RightParameter = GetRightParameter(Formula.LeftParameter);
 			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);
@@ -106,14 +105,12 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			return Formula;
 		}
 
-
 		/// <summary>
 		/// 由計算結果推算出計算式(使用場景:水果連連看)
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="answer">計算結果</param>
 		/// <returns>計算式對象</returns>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:パブリック メソッドの引数の検証", Justification = "<保留中>")]
 		public override Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
 		{
 			Formula = base.CreateFormulaWithAnswer(parameter, answer);
@@ -122,7 +119,9 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 			Formula.Sign = SignOfOperation.Subtraction;
 			// 计算式左侧项目的取值范围（答案值至最大计算值）
 			MinimumLimit = answer;
+#pragma warning disable CA1062 // base.CreateFormula已對parameter進行NULL判定處理
 			Formula.LeftParameter = GetLeftParameter(parameter.MaximumLimit);
+#pragma warning restore CA1062
 			Formula.RightParameter = Formula.LeftParameter - Formula.Answer;
 
 			LogUtil.LogCalculate(Formula);

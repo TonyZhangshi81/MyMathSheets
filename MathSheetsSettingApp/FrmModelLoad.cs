@@ -17,30 +17,9 @@ namespace MyMathSheets.MathSheetsSettingApp
 		private decimal _unitStep;
 
 		/// <summary>
-		/// 插件支援類
-		/// </summary>
-		private PluginHelper _helper;
-
-		/// <summary>
 		/// 插件管理類
 		/// </summary>
 		private readonly PluginsManagerBase _pluginsManage;
-
-		/// <summary>
-		/// 插件支援類
-		/// </summary>
-		protected PluginHelper Helper
-		{
-			get
-			{
-				if (_helper == null)
-				{
-					_helper = new PluginHelper();
-				}
-
-				return _helper;
-			}
-		}
 
 		/// <summary>
 		/// 窗口初期化
@@ -49,7 +28,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			InitializeComponent();
 
-			_pluginsManage = Helper.GetManager();
+			_pluginsManage = PluginHelper.GetManager();
 		}
 
 		/// <summary>

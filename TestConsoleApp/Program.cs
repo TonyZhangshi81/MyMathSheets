@@ -13,9 +13,7 @@ namespace MyMathSheets.TestConsoleApp
 		/// <param name="args"></param>
 		private static void Main(string[] args)
 		{
-			PluginHelper helper = new PluginHelper();
-			PluginsManagerBase pluginsManage = helper.GetManager();
-			pluginsManage.Initialize();
+			PluginHelper.GetManager().Initialize();
 
 			// 主程序啟動
 			var program = new Program();

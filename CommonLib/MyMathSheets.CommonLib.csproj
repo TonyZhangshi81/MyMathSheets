@@ -77,7 +77,7 @@
     <Compile Include="Composition\ComposerAttribute.cs" />
     <Compile Include="Composition\ComposerException.cs" />
     <Compile Include="Composition\ComposerFactory.cs" />
-    <Compile Include="Configurations\Configuration.cs" />
+    <Compile Include="Configurations\ConfigurationUtil.cs" />
     <Compile Include="Configurations\PluginManageProviderConfigurationSection.cs" />
     <Compile Include="Configurations\PluginSearchExcludeAssembliyMapsConverter.cs" />
     <Compile Include="Logging\ILogContext.cs" />

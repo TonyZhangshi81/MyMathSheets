@@ -25,11 +25,6 @@ namespace MyMathSheets.MathSheetsSettingApp
 				_pluginsManage.Dispose();
 			}
 
-			if (_helper != null)
-			{
-				_helper.Dispose();
-			}
-
 			if (disposing && (components != null))
 			{
 				components.Dispose();

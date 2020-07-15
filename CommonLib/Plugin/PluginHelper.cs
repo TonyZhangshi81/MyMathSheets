@@ -19,7 +19,7 @@ namespace MyMathSheets.CommonLib.Plugin
 		/// 取得<see cref="PluginsManagerBase"/>的管理對象實例
 		/// </summary>
 		/// <returns>實例</returns>
-		public PluginsManagerBase GetManager()
+		public static PluginsManagerBase GetManager()
 		{
 			if (_instance != null)
 			{
@@ -40,6 +40,5 @@ namespace MyMathSheets.CommonLib.Plugin
 				_instance.Dispose();
 			}
 		}
-
 	}
 }

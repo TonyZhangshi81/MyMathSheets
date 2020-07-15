@@ -29,7 +29,7 @@ namespace MyMathSheets.TestConsoleApp.Plugin
 		{
 			var fileList = new List<FileInfo>();
 
-			DirectoryInfo theFolder = new DirectoryInfo(Configuration.Current.ApplicationRootPath);
+			DirectoryInfo theFolder = new DirectoryInfo(ConfigurationUtil.ApplicationRootPath);
 			// 遍歷文件
 			foreach (var fi in from _ in theFolder.GetFiles(base.SearchKeyword)
 							   where !base.ExcludeAssemblies.Contains(_.Name)

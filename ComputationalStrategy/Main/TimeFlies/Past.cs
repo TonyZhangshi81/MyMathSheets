@@ -37,12 +37,13 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
 		/// <returns>計算式對象</returns>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:パブリック メソッドの引数の検証", Justification = "<保留中>")]
 		public override Formula CreateFormula(CalculateParameter parameter)
 		{
 			Formula = base.CreateFormula(parameter);
 
+#pragma warning disable CA1062 // base.CreateFormula已對parameter進行NULL判定處理
 			Formula.LeftParameter = parameter.MaximumLimit;
+#pragma warning restore CA1062
 			Formula.Sign = SignOfOperation.Subtraction;
 			Formula.RightParameter = parameter.MinimumLimit;
 			Formula.Answer = GetAnswer(Formula.LeftParameter, Formula.RightParameter);

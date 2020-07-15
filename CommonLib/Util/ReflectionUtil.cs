@@ -68,7 +68,7 @@ namespace MyMathSheets.CommonLib.Util
 				return assembly;
 			}
 
-			var basePath = Path.GetFullPath(Configurations.Configuration.Current.ApplicationRootPath);
+			var basePath = Path.GetFullPath(Configurations.ConfigurationUtil.ApplicationRootPath);
 			var dllName = assemblyName.Name + ".dll";
 			var dllPath = Path.Combine(basePath, dllName);
 			if (!File.Exists(dllPath))
@@ -86,9 +86,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// <returns>指定題型的程序集對象</returns>
 		public static Assembly GetAssembly(string topicIdentifier)
 		{
-			PluginHelper helper = new PluginHelper();
-
-			var plugins = helper.GetManager().InitPluginsModuleList.ToList();
+			var plugins = PluginHelper.GetManager().InitPluginsModuleList.ToList();
 			if (!plugins.Any())
 			{
 				return null;
