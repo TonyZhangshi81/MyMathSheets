@@ -5,9 +5,9 @@ using System;
 namespace MyMathSheets.CommonLib.Main.OperationStrategy
 {
 	/// <summary>
-	///
+	/// 
 	/// </summary>
-	public abstract class OperationBase : IOperation
+	public abstract class OperationBase : ObjectBase, IOperation
 	{
 		/// <summary>
 		///

@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Message;
+﻿using MyMathSheets.CommonLib.Main;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using System;
@@ -8,6 +9,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Linq;
 using System.Reflection;
+using System.Security.Permissions;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Composition
@@ -18,19 +20,17 @@ namespace MyMathSheets.CommonLib.Composition
 	/// <remarks>
 	/// 影響導出部件成功匹配的主要因素有：ContractType（協定類型），ContractName（協定名稱），Metadata（元數據），CreationPolicy（創建策略）
 	/// </remarks>
-	public class Composer : IDisposable
+	public class Composer : ObjectBase
 	{
-		private bool isDisposed;
-
 		/// <summary>
 		/// MEF容器
 		/// </summary>
 		private readonly CompositionContainer _container;
 
 		/// <summary>
-		/// MEF容器取得
+		/// 
 		/// </summary>
-		internal CompositionContainer Container => _container;
+		public CompositionContainer Container { get { return _container; } }
 
 		/// <summary>
 		/// <see cref="Composer"/>的實例化創建MEF容器實例
@@ -38,6 +38,15 @@ namespace MyMathSheets.CommonLib.Composition
 		public Composer()
 		{
 			_container = new CompositionContainer();
+		}
+
+		/// <summary>
+		/// <see cref="Composer"/>的實例化創建MEF容器實例
+		/// </summary>
+		/// <param name="container">MEF容器對象</param>
+		public Composer(CompositionContainer container)
+		{
+			_container = container;
 		}
 
 		/// <summary>
@@ -313,44 +322,6 @@ namespace MyMathSheets.CommonLib.Composition
 		}
 
 		/// <summary>
-		/// 資源釋放
-		/// </summary>
-		public void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
-		/// <summary>
-		/// 資源釋放
-		/// </summary>
-		/// <param name="disposing">是否正在釋放</param>
-		/// <remarks>資源自動回收時觸發析構函數，以下資源自動釋放(即isDisposed=true)</remarks>
-		protected virtual void Dispose(bool disposing)
-		{
-			if (isDisposed) return;
-
-			// 正在釋放資源
-			if (disposing)
-			{
-				if (_container != null)
-				{
-					_container.Dispose();
-				}
-			}
-
-			isDisposed = true;
-		}
-
-		/// <summary>
-		/// 資源釋放
-		/// </summary>
-		~Composer()
-		{
-			Dispose(false);
-		}
-
-		/// <summary>
 		/// 從容器中釋放Export對象
 		/// </summary>
 		/// <param name="export">要釋放的Export對象</param>
@@ -384,6 +355,17 @@ namespace MyMathSheets.CommonLib.Composition
 		public void ReleaseExport<T>(IEnumerable<Lazy<T>> exports)
 		{
 			_container.ReleaseExports<T>(exports);
+		}
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		protected override void DisposeManaged()
+		{
+			if (_container != null)
+			{
+				_container.Dispose();
+			}
 		}
 	}
 }

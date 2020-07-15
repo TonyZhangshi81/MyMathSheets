@@ -9,7 +9,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 	/// 題型參數類
 	/// </summary>
 	[JsonObject(MemberSerialization.OptOut)]
-	public class ParameterBase : IParameter
+	public class ParameterBase : ObjectBase, IParameter
 	{
 		/// <summary>
 		/// <see cref="ParameterBase"/>的實例

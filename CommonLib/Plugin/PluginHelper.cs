@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Configurations;
+using MyMathSheets.CommonLib.Main;
 using System;
 using System.Configuration;
 
@@ -7,10 +8,8 @@ namespace MyMathSheets.CommonLib.Plugin
 	/// <summary>
 	/// 插件管理支援類
 	/// </summary>
-	public class PluginHelper : IDisposable
+	public class PluginHelper : ObjectBase
 	{
-		private bool isDisposed;
-
 		/// <summary>
 		/// 管理對象實例
 		/// </summary>
@@ -34,38 +33,13 @@ namespace MyMathSheets.CommonLib.Plugin
 		/// <summary>
 		/// 資源釋放
 		/// </summary>
-		public void Dispose()
+		protected override void DisposeManaged()
 		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
-		/// <summary>
-		/// 資源釋放
-		/// </summary>
-		/// <param name="disposing">是否正在釋放</param>
-		protected virtual void Dispose(bool disposing)
-		{
-			if (isDisposed) return;
-
-			// 正在釋放資源
-			if (disposing)
+			if (_instance != null)
 			{
-				if (_instance != null)
-				{
-					_instance.Dispose();
-				}
+				_instance.Dispose();
 			}
-
-			isDisposed = true;
 		}
 
-		/// <summary>
-		/// 析構函數
-		/// </summary>
-		~PluginHelper()
-		{
-			Dispose(false);
-		}
 	}
 }

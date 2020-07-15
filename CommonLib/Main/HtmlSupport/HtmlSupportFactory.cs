@@ -13,8 +13,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 	/// <summary>
 	/// HTML支援類實例生產工廠
 	/// </summary>
-	[PartCreationPolicy(CreationPolicy.Shared)]
-	[Export(typeof(IHtmlSupportFactory))]
+	[Export(typeof(IHtmlSupportFactory)), PartCreationPolicy(CreationPolicy.Shared)]
 	public class HtmlSupportFactory : IHtmlSupportFactory
 	{
 		/// <summary>

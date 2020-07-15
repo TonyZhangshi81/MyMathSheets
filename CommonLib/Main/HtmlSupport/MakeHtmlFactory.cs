@@ -12,8 +12,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 	/// <summary>
 	/// HTML支援類
 	/// </summary>
-	[PartCreationPolicy(CreationPolicy.Shared)]
-	[Export(typeof(IMakeHtml))]
+	[Export(typeof(IMakeHtml)), PartCreationPolicy(CreationPolicy.Shared)]
 	public class MakeHtmlFactory : IMakeHtml
 	{
 		/// <summary>

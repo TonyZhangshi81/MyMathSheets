@@ -119,6 +119,7 @@
     <Compile Include="Main\Item\Formula.cs" />
     <Compile Include="Main\Item\LengthUnit.cs" />
     <Compile Include="Main\Item\TimeType.cs" />
+    <Compile Include="Main\ObjectBase.cs" />
     <Compile Include="Main\OperationStrategy\OperationHelper.cs" />
     <Compile Include="Main\OperationStrategy\OperationFactory.cs" />
     <Compile Include="Main\OperationStrategy\IOperationFactory.cs" />

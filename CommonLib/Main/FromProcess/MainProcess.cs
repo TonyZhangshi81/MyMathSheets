@@ -22,7 +22,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 	/// <summary>
 	/// 畫面處理類
 	/// </summary>
-	[Export(typeof(IMainProcess))]
+	[Export(typeof(IMainProcess)), PartCreationPolicy(CreationPolicy.NonShared)]
 	public class MainProcess : IMainProcess
 	{
 		/// <summary>

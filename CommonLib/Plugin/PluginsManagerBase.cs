@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyMathSheets.CommonLib.Main;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,10 +9,8 @@ namespace MyMathSheets.CommonLib.Plugin
 	/// <summary>
 	/// 插件管理類
 	/// </summary>
-	public abstract class PluginsManagerBase : IPluginsManager, IDisposable
+	public abstract class PluginsManagerBase : ObjectBase, IPluginsManager
 	{
-		private bool isDisposed;
-
 		/// <summary>
 		/// 文件名檢索用關鍵字
 		/// </summary>
@@ -174,45 +173,15 @@ namespace MyMathSheets.CommonLib.Plugin
 			folder.GetDirectories().ToList().ForEach(d => GetDirectoryFiles(d.FullName, fileList));
 		}
 
-		#region 資源釋放
-
 		/// <summary>
 		/// 資源釋放
 		/// </summary>
-		public void Dispose()
+		protected override void DisposeManaged()
 		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
-		/// <summary>
-		/// 資源釋放
-		/// </summary>
-		/// <param name="disposing">是否正在釋放</param>
-		protected virtual void Dispose(bool disposing)
-		{
-			if (isDisposed) return;
-
-			// 正在釋放資源
-			if (disposing)
+			if (InitPluginsModuleList != null)
 			{
-				if (InitPluginsModuleList != null)
-				{
-					InitPluginsModuleList.Clear();
-				}
+				InitPluginsModuleList.Clear();
 			}
-
-			isDisposed = true;
 		}
-
-		/// <summary>
-		/// 析構函數
-		/// </summary>
-		~PluginsManagerBase()
-		{
-			Dispose(false);
-		}
-
-		#endregion 資源釋放
 	}
 }
