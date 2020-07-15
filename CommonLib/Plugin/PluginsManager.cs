@@ -14,6 +14,11 @@ namespace MyMathSheets.CommonLib.Plugin
 	public sealed class PluginsManager : PluginsManagerBase
 	{
 		/// <summary>
+		/// 獨佔模式開啟
+		/// </summary>
+		private static readonly object Sync;
+
+		/// <summary>
 		/// <see cref="PluginsManager"/>的靜態構築
 		/// </summary>
 		static PluginsManager()
@@ -22,9 +27,14 @@ namespace MyMathSheets.CommonLib.Plugin
 		}
 
 		/// <summary>
-		/// 獨佔模式開啟
+		/// <see cref="PluginsManager"/>的構造函數
 		/// </summary>
-		private static readonly object Sync;
+		/// <param name="searchKeyword">文件名檢索用關鍵字</param>
+		/// <param name="excludeAssemblies">檢索以外的條件</param>
+		public PluginsManager(string searchKeyword, List<string> excludeAssemblies) 
+			: base(searchKeyword, excludeAssemblies)
+		{
+		}
 
 		/// <summary>
 		/// 插件列表初始化

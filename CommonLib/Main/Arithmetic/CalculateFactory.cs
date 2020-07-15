@@ -14,7 +14,7 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 	/// <summary>
 	/// 運算符對象生產工廠
 	/// </summary>
-	[PartCreationPolicy(CreationPolicy.NonShared)]
+	[PartCreationPolicy(CreationPolicy.Shared)]
 	[Export(typeof(ICalculateFactory))]
 	public class CalculateFactory : ICalculateFactory
 	{

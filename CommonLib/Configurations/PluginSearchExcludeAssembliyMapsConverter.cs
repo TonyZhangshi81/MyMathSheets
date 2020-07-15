@@ -2,41 +2,42 @@
 using MyMathSheets.CommonLib.Properties;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 
 namespace MyMathSheets.CommonLib.Configurations
 {
 	/// <summary>
-	///
+	/// 自定義類型轉換器（JSON轉字符串集合）以獲取需要忽略程序集集合
 	/// </summary>
 	public class PluginSearchExcludeAssembliyMapsConverter : TypeConverter
 	{
 		/// <summary>
-		///
+		/// JSON轉字符串集合
 		/// </summary>
-		/// <param name="context"></param>
-		/// <param name="culture"></param>
-		/// <param name="value"></param>
+		/// <param name="context">提供有關組件的上下文信息</param>
+		/// <param name="culture">區域信息</param>
+		/// <param name="value">轉換內容</param>
 		/// <returns></returns>
 		public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
 		{
 			var data = value as string;
 			if (data != null)
 			{
-				return this.GetPluginSearchExcludeAssembliyMaps(data);
+				return GetPluginSearchExcludeAssembliyMaps(data);
 			}
 			return base.ConvertFrom(context, culture, value);
 		}
 
 		/// <summary>
-		///
+		/// JSON轉字符串集合的方法實現
 		/// </summary>
-		/// <param name="dataValue"></param>
-		/// <returns></returns>
-		private string[] GetPluginSearchExcludeAssembliyMaps(string dataValue)
+		/// <param name="dataValue">轉換內容</param>
+		/// <returns>轉換後結果</returns>
+		private List<string> GetPluginSearchExcludeAssembliyMaps(string dataValue)
 		{
-			var list = new string[] { };
+			List<string> list = new List<string>();
 			if (string.IsNullOrWhiteSpace(dataValue))
 			{
 				return list;
@@ -44,7 +45,7 @@ namespace MyMathSheets.CommonLib.Configurations
 
 			try
 			{
-				list = JsonConvert.DeserializeObject<string[]>(dataValue);
+				list = JsonConvert.DeserializeObject<List<string>>(dataValue);
 			}
 			catch (Exception e)
 			{

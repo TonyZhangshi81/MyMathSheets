@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using MyMathSheets.CommonLib.Plugin;
+using System.Drawing;
 
 namespace MyMathSheets.MathSheetsSettingApp
 {
@@ -15,6 +16,20 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
+			if (_pluginsManage != null)
+			{
+				_pluginsManage.ModelLoading -= new PluginsManagerBase.ModelLoadingEventHandler(ModelLoadingEvent);
+				_pluginsManage.ModelLoadComplete -= new PluginsManagerBase.ModelLoadCompleteEventHandler(ModelLoadCompleteEvent);
+				_pluginsManage.ModelPreLoad -= new PluginsManagerBase.ModelPreLoadEventHandler(ModelPreLoadEvent);
+
+				_pluginsManage.Dispose();
+			}
+
+			if (_helper != null)
+			{
+				_helper.Dispose();
+			}
+
 			if (disposing && (components != null))
 			{
 				components.Dispose();

@@ -27,9 +27,7 @@ namespace MyMathSheets.CommonLib.Plugin
 				return _instance;
 			}
 			var section = (PluginManageProviderConfigurationSection)ConfigurationManager.GetSection("PluginManage");
-			_instance = Activator.CreateInstance(Type.GetType(section.ImportType)) as PluginsManagerBase;
-			_instance.SearchKeyword = section.SearchKeyword;
-			_instance.ExcludeAssemblies = section.ExcludeAssemblies;
+			_instance = Activator.CreateInstance(Type.GetType(section.ImportType), section.SearchKeyword, section.ExcludeAssemblies) as PluginsManagerBase;
 			return _instance;
 		}
 

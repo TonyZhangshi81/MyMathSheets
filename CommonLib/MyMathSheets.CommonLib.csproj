@@ -114,7 +114,7 @@
     <Compile Include="Main\HtmlSupport\IHtmlSupport.cs" />
     <Compile Include="Main\HtmlSupport\IHtmlSupportFactory.cs" />
     <Compile Include="Main\HtmlSupport\IMakeHtml.cs" />
-    <Compile Include="Main\HtmlSupport\MakeHtml.cs" />
+    <Compile Include="Main\HtmlSupport\MakeHtmlFactory.cs" />
     <Compile Include="Main\Item\Currency.cs" />
     <Compile Include="Main\Item\Formula.cs" />
     <Compile Include="Main\Item\LengthUnit.cs" />

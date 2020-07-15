@@ -12,19 +12,14 @@ namespace MyMathSheets.TestConsoleApp.Plugin
 	public class PluginsManager : PluginsManagerBase
 	{
 		/// <summary>
-		/// 文件名檢索用關鍵字
+		/// <see cref="PluginsManager"/>的構造函數
 		/// </summary>
-		private const string SEARCH_PATTERN = "MyMathSheets.ComputationalStrategy.*.dll";
-
-		/// <summary>
-		/// 模塊
-		/// </summary>
-		private static readonly string[] ExcludeAssemblies =
-			new[]
-				{
-					"MyMathSheets.CommonLib.dll",
-					"MyMathSheets.BasicOperationsLib.dll"
-				};
+		/// <param name="searchKeyword">文件名檢索用關鍵字</param>
+		/// <param name="excludeAssemblies">檢索以外的條件</param>
+		public PluginsManager(string searchKeyword, List<string> excludeAssemblies)
+			: base(searchKeyword, excludeAssemblies)
+		{
+		}
 
 		/// <summary>
 		/// 檢索並獲取插件文件信息
@@ -36,8 +31,8 @@ namespace MyMathSheets.TestConsoleApp.Plugin
 
 			DirectoryInfo theFolder = new DirectoryInfo(Configuration.Current.ApplicationRootPath);
 			// 遍歷文件
-			foreach (var fi in from _ in theFolder.GetFiles(SEARCH_PATTERN)
-							   where !ExcludeAssemblies.Contains(_.Name)
+			foreach (var fi in from _ in theFolder.GetFiles(base.SearchKeyword)
+							   where !base.ExcludeAssemblies.Contains(_.Name)
 							   orderby _.Name.Length descending
 							   select _)
 			{

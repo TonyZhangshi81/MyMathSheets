@@ -5,7 +5,7 @@ namespace MyMathSheets.CommonLib.Util
 	/// <summary>
 	/// 随机数取得机能对象
 	/// </summary>
-	public class RandomNumberComposition
+	public sealed class RandomNumberComposition
 	{
 		/// <summary>
 		/// 声明一个静态整数变量 通过他的改变 为使随机数不再紧靠（即：随机数虽然不同但是接近）
@@ -23,6 +23,15 @@ namespace MyMathSheets.CommonLib.Util
 		private readonly int _minValue;
 
 		/// <summary>
+		/// 線程安全鎖
+		/// </summary>
+		private static Object randLock;
+		/// <summary>
+		/// 靜態<see cref="Random"/>對象
+		/// </summary>
+		private static Random rand;
+
+		/// <summary>
 		/// 随机数取得机能对象构造函数
 		/// </summary>
 		/// <param name="minValue">随机下限值</param>
@@ -31,6 +40,10 @@ namespace MyMathSheets.CommonLib.Util
 		{
 			_maxValue = maxValue;
 			_minValue = minValue;
+
+			// 實例單個Random 對象
+			rand = new Random(CreateRandomSeed());
+			randLock = new Object();
 		}
 
 		/// <summary>
@@ -39,10 +52,11 @@ namespace MyMathSheets.CommonLib.Util
 		/// <returns>随机数</returns>
 		public int GetRandomNumber()
 		{
-			Random ran = new Random(CreateRandomSeed());
-			int randKey = ran.Next(_minValue, _maxValue + 1);
-
-			return randKey;
+			lock (randLock)
+			{
+				int randKey = rand.Next(_minValue, _maxValue + 1);
+				return randKey;
+			}
 		}
 
 		/// <summary>

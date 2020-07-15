@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Plugin;
 using System;
 using System.Drawing;
+using System.Security.Permissions;
 using System.Windows.Forms;
 
 namespace MyMathSheets.MathSheetsSettingApp
@@ -16,11 +17,39 @@ namespace MyMathSheets.MathSheetsSettingApp
 		private decimal _unitStep;
 
 		/// <summary>
+		/// 插件支援類
+		/// </summary>
+		private PluginHelper _helper;
+
+		/// <summary>
+		/// 插件管理類
+		/// </summary>
+		private readonly PluginsManagerBase _pluginsManage;
+
+		/// <summary>
+		/// 插件支援類
+		/// </summary>
+		protected PluginHelper Helper
+		{
+			get
+			{
+				if (_helper == null)
+				{
+					_helper = new PluginHelper();
+				}
+
+				return _helper;
+			}
+		}
+
+		/// <summary>
 		/// 窗口初期化
 		/// </summary>
 		public FrmModelLoad()
 		{
 			InitializeComponent();
+
+			_pluginsManage = Helper.GetManager();
 		}
 
 		/// <summary>
@@ -124,14 +153,12 @@ namespace MyMathSheets.MathSheetsSettingApp
 
 			timer1.Start();
 
-			PluginHelper helper = new PluginHelper();
-			PluginsManagerBase pluginsManage = helper.GetManager();
-			pluginsManage.ModelLoading += new PluginsManagerBase.ModelLoadingEventHandler(ModelLoadingEvent);
-			pluginsManage.ModelLoadComplete += new PluginsManagerBase.ModelLoadCompleteEventHandler(ModelLoadCompleteEvent);
-			pluginsManage.ModelPreLoad += new PluginsManagerBase.ModelPreLoadEventHandler(ModelPreLoadEvent);
+			_pluginsManage.ModelLoading += new PluginsManagerBase.ModelLoadingEventHandler(ModelLoadingEvent);
+			_pluginsManage.ModelLoadComplete += new PluginsManagerBase.ModelLoadCompleteEventHandler(ModelLoadCompleteEvent);
+			_pluginsManage.ModelPreLoad += new PluginsManagerBase.ModelPreLoadEventHandler(ModelPreLoadEvent);
 
 			// 異步處理
-			Action handler = new Action(pluginsManage.Initialize);
+			Action handler = new Action(_pluginsManage.Initialize);
 			handler.BeginInvoke(ar => handler.EndInvoke(ar), null);
 		}
 

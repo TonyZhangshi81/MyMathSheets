@@ -15,12 +15,12 @@ namespace MyMathSheets.CommonLib.Plugin
 		/// <summary>
 		/// 文件名檢索用關鍵字
 		/// </summary>
-		public string SearchKeyword { get; set; }
+		protected string SearchKeyword { get; set; }
 
 		/// <summary>
 		/// 檢索以外的條件
 		/// </summary>
-		public string[] ExcludeAssemblies { get; set; }
+		protected List<string> ExcludeAssemblies { get; set; }
 
 		/// <summary>
 		/// 模塊文件列表
@@ -30,9 +30,13 @@ namespace MyMathSheets.CommonLib.Plugin
 		/// <summary>
 		/// <see cref="PluginsManagerBase"/>的構造函數
 		/// </summary>
-		protected PluginsManagerBase()
+		/// <param name="searchKeyword">文件名檢索用關鍵字</param>
+		/// <param name="excludeAssemblies">檢索以外的條件</param>
+		protected PluginsManagerBase(string searchKeyword, List<string> excludeAssemblies)
 		{
 			InitPluginsModuleList = new List<PluginInfo>();
+			SearchKeyword = searchKeyword;
+			ExcludeAssemblies = excludeAssemblies;
 		}
 
 		#region 模塊加載中

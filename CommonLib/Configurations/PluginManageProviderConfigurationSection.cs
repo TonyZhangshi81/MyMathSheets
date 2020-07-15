@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 
 namespace MyMathSheets.CommonLib.Configurations
@@ -31,6 +32,6 @@ namespace MyMathSheets.CommonLib.Configurations
 		/// </summary>
 		[TypeConverter(typeof(PluginSearchExcludeAssembliyMapsConverter))]
 		[ConfigurationProperty(ExcludeAssembliesProperty, IsRequired = true)]
-		internal string[] ExcludeAssemblies => this["excludeAssemblies"] as string[];
+		internal List<string> ExcludeAssemblies => this["excludeAssemblies"] as List<string>;
 	}
 }
