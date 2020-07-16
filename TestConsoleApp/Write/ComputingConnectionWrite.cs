@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
@@ -19,7 +19,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// 计算式结果显示输出
 		/// </summary>
 		/// <param name="formulas">计算式</param>
-		public void ConsoleFormulas(ParameterBase parameter)
+		public void ConsoleFormulas(TopicParameterBase parameter)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "等式接龍"));
 

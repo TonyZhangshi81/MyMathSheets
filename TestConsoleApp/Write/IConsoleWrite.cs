@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 
 namespace MyMathSheets.TestConsoleApp.Write
 {
@@ -11,6 +11,6 @@ namespace MyMathSheets.TestConsoleApp.Write
 		///
 		/// </summary>
 		/// <param name="parameter"></param>
-		void ConsoleFormulas(ParameterBase parameter);
+		void ConsoleFormulas(TopicParameterBase parameter);
 	}
 }

@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Item;
@@ -134,7 +134,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		///
 		/// </summary>
 		/// <param name="parameter"></param>
-		public void ConsoleFormulas(ParameterBase parameter)
+		public void ConsoleFormulas(TopicParameterBase parameter)
 		{
 			LearnLengthUnitParameter param = (LearnLengthUnitParameter)parameter;
 

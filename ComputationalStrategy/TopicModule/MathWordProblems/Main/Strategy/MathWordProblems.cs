@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Item;
@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 	/// 應用題策略
 	/// </summary>
 	[Operation("MathWordProblems")]
-	public class MathWordProblems : OperationBase
+	public class MathWordProblems : TopicBase
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -76,7 +76,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// 題型作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			MathWordProblemsParameter p = parameter as MathWordProblemsParameter;
 

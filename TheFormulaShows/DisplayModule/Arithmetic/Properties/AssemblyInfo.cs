@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("MyMathSheets.TheFormulaShows.Arithmetic")]
+[assembly: AssemblyTitle("MyMathSheets.TheFormulaShows.ArithmeticOperations")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MyMathSheets.TheFormulaShows.Arithmetic")]
+[assembly: AssemblyProduct("MyMathSheets.TheFormulaShows.ArithmeticOperations")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -37,4 +37,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: Plugin(SystemModelType.TheFormulaShows, LayoutSetting.Classify.Generally, "Arithmetic", "四則運算")]
+[assembly: Plugin(SystemModelType.TheFormulaShows, LayoutSetting.Classify.Generally, "ArithmeticOperations", "四則運算")]

@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Item;
 using System;
@@ -10,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters
 	/// 數字排序參數類
 	/// </summary>
 	[OperationParameter("NumericSorting")]
-	public class NumericSortingParameter : ParameterBase
+	public class NumericSortingParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 數字排序作成并輸出

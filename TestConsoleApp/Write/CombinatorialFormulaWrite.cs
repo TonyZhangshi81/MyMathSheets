@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
@@ -18,7 +18,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// 計算結果顯示輸出
 		/// </summary>
 		/// <param name="parameter">參數</param>
-		public void ConsoleFormulas(ParameterBase parameter)
+		public void ConsoleFormulas(TopicParameterBase parameter)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "算式組合"));
 

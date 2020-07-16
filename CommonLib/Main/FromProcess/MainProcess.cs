@@ -2,7 +2,7 @@
 using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.FromProcess.Support;
 using MyMathSheets.CommonLib.Main.HtmlSupport;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Plugin;
 using MyMathSheets.CommonLib.Properties;
@@ -306,7 +306,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			string identifier = TopicManagementList.Where(d => topicIdentifier.Equals(d.TopicIdentifier, StringComparison.CurrentCultureIgnoreCase)).First().Number;
 
 			// 構造題型并取得結果
-			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(topicIdentifier, identifier);
+			TopicParameterBase parameter = TopicsPolicyHelper.Instance.Structure(topicIdentifier, identifier);
 			// 題型HTML信息作成并對指定的HTML模板標識進行替換
 			Dictionary<SubstituteType, string> htmlMaps = MakeHtml.GetHtmlStatement(topicIdentifier, parameter);
 			return htmlMaps;

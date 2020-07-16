@@ -1,6 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Item;
@@ -56,7 +56,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 		/// </summary>
 		/// <param name="parameter">題型輸出結果</param>
 		/// <returns>HTML模板信息</returns>
-		protected override string MakeHtmlStatement(ParameterBase parameter)
+		protected override string MakeHtmlStatement(TopicParameterBase parameter)
 		{
 			LearnCurrencyParameter p = parameter as LearnCurrencyParameter;
 

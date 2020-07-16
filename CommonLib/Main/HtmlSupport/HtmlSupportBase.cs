@@ -1,6 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
@@ -21,7 +21,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <param name="parameter">計算式參數</param>
 		/// <returns>HTML模板信息</returns>
 		/// <exception cref="ArgumentNullException"><paramref name="parameter"/>為NULL的情況</exception>
-		public virtual Dictionary<SubstituteType, string> Make(ParameterBase parameter)
+		public virtual Dictionary<SubstituteType, string> Make(TopicParameterBase parameter)
 		{
 			Guard.ArgumentNotNull(parameter, "parameter");
 
@@ -66,6 +66,6 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// </summary>
 		/// <param name="parameter">計算式參數</param>
 		/// <returns>HTML模板信息</returns>
-		protected abstract string MakeHtmlStatement(ParameterBase parameter);
+		protected abstract string MakeHtmlStatement(TopicParameterBase parameter);
 	}
 }

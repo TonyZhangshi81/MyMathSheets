@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.MathUpright.Item;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters
 	/// 豎式計算參數類
 	/// </summary>
 	[OperationParameter("MathUpright")]
-	public class MathUprightParameter : ParameterBase
+	public class MathUprightParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 豎式計算作成并輸出

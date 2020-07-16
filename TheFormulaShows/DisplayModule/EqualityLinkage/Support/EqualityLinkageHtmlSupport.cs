@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
 using System.Collections.Generic;
@@ -96,7 +96,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// </summary>
 		/// <param name="parameter"></param>
 		/// <returns></returns>
-		protected override string MakeHtmlStatement(ParameterBase parameter)
+		protected override string MakeHtmlStatement(TopicParameterBase parameter)
 		{
 			EqualityLinkageParameter p = parameter as EqualityLinkageParameter;
 

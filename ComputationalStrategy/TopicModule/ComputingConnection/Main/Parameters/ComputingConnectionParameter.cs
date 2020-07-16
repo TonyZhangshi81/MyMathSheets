@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Item;
 using System;
@@ -10,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters
 	/// 等式接龍參數類
 	/// </summary>
 	[OperationParameter("ComputingConnection")]
-	public class ComputingConnectionParameter : ParameterBase
+	public class ComputingConnectionParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 等式接龍作成并輸出

@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Item;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
@@ -41,7 +41,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		///
 		/// </summary>
 		/// <param name="parameter"></param>
-		public void ConsoleFormulas(ParameterBase parameter)
+		public void ConsoleFormulas(TopicParameterBase parameter)
 		{
 			FindNearestNumberParameter param = (FindNearestNumberParameter)parameter;
 

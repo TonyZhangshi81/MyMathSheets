@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Util;
 
@@ -8,8 +8,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 	/// <summary>
 	/// 乘法計算式
 	/// </summary>
-	[Calculate(SignOfOperation.Multiple)]
-	public class Multiplication : CalculateBase
+	[Arithmetic(SignOfOperation.Multiple)]
+	public class Multiplication : ArithmeticBase
 	{
 		/// <summary>
 		/// 反推判定次數
@@ -21,7 +21,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
 		/// <returns>計算式對象</returns>
-		public override Formula CreateFormula(CalculateParameter parameter)
+		public override Formula CreateFormula(ArithmeticParameter parameter)
 		{
 			Formula = base.CreateFormula(parameter);
 
@@ -52,7 +52,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="previousFormula">前次推算的計算式對象</param>
 		/// <returns>計算式對象</returns>
-		public override Formula CreateFormula(CalculateParameter parameter, Formula previousFormula)
+		public override Formula CreateFormula(ArithmeticParameter parameter, Formula previousFormula)
 		{
 			Formula = base.CreateFormula(parameter, previousFormula);
 
@@ -69,7 +69,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="answer">計算結果</param>
 		/// <returns>計算式對象</returns>
-		public override Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
+		public override Formula CreateFormulaWithAnswer(ArithmeticParameter parameter, int answer)
 		{
 			Formula = base.CreateFormulaWithAnswer(parameter, answer);
 			// 創建計算式

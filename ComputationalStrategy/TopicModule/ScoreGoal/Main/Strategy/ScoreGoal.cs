@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
 using System;
@@ -13,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 	/// 射門得分題型構築
 	/// </summary>
 	[Operation("ScoreGoal")]
-	public class ScoreGoal : OperationBase
+	public class ScoreGoal : TopicBase
 	{
 		// 球類算式實例
 		private readonly Dictionary<Formula, int> _ballsFormulas;
@@ -38,10 +39,10 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 		/// <returns>新作成的計算式</returns>
 		private Formula MakeLeftFormulas(int maximumLimit, Func<SignOfOperation> signFunc)
 		{
-			ICalculate strategy = CalculateManager(signFunc());
+			IArithmetic strategy = CalculateManager(signFunc());
 
 			// 計算式作成
-			Formula formula = strategy.CreateFormula(new CalculateParameter()
+			Formula formula = strategy.CreateFormula(new ArithmeticParameter()
 			{
 				MaximumLimit = maximumLimit,
 				QuestionType = QuestionType.Default,
@@ -60,10 +61,10 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 		/// <returns>新作成的計算式</returns>
 		private Formula MakeRightFormulas(int maximumLimit, int leftFormulaAnswer, Func<SignOfOperation> signFunc)
 		{
-			ICalculate strategy = CalculateManager(signFunc());
+			IArithmetic strategy = CalculateManager(signFunc());
 
 			// 計算式作成（依據左邊算式的答案推算右邊的算式）
-			Formula formula = strategy.CreateFormulaWithAnswer(new CalculateParameter()
+			Formula formula = strategy.CreateFormulaWithAnswer(new ArithmeticParameter()
 			{
 				MaximumLimit = maximumLimit,
 				QuestionType = QuestionType.Default,
@@ -116,7 +117,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 		/// 計算式作成處理
 		/// </summary>
 		/// <param name="parameter">參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			ScoreGoalParameter p = parameter as ScoreGoalParameter;
 

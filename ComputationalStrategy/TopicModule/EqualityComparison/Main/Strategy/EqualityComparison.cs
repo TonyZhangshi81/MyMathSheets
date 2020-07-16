@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.EqualityComparison.Item;
 using MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Parameters;
@@ -12,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Strategy
 	/// 等式大小比较
 	/// </summary>
 	[Operation("EqualityComparison")]
-	public class EqualityComparison : OperationBase
+	public class EqualityComparison : TopicBase
 	{
 		/// <summary>
 		/// 題型作成
@@ -45,7 +46,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Strategy
 		/// 題型作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			EqualityComparisonParameter p = parameter as EqualityComparisonParameter;
 
@@ -89,9 +90,9 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Strategy
 		private Formula GetFormulaForRandomNumber(int maximumLimit, Func<SignOfOperation> signFunc)
 		{
 			// 對四則運算符實例進行cache管理
-			ICalculate strategy = CalculateManager(signFunc());
+			IArithmetic strategy = CalculateManager(signFunc());
 
-			return strategy.CreateFormula(new CalculateParameter()
+			return strategy.CreateFormula(new ArithmeticParameter()
 			{
 				MaximumLimit = maximumLimit,
 				QuestionType = QuestionType.Default,

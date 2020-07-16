@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.CurrencyLinkage.Item;
 using MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Parameters;
@@ -12,13 +12,13 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Strategy
 	/// 認識價格題型構築
 	/// </summary>
 	[Operation("CurrencyLinkage")]
-	public class CurrencyLinkage : OperationBase
+	public class CurrencyLinkage : TopicBase
 	{
 		/// <summary>
 		/// 題型構築
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			CurrencyLinkageParameter p = parameter as CurrencyLinkageParameter;
 

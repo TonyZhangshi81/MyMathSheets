@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.TimeCalculation.Item;
 using MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters;
@@ -14,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 	/// 時間運算
 	/// </summary>
 	[Operation("TimeCalculation")]
-	public class TimeCalculation : OperationBase
+	public class TimeCalculation : TopicBase
 	{
 		/// <summary>
 		/// 指定分鐘數值
@@ -92,8 +93,8 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 				TimeType endTime;
 				SignOfOperation sign = signFunc();
 				// 對指定運算符實例化(時間計算:之前和之後)
-				ICalculate strategy = CalculateManager(sign);
-				Formula formula = strategy.CreateFormula(new CalculateParameter()
+				IArithmetic strategy = CalculateManager(sign);
+				Formula formula = strategy.CreateFormula(new ArithmeticParameter()
 				{
 					// 開始時間
 					MaximumLimit = GetStartTime(p, out TimeType startTime),
@@ -126,7 +127,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		/// 算式作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			TimeCalculationParameter p = parameter as TimeCalculationParameter;
 

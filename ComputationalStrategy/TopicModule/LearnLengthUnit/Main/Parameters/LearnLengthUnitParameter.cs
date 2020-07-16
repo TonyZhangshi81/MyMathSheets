@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Item;
 using System;
@@ -11,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters
 	/// 認識長度參數類
 	/// </summary>
 	[OperationParameter("LearnLengthUnit")]
-	public class LearnLengthUnitParameter : ParameterBase
+	public class LearnLengthUnitParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 認識長度作成并輸出

@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.TestConsoleApp
@@ -39,7 +40,7 @@ namespace MyMathSheets.TestConsoleApp
 		/// <param name="args">調試用參數</param>
 		public static void ConsoleFormulas(string topicIdentifier, string args)
 		{
-			ParameterBase parameter = OperationStrategyHelper.Instance.Structure(topicIdentifier, args);
+			TopicParameterBase parameter = TopicsPolicyHelper.Instance.Structure(topicIdentifier, args);
 
 			var writer = FormulasConsolerFactory.Instance.CreateConsoleWriter(topicIdentifier);
 			writer.ConsoleFormulas(parameter);

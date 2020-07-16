@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using System.Collections.Generic;
 
@@ -14,6 +14,6 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// </summary>
 		/// <param name="parameter">計算式參數</param>
 		/// <returns>HTML模板信息</returns>
-		Dictionary<SubstituteType, string> Make(ParameterBase parameter);
+		Dictionary<SubstituteType, string> Make(TopicParameterBase parameter);
 	}
 }

@@ -59,8 +59,8 @@
     <Reference Include="MyMathSheets.ComputationalStrategy.Extent.LearnLengthUnit">
       <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Extent.LearnLengthUnit.dll</HintPath>
     </Reference>
-    <Reference Include="MyMathSheets.ComputationalStrategy.Generally.Arithmetic">
-      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Generally.Arithmetic.dll</HintPath>
+    <Reference Include="MyMathSheets.ComputationalStrategy.Generally.ArithmeticOperations">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Generally.ArithmeticOperations.dll</HintPath>
     </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.Generally.CombinatorialEquation">
       <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Generally.CombinatorialEquation.dll</HintPath>
@@ -160,7 +160,7 @@
     <Compile Include="Write\MathWordProblemsFormulaWrite.cs" />
     <Compile Include="Write\EqualityFormulaWrite.cs" />
     <Compile Include="Write\ComputingConnectionWrite.cs" />
-    <Compile Include="Write\FormulaWrite.cs" />
+    <Compile Include="Write\ArithmeticOperationsWrite.cs" />
     <Compile Include="Write\IConsoleWrite.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

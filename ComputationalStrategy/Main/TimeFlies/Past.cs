@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.BasicOperationsLib.Properties;
-using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
@@ -10,8 +10,8 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 	/// <summary>
 	/// 過去的時間
 	/// </summary>
-	[Calculate(SignOfOperation.Before)]
-	public class Past : CalculateBase
+	[Arithmetic(SignOfOperation.Before)]
+	public class Past : ArithmeticBase
 	{
 		/// <summary>
 		/// 求時間的計算結果
@@ -37,7 +37,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 		/// </summary>
 		/// <param name="parameter">計算式參數類</param>
 		/// <returns>計算式對象</returns>
-		public override Formula CreateFormula(CalculateParameter parameter)
+		public override Formula CreateFormula(ArithmeticParameter parameter)
 		{
 			Formula = base.CreateFormula(parameter);
 
@@ -57,7 +57,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="previousFormula">前次推算的計算式對象</param>
 		/// <returns>計算式對象</returns>
-		public override Formula CreateFormula(CalculateParameter parameter, Formula previousFormula)
+		public override Formula CreateFormula(ArithmeticParameter parameter, Formula previousFormula)
 		{
 			return CreateFormula(parameter);
 		}
@@ -68,7 +68,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.TimeFlies
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="answer">計算結果</param>
 		/// <returns>計算式對象</returns>
-		public override Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
+		public override Formula CreateFormulaWithAnswer(ArithmeticParameter parameter, int answer)
 		{
 			return CreateFormula(parameter);
 		}

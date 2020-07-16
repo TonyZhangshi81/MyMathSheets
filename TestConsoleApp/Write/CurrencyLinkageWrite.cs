@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.CurrencyLinkage.Item;
@@ -40,7 +40,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// 題型结果显示输出
 		/// </summary>
 		/// <param name="parameter">參數</param>
-		public void ConsoleFormulas(ParameterBase parameter)
+		public void ConsoleFormulas(TopicParameterBase parameter)
 		{
 			CurrencyLinkageParameter param = (CurrencyLinkageParameter)parameter;
 

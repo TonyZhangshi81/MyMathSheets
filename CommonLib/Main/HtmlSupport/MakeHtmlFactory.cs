@@ -1,6 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
@@ -42,7 +42,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <param name="topicIdentifier">題型類型</param>
 		/// <param name="parameter">題型參數</param>
 		/// <returns>模板替換內容</returns>
-		public Dictionary<SubstituteType, string> GetHtmlStatement<T>(string topicIdentifier, T parameter) where T : ParameterBase
+		public Dictionary<SubstituteType, string> GetHtmlStatement<T>(string topicIdentifier, T parameter) where T : TopicParameterBase
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0012L, topicIdentifier));
 

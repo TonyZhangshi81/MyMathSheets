@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Item;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters;
@@ -12,13 +12,13 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Strategy
 	/// 數值排序題型
 	/// </summary>
 	[Operation("NumericSorting")]
-	public class NumericSorting : OperationBase
+	public class NumericSorting : TopicBase
 	{
 		/// <summary>
 		/// 算式作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			NumericSortingParameter p = parameter as NumericSortingParameter;
 

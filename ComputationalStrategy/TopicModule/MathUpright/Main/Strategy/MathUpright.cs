@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.MathUpright.Item;
 using MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters;
@@ -14,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 	/// 豎式計算題
 	/// </summary>
 	[Operation("MathUpright")]
-	public class MathUpright : OperationBase
+	public class MathUpright : TopicBase
 	{
 		/// <summary>
 		/// 填空的位置
@@ -58,9 +59,9 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 			// 按照指定數量作成相應的數學計算式
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
-				ICalculate strategy = CalculateManager(signFunc());
+				IArithmetic strategy = CalculateManager(signFunc());
 				// 運算式作成
-				Formula formula = strategy.CreateFormula(new CalculateParameter()
+				Formula formula = strategy.CreateFormula(new ArithmeticParameter()
 				{
 					MaximumLimit = p.MaximumLimit,
 					QuestionType = p.QuestionType,
@@ -131,7 +132,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 		/// 算式作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			MathUprightParameter p = parameter as MathUprightParameter;
 

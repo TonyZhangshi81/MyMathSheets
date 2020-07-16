@@ -9,7 +9,6 @@ using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Linq;
 using System.Reflection;
-using System.Security.Permissions;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Composition
@@ -28,7 +27,7 @@ namespace MyMathSheets.CommonLib.Composition
 		private readonly CompositionContainer _container;
 
 		/// <summary>
-		/// 
+		///
 		/// </summary>
 		public CompositionContainer Container { get { return _container; } }
 
@@ -281,11 +280,13 @@ namespace MyMathSheets.CommonLib.Composition
 		/// <summary>
 		/// 生成指定類型的實例
 		/// </summary>
+		/// <param name="contractName">契約名稱</param>
+		/// <param name="policy">部件共享性（默認值 = <see cref="CreationPolicy.NonShared"/>）</param>
 		/// <returns>指定類型的實例</returns>
-		public IEnumerable<Export> GetExports(string contractName)
+		public IEnumerable<Export> GetExports(string contractName, CreationPolicy policy = CreationPolicy.NonShared)
 		{
 			// 使用指定的契約名稱、必須的類型標識、必須的元數據、基數、創建策略、指定導入定義是否可重新組合或是必備組建，該類型實例化（初期化）
-			var id = new ContractBasedImportDefinition(contractName, null, null, ImportCardinality.ZeroOrMore, false, false, CreationPolicy.NonShared);
+			var id = new ContractBasedImportDefinition(contractName, null, null, ImportCardinality.ZeroOrMore, false, false, policy);
 			return _container.GetExports(id);
 		}
 

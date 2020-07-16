@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Item;
 
@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters
 	/// 射門得分參數類
 	/// </summary>
 	[OperationParameter("ScoreGoal")]
-	public class ScoreGoalParameter : ParameterBase
+	public class ScoreGoalParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 射門得分作成并輸出

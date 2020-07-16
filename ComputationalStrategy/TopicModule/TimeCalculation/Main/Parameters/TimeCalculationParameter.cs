@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.TimeCalculation.Item;
 using System;
@@ -11,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters
 	/// 時間運算參數類
 	/// </summary>
 	[OperationParameter("TimeCalculation")]
-	public class TimeCalculationParameter : ParameterBase
+	public class TimeCalculationParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 時間運算題型參數

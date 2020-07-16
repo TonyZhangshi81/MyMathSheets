@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Item;
 using System;
@@ -11,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters
 	/// 填空題參數類
 	/// </summary>
 	[OperationParameter("GapFillingProblems")]
-	public class GapFillingProblemsParameter : ParameterBase
+	public class GapFillingProblemsParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 填空題作成并輸出

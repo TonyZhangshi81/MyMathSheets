@@ -58,7 +58,7 @@ namespace MyMathSheets.TestConsoleApp
 					case "AC0":
 						Console.WriteLine();
 						Console.WriteLine("四則運算");
-						CommonUtil.ConsoleFormulas("Arithmetic", key);
+						CommonUtil.ConsoleFormulas("ArithmeticOperations", key);
 						break;
 
 					case "CE0":

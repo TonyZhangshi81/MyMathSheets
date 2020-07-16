@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Item;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters;
@@ -14,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 	/// 等式接龍題型（當前版本實現了加減法接龍）
 	/// </summary>
 	[Operation("ComputingConnection")]
-	public class ComputingConnection : OperationBase
+	public class ComputingConnection : TopicBase
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於五次則認為此題無法作成繼續下一題）
@@ -40,8 +41,8 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 				for (int j = 0; j < p.SectionNumber; j++)
 				{
 					// 指定運算符實例作成
-					ICalculate strategy = CalculateManager(signFunc());
-					Formula formula = strategy.CreateFormula(new CalculateParameter()
+					IArithmetic strategy = CalculateManager(signFunc());
+					Formula formula = strategy.CreateFormula(new ArithmeticParameter()
 					{
 						MaximumLimit = p.MaximumLimit,
 						QuestionType = QuestionType.Default,
@@ -76,7 +77,7 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 		/// 算式作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			ComputingConnectionParameter p = parameter as ComputingConnectionParameter;
 

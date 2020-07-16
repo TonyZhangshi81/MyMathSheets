@@ -20,11 +20,10 @@ namespace MyMathSheets.CommonLib.Util.Test
 		[TestMethod()]
 		public void ArithmeticTest01()
 		{
-			var calc = new ExpressCalculateUtil();
-			Assert.AreEqual("7", calc.Arithmetic("3", "4", "+"));
-			Assert.AreEqual("1", calc.Arithmetic("4", "3", "-"));
-			Assert.AreEqual("12", calc.Arithmetic("3", "4", "*"));
-			Assert.AreEqual("7", calc.Arithmetic("28", "4", "/"));
+			Assert.AreEqual("7", ExpressCalculateUtil.Arithmetic("3", "4", "+"));
+			Assert.AreEqual("1", ExpressCalculateUtil.Arithmetic("4", "3", "-"));
+			Assert.AreEqual("12", ExpressCalculateUtil.Arithmetic("3", "4", "*"));
+			Assert.AreEqual("7", ExpressCalculateUtil.Arithmetic("28", "4", "/"));
 		}
 
 		/// <summary>

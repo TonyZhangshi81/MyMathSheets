@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Item;
@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 	/// 填空題策略
 	/// </summary>
 	[Operation("GapFillingProblems")]
-	public class GapFillingProblems : OperationBase
+	public class GapFillingProblems : TopicBase
 	{
 		/// <summary>
 		/// 填空題庫文件所在路徑
@@ -29,7 +29,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 		/// 題型作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			GapFillingProblemsParameter p = parameter as GapFillingProblemsParameter;
 

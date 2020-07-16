@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Item;
 using System;
@@ -10,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters
 	/// 時鐘學習板參數類
 	/// </summary>
 	[OperationParameter("SchoolClock")]
-	public class SchoolClockParameter : ParameterBase
+	public class SchoolClockParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 時鐘學習板題型參數

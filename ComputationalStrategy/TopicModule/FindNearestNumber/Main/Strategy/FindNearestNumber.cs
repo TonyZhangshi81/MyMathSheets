@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Item;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
@@ -12,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 	/// 找最相近的数字題型構築
 	/// </summary>
 	[Operation("FindNearestNumber")]
-	public class FindNearestNumber : OperationBase
+	public class FindNearestNumber : TopicBase
 	{
 		/// <summary>
 		/// 題型構築
@@ -66,7 +67,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 		/// 題型構築
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			FindNearestNumberParameter p = parameter as FindNearestNumberParameter;
 
@@ -107,10 +108,10 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 		/// <returns>新作成的計算式</returns>
 		private Formula MakeLeftFormula(int maximumLimit, Func<SignOfOperation> signFunc)
 		{
-			ICalculate strategy = CalculateManager(signFunc());
+			IArithmetic strategy = CalculateManager(signFunc());
 
 			// 計算式作成
-			Formula formula = strategy.CreateFormula(new CalculateParameter()
+			Formula formula = strategy.CreateFormula(new ArithmeticParameter()
 			{
 				MaximumLimit = maximumLimit,
 				QuestionType = QuestionType.Default,
@@ -129,10 +130,10 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 		/// <returns>新作成的計算式</returns>
 		private Formula MakeRightFormula(int maximumLimit, int leftFormulaAnswer, Func<SignOfOperation> signFunc)
 		{
-			ICalculate strategy = CalculateManager(signFunc());
+			IArithmetic strategy = CalculateManager(signFunc());
 
 			// 計算式作成（依據左邊算式的答案推算右邊的算式）
-			Formula formula = strategy.CreateFormulaWithAnswer(new CalculateParameter()
+			Formula formula = strategy.CreateFormulaWithAnswer(new ArithmeticParameter()
 			{
 				MaximumLimit = maximumLimit,
 				QuestionType = QuestionType.Default,

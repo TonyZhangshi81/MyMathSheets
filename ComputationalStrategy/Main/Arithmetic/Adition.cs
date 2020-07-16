@@ -1,16 +1,15 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Util;
-using System;
 
 namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 {
 	/// <summary>
 	/// 加法計算式
 	/// </summary>
-	[Calculate(SignOfOperation.Plus)]
-	public class Adition : CalculateBase
+	[Arithmetic(SignOfOperation.Plus)]
+	public class Adition : ArithmeticBase
 	{
 		/// <summary>
 		/// 構造函數
@@ -18,7 +17,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <param name="parameter">計算式參數類</param>
 		/// <returns>計算式對象</returns>
 		/// <remarks>如果未設定最大值則依據指定範圍進行推算</remarks>
-		public override Formula CreateFormula(CalculateParameter parameter)
+		public override Formula CreateFormula(ArithmeticParameter parameter)
 		{
 			Formula = base.CreateFormula(parameter);
 
@@ -51,7 +50,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="previousFormula">前次推算的計算式對象</param>
 		/// <returns>計算式對象</returns>
-		public override Formula CreateFormula(CalculateParameter parameter, Formula previousFormula)
+		public override Formula CreateFormula(ArithmeticParameter parameter, Formula previousFormula)
 		{
 			Formula = base.CreateFormula(parameter, previousFormula);
 
@@ -74,7 +73,7 @@ namespace MyMathSheets.BasicOperationsLib.Main.Arithmetic
 		/// <param name="parameter">計算式參數類</param>
 		/// <param name="answer">計算結果</param>
 		/// <returns>計算式對象</returns>
-		public override Formula CreateFormulaWithAnswer(CalculateParameter parameter, int answer)
+		public override Formula CreateFormulaWithAnswer(ArithmeticParameter parameter, int answer)
 		{
 			// 加法运算的最大值就是算式的答案Answer值
 			Formula = base.CreateFormulaWithAnswer(parameter, answer);

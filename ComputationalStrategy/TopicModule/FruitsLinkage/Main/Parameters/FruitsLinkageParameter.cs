@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Item;
 
@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters
 	/// 水果連連看參數類
 	/// </summary>
 	[OperationParameter("FruitsLinkage")]
-	public class FruitsLinkageParameter : ParameterBase
+	public class FruitsLinkageParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 水果連連看作成并輸出

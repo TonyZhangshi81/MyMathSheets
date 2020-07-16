@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Item;
@@ -15,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 	/// 認識貨幣題型
 	/// </summary>
 	[Operation("LearnCurrency")]
-	public class LearnCurrency : OperationBase
+	public class LearnCurrency : TopicBase
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -103,7 +103,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		/// 算式作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			LearnCurrencyParameter p = parameter as LearnCurrencyParameter;
 

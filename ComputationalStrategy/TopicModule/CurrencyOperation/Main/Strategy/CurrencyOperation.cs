@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.CurrencyOperation.Item;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
@@ -13,13 +14,13 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 	/// 貨幣運算題型
 	/// </summary>
 	[Operation("CurrencyOperation")]
-	public class CurrencyOperation : OperationBase
+	public class CurrencyOperation : TopicBase
 	{
 		/// <summary>
 		/// 加減算式作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			CurrencyOperationParameter p = parameter as CurrencyOperationParameter;
 
@@ -33,11 +34,11 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 				}
 
 				// 指定單個運算符實例
-				ICalculate strategy = CalculateManager(p.Signs[0]);
+				IArithmetic strategy = CalculateManager(p.Signs[0]);
 				// 按照指定數量作成相應的數學計算式
 				for (var i = 0; i < p.NumberOfQuestions; i++)
 				{
-					Formula formula = strategy.CreateFormula(new CalculateParameter()
+					Formula formula = strategy.CreateFormula(new ArithmeticParameter()
 					{
 						MaximumLimit = p.MaximumLimit,
 						QuestionType = p.QuestionType,
@@ -66,9 +67,9 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 					// 混合題型（加減運算符實例隨機抽取）
 					SignOfOperation sign = CommonUtil.GetRandomNumber(SignOfOperation.Plus, SignOfOperation.Subtraction);
 					// 對運算符實例進行cache管理
-					ICalculate strategy = CalculateManager(sign);
+					IArithmetic strategy = CalculateManager(sign);
 
-					var formula = strategy.CreateFormula(new CalculateParameter()
+					var formula = strategy.CreateFormula(new ArithmeticParameter()
 					{
 						MaximumLimit = p.MaximumLimit,
 						QuestionType = p.QuestionType,

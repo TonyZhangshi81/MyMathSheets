@@ -31,7 +31,7 @@ namespace MyMathSheets.CommonLib.Plugin
 		/// </summary>
 		/// <param name="searchKeyword">文件名檢索用關鍵字</param>
 		/// <param name="excludeAssemblies">檢索以外的條件</param>
-		public PluginsManager(string searchKeyword, List<string> excludeAssemblies) 
+		public PluginsManager(string searchKeyword, List<string> excludeAssemblies)
 			: base(searchKeyword, excludeAssemblies)
 		{
 		}

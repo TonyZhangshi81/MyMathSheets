@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Item;
@@ -15,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 	/// 找規律題
 	/// </summary>
 	[Operation("FindTheLaw")]
-	public class FindTheLaw : OperationBase
+	public class FindTheLaw : TopicBase
 	{
 		/// <summary>
 		/// 找規律題型的實現方法集合
@@ -49,7 +49,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		/// 算式作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			FindTheLawParameter p = parameter as FindTheLawParameter;
 

@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Paramete
 	/// 組合計算式參數類
 	/// </summary>
 	[OperationParameter("CombinatorialEquation")]
-	public class CombinatorialEquationParameter : ParameterBase
+	public class CombinatorialEquationParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 組合計算式作成并輸出

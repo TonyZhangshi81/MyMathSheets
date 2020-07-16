@@ -1,6 +1,7 @@
 using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Item;
@@ -16,24 +17,24 @@ namespace MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Strategy
 	/// 比多少題
 	/// </summary>
 	[Operation("HowMuchMore")]
-	public class HowMuchMore : OperationBase
+	public class HowMuchMore : TopicBase
 	{
 		/// <summary>
 		/// 算式作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			HowMuchMoreParameter p = parameter as HowMuchMoreParameter;
 
 			// 指定單個運算符實例（此題只能用減法運算符）
-			ICalculate strategy = CalculateManager(SignOfOperation.Subtraction);
+			IArithmetic strategy = CalculateManager(SignOfOperation.Subtraction);
 
 			// 按照指定數量作成相應的數學計算式
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				// 計算式作成
-				Formula formula = strategy.CreateFormula(new CalculateParameter()
+				Formula formula = strategy.CreateFormula(new ArithmeticParameter()
 				{
 					// 10以內計算
 					MaximumLimit = (p.MaximumLimit > 10) ? 10 : p.MaximumLimit,

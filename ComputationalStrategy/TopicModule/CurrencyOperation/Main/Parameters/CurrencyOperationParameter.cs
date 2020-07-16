@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.CurrencyOperation.Item;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
 	/// 貨幣運算參數類
 	/// </summary>
 	[OperationParameter("CurrencyOperation")]
-	public class CurrencyOperationParameter : ParameterBase
+	public class CurrencyOperationParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 貨幣運算參數作成并輸出

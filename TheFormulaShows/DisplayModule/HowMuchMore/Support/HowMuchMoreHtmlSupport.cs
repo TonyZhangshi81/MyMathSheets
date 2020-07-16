@@ -1,6 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Item;
@@ -85,7 +85,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 		/// </summary>
 		/// <param name="parameter">通用參數類</param>
 		/// <returns>html文言</returns>
-		protected override string MakeHtmlStatement(ParameterBase parameter)
+		protected override string MakeHtmlStatement(TopicParameterBase parameter)
 		{
 			// 比多少題型的參數類
 			HowMuchMoreParameter p = parameter as HowMuchMoreParameter;

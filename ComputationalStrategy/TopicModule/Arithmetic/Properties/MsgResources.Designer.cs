@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyMathSheets.ComputationalStrategy.Arithmetic.Properties {
+namespace MyMathSheets.ComputationalStrategy.ArithmeticOperations.Properties {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Properties {
     // または Visual Studio のようなツールを使用して自動生成されました。
     // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
     // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class MsgResources {
@@ -39,7 +39,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyMathSheets.ComputationalStrategy.Arithmetic.Properties.MsgResources", typeof(MsgResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MyMathSheets.ComputationalStrategy.ArithmeticOperations.Properties.MsgResources", typeof(MsgResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

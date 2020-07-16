@@ -26,6 +26,7 @@ namespace MyMathSheets.CommonLib.Util
 		/// 線程安全鎖
 		/// </summary>
 		private static Object randLock;
+
 		/// <summary>
 		/// 靜態<see cref="Random"/>對象
 		/// </summary>

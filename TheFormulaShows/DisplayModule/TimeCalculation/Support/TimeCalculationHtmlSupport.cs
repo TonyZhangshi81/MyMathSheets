@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.TimeCalculation.Item;
@@ -56,7 +56,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
 		/// <returns>題型HTML模板信息</returns>
-		protected override string MakeHtmlStatement(ParameterBase parameter)
+		protected override string MakeHtmlStatement(TopicParameterBase parameter)
 		{
 			TimeCalculationParameter p = parameter as TimeCalculationParameter;
 

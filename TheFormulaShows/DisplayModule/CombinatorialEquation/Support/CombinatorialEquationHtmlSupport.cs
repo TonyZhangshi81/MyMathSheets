@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item;
@@ -39,7 +39,7 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 		/// </summary>
 		/// <param name="parameter">相關計算式</param>
 		/// <returns>HTML語句</returns>
-		protected override string MakeHtmlStatement(ParameterBase parameter)
+		protected override string MakeHtmlStatement(TopicParameterBase parameter)
 		{
 			CombinatorialEquationParameter p = parameter as CombinatorialEquationParameter;
 

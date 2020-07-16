@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Item;
@@ -15,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 	/// 時鐘學習板
 	/// </summary>
 	[Operation("SchoolClock")]
-	public class SchoolClock : OperationBase
+	public class SchoolClock : TopicBase
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -66,7 +66,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// 算式作成
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			SchoolClockParameter p = parameter as SchoolClockParameter;
 

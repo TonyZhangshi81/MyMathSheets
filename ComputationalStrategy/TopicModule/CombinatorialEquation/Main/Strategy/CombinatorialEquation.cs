@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters;
@@ -13,22 +14,22 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 	/// 組合計算式
 	/// </summary>
 	[Operation("CombinatorialEquation")]
-	public class CombinatorialEquation : OperationBase
+	public class CombinatorialEquation : TopicBase
 	{
 		/// <summary>
 		/// 題型構築
 		/// </summary>
 		/// <param name="parameter"></param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			CombinatorialEquationParameter p = parameter as CombinatorialEquationParameter;
 
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				// 對四則運算符實例進行cache管理
-				ICalculate strategy = CalculateManager(p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)]);
+				IArithmetic strategy = CalculateManager(p.Signs[CommonUtil.GetRandomNumber(0, p.Signs.Count - 1)]);
 				// 計算式作成
-				Formula formula = strategy.CreateFormula(new CalculateParameter()
+				Formula formula = strategy.CreateFormula(new ArithmeticParameter()
 				{
 					MaximumLimit = p.MaximumLimit,
 					QuestionType = QuestionType.Default,

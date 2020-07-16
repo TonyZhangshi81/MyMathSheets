@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.Arithmetic;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.EqualityLinkage.Item;
 using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
@@ -14,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 	/// 算式連一連題型構築
 	/// </summary>
 	[Operation("EqualityLinkage")]
-	public class EqualityLinkage : OperationBase
+	public class EqualityLinkage : TopicBase
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -97,7 +98,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 		/// 題型構築
 		/// </summary>
 		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(ParameterBase parameter)
+		protected override void MarkFormulaList(TopicParameterBase parameter)
 		{
 			EqualityLinkageParameter p = parameter as EqualityLinkageParameter;
 
@@ -138,10 +139,10 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 		/// <param name="signFunc">運算符取得用的表達式</param>
 		private void MakeRightFormulas(IList<Formula> rightFormulas, int maximumLimit, int leftFormulaAnswer, Func<SignOfOperation> signFunc)
 		{
-			ICalculate strategy = CalculateManager(signFunc());
+			IArithmetic strategy = CalculateManager(signFunc());
 
 			// 計算式作成（依據左邊算式的答案推算右邊的算式）
-			Formula formula = strategy.CreateFormulaWithAnswer(new CalculateParameter()
+			Formula formula = strategy.CreateFormulaWithAnswer(new ArithmeticParameter()
 			{
 				MaximumLimit = maximumLimit,
 				QuestionType = QuestionType.Default,
@@ -159,10 +160,10 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 		/// <returns>新作成的計算式</returns>
 		private Formula MakeLeftFormulas(IList<Formula> leftFormulas, int maximumLimit, Func<SignOfOperation> signFunc)
 		{
-			ICalculate strategy = CalculateManager(signFunc());
+			IArithmetic strategy = CalculateManager(signFunc());
 
 			// 計算式作成
-			Formula formula = strategy.CreateFormula(new CalculateParameter()
+			Formula formula = strategy.CreateFormula(new ArithmeticParameter()
 			{
 				MaximumLimit = maximumLimit,
 				QuestionType = QuestionType.Default,

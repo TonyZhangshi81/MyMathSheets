@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using System.Collections.Generic;
 
@@ -16,6 +16,6 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// <param name="topicIdentifier">題型識別ID</param>
 		/// <param name="parameter">題型參數</param>
 		/// <returns></returns>
-		Dictionary<SubstituteType, string> GetHtmlStatement<T>(string topicIdentifier, T parameter) where T : ParameterBase;
+		Dictionary<SubstituteType, string> GetHtmlStatement<T>(string topicIdentifier, T parameter) where T : TopicParameterBase;
 	}
 }

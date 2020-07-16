@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.EqualityComparison.Item;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Parameters
 	/// 等式大小比较參數類
 	/// </summary>
 	[OperationParameter("EqualityComparison")]
-	public class EqualityComparisonParameter : ParameterBase
+	public class EqualityComparisonParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 等式大小比较作成并輸出

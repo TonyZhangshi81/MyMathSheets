@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.OperationStrategy;
+using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
 using System;
@@ -96,7 +96,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 		/// </summary>
 		/// <param name="parameter">相關計算式</param>
 		/// <returns>HTML語句</returns>
-		protected override string MakeHtmlStatement(ParameterBase parameter)
+		protected override string MakeHtmlStatement(TopicParameterBase parameter)
 		{
 			ScoreGoalParameter p = parameter as ScoreGoalParameter;
 

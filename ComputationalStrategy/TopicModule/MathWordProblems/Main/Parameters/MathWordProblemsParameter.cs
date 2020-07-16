@@ -1,4 +1,4 @@
-﻿using MyMathSheets.CommonLib.Main.OperationStrategy;
+﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Item;
 using System;
@@ -11,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters
 	/// 應用題參數類
 	/// </summary>
 	[OperationParameter("MathWordProblems")]
-	public class MathWordProblemsParameter : ParameterBase
+	public class MathWordProblemsParameter : TopicParameterBase
 	{
 		/// <summary>
 		/// 應用題作成并輸出

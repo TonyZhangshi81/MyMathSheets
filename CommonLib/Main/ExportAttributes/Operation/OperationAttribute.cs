@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 
-namespace MyMathSheets.CommonLib.Main.OperationStrategy
+namespace MyMathSheets.CommonLib.Main.Policy
 {
 	/// <summary>
 	/// 運算符自定義導出屬性
@@ -14,7 +14,7 @@ namespace MyMathSheets.CommonLib.Main.OperationStrategy
 		/// 自定義導出屬性
 		/// </summary>
 		/// <param name="layout">題型類別</param>
-		public OperationAttribute(string layout) : base(typeof(OperationBase))
+		public OperationAttribute(string layout) : base(typeof(TopicBase))
 		{
 			Layout = layout;
 		}
