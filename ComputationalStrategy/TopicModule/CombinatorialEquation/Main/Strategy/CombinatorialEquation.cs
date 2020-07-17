@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Parameters;
@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 	/// <summary>
 	/// 組合計算式
 	/// </summary>
-	[Operation("CombinatorialEquation")]
+	[Topic("CombinatorialEquation")]
 	public class CombinatorialEquation : TopicBase
 	{
 		/// <summary>

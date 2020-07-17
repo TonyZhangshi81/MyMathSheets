@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Item;
 using System;
@@ -9,7 +10,7 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters
 	/// <summary>
 	/// 等式接龍參數類
 	/// </summary>
-	[OperationParameter("ComputingConnection")]
+	[TopicParameter("ComputingConnection")]
 	public class ComputingConnectionParameter : TopicParameterBase
 	{
 		/// <summary>

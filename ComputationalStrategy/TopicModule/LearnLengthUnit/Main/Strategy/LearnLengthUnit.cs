@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Item;
@@ -14,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 	/// <summary>
 	/// 認識長度題型
 	/// </summary>
-	[Operation("LearnLengthUnit")]
+	[Topic("LearnLengthUnit")]
 	public class LearnLengthUnit : TopicBase
 	{
 		/// <summary>

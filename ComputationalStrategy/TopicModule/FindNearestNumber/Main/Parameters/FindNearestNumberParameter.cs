@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
-using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Item;
 using System.Collections.Generic;
 
@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters
 	/// <summary>
 	/// 尋找最近的數字參數類
 	/// </summary>
-	[OperationParameter("FindNearestNumber")]
+	[TopicParameter("FindNearestNumber")]
 	public class FindNearestNumberParameter : TopicParameterBase
 	{
 		/// <summary>

@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.EqualityLinkage.Item;
 using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 	/// <summary>
 	/// 算式連一連題型構築
 	/// </summary>
-	[Operation("EqualityLinkage")]
+	[Topic("EqualityLinkage")]
 	public class EqualityLinkage : TopicBase
 	{
 		/// <summary>

@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Item;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Parameters;
@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 	/// <summary>
 	/// 等式接龍題型（當前版本實現了加減法接龍）
 	/// </summary>
-	[Operation("ComputingConnection")]
+	[Topic("ComputingConnection")]
 	public class ComputingConnection : TopicBase
 	{
 		/// <summary>

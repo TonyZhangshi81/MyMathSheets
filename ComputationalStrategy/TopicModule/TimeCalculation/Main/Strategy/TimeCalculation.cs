@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.TimeCalculation.Item;
 using MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters;
@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 	/// <summary>
 	/// 時間運算
 	/// </summary>
-	[Operation("TimeCalculation")]
+	[Topic("TimeCalculation")]
 	public class TimeCalculation : TopicBase
 	{
 		/// <summary>

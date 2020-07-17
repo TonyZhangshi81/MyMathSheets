@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.MathUpright.Item;
 using MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters;
@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 	/// <summary>
 	/// 豎式計算題
 	/// </summary>
-	[Operation("MathUpright")]
+	[Topic("MathUpright")]
 	public class MathUpright : TopicBase
 	{
 		/// <summary>

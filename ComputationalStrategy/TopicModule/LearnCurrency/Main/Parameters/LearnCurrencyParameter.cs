@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Item;
 using System;
@@ -10,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters
 	/// <summary>
 	/// 認識貨幣參數類
 	/// </summary>
-	[OperationParameter("LearnCurrency")]
+	[TopicParameter("LearnCurrency")]
 	public class LearnCurrencyParameter : TopicParameterBase
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Logging;
+﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
@@ -182,6 +183,7 @@ namespace MyMathSheets.TestConsoleApp
 					case "000":
 						Console.WriteLine();
 						Console.WriteLine("Close");
+						ComposerFactory.Reset();
 						Console.ReadKey();
 						Environment.Exit(0);
 						break;

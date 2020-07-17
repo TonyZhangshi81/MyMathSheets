@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Item;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters;
@@ -11,7 +12,7 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Strategy
 	/// <summary>
 	/// 數值排序題型
 	/// </summary>
-	[Operation("NumericSorting")]
+	[Topic("NumericSorting")]
 	public class NumericSorting : TopicBase
 	{
 		/// <summary>

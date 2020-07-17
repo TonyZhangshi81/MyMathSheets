@@ -36,7 +36,7 @@ namespace MyMathSheets.CommonLib.OperationStrategy
 
 			TopicParameterProvider provider = _composer
 													.GetExports<TopicParameterProvider, ITopicParameterProviderMetaDataView>()
-													.Where(d => d.Metadata.Name.Equals(section.ImportType, StringComparison.CurrentCultureIgnoreCase))
+													.Where(d => d.Metadata.ImportType.Equals(section.ImportType, StringComparison.CurrentCultureIgnoreCase))
 													.FirstOrDefault().Value;
 
 			TopicParameterProvider instance = (TopicParameterProvider)Activator.CreateInstance(provider.GetType());

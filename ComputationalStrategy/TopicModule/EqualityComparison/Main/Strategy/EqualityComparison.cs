@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.EqualityComparison.Item;
 using MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Parameters;
@@ -12,7 +12,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Strategy
 	/// <summary>
 	/// 等式大小比较
 	/// </summary>
-	[Operation("EqualityComparison")]
+	[Topic("EqualityComparison")]
 	public class EqualityComparison : TopicBase
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Item;
@@ -14,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 	/// <summary>
 	/// 找規律題
 	/// </summary>
-	[Operation("FindTheLaw")]
+	[Topic("FindTheLaw")]
 	public class FindTheLaw : TopicBase
 	{
 		/// <summary>

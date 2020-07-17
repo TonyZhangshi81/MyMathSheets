@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
-using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.ComputationalStrategy.MathUpright.Item;
 using System.Collections.Generic;
 
@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters
 	/// <summary>
 	/// 豎式計算參數類
 	/// </summary>
-	[OperationParameter("MathUpright")]
+	[TopicParameter("MathUpright")]
 	public class MathUprightParameter : TopicParameterBase
 	{
 		/// <summary>

@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Item;
@@ -14,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 	/// <summary>
 	/// 認識貨幣題型
 	/// </summary>
-	[Operation("LearnCurrency")]
+	[Topic("LearnCurrency")]
 	public class LearnCurrency : TopicBase
 	{
 		/// <summary>

@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.Calculate;
+using MyMathSheets.CommonLib.Main.Calculate.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Util;
 

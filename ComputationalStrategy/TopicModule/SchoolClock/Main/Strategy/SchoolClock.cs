@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Item;
@@ -14,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 	/// <summary>
 	/// 時鐘學習板
 	/// </summary>
-	[Operation("SchoolClock")]
+	[Topic("SchoolClock")]
 	public class SchoolClock : TopicBase
 	{
 		/// <summary>

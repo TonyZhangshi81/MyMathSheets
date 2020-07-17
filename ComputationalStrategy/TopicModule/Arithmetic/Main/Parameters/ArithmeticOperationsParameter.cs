@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ArithmeticOperations.Item;
@@ -10,7 +11,7 @@ namespace MyMathSheets.ComputationalStrategy.ArithmeticOperations.Main.Parameter
 	/// <summary>
 	/// 四則運算參數類
 	/// </summary>
-	[OperationParameter("ArithmeticOperations")]
+	[TopicParameter("ArithmeticOperations")]
 	public class ArithmeticOperationsParameter : TopicParameterBase
 	{
 		/// <summary>

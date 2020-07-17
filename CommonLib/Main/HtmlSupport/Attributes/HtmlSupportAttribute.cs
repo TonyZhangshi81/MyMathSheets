@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 
-namespace MyMathSheets.CommonLib.Main.HtmlSupport
+namespace MyMathSheets.CommonLib.Main.HtmlSupport.Attributes
 {
 	/// <summary>
 	/// HTML支援類自定義導出屬性

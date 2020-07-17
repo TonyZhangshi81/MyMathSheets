@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Util;
+using System;
 using System.ComponentModel.Composition;
 
 namespace MyMathSheets.CommonLib.Main.Policy
@@ -7,7 +8,7 @@ namespace MyMathSheets.CommonLib.Main.Policy
 	/// <summary>
 	/// 出題策略抽象類
 	/// </summary>
-	public abstract class TopicBase : ObjectBase, ITopic
+	public abstract class TopicBase : ITopic
 	{
 		/// <summary>
 		/// 運算符工廠注入點
@@ -93,5 +94,52 @@ namespace MyMathSheets.CommonLib.Main.Policy
 		/// </summary>
 		/// <param name="p">参数对象</param>
 		protected abstract void MarkFormulaList(TopicParameterBase p);
+
+
+
+
+		private bool isDisposed = false;
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		/// <param name="disposing">是否正在釋放</param>
+		/// <remarks>資源自動回收時觸發析構函數，以下資源自動釋放(即isDisposed=true)</remarks>
+		protected virtual void Dispose(bool disposing)
+		{
+			if (isDisposed) return;
+
+			// 正在釋放資源
+			if (disposing)
+			{
+				DisposeManaged();
+			}
+
+			isDisposed = true;
+		}
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		~TopicBase()
+		{
+			Dispose(false);
+		}
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		protected virtual void DisposeManaged()
+		{
+		}
 	}
 }

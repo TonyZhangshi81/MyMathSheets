@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.Composition;
 
-namespace MyMathSheets.CommonLib.Main.Calculate
+namespace MyMathSheets.CommonLib.Main.Calculate.Attributes
 {
 	/// <summary>
 	/// 運算符自定義導出屬性

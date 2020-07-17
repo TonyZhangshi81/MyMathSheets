@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Item;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 	/// <summary>
 	/// 水果連連看題型構築
 	/// </summary>
-	[Operation("FruitsLinkage")]
+	[Topic("FruitsLinkage")]
 	public class FruitsLinkage : TopicBase
 	{
 		/// <summary>

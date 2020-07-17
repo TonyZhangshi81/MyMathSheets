@@ -11,17 +11,17 @@ namespace MyMathSheets.CommonLib.Main.Provider
 	public class TopicParameterProviderAttribute : ExportAttribute, ITopicParameterProviderMetaDataView
 	{
 		/// <summary>
-		///
+		/// <see cref="TopicParameterProviderAttribute"/>的構造函數
 		/// </summary>
-		public TopicParameterProviderAttribute(string name) : base(typeof(TopicParameterProvider))
+		public TopicParameterProviderAttribute(string importType) : base(typeof(TopicParameterProvider))
 		{
-			Name = name;
+			ImportType = importType;
 		}
 
 		/// <summary>
-		/// Provider 名
+		/// 提供者類型
 		/// </summary>
-		public string Name
+		public string ImportType
 		{
 			get;
 			set;

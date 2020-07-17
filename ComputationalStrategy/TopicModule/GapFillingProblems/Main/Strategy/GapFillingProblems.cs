@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Item;
@@ -12,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 	/// <summary>
 	/// 填空題策略
 	/// </summary>
-	[Operation("GapFillingProblems")]
+	[Topic("GapFillingProblems")]
 	public class GapFillingProblems : TopicBase
 	{
 		/// <summary>

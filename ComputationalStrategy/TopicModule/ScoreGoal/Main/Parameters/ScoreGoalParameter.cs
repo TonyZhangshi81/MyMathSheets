@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
-using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Item;
 
 namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters
@@ -7,7 +7,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters
 	/// <summary>
 	/// 射門得分參數類
 	/// </summary>
-	[OperationParameter("ScoreGoal")]
+	[TopicParameter("ScoreGoal")]
 	public class ScoreGoalParameter : TopicParameterBase
 	{
 		/// <summary>

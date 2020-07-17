@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Item;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
@@ -12,7 +12,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 	/// <summary>
 	/// 找最相近的数字題型構築
 	/// </summary>
-	[Operation("FindNearestNumber")]
+	[Topic("FindNearestNumber")]
 	public class FindNearestNumber : TopicBase
 	{
 		/// <summary>

@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.EqualityLinkage.Item;
 using System;
@@ -8,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters
 	/// <summary>
 	/// 算式連一連參數類
 	/// </summary>
-	[OperationParameter("EqualityLinkage")]
+	[TopicParameter("EqualityLinkage")]
 	public class EqualityLinkageParameter : TopicParameterBase
 	{
 		/// <summary>

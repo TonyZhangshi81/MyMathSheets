@@ -1,6 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Main.VirtualHelper;
-using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Item;
 using System.Collections.Generic;
 
@@ -9,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters
 	/// <summary>
 	/// 比多少參數類
 	/// </summary>
-	[OperationParameter("HowMuchMore")]
+	[TopicParameter("HowMuchMore")]
 	public class HowMuchMoreParameter : TopicParameterBase
 	{
 		/// <summary>

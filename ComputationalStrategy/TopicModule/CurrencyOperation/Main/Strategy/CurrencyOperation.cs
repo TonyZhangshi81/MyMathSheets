@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.CurrencyOperation.Item;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 	/// <summary>
 	/// 貨幣運算題型
 	/// </summary>
-	[Operation("CurrencyOperation")]
+	[Topic("CurrencyOperation")]
 	public class CurrencyOperation : TopicBase
 	{
 		/// <summary>

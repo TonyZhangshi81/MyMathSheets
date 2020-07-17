@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Item;
@@ -12,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 	/// <summary>
 	/// 應用題策略
 	/// </summary>
-	[Operation("MathWordProblems")]
+	[Topic("MathWordProblems")]
 	public class MathWordProblems : TopicBase
 	{
 		/// <summary>

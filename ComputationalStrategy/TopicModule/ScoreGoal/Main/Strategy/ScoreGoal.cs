@@ -1,7 +1,7 @@
-﻿using MyMathSheets.CommonLib.Main.Arithmetic;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
 using System;
@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 	/// <summary>
 	/// 射門得分題型構築
 	/// </summary>
-	[Operation("ScoreGoal")]
+	[Topic("ScoreGoal")]
 	public class ScoreGoal : TopicBase
 	{
 		// 球類算式實例

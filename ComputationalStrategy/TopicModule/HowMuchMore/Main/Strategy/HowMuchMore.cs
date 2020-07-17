@@ -1,7 +1,7 @@
-using MyMathSheets.CommonLib.Main.Arithmetic;
 using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Item;
@@ -16,7 +16,7 @@ namespace MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Strategy
 	/// <summary>
 	/// 比多少題
 	/// </summary>
-	[Operation("HowMuchMore")]
+	[Topic("HowMuchMore")]
 	public class HowMuchMore : TopicBase
 	{
 		/// <summary>

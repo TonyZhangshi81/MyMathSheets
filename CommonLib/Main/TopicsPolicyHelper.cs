@@ -1,4 +1,6 @@
-﻿using MyMathSheets.CommonLib.Main.Policy;
+﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Main.Policy;
+using System.ComponentModel.Composition;
 
 namespace MyMathSheets.CommonLib.Main
 {
@@ -18,6 +20,16 @@ namespace MyMathSheets.CommonLib.Main
 		private static readonly object locker = new object();
 
 		/// <summary>
+		/// 計算式工廠注入點（对象共享注入）
+		/// </summary>
+		[Import(typeof(ITopicFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+		public ITopicFactory TopicFactory
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		///
 		/// </summary>
 		private TopicHelper _helper;
@@ -31,7 +43,7 @@ namespace MyMathSheets.CommonLib.Main
 			{
 				if (_helper == null)
 				{
-					_helper = new TopicHelper();
+					_helper = new TopicHelper(TopicFactory);
 				}
 
 				return _helper;
@@ -43,6 +55,7 @@ namespace MyMathSheets.CommonLib.Main
 		/// </summary>
 		private TopicsPolicyHelper()
 		{
+			ComposerFactory.GetComporser(this.GetType().Assembly).Compose(this);
 		}
 
 		/// <summary>

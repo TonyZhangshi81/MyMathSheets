@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.CurrencyLinkage.Item;
 using System;
@@ -8,7 +9,7 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Parameters
 	/// <summary>
 	/// 認識價格參數類
 	/// </summary>
-	[OperationParameter("CurrencyLinkage")]
+	[TopicParameter("CurrencyLinkage")]
 	public class CurrencyLinkageParameter : TopicParameterBase
 	{
 		/// <summary>

@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
-using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Item;
 
 namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters
@@ -7,7 +7,7 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters
 	/// <summary>
 	/// 水果連連看參數類
 	/// </summary>
-	[OperationParameter("FruitsLinkage")]
+	[TopicParameter("FruitsLinkage")]
 	public class FruitsLinkageParameter : TopicParameterBase
 	{
 		/// <summary>

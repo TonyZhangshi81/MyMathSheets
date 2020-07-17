@@ -1,5 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
-using MyMathSheets.CommonLib.Util;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item;
 using System.Collections.Generic;
 
@@ -8,7 +8,7 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Paramete
 	/// <summary>
 	/// 組合計算式參數類
 	/// </summary>
-	[OperationParameter("CombinatorialEquation")]
+	[TopicParameter("CombinatorialEquation")]
 	public class CombinatorialEquationParameter : TopicParameterBase
 	{
 		/// <summary>

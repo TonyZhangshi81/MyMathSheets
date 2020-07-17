@@ -8,6 +8,6 @@
 		/// <summary>
 		/// Provider 名
 		/// </summary>
-		string Name { get; }
+		string ImportType { get; }
 	}
 }

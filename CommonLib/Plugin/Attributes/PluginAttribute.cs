@@ -1,7 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Util;
 using System;
 
-namespace MyMathSheets.CommonLib
+namespace MyMathSheets.CommonLib.Plugin.Attributes
 {
 	/// <summary>
 	/// 自定義屬性(系統模塊識別號)

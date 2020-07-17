@@ -1,20 +1,21 @@
 ﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
 using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
-using MyMathSheets.ComputationalStrategy.ArithmeticOperations.Item;
 using MyMathSheets.ComputationalStrategy.Arithmetic.Main.Helper;
+using MyMathSheets.ComputationalStrategy.ArithmeticOperations.Item;
+using MyMathSheets.ComputationalStrategy.ArithmeticOperations.Main.Parameters;
 using System;
 using System.Linq;
-using MyMathSheets.ComputationalStrategy.ArithmeticOperations.Main.Parameters;
 
 namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 {
 	/// <summary>
 	/// 四則遠算題
 	/// </summary>
-	[Operation("ArithmeticOperations")]
+	[Topic("ArithmeticOperations")]
 	public class ArithmeticOperations : TopicBase
 	{
 		/// <summary>

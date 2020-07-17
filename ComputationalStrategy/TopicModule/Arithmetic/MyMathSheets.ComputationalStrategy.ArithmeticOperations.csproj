@@ -63,7 +63,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\Arithmetic.json" />
+    <None Include="Config\ArithmeticOperations.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

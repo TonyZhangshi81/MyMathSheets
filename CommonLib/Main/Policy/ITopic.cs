@@ -3,7 +3,7 @@
 	/// <summary>
 	/// 出題策略接口類
 	/// </summary>
-	public interface ITopic
+	public interface ITopic : System.IDisposable
 	{
 		/// <summary>
 		/// 策略作成

@@ -27,14 +27,14 @@ namespace MyMathSheets.CommonLib.Main.Policy
 		/// <remarks>
 		/// <see cref="Composer"/>是以題型為管理單位
 		/// </remarks>
-		private static readonly ConcurrentDictionary<Composer, Lazy<TopicBase, IOperationMetaDataView>> OperationCache
-										= new ConcurrentDictionary<Composer, Lazy<TopicBase, IOperationMetaDataView>>();
+		private static readonly ConcurrentDictionary<Composer, Lazy<TopicBase, ITogicMetaDataView>> OperationCache
+										= new ConcurrentDictionary<Composer, Lazy<TopicBase, ITogicMetaDataView>>();
 
 		/// <summary>
 		/// 類型參數對象緩存
 		/// </summary>
-		private static readonly ConcurrentDictionary<string, Lazy<TopicParameterBase, IOperationMetaDataView>> ParameterCache
-										= new ConcurrentDictionary<string, Lazy<TopicParameterBase, IOperationMetaDataView>>();
+		private static readonly ConcurrentDictionary<string, Lazy<TopicParameterBase, ITogicMetaDataView>> ParameterCache
+										= new ConcurrentDictionary<string, Lazy<TopicParameterBase, ITogicMetaDataView>>();
 
 		/// <summary>
 		/// 構造函數
@@ -48,29 +48,29 @@ namespace MyMathSheets.CommonLib.Main.Policy
 		/// 運算符屬性注入點
 		/// </summary>
 		[ImportMany(RequiredCreationPolicy = CreationPolicy.NonShared)]
-		public IEnumerable<Lazy<TopicBase, IOperationMetaDataView>> Operations { get; set; }
+		public IEnumerable<Lazy<TopicBase, ITogicMetaDataView>> Operations { get; set; }
 
 		/// <summary>
 		/// 對指定計算式策略實例化
 		/// </summary>
 		/// <param name="topicIdentifier">題型識別ID</param>
 		/// <returns>策略實例</returns>
-		public virtual ITopic CreateOperationInstance(string topicIdentifier)
+		public virtual ITopic CreateTopicInstance(string topicIdentifier)
 		{
 			// 以題型為單位取得Composer
 			_composer = ComposerFactory.GetComporser(topicIdentifier);
 
 			// 返回緩衝區中的運算符對象
-			Lazy<TopicBase, IOperationMetaDataView> lazyOperation = OperationCache.GetOrAdd(_composer, (o) =>
+			Lazy<TopicBase, ITogicMetaDataView> lazyOperation = OperationCache.GetOrAdd(_composer, (o) =>
 			{
 				// 內部部件組合
 				_composer.Compose(this);
 
 				// 指定運算符并獲取處理類型
-				IEnumerable<Lazy<TopicBase, IOperationMetaDataView>> operations = Operations.Where(
+				IEnumerable<Lazy<TopicBase, ITogicMetaDataView>> operations = Operations.Where(
 					d =>
 					{
-						return d.Metadata.Layout.Equals(topicIdentifier, StringComparison.CurrentCultureIgnoreCase);
+						return d.Metadata.TopicIdentifier.Equals(topicIdentifier, StringComparison.CurrentCultureIgnoreCase);
 					});
 				// 部件是否存在
 				if (!operations.Any())
@@ -96,15 +96,15 @@ namespace MyMathSheets.CommonLib.Main.Policy
 		/// <param name="topicIdentifier">題型種類</param>
 		/// <param name="topicNumber">參數識別ID</param>
 		/// <returns>對象實例</returns>
-		public virtual TopicParameterBase CreateOperationParameterInstance(string topicIdentifier, string topicNumber)
+		public virtual TopicParameterBase CreateTopicParameterInstance(string topicIdentifier, string topicNumber)
 		{
 			// 參數對象緩存區管理
 			string key = $"{topicIdentifier}::{topicNumber}";
 
-			Lazy<TopicParameterBase, IOperationMetaDataView> lazyParameter = ParameterCache.GetOrAdd(key, (o) =>
+			Lazy<TopicParameterBase, ITogicMetaDataView> lazyParameter = ParameterCache.GetOrAdd(key, (o) =>
 			{
 				// 注入運算符參數對象（題型與參數是一對一關係）
-				IEnumerable<Lazy<TopicParameterBase, IOperationMetaDataView>> parameters = _composer.GetExports<TopicParameterBase, IOperationMetaDataView>();
+				IEnumerable<Lazy<TopicParameterBase, ITogicMetaDataView>> parameters = _composer.GetExports<TopicParameterBase, ITogicMetaDataView>();
 				if (!parameters.Any())
 				{
 					// 指定的題型參數對象未找到

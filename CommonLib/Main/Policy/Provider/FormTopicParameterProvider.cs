@@ -9,9 +9,9 @@ namespace MyMathSheets.CommonLib.Main.Provider
 	public class FormTopicParameterProvider : TopicParameterProvider
 	{
 		/// <summary>
-		///
+		/// 通用參數初始化
 		/// </summary>
-		/// <param name="identifier"></param>
+		/// <param name="identifier">題型識別</param>
 		public override TopicParameterBase Initialize(string identifier)
 		{
 			return new TopicParameterBase();
