@@ -1,0 +1,146 @@
+﻿.divContent {
+	position: absolute;
+	background-color: bisque;
+	height: 100%;
+	width: 100%;
+}
+
+.divDealArea {
+	position: relative;
+	top: 120px;
+	left: 0px;
+	width: 750px;
+	height: 105px;
+	background-color: lightblue;
+}
+
+.divPokerArea {
+	position: relative;
+	top: 120px;
+	left: 0px;
+	width: 750px;
+	height: 300px;
+	background-color: lightsteelblue;
+}
+
+.divGuessArea {
+	position: relative;
+	top: 10px;
+	left: 750px;
+	width: 80px;
+	height: 300px;
+	background-color: bisque;
+}
+
+.divResultArea {
+	position: relative;
+	top: -100px;
+	left: 250px;
+	width: 300px;
+	z-index: 99;
+	display: none;
+}
+
+.divBlankArea {
+	position: absolute;
+	top: 10px;
+	left: 0px;
+}
+
+.divBtnDeal {
+	position: absolute;
+	top: 40px;
+	left: 150px;
+}
+
+.blank {
+	z-index: 1;
+}
+
+.poker {
+	z-index: 2;
+}
+
+.blank, .poker {
+	position: absolute;
+	background-color: transparent;
+	top: 0px;
+	left: 0px;
+}
+
+.hand1 {
+	position: absolute;
+	background-color: transparent;
+	background: url(../image/OK-no.png) center no-repeat;
+	background-size: contain;
+	width: 90px;
+	height: 90px;
+	top: 0px;
+	left: 0px;
+}
+
+	.hand1:hover {
+		position: absolute;
+		background-color: transparent;
+		background: url(../image/OK-yes.png) center no-repeat;
+		background-size: contain;
+		width: 90px;
+		height: 90px;
+		top: 0px;
+		left: 0px;
+	}
+
+.hand2 {
+	position: absolute;
+	background-color: transparent;
+	background: url(../image/OK-no.png) center no-repeat;
+	background-size: contain;
+	width: 90px;
+	height: 90px;
+	top: 100px;
+	left: 0px;
+}
+
+	.hand2:hover {
+		position: absolute;
+		background-color: transparent;
+		background: url(../image/OK-yes.png) center no-repeat;
+		background-size: contain;
+		width: 90px;
+		height: 90px;
+		top: 100px;
+		left: 0px;
+	}
+
+.hand3 {
+	position: absolute;
+	background-color: transparent;
+	background: url(../image/OK-no.png) center no-repeat;
+	background-size: contain;
+	width: 90px;
+	height: 90px;
+	top: 200px;
+	left: 0px;
+}
+
+	.hand3:hover {
+		position: absolute;
+		background-color: transparent;
+		background: url(../image/OK-yes.png) center no-repeat;
+		background-size: contain;
+		width: 90px;
+		height: 90px;
+		top: 200px;
+		left: 0px;
+	}
+
+.imgAward {
+	width: 440px;
+	height: 440px;
+	display: none;
+}
+
+div.divDealArea img {
+	width: 90px;
+	height: 90px;
+}
