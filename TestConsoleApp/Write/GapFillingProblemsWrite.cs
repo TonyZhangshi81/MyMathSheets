@@ -1,9 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Item;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
+using MyMathSheets.TestConsoleApp.Write.Attributes;
+using MyMathSheets.TestConsoleApp.Write.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 填空題题型计算式结果显示输出
 	/// </summary>
-	public class GapFillingProblemsWrite : IConsoleWrite
+	[TopicWrite("GapFillingProblems")]
+	public class GapFillingProblemsWrite : TopicWriteBase<GapFillingProblemsParameter>
 	{
 		/// <summary>
 		/// 计算式结果显示输出
@@ -46,11 +48,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 		///
 		/// </summary>
 		/// <param name="parameter"></param>
-		public void ConsoleFormulas(TopicParameterBase parameter)
+		public override void ConsoleFormulas(GapFillingProblemsParameter parameter)
 		{
-			GapFillingProblemsParameter param = (GapFillingProblemsParameter)parameter;
-
-			ConsoleFormulas(param.Formulas);
+			ConsoleFormulas(parameter.Formulas);
 		}
 	}
 }

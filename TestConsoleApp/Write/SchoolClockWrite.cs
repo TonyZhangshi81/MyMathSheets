@@ -1,10 +1,11 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Item;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
+using MyMathSheets.TestConsoleApp.Write.Attributes;
+using MyMathSheets.TestConsoleApp.Write.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 時鐘學習板题型计算式结果显示输出
 	/// </summary>
-	public class SchoolClockWrite : IConsoleWrite
+	[TopicWrite("SchoolClock")]
+	public class SchoolClockWrite : TopicWriteBase<SchoolClockParameter>
 	{
 		/// <summary>
 		/// 计算式结果显示输出
@@ -39,11 +41,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 		///
 		/// </summary>
 		/// <param name="parameter"></param>
-		public void ConsoleFormulas(TopicParameterBase parameter)
+		public override void ConsoleFormulas(SchoolClockParameter parameter)
 		{
-			SchoolClockParameter param = (SchoolClockParameter)parameter;
-
-			ConsoleFormulas(param.Formulas);
+			ConsoleFormulas(parameter.Formulas);
 		}
 	}
 }

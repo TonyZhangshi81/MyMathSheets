@@ -1,10 +1,11 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.MathUpright.Item;
 using MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
+using MyMathSheets.TestConsoleApp.Write.Attributes;
+using MyMathSheets.TestConsoleApp.Write.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 豎式計算題型計算式結果顯示輸出
 	/// </summary>
-	public class MathUprightWrite : IConsoleWrite
+	[TopicWrite("MathUpright")]
+	public class MathUprightWrite : TopicWriteBase<MathUprightParameter>
 	{
 		/// <summary>
 		/// 計算式結果顯示輸出
@@ -66,11 +68,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 		///
 		/// </summary>
 		/// <param name="parameter"></param>
-		public void ConsoleFormulas(TopicParameterBase parameter)
+		public override void ConsoleFormulas(MathUprightParameter parameter)
 		{
-			MathUprightParameter param = (MathUprightParameter)parameter;
-
-			ConsoleFormulas(param.Formulas);
+			ConsoleFormulas(parameter.Formulas);
 		}
 	}
 }

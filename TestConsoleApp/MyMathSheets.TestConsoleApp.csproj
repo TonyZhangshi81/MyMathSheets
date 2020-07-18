@@ -113,9 +113,6 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.7.2\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="Spring.Core, Version=2.0.1.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
-      <HintPath>..\packages\Spring.Core.2.0.1\lib\net45\Spring.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -132,7 +129,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormulasConsolerFactory.cs" />
+    <Compile Include="Write\Main\FormulasConsolerFactory.cs" />
     <Compile Include="Plugin\PluginsManager.cs" />
     <Compile Include="ProgramBase.cs" />
     <Compile Include="Properties\MsgResources.Designer.cs">
@@ -142,6 +139,7 @@
     </Compile>
     <Compile Include="Util\StringUtil.cs" />
     <Compile Include="Write\ArithmeticOperationsWrite.cs" />
+    <Compile Include="Write\Attributes\TopicWriteAttribute.cs" />
     <Compile Include="Write\CombinatorialFormulaWrite.cs" />
     <Compile Include="Write\ComputingConnectionWrite.cs" />
     <Compile Include="Write\CurrencyLinkageWrite.cs" />
@@ -153,14 +151,16 @@
     <Compile Include="Write\FruitsLinkageWrite.cs" />
     <Compile Include="Write\GapFillingProblemsWrite.cs" />
     <Compile Include="Write\HowMuchMoreWrite.cs" />
+    <Compile Include="Write\Main\ITogicWriteMetaDataView.cs" />
     <Compile Include="Write\LearnCurrencyWrite.cs" />
     <Compile Include="Write\LearnLengthUnitWrite.cs" />
+    <Compile Include="Write\Main\TopicWriteBase.cs" />
     <Compile Include="Write\MathUprightWrite.cs" />
     <Compile Include="Write\MathWordProblemsFormulaWrite.cs" />
     <Compile Include="Write\NumericSortingWrite.cs" />
     <Compile Include="Write\SchoolClockWrite.cs" />
     <Compile Include="Write\ScoreGoalWrite.cs" />
-    <Compile Include="Write\IConsoleWrite.cs" />
+    <Compile Include="Write\Main\IConsoleWrite.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\CommonUtil.cs" />
@@ -172,13 +172,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Config\ConsoleFormulas.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\MsgResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

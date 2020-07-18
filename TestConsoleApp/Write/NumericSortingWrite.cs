@@ -1,10 +1,11 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Item;
 using MyMathSheets.ComputationalStrategy.NumericSorting.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
+using MyMathSheets.TestConsoleApp.Write.Attributes;
+using MyMathSheets.TestConsoleApp.Write.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 數字排序題型計算式結果顯示輸出
 	/// </summary>
-	public class NumericSortingWrite : IConsoleWrite
+	[TopicWrite("NumericSorting")]
+	public class NumericSortingWrite : TopicWriteBase<NumericSortingParameter>
 	{
 		/// <summary>
 		/// 计算式结果显示输出
@@ -54,11 +56,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 		///
 		/// </summary>
 		/// <param name="parameter"></param>
-		public void ConsoleFormulas(TopicParameterBase parameter)
+		public override void ConsoleFormulas(NumericSortingParameter parameter)
 		{
-			NumericSortingParameter param = (NumericSortingParameter)parameter;
-
-			ConsoleFormulas(param.Formulas);
+			ConsoleFormulas(parameter.Formulas);
 		}
 	}
 }

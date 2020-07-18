@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main;
 using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.TestConsoleApp.Write.Main;
 
 namespace MyMathSheets.TestConsoleApp
 {
@@ -42,8 +43,9 @@ namespace MyMathSheets.TestConsoleApp
 		{
 			TopicParameterBase parameter = TopicsPolicyHelper.Instance.Structure(topicIdentifier, args);
 
-			var writer = FormulasConsolerFactory.Instance.CreateConsoleWriter(topicIdentifier);
-			writer.ConsoleFormulas(parameter);
+			FormulasConsolerFactory formulasConsoler = new FormulasConsolerFactory();
+			var writer = formulasConsoler.CreateConsoleWriter(topicIdentifier);
+			writer.Do(parameter);
 		}
 	}
 }

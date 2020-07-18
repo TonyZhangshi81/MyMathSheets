@@ -1,10 +1,11 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.EqualityComparison.Item;
 using MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
+using MyMathSheets.TestConsoleApp.Write.Attributes;
+using MyMathSheets.TestConsoleApp.Write.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 運算比大小题型计算式结果显示输出
 	/// </summary>
-	public class EqualityFormulaWrite : IConsoleWrite
+	[TopicWrite("EqualityComparison")]
+	public class EqualityFormulaWrite : TopicWriteBase<EqualityComparisonParameter>
 	{
 		/// <summary>
 		/// 计算式结果显示输出
@@ -41,11 +43,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 		///
 		/// </summary>
 		/// <param name="parameter"></param>
-		public void ConsoleFormulas(TopicParameterBase parameter)
+		public override void ConsoleFormulas(EqualityComparisonParameter parameter)
 		{
-			EqualityComparisonParameter param = (EqualityComparisonParameter)parameter;
-
-			ConsoleFormulas(param.Formulas);
+			ConsoleFormulas(parameter.Formulas);
 		}
 	}
 }

@@ -3,6 +3,7 @@ using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.TestConsoleApp.Properties;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace MyMathSheets.TestConsoleApp
@@ -12,6 +13,39 @@ namespace MyMathSheets.TestConsoleApp
 	/// </summary>
 	public class ProgramBase
 	{
+		private readonly Dictionary<string, string[]> CommandMaps;
+
+		public ProgramBase()
+		{
+			CommandMaps = new Dictionary<string, string[]>()
+			{
+				{"AC0", new string []{ "ArithmeticOperations", "四則運算" } },
+				{"CE0", new string []{ "CombinatorialEquation", "算式組合" } },
+				{"CC0", new string []{ "ComputingConnection", "等式接龍" } },
+				{"CL0", new string []{ "CurrencyLinkage", "認識價格" } },
+				{"CO0", new string []{ "CurrencyOperation", "貨幣運算" } },
+				{"EC0", new string []{ "EqualityComparison", "算式比大小" } },
+				{"EL0", new string []{ "EqualityLinkage", "算式連一連" } },
+				{"MP0", new string []{ "MathWordProblems", "算式應用題" } },
+				{"FL0", new string []{ "FruitsLinkage", "水果連連看" } },
+				{"FNN", new string []{ "FindNearestNumber", "找到最近的數字" } },
+				{"FTL", new string []{ "FindTheLaw", "找規律" } },
+				{"GFP", new string []{ "GapFillingProblems", "基礎填空題" } },
+				{"HMM", new string []{ "HowMuchMore", "比多少" } },
+				{"LC0", new string []{ "LearnCurrency", "認識貨幣" } },
+				{"LLU", new string []{ "LearnLengthUnit", "認識長度單位" } },
+				{"NS0", new string []{ "NumericSorting", "數字排序" } },
+				{"SC0", new string []{ "SchoolClock", "時鐘學習板" } },
+				{"SG0", new string []{ "ScoreGoal", "射門得分" } },
+				{"TC0", new string []{ "TimeCalculation", "時間運算" } },
+				{"MU0", new string []{ "MathUpright", "豎式計算" } },
+				{"900", new string []{ "Menu", "菜單" } },
+				{"000", new string []{ "Close", "退出" } }
+			};
+
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+		}
+
 		/// <summary>
 		/// 啟動時所使用的函數
 		/// </summary>
@@ -54,128 +88,17 @@ namespace MyMathSheets.TestConsoleApp
 				}
 
 				string key = ((args.Length > 0) ? args[0] : Console.ReadLine()).PadRight(3, '0').ToUpper();
+
+				string[] map;
+				if (!CommandMaps.TryGetValue(key.Substring(0, 3), out map))
+				{
+					Console.WriteLine();
+					Console.WriteLine("題型不存在");
+					isShowMenu = true;
+				}
+
 				switch (key.Substring(0, 3))
 				{
-					case "AC0":
-						Console.WriteLine();
-						Console.WriteLine("四則運算");
-						CommonUtil.ConsoleFormulas("ArithmeticOperations", key);
-						break;
-
-					case "CE0":
-						Console.WriteLine();
-						Console.WriteLine("算式組合");
-						CommonUtil.ConsoleFormulas("CombinatorialEquation", key);
-						break;
-
-					case "CC0":
-						Console.WriteLine();
-						Console.WriteLine("等式接龍");
-						CommonUtil.ConsoleFormulas("ComputingConnection", key);
-						break;
-
-					case "CL0":
-						Console.WriteLine();
-						Console.WriteLine("認識價格");
-						CommonUtil.ConsoleFormulas("CurrencyLinkage", key);
-						break;
-
-					case "CO0":
-						Console.WriteLine();
-						Console.WriteLine("貨幣運算");
-						CommonUtil.ConsoleFormulas("CurrencyOperation", key);
-						break;
-
-					case "EC0":
-						Console.WriteLine();
-						Console.WriteLine("算式比大小");
-						CommonUtil.ConsoleFormulas("EqualityComparison", key);
-						break;
-
-					case "EL0":
-						Console.WriteLine();
-						Console.WriteLine("算式連一連");
-						CommonUtil.ConsoleFormulas("EqualityLinkage", key);
-						break;
-
-					case "MP0":
-						Console.WriteLine();
-						Console.WriteLine("算式應用題");
-						CommonUtil.ConsoleFormulas("MathWordProblems", key);
-						break;
-
-					case "FL0":
-						Console.WriteLine();
-						Console.WriteLine("水果連連看");
-						CommonUtil.ConsoleFormulas("FruitsLinkage", key);
-						break;
-
-					case "FNN":
-						Console.WriteLine();
-						Console.WriteLine("找到最近的數字");
-						CommonUtil.ConsoleFormulas("FindNearestNumber", key);
-						break;
-
-					case "FTL":
-						Console.WriteLine();
-						Console.WriteLine("找規律");
-						CommonUtil.ConsoleFormulas("FindTheLaw", key);
-						break;
-
-					case "GFP":
-						Console.WriteLine();
-						Console.WriteLine("基礎填空題");
-						CommonUtil.ConsoleFormulas("GapFillingProblems", key);
-						break;
-
-					case "HMM":
-						Console.WriteLine();
-						Console.WriteLine("比多少");
-						CommonUtil.ConsoleFormulas("HowMuchMore", key);
-						break;
-
-					case "LC0":
-						Console.WriteLine();
-						Console.WriteLine("認識貨幣");
-						CommonUtil.ConsoleFormulas("LearnCurrency", key);
-						break;
-
-					case "LLU":
-						Console.WriteLine();
-						Console.WriteLine("認識長度單位");
-						CommonUtil.ConsoleFormulas("LearnLengthUnit", key);
-						break;
-
-					case "NS0":
-						Console.WriteLine();
-						Console.WriteLine("數字排序");
-						CommonUtil.ConsoleFormulas("NumericSorting", key);
-						break;
-
-					case "SC0":
-						Console.WriteLine();
-						Console.WriteLine("時鐘學習板");
-						CommonUtil.ConsoleFormulas("SchoolClock", key);
-						break;
-
-					case "SG0":
-						Console.WriteLine();
-						Console.WriteLine("射門得分");
-						CommonUtil.ConsoleFormulas("ScoreGoal", key);
-						break;
-
-					case "TC0":
-						Console.WriteLine();
-						Console.WriteLine("時間運算");
-						CommonUtil.ConsoleFormulas("TimeCalculation", key);
-						break;
-
-					case "MU0":
-						Console.WriteLine();
-						Console.WriteLine("豎式計算");
-						CommonUtil.ConsoleFormulas("MathUpright", key);
-						break;
-
 					case "900":
 						isShowMenu = true;
 						break;
@@ -190,19 +113,11 @@ namespace MyMathSheets.TestConsoleApp
 
 					default:
 						Console.WriteLine();
-						Console.WriteLine("題型不存在");
-						isShowMenu = true;
+						Console.WriteLine(map[1]);
+						CommonUtil.ConsoleFormulas(map[0], key);
 						break;
 				}
 			}
-		}
-
-		/// <summary>
-		///
-		/// </summary>
-		protected ProgramBase()
-		{
-			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 		}
 
 		/// <summary>

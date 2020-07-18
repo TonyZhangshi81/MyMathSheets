@@ -1,9 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Item;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
+using MyMathSheets.TestConsoleApp.Write.Attributes;
+using MyMathSheets.TestConsoleApp.Write.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 算式應用題题型计算式结果显示输出
 	/// </summary>
-	public class MathWordProblemsFormulaWrite : IConsoleWrite
+	[TopicWrite("MathWordProblems")]
+	public class MathWordProblemsFormulaWrite : TopicWriteBase<MathWordProblemsParameter>
 	{
 		/// <summary>
 		/// 计算式结果显示输出
@@ -34,11 +36,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 		///
 		/// </summary>
 		/// <param name="parameter"></param>
-		public void ConsoleFormulas(TopicParameterBase parameter)
+		public override void ConsoleFormulas(MathWordProblemsParameter parameter)
 		{
-			MathWordProblemsParameter param = (MathWordProblemsParameter)parameter;
-
-			ConsoleFormulas(param.Formulas);
+			ConsoleFormulas(parameter.Formulas);
 		}
 	}
 }

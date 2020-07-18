@@ -1,9 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.ArithmeticOperations.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
+using MyMathSheets.TestConsoleApp.Write.Attributes;
+using MyMathSheets.TestConsoleApp.Write.Main;
 using System;
 using System.Linq;
 
@@ -12,19 +13,18 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 四則運算题型计算式结果显示输出
 	/// </summary>
-	public class ArithmeticOperationsWrite : IConsoleWrite
+	[TopicWrite("ArithmeticOperations")]
+	public class ArithmeticOperationsWrite : TopicWriteBase<ArithmeticOperationsParameter>
 	{
 		/// <summary>
 		/// 計算結果顯示輸出
 		/// </summary>
 		/// <param name="parameter">參數</param>
-		public void ConsoleFormulas(TopicParameterBase parameter)
+		public override void ConsoleFormulas(ArithmeticOperationsParameter parameter)
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0004T, "四則運算"));
 
-			ArithmeticOperationsParameter param = (ArithmeticOperationsParameter)parameter;
-
-			param.Formulas.ToList().ForEach(d =>
+			parameter.Formulas.ToList().ForEach(d =>
 			{
 				if (d.AnswerIsRight)
 				{

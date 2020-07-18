@@ -1,10 +1,11 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Item;
 using MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
+using MyMathSheets.TestConsoleApp.Write.Attributes;
+using MyMathSheets.TestConsoleApp.Write.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 等式比大小题型计算式结果显示输出
 	/// </summary>
-	public class FindNearestNumberWrite : IConsoleWrite
+	[TopicWrite("FindNearestNumber")]
+	public class FindNearestNumberWrite : TopicWriteBase<FindNearestNumberParameter>
 	{
 		/// <summary>
 		/// 计算式结果显示输出
@@ -41,11 +43,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 		///
 		/// </summary>
 		/// <param name="parameter"></param>
-		public void ConsoleFormulas(TopicParameterBase parameter)
+		public override void ConsoleFormulas(FindNearestNumberParameter parameter)
 		{
-			FindNearestNumberParameter param = (FindNearestNumberParameter)parameter;
-
-			ConsoleFormulas(param.Formulas);
+			ConsoleFormulas(parameter.Formulas);
 		}
 	}
 }

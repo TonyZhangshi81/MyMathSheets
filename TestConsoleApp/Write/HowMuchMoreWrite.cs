@@ -1,9 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Item;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
+using MyMathSheets.TestConsoleApp.Write.Attributes;
+using MyMathSheets.TestConsoleApp.Write.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 比多少题型计算式结果显示输出
 	/// </summary>
-	public class HowMuchMoreWrite : IConsoleWrite
+	[TopicWrite("HowMuchMore")]
+	public class HowMuchMoreWrite : TopicWriteBase<HowMuchMoreParameter>
 	{
 		/// <summary>
 		/// 计算式结果显示输出
@@ -43,11 +45,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 		///
 		/// </summary>
 		/// <param name="parameter"></param>
-		public void ConsoleFormulas(TopicParameterBase parameter)
+		public override void ConsoleFormulas(HowMuchMoreParameter parameter)
 		{
-			HowMuchMoreParameter param = (HowMuchMoreParameter)parameter;
-
-			ConsoleFormulas(param.Formulas);
+			ConsoleFormulas(parameter.Formulas);
 		}
 	}
 }

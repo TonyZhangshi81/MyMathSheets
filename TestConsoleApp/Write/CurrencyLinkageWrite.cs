@@ -1,10 +1,11 @@
 ﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.CurrencyLinkage.Item;
 using MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Parameters;
 using MyMathSheets.TestConsoleApp.Properties;
+using MyMathSheets.TestConsoleApp.Write.Attributes;
+using MyMathSheets.TestConsoleApp.Write.Main;
 using System;
 using System.Linq;
 
@@ -13,7 +14,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 	/// <summary>
 	/// 認識價格题型计算式结果显示输出
 	/// </summary>
-	public class CurrencyLinkageWrite : IConsoleWrite
+	[TopicWrite("CurrencyLinkage")]
+	public class CurrencyLinkageWrite : TopicWriteBase<CurrencyLinkageParameter>
 	{
 		/// <summary>
 		/// 題型结果显示输出
@@ -40,11 +42,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 		/// 題型结果显示输出
 		/// </summary>
 		/// <param name="parameter">參數</param>
-		public void ConsoleFormulas(TopicParameterBase parameter)
+		public override void ConsoleFormulas(CurrencyLinkageParameter parameter)
 		{
-			CurrencyLinkageParameter param = (CurrencyLinkageParameter)parameter;
-
-			ConsoleFormulas(param.Currencys);
+			ConsoleFormulas(parameter.Currencys);
 		}
 	}
 }
