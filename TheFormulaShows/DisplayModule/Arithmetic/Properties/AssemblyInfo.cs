@@ -1,9 +1,8 @@
-﻿using System.Resources;
-using MyMathSheets.CommonLib;
+﻿using MyMathSheets.CommonLib.Plugin.Attributes;
 using MyMathSheets.CommonLib.Util;
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
-using MyMathSheets.CommonLib.Plugin.Attributes;
 
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改

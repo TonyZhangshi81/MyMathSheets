@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Item;
@@ -20,7 +19,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.SchoolClock.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.SchoolClock.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.SchoolClock.printAfterSetting();")]
-	public class SchoolClockHtmlSupport : HtmlSupportBase
+	public class SchoolClockHtmlSupport : HtmlSupportBase<SchoolClockParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -42,11 +41,10 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 		/// <summary>
 		/// 題型HTML模板作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
+		/// <param name="p">題型參數</param>
 		/// <returns>題型HTML模板信息</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		public override string MakeHtmlContent(SchoolClockParameter p)
 		{
-			SchoolClockParameter p = parameter as SchoolClockParameter;
 			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;

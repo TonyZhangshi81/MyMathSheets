@@ -52,9 +52,6 @@
     <Compile Include="Support\HowMuchMoreHtmlSupport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="MyMathSheets.CommonLib">
       <HintPath>..\..\..\Lib\MyMathSheets.CommonLib.dll</HintPath>
     </Reference>
@@ -74,6 +71,9 @@
       <Project>{18d1e434-d1c1-4634-b969-7ff11feca3ef}</Project>
       <Name>MyMathSheets.ComputationalStrategy.HowMuchMore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

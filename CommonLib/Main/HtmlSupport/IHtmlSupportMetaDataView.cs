@@ -6,8 +6,8 @@
 	public interface IHtmlSupportMetaDataView
 	{
 		/// <summary>
-		/// 題型類別
+		/// 題型識別
 		/// </summary>
-		string Layout { get; }
+		string TopicIdentifier { get; }
 	}
 }

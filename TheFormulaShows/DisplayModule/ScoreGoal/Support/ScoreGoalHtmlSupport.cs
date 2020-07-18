@@ -1,11 +1,11 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 
@@ -20,7 +20,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 	[Substitute(SubstituteType.ReadyEvent, "__goalsArrayHiddenControlId = 'hidBallsArray';MathSheets.ScoreGoal.ready('divBall', 'divGoaler');")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.ScoreGoal.makeCorrections();")]
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.ScoreGoal.theirPapers();")]
-	public class ScoreGoalHtmlSupport : HtmlSupportBase
+	public class ScoreGoalHtmlSupport : HtmlSupportBase<ScoreGoalParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -40,6 +40,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 		/// <summary>
 		/// 構造體
 		/// </summary>
+		[ImportingConstructor]
 		public ScoreGoalHtmlSupport()
 		{
 			// 球類圖片列表
@@ -94,12 +95,10 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 		/// <summary>
 		/// 射門得分HTML作成
 		/// </summary>
-		/// <param name="parameter">相關計算式</param>
-		/// <returns>HTML語句</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		/// <returns>題型HTML模板信息</returns>
+		public override string MakeHtmlContent(ScoreGoalParameter p)
 		{
-			ScoreGoalParameter p = parameter as ScoreGoalParameter;
-
 			if (p.Formulas.BallsFormulas.Count == 0)
 			{
 				return string.Empty;

@@ -13,7 +13,7 @@ namespace MyMathSheets.CommonLib.Main.Policy
 		/// <summary>
 		///
 		/// </summary>
-		private readonly ITopicFactory _topicFactory;
+		private readonly ITopicFactory TopicFactory;
 
 		/// <summary>
 		/// 實例化
@@ -23,7 +23,7 @@ namespace MyMathSheets.CommonLib.Main.Policy
 		{
 			Guard.ArgumentNotNull(topicFactory, "topicFactory");
 
-			_topicFactory = topicFactory;
+			TopicFactory = topicFactory;
 		}
 
 		/// <summary>
@@ -35,20 +35,28 @@ namespace MyMathSheets.CommonLib.Main.Policy
 		public TopicParameterBase Structure(string topicIdentifier, string topicNumber)
 		{
 			// 題型實例
-			using (ITopic instance = _topicFactory.CreateTopicInstance(topicIdentifier))
-			{
-				// 計算式所需參數
-				TopicParameterBase parameter = _topicFactory.CreateTopicParameterInstance(topicIdentifier, topicNumber);
+			ITopic instance = TopicFactory.CreateTopicInstance(topicIdentifier);
 
-				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0006L));
+			// 計算式所需參數
+			TopicParameterBase parameter = TopicFactory.CreateTopicParameterInstance(topicIdentifier, topicNumber);
 
-				// 根據參數構建題型
-				instance.Build(parameter);
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0006L));
 
-				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0007L));
+			// 根據參數構建題型
+			instance.Build(parameter);
 
-				return parameter;
-			}
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0007L));
+
+			return parameter;
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="topicIdentifier"></param>
+		public void ReleaseTopic(string topicIdentifier)
+		{
+			TopicFactory.Release(topicIdentifier);
 		}
 	}
 }

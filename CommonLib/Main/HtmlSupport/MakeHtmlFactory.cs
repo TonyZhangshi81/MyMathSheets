@@ -4,7 +4,7 @@ using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.ComponentModel.Composition;
 
 namespace MyMathSheets.CommonLib.Main.HtmlSupport
@@ -21,6 +21,16 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		private HtmlSupprtHelper _supprtHelper;
 
 		/// <summary>
+		/// 工廠注入點
+		/// </summary>
+		[Import(typeof(IHtmlSupportFactory), RequiredCreationPolicy = CreationPolicy.Shared)]
+		private IHtmlSupportFactory HtmlSupportFactory
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// 用於HTML支援類實例取得的HEPLER類
 		/// </summary>
 		protected HtmlSupprtHelper SupprtHelper
@@ -29,7 +39,7 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 			{
 				if (_supprtHelper == null)
 				{
-					_supprtHelper = new HtmlSupprtHelper();
+					_supprtHelper = new HtmlSupprtHelper(HtmlSupportFactory);
 				}
 
 				return _supprtHelper;
@@ -41,8 +51,9 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 		/// </summary>
 		/// <param name="topicIdentifier">題型類型</param>
 		/// <param name="parameter">題型參數</param>
-		/// <returns>模板替換內容</returns>
-		public Dictionary<SubstituteType, string> GetHtmlStatement<T>(string topicIdentifier, T parameter) where T : TopicParameterBase
+		/// <returns>HTML模板屬性信息集合</returns>
+		public ConcurrentDictionary<SubstituteType, string> GetHtmlReplaceTagDict<T>(string topicIdentifier, T parameter)
+			where T : TopicParameterBase
 		{
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0012L, topicIdentifier));
 
@@ -52,7 +63,16 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0013L, topicIdentifier));
 
 			// 根據參數構建HTML屬性信息
-			return support.Make(parameter);
+			return support.MakeHtmlMaps(parameter);
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="topicIdentifier"></param>
+		public void ReleaseExportsHtmlSupport(string topicIdentifier)
+		{
+			SupprtHelper.ReleaseExportsHtmlSupport(topicIdentifier);
 		}
 	}
 }

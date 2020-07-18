@@ -7,6 +7,7 @@ using MyMathSheets.ComputationalStrategy.MathUpright.Item;
 using MyMathSheets.ComputationalStrategy.MathUpright.Main.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
@@ -15,7 +16,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 	/// 豎式計算題
 	/// </summary>
 	[Topic("MathUpright")]
-	public class MathUpright : TopicBase
+	public class MathUpright : TopicBase<MathUprightParameter>
 	{
 		/// <summary>
 		/// 填空的位置
@@ -40,6 +41,7 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 		/// 45 -> 15 + 2[3] = [3]8
 		/// 56 -> 15 + 23 = [3][8]
 		/// </remarks>
+		[ImportingConstructor]
 		public MathUpright()
 		{
 			// 位置信息
@@ -131,11 +133,9 @@ namespace MyMathSheets.ComputationalStrategy.MathUpright.Main.Strategy
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(MathUprightParameter p)
 		{
-			MathUprightParameter p = parameter as MathUprightParameter;
-
 			// 算式作成
 			MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(p.Signs.ToList()); });
 		}

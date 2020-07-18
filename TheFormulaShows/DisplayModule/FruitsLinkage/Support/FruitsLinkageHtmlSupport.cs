@@ -1,11 +1,11 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 
@@ -20,7 +20,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 	[Substitute(SubstituteType.ReadyEvent, "__fruitsArrayHiddenControlId = 'hidFruitsArray';MathSheets.FruitsLinkage.ready('divFruitDrag', 'divContainer');")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.FruitsLinkage.makeCorrections();")]
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.FruitsLinkage.theirPapers();")]
-	public class FruitsLinkageHtmlSupport : HtmlSupportBase
+	public class FruitsLinkageHtmlSupport : HtmlSupportBase<FruitsLinkageParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -40,6 +40,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 		/// <summary>
 		/// 構造體
 		/// </summary>
+		[ImportingConstructor]
 		public FruitsLinkageHtmlSupport()
 		{
 			// 水果圖片列表
@@ -95,12 +96,10 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 		/// <summary>
 		/// 水果連連看HTML作成
 		/// </summary>
-		/// <param name="parameter">相關計算式</param>
+		/// <param name="p">相關計算式</param>
 		/// <returns>HTML語句</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		public override string MakeHtmlContent(FruitsLinkageParameter p)
 		{
-			FruitsLinkageParameter p = parameter as FruitsLinkageParameter;
-
 			if (p.Formulas.FruitsFormulas.Count == 0)
 			{
 				return string.Empty;

@@ -55,9 +55,6 @@
     <Compile Include="Support\ScoreGoalHtmlSupport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Content\image\sport\Bomb.png" />
     <Content Include="Content\ScoreGoal.css" />
     <Content Include="Content\image\sport\ball.png" />
@@ -78,6 +75,9 @@
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e5}</Project>
       <Name>MyMathSheets.ComputationalStrategy.ScoreGoal</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

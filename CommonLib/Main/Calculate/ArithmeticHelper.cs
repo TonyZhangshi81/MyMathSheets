@@ -7,14 +7,14 @@ namespace MyMathSheets.CommonLib.Main.Calculate
 	/// </summary>
 	public class ArithmeticHelper
 	{
-		private readonly IArithmeticFactory calculateFactory;
+		private readonly IArithmeticFactory arithmeticFactory;
 
 		/// <summary>
 		/// 實例化
 		/// </summary>
 		public ArithmeticHelper(IArithmeticFactory factory)
 		{
-			calculateFactory = factory;
+			arithmeticFactory = factory;
 		}
 
 		/// <summary>
@@ -22,10 +22,10 @@ namespace MyMathSheets.CommonLib.Main.Calculate
 		/// </summary>
 		/// <param name="sign">運算符</param>
 		/// <returns>運算符實例</returns>
-		public IArithmetic CreateCalculateInstance(SignOfOperation sign)
+		public IArithmetic CreateArithmeticInstance(SignOfOperation sign)
 		{
 			// 運算符工廠實例化
-			return calculateFactory.GetFormulaOperator(sign);
+			return arithmeticFactory.GetFormulaOperator(sign);
 		}
 	}
 }

@@ -174,6 +174,9 @@
   <data name="E0044L" xml:space="preserve">
     <value>E0044L:配置參數ExcludeAssemblies的值【{0}】不符合JSON格式</value>
   </data>
+  <data name="E0045L" xml:space="preserve">
+    <value>E0045L:出題策略的參數類型【{0}】不正確</value>
+  </data>
   <data name="I0001L" xml:space="preserve">
     <value>I0001L:指定運算符實例準備作成</value>
   </data>

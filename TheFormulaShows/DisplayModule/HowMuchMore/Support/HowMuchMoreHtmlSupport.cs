@@ -1,12 +1,12 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Item;
 using MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 
@@ -23,7 +23,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.HowMuchMore.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.HowMuchMore.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.HowMuchMore.printAfterSetting();")]
-	public class HowMuchMoreHtmlSupport : HtmlSupportBase
+	public class HowMuchMoreHtmlSupport : HtmlSupportBase<HowMuchMoreParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -65,6 +65,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 		/// <summary>
 		/// 構造體
 		/// </summary>
+		[ImportingConstructor]
 		public HowMuchMoreHtmlSupport()
 		{
 			// 可選圖片列表
@@ -83,13 +84,10 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 		/// <summary>
 		/// 動態作成html并按照一定的格式注入html模板中
 		/// </summary>
-		/// <param name="parameter">通用參數類</param>
-		/// <returns>html文言</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		/// <param name="p">通用參數類</param>
+		/// <returns>HTML上下文內容</returns>
+		public override string MakeHtmlContent(HowMuchMoreParameter p)
 		{
-			// 比多少題型的參數類
-			HowMuchMoreParameter p = parameter as HowMuchMoreParameter;
-
 			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;

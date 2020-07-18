@@ -8,6 +8,7 @@ using MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
@@ -16,7 +17,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 	/// 認識貨幣題型
 	/// </summary>
 	[Topic("LearnCurrency")]
-	public class LearnCurrency : TopicBase
+	public class LearnCurrency : TopicBase<LearnCurrencyParameter>
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -30,8 +31,9 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 			new Dictionary<CurrencyTransformType, Action<LearnCurrencyFormula, QuestionType>>();
 
 		/// <summary>
-		/// 構造函數
+		/// <see cref="LearnCurrency"/>構造函數
 		/// </summary>
+		[ImportingConstructor]
 		public LearnCurrency()
 		{
 			// 元轉換為角
@@ -103,11 +105,9 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(LearnCurrencyParameter p)
 		{
-			LearnCurrencyParameter p = parameter as LearnCurrencyParameter;
-
 			// 標準題型（指定單個轉換單位）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{

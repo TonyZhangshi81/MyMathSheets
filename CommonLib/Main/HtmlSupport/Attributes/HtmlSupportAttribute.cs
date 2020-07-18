@@ -14,15 +14,15 @@ namespace MyMathSheets.CommonLib.Main.HtmlSupport.Attributes
 		/// 自定義導出屬性
 		/// </summary>
 		/// <param name="layout">題型類別</param>
-		public HtmlSupportAttribute(string layout) : base(typeof(HtmlSupportBase))
+		public HtmlSupportAttribute(string layout) : base(typeof(IHtmlSupport))
 		{
-			Layout = layout;
+			TopicIdentifier = layout;
 		}
 
 		/// <summary>
 		/// 題型類別
 		/// </summary>
-		public string Layout
+		public string TopicIdentifier
 		{
 			get;
 			set;

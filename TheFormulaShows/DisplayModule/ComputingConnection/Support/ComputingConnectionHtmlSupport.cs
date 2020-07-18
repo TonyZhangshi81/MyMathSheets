@@ -1,7 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.ComputingConnection.Item;
@@ -20,7 +19,7 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.ComputingConnection.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.ComputingConnection.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.ComputingConnection.printAfterSetting();")]
-	public class ComputingConnectionHtmlSupport : HtmlSupportBase
+	public class ComputingConnectionHtmlSupport : HtmlSupportBase<ComputingConnectionParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -30,12 +29,10 @@ namespace MyMathSheets.TheFormulaShows.ComputingConnection.Support
 		/// <summary>
 		/// 題型HTML模板作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
+		/// <param name="p">題型參數</param>
 		/// <returns>題型HTML模板信息</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		public override string MakeHtmlContent(ComputingConnectionParameter p)
 		{
-			ComputingConnectionParameter p = parameter as ComputingConnectionParameter;
-
 			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;

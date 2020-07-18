@@ -7,6 +7,7 @@ using MyMathSheets.ComputationalStrategy.TimeCalculation.Item;
 using MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
@@ -15,7 +16,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 	/// 時間運算
 	/// </summary>
 	[Topic("TimeCalculation")]
-	public class TimeCalculation : TopicBase
+	public class TimeCalculation : TopicBase<TimeCalculationParameter>
 	{
 		/// <summary>
 		/// 指定分鐘數值
@@ -25,6 +26,7 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		/// <summary>
 		/// 構造函數
 		/// </summary>
+		[ImportingConstructor]
 		public TimeCalculation()
 		{
 			// 指定分鐘數值（0、15、30、45分鐘）
@@ -126,11 +128,9 @@ namespace MyMathSheets.ComputationalStrategy.TimeCalculation.Main.Strategy
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(TimeCalculationParameter p)
 		{
-			TimeCalculationParameter p = parameter as TimeCalculationParameter;
-
 			// 標準題型
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{

@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Item;
@@ -21,7 +20,7 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.FindTheLaw.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.FindTheLaw.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.FindTheLaw.printAfterSetting();")]
-	public class FindTheLawHtmlSupport : HtmlSupportBase
+	public class FindTheLawHtmlSupport : HtmlSupportBase<FindTheLawParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -36,12 +35,10 @@ namespace MyMathSheets.TheFormulaShows.FindTheLaw.Support
 		/// <summary>
 		/// HTML模板作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
+		/// <param name="p">題型參數</param>
 		/// <returns>HTML模板信息</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		public override string MakeHtmlContent(FindTheLawParameter p)
 		{
-			FindTheLawParameter p = parameter as FindTheLawParameter;
-
 			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;

@@ -1,57 +1,24 @@
-﻿using MyMathSheets.CommonLib.Composition;
-using MyMathSheets.CommonLib.Main.HtmlSupport;
-using System.ComponentModel.Composition;
+﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
+using MyMathSheets.CommonLib.Util;
 
 namespace MyMathSheets.CommonLib.Main.Arithmetic
 {
 	/// <summary>
-	/// 用於HTML支援類實例取得的HEPLER類
+	/// 題型HTML支援類
 	/// </summary>
 	public class HtmlSupprtHelper
 	{
-		/// <summary>
-		/// 以防止重複注入（減少損耗）
-		/// </summary>
-		private bool _composed = false;
+		private readonly IHtmlSupportFactory HtmlSupportFactory;
 
 		/// <summary>
-		/// HTML支援類檢索用的composer
+		/// <see cref="HtmlSupprtHelper" />的構造函數
 		/// </summary>
-		private readonly Composer _composer;
-
-		/// <summary>
-		///
-		/// </summary>
-		private void ComposeThis()
+		/// <param name="htmlSupportFactory">題型HTML支援類工廠</param>
+		public HtmlSupprtHelper(IHtmlSupportFactory htmlSupportFactory)
 		{
-			// Helper實例后只需要收集一次
-			if (this._composed)
-			{
-				return;
-			}
-			// 從MEF容器中注入本類的屬性信息（注入工廠屬性）
-			_composer.Compose(this);
-			// 以防止重複注入（減少損耗）
-			_composed = true;
-		}
+			Guard.ArgumentNotNull(htmlSupportFactory, "htmlSupportFactory");
 
-		/// <summary>
-		/// 工廠注入點
-		/// </summary>
-		[Import(typeof(IHtmlSupportFactory))]
-		private IHtmlSupportFactory HtmlSupportFactory
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// 實例化
-		/// </summary>
-		public HtmlSupprtHelper()
-		{
-			// 獲取共通處理模塊Composer
-			_composer = ComposerFactory.GetComporser(this.GetType().Assembly);
+			HtmlSupportFactory = htmlSupportFactory;
 		}
 
 		/// <summary>
@@ -61,11 +28,17 @@ namespace MyMathSheets.CommonLib.Main.Arithmetic
 		/// <returns>運算符實例</returns>
 		public IHtmlSupport CreateHtmlSupportInstance(string topicIdentifier)
 		{
-			// 本類中的屬性注入執行
-			ComposeThis();
-
 			// 運算符工廠實例化
 			return HtmlSupportFactory.CreateHtmlSupportInstance(topicIdentifier);
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="topicIdentifier"></param>
+		public void ReleaseExportsHtmlSupport(string topicIdentifier)
+		{
+			HtmlSupportFactory.ReleaseExportsHtmlSupport(topicIdentifier);
 		}
 	}
 }

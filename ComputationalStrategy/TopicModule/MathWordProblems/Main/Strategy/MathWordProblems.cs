@@ -14,7 +14,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 	/// 應用題策略
 	/// </summary>
 	[Topic("MathWordProblems")]
-	public class MathWordProblems : TopicBase
+	public class MathWordProblems : TopicBase<MathWordProblemsParameter>
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -76,11 +76,9 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// <summary>
 		/// 題型作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(MathWordProblemsParameter p)
 		{
-			MathWordProblemsParameter p = parameter as MathWordProblemsParameter;
-
 			// 讀取出題資料庫
 			GetAllProblemsFromResource();
 			// 算式作成

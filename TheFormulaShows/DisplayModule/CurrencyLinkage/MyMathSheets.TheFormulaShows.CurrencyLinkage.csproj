@@ -73,13 +73,13 @@
     <Content Include="Template\CurrencyLinkage.html" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\CurrencyLinkage\MyMathSheets.ComputationalStrategy.CurrencyLinkage.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de8cbd526e9}</Project>
       <Name>MyMathSheets.ComputationalStrategy.CurrencyLinkage</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

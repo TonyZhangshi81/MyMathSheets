@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.LearnCurrency.Item;
@@ -19,7 +18,7 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.LearnCurrency.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.LearnCurrency.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.LearnCurrency.printAfterSetting();")]
-	public class LearnCurrencyHtmlSupport : HtmlSupportBase
+	public class LearnCurrencyHtmlSupport : HtmlSupportBase<LearnCurrencyParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -54,12 +53,10 @@ namespace MyMathSheets.TheFormulaShows.LearnCurrency.Support
 		/// <summary>
 		/// 根據題型輸出結果作成HTML模板信息
 		/// </summary>
-		/// <param name="parameter">題型輸出結果</param>
+		/// <param name="p">題型輸出結果</param>
 		/// <returns>HTML模板信息</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		public override string MakeHtmlContent(LearnCurrencyParameter p)
 		{
-			LearnCurrencyParameter p = parameter as LearnCurrencyParameter;
-
 			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;

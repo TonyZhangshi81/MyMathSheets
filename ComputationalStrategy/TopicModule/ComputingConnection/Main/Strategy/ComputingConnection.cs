@@ -15,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 	/// 等式接龍題型（當前版本實現了加減法接龍）
 	/// </summary>
 	[Topic("ComputingConnection")]
-	public class ComputingConnection : TopicBase
+	public class ComputingConnection : TopicBase<ComputingConnectionParameter>
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於五次則認為此題無法作成繼續下一題）
@@ -76,11 +76,9 @@ namespace MyMathSheets.ComputationalStrategy.ComputingConnection.Main.Strategy
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(ComputingConnectionParameter p)
 		{
-			ComputingConnectionParameter p = parameter as ComputingConnectionParameter;
-
 			// 算式作成
 			MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(p.Signs.ToList()); });
 		}

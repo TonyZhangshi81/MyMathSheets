@@ -7,6 +7,7 @@ using MyMathSheets.ComputationalStrategy.FruitsLinkage.Item;
 using MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
@@ -15,17 +16,17 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 	/// 水果連連看題型構築
 	/// </summary>
 	[Topic("FruitsLinkage")]
-	public class FruitsLinkage : TopicBase
+	public class FruitsLinkage : TopicBase<FruitsLinkageParameter>
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
 		/// </summary>
 		private const int INVERSE_NUMBER = 5;
 
-		// 左邊水果算式實例
+		// 左邊水果算式實例集合
 		private readonly IList<Formula> _fruitsFormulas;
 
-		// 右邊容器算式實例
+		// 右邊容器算式實例集合
 		private readonly IList<Formula> _containersFormulas;
 
 		// 各計算式編號的集合
@@ -34,10 +35,12 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 		/// <summary>
 		/// 構造函數
 		/// </summary>
+		[ImportingConstructor]
 		public FruitsLinkage()
 		{
+			// 左邊容器算式實例集合
 			_fruitsFormulas = new List<Formula>();
-			// 右邊容器算式實例
+			// 右邊容器算式實例集合
 			_containersFormulas = new List<Formula>();
 			// 各計算式編號的集合
 			_seats = new List<int>();
@@ -95,11 +98,9 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 		/// <summary>
 		/// 題型構築
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(FruitsLinkageParameter p)
 		{
-			FruitsLinkageParameter p = parameter as FruitsLinkageParameter;
-
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{
@@ -227,6 +228,28 @@ namespace MyMathSheets.ComputationalStrategy.FruitsLinkage.Main.Strategy
 				return true;
 			}
 			return false;
+		}
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		protected override void DisposeManaged()
+		{
+			// 左邊容器算式實例集合
+			if (_fruitsFormulas != null)
+			{
+				_fruitsFormulas.Clear();
+			}
+			// 右邊容器算式實例集合
+			if (_containersFormulas != null)
+			{
+				_containersFormulas.Clear();
+			}
+			// 各計算式編號的集合
+			if (_seats != null)
+			{
+				_seats.Clear();
+			}
 		}
 	}
 }

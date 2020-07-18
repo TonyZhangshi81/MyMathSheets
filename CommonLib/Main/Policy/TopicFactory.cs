@@ -27,8 +27,8 @@ namespace MyMathSheets.CommonLib.Main.Policy
 		/// <remarks>
 		/// <see cref="Composer"/>是以題型為管理單位
 		/// </remarks>
-		private static readonly ConcurrentDictionary<Composer, Lazy<TopicBase, ITogicMetaDataView>> OperationCache
-										= new ConcurrentDictionary<Composer, Lazy<TopicBase, ITogicMetaDataView>>();
+		private static readonly ConcurrentDictionary<Composer, Lazy<ITopic, ITogicMetaDataView>> TopicCache
+										= new ConcurrentDictionary<Composer, Lazy<ITopic, ITogicMetaDataView>>();
 
 		/// <summary>
 		/// 類型參數對象緩存
@@ -48,7 +48,7 @@ namespace MyMathSheets.CommonLib.Main.Policy
 		/// 運算符屬性注入點
 		/// </summary>
 		[ImportMany(RequiredCreationPolicy = CreationPolicy.NonShared)]
-		public IEnumerable<Lazy<TopicBase, ITogicMetaDataView>> Operations { get; set; }
+		public IEnumerable<Lazy<ITopic, ITogicMetaDataView>> Topics { get; set; }
 
 		/// <summary>
 		/// 對指定計算式策略實例化
@@ -61,33 +61,32 @@ namespace MyMathSheets.CommonLib.Main.Policy
 			_composer = ComposerFactory.GetComporser(topicIdentifier);
 
 			// 返回緩衝區中的運算符對象
-			Lazy<TopicBase, ITogicMetaDataView> lazyOperation = OperationCache.GetOrAdd(_composer, (o) =>
+			Lazy<ITopic, ITogicMetaDataView> lazyTopic = TopicCache.GetOrAdd(_composer, (o) =>
 			{
 				// 內部部件組合
 				_composer.Compose(this);
 
 				// 指定運算符并獲取處理類型
-				IEnumerable<Lazy<TopicBase, ITogicMetaDataView>> operations = Operations.Where(
-					d =>
-					{
-						return d.Metadata.TopicIdentifier.Equals(topicIdentifier, StringComparison.CurrentCultureIgnoreCase);
-					});
+				IEnumerable<Lazy<ITopic, ITogicMetaDataView>> topics = Topics.Where(d =>
+				{
+					return d.Metadata.TopicIdentifier.Equals(topicIdentifier, StringComparison.CurrentCultureIgnoreCase);
+				});
 				// 部件是否存在
-				if (!operations.Any())
+				if (!topics.Any())
 				{
 					// 指定的題型策略對象未找到
 					throw new TopicNotFoundException(MessageUtil.GetMessage(() => MsgResources.E0018L, topicIdentifier));
 				}
 				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0003L));
 
-				return operations.First();
+				return topics.First();
 			});
 
 			// 返回該運算符處理類型的實例（實例化）
-			var operation = lazyOperation.Value;
+			var topic = lazyTopic.Value;
 			// 內部部件組合（策略抽象類中的計算式工廠對象注入）
-			_composer.Compose(operation);
-			return operation;
+			_composer.Compose(topic);
+			return topic;
 		}
 
 		/// <summary>
@@ -125,6 +124,19 @@ namespace MyMathSheets.CommonLib.Main.Policy
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0005L, key));
 
 			return paramater;
+		}
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="topicIdentifier"></param>
+		public void Release(string topicIdentifier)
+		{
+			// 獲取HTML支援類Composer
+			_composer = ComposerFactory.GetComporser(topicIdentifier);
+
+			TopicCache.TryRemove(_composer, out Lazy<ITopic, ITogicMetaDataView> topic);
+			_composer.ReleaseExport(topic);
 		}
 	}
 }

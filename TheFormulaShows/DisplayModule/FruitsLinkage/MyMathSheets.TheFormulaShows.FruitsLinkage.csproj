@@ -55,9 +55,6 @@
     <Compile Include="Support\FruitsLinkageHtmlSupport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Content\FruitsLinkage.css" />
     <Content Include="Content\image\fruits\Apple.png" />
     <Content Include="Content\image\fruits\Apricot.png" />
@@ -79,6 +76,9 @@
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e8}</Project>
       <Name>MyMathSheets.ComputationalStrategy.FruitsLinkage</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

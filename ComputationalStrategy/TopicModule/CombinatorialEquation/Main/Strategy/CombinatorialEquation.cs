@@ -14,16 +14,14 @@ namespace MyMathSheets.ComputationalStrategy.CombinatorialEquation.Main.Strategy
 	/// 組合計算式
 	/// </summary>
 	[Topic("CombinatorialEquation")]
-	public class CombinatorialEquation : TopicBase
+	public class CombinatorialEquation : TopicBase<CombinatorialEquationParameter>
 	{
 		/// <summary>
 		/// 題型構築
 		/// </summary>
-		/// <param name="parameter"></param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p"></param>
+		public override void MarkFormulaList(CombinatorialEquationParameter p)
 		{
-			CombinatorialEquationParameter p = parameter as CombinatorialEquationParameter;
-
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{
 				// 對四則運算符實例進行cache管理

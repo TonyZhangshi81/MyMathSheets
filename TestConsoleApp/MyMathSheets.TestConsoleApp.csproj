@@ -108,7 +108,7 @@
       <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Time.TimeCalculation.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.7.2\lib\net45\NLog.dll</HintPath>
@@ -141,30 +141,30 @@
       <DependentUpon>MsgResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Util\StringUtil.cs" />
-    <Compile Include="Write\MathUprightWrite.cs" />
-    <Compile Include="Write\CurrencyLinkageWrite.cs" />
-    <Compile Include="Write\FindTheLawFormulaWrite.cs" />
-    <Compile Include="Write\CombinatorialFormulaWrite.cs" />
-    <Compile Include="Write\FindNearestNumberWrite.cs" />
-    <Compile Include="Write\EqualityLinkageWrite.cs" />
-    <Compile Include="Write\CurrencyOperationWrite.cs" />
-    <Compile Include="Write\LearnLengthUnitWrite.cs" />
-    <Compile Include="Write\GapFillingProblemsWrite.cs" />
-    <Compile Include="Write\TimeCalculationWrite.cs" />
-    <Compile Include="Write\SchoolClockWrite.cs" />
-    <Compile Include="Write\LearnCurrencyWrite.cs" />
-    <Compile Include="Write\HowMuchMoreWrite.cs" />
-    <Compile Include="Write\NumericSortingWrite.cs" />
-    <Compile Include="Write\ScoreGoalWrite.cs" />
-    <Compile Include="Write\FruitsLinkageWrite.cs" />
-    <Compile Include="Write\MathWordProblemsFormulaWrite.cs" />
-    <Compile Include="Write\EqualityFormulaWrite.cs" />
-    <Compile Include="Write\ComputingConnectionWrite.cs" />
     <Compile Include="Write\ArithmeticOperationsWrite.cs" />
+    <Compile Include="Write\CombinatorialFormulaWrite.cs" />
+    <Compile Include="Write\ComputingConnectionWrite.cs" />
+    <Compile Include="Write\CurrencyLinkageWrite.cs" />
+    <Compile Include="Write\CurrencyOperationWrite.cs" />
+    <Compile Include="Write\EqualityFormulaWrite.cs" />
+    <Compile Include="Write\EqualityLinkageWrite.cs" />
+    <Compile Include="Write\FindNearestNumberWrite.cs" />
+    <Compile Include="Write\FindTheLawFormulaWrite.cs" />
+    <Compile Include="Write\FruitsLinkageWrite.cs" />
+    <Compile Include="Write\GapFillingProblemsWrite.cs" />
+    <Compile Include="Write\HowMuchMoreWrite.cs" />
+    <Compile Include="Write\LearnCurrencyWrite.cs" />
+    <Compile Include="Write\LearnLengthUnitWrite.cs" />
+    <Compile Include="Write\MathUprightWrite.cs" />
+    <Compile Include="Write\MathWordProblemsFormulaWrite.cs" />
+    <Compile Include="Write\NumericSortingWrite.cs" />
+    <Compile Include="Write\SchoolClockWrite.cs" />
+    <Compile Include="Write\ScoreGoalWrite.cs" />
     <Compile Include="Write\IConsoleWrite.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\CommonUtil.cs" />
+    <Compile Include="Write\TimeCalculationWrite.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

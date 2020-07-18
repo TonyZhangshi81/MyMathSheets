@@ -62,13 +62,13 @@
     <Content Include="Template\LearnCurrency.html" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\LearnCurrency\MyMathSheets.ComputationalStrategy.LearnCurrency.csproj">
       <Project>{a4afcd1e-6872-4643-9728-e5e6dff55387}</Project>
       <Name>MyMathSheets.ComputationalStrategy.LearnCurrency</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

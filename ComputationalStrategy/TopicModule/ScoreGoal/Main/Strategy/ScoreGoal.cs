@@ -6,6 +6,7 @@ using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
@@ -14,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 	/// 射門得分題型構築
 	/// </summary>
 	[Topic("ScoreGoal")]
-	public class ScoreGoal : TopicBase
+	public class ScoreGoal : TopicBase<ScoreGoalParameter>
 	{
 		// 球類算式實例
 		private readonly Dictionary<Formula, int> _ballsFormulas;
@@ -25,6 +26,7 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 		/// <summary>
 		/// 構造函數
 		/// </summary>
+		[ImportingConstructor]
 		public ScoreGoal()
 		{
 			_ballsFormulas = new Dictionary<Formula, int>();
@@ -116,10 +118,11 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 		/// <summary>
 		/// 計算式作成處理
 		/// </summary>
-		/// <param name="parameter">參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">參數</param>
+		public override void MarkFormulaList(ScoreGoalParameter p)
 		{
-			ScoreGoalParameter p = parameter as ScoreGoalParameter;
+			_ballsFormulas.Clear();
+			_goalsFormulas.Clear();
 
 			// (足球的個數最多10個)
 			p.NumberOfQuestions = (p.NumberOfQuestions > 10) ? 10 : p.NumberOfQuestions;
@@ -201,16 +204,27 @@ namespace MyMathSheets.ComputationalStrategy.ScoreGoal.Main.Strategy
 				return true;
 			}
 
-			// 兩個球門算式
-			if (goalsFormulas.Count() == 2)
+			// 答案一致的兩個球門不允許
+			if (goalsFormulas.Count == 1 && currentFormula.Answer == goalsFormulas[0].Answer)
 			{
-				// 答案一致的兩個球門不允許
-				if (goalsFormulas[0].Answer == currentFormula.Answer)
-				{
-					return true;
-				}
+				return true;
 			}
 			return false;
+		}
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		protected override void DisposeManaged()
+		{
+			if (_ballsFormulas != null)
+			{
+				_ballsFormulas.Clear();
+			}
+			if (_goalsFormulas != null)
+			{
+				_goalsFormulas.Clear();
+			}
 		}
 	}
 }

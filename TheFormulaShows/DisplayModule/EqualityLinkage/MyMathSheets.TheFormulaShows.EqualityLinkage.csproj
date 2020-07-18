@@ -61,13 +61,13 @@
     <Content Include="Template\EqualityLinkage.html" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\EqualityLinkage\MyMathSheets.ComputationalStrategy.EqualityLinkage.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de8cbd526e8}</Project>
       <Name>MyMathSheets.ComputationalStrategy.EqualityLinkage</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -11,5 +11,11 @@
 		/// <param name="topicIdentifier">題型識別ID</param>
 		/// <returns>HTML支援類實例</returns>
 		IHtmlSupport CreateHtmlSupportInstance(string topicIdentifier);
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="topicIdentifier"></param>
+		void ReleaseExportsHtmlSupport(string topicIdentifier);
 	}
 }

@@ -6,6 +6,7 @@ using MyMathSheets.ComputationalStrategy.GapFillingProblems.Item;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
@@ -14,7 +15,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 	/// 填空題策略
 	/// </summary>
 	[Topic("GapFillingProblems")]
-	public class GapFillingProblems : TopicBase
+	public class GapFillingProblems : TopicBase<GapFillingProblemsParameter>
 	{
 		/// <summary>
 		/// 填空題庫文件所在路徑
@@ -27,13 +28,20 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 		private List<GapFillingProblemsLibrary> _allProblems;
 
 		/// <summary>
+		/// <see cref="GapFillingProblems"/>的構造函數
+		/// </summary>
+		[ImportingConstructor]
+		public GapFillingProblems()
+		{
+			_allProblems = new List<GapFillingProblemsLibrary>();
+		}
+
+		/// <summary>
 		/// 題型作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(GapFillingProblemsParameter p)
 		{
-			GapFillingProblemsParameter p = parameter as GapFillingProblemsParameter;
-
 			// 讀取出題資料庫
 			GetAllProblemsFromResource(p.Levels);
 			// 題庫為空的情況
@@ -81,6 +89,17 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 			{
 				_allProblems = JsonExtension.GetObjectByJson<List<GapFillingProblemsLibrary>>(file.ReadToEnd()).Where(d => Array.IndexOf(levels, d.Level) >= 0).ToList();
 			};
+		}
+
+		/// <summary>
+		/// 資源事發
+		/// </summary>
+		protected override void DisposeManaged()
+		{
+			if (_allProblems != null)
+			{
+				_allProblems.Clear();
+			}
 		}
 	}
 }

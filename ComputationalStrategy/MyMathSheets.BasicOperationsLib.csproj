@@ -84,7 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Item\" />
-    <Folder Include="Main\OperationStrategy\Parameters\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonLib\MyMathSheets.CommonLib.csproj">

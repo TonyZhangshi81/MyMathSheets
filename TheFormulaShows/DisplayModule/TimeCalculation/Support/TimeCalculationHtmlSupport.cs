@@ -1,7 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.TimeCalculation.Item;
@@ -21,7 +20,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.TimeCalculation.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.TimeCalculation.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.TimeCalculation.printAfterSetting();")]
-	public class TimeCalculationHtmlSupport : HtmlSupportBase
+	public class TimeCalculationHtmlSupport : HtmlSupportBase<TimeCalculationParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -54,12 +53,10 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 		/// <summary>
 		/// 題型HTML模板作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
+		/// <param name="p">題型參數</param>
 		/// <returns>題型HTML模板信息</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		public override string MakeHtmlContent(TimeCalculationParameter p)
 		{
-			TimeCalculationParameter p = parameter as TimeCalculationParameter;
-
 			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;

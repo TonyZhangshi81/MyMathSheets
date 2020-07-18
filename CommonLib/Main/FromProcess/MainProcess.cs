@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Configurations;
+﻿using MyMathSheets.CommonLib.Composition;
+using MyMathSheets.CommonLib.Configurations;
 using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.FromProcess.Support;
 using MyMathSheets.CommonLib.Main.HtmlSupport;
@@ -9,6 +10,7 @@ using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
@@ -28,7 +30,8 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// <summary>
 		/// 替換資源
 		/// </summary>
-		private readonly Dictionary<string, Dictionary<SubstituteType, string>> _htmlMaps = new Dictionary<string, Dictionary<SubstituteType, string>>();
+		private readonly Dictionary<string, ConcurrentDictionary<SubstituteType, string>> _htmlMaps
+									= new Dictionary<string, ConcurrentDictionary<SubstituteType, string>>();
 
 		/// <summary>題型參數</summary>
 		private List<TopicManagement> TopicManagementList { get; set; }
@@ -60,7 +63,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// <summary>
 		/// HTML 構築類實例
 		/// </summary>
-		[Import(typeof(IMakeHtml))]
+		[Import(typeof(IMakeHtml), RequiredCreationPolicy = CreationPolicy.Shared)]
 		public IMakeHtml MakeHtml { get; set; }
 
 		/// <summary>
@@ -154,7 +157,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// 讀取HTML模板內容
 			htmlTemplate.Append(File.ReadAllText(destFileName, Encoding.UTF8));
 			// 遍歷已選擇的題型
-			foreach (KeyValuePair<string, Dictionary<SubstituteType, string>> d in _htmlMaps)
+			foreach (KeyValuePair<string, ConcurrentDictionary<SubstituteType, string>> d in _htmlMaps)
 			{
 				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0016L, d.Key));
 
@@ -282,7 +285,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 				// 題型預覽添加
 				SetLayoutSettingPreviewList(info.Preview);
 				// 取得HTML和JS的替換內容
-				Dictionary<SubstituteType, string> htmlMaps = GetHtmlReplaceContentMaps(info.Preview);
+				ConcurrentDictionary<SubstituteType, string> htmlMaps = GetHtmlReplaceContentMaps(info.Preview);
 				// 按照題型將所有替換內容裝箱子
 				_htmlMaps.Add(info.ControlId, htmlMaps);
 			}
@@ -292,6 +295,9 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 				LayoutSettingPreviewList.Remove(info.Preview);
 				// 題型移除
 				_htmlMaps.Remove(info.ControlId);
+				// 釋放部件資源
+				MakeHtml.ReleaseExportsHtmlSupport(info.ControlId);
+				TopicsPolicyHelper.Instance.ReleaseTopic(info.ControlId);
 			}
 		}
 
@@ -300,15 +306,17 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// </summary>
 		/// <param name="topicIdentifier">題型種類</param>
 		/// <returns>替換內容</returns>
-		private Dictionary<SubstituteType, string> GetHtmlReplaceContentMaps(string topicIdentifier)
+		private ConcurrentDictionary<SubstituteType, string> GetHtmlReplaceContentMaps(string topicIdentifier)
 		{
 			// 題型編號取得
 			string identifier = TopicManagementList.Where(d => topicIdentifier.Equals(d.TopicIdentifier, StringComparison.CurrentCultureIgnoreCase)).First().Number;
 
 			// 構造題型并取得結果
 			TopicParameterBase parameter = TopicsPolicyHelper.Instance.Structure(topicIdentifier, identifier);
+
 			// 題型HTML信息作成并對指定的HTML模板標識進行替換
-			Dictionary<SubstituteType, string> htmlMaps = MakeHtml.GetHtmlStatement(topicIdentifier, parameter);
+			ConcurrentDictionary<SubstituteType, string> htmlMaps = MakeHtml.GetHtmlReplaceTagDict(topicIdentifier, parameter);
+
 			return htmlMaps;
 		}
 

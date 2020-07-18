@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 	/// 找最相近的数字題型構築
 	/// </summary>
 	[Topic("FindNearestNumber")]
-	public class FindNearestNumber : TopicBase
+	public class FindNearestNumber : TopicBase<FindNearestNumberParameter>
 	{
 		/// <summary>
 		/// 題型構築
@@ -66,11 +66,9 @@ namespace MyMathSheets.ComputationalStrategy.FindNearestNumber.Main.Strategy
 		/// <summary>
 		/// 題型構築
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(FindNearestNumberParameter p)
 		{
-			FindNearestNumberParameter p = parameter as FindNearestNumberParameter;
-
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{

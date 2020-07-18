@@ -1,5 +1,4 @@
-﻿using MyMathSheets.CommonLib;
-using MyMathSheets.CommonLib.Plugin.Attributes;
+﻿using MyMathSheets.CommonLib.Plugin.Attributes;
 using MyMathSheets.CommonLib.Util;
 using System.Reflection;
 using System.Runtime.InteropServices;

@@ -8,6 +8,7 @@ using MyMathSheets.ComputationalStrategy.SchoolClock.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.SchoolClock.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
@@ -16,7 +17,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 	/// 時鐘學習板
 	/// </summary>
 	[Topic("SchoolClock")]
-	public class SchoolClock : TopicBase
+	public class SchoolClock : TopicBase<SchoolClockParameter>
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -37,6 +38,7 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// <summary>
 		/// 構造函數
 		/// </summary>
+		[ImportingConstructor]
 		public SchoolClock()
 		{
 			// 指定分鐘數值（0、15、30、45分鐘）
@@ -66,11 +68,9 @@ namespace MyMathSheets.ComputationalStrategy.SchoolClock.Main.Strategy
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(SchoolClockParameter p)
 		{
-			SchoolClockParameter p = parameter as SchoolClockParameter;
-
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
 			// 按照指定數量作成相應的數學計算式

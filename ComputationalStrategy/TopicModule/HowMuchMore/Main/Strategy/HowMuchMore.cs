@@ -17,16 +17,14 @@ namespace MyMathSheets.ComputationalStrategy.HowMuchMore.Main.Strategy
 	/// 比多少題
 	/// </summary>
 	[Topic("HowMuchMore")]
-	public class HowMuchMore : TopicBase
+	public class HowMuchMore : TopicBase<HowMuchMoreParameter>
 	{
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(HowMuchMoreParameter p)
 		{
-			HowMuchMoreParameter p = parameter as HowMuchMoreParameter;
-
 			// 指定單個運算符實例（此題只能用減法運算符）
 			IArithmetic strategy = CalculateManager(SignOfOperation.Subtraction);
 

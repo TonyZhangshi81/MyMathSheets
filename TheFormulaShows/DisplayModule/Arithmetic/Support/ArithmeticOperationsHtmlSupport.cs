@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
@@ -20,7 +19,7 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.Arithmetic.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.Arithmetic.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.Arithmetic.printAfterSetting();")]
-	public class ArithmeticOperationsHtmlSupport : HtmlSupportBase
+	public class ArithmeticOperationsHtmlSupport : HtmlSupportBase<ArithmeticOperationsParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -67,12 +66,10 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 		/// <summary>
 		/// 題型HTML模板作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
+		/// <param name="p">題型參數</param>
 		/// <returns>題型HTML模板信息</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		public override string MakeHtmlContent(ArithmeticOperationsParameter p)
 		{
-			ArithmeticOperationsParameter p = parameter as ArithmeticOperationsParameter;
-
 			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;

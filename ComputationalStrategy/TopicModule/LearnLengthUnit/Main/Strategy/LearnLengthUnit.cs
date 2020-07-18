@@ -8,6 +8,7 @@ using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.LearnLengthUnit.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
@@ -16,7 +17,7 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 	/// 認識長度題型
 	/// </summary>
 	[Topic("LearnLengthUnit")]
-	public class LearnLengthUnit : TopicBase
+	public class LearnLengthUnit : TopicBase<LearnLengthUnitParameter>
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -30,8 +31,9 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 			new Dictionary<LengthUnitTransformType, Action<LearnLengthUnitFormula, QuestionType>>();
 
 		/// <summary>
-		/// 構造函數
+		/// <see cref="LearnLengthUnit"/>構造函數
 		/// </summary>
+		[ImportingConstructor]
 		public LearnLengthUnit()
 		{
 			// 米轉換為分米
@@ -125,11 +127,9 @@ namespace MyMathSheets.ComputationalStrategy.LearnLengthUnit.Main.Strategy
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(LearnLengthUnitParameter p)
 		{
-			LearnLengthUnitParameter p = parameter as LearnLengthUnitParameter;
-
 			// 標準題型（指定單個轉換單位）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{

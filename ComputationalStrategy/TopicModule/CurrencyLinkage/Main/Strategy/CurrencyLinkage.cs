@@ -13,16 +13,14 @@ namespace MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Strategy
 	/// 認識價格題型構築
 	/// </summary>
 	[Topic("CurrencyLinkage")]
-	public class CurrencyLinkage : TopicBase
+	public class CurrencyLinkage : TopicBase<CurrencyLinkageParameter>
 	{
 		/// <summary>
 		/// 題型構築
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(CurrencyLinkageParameter p)
 		{
-			CurrencyLinkageParameter p = parameter as CurrencyLinkageParameter;
-
 			// 認識價格對象實例
 			CurrencyLinkageFormula CurrencyLinkageFormula = new CurrencyLinkageFormula();
 

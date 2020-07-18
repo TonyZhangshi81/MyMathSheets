@@ -13,16 +13,14 @@ namespace MyMathSheets.ComputationalStrategy.NumericSorting.Main.Strategy
 	/// 數值排序題型
 	/// </summary>
 	[Topic("NumericSorting")]
-	public class NumericSorting : TopicBase
+	public class NumericSorting : TopicBase<NumericSortingParameter>
 	{
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(NumericSortingParameter p)
 		{
-			NumericSortingParameter p = parameter as NumericSortingParameter;
-
 			// 出題數量
 			for (int i = 0; i < p.NumberOfQuestions; i++)
 			{

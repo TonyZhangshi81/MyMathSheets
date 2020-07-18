@@ -14,7 +14,7 @@ namespace MyMathSheets.CommonLib.Main.Policy.Attributes
 		/// 自定義導出屬性
 		/// </summary>
 		/// <param name="topicIdentifier">題型識別</param>
-		public TopicAttribute(string topicIdentifier) : base(typeof(TopicBase))
+		public TopicAttribute(string topicIdentifier) : base(typeof(ITopic))
 		{
 			TopicIdentifier = topicIdentifier;
 		}

@@ -1,10 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 
@@ -21,7 +21,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.EqualityLinkage.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.EqualityLinkage.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.EqualityLinkage.printAfterSetting();")]
-	public class EqualityLinkageHtmlSupport : HtmlSupportBase
+	public class EqualityLinkageHtmlSupport : HtmlSupportBase<EqualityLinkageParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -41,6 +41,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		/// <summary>
 		/// 構造體
 		/// </summary>
+		[ImportingConstructor]
 		public EqualityLinkageHtmlSupport()
 		{
 			LeftFormulasArray = new Dictionary<DivQueueType, List<string>>
@@ -92,14 +93,12 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 		}
 
 		/// <summary>
-		///
+		/// 題型HTML上下文作成並返回
 		/// </summary>
-		/// <param name="parameter"></param>
-		/// <returns></returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		/// <returns>題型HTML上下文內容</returns>
+		public override string MakeHtmlContent(EqualityLinkageParameter p)
 		{
-			EqualityLinkageParameter p = parameter as EqualityLinkageParameter;
-
 			if (p.Formulas.LeftFormulas.Count == 0)
 			{
 				return string.Empty;
@@ -304,6 +303,21 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 			html.AppendLine("</svg>");
 
 			return html.ToString();
+		}
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		protected override void DisposeManaged()
+		{
+			if (LeftFormulasArray != null)
+			{
+				LeftFormulasArray.Clear();
+			}
+			if (RightFormulasArray != null)
+			{
+				RightFormulasArray.Clear();
+			}
 		}
 	}
 }

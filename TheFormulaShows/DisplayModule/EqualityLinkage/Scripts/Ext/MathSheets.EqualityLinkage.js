@@ -51,13 +51,13 @@ MathSheets.EqualityLinkage = MathSheets.EqualityLinkage || (function () {
 
             // 验证输入值是否与答案一致
             if (isRight) {
-				// 动错题集中移除当前项目
-				removeInputElementArray({ position: "mathSheetEqualityLinkage", id: null });
+                // 动错题集中移除当前项目
+                removeInputElementArray({ position: "mathSheetEqualityLinkage", id: null });
                 // 对错图片显示和隐藏
                 $('#imgOKEqualityLinkage').show();
-				$('#imgNoEqualityLinkage').hide();
-				// 移除圖片抖動特效
-				$('#imgNoEqualityLinkage').removeClass("shake shake-slow");
+                $('#imgNoEqualityLinkage').hide();
+                // 移除圖片抖動特效
+                $('#imgNoEqualityLinkage').removeClass("shake shake-slow");
                 // 移除DIV點擊事件(起始點和結束點)
                 $.each(_arrDivPoints, function (index, div) {
                     $(div.name).unbind('click');
@@ -67,16 +67,16 @@ MathSheets.EqualityLinkage = MathSheets.EqualityLinkage || (function () {
             } else {
                 // 对错图片显示和隐藏
                 $('#imgOKEqualityLinkage').hide();
-				$('#imgNoEqualityLinkage').show();
-				$('#imgNoEqualityLinkage').animate({
-					width: "80px",
-					height: "80px",
-					marginLeft: "0px",
-					marginTop: "0px"
-				}, 1000, function () {
-					// 添加圖片抖動特效（只針對錯題）
-					$(this).addClass("shake shake-slow");
-				});
+                $('#imgNoEqualityLinkage').show();
+                $('#imgNoEqualityLinkage').animate({
+                    width: "80px",
+                    height: "80px",
+                    marginLeft: "0px",
+                    marginTop: "0px"
+                }, 1000, function () {
+                    // 添加圖片抖動特效（只針對錯題）
+                    $(this).addClass("shake shake-slow");
+                });
                 // 错误:false
                 return false;
             }
@@ -360,7 +360,7 @@ MathSheets.EqualityLinkage = MathSheets.EqualityLinkage || (function () {
             var parent = $(chk).parent();
             if ($(chk).is(':checked')) {
                 $(chk).prop('checked', false);
-				parent.css('background-color', 'navajowhite');
+                parent.css('background-color', 'navajowhite');
             } else {
                 $(chk).prop('checked', true);
                 parent.css('background-color', '#00ff90');

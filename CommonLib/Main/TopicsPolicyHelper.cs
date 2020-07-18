@@ -93,5 +93,14 @@ namespace MyMathSheets.CommonLib.Main
 		{
 			return Helper.Structure(topicIdentifier, topicNumber);
 		}
+
+		/// <summary>
+		/// 移除指定題型
+		/// </summary>
+		/// <param name="topicIdentifier">題型識別</param>
+		public void ReleaseTopic(string topicIdentifier)
+		{
+			Helper.ReleaseTopic(topicIdentifier);
+		}
 	}
 }

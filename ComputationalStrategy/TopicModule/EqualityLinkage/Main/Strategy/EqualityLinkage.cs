@@ -7,6 +7,7 @@ using MyMathSheets.ComputationalStrategy.EqualityLinkage.Item;
 using MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
@@ -15,7 +16,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 	/// 算式連一連題型構築
 	/// </summary>
 	[Topic("EqualityLinkage")]
-	public class EqualityLinkage : TopicBase
+	public class EqualityLinkage : TopicBase<EqualityLinkageParameter>
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
@@ -34,6 +35,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 		/// <summary>
 		/// 構造函數
 		/// </summary>
+		[ImportingConstructor]
 		public EqualityLinkage()
 		{
 			// 左側計算式集合
@@ -97,11 +99,9 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 		/// <summary>
 		/// 題型構築
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(EqualityLinkageParameter p)
 		{
-			EqualityLinkageParameter p = parameter as EqualityLinkageParameter;
-
 			// 算式連一連對象實例
 			EqualityLinkageFormula EqualityLinkageFormula = new EqualityLinkageFormula();
 
@@ -221,6 +221,28 @@ namespace MyMathSheets.ComputationalStrategy.EqualityLinkage.Main.Strategy
 				return true;
 			}
 			return false;
+		}
+
+		/// <summary>
+		/// 資源釋放
+		/// </summary>
+		protected override void DisposeManaged()
+		{
+			// 左側計算式集合
+			if (_leftFormulas != null)
+			{
+				_leftFormulas.Clear();
+			}
+			// 右側計算式集合
+			if (_rightFormulas != null)
+			{
+				_rightFormulas.Clear();
+			}
+			// 各計算式編號的集合
+			if (_seats != null)
+			{
+				_seats.Clear();
+			}
 		}
 	}
 }

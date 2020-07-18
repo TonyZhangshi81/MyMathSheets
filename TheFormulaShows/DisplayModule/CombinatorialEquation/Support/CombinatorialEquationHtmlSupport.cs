@@ -1,7 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
 using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.CombinatorialEquation.Item;
@@ -22,7 +21,7 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.CombinatorialEquation.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.CombinatorialEquation.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.CombinatorialEquation.printAfterSetting();")]
-	public class CombinatorialEquationHtmlSupport : HtmlSupportBase
+	public class CombinatorialEquationHtmlSupport : HtmlSupportBase<CombinatorialEquationParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -37,12 +36,10 @@ namespace MyMathSheets.TheFormulaShows.CombinatorialEquation.Support
 		/// <summary>
 		/// 算式組合HTML作成
 		/// </summary>
-		/// <param name="parameter">相關計算式</param>
+		/// <param name="p">相關計算式</param>
 		/// <returns>HTML語句</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		public override string MakeHtmlContent(CombinatorialEquationParameter p)
 		{
-			CombinatorialEquationParameter p = parameter as CombinatorialEquationParameter;
-
 			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;

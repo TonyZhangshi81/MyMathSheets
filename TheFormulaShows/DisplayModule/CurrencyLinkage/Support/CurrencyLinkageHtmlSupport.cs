@@ -1,10 +1,10 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.CurrencyLinkage.Main.Parameters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 
@@ -21,7 +21,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.CurrencyLinkage.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.CurrencyLinkage.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.CurrencyLinkage.printAfterSetting();")]
-	public class CurrencyLinkageHtmlSupport : HtmlSupportBase
+	public class CurrencyLinkageHtmlSupport : HtmlSupportBase<CurrencyLinkageParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -56,6 +56,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 		/// <summary>
 		/// 構造體
 		/// </summary>
+		[ImportingConstructor]
 		public CurrencyLinkageHtmlSupport()
 		{
 			LeftCurrencysArray = new Dictionary<DivQueueType, List<string>>
@@ -128,12 +129,10 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 		/// <summary>
 		/// 題型HTML模板作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
+		/// <param name="p">題型參數</param>
 		/// <returns>題型HTML模板信息</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		public override string MakeHtmlContent(CurrencyLinkageParameter p)
 		{
-			CurrencyLinkageParameter p = parameter as CurrencyLinkageParameter;
-
 			if (p.Currencys.LeftCurrencys.Count == 0)
 			{
 				return string.Empty;

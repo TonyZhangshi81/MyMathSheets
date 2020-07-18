@@ -7,6 +7,7 @@ using MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Parameters;
 using MyMathSheets.ComputationalStrategy.FindTheLaw.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 
@@ -16,7 +17,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 	/// 找規律題
 	/// </summary>
 	[Topic("FindTheLaw")]
-	public class FindTheLaw : TopicBase
+	public class FindTheLaw : TopicBase<FindTheLawParameter>
 	{
 		/// <summary>
 		/// 找規律題型的實現方法集合
@@ -26,6 +27,7 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		/// <summary>
 		/// 構造函數
 		/// </summary>
+		[ImportingConstructor]
 		public FindTheLaw()
 		{
 			// 定量遞增
@@ -49,11 +51,9 @@ namespace MyMathSheets.ComputationalStrategy.FindTheLaw.Main.Strategy
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(FindTheLawParameter p)
 		{
-			FindTheLawParameter p = parameter as FindTheLawParameter;
-
 			// 按照指定數量作成相應的數學計算式
 			for (var i = 0; i < p.NumberOfQuestions; i++)
 			{

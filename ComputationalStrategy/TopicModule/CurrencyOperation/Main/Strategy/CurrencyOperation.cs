@@ -14,16 +14,14 @@ namespace MyMathSheets.ComputationalStrategy.LearnCurrency.Main.Strategy
 	/// 貨幣運算題型
 	/// </summary>
 	[Topic("CurrencyOperation")]
-	public class CurrencyOperation : TopicBase
+	public class CurrencyOperation : TopicBase<CurrencyOperationParameter>
 	{
 		/// <summary>
 		/// 加減算式作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(CurrencyOperationParameter p)
 		{
-			CurrencyOperationParameter p = parameter as CurrencyOperationParameter;
-
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{

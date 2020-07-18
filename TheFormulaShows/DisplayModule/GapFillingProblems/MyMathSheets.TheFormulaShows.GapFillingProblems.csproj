@@ -55,9 +55,6 @@
     <Compile Include="Support\GapFillingProblemsHtmlSupport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Content\image\fill\009901.png" />
     <Content Include="Content\image\fill\010001.png" />
     <Content Include="Content\image\fill\010101.png" />
@@ -73,6 +70,9 @@
       <Project>{3bffe851-482c-43d6-9661-c32d20af884d}</Project>
       <Name>MyMathSheets.ComputationalStrategy.GapFillingProblems</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

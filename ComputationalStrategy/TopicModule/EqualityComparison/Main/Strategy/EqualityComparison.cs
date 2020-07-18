@@ -13,7 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Strategy
 	/// 等式大小比较
 	/// </summary>
 	[Topic("EqualityComparison")]
-	public class EqualityComparison : TopicBase
+	public class EqualityComparison : TopicBase<EqualityComparisonParameter>
 	{
 		/// <summary>
 		/// 題型作成
@@ -45,11 +45,9 @@ namespace MyMathSheets.ComputationalStrategy.EqualityComparison.Main.Strategy
 		/// <summary>
 		/// 題型作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(EqualityComparisonParameter p)
 		{
-			EqualityComparisonParameter p = parameter as EqualityComparisonParameter;
-
 			// 標準題型（指定單個運算符）
 			if (p.FourOperationsType == FourOperationsType.Standard)
 			{

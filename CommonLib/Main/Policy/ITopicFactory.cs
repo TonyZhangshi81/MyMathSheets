@@ -19,5 +19,11 @@
 		/// <param name="topicNumber">題型參數（如果沒有指定題型參數，則默認返回當前參數序列的第一個參數項目）</param>
 		/// <returns>題型參數實例</returns>
 		TopicParameterBase CreateTopicParameterInstance(string topicIdentifier, string topicNumber);
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="topicIdentifier"></param>
+		void Release(string topicIdentifier);
 	}
 }

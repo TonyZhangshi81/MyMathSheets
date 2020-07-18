@@ -16,7 +16,7 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 	/// 四則遠算題
 	/// </summary>
 	[Topic("ArithmeticOperations")]
-	public class ArithmeticOperations : TopicBase
+	public class ArithmeticOperations : TopicBase<ArithmeticOperationsParameter>
 	{
 		/// <summary>
 		/// 反推判定次數（如果大於五次則認為此題無法作成繼續下一題）
@@ -80,11 +80,9 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Strategy
 		/// <summary>
 		/// 算式作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
-		protected override void MarkFormulaList(TopicParameterBase parameter)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(ArithmeticOperationsParameter p)
 		{
-			ArithmeticOperationsParameter p = parameter as ArithmeticOperationsParameter;
-
 			// 算式作成
 			MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(p.Signs.ToList()); });
 

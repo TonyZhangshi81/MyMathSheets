@@ -1,6 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Item;
@@ -19,7 +18,7 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.MathWordProblems.theirPapers();")]
 	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.MathWordProblems.printSetting();")]
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.MathWordProblems.printAfterSetting();")]
-	public class MathWordProblemsHtmlSupport : HtmlSupportBase
+	public class MathWordProblemsHtmlSupport : HtmlSupportBase<MathWordProblemsParameter>
 	{
 		/// <summary>
 		/// 標題HTML模板
@@ -39,12 +38,10 @@ namespace MyMathSheets.TheFormulaShows.MathWordProblems.Support
 		/// <summary>
 		/// 題型HTML模板作成
 		/// </summary>
-		/// <param name="parameter">題型參數</param>
+		/// <param name="p">題型參數</param>
 		/// <returns>題型HTML模板信息</returns>
-		protected override string MakeHtmlStatement(TopicParameterBase parameter)
+		public override string MakeHtmlContent(MathWordProblemsParameter p)
 		{
-			MathWordProblemsParameter p = parameter as MathWordProblemsParameter;
-
 			if (p.Formulas.Count == 0)
 			{
 				return string.Empty;

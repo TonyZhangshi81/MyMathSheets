@@ -22,12 +22,12 @@ namespace MyMathSheets.CommonLib.Composition
 	public class Composer : ObjectBase
 	{
 		/// <summary>
-		/// MEF容器
+		/// 容器聲明
 		/// </summary>
 		private readonly CompositionContainer _container;
 
 		/// <summary>
-		///
+		/// 返回當前容器對象
 		/// </summary>
 		public CompositionContainer Container { get { return _container; } }
 
@@ -49,7 +49,7 @@ namespace MyMathSheets.CommonLib.Composition
 		}
 
 		/// <summary>
-		/// 程序集對象以參照的順序添加至對象元素目錄
+		/// 以程序集對象構造<see cref="Composer"/>
 		/// </summary>
 		/// <param name="assembly">程序集對象</param>
 		/// <exception cref="ArgumentNullException"><paramref name="assembly"/>為NULL的情況</exception>
@@ -82,16 +82,16 @@ namespace MyMathSheets.CommonLib.Composition
 				}
 			}
 
-			// 創建MEF容器
-			_container = new CompositionContainer(catalog);
+			// 創建容器
+			_container = new CompositionContainer(catalog, CompositionOptions.DisableSilentRejection);
 		}
 
 		/// <summary>
-		///
+		/// 以程序集參數構造<see cref="Composer"/>
 		/// </summary>
-		/// <param name="topicIdentifier"></param>
-		public Composer(string topicIdentifier)
-			: this(ReflectionUtil.GetAssembly(topicIdentifier))
+		/// <param name="assemblyId">參數</param>
+		public Composer(string assemblyId)
+			: this(ReflectionUtil.GetAssembly(assemblyId))
 		{
 		}
 
@@ -133,10 +133,10 @@ namespace MyMathSheets.CommonLib.Composition
 		}
 
 		/// <summary>
-		///
+		/// 容器組合中是否存在指定的類型
 		/// </summary>
-		/// <param name="type"></param>
-		/// <returns></returns>
+		/// <param name="type">類型</param>
+		/// <returns>存在:TRUE返回</returns>
 		public bool HasType(Type type)
 		{
 			return _container.Catalog.Any((ComposablePartDefinition _) => _.ExportDefinitions.OfType<ICompositionElement>().Any((ICompositionElement __) => __.Origin.DisplayName == type.FullName));
