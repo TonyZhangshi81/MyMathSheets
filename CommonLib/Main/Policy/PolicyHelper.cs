@@ -1,18 +1,17 @@
 ﻿using MyMathSheets.CommonLib.Composition;
-using MyMathSheets.CommonLib.Main.Policy;
 using System.ComponentModel.Composition;
 
-namespace MyMathSheets.CommonLib.Main
+namespace MyMathSheets.CommonLib.Main.Policy
 {
 	/// <summary>
 	///
 	/// </summary>
-	public class TopicsPolicyHelper
+	public class PolicyHelper
 	{
 		/// <summary>
 		/// 定義一個靜態變量來保存類的實例
 		/// </summary>
-		private static TopicsPolicyHelper _instance;
+		private static PolicyHelper _instance;
 
 		/// <summary>
 		/// 定義一個標識確保線程同步
@@ -53,7 +52,7 @@ namespace MyMathSheets.CommonLib.Main
 		/// <summary>
 		/// 定義私有構造函數，使外界不能創建該類實例
 		/// </summary>
-		private TopicsPolicyHelper()
+		private PolicyHelper()
 		{
 			ComposerFactory.GetComporser(this.GetType().Assembly).Compose(this);
 		}
@@ -61,7 +60,7 @@ namespace MyMathSheets.CommonLib.Main
 		/// <summary>
 		/// 定義公有屬性提供一個全局訪問點
 		/// </summary>
-		public static TopicsPolicyHelper Instance
+		public static PolicyHelper Instance
 		{
 			get
 			{
@@ -76,7 +75,7 @@ namespace MyMathSheets.CommonLib.Main
 						// 如果類的實例不存在則創建，否則直接返回
 						if (_instance == null)
 						{
-							_instance = new TopicsPolicyHelper();
+							_instance = new PolicyHelper();
 						}
 					}
 				}

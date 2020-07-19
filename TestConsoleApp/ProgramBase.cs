@@ -133,7 +133,6 @@ namespace MyMathSheets.TestConsoleApp
 
 			Console.WriteLine(exception.Message);
 			Console.ReadKey();
-			Environment.Exit(-1);
 		}
 	}
 }

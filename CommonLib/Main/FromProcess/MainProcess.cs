@@ -297,7 +297,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 				_htmlMaps.Remove(info.ControlId);
 				// 釋放部件資源
 				MakeHtml.ReleaseExportsHtmlSupport(info.ControlId);
-				TopicsPolicyHelper.Instance.ReleaseTopic(info.ControlId);
+				PolicyHelper.Instance.ReleaseTopic(info.ControlId);
 			}
 		}
 
@@ -312,7 +312,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			string identifier = TopicManagementList.Where(d => topicIdentifier.Equals(d.TopicIdentifier, StringComparison.CurrentCultureIgnoreCase)).First().Number;
 
 			// 構造題型并取得結果
-			TopicParameterBase parameter = TopicsPolicyHelper.Instance.Structure(topicIdentifier, identifier);
+			TopicParameterBase parameter = PolicyHelper.Instance.Structure(topicIdentifier, identifier);
 
 			// 題型HTML信息作成并對指定的HTML模板標識進行替換
 			ConcurrentDictionary<SubstituteType, string> htmlMaps = MakeHtml.GetHtmlReplaceTagDict(topicIdentifier, parameter);

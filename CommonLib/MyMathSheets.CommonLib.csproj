@@ -130,7 +130,7 @@
     <Compile Include="Main\Policy\ITopic.cs" />
     <Compile Include="Main\Policy\TopicBase.cs" />
     <Compile Include="Main\Policy\TopicNotFoundException.cs" />
-    <Compile Include="Main\TopicsPolicyHelper.cs" />
+    <Compile Include="Main\Policy\PolicyHelper.cs" />
     <Compile Include="Main\Policy\TopicParameterBase.cs" />
     <Compile Include="Main\VirtualHelper\HelperDialogue.cs" />
     <Compile Include="Main\VirtualHelper\IVirtualHelper.cs" />

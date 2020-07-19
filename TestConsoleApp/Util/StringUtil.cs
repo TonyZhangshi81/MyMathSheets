@@ -159,35 +159,8 @@ namespace MyMathSheets.TestConsoleApp.Util
 		/// <returns>貨幣類型字符串</returns>
 		public static string CurrencyOperationUnitTypeToString(this int value)
 		{
-			CurrencyOperationUnitType type = value.IntToCurrencyUnitType();
 			Currency currency = value.IntToCurrency();
-
-			switch (type)
-			{
-				case CurrencyOperationUnitType.Fen:
-					return string.Format("{0}分", currency.Fen);
-
-				case CurrencyOperationUnitType.JF:
-					return string.Format("{0}角{1}分", currency.Jiao, currency.Fen);
-
-				case CurrencyOperationUnitType.Jiao:
-					return string.Format("{0}角", currency.Jiao);
-
-				case CurrencyOperationUnitType.YF:
-					return string.Format("{0}元{1}分", currency.Yuan, currency.Fen);
-
-				case CurrencyOperationUnitType.YJ:
-					return string.Format("{0}元{1}角", currency.Yuan, currency.Jiao);
-
-				case CurrencyOperationUnitType.YJF:
-					return string.Format("{0}元{1}角{2}分", currency.Yuan, currency.Jiao, currency.Fen);
-
-				case CurrencyOperationUnitType.Yuan:
-					return string.Format("{0}元", currency.Yuan);
-
-				default:
-					return string.Empty;
-			}
+			return currency.CurrencyToString();
 		}
 	}
 }

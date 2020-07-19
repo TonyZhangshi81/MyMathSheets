@@ -41,7 +41,7 @@ namespace MyMathSheets.TestConsoleApp
 		/// <param name="args">調試用參數</param>
 		public static void ConsoleFormulas(string topicIdentifier, string args)
 		{
-			TopicParameterBase parameter = TopicsPolicyHelper.Instance.Structure(topicIdentifier, args);
+			TopicParameterBase parameter = PolicyHelper.Instance.Structure(topicIdentifier, args);
 
 			FormulasConsolerFactory formulasConsoler = new FormulasConsolerFactory();
 			var writer = formulasConsoler.CreateConsoleWriter(topicIdentifier);
