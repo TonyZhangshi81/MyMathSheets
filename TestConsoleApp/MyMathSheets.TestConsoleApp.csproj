@@ -62,6 +62,9 @@
     <Reference Include="MyMathSheets.ComputationalStrategy.Generally.ArithmeticOperations">
       <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Generally.ArithmeticOperations.dll</HintPath>
     </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.Generally.CleverCalculation">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Generally.CleverCalculation.dll</HintPath>
+    </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.Generally.CombinatorialEquation">
       <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Generally.CombinatorialEquation.dll</HintPath>
     </Reference>
@@ -129,6 +132,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Write\CleverCalculationWrite.cs" />
     <Compile Include="Write\Main\FormulasConsolerFactory.cs" />
     <Compile Include="Plugin\PluginsManager.cs" />
     <Compile Include="ProgramBase.cs" />

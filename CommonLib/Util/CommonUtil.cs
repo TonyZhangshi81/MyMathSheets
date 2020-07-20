@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Globalization;
 
 namespace MyMathSheets.CommonLib.Util
@@ -35,6 +36,27 @@ namespace MyMathSheets.CommonLib.Util
 			RandomNumberComposition random = new RandomNumberComposition(Convert.ToInt32(upper, CultureInfo.CurrentCulture), Convert.ToInt32(lower, CultureInfo.CurrentCulture));
 			// 獲取隨機數并返回
 			return (T)ConvertHelper.ChangeType(random.GetRandomNumber(), typeof(T), CultureInfo.CurrentCulture);
+		}
+
+		/// <summary>
+		/// 指定範圍內的隨機數取得(帶條件)
+		/// </summary>
+		/// <param name="upper">上限值（包含）</param>
+		/// <param name="lower">下限值（包含）</param>
+		/// <param name="condition">條件表達式</param>
+		/// <typeparam name="T">隨機數類型</typeparam>
+		/// <returns>隨機數</returns>
+		public static T GetRandomNumber<T>(T upper, T lower, Func<T, bool> condition)
+		{
+			while(1 == 1)
+			{
+				var value = GetRandomNumber(upper, lower);
+				if (!condition(value))
+				{
+					continue;
+				}
+				return value;
+			}
 		}
 
 		/// <summary>

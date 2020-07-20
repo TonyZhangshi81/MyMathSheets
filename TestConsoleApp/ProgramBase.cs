@@ -39,6 +39,7 @@ namespace MyMathSheets.TestConsoleApp
 				{"SG0", new string []{ "ScoreGoal", "射門得分" } },
 				{"TC0", new string []{ "TimeCalculation", "時間運算" } },
 				{"MU0", new string []{ "MathUpright", "豎式計算" } },
+				{"CLC", new string []{ "CleverCalculation", "巧算" } },
 				{"900", new string []{ "Menu", "菜單" } },
 				{"000", new string []{ "Close", "退出" } }
 			};
@@ -80,6 +81,7 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("射門得分(SG001~SG004)");
 					Console.WriteLine("時間運算(TC001~TC006)");
 					Console.WriteLine("豎式計算(MU001~MU003)");
+					Console.WriteLine("巧算(CLC01~CLC04)");
 					Console.WriteLine("    9-菜單    0-退出");
 					Console.WriteLine("");
 					Console.Write("");
@@ -89,8 +91,7 @@ namespace MyMathSheets.TestConsoleApp
 
 				string key = ((args.Length > 0) ? args[0] : Console.ReadLine()).PadRight(3, '0').ToUpper();
 
-				string[] map;
-				if (!CommandMaps.TryGetValue(key.Substring(0, 3), out map))
+				if (!CommandMaps.TryGetValue(key.Substring(0, 3), out string[] map))
 				{
 					Console.WriteLine();
 					Console.WriteLine("題型不存在");

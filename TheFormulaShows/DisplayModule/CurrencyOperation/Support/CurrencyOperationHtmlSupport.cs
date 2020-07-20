@@ -36,11 +36,6 @@ namespace MyMathSheets.TheFormulaShows.CurrencyOperation.Support
 		private const string CALCULATOR_HTML = "<img src=\"../Content/image/calculator.png\" width=\"30\" height=\"30\" />";
 
 		/// <summary>
-		/// 運算符HTML模板
-		/// </summary>
-		private const string SIGN_HTML_FORMAT = "<img src=\"../Content/image/{0}.png\" width=\"30\" height=\"30\" />";
-
-		/// <summary>
 		/// 對錯HTML模板
 		/// </summary>
 		private const string IMG_CURRENCY_OPERATION_HTML_FORMAT = "<img id=\"img{0}CurrencyOperation{1}\" src=\"../Content/image/{2}.png\" class=\"{3}\" />";
