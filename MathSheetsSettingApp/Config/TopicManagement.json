@@ -98,5 +98,10 @@
     "id": "MathUpright",
     "name": "豎式計算",
     "number": "MU001"
+  },
+  {
+    "id": "CleverCalculation",
+    "name": "巧算",
+    "number": "CLC01"
   }
 ]

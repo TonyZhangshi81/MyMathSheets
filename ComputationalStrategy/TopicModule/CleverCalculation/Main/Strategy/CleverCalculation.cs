@@ -11,9 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Runtime.Remoting.Messaging;
-using System.Security.Permissions;
 
 namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 {
@@ -99,7 +96,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		/// <param name="formulas">計算式作成</param>
 		/// <remarks>
 		/// 計算式構成樣例： 57 + 78 = (?) + (?) = (?)
-		/// 結果列：6, 18, 9
+		/// 結果列：135
 		/// </remarks>
 		protected virtual void CleverWithPlus(IList<CleverCalculationFormula> formulas)
 		{
@@ -121,10 +118,80 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			int[] lefts = new int[2] { left / 10, left % 10 };
 			int[] rights = new int[2] { right / 10, right % 10 };
 			// 距離整數的差異值
-			int leftDiff = 10 - lefts[1];
-			int rightDiff = 10 - rights[1];
+			int leftDiff = lefts[1] >= 5 ? 10 - lefts[1] : lefts[1];
+			int rightDiff = rights[1] >= 5 ? 10 - rights[1] : rights[1];
 
-			
+			// eg: 58 + 57 => 60 + 59
+			// eg: 58 + 12 => 60 + 10
+			// eg: 55 + 22 => 57 + 20
+			if (lefts[1] >= 5 && (leftDiff < rightDiff || lefts[1] + rights[1] == 10))
+			{
+				// 左邊的值向上化整
+				cleverCalculation.ConfixFormulas.Add(new Formula(left + leftDiff, right - leftDiff, answer, SignOfOperation.Plus));
+			}
+			// eg: 58 + 48 => 60 + 46 || 56 + 50
+			else if (lefts[1] > 5 && lefts[1] == rights[1])
+			{
+				// 左右兩邊的值向上化整
+				cleverCalculation.ConfixFormulas.Add(new Formula(left + leftDiff, right - leftDiff, answer, SignOfOperation.Plus));
+				cleverCalculation.ConfixFormulas.Add(new Formula(left - rightDiff, right + rightDiff, answer, SignOfOperation.Plus));
+			}
+			// eg: 57 + 69 => 56 + 70
+			// eg: 57 + 61 => 58 + 60
+			// eg: 55 + 28 => 57 + 30
+			else if (lefts[1] >= 5 && leftDiff > rightDiff)
+			{
+				if (rights[1] >= 5)
+				{
+					// 右邊的值向上化整
+					cleverCalculation.ConfixFormulas.Add(new Formula(left - rightDiff, right + rightDiff, answer, SignOfOperation.Plus));
+				}
+				else
+				{
+					// 右邊的值向下化整
+					cleverCalculation.ConfixFormulas.Add(new Formula(left + rightDiff, right - rightDiff, answer, SignOfOperation.Plus));
+				}
+			}
+			// eg: 51 + 52 => 50 + 53
+			// eg: 51 + 59 => 50 + 60
+			// eg: 55 + 59 => 54 + 60
+			else if (lefts[1] <= 5 && (leftDiff < rightDiff || lefts[1] + rights[1] == 10))
+			{
+				// 左邊的值向下化整
+				cleverCalculation.ConfixFormulas.Add(new Formula(left - lefts[1], right + lefts[1], answer, SignOfOperation.Plus));
+			}
+			// eg: 51 + 41 => 50 + 42 || 52 + 40
+			else if (lefts[1] < 5 && lefts[1] == rights[1])
+			{
+				// 左右兩邊的值向下化整
+				cleverCalculation.ConfixFormulas.Add(new Formula(left - lefts[1], right + lefts[1], answer, SignOfOperation.Plus));
+				cleverCalculation.ConfixFormulas.Add(new Formula(left + lefts[1], right - rights[1], answer, SignOfOperation.Plus));
+			}
+			// eg: 54 + 61 => 55 + 60
+			// eg: 54 + 69 => 53 + 70
+			// eg: 55 + 33 => 58 + 30
+			else if (lefts[1] <= 5 && leftDiff > rightDiff)
+			{
+				if (rights[1] >= 5)
+				{
+					// 右邊的值向上化整
+					cleverCalculation.ConfixFormulas.Add(new Formula(left - rightDiff, right + rightDiff, answer, SignOfOperation.Plus));
+				}
+				else
+				{
+					// 右邊的值向下化整
+					cleverCalculation.ConfixFormulas.Add(new Formula(left + rights[1], right - rights[1], answer, SignOfOperation.Plus));
+				}
+			}
+			// eg: 55 + 25 => 50 + 30 || 60 + 20
+			else if (lefts[1] == 5 && rights[1] == 5)
+			{
+				// 左右兩邊的值均可向下或者向下化整
+				cleverCalculation.ConfixFormulas.Add(new Formula(left - 5, right + 5, answer, SignOfOperation.Plus));
+				cleverCalculation.ConfixFormulas.Add(new Formula(left + 5, right - 5, answer, SignOfOperation.Plus));
+			}
+
+			formulas.Add(cleverCalculation);
 		}
 
 		/// <summary>
@@ -196,7 +263,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 					if (answer % left == 0)
 					{
 						int right = answer / left;
-						if(left > right)
+						if (left > right)
 						{
 							break;
 						}

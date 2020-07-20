@@ -96,6 +96,7 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine();
 					Console.WriteLine("題型不存在");
 					isShowMenu = true;
+					continue;
 				}
 
 				switch (key.Substring(0, 3))

@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Message;
 using MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy;
 using MyMathSheets.TestConsoleApp.Properties;
 using MyMathSheets.TestConsoleApp.Util;
 using MyMathSheets.TestConsoleApp.Write.Attributes;
@@ -27,22 +28,56 @@ namespace MyMathSheets.TestConsoleApp.Write
 
 			parameter.Formulas.ToList().ForEach(d =>
 			{
-				Console.Write(CommonUtil.GetValue(CommonLib.Util.GapFilling.Answer, d.ConfixFormulas[0].Answer, d.ConfixFormulas[0].Gap));
-				d.ConfixFormulas.ToList().ForEach(dd =>
+				// 乘法巧算
+				if (d.Type == TopicType.Multiple)
 				{
-					Console.Write(string.Format(" = {0} {1} {2}",
-						CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, dd.LeftParameter, dd.Gap),
-						dd.Sign.ToOperationString(),
-						CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, dd.RightParameter, dd.Gap)
-						));
-				});
+					Console.Write(d.ConfixFormulas[0].Answer);
+					d.ConfixFormulas.ToList().ForEach(dd =>
+					{
+						Console.Write(string.Format(" = {0} {1} {2}",
+							CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, dd.LeftParameter, dd.Gap),
+							dd.Sign.ToOperationString(),
+							CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, dd.RightParameter, dd.Gap)
+							));
+					});
 
-				Console.WriteLine();
-				Console.Write("答案:");
-				d.Answer.ForEach(dd =>
+					Console.WriteLine();
+					Console.Write("答案:");
+					d.Answer.ForEach(dd =>
+					{
+						Console.Write(string.Format("{0},", dd, CultureInfo.CurrentCulture));
+					});
+				}
+
+				// 加法巧算
+				if (d.Type == TopicType.Plus)
 				{
-					Console.Write(string.Format("{0},", dd, CultureInfo.CurrentCulture));
-				});
+					string flag = "topic";
+					d.ConfixFormulas.ToList().ForEach(dd =>
+					{
+						if ("topic".Equals(flag))
+						{
+							Console.Write(string.Format("{0} {1} {2} = ",
+								CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, dd.LeftParameter, dd.Gap),
+								dd.Sign.ToOperationString(),
+								CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, dd.RightParameter, dd.Gap)
+								));
+							flag = "result";
+						}
+						if ("result".Equals(flag))
+						{
+							Console.Write(string.Format("({0}) {1} ({2}) = ",
+								CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, dd.LeftParameter, dd.Gap),
+								dd.Sign.ToOperationString(),
+								CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, dd.RightParameter, dd.Gap)
+								));
+						}
+					});
+					d.Answer.ForEach(dd =>
+					{
+						Console.Write(dd);
+					});
+				}
 
 				Console.WriteLine();
 			});
