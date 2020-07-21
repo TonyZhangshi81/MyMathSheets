@@ -57,19 +57,15 @@ namespace MyMathSheets.TestConsoleApp.Write
 					{
 						if ("topic".Equals(flag))
 						{
-							Console.Write(string.Format("{0} {1} {2} = ",
-								CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, dd.LeftParameter, dd.Gap),
-								dd.Sign.ToOperationString(),
-								CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, dd.RightParameter, dd.Gap)
-								));
+							Console.Write(string.Format("{0} {1} {2} = ", dd.LeftParameter, dd.Sign.ToOperationString(), dd.RightParameter));
 							flag = "result";
 						}
 						if ("result".Equals(flag))
 						{
-							Console.Write(string.Format("({0}) {1} ({2}) = ",
-								CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, dd.LeftParameter, dd.Gap),
+							Console.Write(string.Format("{0} {1} {2} = ",
+								CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, dd.LeftParameter, CommonLib.Util.GapFilling.Left),
 								dd.Sign.ToOperationString(),
-								CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, dd.RightParameter, dd.Gap)
+								CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, dd.RightParameter, CommonLib.Util.GapFilling.Right)
 								));
 						}
 					});

@@ -123,11 +123,16 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 
 			// eg: 58 + 57 => 60 + 59
 			// eg: 58 + 12 => 60 + 10
-			// eg: 55 + 22 => 57 + 20
+			// eg: 55 + 25 => 60 + 20 || 50 + 30
 			if (lefts[1] >= 5 && (leftDiff < rightDiff || lefts[1] + rights[1] == 10))
 			{
 				// 左邊的值向上化整
 				cleverCalculation.ConfixFormulas.Add(new Formula(left + leftDiff, right - leftDiff, answer, SignOfOperation.Plus));
+				// 左右兩邊的值向上化整
+				if (lefts[1] == 5 && rights[1] == 5)
+				{
+					cleverCalculation.ConfixFormulas.Add(new Formula(left - leftDiff, right + leftDiff, answer, SignOfOperation.Plus));
+				}
 			}
 			// eg: 58 + 48 => 60 + 46 || 56 + 50
 			else if (lefts[1] > 5 && lefts[1] == rights[1])
@@ -138,6 +143,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			}
 			// eg: 57 + 69 => 56 + 70
 			// eg: 57 + 61 => 58 + 60
+			// eg: 55 + 21 => 56 + 20
 			// eg: 55 + 28 => 57 + 30
 			else if (lefts[1] >= 5 && leftDiff > rightDiff)
 			{
