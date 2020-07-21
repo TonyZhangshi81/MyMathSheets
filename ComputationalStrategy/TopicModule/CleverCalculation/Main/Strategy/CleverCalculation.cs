@@ -21,11 +21,6 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 	public class CleverCalculation : TopicBase<CleverCalculationParameter>
 	{
 		/// <summary>
-		/// 反推判定次數（如果大於兩次則認為此題無法作成繼續下一題）
-		/// </summary>
-		private const int INVERSE_NUMBER = 3;
-
-		/// <summary>
 		/// 巧算的實現方法集合
 		/// </summary>
 		private readonly Dictionary<TopicType, Action<IList<CleverCalculationFormula>>> _calculations = new Dictionary<TopicType, Action<IList<CleverCalculationFormula>>>();
@@ -61,19 +56,6 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 					calculation(p.Formulas);
 				}
 			}
-		}
-
-		/// <summary>
-		/// 判定是否需要反推并重新作成計算式
-		/// </summary>
-		/// <remarks>
-		/// </remarks>
-		/// <param name="preFormulas">已得到的算式</param>
-		/// <param name="formula">當前算式</param>
-		/// <returns>需要反推：true  正常情況: false</returns>
-		private bool CheckIsNeedInverseMethod(IList<CleverCalculationFormula> preFormulas, CleverCalculationFormula formula)
-		{
-			return false;
 		}
 
 		/// <summary>
@@ -206,6 +188,47 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		/// <param name="formulas">計算式作成</param>
 		protected virtual void CleverWithSubtraction(IList<CleverCalculationFormula> formulas)
 		{
+			CleverCalculationFormula cleverCalculation = new CleverCalculationFormula
+			{
+				Type = TopicType.Plus,
+				ConfixFormulas = new List<Formula>(),
+				Answer = new List<int>()
+			};
+
+			// 獲取兩個隨機非整數
+			// 減數的個位是大於等於3的兩位數
+			var right = CommonUtil.GetRandomNumber(20, 60, _ => _ % 10 != 0 && _ % 10 >= 3);
+			// 被減數需要滿足借位計算
+			var left = CommonUtil.GetRandomNumber(50, 99, _ => _ % 10 != 0 && _ > right && _ % 10 < right % 10);
+			var answer = left - right;
+			cleverCalculation.ConfixFormulas.Add(new Formula(left, right, answer, SignOfOperation.Subtraction));
+			cleverCalculation.Answer.Add(answer);
+
+			// 數字按照位數分解
+			int[] lefts = new int[2] { left / 10, left % 10 };
+			int[] rights = new int[2] { right / 10, right % 10 };
+			// 距離整數的差異值
+			int leftDiff = lefts[1] >= 5 ? 10 - lefts[1] : lefts[1];
+			int rightDiff = rights[1] >= 5 ? 10 - rights[1] : rights[1];
+
+			// eg: 51 - 19 = 50 - 18 || 52 - 20
+			if (lefts[1] + rights[1] == 10)
+			{
+				cleverCalculation.ConfixFormulas.Add(new Formula(left - leftDiff, right - leftDiff, answer, SignOfOperation.Subtraction));
+				cleverCalculation.ConfixFormulas.Add(new Formula(left + rightDiff, right + rightDiff, answer, SignOfOperation.Subtraction));
+			}
+			// eg: 51 - 12 = 50 - 11
+			else if (leftDiff < rightDiff)
+			{
+				cleverCalculation.ConfixFormulas.Add(new Formula(left - leftDiff, right - leftDiff, answer, SignOfOperation.Subtraction));
+			}
+			// eg: 53 - 19 = 54 - 20
+			else if (leftDiff > rightDiff)
+			{
+				cleverCalculation.ConfixFormulas.Add(new Formula(left + rightDiff, right + rightDiff, answer, SignOfOperation.Subtraction));
+			}
+
+			formulas.Add(cleverCalculation);
 		}
 
 		/// <summary>
@@ -226,7 +249,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			};
 
 			// 乘法算式序列（取得隨機數後執行Check回調預判其是否可用）
-			var list = GetMultipleSyntagmaticOrdering(answer => !formulas.ToList().Any(d => d.ConfixFormulas.Any(dd => dd.Answer == answer)));
+			var list = GetMultipleSyntagmaticOrdering(formulas);
 
 			int seq = 1;
 			// 從乘法算式序列中隨機選擇3個算式（不重複）
@@ -246,15 +269,21 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		/// <summary>
 		/// 獲取隨機值的乘法序列集合
 		/// </summary>
-		/// <param name="answerRandomCallback">隨機數取得後的回調函數</param>
+		/// <param name="formulas">計算式作成</param>
 		/// <returns>乘法序列集合</returns>
 		/// <remarks>
 		/// 36 => [1*36,2*18,3*12,4*9,6*6]
 		/// 當左邊因數大於右邊因數時停止搜集
 		/// </remarks>
-		private List<Formula> GetMultipleSyntagmaticOrdering(Func<int, bool> answerRandomCallback)
+		private List<Formula> GetMultipleSyntagmaticOrdering(IList<CleverCalculationFormula> formulas)
 		{
 			List<Formula> list = new List<Formula>();
+
+			// 隨機數取得後的回調函數
+			var answerRandomCallback = new Func<int, bool>(answer =>
+			{
+				return !formulas.ToList().Any(d => d.ConfixFormulas.Any(dd => dd.Answer == answer));
+			});
 
 			while (1 == 1)
 			{

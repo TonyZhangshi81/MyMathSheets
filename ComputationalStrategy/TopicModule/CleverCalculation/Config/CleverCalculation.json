@@ -8,5 +8,15 @@
     "Identifier": "CLC02",
     "NumberOfQuestions": 5,
     "Reserve": "{\"TopicType\" : '0'}"
+  },
+  {
+    "Identifier": "CLC03",
+    "NumberOfQuestions": 5,
+    "Reserve": "{\"TopicType\" : '1'}"
+  },
+  {
+    "Identifier": "CLC04",
+    "NumberOfQuestions": 10,
+    "Reserve": "{\"TopicType\" : '0,1,2'}"
   }
 ]

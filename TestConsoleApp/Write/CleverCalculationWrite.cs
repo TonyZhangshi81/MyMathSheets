@@ -49,8 +49,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 					});
 				}
 
-				// 加法巧算
-				if (d.Type == TopicType.Plus)
+				// 加法和減法巧算
+				if (d.Type == TopicType.Plus || d.Type == TopicType.Subtraction)
 				{
 					string flag = "topic";
 					d.ConfixFormulas.ToList().ForEach(dd =>
@@ -58,7 +58,6 @@ namespace MyMathSheets.TestConsoleApp.Write
 						if ("topic".Equals(flag))
 						{
 							Console.Write(string.Format("{0} {1} {2} = ", dd.LeftParameter, dd.Sign.ToOperationString(), dd.RightParameter));
-							flag = "result";
 						}
 						if ("result".Equals(flag))
 						{
@@ -68,6 +67,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 								CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, dd.RightParameter, CommonLib.Util.GapFilling.Right)
 								));
 						}
+						flag = "result";
 					});
 					d.Answer.ForEach(dd =>
 					{
