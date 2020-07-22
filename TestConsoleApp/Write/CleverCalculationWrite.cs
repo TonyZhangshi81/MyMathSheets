@@ -75,6 +75,26 @@ namespace MyMathSheets.TestConsoleApp.Write
 					});
 				}
 
+				// 綜合題型巧算（拆解）
+				if (d.Type == TopicType.SyntheticUnknit)
+				{
+					Console.Write(string.Format("{0} {1} {2} = ", d.ConfixFormulas[0].LeftParameter, d.ConfixFormulas[0].Sign.ToOperationString(), d.ConfixFormulas[0].RightParameter));
+
+					Console.Write(string.Format("{0} {1} {2} {3} {4} {5} {6} = ",
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.ConfixFormulas[1].LeftParameter, CommonLib.Util.GapFilling.Left),
+						d.ConfixFormulas[1].Sign.ToOperationString(),
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.ConfixFormulas[1].RightParameter, CommonLib.Util.GapFilling.Right),
+
+						d.ConfixFormulas[3].Sign.ToOperationString(),
+
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.ConfixFormulas[2].LeftParameter, CommonLib.Util.GapFilling.Left),
+						d.ConfixFormulas[2].Sign.ToOperationString(),
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.ConfixFormulas[2].RightParameter, CommonLib.Util.GapFilling.Right)
+						));
+
+					Console.Write(d.Answer[0]);
+				}
+
 				Console.WriteLine();
 			});
 		}

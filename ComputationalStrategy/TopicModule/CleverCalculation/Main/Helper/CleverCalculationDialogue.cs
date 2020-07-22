@@ -19,11 +19,9 @@ namespace MyMathSheets.ComputationalStrategy.Arithmetic.Main.Helper
 			List<string> dialogues = new List<string>();
 			formulaIndex.ForEach(d =>
 			{
-				
 			});
 
 			return dialogues;
 		}
-
 	}
 }

@@ -96,6 +96,7 @@
     <Compile Include="Main\Calculate\ArithmeticHelper.cs" />
     <Compile Include="Main\Calculate\IArithmeticFactory.cs" />
     <Compile Include="Main\HtmlSupport\IHtmlSupportMetaDataView.cs" />
+    <Compile Include="Main\Item\FormulaConverter.cs" />
     <Compile Include="Main\Policy\Provider\ITopicParameterProviderMetaDataView.cs" />
     <Compile Include="Main\Calculate\IArithmeticMetaDataView.cs" />
     <Compile Include="Main\Calculate\IArithmetic.cs" />

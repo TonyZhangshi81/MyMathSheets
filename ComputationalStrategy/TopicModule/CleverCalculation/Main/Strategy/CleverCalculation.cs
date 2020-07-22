@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Main.Policy.Attributes;
@@ -10,7 +11,9 @@ using MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Parameters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 
 namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 {
@@ -37,8 +40,10 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			_calculations[TopicType.Subtraction] = CleverWithSubtraction;
 			// 乘法巧算
 			_calculations[TopicType.Multiple] = CleverWithMultiple;
-			// 混合題型巧算
-			_calculations[TopicType.Synthetic] = CleverWithSynthetic;
+			// 混合題型巧算(拆解)
+			_calculations[TopicType.SyntheticUnknit] = CleverWithSyntheticUnknit;
+			// 混合題型巧算(合併)
+			_calculations[TopicType.SyntheticCombine] = CleverWithSyntheticCombine;
 		}
 
 		/// <summary>
@@ -320,10 +325,86 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		}
 
 		/// <summary>
-		/// 綜合題型巧算
+		/// 綜合題型巧算（拆解）
 		/// </summary>
 		/// <param name="formulas">計算式作成</param>
-		protected virtual void CleverWithSynthetic(IList<CleverCalculationFormula> formulas)
+		protected virtual void CleverWithSyntheticUnknit(IList<CleverCalculationFormula> formulas)
+		{
+			CleverCalculationFormula cleverCalculation = new CleverCalculationFormula
+			{
+				Type = TopicType.SyntheticUnknit,
+				ConfixFormulas = new List<Formula>(),
+				Answer = new List<int>()
+			};
+
+			while (1 == 1)
+			{
+				cleverCalculation.ConfixFormulas.Clear();
+				cleverCalculation.Answer.Clear();
+
+				// 獲取一個待拆解的非整數(不包含各位為5的數)
+				int unknitValue = CommonUtil.GetRandomNumber(10, 60, _ => _ % 10 != 0 && _ % 10 != 5);
+				// 獲取一個10以內的因數
+				int factor = CommonUtil.GetRandomNumber(3, 9, _ => _ != unknitValue % 10);
+
+				// 數字按照位數分解
+				int[] unknits = new int[2] { unknitValue / 10, unknitValue % 10 };
+				// 距離整數的差異值
+				int unknitDiff = unknits[1] >= 5 ? 10 - unknits[1] : unknits[1];
+
+				// 結果值
+				int answer = unknitValue * factor;
+				// 用於設定待拆解因數的位置
+				LeftOrRight leftOrRight = CommonUtil.GetRandomNumber(LeftOrRight.Left, LeftOrRight.Right);
+				cleverCalculation.Answer.Add(answer);
+				if (leftOrRight == LeftOrRight.Left)
+				{
+					cleverCalculation.ConfixFormulas.Add(new Formula(unknitValue, factor, answer, SignOfOperation.Multiple));
+				}
+				else
+				{
+					cleverCalculation.ConfixFormulas.Add(new Formula(factor, unknitValue, answer, SignOfOperation.Multiple));
+				}
+
+				StringBuilder express = new StringBuilder();
+				// 加法拆解
+				if (unknits[1] < 5)
+				{
+					// eg: 12 * 5 = 10 * 5 + 2 * 5
+					express.AppendFormat(CultureInfo.CurrentCulture, "{0}*{1}+{2}*{3}", unknits[0], factor, unknits[1], factor);
+				}
+				// 減法拆解
+				else
+				{
+					// eg: 18 * 5 = 20 * 5 - 2 * 5
+					express.AppendFormat(CultureInfo.CurrentCulture, "{0}*{1}-{2}*{3}", unknitValue + unknitDiff, factor, unknitDiff, factor);
+				}
+
+				// 計算式推導
+				var calc = new ExpressArithmeticUtil();
+				int result;
+				if (!calc.IsResult(express.ToString(), out result))
+				{
+					continue;
+				}
+				if (result != answer)
+				{
+					continue;
+				}
+				// 加入推導出計算式集合
+				calc.Formulas.ToList().ForEach(f => cleverCalculation.ConfixFormulas.Add(f));
+
+				break;
+			}
+
+			formulas.Add(cleverCalculation);
+		}
+
+		/// <summary>
+		/// 綜合題型巧算（合併）
+		/// </summary>
+		/// <param name="formulas">計算式作成</param>
+		protected virtual void CleverWithSyntheticCombine(IList<CleverCalculationFormula> formulas)
 		{
 		}
 	}

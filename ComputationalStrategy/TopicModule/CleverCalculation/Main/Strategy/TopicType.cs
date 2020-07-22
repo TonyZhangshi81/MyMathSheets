@@ -24,8 +24,13 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		Multiple = 2,
 
 		/// <summary>
-		/// 綜合題型巧算
+		/// 綜合題型巧算(拆解)
 		/// </summary>
-		Synthetic = 3
+		SyntheticUnknit = 3,
+
+		/// <summary>
+		/// 綜合題型巧算(合併)
+		/// </summary>
+		SyntheticCombine = 4,
 	}
 }

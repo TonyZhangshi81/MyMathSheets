@@ -14,6 +14,17 @@ namespace MyMathSheets.CommonLib.Configurations
 	public sealed class PluginSearchExcludeAssembliyMapsConverter : TypeConverter
 	{
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="sourceType"></param>
+		/// <returns></returns>
+		public override bool CanConvertTo(ITypeDescriptorContext context, Type sourceType)
+		{
+			return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
+		}
+
+		/// <summary>
 		/// JSON轉字符串集合
 		/// </summary>
 		/// <param name="context">提供有關組件的上下文信息</param>

@@ -1,7 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy;
 using System.Collections.Generic;
-using System.Security.Permissions;
 
 namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Item
 {
@@ -14,6 +13,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Item
 		/// 題型編號
 		/// </summary>
 		public TopicType Type { get; set; }
+
 		/// <summary>
 		/// 計算式集合
 		/// </summary>

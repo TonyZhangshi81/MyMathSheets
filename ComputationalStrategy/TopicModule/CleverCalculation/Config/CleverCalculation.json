@@ -16,7 +16,12 @@
   },
   {
     "Identifier": "CLC04",
+    "NumberOfQuestions": 5,
+    "Reserve": "{\"TopicType\" : '3'}"
+  },
+  {
+    "Identifier": "CLC99",
     "NumberOfQuestions": 10,
-    "Reserve": "{\"TopicType\" : '0,1,2'}"
+    "Reserve": "{\"TopicType\" : '0,1,2,3'}"
   }
 ]

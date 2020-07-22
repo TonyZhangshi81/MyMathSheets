@@ -1,10 +1,12 @@
-﻿using MyMathSheets.CommonLib.Message;
+﻿using MyMathSheets.CommonLib.Main.Item;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using MyMathSheets.CommonLib.Util;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Security.Permissions;
 using static MyMathSheets.CommonLib.Main.Calculate.Priority;
 
 namespace MyMathSheets.CommonLib.Main.Calculate
@@ -20,35 +22,52 @@ namespace MyMathSheets.CommonLib.Main.Calculate
 		private readonly string[] Operateors = new string[] { "+", "-", "*", "/", "(", ")", "[", "]", "{", "}", "#" };
 
 		/// <summary>
+		/// 計算式<see cref="Formula"/>對象集合
+		/// </summary>
+		public IList<Formula> Formulas{ get; private set; }
+
+		/// <summary>
+		/// <see cref="ExpressArithmeticUtil"/>的構造函數
+		/// </summary>
+		public ExpressArithmeticUtil()
+		{
+			Formulas = new List<Formula>();
+		}
+
+		/// <summary>
 		/// 四則運算處理
 		/// </summary>
 		/// <param name="x">參數1</param>
 		/// <param name="y">餐數2</param>
 		/// <param name="operators">運算符</param>
 		/// <returns>計算結果</returns>
-		public static string Arithmetic(string x, string y, string operators)
+		public string Arithmetic(string x, string y, string operators)
 		{
-			var a = decimal.Parse(x, CultureInfo.CurrentCulture);
-			var b = decimal.Parse(y, CultureInfo.CurrentCulture);
+			var a = Int32.Parse(x, CultureInfo.CurrentCulture);
+			var b = Int32.Parse(y, CultureInfo.CurrentCulture);
 
-			var result = 0m;
+			var result = 0;
 
 			switch (operators)
 			{
 				case "+":
 					result = a + b;
+					Formulas.Add(new Formula(a, b, result, SignOfOperation.Plus));
 					break;
 
 				case "-":
 					result = a - b;
+					Formulas.Add(new Formula(a, b, result, SignOfOperation.Subtraction));
 					break;
 
 				case "*":
 					result = a * b;
+					Formulas.Add(new Formula(a, b, result, SignOfOperation.Multiple));
 					break;
 
 				case "/":
 					result = a / b;
+					Formulas.Add(new Formula(a, b, result, SignOfOperation.Division));
 					break;
 			}
 			return result.ToString(CultureInfo.CurrentCulture);
@@ -60,7 +79,7 @@ namespace MyMathSheets.CommonLib.Main.Calculate
 		/// <param name="express">表達式</param>
 		/// <param name="result">計算式結果</param>
 		/// <returns>推算成功:TRUE返回</returns>
-		public bool IsResult(string express, out decimal result)
+		public bool IsResult(string express, out Int32 result)
 		{
 			var expressQueue = SplitExpress(express);
 			var list = InorderToPostorder(expressQueue);
@@ -74,7 +93,7 @@ namespace MyMathSheets.CommonLib.Main.Calculate
 		/// <param name="postorderExpress">計算式後序表達式列表</param>
 		/// <param name="result">計算式結果</param>
 		/// <returns>推算成功:TRUE返回</returns>
-		public bool IsResult(List<string> postorderExpress, out decimal result)
+		public bool IsResult(List<string> postorderExpress, out Int32 result)
 		{
 			if (postorderExpress != null)
 			{
@@ -102,7 +121,7 @@ namespace MyMathSheets.CommonLib.Main.Calculate
 						}
 						i++;
 					}
-					result = decimal.Parse(aryExpress[0], CultureInfo.CurrentCulture);
+					result = Int32.Parse(aryExpress[0], CultureInfo.CurrentCulture);
 					return true;
 				}
 				catch
