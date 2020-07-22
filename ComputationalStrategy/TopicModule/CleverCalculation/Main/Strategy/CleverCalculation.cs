@@ -371,7 +371,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 				if (unknits[1] < 5)
 				{
 					// eg: 12 * 5 = 10 * 5 + 2 * 5
-					express.AppendFormat(CultureInfo.CurrentCulture, "{0}*{1}+{2}*{3}", unknits[0], factor, unknits[1], factor);
+					express.AppendFormat(CultureInfo.CurrentCulture, "{0}*{1}+{2}*{3}", unknitValue - unknitDiff, factor, unknits[1], factor);
 				}
 				// 減法拆解
 				else
@@ -382,8 +382,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 
 				// 計算式推導
 				var calc = new ExpressArithmeticUtil();
-				int result;
-				if (!calc.IsResult(express.ToString(), out result))
+				if (!calc.IsResult(express.ToString(), out int result))
 				{
 					continue;
 				}
@@ -406,6 +405,78 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		/// <param name="formulas">計算式作成</param>
 		protected virtual void CleverWithSyntheticCombine(IList<CleverCalculationFormula> formulas)
 		{
+			CleverCalculationFormula cleverCalculation = new CleverCalculationFormula
+			{
+				Type = TopicType.SyntheticCombine,
+				ConfixFormulas = new List<Formula>(),
+				Answer = new List<int>()
+			};
+
+			while (1 == 1)
+			{
+				cleverCalculation.ConfixFormulas.Clear();
+				cleverCalculation.Answer.Clear();
+
+				var answer = 0;
+				// 獲取一個10以內的共有因數
+				int factorShare = CommonUtil.GetRandomNumber(3, 9);
+
+				// 合併方法(加法或者减法)
+				SignOfOperation combine = CommonUtil.GetRandomNumber(SignOfOperation.Plus, SignOfOperation.Subtraction);
+
+				StringBuilder express = new StringBuilder();
+				// 加法合併
+				if (combine == SignOfOperation.Plus)
+				{
+					int factor1 = CommonUtil.GetRandomNumber(3, 9);
+					int factor2 = CommonUtil.GetRandomNumber(1, 9);
+					int[] factors1 = new int[] { factorShare, factor1 };
+					int[] factors2 = new int[] { factorShare, factor2 };
+					// 隨機排序
+					factors1 = factors1.OrderBy(c => Guid.NewGuid()).ToArray<int>();
+					factors2 = factors2.OrderBy(c => Guid.NewGuid()).ToArray<int>();
+					// eg: 10 * 5 + 2 * 5 = (10 + 2) * 5 = 12 * 5
+					express.AppendFormat(CultureInfo.CurrentCulture, "{0}*{1}+{2}*{3}", factors1[0], factors1[1], factors2[0], factors2[1]);
+
+					answer = (factor1 + factor2) * factorShare;
+					cleverCalculation.ConfixFormulas.Add(new Formula(factor1 + factor2, factorShare, answer, SignOfOperation.Multiple));
+					cleverCalculation.Answer.Add(answer);
+				}
+				// 減法合併
+				else
+				{
+					int factor1 = CommonUtil.GetRandomNumber(11, 19);
+					int factor2 = CommonUtil.GetRandomNumber(5, 9, _ => factor1 - _ <= 10);
+					int[] factors1 = new int[] { factorShare, factor1 };
+					int[] factors2 = new int[] { factorShare, factor2 };
+					// 隨機排序
+					factors1 = factors1.OrderBy(c => Guid.NewGuid()).ToArray<int>();
+					factors2 = factors2.OrderBy(c => Guid.NewGuid()).ToArray<int>();
+					// eg: 18 * 5 - 9 * 5 = (18 - 9) * 5 = 20
+					express.AppendFormat(CultureInfo.CurrentCulture, "{0}*{1}-{2}*{3}", factors1[0], factors1[1], factors2[0], factors2[1]);
+
+					answer = (factor1 - factor2) * factorShare;
+					cleverCalculation.ConfixFormulas.Add(new Formula(factor1 - factor2, factorShare, answer, SignOfOperation.Multiple));
+					cleverCalculation.Answer.Add(answer);
+				}
+
+				// 計算式推導
+				var calc = new ExpressArithmeticUtil();
+				if (!calc.IsResult(express.ToString(), out int result))
+				{
+					continue;
+				}
+				if (result != answer)
+				{
+					continue;
+				}
+				// 加入推導出計算式集合
+				calc.Formulas.ToList().ForEach(f => cleverCalculation.ConfixFormulas.Add(f));
+
+				break;
+			}
+
+			formulas.Add(cleverCalculation);
 		}
 	}
 }

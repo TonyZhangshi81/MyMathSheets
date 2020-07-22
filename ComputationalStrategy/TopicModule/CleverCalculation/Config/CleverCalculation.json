@@ -20,8 +20,13 @@
     "Reserve": "{\"TopicType\" : '3'}"
   },
   {
+    "Identifier": "CLC05",
+    "NumberOfQuestions": 5,
+    "Reserve": "{\"TopicType\" : '4'}"
+  },
+  {
     "Identifier": "CLC99",
     "NumberOfQuestions": 10,
-    "Reserve": "{\"TopicType\" : '0,1,2,3'}"
+    "Reserve": "{\"TopicType\" : '0,1,2,3,4'}"
   }
 ]

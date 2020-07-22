@@ -95,6 +95,29 @@ namespace MyMathSheets.TestConsoleApp.Write
 					Console.Write(d.Answer[0]);
 				}
 
+				// 綜合題型巧算（合併）
+				if (d.Type == TopicType.SyntheticCombine)
+				{
+					Console.Write(string.Format("{0} {1} {2} {3} {4} {5} {6} = ",
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.ConfixFormulas[1].LeftParameter, CommonLib.Util.GapFilling.Default),
+						d.ConfixFormulas[1].Sign.ToOperationString(),
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.ConfixFormulas[1].RightParameter, CommonLib.Util.GapFilling.Default),
+
+						d.ConfixFormulas[3].Sign.ToOperationString(),
+
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.ConfixFormulas[2].LeftParameter, CommonLib.Util.GapFilling.Default),
+						d.ConfixFormulas[2].Sign.ToOperationString(),
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.ConfixFormulas[2].RightParameter, CommonLib.Util.GapFilling.Default)
+						));
+
+					Console.Write(string.Format("{0} {1} {2} = ",
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.ConfixFormulas[0].LeftParameter, CommonLib.Util.GapFilling.Left),
+						d.ConfixFormulas[0].Sign.ToOperationString(),
+						CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.ConfixFormulas[0].RightParameter, CommonLib.Util.GapFilling.Right)));
+
+					Console.Write(d.Answer[0]);
+				}
+
 				Console.WriteLine();
 			});
 		}
