@@ -29,7 +29,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 			parameter.Formulas.ToList().ForEach(d =>
 			{
 				// 乘法巧算
-				if (d.Type == TopicType.Multiple)
+				if (d.Type == (int)TopicType.Multiple)
 				{
 					Console.Write(d.ConfixFormulas[0].Answer);
 					d.ConfixFormulas.ToList().ForEach(dd =>
@@ -50,7 +50,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 				}
 
 				// 加法和減法巧算
-				if (d.Type == TopicType.Plus || d.Type == TopicType.Subtraction)
+				if (d.Type == (int)TopicType.Plus || d.Type == (int)TopicType.Subtraction)
 				{
 					string flag = "topic";
 					d.ConfixFormulas.ToList().ForEach(dd =>
@@ -76,7 +76,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 				}
 
 				// 綜合題型巧算（拆解）
-				if (d.Type == TopicType.SyntheticUnknit)
+				if (d.Type == (int)Synthetic.Unknit)
 				{
 					Console.Write(string.Format("{0} {1} {2} = ", d.ConfixFormulas[0].LeftParameter, d.ConfixFormulas[0].Sign.ToOperationString(), d.ConfixFormulas[0].RightParameter));
 
@@ -96,7 +96,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 				}
 
 				// 綜合題型巧算（合併）
-				if (d.Type == TopicType.SyntheticCombine)
+				if (d.Type == (int)Synthetic.Combine)
 				{
 					Console.Write(string.Format("{0} {1} {2} {3} {4} {5} {6} = ",
 						CommonUtil.GetValue(CommonLib.Util.GapFilling.Left, d.ConfixFormulas[1].LeftParameter, CommonLib.Util.GapFilling.Default),
@@ -116,6 +116,17 @@ namespace MyMathSheets.TestConsoleApp.Write
 						CommonUtil.GetValue(CommonLib.Util.GapFilling.Right, d.ConfixFormulas[0].RightParameter, CommonLib.Util.GapFilling.Right)));
 
 					Console.Write(d.Answer[0]);
+				}
+
+				if (d.Type == (int)Clever.Clever1)
+				{
+					Console.Write(string.Format("{0} {1} {2} {3} {4} = {5}",
+						d.ConfixFormulas[0].LeftParameter,
+						d.ConfixFormulas[0].Sign.ToOperationString(),
+						d.ConfixFormulas[0].RightParameter,
+						d.ConfixFormulas[1].Sign.ToOperationString(),
+						d.ConfixFormulas[1].RightParameter,
+						d.Answer[0]));
 				}
 
 				Console.WriteLine();

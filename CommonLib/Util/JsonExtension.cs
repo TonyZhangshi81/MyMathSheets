@@ -43,6 +43,18 @@ namespace MyMathSheets.CommonLib.Util
 		}
 
 		/// <summary>
+		/// 指定屬性是否存在
+		/// </summary>
+		/// <param name="jsonString">JSON字符串</param>
+		/// <param name="propertyName">屬性名稱</param>
+		/// <returns>存在:TRUE</returns>
+		public static bool ContainsKey(this string jsonString, string propertyName)
+		{
+			JObject jObj = JObject.Parse(jsonString);
+			return jObj.ContainsKey(propertyName);
+		}
+
+		/// <summary>
 		/// 將JSON字符串轉換為對象
 		/// </summary>
 		/// <typeparam name="T">轉換後的對象類型</typeparam>

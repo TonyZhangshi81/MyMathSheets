@@ -12,7 +12,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Item
 		/// <summary>
 		/// 題型編號
 		/// </summary>
-		public TopicType Type { get; set; }
+		public int Type { get; set; }
 
 		/// <summary>
 		/// 計算式集合

@@ -24,9 +24,14 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 	public class CleverCalculation : TopicBase<CleverCalculationParameter>
 	{
 		/// <summary>
+		/// 反推判定次數（如果大於五次則認為此題無法作成繼續下一題）
+		/// </summary>
+		private const int INVERSE_NUMBER = 3;
+
+		/// <summary>
 		/// 巧算的實現方法集合
 		/// </summary>
-		private readonly Dictionary<TopicType, Action<IList<CleverCalculationFormula>>> _calculations = new Dictionary<TopicType, Action<IList<CleverCalculationFormula>>>();
+		private readonly Dictionary<int, Action<IList<CleverCalculationFormula>>> _calculations = new Dictionary<int, Action<IList<CleverCalculationFormula>>>();
 
 		/// <summary>
 		/// <see cref="CleverCalculation"/>構造函數
@@ -35,15 +40,155 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		public CleverCalculation()
 		{
 			// 加法巧算
-			_calculations[TopicType.Plus] = CleverWithPlus;
+			_calculations[(int)TopicType.Plus] = CleverWithPlus;
 			// 減法巧算
-			_calculations[TopicType.Subtraction] = CleverWithSubtraction;
+			_calculations[(int)TopicType.Subtraction] = CleverWithSubtraction;
 			// 乘法巧算
-			_calculations[TopicType.Multiple] = CleverWithMultiple;
+			_calculations[(int)TopicType.Multiple] = CleverWithMultiple;
 			// 混合題型巧算(拆解)
-			_calculations[TopicType.SyntheticUnknit] = CleverWithSyntheticUnknit;
+			_calculations[(int)Synthetic.Unknit] = CleverWithSyntheticUnknit;
 			// 混合題型巧算(合併)
-			_calculations[TopicType.SyntheticCombine] = CleverWithSyntheticCombine;
+			_calculations[(int)Synthetic.Combine] = CleverWithSyntheticCombine;
+
+			// 巧算[A+B+C]
+			_calculations[(int)Clever.Clever1] = CleverA;
+			// 巧算[A-(B-C)]
+			_calculations[(int)Clever.Clever2] = CleverB;
+			// 巧算[A-(B+C)]
+			_calculations[(int)Clever.Clever3] = CleverC;
+			// 巧算[A+(B-C)]
+			_calculations[(int)Clever.Clever4] = CleverD;
+			// 巧算[A+(B+C)]
+			_calculations[(int)Clever.Clever5] = CleverE;
+			// 巧算[A+B-C]
+			_calculations[(int)Clever.Clever6] = CleverF;
+			// 巧算[A-B+C]
+			_calculations[(int)Clever.Clever7] = CleverG;
+			// 巧算[A-B-C]
+			_calculations[(int)Clever.Clever8] = CleverH;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="formulas"></param>
+		protected virtual void CleverC(IList<CleverCalculationFormula> formulas)
+		{
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="formulas"></param>
+		protected virtual void CleverD(IList<CleverCalculationFormula> formulas)
+		{
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="formulas"></param>
+		protected virtual void CleverE(IList<CleverCalculationFormula> formulas)
+		{
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="formulas"></param>
+		protected virtual void CleverF(IList<CleverCalculationFormula> formulas)
+		{
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="formulas"></param>
+		protected virtual void CleverG(IList<CleverCalculationFormula> formulas)
+		{
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="formulas"></param>
+		protected virtual void CleverH(IList<CleverCalculationFormula> formulas)
+		{
+		}
+
+		/// <summary>
+		/// 巧算[A-(B-C)]
+		/// </summary>
+		/// <param name="formulas">計算式作成</param>
+		/// <remarks>
+		/// 22+44+56 -> 22+(44+56)
+		/// </remarks>
+		protected virtual void CleverB(IList<CleverCalculationFormula> formulas)
+		{
+		}
+
+		/// <summary>
+		/// 巧算[A+B+C]
+		/// </summary>
+		/// <param name="formulas">計算式作成</param>
+		/// <remarks>
+		/// 22+44+56 -> 22+(44+56)
+		/// </remarks>
+		protected virtual void CleverA(IList<CleverCalculationFormula> formulas)
+		{
+			// 當前反推判定次數（一次推算內次數累加）
+			int defeated = 0;
+
+			CleverCalculationFormula cleverCalculation = new CleverCalculationFormula
+			{
+				Type = (int)Clever.Clever1,
+				ConfixFormulas = new List<Formula>(),
+				Answer = new List<int>()
+			};
+
+			while (1 == 1)
+			{
+				// 參數A
+				var argumentA = CommonUtil.GetRandomNumber(50, 500);
+				// 參數合計（獲取三位數(整數十位)）
+				var argumentSum = CommonUtil.GetRandomNumber(100, 900, _ => _ % 10 == 0);
+				// 參數B
+				var argumentB = CommonUtil.GetRandomNumber(100, argumentSum, _ => _ != argumentA && _ != argumentSum - argumentA && _ % 100 != 0);
+				// 參數C
+				var argumentC = argumentSum - argumentB;
+				// 結果值
+				var answer = argumentA + argumentSum;
+
+				// 隨機排列計算式各參數（打亂參數位置）
+				SetNewGuidFactors(argumentA, argumentB, argumentC, out int[] factors);
+
+				StringBuilder express = new StringBuilder();
+				express.AppendFormat(CultureInfo.CurrentCulture, "{0}+{1}+{2}", factors[0], factors[1], factors[2]);
+
+				// 計算式推導
+				var calc = new ExpressArithmeticUtil();
+				if (!calc.IsResult(express.ToString(), out int result))
+				{
+					defeated++;
+					continue;
+				}
+				if (result != answer)
+				{
+					defeated++;
+					continue;
+				}
+				// 加入推導出計算式集合
+				calc.Formulas.ToList().ForEach(f => cleverCalculation.ConfixFormulas.Add(f));
+				cleverCalculation.Answer.Add(answer);
+				defeated = 0;
+
+				break;
+			}
+
+			if (cleverCalculation != null)
+			{
+				formulas.Add(cleverCalculation);
+			}
 		}
 
 		/// <summary>
@@ -51,7 +196,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		/// </summary>
 		/// <param name="p">題型參數</param>
 		/// <param name="topicTypeFunc">運算符取得用的表達式</param>
-		private void MarkFormulaList(CleverCalculationParameter p, Func<TopicType> topicTypeFunc)
+		private void MarkFormulaList(CleverCalculationParameter p, Func<int> topicTypeFunc)
 		{
 			// 按照指定數量作成相應的數學計算式
 			for (var i = 0; i < p.NumberOfQuestions; i++)
@@ -70,12 +215,28 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		public override void MarkFormulaList(CleverCalculationParameter p)
 		{
 			// 算式作成
-			MarkFormulaList(p, () => { return (TopicType)CommonUtil.GetRandomNumber(p.TopicTypes.ToList()); });
+			MarkFormulaList(p, () =>
+			{
+				// 主題型
+				var topicType = CommonUtil.GetRandomNumber(p.TopicTypes.ToList());
+				// 子題型
+				var subTopicTypes = p.SubTopicTypes.Where(d => d / 10 == topicType).ToList();
+				// 無子題型
+				if (!subTopicTypes.Any())
+				{
+					return topicType;
+				}
+
+				// 隨機子題型
+				return CommonUtil.GetRandomNumber(subTopicTypes);
+			});
 
 			// 智能提示作成
 			VirtualHelperBase<CleverCalculationFormula> helper = new CleverCalculationDialogue();
 			p.BrainpowerHint = helper.CreateHelperDialogue(p.Formulas);
 		}
+
+		#region 加法巧算
 
 		/// <summary>
 		/// 加法巧算
@@ -89,7 +250,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		{
 			CleverCalculationFormula cleverCalculation = new CleverCalculationFormula
 			{
-				Type = TopicType.Plus,
+				Type = (int)TopicType.Plus,
 				ConfixFormulas = new List<Formula>(),
 				Answer = new List<int>()
 			};
@@ -187,6 +348,10 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			formulas.Add(cleverCalculation);
 		}
 
+		#endregion 加法巧算
+
+		#region 減法巧算
+
 		/// <summary>
 		/// 減法巧算
 		/// </summary>
@@ -195,7 +360,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		{
 			CleverCalculationFormula cleverCalculation = new CleverCalculationFormula
 			{
-				Type = TopicType.Plus,
+				Type = (int)TopicType.Plus,
 				ConfixFormulas = new List<Formula>(),
 				Answer = new List<int>()
 			};
@@ -236,6 +401,10 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			formulas.Add(cleverCalculation);
 		}
 
+		#endregion 減法巧算
+
+		#region 乘法巧算
+
 		/// <summary>
 		/// 乘法巧算
 		/// </summary>
@@ -248,7 +417,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		{
 			CleverCalculationFormula cleverCalculation = new CleverCalculationFormula
 			{
-				Type = TopicType.Multiple,
+				Type = (int)TopicType.Multiple,
 				ConfixFormulas = new List<Formula>(),
 				Answer = new List<int>()
 			};
@@ -324,21 +493,35 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			return list;
 		}
 
+		#endregion 乘法巧算
+
+		#region 綜合題型巧算
+
 		/// <summary>
 		/// 綜合題型巧算（拆解）
 		/// </summary>
 		/// <param name="formulas">計算式作成</param>
 		protected virtual void CleverWithSyntheticUnknit(IList<CleverCalculationFormula> formulas)
 		{
+			// 當前反推判定次數（一次推算內次數累加）
+			int defeated = 0;
+
 			CleverCalculationFormula cleverCalculation = new CleverCalculationFormula
 			{
-				Type = TopicType.SyntheticUnknit,
+				Type = (int)Synthetic.Unknit,
 				ConfixFormulas = new List<Formula>(),
 				Answer = new List<int>()
 			};
 
 			while (1 == 1)
 			{
+				// 如果大於三次則認為此題無法作成繼續下一題
+				if (defeated == INVERSE_NUMBER)
+				{
+					cleverCalculation = null;
+					break;
+				}
+
 				cleverCalculation.ConfixFormulas.Clear();
 				cleverCalculation.Answer.Clear();
 
@@ -384,19 +567,25 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 				var calc = new ExpressArithmeticUtil();
 				if (!calc.IsResult(express.ToString(), out int result))
 				{
+					defeated++;
 					continue;
 				}
 				if (result != answer)
 				{
+					defeated++;
 					continue;
 				}
 				// 加入推導出計算式集合
 				calc.Formulas.ToList().ForEach(f => cleverCalculation.ConfixFormulas.Add(f));
+				defeated = 0;
 
 				break;
 			}
 
-			formulas.Add(cleverCalculation);
+			if (cleverCalculation != null)
+			{
+				formulas.Add(cleverCalculation);
+			}
 		}
 
 		/// <summary>
@@ -405,15 +594,25 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		/// <param name="formulas">計算式作成</param>
 		protected virtual void CleverWithSyntheticCombine(IList<CleverCalculationFormula> formulas)
 		{
+			// 當前反推判定次數（一次推算內次數累加）
+			int defeated = 0;
+
 			CleverCalculationFormula cleverCalculation = new CleverCalculationFormula
 			{
-				Type = TopicType.SyntheticCombine,
+				Type = (int)Synthetic.Combine,
 				ConfixFormulas = new List<Formula>(),
 				Answer = new List<int>()
 			};
 
 			while (1 == 1)
 			{
+				// 如果大於三次則認為此題無法作成繼續下一題
+				if (defeated == INVERSE_NUMBER)
+				{
+					cleverCalculation = null;
+					break;
+				}
+
 				cleverCalculation.ConfixFormulas.Clear();
 				cleverCalculation.Answer.Clear();
 
@@ -428,14 +627,17 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 				// 加法合併
 				if (combine == SignOfOperation.Plus)
 				{
-					int factor1 = CommonUtil.GetRandomNumber(3, 9);
-					int factor2 = CommonUtil.GetRandomNumber(1, 9);
-					int[] factors1 = new int[] { factorShare, factor1 };
-					int[] factors2 = new int[] { factorShare, factor2 };
-					// 隨機排序
-					factors1 = factors1.OrderBy(c => Guid.NewGuid()).ToArray<int>();
-					factors2 = factors2.OrderBy(c => Guid.NewGuid()).ToArray<int>();
-					// eg: 10 * 5 + 2 * 5 = (10 + 2) * 5 = 12 * 5
+					int factor1 = CommonUtil.GetRandomNumber(1, 9);
+					// 加法合併的兩種情況：1.相加之和是整十數
+					int factor2 = CommonUtil.GetRandomNumber(1, 50, _ => (_ % 10 == 0 || _ + factor1 <= 10) && _ != factor1);
+					// 2.相加之和是十
+					if (factor2 > 10)
+					{
+						factor2 -= factor1;
+					}
+					// 隨機排列計算式各參數（打亂參數位置）
+					SetNewGuidFactors(factorShare, factor1, factor2, out int[] factors1, out int[] factors2);
+					// eg: 8 * 5 + 2 * 5 = (8 + 2) * 5 = 10 * 5
 					express.AppendFormat(CultureInfo.CurrentCulture, "{0}*{1}+{2}*{3}", factors1[0], factors1[1], factors2[0], factors2[1]);
 
 					answer = (factor1 + factor2) * factorShare;
@@ -447,11 +649,8 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 				{
 					int factor1 = CommonUtil.GetRandomNumber(11, 19);
 					int factor2 = CommonUtil.GetRandomNumber(5, 9, _ => factor1 - _ <= 10);
-					int[] factors1 = new int[] { factorShare, factor1 };
-					int[] factors2 = new int[] { factorShare, factor2 };
-					// 隨機排序
-					factors1 = factors1.OrderBy(c => Guid.NewGuid()).ToArray<int>();
-					factors2 = factors2.OrderBy(c => Guid.NewGuid()).ToArray<int>();
+					// 隨機排列計算式各參數（打亂參數位置）
+					SetNewGuidFactors(factorShare, factor1, factor2, out int[] factors1, out int[] factors2);
 					// eg: 18 * 5 - 9 * 5 = (18 - 9) * 5 = 20
 					express.AppendFormat(CultureInfo.CurrentCulture, "{0}*{1}-{2}*{3}", factors1[0], factors1[1], factors2[0], factors2[1]);
 
@@ -464,19 +663,74 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 				var calc = new ExpressArithmeticUtil();
 				if (!calc.IsResult(express.ToString(), out int result))
 				{
+					defeated++;
 					continue;
 				}
 				if (result != answer)
 				{
+					defeated++;
 					continue;
 				}
 				// 加入推導出計算式集合
 				calc.Formulas.ToList().ForEach(f => cleverCalculation.ConfixFormulas.Add(f));
+				defeated = 0;
 
 				break;
 			}
 
-			formulas.Add(cleverCalculation);
+			if (cleverCalculation != null)
+			{
+				formulas.Add(cleverCalculation);
+			}
+		}
+
+		#endregion 綜合題型巧算
+
+		/// <summary>
+		/// (1X3) 隨機排列計算式各參數
+		/// </summary>
+		/// <param name="argumentA">參數A</param>
+		/// <param name="argumentB">參數B</param>
+		/// <param name="argumentC">參數C</param>
+		/// <param name="factors">參數列</param>
+		/// <remarks>
+		/// 5 * 10 + 2 * 5 
+		/// 計算式中的參數位置可以有以下情況：
+		/// 10 * 5 + 2 * 5 
+		/// 5 * 10 + 5 * 2 
+		/// 等等，顧需要隨機打亂其中的擺放順序
+		/// 注：共有因數必須兩邊都有
+		/// </remarks>
+		private void SetNewGuidFactors(int argumentA, int argumentB, int argumentC, out int[] factors)
+		{
+			factors = new int[] { argumentA, argumentB, argumentC };
+			// 隨機排序
+			factors = factors.OrderBy(c => Guid.NewGuid()).ToArray();
+		}
+
+		/// <summary>
+		/// (2X2) 隨機排列計算式各參數
+		/// </summary>
+		/// <param name="factorShare">共有因數</param>
+		/// <param name="factor1">合併參數1</param>
+		/// <param name="factor2">合併參數2</param>
+		/// <param name="factors1">參數列1</param>
+		/// <param name="factors2">參數列1</param>
+		/// <remarks>
+		/// 5 * 10 + 2 * 5 
+		/// 計算式中的參數位置可以有以下情況：
+		/// 10 * 5 + 2 * 5 
+		/// 5 * 10 + 5 * 2 
+		/// 等等，顧需要隨機打亂其中的擺放順序
+		/// 注：共有因數必須兩邊都有
+		/// </remarks>
+		private void SetNewGuidFactors(int factorShare, int factor1, int factor2, out int[] factors1, out int[] factors2)
+		{
+			factors1 = new int[] { factorShare, factor1 };
+			factors2 = new int[] { factorShare, factor2 };
+			// 隨機排序
+			factors1 = factors1.OrderBy(c => Guid.NewGuid()).ToArray();
+			factors2 = factors2.OrderBy(c => Guid.NewGuid()).ToArray();
 		}
 	}
 }
