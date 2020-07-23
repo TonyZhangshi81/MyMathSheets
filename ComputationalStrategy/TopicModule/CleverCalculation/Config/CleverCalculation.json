@@ -30,6 +30,11 @@
     "Reserve": "{\"TopicType\" : '4', \"SubTopicType\" : '40'}"
   },
   {
+    "Identifier": "CLC07",
+    "NumberOfQuestions": 5,
+    "Reserve": "{\"TopicType\" : '4', \"SubTopicType\" : '41'}"
+  },
+  {
     "Identifier": "CLC99",
     "NumberOfQuestions": 10,
     "Reserve": "{\"TopicType\" : '0,1,2,3', \"SubTopicType\" : '30,31'}"
