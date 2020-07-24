@@ -13,8 +13,6 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Permissions;
 using System.Text;
 
 namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
@@ -53,85 +51,83 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			_calculations[(int)Synthetic.Combine] = CleverWithSyntheticCombine;
 
 			// 巧算[A+B+C]
-			_calculations[(int)Clever.Clever1] = CleverA;
+			_calculations[(int)Clever.CleverA] = CleverA;
 			// 巧算[A-(B-C)]
-			_calculations[(int)Clever.Clever2] = CleverB;
+			_calculations[(int)Clever.CleverB] = CleverB;
 			// 巧算[A-(B+C)]
-			_calculations[(int)Clever.Clever3] = CleverC;
+			_calculations[(int)Clever.CleverC] = CleverC;
 			// 巧算[A+(B-C)]
-			_calculations[(int)Clever.Clever4] = CleverD;
+			_calculations[(int)Clever.CleverD] = CleverD;
 			// 巧算[A+(B+C)]
-			_calculations[(int)Clever.Clever5] = CleverE;
+			_calculations[(int)Clever.CleverE] = CleverE;
 			// 巧算[A+B-C]
-			_calculations[(int)Clever.Clever6] = CleverF;
+			_calculations[(int)Clever.CleverF] = CleverF;
 			// 巧算[A-B+C]
-			_calculations[(int)Clever.Clever7] = CleverG;
+			_calculations[(int)Clever.CleverG] = CleverG;
 			// 巧算[A-B-C]
-			_calculations[(int)Clever.Clever8] = CleverH;
+			_calculations[(int)Clever.CleverH] = CleverH;
 		}
 
 		/// <summary>
-		///
+		/// 算式作成
 		/// </summary>
-		/// <param name="formulas"></param>
-		protected virtual void CleverC(IList<CleverCalculationFormula> formulas)
+		/// <param name="p">題型參數</param>
+		public override void MarkFormulaList(CleverCalculationParameter p)
 		{
+			// 算式作成
+			MarkFormulaList(p, () =>
+			{
+				// 主題型
+				var topicType = CommonUtil.GetRandomNumber(p.TopicTypes.ToList());
+				// 子題型
+				var subTopicTypes = p.SubTopicTypes.Where(d => d / 10 == topicType).ToList();
+				// 無子題型
+				if (!subTopicTypes.Any())
+				{
+					return topicType;
+				}
+
+				// 隨機子題型
+				return CommonUtil.GetRandomNumber(subTopicTypes);
+			});
+
+			// 智能提示作成
+			VirtualHelperBase<CleverCalculationFormula> helper = new CleverCalculationDialogue();
+			p.BrainpowerHint = helper.CreateHelperDialogue(p.Formulas);
 		}
 
 		/// <summary>
-		///
+		/// 算式作成
 		/// </summary>
-		/// <param name="formulas"></param>
-		protected virtual void CleverD(IList<CleverCalculationFormula> formulas)
+		/// <param name="p">題型參數</param>
+		/// <param name="topicTypeFunc">運算符取得用的表達式</param>
+		private void MarkFormulaList(CleverCalculationParameter p, Func<int> topicTypeFunc)
 		{
-		}
-
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="formulas"></param>
-		protected virtual void CleverE(IList<CleverCalculationFormula> formulas)
-		{
-		}
-
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="formulas"></param>
-		protected virtual void CleverF(IList<CleverCalculationFormula> formulas)
-		{
-		}
-
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="formulas"></param>
-		protected virtual void CleverG(IList<CleverCalculationFormula> formulas)
-		{
-		}
-
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="formulas"></param>
-		protected virtual void CleverH(IList<CleverCalculationFormula> formulas)
-		{
+			// 按照指定數量作成相應的數學計算式
+			for (var i = 0; i < p.NumberOfQuestions; i++)
+			{
+				if (_calculations.TryGetValue(topicTypeFunc(), out Action<IList<CleverCalculationFormula>> calculation))
+				{
+					calculation(p.Formulas);
+				}
+			}
 		}
 
 		/// <summary>
 		/// 巧算通用處理
 		/// </summary>
+		/// <param name="type">題型</param>
 		/// <param name="expressFormat">計算表達式</param>
 		/// <param name="getArguments">參數處理邏輯</param>
 		/// <param name="formulas">計算式作成</param>
-		private void CleverStartegy(string expressFormat, Func<int[]> getArguments, IList<CleverCalculationFormula> formulas)
+		private void CleverStartegy(Clever type, string expressFormat, Func<int[]> getArguments, IList<CleverCalculationFormula> formulas)
 		{
 			// 當前反推判定次數（一次推算內次數累加）
 			int defeated = 0;
 
 			CleverCalculationFormula cleverCalculation = new CleverCalculationFormula
 			{
-				Type = (int)Clever.Clever1,
+				Type = (int)type,
 				ConfixFormulas = new List<Formula>(),
 				Answer = new List<int>()
 			};
@@ -168,121 +164,6 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			{
 				formulas.Add(cleverCalculation);
 			}
-		}
-
-		/// <summary>
-		/// 巧算[A-(B-C)]
-		/// </summary>
-		/// <param name="formulas">計算式作成</param>
-		/// <remarks>
-		/// 68-(44-12) -> 68+12-44
-		/// </remarks>
-		protected virtual void CleverB(IList<CleverCalculationFormula> formulas)
-		{
-			CleverStartegy("{0}-({1}-{2})",
-				() =>
-				{
-					// 參數C
-					var argumentC = CommonUtil.GetRandomNumber(50, 200);
-					// 參數合計（獲取三位數(整數十位)）
-					var argumentSum = CommonUtil.GetRandomNumber(200, 500, _ => _ % 10 == 0);
-					// 參數A
-					var argumentA = CommonUtil.GetRandomNumber(200, argumentSum, _ => _ % 100 != 0 && argumentSum - _ <= argumentC);
-					// 參數B
-					var argumentB = argumentSum - argumentA;
-					// 結果值
-					var answer = argumentA + argumentSum;
-
-					// 隨機排列計算式各參數（打亂參數位置）
-					SetNewGuidFactors(argumentA, argumentB, argumentC, out List<int> factors);
-					factors.Add(answer);
-
-					return factors.ToArray();
-				}, formulas);
-		}
-
-		/// <summary>
-		/// 巧算[A+B+C]
-		/// </summary>
-		/// <param name="formulas">計算式作成</param>
-		/// <remarks>
-		/// 22+44+56 -> 22+(44+56)
-		/// </remarks>
-		protected virtual void CleverA(IList<CleverCalculationFormula> formulas)
-		{
-			CleverStartegy("{0}+{1}+{2}",
-				() =>
-				{
-					// 參數A
-					var argumentA = CommonUtil.GetRandomNumber(50, 300);
-					// 參數合計（獲取三位數(整數十位)）
-					var argumentSum = CommonUtil.GetRandomNumber(100, 500, _ => _ % 10 == 0);
-					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(100, argumentSum,
-																	b => b != argumentA
-																		&& b != argumentSum - argumentA
-																		&& b % 100 != 0);
-					// 參數C
-					var argumentC = argumentSum - argumentB;
-					// 避免AB或者AC相加和為整十數
-					if ((argumentA + argumentC) % 10 == 0 || (argumentA + argumentB) % 10 == 0)
-					{
-						argumentA -= 1;
-					}
-					// 結果值
-					var answer = argumentA + argumentSum;
-
-					// 隨機排列計算式各參數（打亂參數位置）
-					SetNewGuidFactors(argumentA, argumentB, argumentC, out List<int> factors);
-					factors.Add(answer);
-
-					return factors.ToArray();
-				}, formulas);
-		}
-
-		/// <summary>
-		/// 算式作成
-		/// </summary>
-		/// <param name="p">題型參數</param>
-		/// <param name="topicTypeFunc">運算符取得用的表達式</param>
-		private void MarkFormulaList(CleverCalculationParameter p, Func<int> topicTypeFunc)
-		{
-			// 按照指定數量作成相應的數學計算式
-			for (var i = 0; i < p.NumberOfQuestions; i++)
-			{
-				if (_calculations.TryGetValue(topicTypeFunc(), out Action<IList<CleverCalculationFormula>> calculation))
-				{
-					calculation(p.Formulas);
-				}
-			}
-		}
-
-		/// <summary>
-		/// 算式作成
-		/// </summary>
-		/// <param name="p">題型參數</param>
-		public override void MarkFormulaList(CleverCalculationParameter p)
-		{
-			// 算式作成
-			MarkFormulaList(p, () =>
-			{
-				// 主題型
-				var topicType = CommonUtil.GetRandomNumber(p.TopicTypes.ToList());
-				// 子題型
-				var subTopicTypes = p.SubTopicTypes.Where(d => d / 10 == topicType).ToList();
-				// 無子題型
-				if (!subTopicTypes.Any())
-				{
-					return topicType;
-				}
-
-				// 隨機子題型
-				return CommonUtil.GetRandomNumber(subTopicTypes);
-			});
-
-			// 智能提示作成
-			VirtualHelperBase<CleverCalculationFormula> helper = new CleverCalculationDialogue();
-			p.BrainpowerHint = helper.CreateHelperDialogue(p.Formulas);
 		}
 
 		#region 加法巧算
@@ -685,7 +566,8 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 						factor2 -= factor1;
 					}
 					// 隨機排列計算式各參數（打亂參數位置）
-					SetNewGuidFactors(factorShare, factor1, factor2, out int[] factors1, out int[] factors2);
+					SetNewGuidFactors(out List<int> factors1, factorShare, factor1);
+					SetNewGuidFactors(out List<int> factors2, factorShare, factor2);
 					// eg: 8 * 5 + 2 * 5 = (8 + 2) * 5 = 10 * 5
 					express.AppendFormat(CultureInfo.CurrentCulture, "{0}*{1}+{2}*{3}", factors1[0], factors1[1], factors2[0], factors2[1]);
 
@@ -699,7 +581,8 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 					int factor1 = CommonUtil.GetRandomNumber(11, 19);
 					int factor2 = CommonUtil.GetRandomNumber(5, 9, _ => factor1 - _ <= 10);
 					// 隨機排列計算式各參數（打亂參數位置）
-					SetNewGuidFactors(factorShare, factor1, factor2, out int[] factors1, out int[] factors2);
+					SetNewGuidFactors(out List<int> factors1, factorShare, factor1);
+					SetNewGuidFactors(out List<int> factors2, factorShare, factor2);
 					// eg: 18 * 5 - 9 * 5 = (18 - 9) * 5 = 20
 					express.AppendFormat(CultureInfo.CurrentCulture, "{0}*{1}-{2}*{3}", factors1[0], factors1[1], factors2[0], factors2[1]);
 
@@ -735,36 +618,317 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 
 		#endregion 綜合題型巧算
 
+		#region 巧算
+
 		/// <summary>
-		/// (1X3) 隨機排列計算式各參數
+		/// 巧算[A-B-C]
 		/// </summary>
-		/// <param name="argumentA">參數A</param>
-		/// <param name="argumentB">參數B</param>
-		/// <param name="argumentC">參數C</param>
-		/// <param name="factors">參數列</param>
+		/// <param name="formulas">計算式作成</param>
 		/// <remarks>
-		/// 5 * 10 + 2 * 5
-		/// 計算式中的參數位置可以有以下情況：
-		/// 10 * 5 + 2 * 5
-		/// 5 * 10 + 5 * 2
-		/// 等等，顧需要隨機打亂其中的擺放順序
-		/// 注：共有因數必須兩邊都有
+		/// 68-44-18 -> 68-18-44
 		/// </remarks>
-		private void SetNewGuidFactors(int argumentA, int argumentB, int argumentC, out List<int> factors)
+		protected virtual void CleverH(IList<CleverCalculationFormula> formulas)
 		{
-			var arguments = new int[] { argumentA, argumentB, argumentC };
-			// 隨機排序
-			factors = arguments.OrderBy(c => Guid.NewGuid()).ToList();
+			CleverStartegy(Clever.CleverH, "{0}-{1}-{2}",
+				() =>
+				{
+					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
+					var diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 10 == 0);
+					// 參數C (*增加參數B的取值範圍) eg: 162-(44+38)
+					var argumentC = CommonUtil.GetRandomNumber(50, 150);
+					// 另一個隨機取值方案（整十數湊百）eg: 160+(44-40)
+					if (1 == CommonUtil.GetRandomNumber(1, 2))
+					{
+						diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 100 == 0);
+						argumentC = CommonUtil.GetRandomNumber(50, 150, _ => _ % 10 == 0 && _ % 100 != 0);
+					}
+					// 參數A
+					var argumentA = diff + argumentC;
+					// 參數B
+					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff,
+																	b => b != argumentC
+																			&& (argumentA - b) % 10 != 0
+																			&& (argumentC + b) % 10 != 0);
+					// 結果值
+					var answer = diff - argumentB;
+
+					// 隨機排列計算式各參數（打亂參數B,C 位置）
+					SetNewGuidFactors(out List<int> factors1, argumentB, argumentC);
+					return new int[] { argumentA, factors1[0], factors1[1], answer };
+				}, formulas);
 		}
 
 		/// <summary>
-		/// (2X2) 隨機排列計算式各參數
+		/// 巧算[A-B+C]
 		/// </summary>
-		/// <param name="factorShare">共有因數</param>
-		/// <param name="factor1">合併參數1</param>
-		/// <param name="factor2">合併參數2</param>
-		/// <param name="factors1">參數列1</param>
-		/// <param name="factors2">參數列1</param>
+		/// <param name="formulas">計算式作成</param>
+		/// <remarks>
+		/// 68-44+12 -> 68+12-44
+		/// </remarks>
+		protected virtual void CleverG(IList<CleverCalculationFormula> formulas)
+		{
+			CleverStartegy(Clever.CleverG, "{0}-{1}+{2}",
+				() =>
+				{
+					// (A+C)參數合計（獲取三位數(整十位或者整百位)）
+					var argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 10 == 0);
+					// 參數C (*增加參數B的取值範圍) eg: 162-44+38
+					var argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 100 != 0);
+					// 另一個隨機取值方案（整十數湊百）eg: 160-44+40)
+					if (1 == CommonUtil.GetRandomNumber(1, 2))
+					{
+						argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 100 == 0);
+						argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 10 == 0 && _ % 100 != 0);
+					}
+					// 參數A
+					var argumentA = argumentSum - argumentC;
+					if (argumentA % 100 == 0)
+					{
+						var diff = CommonUtil.GetRandomNumber(1, 100, _ => _ % 10 == 0);
+						argumentA += diff;
+						argumentSum += diff;
+					}
+					// 參數B
+					var argumentB = CommonUtil.GetRandomNumber(50, argumentA, b => b != argumentC && (b + argumentA) % 10 != 0);
+					// 結果值
+					var answer = argumentSum - argumentB;
+
+					// 參數不能隨便交換位置
+					return new int[] { argumentA, argumentB, argumentC, answer };
+				}, formulas);
+		}
+
+		/// <summary>
+		/// 巧算[A+B-C]
+		/// </summary>
+		/// <param name="formulas">計算式作成</param>
+		/// <remarks>
+		/// 68+44-18 -> 68+44-18 -> 68-18+44
+		/// </remarks>
+		protected virtual void CleverF(IList<CleverCalculationFormula> formulas)
+		{
+			CleverStartegy(Clever.CleverF, "{0}+{1}-{2}",
+				() =>
+				{
+					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
+					var diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 10 == 0);
+					// 參數C (*增加參數B的取值範圍) eg: 162+44-62
+					var argumentC = CommonUtil.GetRandomNumber(50, 150);
+					// 另一個隨機取值方案（整十數湊百）eg: 160+44-60
+					if (1 == CommonUtil.GetRandomNumber(1, 2))
+					{
+						diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 100 == 0);
+						argumentC = CommonUtil.GetRandomNumber(50, 150, _ => _ % 10 == 0 && _ % 100 != 0);
+					}
+					// 參數A
+					var argumentA = diff + argumentC;
+					// 參數B
+					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, b => b != argumentC && (argumentA - b) % 10 != 0);
+					// 結果值
+					var answer = diff + argumentB;
+
+					// 參數不能隨便交換位置
+					return new int[] { argumentA, argumentB, argumentC, answer };
+				}, formulas);
+		}
+
+		/// <summary>
+		/// 巧算[A+(B+C)]
+		/// </summary>
+		/// <param name="formulas">計算式作成</param>
+		/// <remarks>
+		/// 68+(44+12) -> 68+44+12 -> 68+12+44
+		/// </remarks>
+		protected virtual void CleverE(IList<CleverCalculationFormula> formulas)
+		{
+			CleverStartegy(Clever.CleverE, "{0}+({1}+{2})",
+				() =>
+				{
+					// (A+C)參數合計（獲取三位數(整十位或者整百位)）
+					var argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 10 == 0);
+					// 參數C (*增加參數B的取值範圍)
+					var argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 10 != 0);
+					// 另一個隨機取值方案（整十數湊百）
+					if (1 == CommonUtil.GetRandomNumber(1, 2))
+					{
+						argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 100 == 0);
+						argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 10 == 0 && _ % 100 != 0);
+					}
+
+					// 參數A
+					var argumentA = argumentSum - argumentC;
+					if (argumentA % 100 == 0)
+					{
+						var diff = CommonUtil.GetRandomNumber(1, 100, _ => _ % 10 == 0);
+						argumentA += diff;
+						argumentSum += diff;
+					}
+					// 參數B
+					var argumentB = CommonUtil.GetRandomNumber(50, 250, b => b != argumentC && (b + argumentA) % 10 != 0 && (b + argumentC) % 10 != 0);
+					// 結果值
+					var answer = argumentSum + argumentB;
+
+					// 隨機排列計算式各參數（打亂參數A,C 位置）
+					SetNewGuidFactors(out List<int> factors1, argumentA, argumentC);
+					SetNewGuidFactors(out List<int> factors2, factors1[1], argumentB);
+					return new int[] { factors1[0], factors2[0], factors2[1], answer };
+				}, formulas);
+		}
+
+		/// <summary>
+		/// 巧算[A+(B-C)]
+		/// </summary>
+		/// <param name="formulas">計算式作成</param>
+		/// <remarks>
+		/// 62+(44-12) -> 62+44-12 -> 62-12+44
+		/// </remarks>
+		protected virtual void CleverD(IList<CleverCalculationFormula> formulas)
+		{
+			CleverStartegy(Clever.CleverD, "{0}+({1}-{2})",
+				() =>
+				{
+					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
+					var diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 10 == 0);
+					// 參數C (*增加參數B的取值範圍) eg: 162+(44-62)
+					var argumentC = CommonUtil.GetRandomNumber(50, 150);
+					// 另一個隨機取值方案（整十數湊百）eg: 160+(44-60)
+					if (1 == CommonUtil.GetRandomNumber(1, 2))
+					{
+						diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 100 == 0);
+						argumentC = CommonUtil.GetRandomNumber(50, 150, _ => _ % 10 == 0 && _ % 100 != 0);
+					}
+					// 參數A
+					var argumentA = diff + argumentC;
+					// 參數B
+					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, b => b != argumentC && (argumentA - b) % 10 != 0);
+					// 結果值
+					var answer = diff + argumentB;
+
+					// 參數不能隨便交換位置
+					return new int[] { argumentA, argumentB, argumentC, answer };
+				}, formulas);
+		}
+
+		/// <summary>
+		/// 巧算[A-(B+C)]
+		/// </summary>
+		/// <param name="formulas">計算式作成</param>
+		/// <remarks>
+		/// 62-(44+12) -> 62-44-12
+		/// </remarks>
+		protected virtual void CleverC(IList<CleverCalculationFormula> formulas)
+		{
+			CleverStartegy(Clever.CleverC, "{0}-({1}+{2})",
+				() =>
+				{
+					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
+					var diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 10 == 0);
+					// 參數C (*增加參數B的取值範圍) eg: 162-(44+38)
+					var argumentC = CommonUtil.GetRandomNumber(50, 150);
+					// 另一個隨機取值方案（整十數湊百）eg: 160+(44-40)
+					if (1 == CommonUtil.GetRandomNumber(1, 2))
+					{
+						diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 100 == 0);
+						argumentC = CommonUtil.GetRandomNumber(50, 150, _ => _ % 10 == 0 && _ % 100 != 0);
+					}
+					// 參數A
+					var argumentA = diff + argumentC;
+					// 參數B
+					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, b => b != argumentC && (argumentA - b) % 10 != 0);
+					// 結果值
+					var answer = diff - argumentB;
+
+					// 參數不能隨便交換位置
+					return new int[] { argumentA, argumentB, argumentC, answer };
+				}, formulas);
+		}
+
+		/// <summary>
+		/// 巧算[A-(B-C)]
+		/// </summary>
+		/// <param name="formulas">計算式作成</param>
+		/// <remarks>
+		/// 68-(44-12) -> 68-44+12 -> 68+12-44
+		/// </remarks>
+		protected virtual void CleverB(IList<CleverCalculationFormula> formulas)
+		{
+			CleverStartegy(Clever.CleverB, "{0}-({1}-{2})",
+				() =>
+				{
+					// (A+C)參數合計（獲取三位數(整十位或者整百位)）
+					var argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 10 == 0);
+					// 參數C (*增加參數B的取值範圍) eg: 162-(44-62)
+					var argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 100 != 0);
+					// 另一個隨機取值方案（整十數湊百）eg: 160-(44-60)
+					if (1 == CommonUtil.GetRandomNumber(1, 2))
+					{
+						argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 100 == 0);
+						argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 10 == 0 && _ % 100 != 0);
+					}
+					// 參數A
+					var argumentA = argumentSum - argumentC;
+					if (argumentA % 100 == 0)
+					{
+						var diff = CommonUtil.GetRandomNumber(1, 100, _ => _ % 10 == 0);
+						argumentA += diff;
+						argumentSum += diff;
+					}
+					// 參數B
+					var argumentB = CommonUtil.GetRandomNumber(50, argumentA, b => b != argumentC && (b + argumentA) % 10 != 0);
+					// 結果值
+					var answer = argumentSum - argumentB;
+
+					// 參數不能隨便交換位置
+					return new int[] { argumentA, argumentB, argumentC, answer };
+				}, formulas);
+		}
+
+		/// <summary>
+		/// 巧算[A+B+C]
+		/// </summary>
+		/// <param name="formulas">計算式作成</param>
+		/// <remarks>
+		/// 22+44+56 -> 22+(44+56)
+		/// </remarks>
+		protected virtual void CleverA(IList<CleverCalculationFormula> formulas)
+		{
+			CleverStartegy(Clever.CleverA, "{0}+{1}+{2}",
+				() =>
+				{
+					// 參數A
+					var argumentA = CommonUtil.GetRandomNumber(50, 300);
+					// 參數合計（獲取三位數(整數十位或者整百數)）
+					var argumentSum = CommonUtil.GetRandomNumber(100, 500, _ => _ % 10 == 0);
+					// 參數B
+					var argumentB = CommonUtil.GetRandomNumber(100, argumentSum,
+																	b => b != argumentA
+																		&& b != argumentSum - argumentA
+																		&& b % 100 != 0);
+					// 參數C
+					var argumentC = argumentSum - argumentB;
+					// 避免AB或者AC相加和為整十數
+					if ((argumentA + argumentC) % 10 == 0 || (argumentA + argumentB) % 10 == 0)
+					{
+						argumentA -= 1;
+					}
+					// 結果值
+					var answer = argumentA + argumentSum;
+
+					// 隨機排列計算式各參數（打亂參數位置）
+					SetNewGuidFactors(out List<int> factors, argumentA, argumentB, argumentC);
+					factors.Add(answer);
+
+					return factors.ToArray();
+				}, formulas);
+		}
+
+		#endregion 巧算
+
+		/// <summary>
+		/// 隨機排列計算式各參數
+		/// </summary>
+		/// <param name="factors">參數列</param>
+		/// <param name="arguments">參數集合</param>
 		/// <remarks>
 		/// 5 * 10 + 2 * 5
 		/// 計算式中的參數位置可以有以下情況：
@@ -773,13 +937,10 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		/// 等等，顧需要隨機打亂其中的擺放順序
 		/// 注：共有因數必須兩邊都有
 		/// </remarks>
-		private void SetNewGuidFactors(int factorShare, int factor1, int factor2, out int[] factors1, out int[] factors2)
+		private void SetNewGuidFactors(out List<int> factors, params int[] arguments)
 		{
-			factors1 = new int[] { factorShare, factor1 };
-			factors2 = new int[] { factorShare, factor2 };
 			// 隨機排序
-			factors1 = factors1.OrderBy(c => Guid.NewGuid()).ToArray();
-			factors2 = factors2.OrderBy(c => Guid.NewGuid()).ToArray();
+			factors = arguments.OrderBy(c => Guid.NewGuid()).ToList();
 		}
 	}
 }

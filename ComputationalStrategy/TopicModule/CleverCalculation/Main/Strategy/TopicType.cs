@@ -44,6 +44,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		/// 拆解
 		/// </summary>
 		Unknit = 30,
+
 		/// <summary>
 		/// 合併
 		/// </summary>
@@ -59,34 +60,41 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		/// <summary>
 		/// A+B+C
 		/// </summary>
-		Clever1 = 40,
+		CleverA = 40,
+
 		/// <summary>
 		/// A-(B-C)
 		/// </summary>
-		Clever2 = 41,
+		CleverB = 41,
+
 		/// <summary>
 		/// A-(B+C)
 		/// </summary>
-		Clever3 = 42,
+		CleverC = 42,
+
 		/// <summary>
 		/// A+(B-C)
 		/// </summary>
-		Clever4 = 43,
+		CleverD = 43,
+
 		/// <summary>
 		/// A+(B+C)
 		/// </summary>
-		Clever5 = 44,
+		CleverE = 44,
+
 		/// <summary>
 		/// A+B-C
 		/// </summary>
-		Clever6 = 45,
+		CleverF = 45,
+
 		/// <summary>
 		/// A-B+C
 		/// </summary>
-		Clever7 = 46,
+		CleverG = 46,
+
 		/// <summary>
 		/// A-B-C
 		/// </summary>
-		Clever8 = 47
+		CleverH = 47
 	}
 }

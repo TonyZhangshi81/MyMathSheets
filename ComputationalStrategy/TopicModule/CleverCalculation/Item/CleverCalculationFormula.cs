@@ -1,5 +1,4 @@
 ﻿using MyMathSheets.CommonLib.Main.Item;
-using MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy;
 using System.Collections.Generic;
 
 namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Item

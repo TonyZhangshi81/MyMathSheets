@@ -40,7 +40,6 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Parameters
 		/// </summary>
 		public override void InitParameter()
 		{
-			
 			object topicType = Reserve.GetPropertyByJson("TopicType");
 			TopicTypes = Convert.ToString(topicType).Split(new char[] { ',' }, StringSplitOptions.None).Select(s => int.Parse(s)).ToArray();
 
