@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 
 namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
@@ -58,14 +59,157 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 		{
 			// 乘法巧算
 			_calculations[(int)TopicType.Multiple] = CleverWithMultiple;
+			// 加法和減法巧算
+			_calculations[(int)TopicType.Plus] = CleverWithPlus;
+			_calculations[(int)TopicType.Subtraction] = CleverWithSubtraction;
+			// 綜合題型巧算（拆解）
+			_calculations[(int)Synthetic.Unknit] = CleverWithSyntheticUnknit;
+			// 綜合題型巧算（合併）
+			_calculations[(int)Synthetic.Combine] = CleverWithSyntheticCombine;
 		}
 
 		private int _parentIndex;
 
 		/// <summary>
-		///
+		/// 綜合題型巧算（合併）
 		/// </summary>
-		/// <param name="formula"></param>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverWithSyntheticCombine(CleverCalculationFormula formula)
+		{
+			StringBuilder html = new StringBuilder();
+			StringBuilder answer = new StringBuilder();
+
+			html.AppendFormat(LABEL_HTML_FORMAT, formula.ConfixFormulas[1].LeftParameter).AppendLine();
+			html.AppendFormat(LABEL_HTML_FORMAT, formula.ConfixFormulas[1].Sign.ToOperationUnicode()).AppendLine();
+			html.AppendFormat(LABEL_HTML_FORMAT, formula.ConfixFormulas[1].RightParameter).AppendLine();
+
+			html.AppendLine(string.Format(LABEL_HTML_FORMAT, formula.ConfixFormulas[3].Sign.ToOperationUnicode()));
+
+			html.AppendFormat(LABEL_HTML_FORMAT, formula.ConfixFormulas[2].LeftParameter).AppendLine();
+			html.AppendFormat(LABEL_HTML_FORMAT, formula.ConfixFormulas[2].Sign.ToOperationUnicode()).AppendLine();
+			html.AppendFormat(LABEL_HTML_FORMAT, formula.ConfixFormulas[2].RightParameter).AppendLine();
+
+			html.AppendLine(string.Format(LABEL_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareUnicode()));
+
+			int controlIndex = 0;
+			html.AppendLine(GetHtml(GapFilling.Left, formula.ConfixFormulas[0].LeftParameter, GapFilling.Left, _parentIndex, controlIndex++));
+			html.AppendLine(string.Format(LABEL_HTML_FORMAT, formula.ConfixFormulas[0].Sign.ToOperationUnicode()));
+			html.AppendLine(GetHtml(GapFilling.Right, formula.ConfixFormulas[0].RightParameter, GapFilling.Right, _parentIndex, controlIndex++));
+
+			html.AppendLine(string.Format(LABEL_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareUnicode()));
+
+			html.AppendLine(GetHtml(GapFilling.Answer, formula.Answer[0], GapFilling.Answer, _parentIndex, controlIndex++));
+
+			answer.AppendFormat("{0};", formula.ConfixFormulas[0].LeftParameter);
+			answer.AppendFormat("{0};", formula.ConfixFormulas[0].RightParameter);
+			answer.AppendFormat("{0}", formula.Answer[0]);
+
+			// 用於結果驗證
+			html.AppendFormat(ANSWER_HTML_FORMAT, _parentIndex.ToString().PadLeft(2, '0'), Base64.EncodeBase64(answer.ToString()));
+
+			return html.ToString();
+		}
+
+		/// <summary>
+		/// 綜合題型巧算（拆解）
+		/// </summary>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverWithSyntheticUnknit(CleverCalculationFormula formula)
+		{
+			StringBuilder html = new StringBuilder();
+			StringBuilder answer = new StringBuilder();
+
+			html.AppendFormat(LABEL_HTML_FORMAT, formula.ConfixFormulas[0].LeftParameter).AppendLine();
+			html.AppendFormat(LABEL_HTML_FORMAT, formula.ConfixFormulas[0].Sign.ToOperationUnicode()).AppendLine();
+			html.AppendFormat(LABEL_HTML_FORMAT, formula.ConfixFormulas[0].RightParameter).AppendLine();
+
+			int controlIndex = 0;
+			html.AppendLine(string.Format(LABEL_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareUnicode()));
+			html.AppendLine(GetHtml(GapFilling.Left, formula.ConfixFormulas[1].LeftParameter, GapFilling.Left, _parentIndex, controlIndex++));
+			html.AppendLine(string.Format(LABEL_HTML_FORMAT, formula.ConfixFormulas[1].Sign.ToOperationUnicode()));
+			html.AppendLine(GetHtml(GapFilling.Right, formula.ConfixFormulas[1].RightParameter, GapFilling.Right, _parentIndex, controlIndex++));
+
+			html.AppendLine(string.Format(LABEL_HTML_FORMAT, formula.ConfixFormulas[3].Sign.ToOperationUnicode()));
+
+			html.AppendLine(GetHtml(GapFilling.Left, formula.ConfixFormulas[2].LeftParameter, GapFilling.Left, _parentIndex, controlIndex++));
+			html.AppendLine(string.Format(LABEL_HTML_FORMAT, formula.ConfixFormulas[2].Sign.ToOperationUnicode()));
+			html.AppendLine(GetHtml(GapFilling.Right, formula.ConfixFormulas[2].RightParameter, GapFilling.Right, _parentIndex, controlIndex++));
+
+			html.AppendLine(string.Format(LABEL_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareUnicode()));
+
+			html.AppendLine(GetHtml(GapFilling.Answer, formula.Answer[0], GapFilling.Answer, _parentIndex, controlIndex++));
+
+			answer.AppendFormat("{0};", formula.ConfixFormulas[1].LeftParameter);
+			answer.AppendFormat("{0};", formula.ConfixFormulas[1].RightParameter);
+			answer.AppendFormat("{0};", formula.ConfixFormulas[2].LeftParameter);
+			answer.AppendFormat("{0};", formula.ConfixFormulas[2].RightParameter);
+			answer.AppendFormat("{0}", formula.Answer[0]);
+
+			// 用於結果驗證
+			html.AppendFormat(ANSWER_HTML_FORMAT, _parentIndex.ToString().PadLeft(2, '0'), Base64.EncodeBase64(answer.ToString()));
+
+			return html.ToString();
+		}
+
+		/// <summary>
+		/// 加法巧算
+		/// </summary>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverWithPlus(CleverCalculationFormula formula)
+		{
+			StringBuilder html = new StringBuilder();
+			StringBuilder answer = new StringBuilder();
+
+			string flag = "topic";
+			int controlIndex = 0;
+			formula.ConfixFormulas.ToList().ForEach(d =>
+			{
+				if ("topic".Equals(flag))
+				{
+					html.AppendFormat(LABEL_HTML_FORMAT, d.LeftParameter);
+					html.AppendFormat(LABEL_HTML_FORMAT, d.Sign.ToOperationUnicode());
+					html.AppendFormat(LABEL_HTML_FORMAT, d.RightParameter);
+				}
+				if ("result".Equals(flag))
+				{
+					html.AppendLine(string.Format(LABEL_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareUnicode()));
+					html.AppendLine(GetHtml(GapFilling.Left, d.LeftParameter, GapFilling.Left, _parentIndex, controlIndex++));
+					html.AppendLine(string.Format(LABEL_HTML_FORMAT, d.Sign.ToOperationUnicode()));
+					html.AppendLine(GetHtml(GapFilling.Right, d.RightParameter, GapFilling.Right, _parentIndex, controlIndex++));
+
+					answer.AppendFormat("{0};", d.LeftParameter);
+					answer.AppendFormat("{0};", d.RightParameter);
+				}
+				flag = "result";
+			});
+
+			html.AppendLine(string.Format(LABEL_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareUnicode()));
+			html.AppendLine(GetHtml(GapFilling.Answer, formula.Answer[0], GapFilling.Answer, _parentIndex, controlIndex++));
+			answer.AppendFormat("{0}", formula.Answer[0]);
+
+			// 用於結果驗證
+			html.AppendFormat(ANSWER_HTML_FORMAT, _parentIndex.ToString().PadLeft(2, '0'), Base64.EncodeBase64(answer.ToString()));
+
+			return html.ToString();
+		}
+
+		/// <summary>
+		/// 減法巧算
+		/// </summary>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverWithSubtraction(CleverCalculationFormula formula)
+		{
+			return CleverWithPlus(formula);
+		}
+
+		/// <summary>
+		/// 乘法巧算
+		/// </summary>
+		/// <param name="formula">計算式</param>
 		/// <returns></returns>
 		private string CleverWithMultiple(CleverCalculationFormula formula)
 		{
