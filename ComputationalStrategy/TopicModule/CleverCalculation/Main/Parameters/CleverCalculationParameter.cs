@@ -16,7 +16,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Parameters
 	public class CleverCalculationParameter : TopicParameterBase
 	{
 		/// <summary>
-		/// 等式接龍作成并輸出
+		/// 計算式作成并輸出
 		/// </summary>
 		public IList<CleverCalculationFormula> Formulas { get; set; }
 

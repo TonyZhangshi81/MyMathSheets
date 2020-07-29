@@ -148,6 +148,8 @@
   <ItemGroup>
     <Content Include="Content\image\ArithmeticOperations.png" />
     <Content Include="Content\image\car.png" />
+    <Content Include="Content\image\city.png" />
+    <Content Include="Content\image\CleverCalculation.png" />
     <Content Include="Content\image\CurrencyLinkage.png" />
     <Content Include="Content\image\CurrencyOperation.png" />
     <Content Include="Content\image\WeatherWind.png" />

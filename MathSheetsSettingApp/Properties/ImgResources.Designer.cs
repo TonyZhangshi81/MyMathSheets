@@ -73,6 +73,16 @@ namespace MyMathSheets.MathSheetsSettingApp.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap CleverCalculation {
+            get {
+                object obj = ResourceManager.GetObject("CleverCalculation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap CombinatorialEquation {
             get {
                 object obj = ResourceManager.GetObject("CombinatorialEquation", resourceCulture);

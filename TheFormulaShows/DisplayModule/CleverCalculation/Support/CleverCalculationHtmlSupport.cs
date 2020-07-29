@@ -1,10 +1,14 @@
 ﻿using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.HtmlSupport.Attributes;
-using MyMathSheets.CommonLib.Main.VirtualHelper;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.CommonLib.Util.Security;
 using MyMathSheets.ComputationalStrategy.CleverCalculation.Item;
 using MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Parameters;
+using MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
 using System.Text;
 
 namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
@@ -22,11 +26,70 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 	public class CleverCalculationHtmlSupport : HtmlSupportBase<CleverCalculationParameter>
 	{
 		/// <summary>
-		/// 智能提示
+		/// 標題HTML模板
 		/// </summary>
-		private HelperDialogue BrainpowerHint { get; set; }
+		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
 
-		private int _brainpowerIndex;
+		/// <summary>
+		/// 答題結果項目HTML模板
+		/// </summary>
+		private const string ANSWER_HTML_FORMAT = "<input id=\"hiddenClc{0}\" type=\"hidden\" value=\"{1}\"/>";
+
+		/// <summary>
+		/// LABEL標籤HTML模板
+		/// </summary>
+		private const string LABEL_HTML_FORMAT = "<span class=\"label\">{0}</span>";
+
+		/// <summary>
+		/// 輸入項目HTML模板
+		/// </summary>
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputClc{0}L{1}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder\" disabled=\"disabled\" onkeyup=\"if(!/^\\d+$/.test(this.value)) this.value='';\" />";
+
+		/// <summary>
+		/// 巧算的HTML實現方法集合
+		/// </summary>
+		private readonly Dictionary<int, Func<CleverCalculationFormula, string>> _calculations = new Dictionary<int, Func<CleverCalculationFormula, string>>();
+
+		/// <summary>
+		/// <see cref="CleverCalculationHtmlSupport"/>構造函數
+		/// </summary>
+		[ImportingConstructor]
+		public CleverCalculationHtmlSupport()
+		{
+			// 乘法巧算
+			_calculations[(int)TopicType.Multiple] = CleverWithMultiple;
+		}
+
+		private int _parentIndex;
+
+		/// <summary>
+		///
+		/// </summary>
+		/// <param name="formula"></param>
+		/// <returns></returns>
+		private string CleverWithMultiple(CleverCalculationFormula formula)
+		{
+			StringBuilder html = new StringBuilder();
+			StringBuilder answer = new StringBuilder();
+
+			html.AppendFormat(LABEL_HTML_FORMAT, formula.ConfixFormulas[0].Answer);
+
+			int controlIndex = 0;
+			formula.ConfixFormulas.ToList().ForEach(d =>
+			{
+				html.AppendLine(string.Format(LABEL_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareUnicode()));
+				html.AppendLine(GetHtml(d.Gap, d.LeftParameter, GapFilling.Left, _parentIndex, controlIndex++));
+				html.AppendLine(string.Format(LABEL_HTML_FORMAT, SignOfOperation.Multiple.ToOperationUnicode()));
+				html.AppendLine(GetHtml(d.Gap, d.RightParameter, GapFilling.Right, _parentIndex, controlIndex++));
+			});
+
+			formula.Answer.ForEach(d => answer.AppendFormat("{0};", d));
+			answer.Length -= 1;
+			// 用於結果驗證
+			html.AppendFormat(ANSWER_HTML_FORMAT, _parentIndex.ToString().PadLeft(2, '0'), Base64.EncodeBase64(answer.ToString()));
+
+			return html.ToString();
+		}
 
 		/// <summary>
 		/// 題型HTML模板作成
@@ -42,33 +105,36 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 
 			int numberOfColumns = 0;
 			bool isRowHtmlClosed = false;
-			BrainpowerHint = p.BrainpowerHint;
-			_brainpowerIndex = 0;
 
-			int controlIndex = 0;
+			_parentIndex = 0;
 			StringBuilder html = new StringBuilder();
 			StringBuilder rowHtml = new StringBuilder();
 			StringBuilder colHtml = new StringBuilder();
-			foreach (CleverCalculationFormula item in p.Formulas)
+
+			// 算式作成
+			p.Formulas.ToList().ForEach(d =>
 			{
 				isRowHtmlClosed = false;
-				colHtml.AppendLine("<div class=\"col-md-4 form-inline\">");
+				colHtml.AppendLine("<div class=\"col-md-6 form-inline\">");
 				colHtml.AppendLine("<h5>");
 
-				// TODO
+				if (_calculations.TryGetValue(d.Type, out Func<CleverCalculationFormula, string> calculation))
+				{
+					colHtml.AppendLine(calculation(d));
+				}
 
 				colHtml.AppendLine("</h5>");
 				colHtml.AppendLine("<div class=\"divCorrectOrFault-1\">");
-				colHtml.AppendLine(string.Format("<img id=\"imgOKCleverCalculation{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", controlIndex.ToString().PadLeft(2, '0')));
-				colHtml.AppendLine(string.Format("<img id=\"imgNoCleverCalculation{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", controlIndex.ToString().PadLeft(2, '0')));
+				colHtml.AppendLine(string.Format("<img id=\"imgOKCleverCalculation{0}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", _parentIndex.ToString().PadLeft(2, '0')));
+				colHtml.AppendLine(string.Format("<img id=\"imgNoCleverCalculation{0}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", _parentIndex.ToString().PadLeft(2, '0')));
 				colHtml.AppendLine("</div>");
 				colHtml.AppendLine("</div>");
 
-				controlIndex++;
+				_parentIndex++;
 				numberOfColumns++;
 
-				// 單位行上顯示3道題目
-				if (numberOfColumns == 3)
+				// 單位行上顯示2道題目
+				if (numberOfColumns == 2)
 				{
 					rowHtml.AppendLine("<div class=\"row text-center row-margin-top\">");
 					rowHtml.Append(colHtml.ToString());
@@ -81,7 +147,7 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 					rowHtml.Length = 0;
 					colHtml.Length = 0;
 				}
-			}
+			});
 
 			if (!isRowHtmlClosed)
 			{
@@ -95,32 +161,9 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 			if (html.Length != 0)
 			{
 				html.Insert(0, "<div class=\"div-page-content\">").AppendLine();
-				// 會話提示內容保存至畫面
-				//html.AppendLine(string.Format(DIALOGUE_CONTENT_HTML_FORMAT, GetCleverCalculationDialogue()));
-				html.AppendLine().Append("</div>");
-				//html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "CleverCalculation", "巧算"));
+				html.AppendLine("</div>");
+				html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "CleverCalculation", "巧算"));
 			}
-
-			return html.ToString();
-		}
-
-		/// <summary>
-		/// 會話提示內容保存至畫面
-		/// </summary>
-		/// <returns>HTML模板信息</returns>
-		private string GetCleverCalculationDialogue()
-		{
-			if (BrainpowerHint == null)
-			{
-				return string.Empty;
-			}
-
-			StringBuilder html = new StringBuilder();
-			BrainpowerHint.Dialogues.ForEach(d =>
-			{
-				html.AppendFormat("{0};", d);
-			});
-			html.Length -= 1;
 
 			return html.ToString();
 		}
@@ -131,26 +174,19 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 		/// <param name="item">填空項目</param>
 		/// <param name="parameter">計算式中的數值</param>
 		/// <param name="gap">當前顯示項目所在計算式中的位置</param>
-		/// <param name="index">控件索引號</param>
+		/// <param name="parentIndex">控件索引號</param>
+		/// <param name="controlIndex">子控件索引號</param>
 		/// <returns>HTML模板信息</returns>
-		private string GetHtml(GapFilling item, int parameter, GapFilling gap, int index)
+		private string GetHtml(GapFilling item, int parameter, GapFilling gap, int parentIndex, int controlIndex)
 		{
 			StringBuilder html = new StringBuilder();
 			if (item == gap)
 			{
-				if (BrainpowerHint.FormulaIndex.Count > _brainpowerIndex && BrainpowerHint.FormulaIndex[_brainpowerIndex] == index)
-				{
-					//html.AppendFormat(INPUT_HTML_FORMAT, index.ToString().PadLeft(2, '0'), string.Format(DIALOGUE_JS_HTML_FORMAT, _brainpowerIndex++));
-				}
-				else
-				{
-					//html.AppendFormat(INPUT_HTML_FORMAT, index.ToString().PadLeft(2, '0'), string.Empty);
-				}
-				//html.AppendFormat(ANSWER_HTML_FORMAT, index.ToString().PadLeft(2, '0'), Base64.EncodeBase64(parameter.ToString()));
+				html.AppendFormat(INPUT_HTML_FORMAT, parentIndex.ToString().PadLeft(2, '0'), controlIndex.ToString());
 			}
 			else
 			{
-				//html.AppendFormat(LABEL_HTML_FORMAT, parameter);
+				html.AppendFormat(LABEL_HTML_FORMAT, parameter);
 			}
 
 			return html.ToString();
