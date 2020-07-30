@@ -102,6 +102,11 @@
   {
     "id": "CleverCalculation",
     "name": "巧算",
-    "number": "CLC97"
+    "number": "CLC99"
+  },
+  {
+    "id": "RecursionEquation",
+    "name": "遞等式計算",
+    "number": "RE001"
   }
 ]

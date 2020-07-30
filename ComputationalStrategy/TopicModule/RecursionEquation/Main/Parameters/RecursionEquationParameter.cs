@@ -1,0 +1,46 @@
+﻿using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Main.Policy.Attributes;
+using MyMathSheets.CommonLib.Main.VirtualHelper;
+using MyMathSheets.CommonLib.Util;
+using MyMathSheets.ComputationalStrategy.RecursionEquation.Item;
+using MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Parameters
+{
+	/// <summary>
+	/// 遞等式計算參數類
+	/// </summary>
+	[TopicParameter("RecursionEquation")]
+	public class RecursionEquationParameter : TopicParameterBase
+	{
+		/// <summary>
+		/// 計算式作成并輸出
+		/// </summary>
+		public IList<RecursionEquationFormula> Formulas { get; set; }
+
+		/// <summary>
+		/// 智能提示
+		/// </summary>
+		public HelperDialogue BrainpowerHint { get; set; }
+
+		/// <summary>
+		/// 題型參數設置
+		/// </summary>
+		public List<TopicType> TopicTypes { get; set; }
+
+		/// <summary>
+		/// 初期化參數
+		/// </summary>
+		public override void InitParameter()
+		{
+			object topicType = Reserve.GetPropertyByJson("TopicType");
+			TopicTypes = Convert.ToString(topicType).Split(new char[] { ',' }, StringSplitOptions.None).Select(s => (TopicType)Enum.Parse(typeof(TopicType), s)).ToList();
+
+			// 遞等式計算集合實例化
+			Formulas = new List<RecursionEquationFormula>();
+		}
+	}
+}

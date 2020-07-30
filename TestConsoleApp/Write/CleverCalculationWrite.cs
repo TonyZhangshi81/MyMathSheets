@@ -118,57 +118,6 @@ namespace MyMathSheets.TestConsoleApp.Write
 					Console.Write(d.Answer[0]);
 				}
 
-				if (d.Type == (int)Clever.CleverA
-						|| d.Type == (int)Clever.CleverG
-						|| d.Type == (int)Clever.CleverH)
-				{
-					// CleverA: 22+44+56 -> 22+(44+56)
-					//			列1: 22+44 = 66
-					//			列2: 66+56 = 122
-					// CleverG: 68-44+12 -> 68+12-44
-					//			列1: 68-44 = 24
-					//			列2: 24+12 = 36
-					// CleverH: 68-44-18 -> 68-18-44
-					//			列1: 68-44 = 24
-					//			列2: 24-18 = 6
-					Console.Write(string.Format("{0} {1} {2} {3} {4} = {5}",
-						d.ConfixFormulas[0].LeftParameter,
-						d.ConfixFormulas[0].Sign.ToOperationString(),
-						d.ConfixFormulas[0].RightParameter,
-						d.ConfixFormulas[1].Sign.ToOperationString(),
-						d.ConfixFormulas[1].RightParameter,
-						d.Answer[0]));
-				}
-				else if (d.Type == (int)Clever.CleverB
-						|| d.Type == (int)Clever.CleverC
-						|| d.Type == (int)Clever.CleverD
-						|| d.Type == (int)Clever.CleverE
-						|| d.Type == (int)Clever.CleverF)
-				{
-					// CleverB: 68-(44-12) -> 68-44+12 -> 68+12-44
-					//			列1: 44-12 = 32
-					//			列2: 68-32 = 36
-					// CleverC: 62-(44+12) -> 62-44-12 -> 62-12-44
-					//			列1: 44+12 = 56
-					//			列2: 62-56 = 6
-					// CleverD: 62+(44-12) -> 62+44-12 -> 62-12+44
-					//			列1: 44-12 = 32
-					//			列2: 62+32 = 94
-					// CleverE: 68+(44+12) -> 68+44+12 -> 68+12+44
-					//			列1: 44+12 = 56
-					//			列2: 68+56 = 124
-					// CleverF: 68+44-18 -> 68-18+44
-					//			列1: 68+44 = 112
-					//			列2: 112-18 = 94
-					Console.Write(string.Format("{0} {1} ({2} {3} {4}) = {5}",
-						d.ConfixFormulas[1].LeftParameter,
-						d.ConfixFormulas[1].Sign.ToOperationString(),
-						d.ConfixFormulas[0].LeftParameter,
-						d.ConfixFormulas[0].Sign.ToOperationString(),
-						d.ConfixFormulas[0].RightParameter,
-						d.Answer[0]));
-				}
-
 				Console.WriteLine();
 			});
 		}

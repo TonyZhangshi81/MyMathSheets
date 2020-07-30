@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{98A95BDF-DDC6-4324-9263-6CA5A08F5E2F}</ProjectGuid>
+    <ProjectGuid>{D943ECA3-91C8-4071-94DF-84B28B937793}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MyMathSheets.ComputationalStrategy.CleverCalculation</RootNamespace>
-    <AssemblyName>MyMathSheets.ComputationalStrategy.Generally.CleverCalculation</AssemblyName>
+    <RootNamespace>MyMathSheets.ComputationalStrategy.RecursionEquation</RootNamespace>
+    <AssemblyName>MyMathSheets.ComputationalStrategy.Generally.RecursionEquation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\MyMathSheets.ComputationalStrategy.Generally.CleverCalculation.xml</DocumentationFile>
+    <DocumentationFile>bin\MyMathSheets.ComputationalStrategy.Generally.RecursionEquation.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,15 +51,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Item\CleverCalculationFormula.cs" />
-    <Compile Include="Main\Helper\CleverCalculationDialogue.cs" />
-    <Compile Include="Main\Parameters\CleverCalculationParameter.cs" />
-    <Compile Include="Main\Strategy\CleverCalculation.cs" />
+    <Compile Include="Item\RecursionEquationFormula.cs" />
+    <Compile Include="Main\Helper\RecursionEquationDialogue.cs" />
+    <Compile Include="Main\Parameters\RecursionEquationParameter.cs" />
+    <Compile Include="Main\Strategy\RecursionEquation.cs" />
     <Compile Include="Main\Strategy\TopicType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\CleverCalculation.json" />
+    <None Include="Config\RecursionEquation.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

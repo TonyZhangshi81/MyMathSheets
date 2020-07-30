@@ -25,56 +25,6 @@
     "Reserve": "{\"TopicType\" : '3', \"SubTopicType\" : '31'}"
   },
   {
-    "Identifier": "CLC06",
-    "NumberOfQuestions": 5,
-    "Reserve": "{\"TopicType\" : '4', \"SubTopicType\" : '40'}"
-  },
-  {
-    "Identifier": "CLC07",
-    "NumberOfQuestions": 5,
-    "Reserve": "{\"TopicType\" : '4', \"SubTopicType\" : '41'}"
-  },
-  {
-    "Identifier": "CLC08",
-    "NumberOfQuestions": 5,
-    "Reserve": "{\"TopicType\" : '4', \"SubTopicType\" : '42'}"
-  },
-  {
-    "Identifier": "CLC09",
-    "NumberOfQuestions": 5,
-    "Reserve": "{\"TopicType\" : '4', \"SubTopicType\" : '43'}"
-  },
-  {
-    "Identifier": "CLC10",
-    "NumberOfQuestions": 5,
-    "Reserve": "{\"TopicType\" : '4', \"SubTopicType\" : '44'}"
-  },
-  {
-    "Identifier": "CLC11",
-    "NumberOfQuestions": 5,
-    "Reserve": "{\"TopicType\" : '4', \"SubTopicType\" : '45'}"
-  },
-  {
-    "Identifier": "CLC12",
-    "NumberOfQuestions": 5,
-    "Reserve": "{\"TopicType\" : '4', \"SubTopicType\" : '46'}"
-  },
-  {
-    "Identifier": "CLC13",
-    "NumberOfQuestions": 5,
-    "Reserve": "{\"TopicType\" : '4', \"SubTopicType\" : '47'}"
-  },
-  {
-    "Identifier": "CLC97",
-    "NumberOfQuestions": 30,
-    "Reserve": "{\"TopicType\" : '0,1,2,3', \"SubTopicType\" : '30,31'}"
-  },
-  {
-    "Identifier": "CLC98",
-    "NumberOfQuestions": 30,
-    "Reserve": "{\"TopicType\" : '4', \"SubTopicType\" : '40,41,42,43,44,45,46,47'}"
-  },
-  {
     "Identifier": "CLC99",
     "NumberOfQuestions": 10,
     "Reserve": "{\"TopicType\" : '0,1,2,3', \"SubTopicType\" : '30,31'}"

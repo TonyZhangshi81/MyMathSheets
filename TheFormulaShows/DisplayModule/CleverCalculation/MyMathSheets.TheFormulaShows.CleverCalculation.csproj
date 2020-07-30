@@ -76,7 +76,7 @@
 if not exist "$(SolutionDir)Lib\DisplayModule" md "$(SolutionDir)Lib\DisplayModule"
 copy "$(TargetFileName)" "$(SolutionDir)Lib\DisplayModule" /Y
 copy "..\Scripts\Ext\*.js" "..\..\..\Scripts\Ext\" /Y
-xcopy "..\Content\image" "..\..\..\Content\image" /C /E /H /K /R /Y
+xcopy "..\Content" "..\..\..\Content" /C /E /H /K /R /Y
 copy "..\Template\*.html" "$(SolutionDir)TheFormulaShows\Template" /Y
 )</PostBuildEvent>
   </PropertyGroup>

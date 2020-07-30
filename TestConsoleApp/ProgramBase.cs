@@ -40,6 +40,7 @@ namespace MyMathSheets.TestConsoleApp
 				{"TC0", new string []{ "TimeCalculation", "時間運算" } },
 				{"MU0", new string []{ "MathUpright", "豎式計算" } },
 				{"CLC", new string []{ "CleverCalculation", "巧算" } },
+				{"RE0", new string []{ "RecursionEquation", "遞等式計算" } },
 				{"900", new string []{ "Menu", "菜單" } },
 				{"000", new string []{ "Close", "退出" } }
 			};
@@ -82,6 +83,7 @@ namespace MyMathSheets.TestConsoleApp
 					Console.WriteLine("時間運算(TC001~TC006)");
 					Console.WriteLine("豎式計算(MU001~MU003)");
 					Console.WriteLine("巧算(CLC01~CLC04)");
+					Console.WriteLine("遞等式計算(RE001~RE007)");
 					Console.WriteLine("    9-菜單    0-退出");
 					Console.WriteLine("");
 					Console.Write("");

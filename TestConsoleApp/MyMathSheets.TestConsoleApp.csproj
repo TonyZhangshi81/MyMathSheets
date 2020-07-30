@@ -101,6 +101,9 @@
     <Reference Include="MyMathSheets.ComputationalStrategy.Generally.NumericSorting">
       <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Generally.NumericSorting.dll</HintPath>
     </Reference>
+    <Reference Include="MyMathSheets.ComputationalStrategy.Generally.RecursionEquation">
+      <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Generally.RecursionEquation.dll</HintPath>
+    </Reference>
     <Reference Include="MyMathSheets.ComputationalStrategy.Generally.ScoreGoal">
       <HintPath>..\Lib\StrategyModule\MyMathSheets.ComputationalStrategy.Generally.ScoreGoal.dll</HintPath>
     </Reference>
@@ -132,6 +135,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Write\RecursionEquationWrite.cs" />
     <Compile Include="Write\CleverCalculationWrite.cs" />
     <Compile Include="Write\Main\FormulasConsolerFactory.cs" />
     <Compile Include="Plugin\PluginsManager.cs" />

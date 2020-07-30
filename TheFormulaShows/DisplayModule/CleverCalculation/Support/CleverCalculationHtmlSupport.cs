@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
-using System.Security.Permissions;
 using System.Text;
 
 namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
@@ -68,24 +67,7 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 			_calculations[(int)Synthetic.Unknit] = CleverWithSyntheticUnknit;
 			// 綜合題型巧算（合併）
 			_calculations[(int)Synthetic.Combine] = CleverWithSyntheticCombine;
-			// 巧算[A+B+C]
-			_calculations[(int)Clever.CleverA] = CleverA;
 		}
-
-		/// <summary>
-		/// 巧算[A+B+C]
-		/// </summary>
-		/// <param name="formula">計算式</param>
-		/// <returns></returns>
-		private string CleverA(CleverCalculationFormula formula)
-		{
-			StringBuilder html = new StringBuilder();
-			StringBuilder answer = new StringBuilder();
-
-
-			return html.ToString();
-		}
-
 
 		#region 綜合題型巧算（合併）
 

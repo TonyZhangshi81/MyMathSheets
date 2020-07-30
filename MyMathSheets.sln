@@ -204,6 +204,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.CleverCalculation", "TheFormulaShows\DisplayModule\CleverCalculation\MyMathSheets.TheFormulaShows.CleverCalculation.csproj", "{0E153E68-87A4-4FA4-9A69-AC5595155971}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.RecursionEquation", "ComputationalStrategy\TopicModule\RecursionEquation\MyMathSheets.ComputationalStrategy.RecursionEquation.csproj", "{D943ECA3-91C8-4071-94DF-84B28B937793}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.RecursionEquation", "TheFormulaShows\DisplayModule\RecursionEquation\MyMathSheets.TheFormulaShows.RecursionEquation.csproj", "{C7BB310D-6430-4445-B0DD-1ECF4107653A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -404,6 +408,14 @@ Global
 		{0E153E68-87A4-4FA4-9A69-AC5595155971}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E153E68-87A4-4FA4-9A69-AC5595155971}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E153E68-87A4-4FA4-9A69-AC5595155971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D943ECA3-91C8-4071-94DF-84B28B937793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D943ECA3-91C8-4071-94DF-84B28B937793}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D943ECA3-91C8-4071-94DF-84B28B937793}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D943ECA3-91C8-4071-94DF-84B28B937793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7BB310D-6430-4445-B0DD-1ECF4107653A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7BB310D-6430-4445-B0DD-1ECF4107653A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7BB310D-6430-4445-B0DD-1ECF4107653A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7BB310D-6430-4445-B0DD-1ECF4107653A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -452,6 +464,8 @@ Global
 		{B1181420-6BEA-4A5C-9751-806634F848D5} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 		{98A95BDF-DDC6-4324-9263-6CA5A08F5E2F} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
 		{0E153E68-87A4-4FA4-9A69-AC5595155971} = {3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}
+		{D943ECA3-91C8-4071-94DF-84B28B937793} = {8BCE20EF-6C56-439F-B641-AF994D9A63FC}
+		{C7BB310D-6430-4445-B0DD-1ECF4107653A} = {3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D308C80E-F93A-4F56-89CD-5A89344949B1}
