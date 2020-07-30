@@ -354,6 +354,10 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 
 			// 乘法算式序列（取得隨機數後執行Check回調預判其是否可用）
 			var list = GetMultipleSyntagmaticOrdering(formulas);
+			if (!list.Any())
+			{
+				return;
+			}
 
 			int seq = 1;
 			// 從乘法算式序列中隨機選擇3個算式（不重複）
@@ -381,6 +385,9 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 		/// </remarks>
 		private List<Formula> GetMultipleSyntagmaticOrdering(IList<CleverCalculationFormula> formulas)
 		{
+			// 當前反推判定次數（一次推算內次數累加）
+			int defeated = 0;
+
 			List<Formula> list = new List<Formula>();
 
 			// 隨機數取得後的回調函數
@@ -392,6 +399,11 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			while (1 == 1)
 			{
 				list.Clear();
+				// 如果大於三次則認為此題無法作成繼續下一題
+				if (defeated == INVERSE_NUMBER)
+				{
+					break;
+				}
 
 				// 獲取一個隨機數
 				int answer = CommonUtil.GetRandomNumber(10, 99, answerRandomCallback);
@@ -418,6 +430,8 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 				{
 					break;
 				}
+
+				defeated++;
 			}
 
 			return list;

@@ -9,6 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../Content/image/favicon.ico">
     <link href="../../../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+    <link href="../../../Content/accordion.css" rel="stylesheet" charset="utf-8">
     <link href="../../../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
     <link title="default" href="../../../Content/switcher/MathSheets.css" rel="stylesheet" charset="utf-8">
     <link title="burlywood" href="../../../Content/switcher/MathSheets-burlywood.css" rel="stylesheet" charset="utf-8" disabled="disabled">
@@ -265,6 +266,25 @@
                         <div class="divCorrectOrFault-1">
                             <img id="imgOKCleverCalculation04" src="../../../Content/image/correct.png" class="imgCorrect-1" />
                             <img id="imgNoCleverCalculation04" src="../../../Content/image/fault.png" class="imgFault-1" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row text-center row-margin-top">
+                    <div class="col-md-6 form-inline">
+                        <div class="easyui-accordion" style="width:80%;">
+                            <div title="12*13+45" data-options="iconCls:'icon-ok'" style="padding:10px;">
+                                <span class="label">=</span>
+                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <div class="easyui-accordion" style="width:80%;">
+                            <div title="200*131+435" data-options="iconCls:'icon-ok'" style="padding:10px;">
+                                <span class="label">=</span>
+                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            </div>
                         </div>
                     </div>
                 </div>

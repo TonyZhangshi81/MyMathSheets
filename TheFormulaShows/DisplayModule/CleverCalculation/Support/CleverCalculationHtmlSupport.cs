@@ -26,6 +26,8 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.CleverCalculation.printAfterSetting();")]
 	public class CleverCalculationHtmlSupport : HtmlSupportBase<CleverCalculationParameter>
 	{
+		private int _parentIndex;
+
 		/// <summary>
 		/// 標題HTML模板
 		/// </summary>
@@ -66,9 +68,26 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 			_calculations[(int)Synthetic.Unknit] = CleverWithSyntheticUnknit;
 			// 綜合題型巧算（合併）
 			_calculations[(int)Synthetic.Combine] = CleverWithSyntheticCombine;
+			// 巧算[A+B+C]
+			_calculations[(int)Clever.CleverA] = CleverA;
 		}
 
-		private int _parentIndex;
+		/// <summary>
+		/// 巧算[A+B+C]
+		/// </summary>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverA(CleverCalculationFormula formula)
+		{
+			StringBuilder html = new StringBuilder();
+			StringBuilder answer = new StringBuilder();
+
+
+			return html.ToString();
+		}
+
+
+		#region 綜合題型巧算（合併）
 
 		/// <summary>
 		/// 綜合題型巧算（合併）
@@ -111,6 +130,10 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 			return html.ToString();
 		}
 
+		#endregion 綜合題型巧算（合併）
+
+		#region 綜合題型巧算（拆解）
+
 		/// <summary>
 		/// 綜合題型巧算（拆解）
 		/// </summary>
@@ -152,6 +175,10 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 
 			return html.ToString();
 		}
+
+		#endregion 綜合題型巧算（拆解）
+
+		#region 加法巧算
 
 		/// <summary>
 		/// 加法巧算
@@ -196,6 +223,10 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 			return html.ToString();
 		}
 
+		#endregion 加法巧算
+
+		#region 減法巧算
+
 		/// <summary>
 		/// 減法巧算
 		/// </summary>
@@ -205,6 +236,10 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 		{
 			return CleverWithPlus(formula);
 		}
+
+		#endregion 減法巧算
+
+		#region 乘法巧算
 
 		/// <summary>
 		/// 乘法巧算
@@ -234,6 +269,8 @@ namespace MyMathSheets.TheFormulaShows.CleverCalculation.Support
 
 			return html.ToString();
 		}
+
+		#endregion 乘法巧算
 
 		/// <summary>
 		/// 題型HTML模板作成
