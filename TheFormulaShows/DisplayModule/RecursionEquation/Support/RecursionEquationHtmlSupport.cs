@@ -18,7 +18,7 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport("RecursionEquation")]
-	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/RecursionEquation.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/css/RecursionEquation.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.RecursionEquation.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.RecursionEquation.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.RecursionEquation.makeCorrections();")]

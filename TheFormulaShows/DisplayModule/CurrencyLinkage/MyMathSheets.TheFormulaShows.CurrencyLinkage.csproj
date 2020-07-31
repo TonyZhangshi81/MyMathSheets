@@ -55,7 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\CurrencyLinkage.css" />
+    <Content Include="Content\css\CurrencyLinkage.css" />
     <Content Include="Content\image\shop\Book.png" />
     <Content Include="Content\image\shop\Christmas.png" />
     <Content Include="Content\image\shop\Hat.png" />

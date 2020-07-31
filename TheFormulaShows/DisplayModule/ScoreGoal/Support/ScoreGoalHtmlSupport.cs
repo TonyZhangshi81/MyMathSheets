@@ -15,7 +15,7 @@ namespace MyMathSheets.TheFormulaShows.ScoreGoal.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport("ScoreGoal")]
-	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/ScoreGoal.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/css/ScoreGoal.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.ScoreGoal.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "__goalsArrayHiddenControlId = 'hidBallsArray';MathSheets.ScoreGoal.ready('divBall', 'divGoaler');")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.ScoreGoal.makeCorrections();")]

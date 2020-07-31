@@ -14,7 +14,7 @@ namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport("EqualityLinkage")]
-	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/EqualityLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/css/EqualityLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.EqualityLinkage.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.EqualityLinkage.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.EqualityLinkage.makeCorrections();")]

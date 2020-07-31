@@ -14,7 +14,7 @@ namespace MyMathSheets.TheFormulaShows.CurrencyLinkage.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport("CurrencyLinkage")]
-	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/CurrencyLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/css/CurrencyLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.CurrencyLinkage.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.CurrencyLinkage.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.CurrencyLinkage.makeCorrections();")]

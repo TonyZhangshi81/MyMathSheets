@@ -55,7 +55,7 @@
     <Compile Include="Support\FruitsLinkageHtmlSupport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\FruitsLinkage.css" />
+    <Content Include="Content\css\FruitsLinkage.css" />
     <Content Include="Content\image\fruits\Apple.png" />
     <Content Include="Content\image\fruits\Apricot.png" />
     <Content Include="Content\image\fruits\Banana.png" />

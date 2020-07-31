@@ -58,7 +58,7 @@
     <Content Include="Content\image\clock\faces.png" />
     <Content Include="Content\image\clock\Moon.png" />
     <Content Include="Content\image\clock\Sun.png" />
-    <Content Include="Content\SchoolClock.css" />
+    <Content Include="Content\css\SchoolClock.css" />
     <Content Include="Scripts\Ext\MathSheets.SchoolClock.js" />
     <Content Include="Template\SchoolClock.html" />
   </ItemGroup>

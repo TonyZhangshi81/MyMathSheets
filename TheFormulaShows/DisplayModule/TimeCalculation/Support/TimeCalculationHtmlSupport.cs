@@ -13,7 +13,7 @@ namespace MyMathSheets.TheFormulaShows.TimeCalculation.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport("TimeCalculation")]
-	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/TimeCalculation.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/css/TimeCalculation.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.TimeCalculation.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.TimeCalculation.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.TimeCalculation.makeCorrections();")]

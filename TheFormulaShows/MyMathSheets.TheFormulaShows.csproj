@@ -288,6 +288,7 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\css\" />
     <Folder Include="Support\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -300,6 +301,8 @@ if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Plugin" md "$(Sol
 xcopy "..\Plugin" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Plugin" /C /E /H /K /R /Y
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\fonts" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\fonts"
 xcopy "..\Content\fonts" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\fonts" /C /E /H /K /R /Y
+if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\css" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\css"
+xcopy "..\Content\css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\css" /C /E /H /K /R /Y
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Page" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Page"
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts"
 copy "..\Scripts\bootstrap.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
@@ -319,16 +322,12 @@ if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts\snap" md 
 copy "..\Scripts\snap\snap.svg-min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts\snap" /Y
 copy "..\Content\bootstrap.min.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\font-awesome.min.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
-copy "..\Content\SchoolClock.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
-copy "..\Content\EqualityLinkage.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
-copy "..\Content\CurrencyLinkage.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
-copy "..\Content\FruitsLinkage.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
-copy "..\Content\MathUpright.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
-copy "..\Content\ScoreGoal.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
-copy "..\Content\HowMuchMore.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\default.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\Shake.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
-copy "..\Content\TimeCalculation.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\easyui.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\icon.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\bootstrap-grid.min.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\bootstrap-reboot.min.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\image" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\image"
 xcopy "..\Content\image" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\image" /C /E /H /K /R /Y
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\switcher" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content\switcher"

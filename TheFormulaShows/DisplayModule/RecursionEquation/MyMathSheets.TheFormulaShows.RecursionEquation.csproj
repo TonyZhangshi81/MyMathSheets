@@ -55,7 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\RecursionEquation.css" />
+    <Content Include="Content\css\RecursionEquation.css" />
     <Content Include="Scripts\Ext\MathSheets.RecursionEquation.js" />
     <Content Include="Template\RecursionEquation.html" />
   </ItemGroup>

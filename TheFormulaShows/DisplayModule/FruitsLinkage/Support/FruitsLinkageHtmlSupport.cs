@@ -15,7 +15,7 @@ namespace MyMathSheets.TheFormulaShows.FruitsLinkage.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport("FruitsLinkage")]
-	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/FruitsLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/css/FruitsLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.FruitsLinkage.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "__fruitsArrayHiddenControlId = 'hidFruitsArray';MathSheets.FruitsLinkage.ready('divFruitDrag', 'divContainer');")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.FruitsLinkage.makeCorrections();")]

@@ -55,7 +55,7 @@
     <Reference Include="MyMathSheets.CommonLib">
       <HintPath>..\..\..\Lib\MyMathSheets.CommonLib.dll</HintPath>
     </Reference>
-    <Content Include="Content\HowMuchMore.css" />
+    <Content Include="Content\css\HowMuchMore.css" />
     <Content Include="Content\image\more\Circle.png" />
     <Content Include="Content\image\more\Diamond.png" />
     <Content Include="Content\image\more\Fish.png" />

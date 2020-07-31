@@ -12,7 +12,7 @@ namespace MyMathSheets.TheFormulaShows.MathUpright.Support
 	/// 題型模板支援類
 	/// </summary>
 	[HtmlSupport("MathUpright")]
-	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/MathUpright.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/css/MathUpright.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.MathUpright.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.MathUpright.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.MathUpright.makeCorrections();")]

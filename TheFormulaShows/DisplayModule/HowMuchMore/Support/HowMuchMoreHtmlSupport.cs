@@ -16,7 +16,7 @@ namespace MyMathSheets.TheFormulaShows.HowMuchMore.Support
 	/// 比多少題型HTML支援類,動態作成html并按照一定的格式注入html模板中
 	/// </summary>
 	[HtmlSupport("HowMuchMore")]
-	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/HowMuchMore.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/css/HowMuchMore.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.HowMuchMore.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.HowMuchMore.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.HowMuchMore.makeCorrections();")]

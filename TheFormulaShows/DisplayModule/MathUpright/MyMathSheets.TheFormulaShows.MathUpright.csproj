@@ -55,7 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\MathUpright.css" />
+    <Content Include="Content\css\MathUpright.css" />
     <Content Include="Scripts\Ext\MathSheets.MathUpright.js" />
     <Content Include="Template\MathUpright.html" />
   </ItemGroup>

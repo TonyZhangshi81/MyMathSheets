@@ -55,7 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\EqualityLinkage.css" />
+    <Content Include="Content\css\EqualityLinkage.css" />
     <Content Include="Content\image\project\Calculator.png" />
     <Content Include="Scripts\Ext\MathSheets.EqualityLinkage.js" />
     <Content Include="Template\EqualityLinkage.html" />

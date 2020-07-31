@@ -12,7 +12,7 @@ namespace MyMathSheets.TheFormulaShows.SchoolClock.Support
 	/// 時鐘學習板題型HTML模板作成
 	/// </summary>
 	[HtmlSupport("SchoolClock")]
-	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/SchoolClock.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/css/SchoolClock.css\" rel=\"stylesheet\" type=\"text/css\" />")]
 	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.SchoolClock.js\" charset=\"utf-8\"></script>")]
 	[Substitute(SubstituteType.ReadyEvent, "MathSheets.SchoolClock.ready();")]
 	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.SchoolClock.makeCorrections();")]
