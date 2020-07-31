@@ -60,7 +60,7 @@
             MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
 
             // 設定頁面所有輸入域為可用狀態
-            //MathSheets.RecursionEquation.ready();
+            MathSheets.RecursionEquation.ready();
 
             // 計時開始
             MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -178,7 +178,7 @@
             <div class="div-page-content">
                 <div class="row text-center row-margin-top align-items-start">
                     <div class="col-md-6 form-inline">
-                        <div class="easyui-accordion" style="width:85%;">
+                        <div id="divAccordion01" class="easyui-accordion" style="width:85%;">
                             <div title="12*13+45" data-options="iconCls:'icon-tip'" style="padding:10px;">
                                 <span class="label">=</span>
                                 <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" /><br />

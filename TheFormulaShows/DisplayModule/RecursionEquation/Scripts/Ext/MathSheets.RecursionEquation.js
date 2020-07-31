@@ -81,6 +81,28 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
 
                 $(element).removeAttr("disabled");
             });
+
+            $("div[id*='divAccordion01']").each(function (index, element) {
+                $(element).accordion({
+                    onSelect: function (title, index) {
+                        var pp = $(element).accordion('getSelected');
+                        alert($(pp).attr("class"));
+                        alert($(pp).find("div").length);
+                        $(pp).find("div[class*='panel-icon']").toggleClass("panel-icon icon-edit");
+                        options: {
+                            iconCls: 'icon-edit'
+                        }
+                    }
+                });
+            //    $(element).bind("Select", function (title, index) {
+            //        alert(title);
+                    //var pp = $(element).accordion('getSelected');
+                    //if (pp) {
+                    //    var index = $(element).accordion('getPanelIndex', pp);
+                    //    alert(index);
+                    //}
+            //    });
+            });
         },
 
         // 订正(巧算题)
