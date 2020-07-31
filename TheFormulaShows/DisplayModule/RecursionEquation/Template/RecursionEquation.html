@@ -11,7 +11,6 @@
     <link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
     <link href="../Content/easyui.css" rel="stylesheet" charset="utf-8">
     <link href="../Content/icon.css" rel="stylesheet" charset="utf-8">
-    <link href="../Content/accordion.css" rel="stylesheet" charset="utf-8">
     <link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
     <link title="default" href="../Content/switcher/MathSheets.css" rel="stylesheet" charset="utf-8">
     <link title="burlywood" href="../Content/switcher/MathSheets-burlywood.css" rel="stylesheet" charset="utf-8" disabled="disabled">
@@ -51,7 +50,7 @@
             MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
 
             // 打印后頁面設定
-            MathSheets.RecursionEquation.printAfterSetting();
+            //MathSheets.RecursionEquation.printAfterSetting();
 
         }
 
@@ -61,7 +60,7 @@
             MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
 
             // 設定頁面所有輸入域為可用狀態
-            MathSheets.RecursionEquation.ready();
+            //MathSheets.RecursionEquation.ready();
 
             // 計時開始
             MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
@@ -76,7 +75,7 @@
         function btnMakeCorrectionsClick() {
             var fault = 0;
             // 訂正
-            fault += MathSheets.RecursionEquation.makeCorrections();
+            //fault += MathSheets.RecursionEquation.makeCorrections();
 
             // 訂正按鈕處理
             MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -85,7 +84,7 @@
         // 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
         function btnTheirPapersClick() {
             // 交卷
-            MathSheets.RecursionEquation.theirPapers();
+            //MathSheets.RecursionEquation.theirPapers();
 
             // 交卷按鈕處理
             MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');

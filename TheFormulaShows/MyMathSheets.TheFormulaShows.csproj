@@ -51,7 +51,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\accordion.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -92,7 +91,6 @@
     <Content Include="Content\icons\sum.png" />
     <Content Include="Content\icons\tip.png" />
     <Content Include="Content\icons\undo.png" />
-    <Content Include="Content\image\accordion_arrows.png" />
     <Content Include="Content\image\bookmark.png" />
     <Content Include="Content\image\checkCorrectResult.png" />
     <Content Include="Content\image\checkFaultResult.png" />
@@ -102,6 +100,28 @@
     <Content Include="Content\image\char-less.png" />
     <Content Include="Content\image\char-more.png" />
     <Content Include="Content\image\Division.png" />
+    <Content Include="Content\image\easyui\accordion_arrows.png" />
+    <Content Include="Content\image\easyui\blank.gif" />
+    <Content Include="Content\image\easyui\calendar_arrows.png" />
+    <Content Include="Content\image\easyui\combo_arrow.png" />
+    <Content Include="Content\image\easyui\datagrid_icons.png" />
+    <Content Include="Content\image\easyui\datebox_arrow.png" />
+    <Content Include="Content\image\easyui\layout_arrows.png" />
+    <Content Include="Content\image\easyui\linkbutton_bg.png" />
+    <Content Include="Content\image\easyui\loading.gif" />
+    <Content Include="Content\image\easyui\menu_arrows.png" />
+    <Content Include="Content\image\easyui\messager_icons.png" />
+    <Content Include="Content\image\easyui\pagination_icons.png" />
+    <Content Include="Content\image\easyui\panel_tools.png" />
+    <Content Include="Content\image\easyui\passwordbox_close.png" />
+    <Content Include="Content\image\easyui\passwordbox_open.png" />
+    <Content Include="Content\image\easyui\searchbox_button.png" />
+    <Content Include="Content\image\easyui\slider_handle.png" />
+    <Content Include="Content\image\easyui\spinner_arrows.png" />
+    <Content Include="Content\image\easyui\tabs_icons.png" />
+    <Content Include="Content\image\easyui\tagbox_icons.png" />
+    <Content Include="Content\image\easyui\tree_icons.png" />
+    <Content Include="Content\image\easyui\validatebox_warning.png" />
     <Content Include="Content\image\fault.png" />
     <Content Include="Content\image\favicon.ico" />
     <Content Include="Content\image\help.png" />
