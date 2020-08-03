@@ -265,18 +265,21 @@ MathSheets.Common = MathSheets.Common || (function () {
          */
         this._isPrivilege = function () {
             // 當前focus項目取得
-            var f = $("input:focus");
+            var f = $(document.activeElement);
             if (f.length == 0) {
                 return false;
             }
+
+            var isFind = false;
             var selectedId = f.attr("id");
             // 遍歷全部輸入域
             $.each(__privilegeInputElementArray, function (index, e) {
                 if (selectedId == e.id) {
-                    return true;
+                    isFind = true;
+                    return false;;
                 }
             });
-            return false;
+            return isFind;
         },
 
         /**
@@ -915,9 +918,9 @@ MathSheets.Common = MathSheets.Common || (function () {
                 // 判斷鍵盤是按下了右方向鍵
                 if (e.keyCode == 39) {
                     // 特權輸入框元優先判定
-                    //if (_isPrivilege()) {
-                    //    return true;
-                    //}
+                    if (_isPrivilege()) {
+                        return true;
+                    }
 
                     if (__allInputElementArray.length == 0) {
                         return false;
@@ -935,9 +938,9 @@ MathSheets.Common = MathSheets.Common || (function () {
                 // 判斷鍵盤是按下了左方向鍵
                 if (e.keyCode == 37) {
                     // 特權輸入框元優先判定
-                    //if (_isPrivilege()) {
-                    //    return true;
-                    //}
+                    if (_isPrivilege()) {
+                        return true;
+                    }
 
                     if (__allInputElementArray.length == 0) {
                         return false;

@@ -45,35 +45,31 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
         _RecursionEquationCorrecting = function (pIndex, answerElement) {
             var inputAry = new Array();
             // 用於結果驗證（解密後分割）
-            var answers = ($.base64.atob($(answerElement).val(), true) || '').split(';');
+            var answer = ($.base64.atob($(answerElement).val(), true) || '');
 
             var isRight = true;
-            $.each($("input[id *= 'inputClc" + pIndex + "']"), function (index, element) {
+            $.each($("input[id *= 'inputRe" + pIndex + "']"), function (index, element) {
+                // 驗證遞等式計算結果
+                var result = eval($(element).val());
+                if (result != answer) {
+                    isRight = false;
+                }
+
                 // 輸入框集合
                 inputAry.push($(element));
-                // 結果驗證（相等的值從結果序列中移除）
-                answers.remove(parseInt($(element).val()));
             });
-
-            // 結果序列中存在元素（存在錯誤）
-            if (answers.length != 0) {
-                isRight = false;
-            }
 
             // 验证输入值是否与答案一致
             if (isRight) {
                 // 动错题集中移除当前项目
                 $.each(inputAry, function (index, inputObj) {
-                    removeInputElementArray({ position: "mathSheetRecursionEquation", id: inputObj.attr("id") });
                     inputObj.attr("disabled", "disabled");
                 });
-
                 // 对错图片显示和隐藏
                 $('#imgOKRecursionEquation' + pIndex).show();
                 $('#imgNoRecursionEquation' + pIndex).hide();
                 // 移除圖片抖動特效
                 $('#imgNoRecursionEquation' + pIndex).removeClass("shake shake-slow");
-
                 // 正确:true
                 return true;
             } else {
@@ -98,8 +94,7 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
         ready = function () {
             $("input[id*='inputRe']").each(function (index, element) {
                 // 特權輸入框採集
-                //__privilegeInputElementArray.push({ position: "mathSheetRecursionEquation", id: $(element).attr("id") });
-                __allInputElementArray.push({ position: "mathSheetRecursionEquation", id: $(element).attr("id") });
+                __privilegeInputElementArray.push({ position: "mathSheetRecursionEquation", id: $(element).attr("id") });
 
                 $(element).removeAttr("disabled");
             });
@@ -110,12 +105,12 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
                     // 展開面板時替換為編輯圖標
                     onSelect: function (title, index) {
                         var pp = $(element).accordion('getSelected');
-                        $(pp).prev().children("div").eq(1).toggleClass("icon-edit icon-tip");
+                        $(pp).prev().children("div").eq(1).attr("class", "panel-icon icon-edit");
                     },
                     // 閉合面板時替換為初始圖標
                     onUnselect: function (title, index) {
                         var pp = $(element).accordion('getPanel', index);
-                        $(pp).prev().children("div").eq(1).toggleClass("icon-tip icon-edit");
+                        $(pp).prev().children("div").eq(1).attr("class", "panel-icon icon-tip");
                     }
                 });
             });
@@ -124,8 +119,8 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
         // 订正(巧算题)
         makeCorrections = function () {
             var fault = 0;
-            $("input[id*='hiddenClc']").each(function (pIndex, answerElement) {
-                var index = pIndex.toString().PadLeft(2, '0');
+            $("input[id*='hiddenRe']").each(function (pIndex, answerElement) {
+                var index = $(answerElement).attr("id").substring(8);
                 // 答题验证
                 if (!_RecursionEquationCorrecting(index, answerElement)) {
                     // 答题错误时,错误件数加一
@@ -137,8 +132,8 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
 
         // 巧算交卷
         theirPapers = function () {
-            $("input[id*='hiddenClc']").each(function (pIndex, answerElement) {
-                var index = pIndex.toString().PadLeft(2, '0');
+            $("input[id*='hiddenRe']").each(function (pIndex, answerElement) {
+                var index = $(answerElement).attr("id").substring(8);
                 // 答题验证
                 if (!_RecursionEquationCorrecting(index, answerElement)) {
                     // 答题错误时,错误件数加一

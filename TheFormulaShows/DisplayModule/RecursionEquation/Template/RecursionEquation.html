@@ -75,7 +75,7 @@
         function btnMakeCorrectionsClick() {
             var fault = 0;
             // 訂正
-            //fault += MathSheets.RecursionEquation.makeCorrections();
+            fault += MathSheets.RecursionEquation.makeCorrections();
 
             // 訂正按鈕處理
             MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
@@ -84,7 +84,7 @@
         // 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
         function btnTheirPapersClick() {
             // 交卷
-            //MathSheets.RecursionEquation.theirPapers();
+            MathSheets.RecursionEquation.theirPapers();
 
             // 交卷按鈕處理
             MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -186,11 +186,11 @@
                                 <input id="inputRe1012" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
                                 <input id="inputRe1013" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" />
-                                <input type="hidden" id="hidAnswer101" value="51" />
-                            </div>
-                            <div class="divCorrectOrFault-1">
-                                <img id="imgOKRecursionEquation01" src="../Content/image/correct.png" class="imgCorrect-1" />
-                                <img id="imgNoRecursionEquation01" src="../Content/image/fault.png" class="imgFault-1" />
+                                <input type="hidden" id="hiddenRe101" value="51" />
+                                <div class="divCorrectOrFault-1">
+                                    <img id="imgOKRecursionEquation101" src="../Content/image/correct.png" class="imgCorrect-1" />
+                                    <img id="imgNoRecursionEquation101" src="../Content/image/fault.png" class="imgFault-1" />
+                                </div>
                             </div>
 
                             <div title="125 + 28 - 25" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
@@ -200,11 +200,11 @@
                                 <input id="inputRe1022" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
                                 <input id="inputRe1023" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" />
-                                <input type="hidden" id="hidAnswer102" value="128" />
-                            </div>
-                            <div class="divCorrectOrFault-2">
-                                <img id="imgOKRecursionEquation02" src="../Content/image/correct.png" class="imgCorrect-1" />
-                                <img id="imgNoRecursionEquation02" src="../Content/image/fault.png" class="imgFault-1" />
+                                <input type="hidden" id="hiddenRe102" value="128" />
+                                <div class="divCorrectOrFault-1">
+                                    <img id="imgOKRecursionEquation102" src="../Content/image/correct.png" class="imgCorrect-1" />
+                                    <img id="imgNoRecursionEquation102" src="../Content/image/fault.png" class="imgFault-1" />
+                                </div>
                             </div>
 
                             <div title="34 + 28 - 8" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
@@ -214,11 +214,11 @@
                                 <input id="inputRe1032" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
                                 <input id="inputRe1033" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" />
-                                <input type="hidden" id="hidAnswer103" value="54" />
-                            </div>
-                            <div class="divCorrectOrFault-3">
-                                <img id="imgOKRecursionEquation03" src="../Content/image/correct.png" class="imgCorrect-1" />
-                                <img id="imgNoRecursionEquation03" src="../Content/image/fault.png" class="imgFault-1" />
+                                <input type="hidden" id="hiddenRe103" value="54" />
+                                <div class="divCorrectOrFault-1">
+                                    <img id="imgOKRecursionEquation103" src="../Content/image/correct.png" class="imgCorrect-1" />
+                                    <img id="imgNoRecursionEquation103" src="../Content/image/fault.png" class="imgFault-1" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -231,7 +231,11 @@
                                 <input id="inputRe2012" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
                                 <input id="inputRe2012" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
-                                <input type="hidden" id="hidAnswer201" value="62" />
+                                <input type="hidden" id="hiddenRe201" value="62" />
+                                <div class="divCorrectOrFault-1">
+                                    <img id="imgOKRecursionEquation201" src="../Content/image/correct.png" class="imgCorrect-1" />
+                                    <img id="imgNoRecursionEquation201" src="../Content/image/fault.png" class="imgFault-1" />
+                                </div>
                             </div>
 
                             <div title="58 - 24 - 16" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
@@ -241,7 +245,11 @@
                                 <input id="inputRe2022" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
                                 <input id="inputRe2023" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
-                                <input type="hidden" id="hidAnswer202" value="18" />
+                                <input type="hidden" id="hiddenRe202" value="18" />
+                                <div class="divCorrectOrFault-1">
+                                    <img id="imgOKRecursionEquation202" src="../Content/image/correct.png" class="imgCorrect-1" />
+                                    <img id="imgNoRecursionEquation202" src="../Content/image/fault.png" class="imgFault-1" />
+                                </div>
                             </div>
 
                             <div title="58 - (24 - 12)" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
@@ -251,7 +259,11 @@
                                 <input id="inputRe2032" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
                                 <input id="inputRe2033" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
-                                <input type="hidden" id="hidAnswer203" value="46" />
+                                <input type="hidden" id="hiddenRe203" value="46" />
+                                <div class="divCorrectOrFault-1">
+                                    <img id="imgOKRecursionEquation303" src="../Content/image/correct.png" class="imgCorrect-1" />
+                                    <img id="imgNoRecursionEquation303" src="../Content/image/fault.png" class="imgFault-1" />
+                                </div>
                             </div>
                         </div>
                     </div>

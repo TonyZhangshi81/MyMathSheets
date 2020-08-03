@@ -177,6 +177,7 @@
   <ItemGroup>
     <Folder Include="App_Data\Work\Content\css\" />
     <Folder Include="App_Data\Work\Content\fonts\" />
+    <Folder Include="App_Data\Work\Content\icons\" />
     <Folder Include="App_Data\Work\Content\image\" />
     <Folder Include="App_Data\Work\Content\switcher\" />
     <Folder Include="App_Data\Work\Games\" />
