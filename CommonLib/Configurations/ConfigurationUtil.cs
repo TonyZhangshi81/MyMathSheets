@@ -2,6 +2,7 @@
 using MyMathSheets.CommonLib.Properties;
 using System;
 using System.Configuration;
+using System.Globalization;
 
 namespace MyMathSheets.CommonLib.Configurations
 {
@@ -38,6 +39,19 @@ namespace MyMathSheets.CommonLib.Configurations
 		/// </summary>
 		/// <returns>配置信息</returns>
 		public static string TopicManagementConfig => GetKeyValue("App.TopicManagement");
+
+		/// <summary>
+		/// 是否使用加密
+		/// </summary>
+		/// <returns>配置信息</returns>
+		public static bool GetIsEncrypt()
+		{
+			if (bool.TryParse(GetKeyValue("IsEncrypt"), out bool result))
+			{
+				return result;
+			}
+			return true;
+		}
 
 		/// <summary>
 		/// 取得設定文件的設定信息

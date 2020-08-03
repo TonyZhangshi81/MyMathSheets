@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Message;
+﻿using MyMathSheets.CommonLib.Configurations;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using System;
 using System.Text;
@@ -20,6 +21,12 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// <exception cref="EncodeBase64Exception"><paramref name="source"/>無法加密的情況</exception>
 		public static string EncodeBase64(Encoding encode, string source)
 		{
+			// 如果不加密則返回原文
+			if (!ConfigurationUtil.GetIsEncrypt())
+			{
+				return source;
+			}
+
 			Guard.ArgumentNotNull(encode, "encode");
 
 			byte[] bytes = encode.GetBytes(source);
@@ -40,6 +47,12 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// <returns>加密后的字符串</returns>
 		public static string EncodeBase64(string source)
 		{
+			// 如果不加密則返回原文
+			if (!ConfigurationUtil.GetIsEncrypt())
+			{
+				return source;
+			}
+
 			return EncodeBase64(Encoding.UTF8, source);
 		}
 
@@ -63,6 +76,12 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// <exception cref="DecodeBase64Exception"><paramref name="result"/>無法加密的情況</exception>
 		public static string DecodeBase64(Encoding encode, string result)
 		{
+			// 如果不加密則返回原文
+			if (!ConfigurationUtil.GetIsEncrypt())
+			{
+				return result;
+			}
+
 			Guard.ArgumentNotNull(encode, "encode");
 
 			byte[] bytes = DecodeBase64(result);
@@ -83,6 +102,12 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// <returns>解密后的字符串</returns>
 		public static string DecodeBase64String(string result)
 		{
+			// 如果不加密則返回原文
+			if (!ConfigurationUtil.GetIsEncrypt())
+			{
+				return result;
+			}
+
 			return DecodeBase64(Encoding.UTF8, result);
 		}
 

@@ -908,6 +908,16 @@ MathSheets.Common = MathSheets.Common || (function () {
         },
 
         /**
+         * @description js base64編碼解碼
+         */
+        base64Decode = function (coded, utf8decode = true) {
+            if (_isEncrypt != undefined && !_isEncrypt) {
+                return coded;
+            }
+            return ($.base64.atob(coded, utf8decode) || '');
+        },
+
+        /**
          * @description 按鍵屏蔽防止刷新頁面
          * @method forbidKeyDown
          */
@@ -1034,7 +1044,8 @@ MathSheets.Common = MathSheets.Common || (function () {
         windowScroll: windowScroll,
         useClown: useClown,
         getControlId: getControlId,
-        removeInputElementArray: removeInputElementArray
+        removeInputElementArray: removeInputElementArray,
+        base64Decode: base64Decode
     };
 }());
 

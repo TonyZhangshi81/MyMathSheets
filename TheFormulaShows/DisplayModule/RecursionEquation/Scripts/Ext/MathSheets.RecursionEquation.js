@@ -45,7 +45,7 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
         _RecursionEquationCorrecting = function (pIndex, answerElement) {
             var inputAry = new Array();
             // 用於結果驗證（解密後分割）
-            var answer = ($.base64.atob($(answerElement).val(), true) || '');
+        var answer = (MathSheets.Common.base64Decode($(answerElement).val()) || '');
 
             var isRight = true;
             $.each($("input[id *= 'inputRe" + pIndex + "']"), function (index, element) {

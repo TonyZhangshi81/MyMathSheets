@@ -17,6 +17,8 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Http.Headers;
+using System.Security.Permissions;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Main.FromProcess
@@ -221,7 +223,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// 題型交卷事件注入
 			htmlTemplate.Replace("// TICTHEIRPAPERS", TictheirPapersEvent.ToString());
 			// 題型正文注入
-			htmlTemplate.Replace("<!--CONTENT-->", Content.ToString());
+			htmlTemplate.Replace("<!--CONTENT-->", Content.Insert(0, IsEncryptScript).AppendLine().ToString());
 
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0017L));
 
@@ -229,6 +231,20 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			File.WriteAllText(destFileName, htmlTemplate.ToString(), Encoding.UTF8);
 
 			return destFileName;
+		}
+
+		/// <summary>
+		/// Base64 編碼解碼變量標識作成
+		/// </summary>
+		/// <returns></returns>
+		private static string IsEncryptScript
+		{
+			get
+			{
+				StringBuilder sb = new StringBuilder();
+				sb.AppendFormat("<script>var _isEncrypt = {0}</script>", ConfigurationUtil.GetIsEncrypt() ? "true" : "false");
+				return sb.ToString();
+			}
 		}
 
 		/// <summary>
