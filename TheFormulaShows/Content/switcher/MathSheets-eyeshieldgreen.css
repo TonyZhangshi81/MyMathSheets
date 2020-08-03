@@ -36,3 +36,11 @@
 .div-famousPeople {
 	margin-left: 400px;
 }
+
+.accordion .accordion-header {
+	background-color: floralwhite;
+}
+
+.accordion .accordion-header-selected {
+	background-color: darkseagreen;
+}

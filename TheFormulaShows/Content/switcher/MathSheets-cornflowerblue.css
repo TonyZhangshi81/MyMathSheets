@@ -64,3 +64,11 @@
 .plugin-butterfly {
 	display: none;
 }
+
+.accordion .accordion-header {
+	background-color: lightblue;
+}
+
+.accordion .accordion-header-selected {
+	background-color: royalblue;
+}

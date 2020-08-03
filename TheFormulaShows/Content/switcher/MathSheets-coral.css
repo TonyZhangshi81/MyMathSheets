@@ -64,3 +64,11 @@
 	font-size: 2.5rem;
 	color: chocolate;
 }
+
+.accordion .accordion-header {
+	background-color: lightpink;
+}
+
+.accordion .accordion-header-selected {
+	background-color: darksalmon;
+}

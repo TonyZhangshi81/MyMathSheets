@@ -582,7 +582,7 @@ MathSheets.Common = MathSheets.Common || (function () {
                 var realTimeClData = setInterval(function () {
                     $(".box").slideUp(500);
                     clearInterval(realTimeClData);
-                }, 4000);
+                }, 8000);
             });
         },
 

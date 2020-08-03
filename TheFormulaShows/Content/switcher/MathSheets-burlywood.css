@@ -75,3 +75,11 @@
 	color: cadetblue !important;
 	font-size: 0.7rem;
 }
+
+.accordion .accordion-header {
+	background-color: khaki;
+}
+
+.accordion .accordion-header-selected {
+	background-color: peru;
+}

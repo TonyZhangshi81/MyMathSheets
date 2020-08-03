@@ -35,3 +35,11 @@
 	background: url("../../Content/image/theme.png") no-repeat;
 	background-size: 100% 100%;
 }
+
+.accordion .accordion-header {
+	background-color: wheat;
+}
+
+.accordion .accordion-header-selected {
+	background-color: darkseagreen;
+}
