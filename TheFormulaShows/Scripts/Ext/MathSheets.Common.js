@@ -1,5 +1,4 @@
-﻿
-/**
+﻿/**
  * @description 用於記錄答題正確的數量
  * @var {int} __isRight 答題正確的數量
  * @default 0
@@ -20,6 +19,12 @@ var __isFault = 0;
 var __allInputElementArray = new Array();
 
 /**
+ * @description 特權輸入框集合,光標可以在其中定義的輸入框成員內左右移動
+ * @var {Array} __privilegeInputElementArray 可輸入項目的控件ID集合
+ */
+var __privilegeInputElementArray = new Array();
+
+/**
  * @file 通用處理模塊
  * @description 作為其他JS模塊的通用處理，提供統一的功能實現
  * @author TonyZhangshi <tonyzhangshi@163.com>
@@ -28,7 +33,6 @@ var __allInputElementArray = new Array();
  */
 var MathSheets = MathSheets || {};
 MathSheets.Common = MathSheets.Common || (function () {
-
     /**
      * @description 默認會話資源信息
      * @constant {string} RESOURCES
@@ -191,7 +195,6 @@ MathSheets.Common = MathSheets.Common || (function () {
          * @private
          */
         this._setAward = function () {
-
             // 如果答題滿分的話則顯示獎章
             if (__isFault != 0) {
                 return;
@@ -254,6 +257,26 @@ MathSheets.Common = MathSheets.Common || (function () {
                     $(this).attr("disabled", "disabled");
                 }
             });
+        },
+
+        /**
+         * @description 是否屬於特權輸入框
+         * @returns {bool} 是特權輸入框返回:true
+         */
+        this._isPrivilege = function () {
+            // 當前focus項目取得
+            var f = $("input:focus");
+            if (f.length == 0) {
+                return false;
+            }
+            var selectedId = f.attr("id");
+            // 遍歷全部輸入域
+            $.each(__privilegeInputElementArray, function (index, e) {
+                if (selectedId == e.id) {
+                    return true;
+                }
+            });
+            return false;
         },
 
         /**
@@ -756,7 +779,7 @@ MathSheets.Common = MathSheets.Common || (function () {
             // 窗體顯示的高度
             //var windowHeight = $(window).height();
             // 如果滾動條已經到達頁面底部，則關閉當前自動移動
-        if (scrollTop + $(window).height() == $(document).height()) {
+            if (scrollTop + $(window).height() == $(document).height()) {
                 // 向下箭頭隱藏
                 $(".imgHelper-down").hide();
                 return;
@@ -791,13 +814,13 @@ MathSheets.Common = MathSheets.Common || (function () {
             // 窗體顯示的高度
             //var windowHeight = $(window).height();
             // 指定區域內顯示顯示
-        if (clientY > ($(window).height() * 0.7)) {
+            if (clientY > ($(window).height() * 0.7)) {
                 // 滾動條高度
                 var scrollTop = $(window).scrollTop();
                 // 頁面總高度
                 //var scrollHeight = $(document).height();
                 // 如果滾動條已經到達頁面底部，則關閉當前自動移動
-            if (scrollTop + $(window).height() >= $(document).height() - 1) {
+                if (scrollTop + $(window).height() >= $(document).height() - 1) {
                     // 向下箭頭隱藏
                     $(".imgHelper-down").hide();
                     return;
@@ -889,8 +912,13 @@ MathSheets.Common = MathSheets.Common || (function () {
             $(document).bind("keydown", function (e) {
                 var e = window.event || e;
 
-                // 判斷鍵盤是按下了左方向鍵
+                // 判斷鍵盤是按下了右方向鍵
                 if (e.keyCode == 39) {
+                    // 特權輸入框元優先判定
+                    //if (_isPrivilege()) {
+                    //    return true;
+                    //}
+
                     if (__allInputElementArray.length == 0) {
                         return false;
                     }
@@ -906,6 +934,11 @@ MathSheets.Common = MathSheets.Common || (function () {
                 }
                 // 判斷鍵盤是按下了左方向鍵
                 if (e.keyCode == 37) {
+                    // 特權輸入框元優先判定
+                    //if (_isPrivilege()) {
+                    //    return true;
+                    //}
+
                     if (__allInputElementArray.length == 0) {
                         return false;
                     }
@@ -1029,9 +1062,9 @@ $(document).ready(function () {
     //_scrollHeight = $(document).height();
     // 當頁面超長時顯示輔助滾輪
     if ($(document).height() > $(window).height()) {
-		/* 
+		/*
 		 * 與 mouseover 事件不同，只有在鼠標指針穿過被選中的元素時，才會觸發 mouseenter 事件。
-		 * 如果鼠標指針穿過任何子元素，同樣會觸發 mouseover 事件。 
+		 * 如果鼠標指針穿過任何子元素，同樣會觸發 mouseover 事件。
 		 */
         // 答題區域鼠標移動事件（用於顯示頁面自動滾動輔助按鍵）
         $('#divContainer').bind('mouseover', function (e) {
@@ -1088,9 +1121,8 @@ $(document).ready(function () {
     MathSheets.Common.styleInitialize();
 });
 
-
-/* 
- * 以下為javascript屬性、方法擴展 
+/*
+ * 以下為javascript屬性、方法擴展
  */
 String.prototype.PadLeft = function (totalWidth, paddingChar) {
     if (paddingChar != null) {

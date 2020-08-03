@@ -50,7 +50,7 @@
             MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
 
             // 打印后頁面設定
-            //MathSheets.RecursionEquation.printAfterSetting();
+            MathSheets.RecursionEquation.printAfterSetting();
 
         }
 
@@ -178,44 +178,80 @@
             <div class="div-page-content">
                 <div class="row text-center row-margin-top align-items-start">
                     <div class="col-md-6 form-inline">
-                        <div id="divAccordion01" class="easyui-accordion" style="width:85%;">
-                            <div title="12*13+45" data-options="iconCls:'icon-tip'" style="padding:10px;">
+                        <div id="divAccordion1" class="easyui-accordion" style="width:85%;">
+                            <div title="18 + 31 + 2" data-options="iconCls:'icon-edit', bodyCls:'accordion_padding'" style="padding:10px;">
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" /><br />
+                                <input id="inputRe1011" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" /><br />
+                                <input id="inputRe1012" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" />
+                                <input id="inputRe1013" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" />
+                                <input type="hidden" id="hidAnswer101" value="51" />
+                            </div>
+                            <div class="divCorrectOrFault-1">
+                                <img id="imgOKRecursionEquation01" src="../Content/image/correct.png" class="imgCorrect-1" />
+                                <img id="imgNoRecursionEquation01" src="../Content/image/fault.png" class="imgFault-1" />
                             </div>
 
-                            <div title="120+28-35" data-options="iconCls:'icon-tip'" style="padding:10px;">
+                            <div title="125 + 28 - 25" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" /><br />
+                                <input id="inputRe1021" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" /><br />
+                                <input id="inputRe1022" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" />
+                                <input id="inputRe1023" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" />
+                                <input type="hidden" id="hidAnswer102" value="128" />
+                            </div>
+                            <div class="divCorrectOrFault-2">
+                                <img id="imgOKRecursionEquation02" src="../Content/image/correct.png" class="imgCorrect-1" />
+                                <img id="imgNoRecursionEquation02" src="../Content/image/fault.png" class="imgFault-1" />
+                            </div>
+
+                            <div title="34 + 28 - 8" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
+                                <span class="label">=</span>
+                                <input id="inputRe1031" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
+                                <span class="label">=</span>
+                                <input id="inputRe1032" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
+                                <span class="label">=</span>
+                                <input id="inputRe1033" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" />
+                                <input type="hidden" id="hidAnswer103" value="54" />
+                            </div>
+                            <div class="divCorrectOrFault-3">
+                                <img id="imgOKRecursionEquation03" src="../Content/image/correct.png" class="imgCorrect-1" />
+                                <img id="imgNoRecursionEquation03" src="../Content/image/fault.png" class="imgFault-1" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 form-inline">
-                        <div class="easyui-accordion" style="width:85%;">
-                            <div title="200*131+435" data-options="iconCls:'icon-tip'" style="padding:10px;">
+                        <div id="divAccordion2" class="easyui-accordion" style="width:85%;">
+                            <div title="35 + 32 - 5" data-options="iconCls:'icon-edit', bodyCls:'accordion_padding'" style="padding:10px;">
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><br />
+                                <input id="inputRe2011" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><br />
+                                <input id="inputRe2012" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><br />
+                                <input id="inputRe2012" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
+                                <input type="hidden" id="hidAnswer201" value="62" />
                             </div>
 
-                            <div title="10*24+43" data-options="iconCls:'icon-tip'" style="padding:10px;">
+                            <div title="58 - 24 - 16" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><br />
+                                <input id="inputRe2021" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><br />
+                                <input id="inputRe2022" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
-                                <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><br />
+                                <input id="inputRe2023" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
+                                <input type="hidden" id="hidAnswer202" value="18" />
+                            </div>
+
+                            <div title="58 - (24 - 12)" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
+                                <span class="label">=</span>
+                                <input id="inputRe2031" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
+                                <span class="label">=</span>
+                                <input id="inputRe2032" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
+                                <span class="label">=</span>
+                                <input id="inputRe2033" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
+                                <input type="hidden" id="hidAnswer203" value="46" />
                             </div>
                         </div>
                     </div>

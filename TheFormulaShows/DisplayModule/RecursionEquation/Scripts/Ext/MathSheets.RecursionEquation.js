@@ -3,7 +3,18 @@
 MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
     // 打印設置
     printSetting = function () {
-        $("input[id*='inputClc']").each(function (index, element) {
+        $("div[id*='divAccordion']").each(function (index, element) {
+            $(element).accordion({
+                animate: false,
+                multiple: true
+            });
+
+            $(element).accordion('select', 0);
+            $(element).accordion('select', 1);
+            $(element).accordion('select', 2);
+        });
+
+        $("input[id*='inputRe']").each(function (index, element) {
             $(element).addClass('input-print');
             $(element).removeAttr('placeholder');
             $(element).removeAttr("disabled");
@@ -12,7 +23,18 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
 
         // 打印后頁面設定
         printAfterSetting = function () {
-            $("input[id*='inputClc']").each(function (index, element) {
+            $("div[id*='divAccordion']").each(function (index, element) {
+                $(element).accordion('select', 0);
+                $(element).accordion('unselect', 1);
+                $(element).accordion('unselect', 2);
+
+                $(element).accordion({
+                    animate: true,
+                    multiple: false
+                })
+            });
+
+            $("input[id*='inputRe']").each(function (index, element) {
                 $(element).removeClass('input-print');
                 $(element).attr('placeholder', '??');
                 $(element).attr("disabled", "disabled");
@@ -21,7 +43,6 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
 
         // 答题验证(正确:true  错误:false)
         _RecursionEquationCorrecting = function (pIndex, answerElement) {
-
             var inputAry = new Array();
             // 用於結果驗證（解密後分割）
             var answers = ($.base64.atob($(answerElement).val(), true) || '').split(';');
@@ -75,33 +96,28 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
 
         // 设定页面所有输入域为可用状态(巧算)
         ready = function () {
-            $("input[id*='inputClc']").each(function (index, element) {
-                // 收集所有可輸入項目ID
+            $("input[id*='inputRe']").each(function (index, element) {
+                // 特權輸入框採集
+                //__privilegeInputElementArray.push({ position: "mathSheetRecursionEquation", id: $(element).attr("id") });
                 __allInputElementArray.push({ position: "mathSheetRecursionEquation", id: $(element).attr("id") });
 
                 $(element).removeAttr("disabled");
             });
 
-            $("div[id*='divAccordion01']").each(function (index, element) {
+            // 為每一個折疊面板註冊事件
+            $("div[id*='divAccordion']").each(function (index, element) {
                 $(element).accordion({
+                    // 展開面板時替換為編輯圖標
                     onSelect: function (title, index) {
                         var pp = $(element).accordion('getSelected');
-                        alert($(pp).attr("class"));
-                        alert($(pp).find("div").length);
-                        $(pp).find("div[class*='panel-icon']").toggleClass("panel-icon icon-edit");
-                        options: {
-                            iconCls: 'icon-edit'
-                        }
+                        $(pp).prev().children("div").eq(1).toggleClass("icon-edit icon-tip");
+                    },
+                    // 閉合面板時替換為初始圖標
+                    onUnselect: function (title, index) {
+                        var pp = $(element).accordion('getPanel', index);
+                        $(pp).prev().children("div").eq(1).toggleClass("icon-tip icon-edit");
                     }
                 });
-            //    $(element).bind("Select", function (title, index) {
-            //        alert(title);
-                    //var pp = $(element).accordion('getSelected');
-                    //if (pp) {
-                    //    var index = $(element).accordion('getPanelIndex', pp);
-                    //    alert(index);
-                    //}
-            //    });
             });
         },
 
