@@ -11,9 +11,9 @@ namespace MyMathSheets.CommonLib.Util
 	public static class CommonUtil
 	{
 		/// <summary>
-		/// 反推判定次數（如果大於五次則認為此題無法作成繼續下一題）
+		/// 反推判定次數
 		/// </summary>
-		private const int INVERSE_NUMBER = 3;
+		private const int INVERSE_NUMBER = 10;
 
 		/// <summary>
 		/// 指定集合範圍內的隨機數取得
@@ -59,7 +59,7 @@ namespace MyMathSheets.CommonLib.Util
 
 			while (1 == 1)
 			{
-				// 如果大於三次則認為此題無法作成繼續下一題
+				// 如果大於10次則認為此題無法作成繼續下一題
 				if (defeated == INVERSE_NUMBER)
 				{
 					break;

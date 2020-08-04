@@ -69,6 +69,20 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		{
 			// 遞等式計算[A+B+C]
 			_calculations[TopicType.CleverA] = CleverA;
+			// 遞等式計算[A-(B-C)]
+			_calculations[TopicType.CleverB] = CleverB;
+			// 遞等式計算[A-(B+C)]
+			_calculations[TopicType.CleverC] = CleverC;
+			// 遞等式計算[A+(B-C)]
+			_calculations[TopicType.CleverD] = CleverD;
+			// 遞等式計算[A+(B+C)]
+			_calculations[TopicType.CleverE] = CleverE;
+			// 遞等式計算[A+(B-C)]
+			_calculations[TopicType.CleverF] = CleverF;
+			// 遞等式計算[A-B+C]
+			_calculations[TopicType.CleverG] = CleverG;
+			// 遞等式計算[A-B-C]
+			_calculations[TopicType.CleverH] = CleverH;
 		}
 
 		/// <summary>
@@ -88,6 +102,85 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 								formula.ConfixFormulas[1].RightParameter);
 
 			return html.ToString();
+		}
+
+		/// <summary>
+		/// 遞等式計算[A-(B-C)]
+		/// </summary>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverB(RecursionEquationFormula formula)
+		{
+			StringBuilder html = new StringBuilder();
+
+			html.AppendFormat("{0} {1} ({2} {3} {4})",
+								formula.ConfixFormulas[1].LeftParameter,
+								formula.ConfixFormulas[1].Sign.ToOperationUnicode(),
+								formula.ConfixFormulas[0].RightParameter,
+								formula.ConfixFormulas[0].Sign.ToOperationUnicode(),
+								formula.ConfixFormulas[0].RightParameter);
+
+			return html.ToString();
+		}
+
+		/// <summary>
+		/// 遞等式計算[A-(B+C)]
+		/// </summary>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverC(RecursionEquationFormula formula)
+		{
+			return CleverB(formula);
+		}
+
+		/// <summary>
+		/// 遞等式計算[A+(B-C)]
+		/// </summary>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverD(RecursionEquationFormula formula)
+		{
+			return CleverB(formula);
+		}
+
+		/// <summary>
+		/// 遞等式計算[A+(B+C)]
+		/// </summary>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverE(RecursionEquationFormula formula)
+		{
+			return CleverB(formula);
+		}
+
+		/// <summary>
+		/// 遞等式計算[A+(B-C)]
+		/// </summary>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverF(RecursionEquationFormula formula)
+		{
+			return CleverB(formula);
+		}
+
+		/// <summary>
+		/// 遞等式計算[A-B+C]
+		/// </summary>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverG(RecursionEquationFormula formula)
+		{
+			return CleverA(formula);
+		}
+
+		/// <summary>
+		/// 遞等式計算[A-B-C]
+		/// </summary>
+		/// <param name="formula">計算式</param>
+		/// <returns></returns>
+		private string CleverH(RecursionEquationFormula formula)
+		{
+			return CleverA(formula);
 		}
 
 		/// <summary>

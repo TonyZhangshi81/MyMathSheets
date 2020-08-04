@@ -425,14 +425,17 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 				() =>
 				{
 					// (A+C)參數合計（獲取三位數(整十位或者整百位)）
-					var argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 10 == 0, getDefault: () => 400);
-					// 參數C (*增加參數B的取值範圍) eg: 162-(44-62)
-					var argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 100 != 0, getDefault: () => 160);
-					// 另一個隨機取值方案（整十數湊百）eg: 160-(44-60)
+					var argumentSum = CommonUtil.GetRandomNumber(3, 5) * 100 + CommonUtil.GetRandomNumber(0, 10) * 10;
+					// 參數C (*增加參數B的取值範圍) eg: 168-(44-62)
+					var argumentC = CommonUtil.GetRandomNumber(1, (argumentSum / 100) - 1) * 100 + CommonUtil.GetRandomNumber(1, 9) * 10 + CommonUtil.GetRandomNumber(0, 9);
+					// 另一個隨機取值方案（整十數湊百）eg: 160-(44-40)
 					if (1 == CommonUtil.GetRandomNumber(1, 2))
 					{
-						argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 100 == 0, getDefault: () => 300);
-						argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 180);
+						argumentSum = CommonUtil.GetRandomNumber(3, 6) * 100;
+
+						argumentC = CommonUtil.GetRandomNumber(1, (argumentSum / 100) - 1) * 100 + CommonUtil.GetRandomNumber(1, 9) * 10;
+
+						//argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 180);
 					}
 					// 參數A
 					var argumentA = argumentSum - argumentC;
@@ -471,13 +474,13 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 					// 參數A
 					var argumentA = CommonUtil.GetRandomNumber(50, 300);
 					// 參數合計（獲取三位數(整數十位或者整百數)）
-					var argumentSum = CommonUtil.GetRandomNumber(100, 500, condition: _ => _ % 10 == 0, getDefault: () => 400);
+					var argumentSum = CommonUtil.GetRandomNumber(1, 4) * 100 + CommonUtil.GetRandomNumber(0, 10) * 10;
 					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(50, argumentSum,
-																		condition: b => b != argumentA
-																					&& b != argumentSum - argumentA
-																					&& b % 100 != 0, 
-																		getDefault: () => -1);
+					var argumentB = CommonUtil.GetRandomNumber(50, argumentSum, 
+																	condition: b => b != argumentA
+																						&& b != argumentSum - argumentA
+																						&& b % 100 != 0, 
+																	getDefault: () => -1);
 					if (argumentB == -1)
 					{
 						return null;
