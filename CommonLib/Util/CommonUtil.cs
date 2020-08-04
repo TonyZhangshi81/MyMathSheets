@@ -11,6 +11,11 @@ namespace MyMathSheets.CommonLib.Util
 	public static class CommonUtil
 	{
 		/// <summary>
+		/// 反推判定次數（如果大於五次則認為此題無法作成繼續下一題）
+		/// </summary>
+		private const int INVERSE_NUMBER = 3;
+
+		/// <summary>
 		/// 指定集合範圍內的隨機數取得
 		/// </summary>
 		/// <typeparam name="T">集合類型</typeparam>
@@ -44,19 +49,32 @@ namespace MyMathSheets.CommonLib.Util
 		/// <param name="upper">上限值（包含）</param>
 		/// <param name="lower">下限值（包含）</param>
 		/// <param name="condition">條件表達式</param>
+		/// <param name="getDefault">取得隨機數無法滿足條件的時候發生</param>
 		/// <typeparam name="T">隨機數類型</typeparam>
 		/// <returns>隨機數</returns>
-		public static T GetRandomNumber<T>(T upper, T lower, Func<T, bool> condition)
+		public static T GetRandomNumber<T>(T upper, T lower, Func<T, bool> condition, Func<T> getDefault)
 		{
-			while(1 == 1)
+			// 當前反推判定次數（一次推算內次數累加）
+			int defeated = 0;
+
+			while (1 == 1)
 			{
+				// 如果大於三次則認為此題無法作成繼續下一題
+				if (defeated == INVERSE_NUMBER)
+				{
+					break;
+				}
+
 				var value = GetRandomNumber(upper, lower);
 				if (!condition(value))
 				{
+					defeated++;
 					continue;
 				}
 				return value;
 			}
+
+			return getDefault();
 		}
 
 		/// <summary>

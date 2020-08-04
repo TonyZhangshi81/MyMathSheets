@@ -42,33 +42,37 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
         },
 
         // 計算輸入框的中計算式並返回結果
-        _calcInputContent = function (element) {
-            var result = undefined;
+        calcInputContent = function (element) {
+            if ($(element).val() == "") {
+                return true;
+            }
+
+            var result;
             try {
                 result = eval($(element).val());
             } catch (e) {
                 console.log(e.name + ":" + e.message);
-                _error($(element).attr("id"), 5);
-            }
+                // 計算式格式不正確（背景閃爍效果）
+                _error($(element), 5);
 
+                return false;
+            }
             return result;
         },
 
-        _normal = function (id, times) {
-            var obj = $("#" + id);
-            $(obj).css("background-color", "#FFF");
+        _normal = function (element, times) {
+            $(element).css("background-color", "#FFF");
             if (times < 0) {
                 return;
             }
             times = times - 1;
-            setTimeout("_error('" + id + "'," + times + ")", 150);
+            setTimeout(function () { _error(element, times); }, 250);
         },
 
-        _error = function (id, times) {
-            var obj = $("#" + id);
-            $(obj).css("background-color", "#F6CECE");
+        _error = function (element, times) {
+            $(element).css("background-color", "#F6CECE");
             times = times - 1;
-            setTimeout("_normal('" + id + "'," + times + ")", 150);
+            setTimeout(function () { _normal(element, times); }, 250);
         },
 
         // 答题验证(正确:true  错误:false)
@@ -81,11 +85,11 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
             var isEmpty = 0;
             $.each($("input[id *= 'inputRe" + pIndex + "']"), function (index, element) {
                 // 驗證遞等式計算結果
-                var result = _calcInputContent($(element));
+                var result = calcInputContent($(element));
                 if ($(element).val() == "") {
                     // 填空項目為空(有2個或以上的空格未填寫內容,此題必錯)
                     isEmpty++;
-                } else if (result == undefined) {
+                } else if (result == false) {
                     // 輸入內容格式不正確
                     isRight = false;
                 } else if (result != answer) {
@@ -190,6 +194,7 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
         printAfterSetting: printAfterSetting,
         ready: ready,
         makeCorrections: makeCorrections,
-        theirPapers: theirPapers
+        theirPapers: theirPapers,
+        calcInputContent: calcInputContent
     };
 }());

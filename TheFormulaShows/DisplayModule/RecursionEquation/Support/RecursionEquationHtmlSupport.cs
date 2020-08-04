@@ -44,7 +44,7 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 輸入項目HTML模板
 		/// </summary>
-		private const string INPUT_HTML_FORMAT = "<input id=\"inputRe{0}{1}{2}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-max\" disabled=\"disabled\" />";
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputRe{0}{1}{2}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-max\" disabled=\"disabled\" onblur=\"if(!MathSheets.RecursionEquation.calcInputContent(this)) $(this).focus();\" />";
 
 		/// <summary>
 		/// 折疊面板HTML模板

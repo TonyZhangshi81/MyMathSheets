@@ -116,8 +116,8 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			};
 
 			// 獲取兩個隨機非整數
-			var left = CommonUtil.GetRandomNumber(10, 99, _ => _ % 10 != 0);
-			var right = CommonUtil.GetRandomNumber(10, 99, _ => _ % 10 != 0 && _ != left);
+			var left = CommonUtil.GetRandomNumber(10, 99, _ => _ % 10 != 0, () => 11);
+			var right = CommonUtil.GetRandomNumber(10, 99, _ => _ % 10 != 0 && _ != left, () => 12);
 			var answer = left + right;
 			cleverCalculation.ConfixFormulas.Add(new Formula(left, right, answer, SignOfOperation.Plus));
 			cleverCalculation.Answer.Add(answer);
@@ -227,9 +227,10 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 
 			// 獲取兩個隨機非整數
 			// 減數的個位是大於等於3的兩位數
-			var right = CommonUtil.GetRandomNumber(20, 60, _ => _ % 10 != 0 && _ % 10 >= 3);
+			var right = CommonUtil.GetRandomNumber(20, 60, condition: _ => _ % 10 != 0 && _ % 10 >= 3, getDefault: () => 23);
 			// 被減數需要滿足借位計算
-			var left = CommonUtil.GetRandomNumber(50, 99, _ => _ % 10 != 0 && _ > right && _ % 10 < right % 10);
+			var left = CommonUtil.GetRandomNumber(50, 99, condition: _ => _ % 10 != 0 && _ > right && _ % 10 < right % 10, getDefault: () => 51);
+
 			var answer = left - right;
 			cleverCalculation.ConfixFormulas.Add(new Formula(left, right, answer, SignOfOperation.Subtraction));
 			cleverCalculation.Answer.Add(answer);
@@ -321,7 +322,7 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 			List<Formula> list = new List<Formula>();
 
 			// 隨機數取得後的回調函數
-			var answerRandomCallback = new Func<int, bool>(answer =>
+			var condition = new Func<int, bool>(answer =>
 			{
 				return !formulas.ToList().Any(d => d.ConfixFormulas.Any(dd => dd.Answer == answer));
 			});
@@ -336,7 +337,12 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 				}
 
 				// 獲取一個隨機數
-				int answer = CommonUtil.GetRandomNumber(10, 99, answerRandomCallback);
+				int answer = CommonUtil.GetRandomNumber(10, 99, condition, getDefault: () => 50);
+				if (answer == -1)
+				{
+					defeated++;
+					continue;
+				}
 
 				var left = 2;
 				while (left <= answer)
@@ -400,9 +406,9 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 				cleverCalculation.Answer.Clear();
 
 				// 獲取一個待拆解的非整數(不包含各位為5的數)
-				int unknitValue = CommonUtil.GetRandomNumber(10, 60, _ => _ % 10 != 0 && _ % 10 != 5);
+				int unknitValue = CommonUtil.GetRandomNumber(10, 60, condition: _ => _ % 10 != 0 && _ % 10 != 5, getDefault: () => 46);
 				// 獲取一個10以內的因數
-				int factor = CommonUtil.GetRandomNumber(3, 9, _ => _ != unknitValue % 10);
+				int factor = CommonUtil.GetRandomNumber(3, 9, condition: _ => _ != unknitValue % 10, getDefault: () => 5);
 
 				// 數字按照位數分解
 				int[] unknits = new int[2] { unknitValue / 10, unknitValue % 10 };
@@ -502,8 +508,10 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 				if (combine == SignOfOperation.Plus)
 				{
 					int factor1 = CommonUtil.GetRandomNumber(1, 9);
-					// 加法合併的兩種情況：1.相加之和是整十數
-					int factor2 = CommonUtil.GetRandomNumber(1, 50, _ => (_ % 10 == 0 || _ + factor1 <= 10) && _ != factor1);
+
+					// 加法合併的兩種情況：
+					// 1.相加之和是整十數
+					int factor2 = CommonUtil.GetRandomNumber(1, 50, condition: _ => (_ % 10 == 0 || _ + factor1 <= 10) && _ != factor1, getDefault: () => 30);
 					// 2.相加之和是十
 					if (factor2 > 10)
 					{
@@ -523,7 +531,8 @@ namespace MyMathSheets.ComputationalStrategy.CleverCalculation.Main.Strategy
 				else
 				{
 					int factor1 = CommonUtil.GetRandomNumber(11, 19);
-					int factor2 = CommonUtil.GetRandomNumber(5, 9, _ => factor1 - _ <= 10);
+					int factor2 = CommonUtil.GetRandomNumber(5, 9, condition: _ => factor1 - _ <= 10, getDefault: () => 5);
+
 					// 隨機排列計算式各參數（打亂參數位置）
 					SetNewGuidFactors(out List<int> factors1, factorShare, factor1);
 					SetNewGuidFactors(out List<int> factors2, factorShare, factor2);

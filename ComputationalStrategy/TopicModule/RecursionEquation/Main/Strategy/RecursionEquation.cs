@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 
 namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
@@ -23,6 +24,11 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 	[Topic("RecursionEquation")]
 	public class RecursionEquation : TopicBase<RecursionEquationParameter>
 	{
+		/// <summary>
+		/// 反推判定次數（如果大於五次則認為此題無法作成繼續下一題）
+		/// </summary>
+		private const int INVERSE_NUMBER = 3;
+
 		/// <summary>
 		/// 遞等式計算的實現方法集合
 		/// </summary>
@@ -108,7 +114,19 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 
 			while (1 == 1)
 			{
+				// 如果大於三次則認為此題無法作成繼續下一題
+				if (defeated == INVERSE_NUMBER)
+				{
+					RecursionEquation = null;
+					break;
+				}
+
 				int[] factors = getArguments();
+				if(factors == null)
+				{
+					defeated++;
+					continue;
+				}
 
 				StringBuilder express = new StringBuilder();
 				var answer = factors[3];
@@ -155,22 +173,28 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 				() =>
 				{
 					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
-					var diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 10 == 0);
+					var diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 10 == 0, getDefault: () => 160);
 					// 參數C (*增加參數B的取值範圍) eg: 162-(44+38)
 					var argumentC = CommonUtil.GetRandomNumber(50, 150);
 					// 另一個隨機取值方案（整十數湊百）eg: 160+(44-40)
 					if (1 == CommonUtil.GetRandomNumber(1, 2))
 					{
-						diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 100 == 0);
-						argumentC = CommonUtil.GetRandomNumber(50, 150, _ => _ % 10 == 0 && _ % 100 != 0);
+						diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 100 == 0, () => 200);
+						argumentC = CommonUtil.GetRandomNumber(50, 150, condition: _ => _ % 10 == 0 && _ % 100 != 0, () => 140);
 					}
 					// 參數A
 					var argumentA = diff + argumentC;
 					// 參數B
 					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff,
-																	b => b != argumentC
-																			&& (argumentA - b) % 10 != 0
-																			&& (argumentC + b) % 10 != 0);
+																	condition: b => b != argumentC
+																				&& (argumentA - b) % 10 != 0
+																				&& (argumentC + b) % 10 != 0,
+																	getDefault: () => -1);
+					if (argumentB == -1)
+					{
+						return null;
+					}
+
 					// 結果值
 					var answer = diff - argumentB;
 
@@ -193,25 +217,29 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 				() =>
 				{
 					// (A+C)參數合計（獲取三位數(整十位或者整百位)）
-					var argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 10 == 0);
+					var argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 10 == 0, getDefault: () => 400);
 					// 參數C (*增加參數B的取值範圍) eg: 162-44+38
-					var argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 100 != 0);
+					var argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 100 != 0, getDefault: () => 128);
 					// 另一個隨機取值方案（整十數湊百）eg: 160-44+40)
 					if (1 == CommonUtil.GetRandomNumber(1, 2))
 					{
-						argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 100 == 0);
-						argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 10 == 0 && _ % 100 != 0);
+						argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 100 == 0, getDefault: () => 400);
+						argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 180);
 					}
 					// 參數A
 					var argumentA = argumentSum - argumentC;
 					if (argumentA % 100 == 0)
 					{
-						var diff = CommonUtil.GetRandomNumber(1, 100, _ => _ % 10 == 0);
+						var diff = CommonUtil.GetRandomNumber(1, 100, condition: _ => _ % 10 == 0, getDefault: () => 1);
 						argumentA += diff;
 						argumentSum += diff;
 					}
 					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(50, argumentA, b => b != argumentC && (b + argumentA) % 10 != 0);
+					var argumentB = CommonUtil.GetRandomNumber(50, argumentA, condition: b => b != argumentC && (b + argumentA) % 10 != 0, getDefault: () => -1);
+					if(argumentB == -1)
+					{
+						return null;
+					}
 					// 結果值
 					var answer = argumentSum - argumentB;
 
@@ -233,19 +261,23 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 				() =>
 				{
 					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
-					var diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 10 == 0);
+					var diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 10 == 0, getDefault: () => 160);
 					// 參數C (*增加參數B的取值範圍) eg: 162+44-62
 					var argumentC = CommonUtil.GetRandomNumber(50, 150);
 					// 另一個隨機取值方案（整十數湊百）eg: 160+44-60
 					if (1 == CommonUtil.GetRandomNumber(1, 2))
 					{
-						diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 100 == 0);
-						argumentC = CommonUtil.GetRandomNumber(50, 150, _ => _ % 10 == 0 && _ % 100 != 0);
+						diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 100 == 0, getDefault: () => 200);
+						argumentC = CommonUtil.GetRandomNumber(50, 150, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 50);
 					}
 					// 參數A
 					var argumentA = diff + argumentC;
 					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, b => b != argumentC && (argumentA - b) % 10 != 0);
+					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, condition: b => b != argumentC && (argumentA - b) % 10 != 0, getDefault: () => -1);
+					if(argumentB == -1)
+					{
+						return null;
+					}
 					// 結果值
 					var answer = diff + argumentB;
 
@@ -267,26 +299,33 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 				() =>
 				{
 					// (A+C)參數合計（獲取三位數(整十位或者整百位)）
-					var argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 10 == 0);
+					var argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 10 == 0, getDefault: () => 400);
 					// 參數C (*增加參數B的取值範圍)
-					var argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 10 != 0);
+					var argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 10 != 0, getDefault: () => 128);
 					// 另一個隨機取值方案（整十數湊百）
 					if (1 == CommonUtil.GetRandomNumber(1, 2))
 					{
-						argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 100 == 0);
-						argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 10 == 0 && _ % 100 != 0);
+						argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 100 == 0, getDefault: () => 400);
+						argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 180);
 					}
 
 					// 參數A
 					var argumentA = argumentSum - argumentC;
 					if (argumentA % 100 == 0)
 					{
-						var diff = CommonUtil.GetRandomNumber(1, 100, _ => _ % 10 == 0);
+						var diff = CommonUtil.GetRandomNumber(1, 100, condition: _ => _ % 10 == 0, getDefault: () => 50);
 						argumentA += diff;
 						argumentSum += diff;
 					}
 					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(50, 250, b => b != argumentC && (b + argumentA) % 10 != 0 && (b + argumentC) % 10 != 0);
+					var argumentB = CommonUtil.GetRandomNumber(50, 250, 
+																	condition: b => b != argumentC && (b + argumentA) % 10 != 0 && (b + argumentC) % 10 != 0, 
+																	getDefault: () => -1);
+					if(argumentB == -1)
+					{
+						return null;
+					}
+
 					// 結果值
 					var answer = argumentSum + argumentB;
 
@@ -310,19 +349,23 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 				() =>
 				{
 					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
-					var diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 10 == 0);
+					var diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 10 == 0, getDefault: () => 160);
 					// 參數C (*增加參數B的取值範圍) eg: 162+(44-62)
 					var argumentC = CommonUtil.GetRandomNumber(50, 150);
 					// 另一個隨機取值方案（整十數湊百）eg: 160+(44-60)
 					if (1 == CommonUtil.GetRandomNumber(1, 2))
 					{
-						diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 100 == 0);
-						argumentC = CommonUtil.GetRandomNumber(50, 150, _ => _ % 10 == 0 && _ % 100 != 0);
+						diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 100 == 0, getDefault: () => 200);
+						argumentC = CommonUtil.GetRandomNumber(50, 150, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 50);
 					}
 					// 參數A
 					var argumentA = diff + argumentC;
 					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, b => b != argumentC && (argumentA - b) % 10 != 0);
+					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, condition: b => b != argumentC && (argumentA - b) % 10 != 0, getDefault: () => -1);
+					if (argumentB == -1)
+					{
+						return null;
+					}
 					// 結果值
 					var answer = diff + argumentB;
 
@@ -344,19 +387,23 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 				() =>
 				{
 					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
-					var diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 10 == 0);
+					var diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 10 == 0, getDefault: () => 160);
 					// 參數C (*增加參數B的取值範圍) eg: 162-(44+38)
 					var argumentC = CommonUtil.GetRandomNumber(50, 150);
 					// 另一個隨機取值方案（整十數湊百）eg: 160+(44-40)
 					if (1 == CommonUtil.GetRandomNumber(1, 2))
 					{
-						diff = CommonUtil.GetRandomNumber(160, 350, _ => _ % 100 == 0);
-						argumentC = CommonUtil.GetRandomNumber(50, 150, _ => _ % 10 == 0 && _ % 100 != 0);
+						diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 100 == 0, getDefault: () => 200);
+						argumentC = CommonUtil.GetRandomNumber(50, 150, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 50);
 					}
 					// 參數A
 					var argumentA = diff + argumentC;
 					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, b => b != argumentC && (argumentA - b) % 10 != 0);
+					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, condition: b => b != argumentC && (argumentA - b) % 10 != 0, getDefault: () => -1);
+					if (argumentB == -1)
+					{
+						return null;
+					}
 					// 結果值
 					var answer = diff - argumentB;
 
@@ -378,25 +425,29 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 				() =>
 				{
 					// (A+C)參數合計（獲取三位數(整十位或者整百位)）
-					var argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 10 == 0);
+					var argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 10 == 0, getDefault: () => 400);
 					// 參數C (*增加參數B的取值範圍) eg: 162-(44-62)
-					var argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 100 != 0);
+					var argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 100 != 0, getDefault: () => 160);
 					// 另一個隨機取值方案（整十數湊百）eg: 160-(44-60)
 					if (1 == CommonUtil.GetRandomNumber(1, 2))
 					{
-						argumentSum = CommonUtil.GetRandomNumber(300, 550, _ => _ % 100 == 0);
-						argumentC = CommonUtil.GetRandomNumber(100, 250, _ => _ % 10 == 0 && _ % 100 != 0);
+						argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 100 == 0, getDefault: () => 300);
+						argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 180);
 					}
 					// 參數A
 					var argumentA = argumentSum - argumentC;
 					if (argumentA % 100 == 0)
 					{
-						var diff = CommonUtil.GetRandomNumber(1, 100, _ => _ % 10 == 0);
+						var diff = CommonUtil.GetRandomNumber(1, 100, condition: _ => _ % 10 == 0, getDefault: () => 50);
 						argumentA += diff;
 						argumentSum += diff;
 					}
 					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(50, argumentA, b => b != argumentC && (b + argumentA) % 10 != 0);
+					var argumentB = CommonUtil.GetRandomNumber(50, argumentA, condition: b => b != argumentC && (b + argumentA) % 10 != 0, getDefault: () => -1);
+					if (argumentB == -1)
+					{
+						return null;
+					}
 					// 結果值
 					var answer = argumentSum - argumentB;
 
@@ -420,12 +471,18 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 					// 參數A
 					var argumentA = CommonUtil.GetRandomNumber(50, 300);
 					// 參數合計（獲取三位數(整數十位或者整百數)）
-					var argumentSum = CommonUtil.GetRandomNumber(100, 500, _ => _ % 10 == 0);
+					var argumentSum = CommonUtil.GetRandomNumber(100, 500, condition: _ => _ % 10 == 0, getDefault: () => 400);
 					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(100, argumentSum,
-																	b => b != argumentA
-																		&& b != argumentSum - argumentA
-																		&& b % 100 != 0);
+					var argumentB = CommonUtil.GetRandomNumber(50, argumentSum,
+																		condition: b => b != argumentA
+																					&& b != argumentSum - argumentA
+																					&& b % 100 != 0, 
+																		getDefault: () => -1);
+					if (argumentB == -1)
+					{
+						return null;
+					}
+
 					// 參數C
 					var argumentC = argumentSum - argumentB;
 					// 避免AB或者AC相加和為整十數
