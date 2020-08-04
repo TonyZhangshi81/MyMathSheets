@@ -1,12 +1,12 @@
 [
   {
     "Identifier": "RE001",
-    "NumberOfQuestions": 6,
+    "NumberOfQuestions": 10,
     "Reserve": "{\"TopicType\" : '40'}"
   },
   {
     "Identifier": "RE002",
-    "NumberOfQuestions": 6,
+    "NumberOfQuestions": 10,
     "Reserve": "{\"TopicType\" : '41'}"
   },
   {

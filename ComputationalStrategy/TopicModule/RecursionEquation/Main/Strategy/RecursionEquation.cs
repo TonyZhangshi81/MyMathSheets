@@ -13,7 +13,9 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
+using System.Security.Permissions;
 using System.Text;
 
 namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
@@ -122,7 +124,7 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 				}
 
 				int[] factors = getArguments();
-				if(factors == null)
+				if (factors == null)
 				{
 					defeated++;
 					continue;
@@ -236,7 +238,7 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 					}
 					// 參數B
 					var argumentB = CommonUtil.GetRandomNumber(50, argumentA, condition: b => b != argumentC && (b + argumentA) % 10 != 0, getDefault: () => -1);
-					if(argumentB == -1)
+					if (argumentB == -1)
 					{
 						return null;
 					}
@@ -274,7 +276,7 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 					var argumentA = diff + argumentC;
 					// 參數B
 					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, condition: b => b != argumentC && (argumentA - b) % 10 != 0, getDefault: () => -1);
-					if(argumentB == -1)
+					if (argumentB == -1)
 					{
 						return null;
 					}
@@ -318,10 +320,10 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 						argumentSum += diff;
 					}
 					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(50, 250, 
-																	condition: b => b != argumentC && (b + argumentA) % 10 != 0 && (b + argumentC) % 10 != 0, 
+					var argumentB = CommonUtil.GetRandomNumber(50, 250,
+																	condition: b => b != argumentC && (b + argumentA) % 10 != 0 && (b + argumentC) % 10 != 0,
 																	getDefault: () => -1);
-					if(argumentB == -1)
+					if (argumentB == -1)
 					{
 						return null;
 					}
@@ -424,39 +426,66 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 			CleverStartegy(TopicType.CleverB, "{0}-({1}-{2})",
 				() =>
 				{
-					// (A+C)參數合計（獲取三位數(整十位或者整百位)）
-					var argumentSum = CommonUtil.GetRandomNumber(3, 5) * 100 + CommonUtil.GetRandomNumber(0, 10) * 10;
-					// 參數C (*增加參數B的取值範圍) eg: 168-(44-62)
-					var argumentC = CommonUtil.GetRandomNumber(1, (argumentSum / 100) - 1) * 100 + CommonUtil.GetRandomNumber(1, 9) * 10 + CommonUtil.GetRandomNumber(0, 9);
-					// 另一個隨機取值方案（整十數湊百）eg: 160-(44-40)
-					if (1 == CommonUtil.GetRandomNumber(1, 2))
+					CreateArgumentsForSum(out int argumentA, out int argumentB);
+					// 確保被減數為最大值
+					if (argumentA < argumentB)
 					{
-						argumentSum = CommonUtil.GetRandomNumber(3, 6) * 100;
+						var tmp = argumentB;
+						argumentB = argumentA;
+						argumentA = argumentB;
+					}
 
-						argumentC = CommonUtil.GetRandomNumber(1, (argumentSum / 100) - 1) * 100 + CommonUtil.GetRandomNumber(1, 9) * 10;
+					// 參數C
+					var argumentC = 0;
+					while (1 == 1)
+					{
+						argumentC = CommonUtil.GetRandomNumber(argumentB - 1, argumentA - 1);
+						// 避免AB或者AC之間差值為整十數
+						if ((argumentC - argumentB) % 10 == 0 || (argumentA - argumentC) % 10 == 0)
+						{
+							continue;
+						}
+						break;
+					}
 
-						//argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 180);
-					}
-					// 參數A
-					var argumentA = argumentSum - argumentC;
-					if (argumentA % 100 == 0)
-					{
-						var diff = CommonUtil.GetRandomNumber(1, 100, condition: _ => _ % 10 == 0, getDefault: () => 50);
-						argumentA += diff;
-						argumentSum += diff;
-					}
-					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(50, argumentA, condition: b => b != argumentC && (b + argumentA) % 10 != 0, getDefault: () => -1);
-					if (argumentB == -1)
-					{
-						return null;
-					}
 					// 結果值
-					var answer = argumentSum - argumentB;
+					var answer = argumentA + argumentB - argumentC;
 
 					// 參數不能隨便交換位置
-					return new int[] { argumentA, argumentB, argumentC, answer };
+					return new int[] { argumentA, argumentC, argumentB, answer };
 				}, formulas);
+		}
+
+		/// <summary>
+		/// 基於兩個參數之和策略的隨機取值方案
+		/// </summary>
+		/// <param name="argumentA">參數</param>
+		/// <param name="argumentB">參數</param>
+		private void CreateArgumentsForSum(out int argumentA, out int argumentB)
+		{
+			// 參數合計（獲取三位數(整數十位或者整百數 100 ~ 500)）
+			var argumentSum = CommonUtil.GetRandomNumber(1, 4) * 100 + CommonUtil.GetRandomNumber(0, 10) * 10;
+			// 如果合計值是200以內, 隨機取值兩位數
+			if (argumentSum < 200)
+			{
+				// （個位湊十）eg: 45 + 13 + 137
+				argumentA = CommonUtil.GetRandomNumber(1, 9) * 10 + CommonUtil.GetRandomNumber(1, 9);
+			}
+			// 除上述情況以外(整百數)
+			else if (argumentSum % 100 == 0)
+			{
+				// （十位湊百）eg: 45 + 30 + 370
+				argumentA = CommonUtil.GetRandomNumber(1, (argumentSum / 100) - 1) * 100 + CommonUtil.GetRandomNumber(1, 9) * 10;
+			}
+			// 上述情況以外,隨機取值三位數
+			else
+			{
+				// 隨機取值方案（個位湊十）eg: 45 + 132 + 238
+				argumentA = CommonUtil.GetRandomNumber(1, (argumentSum / 100) - 1) * 100 + CommonUtil.GetRandomNumber(1, 9) * 10 + CommonUtil.GetRandomNumber(1, 9);
+			}
+
+			// 參數C
+			argumentB = argumentSum - argumentA;
 		}
 
 		/// <summary>
@@ -471,30 +500,17 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 			CleverStartegy(TopicType.CleverA, "{0}+{1}+{2}",
 				() =>
 				{
-					// 參數A
-					var argumentA = CommonUtil.GetRandomNumber(50, 300);
-					// 參數合計（獲取三位數(整數十位或者整百數)）
-					var argumentSum = CommonUtil.GetRandomNumber(1, 4) * 100 + CommonUtil.GetRandomNumber(0, 10) * 10;
-					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(50, argumentSum, 
-																	condition: b => b != argumentA
-																						&& b != argumentSum - argumentA
-																						&& b % 100 != 0, 
-																	getDefault: () => -1);
-					if (argumentB == -1)
-					{
-						return null;
-					}
+					CreateArgumentsForSum(out int argumentA, out int argumentB);
 
-					// 參數C
-					var argumentC = argumentSum - argumentB;
+					// 參數A
+					var argumentC = CommonUtil.GetRandomNumber(100, 300);
 					// 避免AB或者AC相加和為整十數
-					if ((argumentA + argumentC) % 10 == 0 || (argumentA + argumentB) % 10 == 0)
+					if ((argumentC + argumentA) % 10 == 0 || (argumentC + argumentB) % 10 == 0)
 					{
-						argumentA -= 1;
+						argumentC -= 1;
 					}
 					// 結果值
-					var answer = argumentA + argumentSum;
+					var answer = argumentC + argumentA + argumentB;
 
 					// 隨機排列計算式各參數（打亂參數位置）
 					SetNewGuidFactors(out List<int> factors, argumentA, argumentB, argumentC);
