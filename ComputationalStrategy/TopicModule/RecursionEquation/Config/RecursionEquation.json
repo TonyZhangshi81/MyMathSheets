@@ -11,32 +11,32 @@
   },
   {
     "Identifier": "RE003",
-    "NumberOfQuestions": 6,
+    "NumberOfQuestions": 10,
     "Reserve": "{\"TopicType\" : '42'}"
   },
   {
     "Identifier": "RE004",
-    "NumberOfQuestions": 6,
+    "NumberOfQuestions": 10,
     "Reserve": "{\"TopicType\" : '43'}"
   },
   {
     "Identifier": "RE005",
-    "NumberOfQuestions": 6,
+    "NumberOfQuestions": 10,
     "Reserve": "{\"TopicType\" : '44'}"
   },
   {
     "Identifier": "RE006",
-    "NumberOfQuestions": 6,
+    "NumberOfQuestions": 10,
     "Reserve": "{\"TopicType\" : '45'}"
   },
   {
     "Identifier": "RE007",
-    "NumberOfQuestions": 6,
+    "NumberOfQuestions": 10,
     "Reserve": "{\"TopicType\" : '46'}"
   },
   {
     "Identifier": "RE008",
-    "NumberOfQuestions": 6,
+    "NumberOfQuestions": 10,
     "Reserve": "{\"TopicType\" : '47'}"
   },
   {

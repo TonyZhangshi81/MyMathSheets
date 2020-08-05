@@ -29,7 +29,8 @@ namespace MyMathSheets.TestConsoleApp.Write
 			{
 				if (d.Type == TopicType.CleverA
 						|| d.Type == TopicType.CleverG
-						|| d.Type == TopicType.CleverH)
+						|| d.Type == TopicType.CleverH
+						|| d.Type == TopicType.CleverF)
 				{
 					// CleverA: 22+44+56 -> 22+(44+56)
 					//			列1: 22+44 = 66
@@ -40,6 +41,9 @@ namespace MyMathSheets.TestConsoleApp.Write
 					// CleverH: 68-44-18 -> 68-18-44
 					//			列1: 68-44 = 24
 					//			列2: 24-18 = 6
+					// CleverF: 68+44-18 -> 68-18+44
+					//			列1: 68+44 = 112
+					//			列2: 112-18 = 94
 					Console.Write(string.Format("{0} {1} {2} {3} {4} = {5}",
 						d.ConfixFormulas[0].LeftParameter,
 						d.ConfixFormulas[0].Sign.ToOperationString(),
@@ -51,8 +55,7 @@ namespace MyMathSheets.TestConsoleApp.Write
 				else if (d.Type == TopicType.CleverB
 						|| d.Type == TopicType.CleverC
 						|| d.Type == TopicType.CleverD
-						|| d.Type == TopicType.CleverE
-						|| d.Type == TopicType.CleverF)
+						|| d.Type == TopicType.CleverE)
 				{
 					// CleverB: 68-(44-12) -> 68-44+12 -> 68+12-44
 					//			列1: 44-12 = 32
@@ -66,9 +69,6 @@ namespace MyMathSheets.TestConsoleApp.Write
 					// CleverE: 68+(44+12) -> 68+44+12 -> 68+12+44
 					//			列1: 44+12 = 56
 					//			列2: 68+56 = 124
-					// CleverF: 68+44-18 -> 68-18+44
-					//			列1: 68+44 = 112
-					//			列2: 112-18 = 94
 					Console.Write(string.Format("{0} {1} ({2} {3} {4}) = {5}",
 						d.ConfixFormulas[1].LeftParameter,
 						d.ConfixFormulas[1].Sign.ToOperationString(),

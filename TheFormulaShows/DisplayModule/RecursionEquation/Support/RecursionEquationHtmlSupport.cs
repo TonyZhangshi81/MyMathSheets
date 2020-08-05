@@ -160,7 +160,7 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <returns></returns>
 		private string CleverF(RecursionEquationFormula formula)
 		{
-			return CleverB(formula);
+			return CleverA(formula);
 		}
 
 		/// <summary>

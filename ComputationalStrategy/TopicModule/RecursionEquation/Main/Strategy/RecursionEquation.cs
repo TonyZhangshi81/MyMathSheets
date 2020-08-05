@@ -174,35 +174,36 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 			CleverStartegy(TopicType.CleverH, "{0}-{1}-{2}",
 				() =>
 				{
-					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
-					var diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 10 == 0, getDefault: () => 160);
-					// 參數C (*增加參數B的取值範圍) eg: 162-(44+38)
-					var argumentC = CommonUtil.GetRandomNumber(50, 150);
-					// 另一個隨機取值方案（整十數湊百）eg: 160+(44-40)
 					if (1 == CommonUtil.GetRandomNumber(1, 2))
 					{
-						diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 100 == 0, () => 200);
-						argumentC = CommonUtil.GetRandomNumber(50, 150, condition: _ => _ % 10 == 0 && _ % 100 != 0, () => 140);
+						CreateArgumentsForDiff(out int argumentA, out int argumentB);
+
+						int diff = argumentA - argumentB;
+						// 參數C
+						var argumentC = CommonUtil.GetRandomNumber(50, diff);
+						// 結果值
+						var answer = diff - argumentC;
+
+						// 括號內參數隨機換位置
+						SetNewGuidFactors(out List<int> factors, argumentB, argumentC);
+
+						// 組成計算式時參數不能隨便交換位置
+						return new int[] { argumentA, factors[0], factors[1], answer };
 					}
-					// 參數A
-					var argumentA = diff + argumentC;
-					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff,
-																	condition: b => b != argumentC
-																				&& (argumentA - b) % 10 != 0
-																				&& (argumentC + b) % 10 != 0,
-																	getDefault: () => -1);
-					if (argumentB == -1)
+					// 另一種出題方案 eg: 68-44-16 -> 68-(44+16)
+					else
 					{
-						return null;
+						CreateArgumentsForSum(out int argumentA, out int argumentB);
+
+						int sum = argumentA + argumentB;
+						// 參數C
+						var argumentC = CommonUtil.GetRandomNumber(sum + 1, 400);
+						// 結果值
+						var answer = argumentC - sum;
+
+						// 組成計算式時參數不能隨便交換位置
+						return new int[] { argumentC, argumentA, argumentB, answer };
 					}
-
-					// 結果值
-					var answer = diff - argumentB;
-
-					// 隨機排列計算式各參數（打亂參數B,C 位置）
-					SetNewGuidFactors(out List<int> factors1, argumentB, argumentC);
-					return new int[] { argumentA, factors1[0], factors1[1], answer };
 				}, formulas);
 		}
 
@@ -218,35 +219,42 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 			CleverStartegy(TopicType.CleverG, "{0}-{1}+{2}",
 				() =>
 				{
-					// (A+C)參數合計（獲取三位數(整十位或者整百位)）
-					var argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 10 == 0, getDefault: () => 400);
-					// 參數C (*增加參數B的取值範圍) eg: 162-44+38
-					var argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 100 != 0, getDefault: () => 128);
-					// 另一個隨機取值方案（整十數湊百）eg: 160-44+40)
 					if (1 == CommonUtil.GetRandomNumber(1, 2))
 					{
-						argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 100 == 0, getDefault: () => 400);
-						argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 180);
-					}
-					// 參數A
-					var argumentA = argumentSum - argumentC;
-					if (argumentA % 100 == 0)
-					{
-						var diff = CommonUtil.GetRandomNumber(1, 100, condition: _ => _ % 10 == 0, getDefault: () => 1);
-						argumentA += diff;
-						argumentSum += diff;
-					}
-					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(50, argumentA, condition: b => b != argumentC && (b + argumentA) % 10 != 0, getDefault: () => -1);
-					if (argumentB == -1)
-					{
-						return null;
-					}
-					// 結果值
-					var answer = argumentSum - argumentB;
+						CreateArgumentsForSum(out int argumentA, out int argumentB);
+						// 確保被減數為最大值
+						if (argumentA < argumentB)
+						{
+							var tmp = argumentB;
+							argumentB = argumentA;
+							argumentA = tmp;
+						}
 
-					// 參數不能隨便交換位置
-					return new int[] { argumentA, argumentB, argumentC, answer };
+						// 參數C
+						var argumentC = CommonUtil.GetRandomNumber(argumentB + 1, argumentA - 1, condition: _ => _ > argumentB + 1, getDefault: () => argumentB + 2);
+
+						// 結果值
+						var answer = argumentA - argumentC + argumentB;
+
+						// 參數不能隨便交換位置
+						return new int[] { argumentA, argumentC, argumentB, answer };
+					}
+					// 另一種出題方案 eg: 68-44+14 -> 68-(44-14)
+					else
+					{
+						CreateArgumentsForDiff(out int argumentA, out int argumentB);
+
+						int diff = argumentA - argumentB;
+
+						// 參數C
+						var argumentC = CommonUtil.GetRandomNumber(diff + 1, 500);
+
+						// 結果值
+						var answer = argumentC - argumentA + argumentB;
+
+						// 參數不能隨便交換位置
+						return new int[] { argumentC, argumentA, argumentB, answer };
+					}
 				}, formulas);
 		}
 
@@ -262,29 +270,18 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 			CleverStartegy(TopicType.CleverF, "{0}+{1}-{2}",
 				() =>
 				{
-					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
-					var diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 10 == 0, getDefault: () => 160);
-					// 參數C (*增加參數B的取值範圍) eg: 162+44-62
-					var argumentC = CommonUtil.GetRandomNumber(50, 150);
-					// 另一個隨機取值方案（整十數湊百）eg: 160+44-60
-					if (1 == CommonUtil.GetRandomNumber(1, 2))
-					{
-						diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 100 == 0, getDefault: () => 200);
-						argumentC = CommonUtil.GetRandomNumber(50, 150, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 50);
-					}
-					// 參數A
-					var argumentA = diff + argumentC;
-					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, condition: b => b != argumentC && (argumentA - b) % 10 != 0, getDefault: () => -1);
-					if (argumentB == -1)
-					{
-						return null;
-					}
-					// 結果值
-					var answer = diff + argumentB;
+					CreateArgumentsForDiff(out int argumentA, out int argumentB);
 
-					// 參數不能隨便交換位置
-					return new int[] { argumentA, argumentB, argumentC, answer };
+					int diff = argumentA - argumentB;
+
+					// 參數C (*增加參數B的取值範圍) eg: 162+44-62
+					var argumentC = CommonUtil.GetRandomNumber(50, 300);
+					// 結果值
+					var answer = diff + argumentC;
+
+					// 兩個加數之間亂序排列
+					SetNewGuidFactors(out List<int> factors, argumentA, argumentC);
+					return new int[] { factors[0], factors[1], argumentB, answer };
 				}, formulas);
 		}
 
@@ -300,41 +297,19 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 			CleverStartegy(TopicType.CleverE, "{0}+({1}+{2})",
 				() =>
 				{
-					// (A+C)參數合計（獲取三位數(整十位或者整百位)）
-					var argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 10 == 0, getDefault: () => 400);
-					// 參數C (*增加參數B的取值範圍)
-					var argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 10 != 0, getDefault: () => 128);
-					// 另一個隨機取值方案（整十數湊百）
-					if (1 == CommonUtil.GetRandomNumber(1, 2))
-					{
-						argumentSum = CommonUtil.GetRandomNumber(300, 550, condition: _ => _ % 100 == 0, getDefault: () => 400);
-						argumentC = CommonUtil.GetRandomNumber(100, 250, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 180);
-					}
+					CreateArgumentsForSum(out int argumentA, out int argumentB);
 
 					// 參數A
-					var argumentA = argumentSum - argumentC;
-					if (argumentA % 100 == 0)
-					{
-						var diff = CommonUtil.GetRandomNumber(1, 100, condition: _ => _ % 10 == 0, getDefault: () => 50);
-						argumentA += diff;
-						argumentSum += diff;
-					}
-					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(50, 250,
-																	condition: b => b != argumentC && (b + argumentA) % 10 != 0 && (b + argumentC) % 10 != 0,
-																	getDefault: () => -1);
-					if (argumentB == -1)
-					{
-						return null;
-					}
+					var argumentC = CommonUtil.GetRandomNumber(100, 300);
 
 					// 結果值
-					var answer = argumentSum + argumentB;
+					var answer = argumentC + argumentA + argumentB;
 
-					// 隨機排列計算式各參數（打亂參數A,C 位置）
-					SetNewGuidFactors(out List<int> factors1, argumentA, argumentC);
-					SetNewGuidFactors(out List<int> factors2, factors1[1], argumentB);
-					return new int[] { factors1[0], factors2[0], factors2[1], answer };
+					// 隨機排列計算式各參數（打亂參數位置）
+					SetNewGuidFactors(out List<int> factors, argumentA, argumentB, argumentC);
+					factors.Add(answer);
+
+					return factors.ToArray();
 				}, formulas);
 		}
 
@@ -350,29 +325,19 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 			CleverStartegy(TopicType.CleverD, "{0}+({1}-{2})",
 				() =>
 				{
-					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
-					var diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 10 == 0, getDefault: () => 160);
-					// 參數C (*增加參數B的取值範圍) eg: 162+(44-62)
-					var argumentC = CommonUtil.GetRandomNumber(50, 150);
-					// 另一個隨機取值方案（整十數湊百）eg: 160+(44-60)
-					if (1 == CommonUtil.GetRandomNumber(1, 2))
-					{
-						diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 100 == 0, getDefault: () => 200);
-						argumentC = CommonUtil.GetRandomNumber(50, 150, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 50);
-					}
-					// 參數A
-					var argumentA = diff + argumentC;
-					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, condition: b => b != argumentC && (argumentA - b) % 10 != 0, getDefault: () => -1);
-					if (argumentB == -1)
-					{
-						return null;
-					}
+					CreateArgumentsForDiff(out int argumentA, out int argumentB);
+
+					int diff = argumentA - argumentB;
+					// 參數C
+					var argumentC = CommonUtil.GetRandomNumber(argumentB, 400);
 					// 結果值
-					var answer = diff + argumentB;
+					var answer = diff + argumentC;
+
+					// 括號內參數隨機換位置
+					SetNewGuidFactors(out List<int> factors, argumentA, argumentC);
 
 					// 參數不能隨便交換位置
-					return new int[] { argumentA, argumentB, argumentC, answer };
+					return new int[] { factors[0], factors[1], argumentB, answer };
 				}, formulas);
 		}
 
@@ -388,29 +353,19 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 			CleverStartegy(TopicType.CleverC, "{0}-({1}+{2})",
 				() =>
 				{
-					// (A-C)參數差值（獲取三位數(整十位或者整百位)）
-					var diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 10 == 0, getDefault: () => 160);
-					// 參數C (*增加參數B的取值範圍) eg: 162-(44+38)
-					var argumentC = CommonUtil.GetRandomNumber(50, 150);
-					// 另一個隨機取值方案（整十數湊百）eg: 160+(44-40)
-					if (1 == CommonUtil.GetRandomNumber(1, 2))
-					{
-						diff = CommonUtil.GetRandomNumber(160, 350, condition: _ => _ % 100 == 0, getDefault: () => 200);
-						argumentC = CommonUtil.GetRandomNumber(50, 150, condition: _ => _ % 10 == 0 && _ % 100 != 0, getDefault: () => 50);
-					}
-					// 參數A
-					var argumentA = diff + argumentC;
-					// 參數B
-					var argumentB = CommonUtil.GetRandomNumber(argumentC, diff, condition: b => b != argumentC && (argumentA - b) % 10 != 0, getDefault: () => -1);
-					if (argumentB == -1)
-					{
-						return null;
-					}
-					// 結果值
-					var answer = diff - argumentB;
+					CreateArgumentsForDiff(out int argumentA, out int argumentB);
 
-					// 參數不能隨便交換位置
-					return new int[] { argumentA, argumentB, argumentC, answer };
+					int diff = argumentA - argumentB;
+					// 參數B
+					var argumentC = CommonUtil.GetRandomNumber(50, diff);
+					// 結果值
+					var answer = diff - argumentC;
+
+					// 括號內參數隨機換位置
+					SetNewGuidFactors(out List<int> factors, argumentB, argumentC);
+
+					// 組成計算式時參數不能隨便交換位置
+					return new int[] { argumentA, factors[0], factors[1], answer };
 				}, formulas);
 		}
 
@@ -432,28 +387,40 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 					{
 						var tmp = argumentB;
 						argumentB = argumentA;
-						argumentA = argumentB;
+						argumentA = tmp;
 					}
 
 					// 參數C
-					var argumentC = 0;
-					while (1 == 1)
-					{
-						argumentC = CommonUtil.GetRandomNumber(argumentB - 1, argumentA - 1);
-						// 避免AB或者AC之間差值為整十數
-						if ((argumentC - argumentB) % 10 == 0 || (argumentA - argumentC) % 10 == 0)
-						{
-							continue;
-						}
-						break;
-					}
+					var argumentC = CommonUtil.GetRandomNumber(argumentB + 1, argumentA - 1, condition: _ => _ > argumentB + 1, getDefault: () => argumentB + 2);
 
 					// 結果值
-					var answer = argumentA + argumentB - argumentC;
+					var answer = argumentA - argumentC + argumentB;
 
 					// 參數不能隨便交換位置
 					return new int[] { argumentA, argumentC, argumentB, answer };
 				}, formulas);
+		}
+
+		/// <summary>
+		/// 基於兩個參數之差策略的隨機取值方案
+		/// </summary>
+		/// <param name="argumentA">參數</param>
+		/// <param name="argumentB">參數</param>
+		private void CreateArgumentsForDiff(out int argumentA, out int argumentB)
+		{
+			// (A-C)參數差值（獲取三位數(整十位或者整百位)）(100~400)
+			var diff = CommonUtil.GetRandomNumber(1, 3) * 100 + CommonUtil.GetRandomNumber(0, 10) * 10;
+			// 參數C (*增加參數B的取值範圍) eg: 268-(44+138)
+			argumentB = CommonUtil.GetRandomNumber(0, 2) * 100 + CommonUtil.GetRandomNumber(1, 9) * 10 + CommonUtil.GetRandomNumber(0, 9);
+			// 另一個隨機取值方案（整十數湊百）eg: 340-(44+40)
+			if (1 == CommonUtil.GetRandomNumber(1, 2))
+			{
+				diff = CommonUtil.GetRandomNumber(1, 3) * 100;
+				argumentB = CommonUtil.GetRandomNumber(0, 2) * 100 + CommonUtil.GetRandomNumber(1, 9) * 10;
+			}
+
+			// 參數A
+			argumentA = diff + argumentB;
 		}
 
 		/// <summary>
@@ -504,11 +471,7 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 
 					// 參數A
 					var argumentC = CommonUtil.GetRandomNumber(100, 300);
-					// 避免AB或者AC相加和為整十數
-					if ((argumentC + argumentA) % 10 == 0 || (argumentC + argumentB) % 10 == 0)
-					{
-						argumentC -= 1;
-					}
+
 					// 結果值
 					var answer = argumentC + argumentA + argumentB;
 
