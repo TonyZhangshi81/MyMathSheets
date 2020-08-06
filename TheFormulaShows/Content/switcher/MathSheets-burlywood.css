@@ -76,10 +76,14 @@
 	font-size: 0.7rem;
 }
 
-.accordion .accordion-header {
-	background-color: khaki;
+.ui-state-default {
+	background: khaki;
 }
 
-.accordion .accordion-header-selected {
+.ui-state-hover {
+	background: beige;
+}
+
+.ui-state-active {
 	background-color: peru;
 }

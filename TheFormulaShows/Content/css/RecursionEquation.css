@@ -1,20 +1,37 @@
-.panel-body {
-    font-size: 1.25rem;
+.re.divCorrectOrFault-1 {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    margin-left: 320px;
+    margin-top: -50px;
 }
 
 .input-addBorder-max {
-    border: 0px !important;
+    border: 1px !important;
     width: 90% !important;
     text-align: left;
     padding-top: 1px !important;
 }
 
-    .input-addBorder-max:disabled {
-        background-color: #e9ecef !important;
-    }
+.input-addBorder-max:disabled {
+    background-color: #e9ecef !important;
+}
 
-.panel-title {
-    padding-left: 30px;
-    font-size: 1.25rem;
-    font-weight: normal;
+.ui-widget-ext {
+	width: 90%;
+}
+
+.ui-accordion-header-ext {
+	text-align: left;
+}
+
+.ui-state-active .ui-icon,
+.ui-button:active .ui-icon {
+	background:url('../icons/pencil.png') no-repeat center center;
+}
+
+.ui-accordion .ui-accordion-content {
+	padding: 0.5em;
+	border-top: 0;
+	overflow: hidden;
 }

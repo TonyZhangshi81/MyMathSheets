@@ -157,6 +157,7 @@
     <Content Include="Content\image\time.png" />
     <Content Include="Content\image\theme.png" />
     <Content Include="Content\image\triangle.png" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\switcher\MathSheets.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -221,6 +222,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.base64.js" />
     <Content Include="Scripts\jquery.easing.1.3.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
@@ -308,7 +310,7 @@ xcopy "..\Content\icons" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Conte
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Page" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Page"
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts"
 copy "..\Scripts\bootstrap.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
-copy "..\Scripts\jquery.easyui.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\jquery-ui.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery-3.3.1.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.base64.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.PrintArea.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
@@ -326,7 +328,7 @@ copy "..\Content\bootstrap.min.css" "$(SolutionDir)MathSheetsSettingApp\App_Data
 copy "..\Content\font-awesome.min.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\default.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\Shake.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
-copy "..\Content\easyui.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\jquery-ui.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\icon.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\bootstrap-grid.min.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\bootstrap-reboot.min.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y

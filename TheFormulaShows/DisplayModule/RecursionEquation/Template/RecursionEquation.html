@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../Content/image/favicon.ico">
     <link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
-    <link href="../Content/easyui.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/jquery-ui.css" rel="stylesheet" charset="utf-8">
     <link href="../Content/icon.css" rel="stylesheet" charset="utf-8">
     <link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
     <link title="default" href="../Content/switcher/MathSheets.css" rel="stylesheet" charset="utf-8">
@@ -24,7 +24,7 @@
     <script src="../Scripts/jquery.linq.min.js" charset="utf-8"></script>
     <script src="../Scripts/jquery.base64.js" charset="utf-8"></script>
     <script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
-    <script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery-ui.js" charset="utf-8"></script>
     <script src="../Scripts/umd/popper.js" charset="utf-8"></script>
     <script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
     <script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
@@ -143,6 +143,9 @@
         </div>
     </div>
     <!-- 正文 -->
+    <script>
+    _isEncrypt = false;
+    </script>
     <div class="container theme-showcase main-ext" role="main" id="divContainer">
         <!-- 標題歡迎畫面 -->
         <div class="jumbotron-ext">
@@ -178,22 +181,24 @@
             <div class="div-page-content">
                 <div class="row text-center row-margin-top align-items-start">
                     <div class="col-md-6 form-inline">
-                        <div id="divAccordion1" class="easyui-accordion" style="width:85%;">
-                            <div title="18 + 31 + 2" data-options="iconCls:'icon-edit', bodyCls:'accordion_padding'" style="padding:10px;">
-                                <span class="label">=</span>
+                    	<div id="divAccordion1" class="ui-widget-ext">
+                    		<h3 class="ui-accordion-header-ext">18 + 31 + 2</h3>
+                    		<div class="col-md-12" style="height: 120px">
+                    			<span class="label">=</span>
                                 <input id="inputRe1011" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
                                 <input id="inputRe1012" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
                                 <input id="inputRe1013" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" />
                                 <input type="hidden" id="hiddenRe101" value="51" />
-                                <div class="divCorrectOrFault-1">
+                                <div class="re divCorrectOrFault-1">
                                     <img id="imgOKRecursionEquation101" src="../Content/image/correct.png" class="imgCorrect-1" />
                                     <img id="imgNoRecursionEquation101" src="../Content/image/fault.png" class="imgFault-1" />
                                 </div>
-                            </div>
-
-                            <div title="125 + 28 - 25" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
+                    		</div>
+                    		
+                    		<h3 class="ui-accordion-header-ext">125 + 28 - 25</h3>
+                    		<div class="col-md-12">
                                 <span class="label">=</span>
                                 <input id="inputRe1021" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
@@ -201,13 +206,14 @@
                                 <span class="label">=</span>
                                 <input id="inputRe1023" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" />
                                 <input type="hidden" id="hiddenRe102" value="128" />
-                                <div class="divCorrectOrFault-1">
+                                <div class="re divCorrectOrFault-1">
                                     <img id="imgOKRecursionEquation102" src="../Content/image/correct.png" class="imgCorrect-1" />
                                     <img id="imgNoRecursionEquation102" src="../Content/image/fault.png" class="imgFault-1" />
                                 </div>
-                            </div>
-
-                            <div title="34 + 28 - 8" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
+                    		</div>
+                    		
+                    		<h3 class="ui-accordion-header-ext">34 + 28 - 8</h3>
+                    		<div class="col-md-12">
                                 <span class="label">=</span>
                                 <input id="inputRe1031" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
@@ -215,30 +221,33 @@
                                 <span class="label">=</span>
                                 <input id="inputRe1033" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" />
                                 <input type="hidden" id="hiddenRe103" value="54" />
-                                <div class="divCorrectOrFault-1">
+                                <div class="re divCorrectOrFault-1">
                                     <img id="imgOKRecursionEquation103" src="../Content/image/correct.png" class="imgCorrect-1" />
                                     <img id="imgNoRecursionEquation103" src="../Content/image/fault.png" class="imgFault-1" />
                                 </div>
-                            </div>
-                        </div>
+                    		</div>
+                    	</div>
+                    
                     </div>
                     <div class="col-md-6 form-inline">
-                        <div id="divAccordion2" class="easyui-accordion" style="width:85%;">
-                            <div title="35 + 32 - 5" data-options="iconCls:'icon-edit', bodyCls:'accordion_padding'" style="padding:10px;">
-                                <span class="label">=</span>
+                    	<div id="divAccordion2" class="ui-widget-ext">
+                    		<h3 class="ui-accordion-header-ext">35 + 32 - 5</h3>
+                    		<div class="col-md-12">
+                    			<span class="label">=</span>
                                 <input id="inputRe2011" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
                                 <input id="inputRe2012" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
                                 <input id="inputRe2012" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <input type="hidden" id="hiddenRe201" value="62" />
-                                <div class="divCorrectOrFault-1">
+                                <div class="re divCorrectOrFault-1">
                                     <img id="imgOKRecursionEquation201" src="../Content/image/correct.png" class="imgCorrect-1" />
                                     <img id="imgNoRecursionEquation201" src="../Content/image/fault.png" class="imgFault-1" />
                                 </div>
-                            </div>
-
-                            <div title="58 - 24 - 16" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
+                    		</div>
+                    		
+                    		<h3 class="ui-accordion-header-ext">58 - 24 - 16</h3>
+                    		<div class="col-md-12">
                                 <span class="label">=</span>
                                 <input id="inputRe2021" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
@@ -246,13 +255,14 @@
                                 <span class="label">=</span>
                                 <input id="inputRe2023" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <input type="hidden" id="hiddenRe202" value="18" />
-                                <div class="divCorrectOrFault-1">
+                                <div class="re divCorrectOrFault-1">
                                     <img id="imgOKRecursionEquation202" src="../Content/image/correct.png" class="imgCorrect-1" />
                                     <img id="imgNoRecursionEquation202" src="../Content/image/fault.png" class="imgFault-1" />
                                 </div>
-                            </div>
-
-                            <div title="58 - (24 - 12)" data-options="iconCls:'icon-tip', bodyCls:'accordion_padding'" style="padding:10px;">
+                    		</div>
+                    		
+                    		<h3 class="ui-accordion-header-ext">58 - (24 - 12)</h3>
+                    		<div class="col-md-12">
                                 <span class="label">=</span>
                                 <input id="inputRe2031" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <span class="label">=</span>
@@ -260,12 +270,13 @@
                                 <span class="label">=</span>
                                 <input id="inputRe2033" type="text" placeholder=" ?? " class="form-control input-addBorder-max" disabled="disabled" /><br />
                                 <input type="hidden" id="hiddenRe203" value="46" />
-                                <div class="divCorrectOrFault-1">
+                                <div class="re divCorrectOrFault-1">
                                     <img id="imgOKRecursionEquation303" src="../Content/image/correct.png" class="imgCorrect-1" />
                                     <img id="imgNoRecursionEquation303" src="../Content/image/fault.png" class="imgFault-1" />
                                 </div>
-                            </div>
-                        </div>
+                    		</div>
+                    	</div>
+                    
                     </div>
                 </div>
             </div>

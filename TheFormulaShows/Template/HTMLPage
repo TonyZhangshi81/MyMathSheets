@@ -9,7 +9,7 @@
 	<meta name="author" content="">
 	<link rel="icon" href="../Content/image/favicon.ico">
 	<link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
-    <link href="../Content/easyui.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/jquery-ui.css" rel="stylesheet" charset="utf-8">
     <link href="../Content/icon.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
 	<link title="default" href="../Content/switcher/MathSheets.css" rel="stylesheet" charset="utf-8">
@@ -23,7 +23,7 @@
 	<script src="../Scripts/jquery.linq.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.base64.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
-	<script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+	<script src="../Scripts/jquery-ui.js" charset="utf-8"></script>
 	<script src="../Scripts/umd/popper.js" charset="utf-8"></script>
 	<script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
 	<script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
