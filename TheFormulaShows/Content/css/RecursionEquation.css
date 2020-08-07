@@ -6,22 +6,22 @@
     margin-top: -50px;
 }
 
-.input-addBorder-max {
-    border: 1px !important;
+.re.input-addBorder-max {
+    border: 0px !important;
     width: 90% !important;
     text-align: left;
     padding-top: 1px !important;
 }
 
-.input-addBorder-max:disabled {
+.re.input-addBorder-max:disabled {
     background-color: #e9ecef !important;
 }
 
-.ui-widget-ext {
+.re.ui-widget-ext {
 	width: 90%;
 }
 
-.ui-accordion-header-ext {
+.re.ui-accordion-header-ext {
 	text-align: left;
 }
 

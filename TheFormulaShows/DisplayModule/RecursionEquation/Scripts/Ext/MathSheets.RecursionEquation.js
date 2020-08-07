@@ -143,22 +143,6 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
 
                 $(element).removeAttr("disabled");
             });
-
-            // 為每一個折疊面板註冊事件
-            $("div[id*='divAccordion']").each(function (index, element) {
-                $(element).accordion({
-                    // 展開面板時替換為編輯圖標
-                    onSelect: function (title, index) {
-                        var pp = $(element).accordion('getSelected');
-                        $(pp).prev().children("div").eq(1).attr("class", "panel-icon icon-edit");
-                    },
-                    // 閉合面板時替換為初始圖標
-                    onUnselect: function (title, index) {
-                        var pp = $(element).accordion('getPanel', index);
-                        $(pp).prev().children("div").eq(1).attr("class", "panel-icon icon-tip");
-                    }
-                });
-            });
         },
 
         // 订正(巧算题)
@@ -198,3 +182,14 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
         calcInputContent: calcInputContent
     };
 }());
+
+$(function() {
+	// 為每一個折疊面板註冊事件
+    $("div[id*='divAccordion']").each(function (index, element) {
+    	$(element).accordion({
+    		heightStyle: "auto",
+    		height: 130,
+    		collapsible: true
+    	});
+    });
+});
