@@ -1,5 +1,4 @@
-﻿using MyMathSheets.CommonLib.Logging;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
 using MyMathSheets.CommonLib.Main.Item;
 using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Main.Policy.Attributes;
@@ -13,9 +12,6 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Messaging;
-using System.Security.Permissions;
 using System.Text;
 
 namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
@@ -412,11 +408,34 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 			var diff = CommonUtil.GetRandomNumber(1, 3) * 100 + CommonUtil.GetRandomNumber(0, 10) * 10;
 			// 參數C (*增加參數B的取值範圍) eg: 268-(44+138)
 			argumentB = CommonUtil.GetRandomNumber(0, 2) * 100 + CommonUtil.GetRandomNumber(1, 9) * 10 + CommonUtil.GetRandomNumber(0, 9);
-			// 另一個隨機取值方案（整十數湊百）eg: 340-(44+40)
-			if (1 == CommonUtil.GetRandomNumber(1, 2))
+
+			var partten = CommonUtil.GetRandomNumber(1, 3);
+			switch (partten)
 			{
-				diff = CommonUtil.GetRandomNumber(1, 3) * 100;
-				argumentB = CommonUtil.GetRandomNumber(0, 2) * 100 + CommonUtil.GetRandomNumber(1, 9) * 10;
+				// 隨機取值方案（整十數湊百）eg: 340-(44+40)
+				case 2:
+					diff = CommonUtil.GetRandomNumber(1, 3) * 100;
+					argumentB = (CommonUtil.GetRandomNumber(0, 2) * 100) + CommonUtil.GetRandomNumber(1, 9) * 10;
+					break;
+
+				// 隨機取值方案（整十數湊百）eg: 334-(46+134)
+				case 3:
+					var remainder = CommonUtil.GetRandomNumber(1, 9) * 10 + CommonUtil.GetRandomNumber(1, 9);
+					diff = CommonUtil.GetRandomNumber(1, 3) * 100 + remainder;
+					argumentB = CommonUtil.GetRandomNumber(0, 2) * 100 + remainder;
+					// 大小交換位置
+					if (diff < argumentB)
+					{
+						var tmp = diff;
+						diff = argumentB;
+						argumentB = tmp;
+					}
+					else if (diff == argumentB)
+					{
+						diff += 100;
+					}
+
+					break;
 			}
 
 			// 參數A
@@ -431,7 +450,12 @@ namespace MyMathSheets.ComputationalStrategy.RecursionEquation.Main.Strategy
 		private void CreateArgumentsForSum(out int argumentA, out int argumentB)
 		{
 			// 參數合計（獲取三位數(整數十位或者整百數 100 ~ 500)）
-			var argumentSum = CommonUtil.GetRandomNumber(1, 4) * 100 + CommonUtil.GetRandomNumber(0, 10) * 10;
+			var argumentSum = CommonUtil.GetRandomNumber(1, 5) * 100;
+			if (1 == CommonUtil.GetRandomNumber(1, 2))
+			{
+				argumentSum = CommonUtil.GetRandomNumber(1, 4) * 100 + CommonUtil.GetRandomNumber(0, 10) * 10;
+			}
+
 			// 如果合計值是200以內, 隨機取值兩位數
 			if (argumentSum < 200)
 			{
