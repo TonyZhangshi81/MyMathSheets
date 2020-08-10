@@ -37,10 +37,15 @@
 	margin-left: 400px;
 }
 
-.accordion .accordion-header {
-	background-color: floralwhite;
+.ui-state-default {
+	background: floralwhite;
 }
 
-.accordion .accordion-header-selected {
+.ui-state-hover {
+	background: beige;
+}
+
+.ui-state-active {
 	background-color: darkseagreen;
+	color: #ffffff;
 }

@@ -65,10 +65,15 @@
 	color: chocolate;
 }
 
-.accordion .accordion-header {
-	background-color: lightpink;
+.ui-state-default {
+	background: lightpink;
 }
 
-.accordion .accordion-header-selected {
+.ui-state-hover {
+	background: beige;
+}
+
+.ui-state-active {
 	background-color: darksalmon;
+	color: #ffffff;
 }

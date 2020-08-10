@@ -183,13 +183,48 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
     };
 }());
 
-$(function() {
-	// 為每一個折疊面板註冊事件
+$(function () {
+    // 為每一個折疊面板註冊事件
     $("div[id*='divAccordion']").each(function (index, element) {
-    	$(element).accordion({
-    		heightStyle: "auto",
-    		height: 130,
-    		collapsible: true
-    	});
+        $(element).accordion({
+            heightStyle: "auto",
+            height: 130,
+            collapsible: true
+        });
     });
+
+    /** 測試版本
+    var availableTags = ["18", "31", "2", "+", "-", "*", "/"];
+    function split(val) {
+        return val.split(/[ ]/);
+    }
+    function extractLast(term) {
+        return split(term).pop();
+    }
+
+    $("#inputRe1011")
+        .bind("keydown", function (event) {
+            if (event.keyCode === $.ui.keyCode.TAB && $(this).data("ui-autocomplete").menu.active) {
+                event.preventDefault();
+            }
+        })
+        .autocomplete({
+            source:
+                function (request, response) {
+                    response($.ui.autocomplete.filter(availableTags, extractLast(request.term)));
+                },
+            select:
+                function (event, ui) {
+                    var terms = split(this.value);
+                    // 移除當前輸入值
+                    //terms.pop();
+                    // 添加備選項
+                    terms.push(ui.item.value);
+                    // 添加佔位符，在結尾添加空格
+                    terms.push("");
+                    this.value = terms.join(" ");
+                    return false;
+                }
+        });
+     */
 });

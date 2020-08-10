@@ -65,10 +65,15 @@
 	display: none;
 }
 
-.accordion .accordion-header {
-	background-color: lightblue;
+.ui-state-default {
+	background: lightblue;
 }
 
-.accordion .accordion-header-selected {
+.ui-state-hover {
+	background: beige;
+}
+
+.ui-state-active {
 	background-color: royalblue;
+	color: #ffffff;
 }
