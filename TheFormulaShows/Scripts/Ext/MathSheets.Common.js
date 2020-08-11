@@ -587,12 +587,11 @@ MathSheets.Common = MathSheets.Common || (function () {
         },
 
         /**
-         * @description 鼠標移出浮動菜單區域時，浮動菜單關閉
+         * @description 點擊關閉按鈕，浮動菜單關閉
          * @method outNavbarHide
          */
         outNavbarHide = function () {
-            $(".box").slideUp(500, function () {
-            });
+            $(".box").slideUp(500);
         },
 
         /**
@@ -892,6 +891,20 @@ MathSheets.Common = MathSheets.Common || (function () {
         },
 
         /**
+         * @description 導航菜單顯示控制
+         * @method sidebarMenu
+         */
+        sidebarMenu = function () {
+            $(".nav").toggle('fast', function () {
+                if ($('.imgSidebar').attr('src') == '../Content/image/menuOpen.png') {
+                    $('.imgSidebar').attr('src', '../Content/image/menuClose.png');
+                } else {
+                    $('.imgSidebar').attr('src', '../Content/image/menuOpen.png');
+                }
+            });
+        },
+
+        /**
          * @description 是否啟用屏幕虛擬人物托尼
          * @method useClown
          */
@@ -908,7 +921,22 @@ MathSheets.Common = MathSheets.Common || (function () {
         },
 
         /**
+         * @description  蝴蝶插件顯示控制
+         * @method pluginButterfly
+         */
+        pluginButterfly = function (butterfly) {
+            if ($('.imgButterfly').attr('src') == '../Content/image/butterfly-color.png') {
+                $('.imgButterfly').attr('src', '../Content/image/butterfly.png');
+                $('.plugin-butterfly').fadeOut(2000);
+            } else {
+                $('.imgButterfly').attr('src', '../Content/image/butterfly-color.png');
+                $('.plugin-butterfly').fadeIn(500);
+            }
+        },
+
+        /**
          * @description js base64編碼解碼
+         * @method base64Decode
          */
         base64Decode = function (coded, utf8decode = true) {
             if (_isEncrypt != undefined && !_isEncrypt) {
@@ -1043,6 +1071,8 @@ MathSheets.Common = MathSheets.Common || (function () {
         ready: ready,
         windowScroll: windowScroll,
         useClown: useClown,
+        pluginButterfly: pluginButterfly,
+        sidebarMenu: sidebarMenu, 
         getControlId: getControlId,
         removeInputElementArray: removeInputElementArray,
         base64Decode: base64Decode
@@ -1117,7 +1147,7 @@ $(document).ready(function () {
 
     // 鼠標移入頁面頂端導航區域時，浮動菜單顯示
     $('.imgNavbar').bind("mouseenter", function () { MathSheets.Common.overNavbarShow(); });
-    // 鼠標移出浮動菜單區域時，浮動菜單關閉
+    // 點擊關閉按鈕，浮動菜單關閉
     $('#close').bind("click", function () { MathSheets.Common.outNavbarHide(); });
     // 主題選擇事件
     $('.switcher li').bind("click", function () { MathSheets.Common.styleSelect(this); });
@@ -1126,6 +1156,11 @@ $(document).ready(function () {
 
     // 是否啟用托尼
     $('.imgClown').click(function () { MathSheets.Common.useClown(); });
+    // 蝴蝶插件顯示控制
+    $('.imgButterfly').click(function () { MathSheets.Common.pluginButterfly(); });
+
+    // 導航菜單顯示控制
+    $('.imgSidebar').click(function () { MathSheets.Common.sidebarMenu(); });
 
     // 計算式提示
     $(function () { $("[data-toggle='tooltip']").tooltip(); });

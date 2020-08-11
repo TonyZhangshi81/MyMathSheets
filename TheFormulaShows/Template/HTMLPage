@@ -12,12 +12,13 @@
     <link href="../Content/jquery-ui.css" rel="stylesheet" charset="utf-8">
     <link href="../Content/icon.css" rel="stylesheet" charset="utf-8">
 	<link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
+	<link href="../Content/Shake.css" rel="stylesheet" charset="utf-8">
+	<!--SKIN-->
 	<link title="default" href="../Content/switcher/MathSheets.css" rel="stylesheet" charset="utf-8">
 	<link title="burlywood" href="../Content/switcher/MathSheets-burlywood.css" rel="stylesheet" charset="utf-8" disabled="disabled">
 	<link title="coral" href="../Content/switcher/MathSheets-coral.css" rel="stylesheet" charset="utf-8" disabled="disabled">
 	<link title="cornflowerblue" href="../Content/switcher/MathSheets-cornflowerblue.css" rel="stylesheet" charset="utf-8" disabled="disabled">
 	<link title="eyeshieldgreen" href="../Content/switcher/MathSheets-eyeshieldgreen.css" rel="stylesheet" charset="utf-8" disabled="disabled">
-	<link href="../Content/Shake.css" rel="stylesheet" charset="utf-8">
 	<!--STYLESHEET-->
 	<script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
 	<script src="../Scripts/jquery.linq.min.js" charset="utf-8"></script>
@@ -103,6 +104,7 @@
 				<li style="background-color: cornflowerblue;" id="cornflowerblue"></li>
 				<li style="background-color: #C7EDCC;" id="eyeshieldgreen"></li>
 			</ul>
+			<img src="../Content/image/butterfly-color.png" class="imgButterfly" />
 		</div>
 	</div>
 	<!-- 設置按鈕 -->
@@ -111,6 +113,7 @@
 	</div>
 	<!-- 右側題型導航菜單 -->
 	<div class="bs-docs-sidebar" id="divSidebar">
+		<img src="../Content/image/menuOpen.png" class="imgSidebar" />
 		<ul class="nav nav-ext">
 		</ul>
 	</div>
@@ -118,9 +121,6 @@
 	<div class="plugin-shake-head-area">
 		<div class="tony-shake-head" id="divShakeHead" data-toggle="tooltip" title="I'm Tony. Hello! Eve.">
 			<iframe frameborder="0" scrolling="no" src="../Plugin/TonyShakeHead/index.html" width="500" height="300"></iframe>
-		</div>
-		<div class="tony-music" id="divTonyMusic">
-			<img src="../Content/image/musicPlayer.png" class="imgTonyMusic" />
 		</div>
 	</div>
 	<!-- 獎牌擺放區 -->

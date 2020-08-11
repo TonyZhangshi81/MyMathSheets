@@ -75,6 +75,15 @@
     z-index: 91;
 }
 
+
+.imgSidebar {
+    height: 25px;
+    width: 25px;
+    margin-top: -25px;
+    margin-right: -20px;
+    float: right;
+}
+
 .imgNavbar {
     height: 15px;
     width: 15px;
@@ -89,9 +98,18 @@
     margin-left: 20px;
 }
 
+.imgButterfly {
+    height: 28px;
+    width: 28px;
+    float: right;
+    cursor: pointer;
+    margin-top: -44px;
+    margin-right: 310px;
+}
+
 .box-content {
     position: relative;
-    width: 300px;
+    width: 360px;
     float: right;
     margin-right: 35px;
     height: 45px;
@@ -141,7 +159,7 @@
     right: 0px;
     background-color: transparent;
     letter-spacing: 4px;
-    top: 50%;
+    top: 30%;
     padding-right: 20px;
     z-index: 72;
     transform: translateY(-50%);

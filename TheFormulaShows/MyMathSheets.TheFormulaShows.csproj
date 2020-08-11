@@ -92,6 +92,8 @@
     <Content Include="Content\icons\tip.png" />
     <Content Include="Content\icons\undo.png" />
     <Content Include="Content\image\bookmark.png" />
+    <Content Include="Content\image\butterfly-color.png" />
+    <Content Include="Content\image\butterfly.png" />
     <Content Include="Content\image\checkCorrectResult.png" />
     <Content Include="Content\image\checkFaultResult.png" />
     <Content Include="Content\image\clown-color.png" />
@@ -141,6 +143,8 @@
     <Content Include="Content\image\lightoff.png" />
     <Content Include="Content\image\lighton.png" />
     <Content Include="Content\image\logo.png" />
+    <Content Include="Content\image\menuClose.png" />
+    <Content Include="Content\image\menuOpen.png" />
     <Content Include="Content\image\Multiple.png" />
     <Content Include="Content\image\musicPlayer.png" />
     <Content Include="Content\image\navigate-down.png" />
@@ -310,6 +314,7 @@ xcopy "..\Content\icons" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Conte
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Page" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Page"
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts"
 copy "..\Scripts\bootstrap.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
+copy "..\Scripts\bootstrap.min.js.map" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery-ui.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery-3.3.1.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 copy "..\Scripts\jquery.base64.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
@@ -322,9 +327,11 @@ copy "..\Scripts\jquery.rating-stars.min.js" "$(SolutionDir)MathSheetsSettingApp
 copy "..\Scripts\jquery.cookie-1.4.1.min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts" /Y
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts\umd" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts\umd"
 copy "..\Scripts\umd\popper.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts\umd" /Y
+copy "..\Scripts\umd\popper.js.map" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts\umd" /Y
 if not exist "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts\snap" md "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts\snap"
 copy "..\Scripts\snap\snap.svg-min.js" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Scripts\snap" /Y
 copy "..\Content\bootstrap.min.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
+copy "..\Content\bootstrap.min.css.map" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\font-awesome.min.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\default.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y
 copy "..\Content\Shake.css" "$(SolutionDir)MathSheetsSettingApp\App_Data\Work\Content" /Y

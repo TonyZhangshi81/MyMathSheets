@@ -42,9 +42,14 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		private const string LABEL_HTML_FORMAT = "<span class=\"label\">{0}</span>";
 
 		/// <summary>
+		/// 輸入域DIV標籤HTML模板
+		/// </summary>
+		private const string DIV_INPUTAREA_HTML_FORMAT = "<div class=\"col-md-12\" style=\"height: 120px\">{0}</div>";
+
+		/// <summary>
 		/// 輸入項目HTML模板
 		/// </summary>
-		private const string INPUT_HTML_FORMAT = "<input id=\"inputRe{0}{1}{2}\" type=\"text\" placeholder=\" ?? \" class=\"form-control input-addBorder-max\" disabled=\"disabled\" onblur=\"if(!MathSheets.RecursionEquation.calcInputContent(this)) $(this).focus();\" />";
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputRe{0}{1}{2}\" type=\"text\" placeholder=\" ?? \" class=\"re form-control input-addBorder-max mt-1\" disabled=\"disabled\" onblur=\"if(!MathSheets.RecursionEquation.calcInputContent(this)) $(this).focus();\" />";
 
 		/// <summary>
 		/// 折疊面板HTML模板
@@ -54,7 +59,7 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 折疊面板標題HTML模板
 		/// </summary>
-		private const string DIV_HTML_ACCORDION_TITLE_FORMAT = "<div title=\"{0}\" data-options=\"iconCls:'{1}', bodyCls:'accordion_padding'\" style=\"padding:10px;\">";
+		private const string DIV_HTML_ACCORDION_TITLE_FORMAT = "<h3 class=\"re ui-accordion-header-ext\">{0}</h3>";
 
 		/// <summary>
 		/// 遞等式計算的HTML實現方法集合
@@ -116,7 +121,7 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 			html.AppendFormat("{0} {1} ({2} {3} {4})",
 								formula.ConfixFormulas[1].LeftParameter,
 								formula.ConfixFormulas[1].Sign.ToOperationUnicode(),
-								formula.ConfixFormulas[0].RightParameter,
+								formula.ConfixFormulas[0].LeftParameter,
 								formula.ConfixFormulas[0].Sign.ToOperationUnicode(),
 								formula.ConfixFormulas[0].RightParameter);
 
@@ -197,8 +202,6 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 
 			// 單雙列號
 			int numberOfColumns = 1;
-			// 是否顯示編輯圖標（默認首個PANEL為打開狀態）
-			bool isEdit = true;
 
 			StringBuilder html = new StringBuilder();
 			int controlIndex1 = 1;
@@ -209,28 +212,23 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 			// 算式作成
 			p.Formulas.ToList().ForEach(d =>
 			{
-				var iconCls = isEdit ? "icon-edit" : "icon-tip";
-
 				_calculations.TryGetValue(d.Type, out Func<RecursionEquationFormula, string> calculation);
 
 				if (numberOfColumns == 1)
 				{
-					accordion1Html.AppendFormat(DIV_HTML_ACCORDION_TITLE_FORMAT, calculation(d), iconCls).AppendLine();
+					accordion1Html.AppendFormat(DIV_HTML_ACCORDION_TITLE_FORMAT, calculation(d)).AppendLine();
 					accordion1Html.AppendLine(GetInputAreaHtml(numberOfColumns, controlIndex1, d.Answer[0]));
-					accordion1Html.AppendLine("</div>");
 
 					numberOfColumns = 2;
 					controlIndex1++;
 				}
 				else
 				{
-					accordion2Html.AppendFormat(DIV_HTML_ACCORDION_TITLE_FORMAT, calculation(d), iconCls).AppendLine();
+					accordion2Html.AppendFormat(DIV_HTML_ACCORDION_TITLE_FORMAT, calculation(d)).AppendLine();
 					accordion2Html.AppendLine(GetInputAreaHtml(numberOfColumns, controlIndex2, d.Answer[0]));
-					accordion2Html.AppendLine("</div>");
 
 					numberOfColumns = 1;
 					controlIndex2++;
-					isEdit = false;
 				}
 			});
 
@@ -277,12 +275,14 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 
 			html.AppendFormat(ANSWER_HTML_FORMAT, numberOfColumns, pControlId, Base64.EncodeBase64(answer.ToString())).AppendLine();
 
-			html.AppendLine("<div class=\"divCorrectOrFault-1\">");
+			html.AppendLine("<div class=\"re divCorrectOrFault-1\">");
 			html.AppendFormat("<img id=\"imgOKRecursionEquation{0}{1}\" src=\"../Content/image/correct.png\" class=\"imgCorrect-1\" />", numberOfColumns, pControlId).AppendLine();
 			html.AppendFormat("<img id=\"imgNoRecursionEquation{0}{1}\" src=\"../Content/image/fault.png\" class=\"imgFault-1\" />", numberOfColumns, pControlId).AppendLine();
 			html.AppendLine("</div>");
 
-			return html.ToString();
+			var inputArea = string.Format(DIV_INPUTAREA_HTML_FORMAT, html.ToString());
+
+			return inputArea;
 		}
 
 		/// <summary>
