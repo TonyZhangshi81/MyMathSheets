@@ -27,7 +27,7 @@ MathSheets.LearnLengthUnit = MathSheets.LearnLengthUnit || (function () {
             var isOK = true;
             $("input[id*='inputLlu" + pindex + "S']").each(function (index, element) {
                 inputAry.push($(element));
-                if (parseInt($(element).val()) != parseInt($.base64.atob(answerAry[index], true))) {
+                if (parseInt($(element).val()) != parseInt(MathSheets.Common.base64Decode(answerAry[index], true))) {
                     isOK = false;
                 }
             });

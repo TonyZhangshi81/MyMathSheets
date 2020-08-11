@@ -15,7 +15,7 @@ MathSheets.TimeCalculation = MathSheets.TimeCalculation || (function () {
         _timeCalculationCorrecting = function (pIndex, pElement) {
             var fault = true;
             // 答案
-            var answers = ($.base64.atob($(pElement).val(), true) || "").split(':');
+            var answers = (MathSheets.Common.base64Decode($(pElement).val(), true) || "").split(':');
             // 填空項目
             var $inputs = $("input[id*='inputTc" + pIndex.toString().PadLeft(2, '0') + "']");
             $inputs.each(function (index, element) {

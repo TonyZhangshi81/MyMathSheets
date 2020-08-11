@@ -24,7 +24,7 @@ MathSheets.CleverCalculation = MathSheets.CleverCalculation || (function () {
 
             var inputAry = new Array();
             // 用於結果驗證（解密後分割）
-            var answers = ($.base64.atob($(answerElement).val(), true) || '').split(';');
+            var answers = (MathSheets.Common.base64Decode($(answerElement).val(), true) || '').split(';');
 
             var isRight = true;
             $.each($("input[id *= 'inputClc" + pIndex + "']"), function (index, element) {

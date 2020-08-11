@@ -53,7 +53,7 @@ MathSheets.CombinatorialEquation = MathSheets.CombinatorialEquation || (function
                 var answer = l + s + r + "=" + a;
                 //console.log(answer);
                 answers = $.grep(answers, function (value) {
-                    var decode = $.base64.atob(value, true);
+                    var decode = MathSheets.Common.base64Decode(value, true);
                     //console.log(decode);
                     return (decode != answer);
                 });

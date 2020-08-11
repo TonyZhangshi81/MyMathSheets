@@ -7,7 +7,7 @@ MathSheets.ComputingConnection = MathSheets.ComputingConnection || (function () 
         var inputCcArray = new Array();
         $("input[id*='inputCc" + pIndex + "']").each(function (index, element) {
             // 验证输入值是否与答案一致
-            if ($(element).val() != $.base64.atob($('#hiddenCc' + pIndex + index).val(), true)) {
+            if ($(element).val() != MathSheets.Common.base64Decode($('#hiddenCc' + pIndex + index).val(), true)) {
                 isErr = true;
             }
             inputCcArray.push($(element));

@@ -29,7 +29,7 @@ MathSheets.CurrencyOperation = MathSheets.CurrencyOperation || (function () {
                 var element = $("input[id *= 'inputCo" + pIndex + "L" + index + "']");
                 inputAry.push($(element));
 
-                if (parseInt($(element).val()) != $.base64.atob(answer, true)) {
+                if (parseInt($(element).val()) != MathSheets.Common.base64Decode(answer, true)) {
                     isRight = false;
                 }
             });

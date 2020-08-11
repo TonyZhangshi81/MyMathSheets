@@ -29,7 +29,7 @@ MathSheets.FindTheLaw = MathSheets.FindTheLaw || (function () {
             $("input[id*='inputFtl" + pindex + "']").each(function (index, element) {
                 inputAry.push($(element));
                 answer = ($(element).val() == '') ? 0 : parseInt($(element).val());
-                if (parseInt($.base64.atob(answerAry[index], true)) != answer) {
+                if (parseInt(MathSheets.Common.base64Decode(answerAry[index], true)) != answer) {
                     right = false;
                 }
             });

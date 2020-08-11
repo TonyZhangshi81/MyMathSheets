@@ -10,7 +10,7 @@ MathSheets.GapFillingProblems = MathSheets.GapFillingProblems || (function () {
         var isOK = true;
         $("input[id*='inputGfp" + strId + "']").each(function (index, element) {
             inputAry.push($(element));
-            var answer = $.base64.atob(answerAry[index], true);
+            var answer = MathSheets.Common.base64Decode(answerAry[index], true);
             if ($(element).val() != answer) {
                 isOK = false;
             }

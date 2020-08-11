@@ -9,7 +9,7 @@ MathSheets.NumericSorting = MathSheets.NumericSorting || (function () {
         var isOK = true;
         $("input[id*='inputNs" + pindex + "L']").each(function (index, element) {
             inputAry.push($(element));
-            if (parseInt($(element).val()) != $.base64.atob(answerAry[index], true)) {
+            if (parseInt($(element).val()) != MathSheets.Common.base64Decode(answerAry[index], true)) {
                 isOK = false;
             }
         });

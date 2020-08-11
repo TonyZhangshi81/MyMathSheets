@@ -27,7 +27,7 @@ MathSheets.LearnCurrency = MathSheets.LearnCurrency || (function () {
             var isOK = true;
             $("input[id*='inputLc" + pindex + "S']").each(function (index, element) {
                 inputAry.push($(element));
-                if (parseInt($(element).val()) != parseInt($.base64.atob(answerAry[index], true))) {
+                if (parseInt($(element).val()) != parseInt(MathSheets.Common.base64Decode(answerAry[index], true))) {
                     isOK = false;
                 }
             });
