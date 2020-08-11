@@ -336,11 +336,7 @@ ASALocalRun/
 
 /TheFormulaShows/Content/image/*/
 
-/TheFormulaShows/Content/CurrencyLinkage.css
-/TheFormulaShows/Content/EqualityLinkage.css
-/TheFormulaShows/Content/FruitsLinkage.css
-/TheFormulaShows/Content/SchoolClock.css
-/TheFormulaShows/Content/ScoreGoal.css
+/TheFormulaShows/Content/css/*.*
 
 /TheFormulaShows/Scripts/Ext/
 !/TheFormulaShows/Scripts/Ext/MathSheets.Common.js

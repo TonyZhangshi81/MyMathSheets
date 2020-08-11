@@ -2,8 +2,8 @@
     width: 40px;
     height: 40px;
     background-color: transparent;
-    margin-left: 320px;
-    margin-top: -50px;
+    margin-left: 80%;
+    margin-top: -20%;
 }
 
 .re.input-addBorder-max {
@@ -13,25 +13,25 @@
     padding-top: 1px !important;
 }
 
-.re.input-addBorder-max:disabled {
-    background-color: #e9ecef !important;
-}
+    .re.input-addBorder-max:disabled {
+        background-color: #e9ecef !important;
+    }
 
 .re.ui-widget-ext {
-	width: 90%;
+    width: 90%;
 }
 
 .re.ui-accordion-header-ext {
-	text-align: left;
+    text-align: left;
 }
 
 .ui-state-active .ui-icon,
 .ui-button:active .ui-icon {
-	background:url('../icons/pencil.png') no-repeat center center;
+    background: url('../icons/pencil.png') no-repeat center center;
 }
 
 .ui-accordion .ui-accordion-content {
-	padding: 0.5em;
-	border-top: 0;
-	overflow: hidden;
+    padding: 0.5em;
+    border-top: 0;
+    overflow: hidden;
 }
