@@ -63,8 +63,6 @@ $(function () {
             // 橫屏
             __orientation = 'portrait';
         }
-        console.log(__orientation);
-
         event.preventDefault();
     });
 });

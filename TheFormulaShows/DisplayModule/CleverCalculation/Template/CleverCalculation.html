@@ -9,22 +9,22 @@
     <meta name="author" content="">
     <link rel="icon" href="../Content/image/favicon.ico">
     <link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
-    <link href="../Content/easyui.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/jquery-ui.css" rel="stylesheet" charset="utf-8">
     <link href="../Content/icon.css" rel="stylesheet" charset="utf-8">
-    <link href="../Content/accordion.css" rel="stylesheet" charset="utf-8">
     <link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/Shake.css" rel="stylesheet" charset="utf-8">
+    <!--SKIN-->
     <link title="default" href="../Content/switcher/MathSheets.css" rel="stylesheet" charset="utf-8">
     <link title="burlywood" href="../Content/switcher/MathSheets-burlywood.css" rel="stylesheet" charset="utf-8" disabled="disabled">
     <link title="coral" href="../Content/switcher/MathSheets-coral.css" rel="stylesheet" charset="utf-8" disabled="disabled">
     <link title="cornflowerblue" href="../Content/switcher/MathSheets-cornflowerblue.css" rel="stylesheet" charset="utf-8" disabled="disabled">
     <link title="eyeshieldgreen" href="../Content/switcher/MathSheets-eyeshieldgreen.css" rel="stylesheet" charset="utf-8" disabled="disabled">
-    <link href="../Content/Shake.css" rel="stylesheet" charset="utf-8">
 
     <script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
     <script src="../Scripts/jquery.linq.min.js" charset="utf-8"></script>
     <script src="../Scripts/jquery.base64.js" charset="utf-8"></script>
     <script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
-    <script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery-ui.js" charset="utf-8"></script>
     <script src="../Scripts/umd/popper.js" charset="utf-8"></script>
     <script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
     <script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
@@ -32,6 +32,7 @@
     <script src="../Scripts/snap/snap.svg-min.js"></script>
     <script src="../Scripts/jquery.rating-stars.min.js"></script>
     <script src="../Scripts/jquery.easing.1.3.js"></script>
+    <script src="../Scripts/Ext/MathSheets.System.js" charset="utf-8"></script>
     <script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
     <script src="../Scripts/Ext/MathSheets.HelloMrTony.js" charset="utf-8"></script>
     <script src="../Scripts/Ext/MathSheets.CleverCalculation.js" charset="utf-8"></script>
@@ -43,6 +44,7 @@
         function btnPrintClick() {
             // 打印前頁面設定
             MathSheets.CleverCalculation.printSetting();
+
 
             // 頁面答應處理
             MathSheets.Common.pagePrint('divPrintContent');
@@ -62,6 +64,7 @@
             // 設定頁面所有輸入域為可用狀態
             MathSheets.CleverCalculation.ready();
 
+
             // 計時開始
             MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
         }
@@ -77,6 +80,7 @@
             // 訂正
             fault += MathSheets.CleverCalculation.makeCorrections();
 
+
             // 訂正按鈕處理
             MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
         }
@@ -85,6 +89,7 @@
         function btnTheirPapersClick() {
             // 交卷
             MathSheets.CleverCalculation.theirPapers();
+
 
             // 交卷按鈕處理
             MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
@@ -106,6 +111,7 @@
                 <li style="background-color: cornflowerblue;" id="cornflowerblue"></li>
                 <li style="background-color: #C7EDCC;" id="eyeshieldgreen"></li>
             </ul>
+            <img src="../Content/image/butterfly-color.png" class="imgButterfly" />
         </div>
     </div>
     <!-- 設置按鈕 -->
@@ -114,6 +120,7 @@
     </div>
     <!-- 右側題型導航菜單 -->
     <div class="bs-docs-sidebar" id="divSidebar">
+        <img src="../Content/image/menuOpen.png" class="imgSidebar" />
         <ul class="nav nav-ext">
         </ul>
     </div>
@@ -121,9 +128,6 @@
     <div class="plugin-shake-head-area">
         <div class="tony-shake-head" id="divShakeHead" data-toggle="tooltip" title="I'm Tony. Hello! Eve.">
             <iframe frameborder="0" scrolling="no" src="../Plugin/TonyShakeHead/index.html" width="500" height="300"></iframe>
-        </div>
-        <div class="tony-music" id="divTonyMusic">
-            <img src="../Content/image/musicPlayer.png" class="imgTonyMusic" />
         </div>
     </div>
     <!-- 獎牌擺放區 -->
@@ -174,47 +178,63 @@
         </div>
         <!-- 題型區 -->
         <div id="divPrintContent">
-            <br /><div class="page-header"><h4 id="mathSheet"><img src="../Content/image/homework.png" width="30" height="30" /><span class="span-strategy-name">巧算</span></h4></div><hr class="hr-Ext" />
-            <div class="div-page-content">
+            <script>var _isEncrypt = false</script><br /><div class="page-header"><h4 id="mathSheetCleverCalculation"><img src="../Content/image/homework.png" width="30" height="30" /><span class="span-strategy-name">巧算</span></h4></div><hr class="hr-Ext" /><div class="div-page-content">
                 <div class="row text-center row-margin-top">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h5>
-                            <span class="label">96</span>
-                            <span class="label">=</span>
-                            <input id="inputClc0100" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            <span class="label">19</span>
                             <span class="label">&#215;</span>
-                            <span class="label">24</span>
-                            <span class="label">=</span>
-                            <input id="inputClc0101" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            <span class="label">5</span>
+                            <span class="label">&#61;</span>
+                            <input id="inputClc00L0" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
                             <span class="label">&#215;</span>
-                            <span class="label">12</span>
-                            <span class="label">=</span>
-                            <span class="label">2</span>
+                            <input id="inputClc00L1" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            <span class="label">&#8722;</span>
+                            <input id="inputClc00L2" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
                             <span class="label">&#215;</span>
-                            <input id="inputClc0102" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-                            <input id="hiddenClc01" type="hidden" value="NDA=" />
+                            <input id="inputClc00L3" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            <span class="label">&#61;</span>
+                            <input id="inputClc00L4" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            <input id="hiddenClc00" type="hidden" value="20;5;1;5;95" />
                         </h5>
                         <div class="divCorrectOrFault-1">
                             <img id="imgOKCleverCalculation00" src="../Content/image/correct.png" class="imgCorrect-1" />
                             <img id="imgNoCleverCalculation00" src="../Content/image/fault.png" class="imgFault-1" />
                         </div>
                     </div>
+                    <div class="col-sm-6 col-md-6 form-inline">
+                        <h5>
+                            <span class="label">7</span>
+                            <span class="label">&#215;</span>
+                            <span class="label">6</span>
+                            <span class="label">&#43;</span>
+                            <span class="label">1</span>
+                            <span class="label">&#215;</span>
+                            <span class="label">6</span>
+                            <span class="label">&#61;</span>
+                            <input id="inputClc01L0" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            <span class="label">&#215;</span>
+                            <input id="inputClc01L1" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            <span class="label">&#61;</span>
+                            <input id="inputClc01L2" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            <input id="hiddenClc01" type="hidden" value="8;6;48" />
+                        </h5>
+                        <div class="divCorrectOrFault-1">
+                            <img id="imgOKCleverCalculation01" src="../Content/image/correct.png" class="imgCorrect-1" />
+                            <img id="imgNoCleverCalculation01" src="../Content/image/fault.png" class="imgFault-1" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center row-margin-top">
                     <div class="col-md-6 form-inline">
                         <h5>
-                            <span class="label">72</span>
-                            <span class="label">=</span>
-                            <input id="inputClc0200" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-                            <span class="label">&#215;</span>
-                            <span class="label">9</span>
-                            <span class="label">=</span>
-                            <span class="label">6</span>
-                            <span class="label">&#215;</span>
-                            <input id="inputClc0201" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-                            <span class="label">=</span>
-                            <span class="label">3</span>
-                            <span class="label">&#215;</span>
-                            <input id="inputClc0202" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-                            <input id="hiddenClc02" type="hidden" value="NDA=" />
+                            <span class="label">49</span><span class="label">&#43;</span><span class="label">85</span><span class="label">&#61;</span>
+                            <input id="inputClc02L0" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            <span class="label">&#43;</span>
+                            <input id="inputClc02L1" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            <span class="label">&#61;</span>
+                            <input id="inputClc02L2" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                            <input id="hiddenClc02" type="hidden" value="50;84;134" />
                         </h5>
                         <div class="divCorrectOrFault-1">
                             <img id="imgOKCleverCalculation02" src="../Content/image/correct.png" class="imgCorrect-1" />
@@ -222,55 +242,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="row text-center row-margin-top">
-                    <div class="col-md-6 form-inline">
-                        <h5>
-                            <span class="label">36</span>
-                            <span class="label">=</span>
-                            <input id="inputClc0300" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-                            <span class="label">&#215;</span>
-                            <span class="label">12</span>
-                            <span class="label">=</span>
-                            <input id="inputClc0301" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-                            <span class="label">&#215;</span>
-                            <span class="label">18</span>
-                            <span class="label">=</span>
-                            <span class="label">6</span>
-                            <span class="label">&#215;</span>
-                            <input id="inputClc0302" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-                            <input id="hiddenClc03" type="hidden" value="NDA=" />
-                        </h5>
-                        <div class="divCorrectOrFault-1">
-                            <img id="imgOKCleverCalculation03" src="../Content/image/correct.png" class="imgCorrect-1" />
-                            <img id="imgNoCleverCalculation03" src="../Content/image/fault.png" class="imgFault-1" />
-                        </div>
-                    </div>
-                    <div class="col-md-6 form-inline">
-                        <h5>
-                            <span class="label">80</span>
-                            <span class="label">=</span>
-                            <span class="label">4</span>
-                            <span class="label">&#215;</span>
-                            <input id="inputClc0200" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-                            <span class="label">=</span>
-                            <span class="label">2</span>
-                            <span class="label">&#215;</span>
-                            <input id="inputClc0201" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-                            <span class="label">=</span>
-                            <span class="label">5</span>
-                            <span class="label">&#215;</span>
-                            <input id="inputClc0202" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
-                            <input id="hiddenClc04" type="hidden" value="NDA=" />
-                        </h5>
-                        <div class="divCorrectOrFault-1">
-                            <img id="imgOKCleverCalculation04" src="../Content/image/correct.png" class="imgCorrect-1" />
-                            <img id="imgNoCleverCalculation04" src="../Content/image/fault.png" class="imgFault-1" />
-                        </div>
-                    </div>
-                </div>
 
-                <input id="hiddenClcTony" type="hidden" value="答案是不是8;请注意是加法还是减法;请注意是加法还是减法;请注意是加法还是减法" />
             </div>
+
+
+
         </div>
         <hr>
         <!-- 按鍵操作區 -->

@@ -242,7 +242,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			get
 			{
 				StringBuilder sb = new StringBuilder();
-				sb.AppendFormat("<script>var _isEncrypt = {0}</script>", ConfigurationUtil.GetIsEncrypt() ? "true" : "false");
+				sb.AppendFormat("<script>var _isEncrypt = {0};</script>", ConfigurationUtil.GetIsEncrypt() ? "true" : "false");
 				return sb.ToString();
 			}
 		}
