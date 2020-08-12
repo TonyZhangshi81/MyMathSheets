@@ -221,6 +221,7 @@
     <Content Include="Scripts\esm\popper.min.js" />
     <Content Include="Scripts\Ext\MathSheets.HelloMrTony.js" />
     <Content Include="Scripts\Ext\MathSheets.Common.js" />
+    <Content Include="Scripts\Ext\MathSheets.System.js" />
     <Content Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -1118,21 +1118,37 @@ $(document).ready(function () {
 
     var backId;
     // 頁面向上滾動
-    $('.imgHelper-up').bind('mouseenter', function () {
-        // TODO 使用tween.js緩動算法改善動畫效果
-        backId = setInterval(MathSheets.Common.scrollAutoUp, 100);
-    }).bind('mouseleave', function () {
-        clearInterval(backId);
+    $('.imgHelper-up').bind('mouseenter', function (event) {
+        if (MathSheets.System.os().isTablet) {
+            event.preventDefault();
+        } else {
+            // TODO 使用tween.js緩動算法改善動畫效果
+            backId = setInterval(MathSheets.Common.scrollAutoUp, 100);
+        }
+    }).bind('mouseleave', function (event) {
+        if (MathSheets.System.os().isTablet) {
+            event.preventDefault();
+        } else {
+            clearInterval(backId);
+        }
     }).bind('click', function () {
         MathSheets.Common.toTop();
     });
 
     // 頁面向下滾動
-    $('.imgHelper-down').bind('mouseenter', function () {
-        // TODO 使用tween.js緩動算法改善動畫效果
-        backId = setInterval(MathSheets.Common.scrollAutoDown, 100);
-    }).bind('mouseleave', function () {
-        clearInterval(backId);
+    $('.imgHelper-down').bind('mouseenter', function (event) {
+        if (MathSheets.System.os().isTablet) {
+            event.preventDefault();
+        } else {
+            // TODO 使用tween.js緩動算法改善動畫效果
+            backId = setInterval(MathSheets.Common.scrollAutoDown, 100);
+        }
+    }).bind('mouseleave', function (event) {
+        if (MathSheets.System.os().isTablet) {
+            event.preventDefault();
+        } else {
+            clearInterval(backId);
+        }
     }).bind('click', function () {
         MathSheets.Common.toBottom();
     });
