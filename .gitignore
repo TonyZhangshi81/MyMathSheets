@@ -333,22 +333,19 @@ ASALocalRun/
 
 # MyProject ignore settings
 /TheFormulaShows/Template/*.html
-
 /TheFormulaShows/Content/image/*/
-
-/TheFormulaShows/Content/css/*.*
+/TheFormulaShows/Content/css/*.css
 
 /TheFormulaShows/Scripts/Ext/
 !/TheFormulaShows/Scripts/Ext/MathSheets.Common.js
+!/TheFormulaShows/Scripts/Ext/MathSheets.HelloMrTony.js
+!/TheFormulaShows/Scripts/Ext/MathSheets.System.js
 
 /TestConsoleApp/Config/*.*
 !/TestConsoleApp/Config/ConsoleFormulas.xml
 
-/MathSheetsSettingApp/App_Data/Work/Scripts/
-/MathSheetsSettingApp/App_Data/Work/Plugin/
-/MathSheetsSettingApp/App_Data/Work/Page/
-/MathSheetsSettingApp/App_Data/Work/Content/
 /MathSheetsSettingApp/Config/
+!/MathSheetsSettingApp/Config/TopicManagement.json
 
 /MathSheetsSettingWeb/App_Data/Work/Content/
 /MathSheetsSettingWeb/App_Data/Work/Games/
