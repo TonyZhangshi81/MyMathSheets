@@ -138,6 +138,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="BuildPreCompleteScript.bat" />
     <None Include="Config\TopicManagement.json" />
     <None Include="NLog.config" />
     <None Include="packages.config" />
@@ -206,10 +207,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
-copy "$(SolutionDir)\Lib\DisplayModule\*.dll" "$(TargetDir)" /y
-copy "$(SolutionDir)\Lib\StrategyModule\*.dll" "$(TargetDir)" /y
-)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>$(ProjectDir)BuildPreCompleteScript.bat $(ProjectName) $(ConfigurationName) $(SolutionDir) $(TargetDir)</PreBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

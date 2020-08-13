@@ -171,6 +171,7 @@
     <Compile Include="Util\TimeUtil.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BuildCompleteScript.bat" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -193,9 +194,12 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
-copy "$(TargetFileName)" "$(SolutionDir)\Lib" /y
-)</PostBuildEvent>
+    <PostBuildEvent>$(ProjectDir)BuildCompleteScript.bat $(ConfigurationName) $(SolutionDir) $(TargetFileName)
+</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

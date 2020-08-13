@@ -63,14 +63,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)"=="Debug" (
-if not exist "$(SolutionDir)\Lib\StrategyModule" md "$(SolutionDir)\Lib\StrategyModule"
-copy "$(TargetFileName)" "$(SolutionDir)\Lib\StrategyModule" /y
-copy "..\Config\*.json" "..\..\..\..\TestConsoleApp\Config\" /Y
-copy "..\Config\*.json" "$(SolutionDir)MathSheetsSettingApp\Config" /Y
-copy "..\Config\*.json" "$(SolutionDir)TestConsoleApp\Config" /Y
-)</PostBuildEvent>
+    <PostBuildEvent>"..\..\BuildCompleteScript.bat" $(ProjectName) $(ConfigurationName) $(SolutionDir) $(TargetFileName)</PostBuildEvent>
   </PropertyGroup>
 </Project>

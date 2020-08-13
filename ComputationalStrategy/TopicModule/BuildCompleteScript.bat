@@ -1,0 +1,18 @@
+@echo off
+
+set ProjectName=%~1
+set ConfigurationName=%~2
+set SolutionDir=%~3
+set TargetFileName=%~4
+
+echo ========== %ProjectName% (%ConfigurationName%) Build Complete ==========
+
+if "%ConfigurationName%"=="Debug" (
+
+	if not exist "%SolutionDir%\Lib\StrategyModule" md "%SolutionDir%\Lib\StrategyModule"
+	echo %TargetFileName%
+	copy "%TargetFileName%" "%SolutionDir%\Lib\StrategyModule" /y
+	copy "..\Config\*.json" "%SolutionDir%MathSheetsSettingApp\Config" /Y
+	copy "..\Config\*.json" "%SolutionDir%TestConsoleApp\Config" /Y
+
+)
