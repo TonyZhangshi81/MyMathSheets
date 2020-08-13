@@ -176,15 +176,6 @@
     <Content Include="Content\image\SchoolClock.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\Work\Content\css\" />
-    <Folder Include="App_Data\Work\Content\fonts\" />
-    <Folder Include="App_Data\Work\Content\icons\" />
-    <Folder Include="App_Data\Work\Content\image\" />
-    <Folder Include="App_Data\Work\Content\switcher\" />
-    <Folder Include="App_Data\Work\Games\" />
-    <Folder Include="App_Data\Work\Page\" />
-    <Folder Include="App_Data\Work\Plugin\" />
-    <Folder Include="App_Data\Work\Scripts\Ext\" />
     <Folder Include="HtmlTemplate\" />
   </ItemGroup>
   <ItemGroup>
