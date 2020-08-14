@@ -320,9 +320,11 @@
     <Content Include="AppData\Work\Scripts\jquery-3.3.1.min.js" />
     <Content Include="AppData\Work\Scripts\jquery-ui.js" />
     <Content Include="AppData\Work\Scripts\jquery.base64.js" />
+    <Content Include="AppData\Work\Scripts\jquery.dropdown.js" />
     <Content Include="AppData\Work\Scripts\jquery.easing.1.3.js" />
     <Content Include="AppData\Work\Scripts\jquery.linq.min.js" />
     <Content Include="AppData\Work\Scripts\jquery.PrintArea.js" />
+    <Content Include="AppData\Work\Scripts\jquery.rating-stars.min.js" />
     <Content Include="AppData\Work\Scripts\json2.min.js" />
     <Content Include="AppData\Work\Scripts\snap\snap.svg-min.js" />
     <Content Include="AppData\Work\Scripts\store.legacy.min.js" />

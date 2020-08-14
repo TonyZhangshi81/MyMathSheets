@@ -6,41 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../Content/image/favicon.ico">
-    <link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
-    <link href="../Content/jquery-ui.css" rel="stylesheet" charset="utf-8">
-    <link href="../Content/icon.css" rel="stylesheet" charset="utf-8">
-    <link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
-    <link href="../Content/Shake.css" rel="stylesheet" charset="utf-8">
+    <link rel="icon" href="AppData/Work/Content/image/favicon.ico">
+    <link href="AppData/Work/Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+    <link href="AppData/Work/Content/jquery-ui.css" rel="stylesheet" charset="utf-8">
+    <link href="AppData/Work/Content/icon.css" rel="stylesheet" charset="utf-8">
+    <link href="AppData/Work/Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
+    <link href="AppData/Work/Content/Shake.css" rel="stylesheet" charset="utf-8">
 
-    <script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
-    <script src="../Scripts/jquery.linq.min.js" charset="utf-8"></script>
-    <script src="../Scripts/jquery.base64.js" charset="utf-8"></script>
-    <script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
-    <script src="../Scripts/jquery-ui.js" charset="utf-8"></script>
-    <script src="../Scripts/umd/popper.js" charset="utf-8"></script>
-    <script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
-    <script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
-    <script src="../Scripts/json2.min.js" charset="utf-8"></script>
-    <script src="../Scripts/snap/snap.svg-min.js"></script>
-    <script src="../Scripts/jquery.rating-stars.min.js"></script>
-    <script src="../Scripts/jquery.easing.1.3.js"></script>
-    <script src="../Scripts/Ext/MathSheets.System.js" charset="utf-8"></script>
+    <script src="AppData/Work/Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script src="AppData/Work/Scripts/jquery.linq.min.js" charset="utf-8"></script>
+    <script src="AppData/Work/Scripts/jquery.dropdown.js" charset="utf-8"></script>
+    <script src="AppData/Work/Scripts/jquery.base64.js" charset="utf-8"></script>
+    <script src="AppData/Work/Scripts/jquery.PrintArea.js" charset="utf-8"></script>
+    <script src="AppData/Work/Scripts/jquery-ui.js" charset="utf-8"></script>
+    <script src="AppData/Work/Scripts/umd/popper.js" charset="utf-8"></script>
+    <script src="AppData/Work/Scripts/bootstrap.min.js" charset="utf-8"></script>
+    <script src="AppData/Work/Scripts/store.legacy.min.js" charset="utf-8"></script>
+    <script src="AppData/Work/Scripts/json2.min.js" charset="utf-8"></script>
+    <script src="AppData/Work/Scripts/snap/snap.svg-min.js"></script>
+    <script src="AppData/Work/Scripts/jquery.rating-stars.min.js"></script>
+    <script src="AppData/Work/Scripts/jquery.easing.1.3.js"></script>
+    <script src="AppData/Work/Scripts/Ext/MathSheets.System.js" charset="utf-8"></script>
 
     <title>一起数学</title>
-
     <script type="text/javascript">
-    </script>
+        $(function () {
+            $('#cd-dropdown').dropdown({
+                gutter: 5,
+                delay: 100,
+                random: true
+            });
+        });
 
+        // https://www.cnblogs.com/jinxing-tc/p/9557094.html
+        // https://wow.techbrood.com/fiddle/16509
+
+    </script>
 </head>
 <body>
     <div class="container">
-
-        <div class="starter-template">
-            <h1>Bootstrap starter template</h1>
-            <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Scrolling</h3>
+                <select id="cd-dropdown">
+                    <option value="-1" selected>Choose a network to add</option>
+                    <option value="1" class="icon-google-plus">Google Plus</option>
+                    <option value="2" class="icon-facebook">Facebook</option>
+                    <option value="3" class="icon-twitter">Twitter</option>
+                    <option value="4" class="icon-github">GitHub</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+            </div>
         </div>
-
     </div>
 </body>
 </html>
