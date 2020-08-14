@@ -292,6 +292,7 @@
     <Content Include="AppData\Work\Plugin\TonyShakeHead\css\style.css" />
     <Content Include="AppData\Work\Plugin\TonyShakeHead\index.html" />
     <Content Include="AppData\Work\Scripts\bootstrap.min.js" />
+    <Content Include="AppData\Work\Scripts\esm\popper.js" />
     <Content Include="AppData\Work\Scripts\Ext\MathSheets.Arithmetic.js" />
     <Content Include="AppData\Work\Scripts\Ext\MathSheets.CleverCalculation.js" />
     <Content Include="AppData\Work\Scripts\Ext\MathSheets.CombinatorialEquation.js" />
@@ -351,7 +352,9 @@
     <Content Include="AppData\Work\Games\break the bricks\fonts\icomoon.ttf" />
     <Content Include="AppData\Work\Games\break the bricks\fonts\icomoon.woff" />
     <Content Include="AppData\Work\Scripts\bootstrap.min.js.map" />
-    <Content Include="AppData\Work\Scripts\umd\popper.js.map" />
+    <None Include="AppData\Work\Scripts\umd\popper.js.map" />
+    <Content Include="AppData\Work\Scripts\esm\popper.js.map" />
+    <Content Include="Config\TopicManagement.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

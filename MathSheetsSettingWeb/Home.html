@@ -15,7 +15,6 @@
 
     <script src="AppData/Work/Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
     <script src="AppData/Work/Scripts/jquery.linq.min.js" charset="utf-8"></script>
-    <script src="AppData/Work/Scripts/jquery.dropdown.js" charset="utf-8"></script>
     <script src="AppData/Work/Scripts/jquery.base64.js" charset="utf-8"></script>
     <script src="AppData/Work/Scripts/jquery.PrintArea.js" charset="utf-8"></script>
     <script src="AppData/Work/Scripts/jquery-ui.js" charset="utf-8"></script>
@@ -30,35 +29,187 @@
 
     <title>一起数学</title>
     <script type="text/javascript">
+
         $(function () {
-            $('#cd-dropdown').dropdown({
-                gutter: 5,
-                delay: 100,
-                random: true
-            });
+            topicManagement();
         });
 
-        // https://www.cnblogs.com/jinxing-tc/p/9557094.html
-        // https://wow.techbrood.com/fiddle/16509
+        topicManagement = function () {
+            $.ajax({
+                url: "Config/TopicManagement.json", // 讀取題型文件
+                type: "GET",                        // 請求方式為get
+                dataType: "json",                   // 返回數據格式為json
+                success: function (data) {
+                    // 遍歷返回的數據DATA
+                    $.each(data, function (i, item) {
+                        // 下拉列表框初期化
+                        init(item.id, item.name);
+                        // 題型編號列表框參數綁定
+                        setTopicModule(item.id, item.name);
+                    })
+                }
+            })
+        }
+
+        // 題型編號列表框參數綁定
+        setTopicModule = function (id, name) {
+            $.ajax({
+                url: "Config/" + id + ".json",      // 讀取題型參數配置文件
+                type: "GET",                        // 請求方式為get
+                dataType: "json",                   // 返回數據格式為json
+                success: function (data) {
+                    // 題型編號下拉列表框
+                    $ddl = $("#ddl" + id);
+                    // 遍歷返回的數據DATA
+                    $.each(data, function (i, item) {
+                        var option = "<option value='" + item.Identifier + "'>" + item.Identifier + "</option>";
+                        $ddl.append(option);
+                    })
+                }
+            })
+        }
+
+        init = function (id, name) {
+            // 題型名稱
+            $span = $("#span" + id);
+            $span.text(name);
+            // 題型編號下拉列表框
+            $ddl = $("#ddl" + id);
+            $ddl.html('<option>請選擇</option>');
+        }
 
     </script>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <h3>Scrolling</h3>
-                <select id="cd-dropdown">
-                    <option value="-1" selected>Choose a network to add</option>
-                    <option value="1" class="icon-google-plus">Google Plus</option>
-                    <option value="2" class="icon-facebook">Facebook</option>
-                    <option value="3" class="icon-twitter">Twitter</option>
-                    <option value="4" class="icon-github">GitHub</option>
-                </select>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanArithmeticOperations"></span></h5>
+                <select id="ddlArithmeticOperations"></select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanCombinatorialEquation"></span></h5>
+                <select id="ddlCombinatorialEquation"></select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanComputingConnection"></span></h5>
+                <select id="ddlComputingConnection"></select>
+            </div>
+        </div>
+
+        <div class="clearfix" style="margin-bottom: 10px;"></div>
+
+        <div class="row">
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanCurrencyLinkage"></span></h5>
+                <select id="ddlCurrencyLinkage"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanCurrencyOperation"></span></h5>
+                <select id="ddlCurrencyOperation"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanEqualityComparison"></span></h5>
+                <select id="ddlEqualityComparison"></select>
+            </div>
+        </div>
+
+        <div class="clearfix" style="margin-bottom: 10px;"></div>
+        <div class="row">
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanEqualityLinkage"></span></h5>
+                <select id="ddlEqualityLinkage"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanMathWordProblems"></span></h5>
+                <select id="ddlMathWordProblems"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanFruitsLinkage"></span></h5>
+                <select id="ddlFruitsLinkage"></select>
+            </div>
+        </div>
+
+        <div class="clearfix" style="margin-bottom: 10px;"></div>
+        <div class="row">
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanFindNearestNumber"></span></h5>
+                <select id="ddlFindNearestNumber"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanFindTheLaw"></span></h5>
+                <select id="ddlFindTheLaw"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanGapFillingProblems"></span></h5>
+                <select id="ddlGapFillingProblems"></select>
+            </div>
+        </div>
+
+        <div class="clearfix" style="margin-bottom: 10px;"></div>
+        <div class="row">
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanHowMuchMore"></span></h5>
+                <select id="ddlHowMuchMore"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanLearnCurrency"></span></h5>
+                <select id="ddlLearnCurrency"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanLearnLengthUnit"></span></h5>
+                <select id="ddlLearnLengthUnit"></select>
+            </div>
+        </div>
+
+        <div class="clearfix" style="margin-bottom: 10px;"></div>
+        <div class="row">
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanNumericSorting"></span></h5>
+                <select id="ddlNumericSorting"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanSchoolClock"></span></h5>
+                <select id="ddlSchoolClock"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanScoreGoal"></span></h5>
+                <select id="ddlScoreGoal"></select>
+            </div>
+        </div>
+
+        <div class="clearfix" style="margin-bottom: 10px;"></div>
+        <div class="row">
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanTimeCalculation"></span></h5>
+                <select id="ddlTimeCalculation"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanMathUpright"></span></h5>
+                <select id="ddlMathUpright"></select>
+            </div>
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanCleverCalculation"></span></h5>
+                <select id="ddlCleverCalculation"></select>
+            </div>
+        </div>
+
+        <div class="clearfix" style="margin-bottom: 10px;"></div>
+        <div class="row">
+            <div class="col-md-4 form-inline">
+                <h5><span id="spanRecursionEquation"></span></h5>
+                <select id="ddlRecursionEquation"></select>
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix" style="margin-bottom: 30px;"></div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-md-12 col-md-offset-3">
+                <p class="text-center">
+                    <button id="btnReady" type="button" class="btn btn-lg btn-success">出題</button>
+                </p>
             </div>
         </div>
     </div>

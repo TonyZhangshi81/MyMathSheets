@@ -62,6 +62,10 @@ if "%ConfigurationName%"=="Debug" (
 	copy "..\Scripts\jquery.rating-stars.min.js" "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Scripts" /Y
 	echo ..\Scripts\jquery.dropdown.js
 	copy "..\Scripts\jquery.dropdown.js" "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Scripts" /Y
+	echo ..\Scripts\popper.js
+	copy "..\Scripts\popper.js" "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Scripts" /Y
+	echo ..\Scripts\popper.js.map
+	copy "..\Scripts\popper.js.map" "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Scripts" /Y
 
 	if not exist "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Scripts\umd" md "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Scripts\umd"
 	echo ..\Scripts\umd\popper.js
