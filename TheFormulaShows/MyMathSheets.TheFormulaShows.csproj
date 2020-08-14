@@ -302,7 +302,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(ProjectDir)BuildCompleteScript.bat $(ConfigurationName) $(SolutionDir)
+    <PostBuildEvent>"$(ProjectDir)BuildCompleteScript.bat" $(ConfigurationName) "$(SolutionDir)"
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

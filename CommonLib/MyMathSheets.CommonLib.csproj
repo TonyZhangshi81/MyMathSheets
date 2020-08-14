@@ -194,8 +194,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>$(ProjectDir)BuildCompleteScript.bat $(ConfigurationName) $(SolutionDir) $(TargetFileName)
-</PostBuildEvent>
+    <PostBuildEvent>"$(ProjectDir)BuildCompleteScript.bat" $(ConfigurationName) "$(SolutionDir)" $(TargetFileName)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
