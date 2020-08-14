@@ -347,8 +347,8 @@ ASALocalRun/
 /MathSheetsSettingApp/Config/
 !/MathSheetsSettingApp/Config/TopicManagement.json
 
-/MathSheetsSettingWeb/App_Data/Work/Content/
-/MathSheetsSettingWeb/App_Data/Work/Games/
-/MathSheetsSettingWeb/App_Data/Work/Plugin/
-/MathSheetsSettingWeb/App_Data/Work/Page/
-/MathSheetsSettingWeb/App_Data/Work/Scripts/
+/MathSheetsSettingWeb/AppData/Work/Content/
+/MathSheetsSettingWeb/AppData/Work/Games/
+/MathSheetsSettingWeb/AppData/Work/Plugin/
+/MathSheetsSettingWeb/AppData/Work/Page/
+/MathSheetsSettingWeb/AppData/Work/Scripts/

@@ -1,6 +1,7 @@
 ﻿using MyMathSheets.CommonLib.Main.FromProcess.Support;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq.Expressions;
 
 namespace MyMathSheets.CommonLib.Main.FromProcess
@@ -25,7 +26,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 出題按鍵點擊事件
 		/// </summary>
 		/// <returns></returns>
-		string SureClick();
+		FileInfo SureClick();
 
 		/// <summary>
 		/// 題型選擇校驗

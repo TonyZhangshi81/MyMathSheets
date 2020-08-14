@@ -144,7 +144,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 出題按鍵點擊事件
 		/// </summary>
 		/// <returns>靜態頁面文件名</returns>
-		public string SureClick()
+		public FileInfo SureClick()
 		{
 			// HTML模板存放路徑
 			string sourceFileName = Path.GetFullPath(ConfigurationUtil.HtmlTemplatePath);
@@ -230,7 +230,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 			// 保存至靜態頁面
 			File.WriteAllText(destFileName, htmlTemplate.ToString(), Encoding.UTF8);
 
-			return destFileName;
+			return (new FileInfo(destFileName));
 		}
 
 		/// <summary>

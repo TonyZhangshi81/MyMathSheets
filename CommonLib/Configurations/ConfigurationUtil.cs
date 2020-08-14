@@ -54,6 +54,29 @@ namespace MyMathSheets.CommonLib.Configurations
 		}
 
 		/// <summary>
+		/// 是否使用IIS
+		/// </summary>
+		/// <returns>配置信息</returns>
+		public static bool GetUseIIS()
+		{
+			if (bool.TryParse(GetKeyValue("UseIIS"), out bool result))
+			{
+				return result;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// IIS站點訪問地址
+		/// </summary>
+		/// <returns>配置信息</returns>
+		public static Uri GetIISUrl()
+		{
+			Uri uri = new Uri(GetKeyValue("IISUrl"));
+			return uri;
+		}
+
+		/// <summary>
 		/// 取得設定文件的設定信息
 		/// </summary>
 		/// <param name="key">設定KEY</param>

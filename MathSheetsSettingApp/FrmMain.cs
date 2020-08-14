@@ -174,6 +174,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		{
 			TopMost = true;
 
+			// 打開歷屆題型
 			if (cmbWorkPages.SelectedIndex > 0)
 			{
 				// 使用IE打開已作成的靜態頁面
@@ -192,9 +193,17 @@ namespace MyMathSheets.MathSheetsSettingApp
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0002A));
 
 			// 出題按鍵點擊事件
-			var destFileName = Process.SureClick();
+			FileInfo exerciseFile = Process.SureClick();
 			// 使用IE打開已作成的靜態頁面
-			CallCommondProcess(() => { return ("\"" + Path.GetFullPath(@destFileName) + "\""); });
+			CallCommondProcess(() =>
+			{
+				if (ConfigurationUtil.GetUseIIS())
+				{
+					return ("\"" + ConfigurationUtil.GetIISUrl() + exerciseFile.Name + "\"");
+				}
+
+				return ("\"" + Path.GetFullPath(exerciseFile.FullName) + "\"");
+			}, 3000);
 
 			Environment.Exit(0);
 		}
