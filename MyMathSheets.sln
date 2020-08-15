@@ -196,7 +196,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShow
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.MathUpright", "ComputationalStrategy\TopicModule\MathUpright\MyMathSheets.ComputationalStrategy.MathUpright.csproj", "{B1181420-6BEA-4A5C-9751-806634F848D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLibTest", "MyMathSheets.CommonLibTest\MyMathSheets.CommonLibTest.csproj", "{ED81771C-7232-43D3-843A-62D32B00A705}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLibTest", "CommonLibTest\MyMathSheets.CommonLibTest.csproj", "{ED81771C-7232-43D3-843A-62D32B00A705}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.MathSheetsSettingApp", "MathSheetsSettingApp\MyMathSheets.MathSheetsSettingApp.csproj", "{3176A3A2-57DA-44AA-9AEF-67A09BEB8650}"
 EndProject
