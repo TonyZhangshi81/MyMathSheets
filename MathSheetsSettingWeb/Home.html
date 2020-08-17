@@ -36,7 +36,11 @@
             $("#btnReady").click(function () { return btnReadyClick(); });
         });
 
-        book = function () {
+        book = function (msg) {
+            if (msg) {
+                $("#spanMsg").text(msg);
+            }
+
             $('#myModal').modal('show');
             setTimeout(function () {
                 $("#myModal").modal("hide")
@@ -46,7 +50,7 @@
         btnReadyClick = function () {
 
             // 站點信息
-            var apiUrl = "http://localhost:8081/";
+            var apiUrl = "http://192.168.31.176:8081/";
             // 輸入參數
             var jsonObj = getTopicSettingJson();
 
@@ -63,15 +67,15 @@
                 complete: function (data) {
                     setTimeout(function () {
                         $('.datagrid-mask').hide(200);
-                        setTimeout(function () { book(); }, 500);
                     }, 400);
 
                 },
                 success: function (result) {
+                    setTimeout(function () { book(); }, 500);
                     console.log(result);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    console.log("status:" + XMLHttpRequest.status + " readyState:" + XMLHttpRequest.readyState + " textStatus:" + textStatus);
+                    setTimeout(function () { book(("status:" + XMLHttpRequest.status + " readyState:" + XMLHttpRequest.readyState + " textStatus:" + textStatus)); }, 500);
                 }
             });
 
@@ -295,7 +299,7 @@
             <div class="modal-content">
                 <p class="text-center mb-0">
                     <i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i>
-                    提交成功
+                    <span id="spanMsg">提交成功</span>
                 </p>
             </div>
         </div>
