@@ -38,20 +38,17 @@
 
         btnReadyClick = function () {
 
+            // 站點信息
+            var apiUrl = "http://localhost:8081/";
             // 輸入參數
             var jsonObj = getTopicSettingJson();
-            // 站點信息
-            var endpointAddress = "http://localhost/MyMathSheetsService/Service.svc";
-            // 接口名稱
-            var url = endpointAddress + "/MarkFormula";
 
             $.ajax({
-                url: url,
+                url: apiUrl + "api/Compile/Do",
                 type: "POST",
-                contentType: "application/json",
+                dataType: 'json',
+                contentType: "application/json;charset=utf-8",
                 data: JSON.stringify(jsonObj),
-                cache: false,
-                dataType: "text",
 
                 beforeSend: function () {
                     $("<div class=\"datagrid-mask\"></div>").html("Please Wait...").appendTo("body");
@@ -118,17 +115,16 @@
 
         getTopicSettingJson = function () {
 
-            var list = new Array();
+            var topicManagements = [];
             $("select").each(function () {
                 if ($(this).val() != "") {
-                    var topicManagement = {
-                        "Id": $(this).attr("id").substring(3),
-                        "Number": $(this).val()
-                    };
-                    list.push(topicManagement);
+                    var topicManagement = {};
+                    topicManagement.Id = $(this).attr("id").substring(3);
+                    topicManagement.Number = $(this).val();
+                    topicManagements.push(topicManagement);
                 }
             });
-            return list;
+            return topicManagements;
         }
     </script>
 </head>

@@ -174,6 +174,16 @@ namespace MyMathSheets.CommonLib.Logging
 			log.Output(message, MessageLevel.Error, exception);
 		}
 
+		/// <summary>
+		/// 日誌輸出
+		/// </summary>
+		/// <param name="message">日誌信息</param>
+		public static void LogError(string message)
+		{
+			Log log = (Log)Log.Instance;
+			log.Output(message, MessageLevel.Error);
+		}
+
 		#endregion Error
 	}
 }

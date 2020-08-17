@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1231
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.BasicOperationsLib", "ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E1}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -210,27 +210,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShow
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.MathSheetsSettingWeb", "MathSheetsSettingWeb\MyMathSheets.MathSheetsSettingWeb.csproj", "{B0FD474A-2402-4CA2-A1B7-5EE2C3A7C7E1}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MyMathSheets.WcfService", "MyMathSheets.WcfService\", "{4C15DE4A-A9ED-4E6C-9C61-466F231D654A}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_59074"
-		Debug.AspNetCompiler.PhysicalPath = "MyMathSheets.WcfService\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59074\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_59074"
-		Release.AspNetCompiler.PhysicalPath = "MyMathSheets.WcfService\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59074\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "59074"
-		SlnRelativePath = "MyMathSheets.WcfService\"
-		DefaultWebSiteLanguage = "Visual C#"
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.WebApi", "MathSheetsSettingWebApi\MyMathSheets.WebApi.csproj", "{1590B7CC-A8B9-48BE-9D28-12876E9FC3D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -444,10 +424,10 @@ Global
 		{B0FD474A-2402-4CA2-A1B7-5EE2C3A7C7E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0FD474A-2402-4CA2-A1B7-5EE2C3A7C7E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0FD474A-2402-4CA2-A1B7-5EE2C3A7C7E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4C15DE4A-A9ED-4E6C-9C61-466F231D654A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C15DE4A-A9ED-4E6C-9C61-466F231D654A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C15DE4A-A9ED-4E6C-9C61-466F231D654A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C15DE4A-A9ED-4E6C-9C61-466F231D654A}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{1590B7CC-A8B9-48BE-9D28-12876E9FC3D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1590B7CC-A8B9-48BE-9D28-12876E9FC3D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1590B7CC-A8B9-48BE-9D28-12876E9FC3D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1590B7CC-A8B9-48BE-9D28-12876E9FC3D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

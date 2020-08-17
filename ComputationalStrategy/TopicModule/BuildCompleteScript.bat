@@ -13,6 +13,7 @@ if "%ConfigurationName%"=="Debug" (
 	echo %TargetFileName%
 	copy "%TargetFileName%" "%SolutionDir%\Lib\StrategyModule" /y
 	copy "..\Config\*.json" "%SolutionDir%MathSheetsSettingApp\Config" /Y
+	copy "..\Config\*.json" "%SolutionDir%MathSheetsSettingWeb\Config" /Y
 	copy "..\Config\*.json" "%SolutionDir%TestConsoleApp\Config" /Y
 
 )

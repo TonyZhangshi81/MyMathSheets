@@ -15,6 +15,7 @@ if "%ConfigurationName%"=="Debug" (
 	echo +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 	echo ========== MathSheetsSettingWeb Setting... ==========
+
 	if not exist "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Scripts\Ext" md "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Scripts\Ext"
 	xcopy "..\Scripts\Ext" "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Scripts\Ext" /C /E /H /K /R /Y
 
@@ -100,5 +101,12 @@ if "%ConfigurationName%"=="Debug" (
 
 	if not exist "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Content\switcher" md "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Content\switcher"
 	xcopy "..\Content\switcher" "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Content\switcher" /C /E /H /K /R /Y
+
+	echo +++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+	echo ========== WebApi Setting... ==========
+
+	echo ..\Template\HTMLPage
+	copy "..\Template\HTMLPage" "%SolutionDir%MathSheetsSettingWebApi\HtmlTemplate" /Y
 
 )
