@@ -36,6 +36,13 @@
             $("#btnReady").click(function () { return btnReadyClick(); });
         });
 
+        book = function () {
+            $('#myModal').modal('show');
+            setTimeout(function () {
+                $("#myModal").modal("hide")
+            }, 1200);
+        }
+
         btnReadyClick = function () {
 
             // 站點信息
@@ -55,8 +62,10 @@
                 },
                 complete: function (data) {
                     setTimeout(function () {
-                        $('.datagrid-mask').remove();
+                        $('.datagrid-mask').hide(200);
+                        setTimeout(function () { book(); }, 500);
                     }, 400);
+
                 },
                 success: function (result) {
                     console.log(result);
@@ -127,6 +136,25 @@
             return topicManagements;
         }
     </script>
+    <style>
+        div.datagrid-mask {
+            height: auto;
+            text-align: center;
+            background: #b6ff00;
+            z-index: 1;
+            overflow: hidden;
+            position: fixed;
+            left: 0px;
+            width: 100%;
+            bottom: 0;
+            top: expression(document.documentElement.clientHeight + document.documentElement.scrollTop - this.offsetHeight);
+        }
+
+        .modal-content {
+            width: 200px;
+            padding: 0.2rem 0.4rem;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -256,6 +284,18 @@
             <div class="col-md-12 col-md-offset-3">
                 <p class="text-center">
                     <button id="btnReady" type="button" class="btn btn-lg btn-success">出題</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- data-backdrop="false"去除遮罩层  -->
+    <div class="modal fade bd-example-modal-sm" id="myModal" role="dialog" data-backdrop="false" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <p class="text-center mb-0">
+                    <i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i>
+                    提交成功
                 </p>
             </div>
         </div>
