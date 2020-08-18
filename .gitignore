@@ -354,3 +354,5 @@ ASALocalRun/
 /MathSheetsSettingWeb/AppData/Work/Scripts/
 /MathSheetsSettingWeb/Config/
 !/MathSheetsSettingWeb/Config/TopicManagement.json
+
+/MathSheetsSettingWebApi/Config/

@@ -67,6 +67,7 @@
       <HintPath>..\packages\NLog.4.7.2\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
@@ -152,8 +153,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Loggers\UnhandledExceptionLogger.cs" />
-    <Compile Include="Models\Request\TopicManagement.cs" />
+    <Compile Include="Main\FromProcess\ApiProcess.cs" />
+    <Compile Include="Models\Request\TopicManagementReq.cs" />
     <Compile Include="Models\Response\TopicRes.cs" />
+    <Compile Include="Plugin\PluginsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -169,9 +172,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Config\" />
     <Folder Include="HtmlTemplate\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BuildPreCompleteScript.bat" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
@@ -202,6 +207,9 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>"$(ProjectDir)BuildPreCompleteScript.bat" $(ProjectName) $(ConfigurationName) "$(SolutionDir)" $(TargetDir)</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

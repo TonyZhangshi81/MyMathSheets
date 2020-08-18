@@ -5,7 +5,7 @@ namespace MyMathSheets.WebApi.Models.Request
 	/// <summary>
 	/// </summary>
 	[DataContract]
-	public class TopicManagement
+	public class TopicManagementReq
 	{
 		/// <summary>
 		/// </summary>

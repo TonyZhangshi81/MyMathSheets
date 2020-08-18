@@ -25,7 +25,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 		/// <summary>
 		/// 畫面處理類
 		/// </summary>
-		[Import(typeof(IMainProcess))]
+		[Import("Main", typeof(IMainProcess))]
 		private MainProcess Process
 		{
 			get;
@@ -193,7 +193,7 @@ namespace MyMathSheets.MathSheetsSettingApp
 			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0002A));
 
 			// 出題按鍵點擊事件
-			FileInfo exerciseFile = Process.SureClick();
+			FileInfo exerciseFile = Process.Compile();
 			// 使用IE打開已作成的靜態頁面
 			CallCommondProcess(() =>
 			{

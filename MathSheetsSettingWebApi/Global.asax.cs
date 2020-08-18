@@ -1,4 +1,5 @@
 using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Plugin;
 using System;
 using System.Text;
 using System.Web.Http;
@@ -9,7 +10,7 @@ namespace MyMathSheets.WebApi
 	/// <summary>
 	///
 	/// </summary>
-	public class WebApiApplication : System.Web.HttpApplication
+	public class Global : System.Web.HttpApplication
 	{
 		/// <summary>
 		///
@@ -18,6 +19,8 @@ namespace MyMathSheets.WebApi
 		{
 			AreaRegistration.RegisterAllAreas();
 			GlobalConfiguration.Configure(WebApiConfig.Register);
+
+			PluginHelper.GetManager().Initialize();
 		}
 
 		/// <summary>
@@ -43,5 +46,6 @@ namespace MyMathSheets.WebApi
 				Server.ClearError();
 			}
 		}
+
 	}
 }

@@ -1,5 +1,4 @@
-﻿using MyMathSheets.CommonLib.Composition;
-using MyMathSheets.CommonLib.Configurations;
+﻿using MyMathSheets.CommonLib.Configurations;
 using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.FromProcess.Support;
 using MyMathSheets.CommonLib.Main.HtmlSupport;
@@ -17,8 +16,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Net.Http.Headers;
-using System.Security.Permissions;
 using System.Text;
 
 namespace MyMathSheets.CommonLib.Main.FromProcess
@@ -26,7 +23,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 	/// <summary>
 	/// 畫面處理類
 	/// </summary>
-	[Export(typeof(IMainProcess)), PartCreationPolicy(CreationPolicy.NonShared)]
+	[Export("Main", typeof(IMainProcess)), PartCreationPolicy(CreationPolicy.NonShared)]
 	public class MainProcess : IMainProcess
 	{
 		/// <summary>
@@ -144,7 +141,7 @@ namespace MyMathSheets.CommonLib.Main.FromProcess
 		/// 出題按鍵點擊事件
 		/// </summary>
 		/// <returns>靜態頁面文件名</returns>
-		public FileInfo SureClick()
+		public FileInfo Compile()
 		{
 			// HTML模板存放路徑
 			string sourceFileName = Path.GetFullPath(ConfigurationUtil.HtmlTemplatePath);
