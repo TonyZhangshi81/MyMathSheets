@@ -7,6 +7,7 @@ using MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.IO;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
@@ -28,7 +29,7 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 		private List<GapFillingProblemsLibrary> _allProblems;
 
 		/// <summary>
-		/// <see cref="GapFillingProblems"/>的構造函數
+		/// <see cref="GapFillingProblems"/> 的構造函數
 		/// </summary>
 		[ImportingConstructor]
 		public GapFillingProblems()
@@ -39,11 +40,11 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 		/// <summary>
 		/// 題型作成
 		/// </summary>
-		/// <param name="p">題型參數</param>
+		/// <param name="p"> 題型參數 </param>
 		public override void MarkFormulaList(GapFillingProblemsParameter p)
 		{
 			// 讀取出題資料庫
-			GetAllProblemsFromResource(p.Levels);
+			GetAllProblemsFromResource(p);
 			// 題庫為空的情況
 			if (_allProblems.Count == 0)
 			{
@@ -81,13 +82,25 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Strategy
 		/// <summary>
 		/// 讀取資料庫
 		/// </summary>
-		/// <param name="levels">等級選擇</param>
-		private void GetAllProblemsFromResource(int[] levels)
+		/// <param name="p"> 題型參數 </param>
+		private void GetAllProblemsFromResource(GapFillingProblemsParameter p)
 		{
-			// 讀取資料庫
-			using (System.IO.StreamReader file = System.IO.File.OpenText(PROBLEMS_JSON_FILE_PATH))
+			var path = p.ProblemsJsonFilePath;
+			// 未設定時使用默認配置路徑
+			if (string.IsNullOrWhiteSpace(path))
 			{
-				_allProblems = JsonExtension.GetObjectByJson<List<GapFillingProblemsLibrary>>(file.ReadToEnd()).Where(d => Array.IndexOf(levels, d.Level) >= 0).ToList();
+				path = PROBLEMS_JSON_FILE_PATH;
+			}
+			// 相對路徑的對應
+			if (path.StartsWith("~/") || path.StartsWith("~\\"))
+			{
+				path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.TrimEnd('/', '\\'), path.Substring(2));
+			}
+
+			// 讀取資料庫
+			using (System.IO.StreamReader file = System.IO.File.OpenText(path))
+			{
+				_allProblems = JsonExtension.GetObjectByJson<List<GapFillingProblemsLibrary>>(file.ReadToEnd()).Where(d => Array.IndexOf(p.Levels, d.Level) >= 0).ToList();
 			};
 		}
 

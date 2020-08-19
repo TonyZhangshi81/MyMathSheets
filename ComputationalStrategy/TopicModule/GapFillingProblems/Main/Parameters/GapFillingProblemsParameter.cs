@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
 using MyMathSheets.CommonLib.Main.Policy.Attributes;
+using MyMathSheets.CommonLib.Main.Provider;
 using MyMathSheets.CommonLib.Util;
 using MyMathSheets.ComputationalStrategy.GapFillingProblems.Item;
 using System;
@@ -23,6 +24,12 @@ namespace MyMathSheets.ComputationalStrategy.GapFillingProblems.Main.Parameters
 		/// 基礎填空題型參數設置（級別選擇）
 		/// </summary>
 		public int[] Levels { get; set; }
+
+		/// <summary>
+		/// 填空題庫文件所在路徑
+		/// </summary>
+		/// <remarks> 由補充參數設定 <see cref="JsonTopicParameterProvider"/> 提供設定值 </remarks>
+		public string ProblemsJsonFilePath { get; set; }
 
 		/// <summary>
 		/// 初期化參數
