@@ -41,6 +41,7 @@ namespace MyMathSheets.CommonLib.OperationStrategy
 
 			TopicParameterProvider instance = (TopicParameterProvider)Activator.CreateInstance(provider.GetType());
 			instance.Argument = section.Argument;
+			instance.ReplenishArgument = section.ReplenishArgument;
 
 			// 實例化
 			return instance;

@@ -102,12 +102,6 @@ namespace MyMathSheets.CommonLib.Util.Security
 		/// <returns>解密后的字符串</returns>
 		public static string DecodeBase64String(string result)
 		{
-			// 如果不加密則返回原文
-			if (!ConfigurationUtil.GetIsEncrypt())
-			{
-				return result;
-			}
-
 			return DecodeBase64(Encoding.UTF8, result);
 		}
 

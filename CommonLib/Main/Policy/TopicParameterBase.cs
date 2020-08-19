@@ -2,6 +2,9 @@
 using MyMathSheets.CommonLib.Util;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Security.Permissions;
 
 namespace MyMathSheets.CommonLib.Main.Policy
 {
@@ -74,7 +77,9 @@ namespace MyMathSheets.CommonLib.Main.Policy
 		internal void InitParameterBase(string topicArgumentsIdentifier)
 		{
 			// 參數配置json注入parameter
-			TopicParameterBase parameter = helper.CreateParameterProvider().Initialize(topicArgumentsIdentifier);
+			TopicParameterBase parameter = helper.CreateParameterProvider().Initialize(topicArgumentsIdentifier, out Dictionary<string, string> replenishArgument);
+			// 補充參數設定
+			SetReplenishArgument(replenishArgument);
 
 			QuestionType = parameter.QuestionType;
 			Signs = parameter.Signs;
@@ -84,6 +89,29 @@ namespace MyMathSheets.CommonLib.Main.Policy
 			Reserve = parameter.Reserve;
 			LeftScope = parameter.LeftScope;
 			RightScope = parameter.RightScope;
+		}
+
+		/// <summary>
+		/// 補充參數設定
+		/// </summary>
+		/// <param name="replenishArgument">補充參數</param>
+		private void SetReplenishArgument(Dictionary<string, string> replenishArgument)
+		{
+			// 如果沒有補充參數配置設定
+			if(replenishArgument == null)
+			{
+				return;
+			}
+
+			// 當前Parameter屬性集合
+			PropertyInfo[] propertys = this.GetType().GetProperties();
+
+			propertys.ToList().ForEach(p => {
+				if (replenishArgument.ContainsKey(p.Name))
+				{
+					p.SetValue(this, replenishArgument[p.Name], null);
+				}
+			});
 		}
 
 		/// <summary>

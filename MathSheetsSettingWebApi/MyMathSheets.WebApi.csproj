@@ -172,11 +172,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Config\" />
     <Folder Include="HtmlTemplate\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BuildPreCompleteScript.bat" />
+    <Content Include="Config\TopicManagement.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>

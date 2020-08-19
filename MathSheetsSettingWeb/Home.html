@@ -36,7 +36,7 @@
             $("#btnReady").click(function () { return btnReadyClick(); });
         });
 
-        book = function (msg) {
+        showMessage = function (msg) {
             if (msg) {
                 $("#spanMsg").text(msg);
             }
@@ -50,36 +50,51 @@
         btnReadyClick = function () {
 
             // 站點信息
-            var apiUrl = "http://192.168.31.176:8081/";
-            // 輸入參數
-            var jsonObj = getTopicSettingJson();
+            var apiUrl = "http://localhost:8081/";
 
             $.ajax({
                 url: apiUrl + "api/Compile/Do",
                 type: "POST",
                 dataType: 'json',
                 contentType: "application/json;charset=utf-8",
-                data: JSON.stringify(jsonObj),
+                data: getTopicSettingJsonString(), 
 
                 beforeSend: function () {
+                    $(this).attr("disabled", false);
                     $("<div class=\"datagrid-mask\"></div>").html("Please Wait...").appendTo("body");
                 },
                 complete: function (data) {
                     setTimeout(function () {
                         $('.datagrid-mask').hide(200);
+                        $(this).attr("disabled", true);
                     }, 400);
-
                 },
                 success: function (result) {
-                    setTimeout(function () { book(); }, 500);
                     console.log(result);
+
+                    setTimeout(function () {
+                        showMessage();
+                        $(this).attr("disabled", true);
+
+                        setTimeout(function () { linkOpen(result.Url); }, 1000);
+                    }, 500);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    setTimeout(function () { book(("status:" + XMLHttpRequest.status + " readyState:" + XMLHttpRequest.readyState + " textStatus:" + textStatus)); }, 500);
+                    setTimeout(function () {
+                        showMessage(("status:" + XMLHttpRequest.status + " readyState:" + XMLHttpRequest.readyState + " textStatus:" + textStatus));
+                        $(this).attr("disabled", true);
+                    }, 500);
                 }
             });
 
             return false;
+        }
+
+        linkOpen = function (url) {
+            var a = $("<a href='" + url + "' target='_blank' />").get(0);
+            var e = document.createEvent('MouseEvents');
+            e.initEvent('click', true, true);
+            a.dispatchEvent(e);
         }
 
         topicManagement = function () {
@@ -126,7 +141,7 @@
             $ddl.html("<option value=''>請選擇</option>");
         }
 
-        getTopicSettingJson = function () {
+        getTopicSettingJsonString = function () {
 
             var topicManagements = [];
             $("select").each(function () {
@@ -137,7 +152,10 @@
                     topicManagements.push(topicManagement);
                 }
             });
-            return topicManagements;
+
+            var jsonStr = JSON.stringify(topicManagements);
+            console.log(jsonStr);
+            return jsonStr;
         }
     </script>
     <style>
@@ -157,11 +175,12 @@
         .modal-content {
             width: 200px;
             padding: 0.2rem 0.4rem;
+            background-color: gold;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="background-color: floralwhite">
         <div class="row">
             <div class="col-md-4 form-inline">
                 <h5><span id="spanArithmeticOperations"></span></h5>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Text;
 
 namespace MyMathSheets.MathWordProblemsConsoleApp.Util.Security
@@ -16,6 +17,12 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Util.Security
 		/// <returns>加密后的字符串</returns>
 		public static string EncodeBase64(Encoding encode, string source)
 		{
+			// 如果不加密則返回原文
+			if (!Convert.ToBoolean(ConfigurationManager.AppSettings.Get("IsEncrypt")))
+			{
+				return source;
+			}
+
 			byte[] bytes = encode.GetBytes(source);
 			try
 			{
@@ -34,6 +41,12 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Util.Security
 		/// <returns>加密后的字符串</returns>
 		public static string EncodeBase64(string source)
 		{
+			// 如果不加密則返回原文
+			if (!Convert.ToBoolean(ConfigurationManager.AppSettings.Get("IsEncrypt")))
+			{
+				return source;
+			}
+
 			return EncodeBase64(Encoding.UTF8, source);
 		}
 
@@ -55,6 +68,12 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Util.Security
 		/// <returns>解密后的字符串</returns>
 		public static string DecodeBase64(Encoding encode, string result)
 		{
+			// 如果不加密則返回原文
+			if (!Convert.ToBoolean(ConfigurationManager.AppSettings.Get("IsEncrypt")))
+			{
+				return result;
+			}
+
 			byte[] bytes = DecodeBase64(result);
 			try
 			{

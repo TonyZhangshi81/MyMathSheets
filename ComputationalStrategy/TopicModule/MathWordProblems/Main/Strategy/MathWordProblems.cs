@@ -6,6 +6,7 @@ using MyMathSheets.ComputationalStrategy.MathWordProblems.Item;
 using MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Parameters;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
@@ -80,7 +81,7 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		public override void MarkFormulaList(MathWordProblemsParameter p)
 		{
 			// 讀取出題資料庫
-			GetAllProblemsFromResource();
+			GetAllProblemsFromResource(p);
 			// 算式作成
 			MarkFormulaList(p, () => { return CommonUtil.GetRandomNumber(p.Signs.ToList()); });
 		}
@@ -126,10 +127,23 @@ namespace MyMathSheets.ComputationalStrategy.MathWordProblems.Main.Strategy
 		/// <summary>
 		/// 讀取資料庫
 		/// </summary>
-		private void GetAllProblemsFromResource()
+		/// <param name="p">題型參數</param>
+		private void GetAllProblemsFromResource(MathWordProblemsParameter p)
 		{
+			var path = p.ProblemsJsonFilePath;
+			// 未設定時使用默認配置路徑
+			if (string.IsNullOrWhiteSpace(path))
+			{
+				path = PROBLEMS_JSON_FILE_PATH;
+			}
+			// 相對路徑的對應
+			if (path.StartsWith("~/") || path.StartsWith("~\\"))
+			{
+				path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.TrimEnd('/', '\\'), path.Substring(2));
+			}
+
 			// 讀取資料庫
-			using (System.IO.StreamReader file = System.IO.File.OpenText(PROBLEMS_JSON_FILE_PATH))
+			using (StreamReader file = File.OpenText(path))
 			{
 				_allProblems = JsonExtension.GetObjectByJson<List<Problems>>(file.ReadToEnd());
 			};

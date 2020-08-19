@@ -1,8 +1,10 @@
-﻿using MyMathSheets.CommonLib.Message;
+﻿using Microsoft.SqlServer.Server;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Properties;
 using System;
 using System.Configuration;
 using System.Globalization;
+using System.Security.Permissions;
 
 namespace MyMathSheets.CommonLib.Configurations
 {
@@ -46,7 +48,7 @@ namespace MyMathSheets.CommonLib.Configurations
 		/// <returns>配置信息</returns>
 		public static bool GetIsEncrypt()
 		{
-			if (bool.TryParse(GetKeyValue("IsEncrypt"), out bool result))
+			if (bool.TryParse(GetKeyValue("IsEncrypt", false, "False"), out bool result))
 			{
 				return result;
 			}
@@ -80,14 +82,21 @@ namespace MyMathSheets.CommonLib.Configurations
 		/// 取得設定文件的設定信息
 		/// </summary>
 		/// <param name="key">設定KEY</param>
+		/// <param name="isNeed">必須配置</param>
+		/// <param name="defaultValue">非必須項目未設定時的默認值</param>
 		/// <returns>設定信息</returns>
-		public static string GetKeyValue(string key)
+		public static string GetKeyValue(string key, bool isNeed = true, string defaultValue = "")
 		{
 			string value = ConfigurationManager.AppSettings[key];
 			if (string.IsNullOrWhiteSpace(value))
 			{
-				throw new ConfigurationErrorsException(MessageUtil.GetMessage(() => MsgResources.E0042L, key));
+				if (isNeed)
+				{
+					throw new ConfigurationErrorsException(MessageUtil.GetMessage(() => MsgResources.E0042L, key));
+				}
+				return defaultValue;
 			}
+
 			return value;
 		}
 	}

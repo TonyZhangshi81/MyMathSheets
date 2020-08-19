@@ -48,9 +48,6 @@ namespace MyMathSheets.WebApi.Controllers
 		[HttpPost]
 		public IHttpActionResult Do(List<TopicManagementReq> list)
 		{
-
-			var aaa = AppDomain.CurrentDomain.GetAssemblies();
-
 			LogUtil.LogDebug(JsonConvert.SerializeObject(list));
 
 			list.ForEach(d => {
@@ -61,7 +58,7 @@ namespace MyMathSheets.WebApi.Controllers
 
 			var result = new TopicRes()
 			{
-				Result = ConfigurationUtil.GetIISUrl() + exerciseFile.Name,
+				Url = ConfigurationUtil.GetIISUrl() + exerciseFile.Name,
 				StatusCode = 200
 			};
 

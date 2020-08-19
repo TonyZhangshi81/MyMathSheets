@@ -1,1 +1,112 @@
-[{"name":"Arithmetic","number":"AC008"},{"name":"CombinatorialEquation","number":"CE001"},{"name":"ComputingConnection","number":"CC001"},{"name":"CurrencyLinkage","number":"CL001"},{"name":"CurrencyOperation","number":"CO001"},{"name":"EqualityComparison","number":"EC003"},{"name":"EqualityLinkage","number":"EL004"},{"name":"MathWordProblems","number":"MP004"},{"name":"FruitsLinkage","number":"FL003"},{"name":"FindNearestNumber","number":"FNN03"},{"name":"FindTheLaw","number":"FTL02"},{"name":"GapFillingProblems","number":"GFP01"},{"name":"HowMuchMore","number":"HMM01"},{"name":"LearnCurrency","number":"LC007"},{"name":"LearnLengthUnit","number":"LLU05"},{"name":"NumericSorting","number":"NS001"},{"name":"SchoolClock","number":"SC001"},{"name":"ScoreGoal","number":"SG003"},{"name":"TimeCalculation","number":"TC003"},{"name":"MathUpright","number":"MU001"}]
+[
+  {
+    "id": "ArithmeticOperations",
+    "name": "四則運算",
+    "number": "AC008"
+  },
+  {
+    "id": "CombinatorialEquation",
+    "name": "算式組合",
+    "number": "CE001"
+  },
+  {
+    "id": "ComputingConnection",
+    "name": "等式接龍",
+    "number": "CC001"
+  },
+  {
+    "id": "CurrencyLinkage",
+    "name": "認識價格",
+    "number": "CL001"
+  },
+  {
+    "id": "CurrencyOperation",
+    "name": "貨幣運算",
+    "number": "CO001"
+  },
+  {
+    "id": "EqualityComparison",
+    "name": "算式比大小",
+    "number": "EC003"
+  },
+  {
+    "id": "EqualityLinkage",
+    "name": "算式連一連",
+    "number": "EL004"
+  },
+  {
+    "id": "MathWordProblems",
+    "name": "算式應用題",
+    "number": "MP004"
+  },
+  {
+    "id": "FruitsLinkage",
+    "name": "水果連連看",
+    "number": "FL003"
+  },
+  {
+    "id": "FindNearestNumber",
+    "name": "找到最近的數字",
+    "number": "FNN03"
+  },
+  {
+    "id": "FindTheLaw",
+    "name": "找規律",
+    "number": "FTL02"
+  },
+  {
+    "id": "GapFillingProblems",
+    "name": "基礎填空題",
+    "number": "GFP01"
+  },
+  {
+    "id": "HowMuchMore",
+    "name": "比多少",
+    "number": "HMM01"
+  },
+  {
+    "id": "LearnCurrency",
+    "name": "認識貨幣",
+    "number": "LC007"
+  },
+  {
+    "id": "LearnLengthUnit",
+    "name": "認識長度單位",
+    "number": "LLU05"
+  },
+  {
+    "id": "NumericSorting",
+    "name": "數字排序",
+    "number": "NS001"
+  },
+  {
+    "id": "SchoolClock",
+    "name": "時鐘學習板",
+    "number": "SC001"
+  },
+  {
+    "id": "ScoreGoal",
+    "name": "射門得分",
+    "number": "SG003"
+  },
+  {
+    "id": "TimeCalculation",
+    "name": "時間運算",
+    "number": "TC003"
+  },
+  {
+    "id": "MathUpright",
+    "name": "豎式計算",
+    "number": "MU001"
+  },
+  {
+    "id": "CleverCalculation",
+    "name": "巧算",
+    "number": "CLC99"
+  },
+  {
+    "id": "RecursionEquation",
+    "name": "遞等式計算",
+    "number": "RE099"
+  }
+]

@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
 
 namespace MyMathSheets.CommonLib.Configurations
 {
@@ -11,6 +13,8 @@ namespace MyMathSheets.CommonLib.Configurations
 
 		private const string ArgumentProperty = "argument";
 
+		private const string ReplenishProperty = "replenish";
+
 		/// <summary>
 		/// Property 類型定義
 		/// </summary>
@@ -22,5 +26,12 @@ namespace MyMathSheets.CommonLib.Configurations
 		/// </summary>
 		[ConfigurationProperty(ArgumentProperty, IsRequired = false)]
 		internal string Argument => this["argument"] as string;
+
+		/// <summary>
+		/// 配置參數補充
+		/// </summary>
+		[TypeConverter(typeof(ReplenishArgumentsMapsConverter))]
+		[ConfigurationProperty(ReplenishProperty, IsRequired = false)]
+		internal Dictionary<string, Dictionary<string, string>> ReplenishArgument => this["replenish"] as Dictionary<string, Dictionary<string, string>>;
 	}
 }

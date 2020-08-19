@@ -1,4 +1,5 @@
 ﻿using MyMathSheets.CommonLib.Main.Policy;
+using System.Collections.Generic;
 
 namespace MyMathSheets.CommonLib.Main.Provider
 {
@@ -12,8 +13,10 @@ namespace MyMathSheets.CommonLib.Main.Provider
 		/// 通用參數初始化
 		/// </summary>
 		/// <param name="identifier">題型識別</param>
-		public override TopicParameterBase Initialize(string identifier)
+		/// <param name="replenishArgument">補充參數</param>
+		public override TopicParameterBase Initialize(string identifier, out Dictionary<string, string> replenishArgument)
 		{
+			replenishArgument = null;
 			return new TopicParameterBase();
 		}
 	}

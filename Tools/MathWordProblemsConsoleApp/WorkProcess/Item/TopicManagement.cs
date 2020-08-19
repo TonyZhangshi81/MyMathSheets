@@ -9,6 +9,12 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess.Item
 	public class TopicManagement
 	{
 		/// <summary>
+		/// 題型編號
+		/// </summary>
+		[DataMember(Name = "id")]
+		public string ID { get; set; }
+
+		/// <summary>
 		/// 題型名稱
 		/// </summary>
 		[DataMember(Name = "name")]

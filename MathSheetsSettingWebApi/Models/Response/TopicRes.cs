@@ -12,7 +12,7 @@ namespace MyMathSheets.WebApi.Models.Response
 		///
 		/// </summary>
 		[DataMember]
-		public string Result { get; set; }
+		public string Url { get; set; }
 
 		/// <summary>
 		///

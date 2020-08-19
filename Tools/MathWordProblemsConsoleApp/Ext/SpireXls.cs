@@ -67,18 +67,6 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.Ext
 		#endregion Load the Excel file
 
 		/// <summary>
-		/// 返回指定單元格的值（加密處理）
-		/// </summary>
-		/// <param name="cellName">單元格位置</param>
-		/// <param name="isEncrypt">是否需要加密</param>
-		/// <returns>單元格的值</returns>
-		public string GetRangeText(string cellName, bool isEncrypt)
-		{
-			string result = GetRangeText(cellName);
-			return (isEncrypt) ? Base64.EncodeBase64(result) : result;
-		}
-
-		/// <summary>
 		/// 返回指定單元格的值
 		/// </summary>
 		/// <param name="cellName">單元格位置</param>

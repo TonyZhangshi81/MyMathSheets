@@ -92,30 +92,13 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 
 				if (item.AnswerIsRight)
 				{
-					// 第一級計算式中是否使用括號
-					//if (item.Arithmetic.IsNeedBracket)
-					//{
-					//	// 左括號（注意：右括號在第二級計算式中）
-					//	colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, "("));
-					//}
-
 					// 第一級計算式左側的值
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.LeftParameter, GapFilling.Left, controlIndex));
 
 					// 第一級計算式運算符
 					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.Arithmetic.Sign.ToOperationUnicode()));
 
-					// 是否運用多級四則運算
-					//if (item.MultistageArithmetic is null)
-					//{
-					// 第一級計算式右側的值
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
-					//}
-					//else
-					//{
-					//	// 第二級計算式
-					//	colHtml.AppendLine(GetMultistageFormula(item.Arithmetic, item.MultistageArithmetic, controlIndex));
-					//}
 
 					// 等號
 					colHtml.AppendLine(string.Format(EQUALTO_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareString()));
@@ -131,30 +114,13 @@ namespace MyMathSheets.TheFormulaShows.Arithmetic.Support
 					// 等號
 					colHtml.AppendLine(string.Format(EQUALTO_HTML_FORMAT, SignOfCompare.Equal.ToSignOfCompareString()));
 
-					// 第一級計算式中是否使用括號
-					//if (item.Arithmetic.IsNeedBracket)
-					//{
-					//	// 左括號（注意：右括號在第二級計算式中）
-					//	colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, "("));
-					//}
-
 					// 第一級計算式左側的值
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.LeftParameter, GapFilling.Left, controlIndex));
 
 					// 第一級計算式運算符
 					colHtml.AppendLine(string.Format(LABEL_HTML_FORMAT, item.Arithmetic.Sign.ToOperationUnicode()));
 
-					// 是否運用多級四則運算
-					//if (item.MultistageArithmetic is null)
-					//{
-					// 第一級計算式右側的值
 					colHtml.AppendLine(GetHtml(item.Arithmetic.Gap, item.Arithmetic.RightParameter, GapFilling.Right, controlIndex));
-					//}
-					//else
-					//{
-					//	// 第二級計算式
-					//	colHtml.AppendLine(GetMultistageFormula(item.Arithmetic, item.MultistageArithmetic, controlIndex));
-					//}
 				}
 
 				colHtml.AppendLine("</h5>");

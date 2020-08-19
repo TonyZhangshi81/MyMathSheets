@@ -51,8 +51,10 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 					// 構造
 					list.Add(new TopicManagement()
 					{
-						// 題型名稱(英文名)
-						Name = Xls.GetRangeText(string.Format("D{0}", rowIndex)),
+						// 題型ID(英文名)
+						ID = Xls.GetRangeText(string.Format("D{0}", rowIndex)),
+						// 題型名稱(中文名)
+						Name = Xls.GetRangeText(string.Format("B{0}", rowIndex)),
 						// 題型編號
 						Number = Xls.GetRangeText(string.Format("G{0}", rowIndex)).Substring(0, 5)
 					});
@@ -107,16 +109,16 @@ namespace MyMathSheets.MathWordProblemsConsoleApp.WorkProcess
 						Xls.GetRangeText(string.Format("M{0}", rowIndex)),
 					},
 					Answers = new List<string>() {
-						Xls.GetRangeText(string.Format("N{0}", rowIndex), true),
-						Xls.GetRangeText(string.Format("O{0}", rowIndex), true),
-						Xls.GetRangeText(string.Format("P{0}", rowIndex), true),
-						Xls.GetRangeText(string.Format("Q{0}", rowIndex), true),
-						Xls.GetRangeText(string.Format("R{0}", rowIndex), true),
-						Xls.GetRangeText(string.Format("S{0}", rowIndex), true),
-						Xls.GetRangeText(string.Format("T{0}", rowIndex), true),
-						Xls.GetRangeText(string.Format("U{0}", rowIndex), true),
-						Xls.GetRangeText(string.Format("V{0}", rowIndex), true),
-						Xls.GetRangeText(string.Format("W{0}", rowIndex), true)
+						Base64.EncodeBase64(Xls.GetRangeText(string.Format("N{0}", rowIndex))),
+						Base64.EncodeBase64(Xls.GetRangeText(string.Format("O{0}", rowIndex))),
+						Base64.EncodeBase64(Xls.GetRangeText(string.Format("P{0}", rowIndex))),
+						Base64.EncodeBase64(Xls.GetRangeText(string.Format("Q{0}", rowIndex))),
+						Base64.EncodeBase64(Xls.GetRangeText(string.Format("R{0}", rowIndex))),
+						Base64.EncodeBase64(Xls.GetRangeText(string.Format("S{0}", rowIndex))),
+						Base64.EncodeBase64(Xls.GetRangeText(string.Format("T{0}", rowIndex))),
+						Base64.EncodeBase64(Xls.GetRangeText(string.Format("U{0}", rowIndex))),
+						Base64.EncodeBase64(Xls.GetRangeText(string.Format("V{0}", rowIndex))),
+						Base64.EncodeBase64(Xls.GetRangeText(string.Format("W{0}", rowIndex)))
 					}
 				});
 
