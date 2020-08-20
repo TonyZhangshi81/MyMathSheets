@@ -71,7 +71,7 @@
     }
 
 .faces .face {
-    background: transparent url("image/clock/faces.png") top left no-repeat;
+    background: transparent url("../image/clock/faces.png") top left no-repeat;
     width: 160px;
     height: 160px;
     padding: 0;
