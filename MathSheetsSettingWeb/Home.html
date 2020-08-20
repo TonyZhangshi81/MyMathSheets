@@ -34,8 +34,6 @@
             topicManagement();
 
             $("#btnReady").click(function () { return btnReadyClick(this); });
-
-            $("<div class=\"datagrid-mask\"></div>").html("正在連接，請等待...").appendTo("body");
         });
 
         showMessage = function (msg) {
@@ -174,7 +172,7 @@
     </script>
     <style>
         div.datagrid-mask {
-            height: auto;
+            height: 65px;
             text-align: center;
             background: yellowgreen;
             font-size: xx-large;
@@ -188,152 +186,293 @@
         }
 
         .modal-content {
-            width: 200px;
+            width: 340px;
+            height: 80px;
             padding: 0.2rem 0.4rem;
             background-color: gold;
+            text-align: center;
+            line-height: 80px !important;
+        }
+
+        span.title {
+            padding-right: 10px;
+        }
+
+        div.myContainer {
+            background-color: cornflowerblue;
+        }
+
+        body {
+            background-color: cornflowerblue;
         }
     </style>
 </head>
 <body>
-    <div class="container" style="background-color: floralwhite">
-        <div class="row">
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanArithmeticOperations"></span></h5>
-                <select id="ddlArithmeticOperations"></select>
-            </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanCombinatorialEquation"></span></h5>
-                <select id="ddlCombinatorialEquation"></select>
-            </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanComputingConnection"></span></h5>
-                <select id="ddlComputingConnection"></select>
-            </div>
-        </div>
-
+    <div class="myContainer">
         <div class="clearfix" style="margin-bottom: 10px;"></div>
-
         <div class="row">
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanCurrencyLinkage"></span></h5>
-                <select id="ddlCurrencyLinkage"></select>
+            <div class="col-md-1"><br /></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanArithmeticOperations" class="title"></span>
+                            <select id="ddlArithmeticOperations"></select>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanCombinatorialEquation" class="title"></span>
+                            <select id="ddlCombinatorialEquation"></select>
+                        </h4>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanCurrencyOperation"></span></h5>
-                <select id="ddlCurrencyOperation"></select>
-            </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanEqualityComparison"></span></h5>
-                <select id="ddlEqualityComparison"></select>
-            </div>
+            <div class="col-md-1"><br /></div>
         </div>
 
         <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanEqualityLinkage"></span></h5>
-                <select id="ddlEqualityLinkage"></select>
+            <div class="col-md-1"><br /></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanComputingConnection" class="title"></span>
+                            <select id="ddlComputingConnection"></select>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanCurrencyLinkage" class="title"></span>
+                            <select id="ddlCurrencyLinkage"></select>
+                        </h4>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanMathWordProblems"></span></h5>
-                <select id="ddlMathWordProblems"></select>
-            </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanFruitsLinkage"></span></h5>
-                <select id="ddlFruitsLinkage"></select>
-            </div>
+            <div class="col-md-1"><br /></div>
         </div>
 
         <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanFindNearestNumber"></span></h5>
-                <select id="ddlFindNearestNumber"></select>
+            <div class="col-md-1"><br /></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanCurrencyOperation" class="title"></span>
+                            <select id="ddlCurrencyOperation"></select>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanEqualityComparison" class="title"></span>
+                            <select id="ddlEqualityComparison"></select>
+                        </h4>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanFindTheLaw"></span></h5>
-                <select id="ddlFindTheLaw"></select>
-            </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanGapFillingProblems"></span></h5>
-                <select id="ddlGapFillingProblems"></select>
-            </div>
+            <div class="col-md-1"><br /></div>
         </div>
 
         <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanHowMuchMore"></span></h5>
-                <select id="ddlHowMuchMore"></select>
+            <div class="col-md-1"><br /></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanEqualityLinkage" class="title"></span>
+                            <select id="ddlEqualityLinkage"></select>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanMathWordProblems" class="title"></span>
+                            <select id="ddlMathWordProblems"></select>
+                        </h4>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanLearnCurrency"></span></h5>
-                <select id="ddlLearnCurrency"></select>
-            </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanLearnLengthUnit"></span></h5>
-                <select id="ddlLearnLengthUnit"></select>
-            </div>
+            <div class="col-md-1"><br /></div>
         </div>
 
         <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanNumericSorting"></span></h5>
-                <select id="ddlNumericSorting"></select>
+            <div class="col-md-1"><br /></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanFruitsLinkage" class="title"></span>
+                            <select id="ddlFruitsLinkage"></select>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanFindNearestNumber" class="title"></span>
+                            <select id="ddlFindNearestNumber"></select>
+                        </h4>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanSchoolClock"></span></h5>
-                <select id="ddlSchoolClock"></select>
-            </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanScoreGoal"></span></h5>
-                <select id="ddlScoreGoal"></select>
-            </div>
+            <div class="col-md-1"><br /></div>
         </div>
 
         <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanTimeCalculation"></span></h5>
-                <select id="ddlTimeCalculation"></select>
+            <div class="col-md-1"><br /></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanFindTheLaw" class="title"></span>
+                            <select id="ddlFindTheLaw"></select>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanGapFillingProblems" class="title"></span>
+                            <select id="ddlGapFillingProblems"></select>
+                        </h4>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanMathUpright"></span></h5>
-                <select id="ddlMathUpright"></select>
-            </div>
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanCleverCalculation"></span></h5>
-                <select id="ddlCleverCalculation"></select>
-            </div>
+            <div class="col-md-1"><br /></div>
         </div>
 
         <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-4 form-inline">
-                <h5><span id="spanRecursionEquation"></span></h5>
-                <select id="ddlRecursionEquation"></select>
+            <div class="col-md-1"><br /></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanHowMuchMore" class="title"></span>
+                            <select id="ddlHowMuchMore"></select>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanLearnCurrency" class="title"></span>
+                            <select id="ddlLearnCurrency"></select>
+                        </h4>
+                    </div>
+                </div>
             </div>
+            <div class="col-md-1"><br /></div>
+        </div>
+
+        <div class="clearfix" style="margin-bottom: 10px;"></div>
+        <div class="row">
+            <div class="col-md-1"><br /></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanLearnLengthUnit" class="title"></span>
+                            <select id="ddlLearnLengthUnit"></select>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanNumericSorting" class="title"></span>
+                            <select id="ddlNumericSorting"></select>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"><br /></div>
+        </div>
+
+        <div class="clearfix" style="margin-bottom: 10px;"></div>
+        <div class="row">
+            <div class="col-md-1"><br /></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanSchoolClock" class="title"></span>
+                            <select id="ddlSchoolClock"></select>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanScoreGoal" class="title"></span>
+                            <select id="ddlScoreGoal"></select>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"><br /></div>
+        </div>
+
+        <div class="clearfix" style="margin-bottom: 10px;"></div>
+        <div class="row">
+            <div class="col-md-1"><br /></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanTimeCalculation" class="title"></span>
+                            <select id="ddlTimeCalculation"></select>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanMathUpright" class="title"></span>
+                            <select id="ddlMathUpright"></select>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"><br /></div>
+        </div>
+
+        <div class="clearfix" style="margin-bottom: 10px;"></div>
+        <div class="row">
+            <div class="col-md-1"><br /></div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanCleverCalculation" class="title"></span>
+                            <select id="ddlCleverCalculation"></select>
+                        </h4>
+                    </div>
+                    <div class="col-md-6 form-inline">
+                        <h4>
+                            <span id="spanRecursionEquation" class="title"></span>
+                            <select id="ddlRecursionEquation"></select>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1"><br /></div>
         </div>
     </div>
-    <div class="clearfix" style="margin-bottom: 30px;"></div>
+
+    <div class="clearfix" style="margin-bottom: 20px;"><br /></div>
     <div class="panel-footer">
         <div class="row">
-            <div class="col-md-12 col-md-offset-3">
+            <div class="col-md-5"><br /></div>
+            <div class="col-md-2">
                 <p class="text-center">
-                    <button id="btnReady" type="button" class="btn btn-lg btn-success">出題</button>
+                    <button id="btnReady" type="button" class="btn btn-lg btn-success btn-block">出題</button>
                 </p>
             </div>
+            <div class="col-md-5"><br /></div>
         </div>
     </div>
 
-    <!-- data-backdrop="false"去除籠罩層  -->
     <div class="modal fade bd-example-modal-sm" id="myModal" role="dialog" data-backdrop="false" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <p class="text-center mb-0">
-                    <i class="fa fa-check-circle text-success mr-1" aria-hidden="true"></i>
-                    <span id="spanMsg">提交成功</span>
+                    <h2>
+                        <i class="fa fa-check-circle text-success mr-3" aria-hidden="true"></i>
+                        <span id="spanMsg">提交成功</span>
+                    </h2>
                 </p>
             </div>
         </div>
