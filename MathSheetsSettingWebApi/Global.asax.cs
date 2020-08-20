@@ -1,7 +1,5 @@
-using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Plugin;
-using System;
-using System.Text;
+using MyMathSheets.WebApi.Filters;
 using System.Web.Http;
 using System.Web.Mvc;
 
@@ -18,34 +16,13 @@ namespace MyMathSheets.WebApi
 		protected void Application_Start()
 		{
 			AreaRegistration.RegisterAllAreas();
+			// 路由設定
 			GlobalConfiguration.Configure(WebApiConfig.Register);
+			// 異常篩選器
+			GlobalConfiguration.Configuration.Filters.Add(new WebApiExceptionFilterAttribute());
 
+			// 各題型Assamly導入
 			PluginHelper.GetManager().Initialize();
 		}
-
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		protected void Application_Error(object sender, EventArgs e)
-		{
-			var message = new StringBuilder();
-			if (Server != null)
-			{
-				Exception ex;
-
-				// 例外情報を取得する
-				for (ex = Server.GetLastError(); ex != null; ex = ex.InnerException)
-				{
-					message.AppendFormat("{0}: {1}{2}", ex.GetType().FullName, ex.Message, ex.StackTrace);
-				}
-
-				LogUtil.LogError(message.ToString());
-
-				Server.ClearError();
-			}
-		}
-
 	}
 }

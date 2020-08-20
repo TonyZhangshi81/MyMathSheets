@@ -1,8 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Configurations;
-using MyMathSheets.WebApi.Loggers;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using System.Web.Http.ExceptionHandling;
 
 namespace MyMathSheets.WebApi
 {
@@ -33,11 +31,8 @@ namespace MyMathSheets.WebApi
 			config.Routes.MapHttpRoute(
 				name: "DefaultApi",
 				routeTemplate: "api/{controller}/{id}",
-				// 默認起始頁
 				defaults: new { id = RouteParameter.Optional }
 			);
-
-			config.Services.Replace(typeof(IExceptionLogger), new UnhandledExceptionLogger());
 		}
 	}
 }

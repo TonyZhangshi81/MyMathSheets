@@ -1,9 +1,12 @@
 ﻿using MyMathSheets.CommonLib.Configurations;
+using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.FromProcess;
 using MyMathSheets.CommonLib.Main.FromProcess.Support;
 using MyMathSheets.CommonLib.Main.HtmlSupport;
 using MyMathSheets.CommonLib.Main.Policy;
+using MyMathSheets.CommonLib.Message;
 using MyMathSheets.CommonLib.Util;
+using MyMathSheets.WebApi.Properties;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -118,12 +121,12 @@ namespace MyMathSheets.WebApi.Main.FromProcess
 			// 遍歷已選擇的題型
 			foreach (KeyValuePair<string, ConcurrentDictionary<SubstituteType, string>> d in _htmlMaps)
 			{
-				//LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0016L, d.Key));
+				LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0001A, d.Key));
 
 				// 替換HTML模板中的預留內容（HTML、JS注入操作）
 				foreach (KeyValuePair<SubstituteType, string> m in d.Value)
 				{
-					//LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0015L, m.Key));
+					LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0002A, m.Key));
 
 					switch (m.Key)
 					{
@@ -182,7 +185,7 @@ namespace MyMathSheets.WebApi.Main.FromProcess
 			// 題型正文注入
 			htmlTemplate.Replace("<!--CONTENT-->", Content.Insert(0, IsEncryptScript).AppendLine().ToString());
 
-			//LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0017L));
+			LogUtil.LogDebug(MessageUtil.GetMessage(() => MsgResources.I0003L));
 
 			// 保存至靜態頁面
 			File.WriteAllText(destFileName, htmlTemplate.ToString(), Encoding.UTF8);

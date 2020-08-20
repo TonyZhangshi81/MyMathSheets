@@ -33,7 +33,9 @@
         $(function () {
             topicManagement();
 
-            $("#btnReady").click(function () { return btnReadyClick(); });
+            $("#btnReady").click(function () { return btnReadyClick(this); });
+
+            $("<div class=\"datagrid-mask\"></div>").html("正在連接，請等待...").appendTo("body");
         });
 
         showMessage = function (msg) {
@@ -47,7 +49,18 @@
             }, 1200);
         }
 
-        btnReadyClick = function () {
+        btnReadyClick = function (sender) {
+
+            var settingList = getTopicSettingJson();
+            if (settingList.length == 0) {
+                showMessage('未選擇題型');
+                return false;
+            }
+
+            $(sender).attr("disabled", true);
+
+            var data = JSON.stringify(settingList);
+            console.log(data);
 
             // 站點信息
             var apiUrl = "http://localhost:8081/";
@@ -57,32 +70,35 @@
                 type: "POST",
                 dataType: 'json',
                 contentType: "application/json;charset=utf-8",
-                data: getTopicSettingJsonString(), 
+                data: data,
 
                 beforeSend: function () {
-                    $(this).attr("disabled", false);
-                    $("<div class=\"datagrid-mask\"></div>").html("Please Wait...").appendTo("body");
+                    $("<div class=\"datagrid-mask\"></div>").html("正在連接，請等待...").appendTo("body");
                 },
+
                 complete: function (data) {
                     setTimeout(function () {
                         $('.datagrid-mask').hide(200);
-                        $(this).attr("disabled", true);
                     }, 400);
                 },
+
                 success: function (result) {
                     console.log(result);
 
                     setTimeout(function () {
                         showMessage();
-                        $(this).attr("disabled", true);
+                        $(sender).attr("disabled", false);
 
                         setTimeout(function () { linkOpen(result.Url); }, 1000);
                     }, 500);
                 },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                error: function (xhr, textStatus, errorThrown) {
                     setTimeout(function () {
-                        showMessage(("status:" + XMLHttpRequest.status + " readyState:" + XMLHttpRequest.readyState + " textStatus:" + textStatus));
-                        $(this).attr("disabled", true);
+                        console.log(("狀態:" + xhr.status + " 狀態碼:" + xhr.readyState + " 錯誤信息:" + xhr.responseText));
+
+                        showMessage("發生錯誤");
+                        $(sender).attr("disabled", false);
                     }, 500);
                 }
             });
@@ -141,7 +157,7 @@
             $ddl.html("<option value=''>請選擇</option>");
         }
 
-        getTopicSettingJsonString = function () {
+        getTopicSettingJson = function () {
 
             var topicManagements = [];
             $("select").each(function () {
@@ -153,16 +169,15 @@
                 }
             });
 
-            var jsonStr = JSON.stringify(topicManagements);
-            console.log(jsonStr);
-            return jsonStr;
+            return topicManagements;
         }
     </script>
     <style>
         div.datagrid-mask {
             height: auto;
             text-align: center;
-            background: #b6ff00;
+            background: yellowgreen;
+            font-size: xx-large;
             z-index: 1;
             overflow: hidden;
             position: fixed;
@@ -312,7 +327,7 @@
         </div>
     </div>
 
-    <!-- data-backdrop="false"去除遮罩层  -->
+    <!-- data-backdrop="false"去除籠罩層  -->
     <div class="modal fade bd-example-modal-sm" id="myModal" role="dialog" data-backdrop="false" aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
