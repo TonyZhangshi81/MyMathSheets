@@ -52,10 +52,13 @@ namespace MyMathSheets.MathWordProblemsConsoleApp
 			Console.Write("準備移動文件...");
 			Console.ReadLine();
 
-			RunCopyBat();
-
-			Console.Write("文件移動完畢...");
-			Console.ReadLine();
+			// 是否執行COPY處理
+			if (Convert.ToBoolean(ConfigurationManager.AppSettings.Get("IsCopy")))
+			{
+				RunCopyBat();
+				Console.Write("文件移動完畢...");
+				Console.ReadLine();
+			}
 
 			Environment.Exit(0);
 		}

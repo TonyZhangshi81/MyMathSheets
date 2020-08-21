@@ -77,7 +77,10 @@
     <None Include="App_Data\MathWordProblems.xlsx" />
     <None Include="App_Data\output\jsoncopy.bat" />
     <None Include="App_Data\TopicManagement.xlsx" />
-    <None Include="bin\run.bat" />
+    <None Include="bin\build-MathWordProblems.bat" />
+    <None Include="bin\build-GapFillingProblems.bat" />
+    <None Include="bin\build-TopicManagement.bat" />
+    <None Include="bin\run-All.bat" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

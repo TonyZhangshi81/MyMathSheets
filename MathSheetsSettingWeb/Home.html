@@ -30,6 +30,9 @@
     <title>一起数学</title>
     <script type="text/javascript">
 
+        // 站點信息
+        var API_URL = "http://172.31.6.8:8081/";
+
         $(function () {
             topicManagement();
 
@@ -60,23 +63,21 @@
             var data = JSON.stringify(settingList);
             console.log(data);
 
-            // 站點信息
-            var apiUrl = "http://localhost:8081/";
-
+            var apiUrl = API_URL + "api/Compile/Do";
             $.ajax({
-                url: apiUrl + "api/Compile/Do",
+                url: apiUrl,
                 type: "POST",
                 dataType: 'json',
                 contentType: "application/json;charset=utf-8",
                 data: data,
 
                 beforeSend: function () {
-                    $("<div class=\"datagrid-mask\"></div>").html("正在連接，請等待...").appendTo("body");
+                    $("<div class=\"datagrid-mask\"></div>").html("正在連接(" + apiUrl + ")，請等待...").appendTo("body");
                 },
 
                 complete: function (data) {
                     setTimeout(function () {
-                        $('.datagrid-mask').hide(200);
+                        $('.datagrid-mask').hide(200, function () { $(".datagrid-mask").remove(); });
                     }, 400);
                 },
 

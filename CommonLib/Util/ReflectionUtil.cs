@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Plugin;
+﻿using MyMathSheets.CommonLib.Configurations;
+using MyMathSheets.CommonLib.Plugin;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -61,14 +62,19 @@ namespace MyMathSheets.CommonLib.Util
 			}
 
 			// 獲取當前應用程序中的所有程序集
-			var assembly = AppDomain.CurrentDomain.GetAssemblies()
-				.FirstOrDefault(asm => asm.GetName().Name.Equals(assemblyName.Name, StringComparison.CurrentCultureIgnoreCase));
+			Assembly assembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(asm => asm.GetName().Name.Equals(assemblyName.Name, StringComparison.CurrentCultureIgnoreCase));
 			if (assembly != null)
 			{
 				return assembly;
 			}
 
-			var basePath = Path.GetFullPath(Configurations.ConfigurationUtil.ApplicationRootPath);
+			var basePath = ConfigurationUtil.ApplicationRootPath;
+			// 相對路徑的對應
+			if (basePath.StartsWith("~/") || basePath.StartsWith("~\\"))
+			{
+				basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory.TrimEnd('/', '\\'), basePath.Substring(2));
+			}
+
 			var dllName = assemblyName.Name + ".dll";
 			var dllPath = Path.Combine(basePath, dllName);
 			if (!File.Exists(dllPath))
@@ -76,7 +82,7 @@ namespace MyMathSheets.CommonLib.Util
 				return null;
 			}
 
-			return Assembly.LoadFile(dllPath);
+			return AppDomain.CurrentDomain.Load(assemblyName);
 		}
 
 		/// <summary>
