@@ -8,6 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="AppData/Work/Content/image/favicon.ico">
     <link href="AppData/Work/Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+    <link href="AppData/Work/Content/normalize.css" rel="stylesheet" charset="utf-8">
     <link href="AppData/Work/Content/jquery-ui.css" rel="stylesheet" charset="utf-8">
     <link href="AppData/Work/Content/icon.css" rel="stylesheet" charset="utf-8">
     <link href="AppData/Work/Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
@@ -50,6 +51,23 @@
             }, 1200);
         }
 
+        var step = "";
+        var next = 0;
+        pleaseWait = function () {
+            if ($(".datagrid-mask").size == 0) {
+                clearTimeout(step);
+            }
+            next++;
+            if (next == 4) {
+                next = 0;
+                $("#dot").text("");
+            } else {
+                $("#dot").text($("#dot").text() + ".");
+            }
+
+            step = setTimeout(function () { pleaseWait(); }, 300);
+        }
+
         btnReadyClick = function (sender) {
 
             var settingList = getTopicSettingJson();
@@ -72,7 +90,8 @@
                 data: data,
 
                 beforeSend: function () {
-                    $("<div class=\"datagrid-mask\"></div>").html("正在連接(" + apiUrl + ")，請等待...").appendTo("body");
+                    $("<div class=\"datagrid-mask\"></div>").html("正在連接<h5>(<span style='color: fuchsia;'>" + apiUrl + "</span>)</h5>出题中<span id='dot'></span>").appendTo("body");
+                    pleaseWait();
                 },
 
                 complete: function (data) {
@@ -173,7 +192,7 @@
     </script>
     <style>
         div.datagrid-mask {
-            height: 65px;
+            height: 170px;
             text-align: center;
             background: yellowgreen;
             font-size: xx-large;
@@ -206,22 +225,40 @@
         body {
             background-color: cornflowerblue;
         }
+
+        .page-header.title {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 30px;
+            background-color: black;
+            color: cornflowerblue;
+            font-style: oblique;
+            font-family: cursive;
+            font-weight: 900;
+        }
     </style>
 </head>
 <body>
-    <div class="myContainer">
-        <div class="clearfix" style="margin-bottom: 10px;"></div>
+    <div class="page-header title">
+        <h2>
+            <big>
+                一起数学 <small>出题面板</small>
+            </big>
+        </h2>
+    </div>
+    <p></p>
+    <div class="container myContainer">
         <div class="row">
-            <div class="col-md-1"><br /></div>
-            <div class="col-md-10">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanArithmeticOperations" class="title"></span>
                             <select id="ddlArithmeticOperations"></select>
                         </h4>
                     </div>
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanCombinatorialEquation" class="title"></span>
                             <select id="ddlCombinatorialEquation"></select>
@@ -229,21 +266,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"><br /></div>
         </div>
 
-        <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-1"><br /></div>
-            <div class="col-md-10">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanComputingConnection" class="title"></span>
                             <select id="ddlComputingConnection"></select>
                         </h4>
                     </div>
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanCurrencyLinkage" class="title"></span>
                             <select id="ddlCurrencyLinkage"></select>
@@ -251,21 +286,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"><br /></div>
         </div>
 
-        <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-1"><br /></div>
-            <div class="col-md-10">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanCurrencyOperation" class="title"></span>
                             <select id="ddlCurrencyOperation"></select>
                         </h4>
                     </div>
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanEqualityComparison" class="title"></span>
                             <select id="ddlEqualityComparison"></select>
@@ -273,21 +306,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"><br /></div>
         </div>
 
-        <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-1"><br /></div>
-            <div class="col-md-10">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanEqualityLinkage" class="title"></span>
                             <select id="ddlEqualityLinkage"></select>
                         </h4>
                     </div>
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanMathWordProblems" class="title"></span>
                             <select id="ddlMathWordProblems"></select>
@@ -295,21 +326,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"><br /></div>
         </div>
 
-        <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-1"><br /></div>
-            <div class="col-md-10">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanFruitsLinkage" class="title"></span>
                             <select id="ddlFruitsLinkage"></select>
                         </h4>
                     </div>
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanFindNearestNumber" class="title"></span>
                             <select id="ddlFindNearestNumber"></select>
@@ -317,21 +346,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"><br /></div>
         </div>
 
-        <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-1"><br /></div>
-            <div class="col-md-10">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanFindTheLaw" class="title"></span>
                             <select id="ddlFindTheLaw"></select>
                         </h4>
                     </div>
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanGapFillingProblems" class="title"></span>
                             <select id="ddlGapFillingProblems"></select>
@@ -339,21 +366,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"><br /></div>
         </div>
 
-        <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-1"><br /></div>
-            <div class="col-md-10">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanHowMuchMore" class="title"></span>
                             <select id="ddlHowMuchMore"></select>
                         </h4>
                     </div>
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanLearnCurrency" class="title"></span>
                             <select id="ddlLearnCurrency"></select>
@@ -361,21 +386,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"><br /></div>
         </div>
 
-        <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-1"><br /></div>
-            <div class="col-md-10">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanLearnLengthUnit" class="title"></span>
                             <select id="ddlLearnLengthUnit"></select>
                         </h4>
                     </div>
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanNumericSorting" class="title"></span>
                             <select id="ddlNumericSorting"></select>
@@ -383,21 +406,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"><br /></div>
         </div>
 
-        <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-1"><br /></div>
-            <div class="col-md-10">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanSchoolClock" class="title"></span>
                             <select id="ddlSchoolClock"></select>
                         </h4>
                     </div>
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanScoreGoal" class="title"></span>
                             <select id="ddlScoreGoal"></select>
@@ -405,21 +426,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"><br /></div>
         </div>
 
-        <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-1"><br /></div>
-            <div class="col-md-10">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanTimeCalculation" class="title"></span>
                             <select id="ddlTimeCalculation"></select>
                         </h4>
                     </div>
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanMathUpright" class="title"></span>
                             <select id="ddlMathUpright"></select>
@@ -427,21 +446,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"><br /></div>
         </div>
 
-        <div class="clearfix" style="margin-bottom: 10px;"></div>
         <div class="row">
-            <div class="col-md-1"><br /></div>
-            <div class="col-md-10">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanCleverCalculation" class="title"></span>
                             <select id="ddlCleverCalculation"></select>
                         </h4>
                     </div>
-                    <div class="col-md-6 form-inline">
+                    <div class="col-sm-6 col-md-6 form-inline">
                         <h4>
                             <span id="spanRecursionEquation" class="title"></span>
                             <select id="ddlRecursionEquation"></select>
@@ -449,20 +466,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"><br /></div>
         </div>
     </div>
 
-    <div class="clearfix" style="margin-bottom: 20px;"><br /></div>
     <div class="panel-footer">
         <div class="row">
-            <div class="col-md-5"><br /></div>
+            <div class="col-md-5"></div>
             <div class="col-md-2">
                 <p class="text-center">
                     <button id="btnReady" type="button" class="btn btn-lg btn-success btn-block">出題</button>
                 </p>
             </div>
-            <div class="col-md-5"><br /></div>
+            <div class="col-md-5"></div>
         </div>
     </div>
 

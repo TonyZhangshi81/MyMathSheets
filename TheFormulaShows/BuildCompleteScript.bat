@@ -81,6 +81,8 @@ if "%ConfigurationName%"=="Debug" (
 	copy "..\Content\bootstrap.min.css" "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Content" /Y
 	echo ..\Content\bootstrap.min.css.map
 	copy "..\Content\bootstrap.min.css.map" "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Content" /Y
+	echo ..\Content\normalize.css
+	copy "..\Content\normalize.css" "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Content" /Y
 	echo ..\Content\font-awesome.min.css
 	copy "..\Content\font-awesome.min.css" "%SolutionDir%MathSheetsSettingWeb\AppData\Work\Content" /Y
 	echo ..\Content\default.css

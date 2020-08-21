@@ -242,6 +242,7 @@
     <Content Include="AppData\Work\Content\image\time.png" />
     <Content Include="AppData\Work\Content\image\triangle.png" />
     <Content Include="AppData\Work\Content\jquery-ui.css" />
+    <Content Include="AppData\Work\Content\normalize.css" />
     <Content Include="AppData\Work\Content\Shake.css" />
     <Content Include="AppData\Work\Content\switcher\MathSheets-burlywood.css" />
     <Content Include="AppData\Work\Content\switcher\MathSheets-coral.css" />

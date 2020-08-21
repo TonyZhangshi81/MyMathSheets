@@ -162,6 +162,7 @@
     <Content Include="Content\image\theme.png" />
     <Content Include="Content\image\triangle.png" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\normalize.css" />
     <Content Include="Content\switcher\MathSheets.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
