@@ -57,7 +57,7 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
 
                 return false;
             }
-            return result;
+            return true;
         },
 
         _normal = function (element, times) {
