@@ -2,27 +2,27 @@
   {
     "id": "ArithmeticOperations",
     "name": "四則運算",
-    "number": "AC008"
+    "number": "AC006"
   },
   {
     "id": "CombinatorialEquation",
     "name": "算式組合",
-    "number": "CE001"
+    "number": "CE002"
   },
   {
     "id": "ComputingConnection",
     "name": "等式接龍",
-    "number": "CC001"
+    "number": "CC003"
   },
   {
     "id": "CurrencyLinkage",
     "name": "認識價格",
-    "number": "CL001"
+    "number": "CL002"
   },
   {
     "id": "CurrencyOperation",
     "name": "貨幣運算",
-    "number": "CO001"
+    "number": "CO005"
   },
   {
     "id": "EqualityComparison",
@@ -52,22 +52,22 @@
   {
     "id": "FindTheLaw",
     "name": "找規律",
-    "number": "FTL02"
+    "number": "FTL04"
   },
   {
     "id": "GapFillingProblems",
     "name": "基礎填空題",
-    "number": "GFP01"
+    "number": "GFP02"
   },
   {
     "id": "HowMuchMore",
     "name": "比多少",
-    "number": "HMM01"
+    "number": "HMM02"
   },
   {
     "id": "LearnCurrency",
     "name": "認識貨幣",
-    "number": "LC007"
+    "number": "LC005"
   },
   {
     "id": "LearnLengthUnit",
@@ -77,12 +77,12 @@
   {
     "id": "NumericSorting",
     "name": "數字排序",
-    "number": "NS001"
+    "number": "NS002"
   },
   {
     "id": "SchoolClock",
     "name": "時鐘學習板",
-    "number": "SC001"
+    "number": "SC003"
   },
   {
     "id": "ScoreGoal",
@@ -97,16 +97,16 @@
   {
     "id": "MathUpright",
     "name": "豎式計算",
-    "number": "MU001"
+    "number": "MU004"
   },
   {
     "id": "CleverCalculation",
     "name": "巧算",
-    "number": "CLC99"
+    "number": "CLC05"
   },
   {
     "id": "RecursionEquation",
     "name": "遞等式計算",
-    "number": "RE099"
+    "number": "RE009"
   }
 ]

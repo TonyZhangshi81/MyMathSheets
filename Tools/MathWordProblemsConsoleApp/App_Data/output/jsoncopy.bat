@@ -13,7 +13,9 @@ if "%inout%"=="0" (
 	copy GapFillingProblemsLibrary.json ..\..\..\..\ComputationalStrategy\TopicModule\GapFillingProblems\Config /-Y
 	copy MathWordProblemsLibrary.json ..\..\..\..\ComputationalStrategy\TopicModule\MathWordProblems\Config /-Y
 	copy TopicManagement.json ..\..\..\..\MathSheetsSettingApp\Config /-Y
-	copy TopicManagement.json ..\..\..\..\MathSheetsSettingWebApi\Config /-Y)
+	copy TopicManagement.json ..\..\..\..\MathSheetsSettingWebApi\Config /-Y
+	copy TopicManagement.json ..\..\..\..\MathSheetsSettingWeb\Config /-Y
+)
 if "%inout%"=="1" (
 	copy GapFillingProblemsLibrary.json ..\..\..\..\ComputationalStrategy\TopicModule\GapFillingProblems\Config /-Y
 )
@@ -22,6 +24,7 @@ if "%inout%"=="2" (
 )
 if "%inout%"=="3" (
 	copy TopicManagement.json ..\..\..\..\MathSheetsSettingApp\Config /-Y
-	copy TopicManagement.json ..\..\..\..\MathSheetsSettingWebApi\Config /-Y)
+	copy TopicManagement.json ..\..\..\..\MathSheetsSettingWebApi\Config /-Y
+	copy TopicManagement.json ..\..\..\..\MathSheetsSettingWeb\Config /-Y
 )
 
