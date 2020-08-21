@@ -47,7 +47,7 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
                 return true;
             }
 
-            var result;
+            var result = -1;
             try {
                 result = eval($(element).val());
             } catch (e) {
@@ -55,9 +55,9 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
                 // 計算式格式不正確（背景閃爍效果）
                 _error($(element), 5);
 
-                return false;
+                return -1;
             }
-            return true;
+            return result;
         },
 
         _normal = function (element, times) {
@@ -83,13 +83,13 @@ MathSheets.RecursionEquation = MathSheets.RecursionEquation || (function () {
 
             var isRight = true;
             var isEmpty = 0;
-            $.each($("input[id *= 'inputRe" + pIndex + "']"), function (index, element) {
+            $.each($("input[id*='inputRe" + pIndex + "']"), function (index, element) {
                 // 驗證遞等式計算結果
                 var result = calcInputContent($(element));
                 if ($(element).val() == "") {
                     // 填空項目為空(有2個或以上的空格未填寫內容,此題必錯)
                     isEmpty++;
-                } else if (result == false) {
+                } else if (result == -1) {
                     // 輸入內容格式不正確
                     isRight = false;
                 } else if (result != answer) {

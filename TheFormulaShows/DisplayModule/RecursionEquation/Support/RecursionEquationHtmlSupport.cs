@@ -49,7 +49,7 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 輸入項目HTML模板
 		/// </summary>
-		private const string INPUT_HTML_FORMAT = "<input id=\"inputRe{0}{1}{2}\" type=\"text\" placeholder=\" ?? \" class=\"re form-control input-addBorder-max mt-1\" disabled=\"disabled\" onblur=\"if(!MathSheets.RecursionEquation.calcInputContent(this)) $(this).focus();\" />";
+		private const string INPUT_HTML_FORMAT = "<input id=\"inputRe{0}{1}{2}\" type=\"text\" placeholder=\" ?? \" class=\"re form-control input-addBorder-max mt-1\" disabled=\"disabled\" onblur=\"if(MathSheets.RecursionEquation.calcInputContent(this) == -1) $(this).focus();\" />";
 
 		/// <summary>
 		/// 折疊面板HTML模板
@@ -67,7 +67,7 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		private readonly Dictionary<TopicType, Func<RecursionEquationFormula, string>> _calculations = new Dictionary<TopicType, Func<RecursionEquationFormula, string>>();
 
 		/// <summary>
-		/// <see cref="RecursionEquationHtmlSupport"/>構造函數
+		/// <see cref="RecursionEquationHtmlSupport"/> 構造函數
 		/// </summary>
 		[ImportingConstructor]
 		public RecursionEquationHtmlSupport()
@@ -93,8 +93,8 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 遞等式計算[A+B+C]
 		/// </summary>
-		/// <param name="formula">計算式</param>
-		/// <returns></returns>
+		/// <param name="formula"> 計算式 </param>
+		/// <returns> </returns>
 		private string CleverA(RecursionEquationFormula formula)
 		{
 			StringBuilder html = new StringBuilder();
@@ -112,8 +112,8 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 遞等式計算[A-(B-C)]
 		/// </summary>
-		/// <param name="formula">計算式</param>
-		/// <returns></returns>
+		/// <param name="formula"> 計算式 </param>
+		/// <returns> </returns>
 		private string CleverB(RecursionEquationFormula formula)
 		{
 			StringBuilder html = new StringBuilder();
@@ -131,8 +131,8 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 遞等式計算[A-(B+C)]
 		/// </summary>
-		/// <param name="formula">計算式</param>
-		/// <returns></returns>
+		/// <param name="formula"> 計算式 </param>
+		/// <returns> </returns>
 		private string CleverC(RecursionEquationFormula formula)
 		{
 			return CleverB(formula);
@@ -141,8 +141,8 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 遞等式計算[A+(B-C)]
 		/// </summary>
-		/// <param name="formula">計算式</param>
-		/// <returns></returns>
+		/// <param name="formula"> 計算式 </param>
+		/// <returns> </returns>
 		private string CleverD(RecursionEquationFormula formula)
 		{
 			return CleverB(formula);
@@ -151,8 +151,8 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 遞等式計算[A+(B+C)]
 		/// </summary>
-		/// <param name="formula">計算式</param>
-		/// <returns></returns>
+		/// <param name="formula"> 計算式 </param>
+		/// <returns> </returns>
 		private string CleverE(RecursionEquationFormula formula)
 		{
 			return CleverB(formula);
@@ -161,8 +161,8 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 遞等式計算[A+(B-C)]
 		/// </summary>
-		/// <param name="formula">計算式</param>
-		/// <returns></returns>
+		/// <param name="formula"> 計算式 </param>
+		/// <returns> </returns>
 		private string CleverF(RecursionEquationFormula formula)
 		{
 			return CleverA(formula);
@@ -171,8 +171,8 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 遞等式計算[A-B+C]
 		/// </summary>
-		/// <param name="formula">計算式</param>
-		/// <returns></returns>
+		/// <param name="formula"> 計算式 </param>
+		/// <returns> </returns>
 		private string CleverG(RecursionEquationFormula formula)
 		{
 			return CleverA(formula);
@@ -181,8 +181,8 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 遞等式計算[A-B-C]
 		/// </summary>
-		/// <param name="formula">計算式</param>
-		/// <returns></returns>
+		/// <param name="formula"> 計算式 </param>
+		/// <returns> </returns>
 		private string CleverH(RecursionEquationFormula formula)
 		{
 			return CleverA(formula);
@@ -191,8 +191,8 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		/// <summary>
 		/// 題型HTML模板作成
 		/// </summary>
-		/// <param name="p">題型參數</param>
-		/// <returns>題型HTML模板信息</returns>
+		/// <param name="p"> 題型參數 </param>
+		/// <returns> 題型HTML模板信息 </returns>
 		public override string MakeHtmlContent(RecursionEquationParameter p)
 		{
 			if (p.Formulas.Count == 0)
@@ -254,12 +254,11 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		}
 
 		/// <summary>
-		///
 		/// </summary>
-		/// <param name="numberOfColumns"></param>
-		/// <param name="controlIndex"></param>
-		/// <param name="answer"></param>
-		/// <returns></returns>
+		/// <param name="numberOfColumns"> </param>
+		/// <param name="controlIndex"> </param>
+		/// <param name="answer"> </param>
+		/// <returns> </returns>
 		private string GetInputAreaHtml(int numberOfColumns, int controlIndex, int answer)
 		{
 			StringBuilder html = new StringBuilder();
@@ -286,12 +285,11 @@ namespace MyMathSheets.TheFormulaShows.RecursionEquation.Support
 		}
 
 		/// <summary>
-		///
 		/// </summary>
-		/// <param name="numberOfColumns"></param>
-		/// <param name="pControlId"></param>
-		/// <param name="controlIndex"></param>
-		/// <returns></returns>
+		/// <param name="numberOfColumns"> </param>
+		/// <param name="pControlId"> </param>
+		/// <param name="controlIndex"> </param>
+		/// <returns> </returns>
 		private string GetInputHtml(int numberOfColumns, string pControlId, int controlIndex)
 		{
 			StringBuilder html = new StringBuilder();
