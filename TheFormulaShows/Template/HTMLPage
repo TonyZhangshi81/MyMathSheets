@@ -121,8 +121,8 @@
 	</div>
 	<!-- 托尼搖動的腦袋：） -->
 	<div class="plugin-shake-head-area">
-		<div class="tony-shake-head" id="divShakeHead" data-toggle="tooltip" title="I'm Tony. Hello! Eve.">
-			<iframe frameborder="0" scrolling="no" src="../Plugin/TonyShakeHead/index.html" width="500" height="300"></iframe>
+		<div class="tony-shake-head" id="divShakeHead" data-toggle="tooltip" title="I'm Tony. Hello! Eva.">
+			<iframe id="ifrTonyshake" frameborder="0" scrolling="no" src="../Plugin/TonyShakeHead/index.html" width="500" height="300"></iframe>
 		</div>
 	</div>
 	<!-- 獎牌擺放區 -->

@@ -409,6 +409,9 @@ MathSheets.HelloMrTony = MathSheets.HelloMrTony || (function () {
          * @param setDialogueArrayFunc {Object} 自定義會話規則
          */
         doCelebrate = function (setDialogueArrayFunc) {
+        	// 關閉音樂動畫
+            $("#ifrTonyshake")[0].contentWindow.musicClose();
+        	
             // 將當前的會話隱藏
             $teacher.tooltip('hide');
             // 定義循環事件執行后的回調函數(1.向右躲閃 2.整體隱藏)

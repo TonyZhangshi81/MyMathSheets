@@ -82,15 +82,15 @@
         // 出題按鈕事件
         btnReadyClick = function (sender) {
 
-            // 按鍵不可用
-            $(sender).attr("disabled", true);
-
             // 題型選擇信息JSON化處理
             var settingList = getTopicSettingJson();
             if (settingList.length == 0) {
                 showMessage('未選擇題型');
                 return false;
             }
+
+            // 按鍵不可用
+            $(sender).attr("disabled", true);
 
             // JSON對象化處理
             var data = JSON.stringify(settingList);
