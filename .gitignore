@@ -357,3 +357,6 @@ ASALocalRun/
 
 /MathSheetsSettingWebApi/Config/
 !/MathSheetsSettingWebApi/Config/TopicManagement.json
+
+/Lib
+!/Lib/.gitkeep
