@@ -30,7 +30,7 @@ jobs:
     - name: install dotnet
       uses: actions/setup-dotnet@v3
       with:
-          dotnet-version: 6.0.400
+          dotnet-version: 4.5
 
     - name: dotnet build 
       id: dotnet_build
