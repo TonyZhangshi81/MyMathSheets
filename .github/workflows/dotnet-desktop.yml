@@ -6,8 +6,6 @@ on:
     branches: [ "master" ]
 
 env:
-  OUTPUT_DIR: C:/runner/output/${{ github.run_id }}/tests
-  REPORT_DIR: C:/runner/output/${{ github.run_id }}/tests/reports
   WORKING_DIR: w_${{ github.run_id }}
 
 jobs:
@@ -19,12 +17,17 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     steps:
-    - name: Checkout
+    - name: checkout repository
       uses: actions/checkout@v3
       with:
-        fetch-depth: 0
+          path: ${{ env.WORKING_DIR }}
+    - name: checkout lfs contens
+      run: |
+          git lfs checkout
+          git lfs pull
+      working-directory: ${{ env.WORKING_DIR }}
 
-    - name: Install .NET
+    - name: install dotnet
       uses: actions/setup-dotnet@v3
       with:
           dotnet-version: 6.0.400
