@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MyMathSheets.CommonLib">
-      <HintPath>..\..\..\Lib\MyMathSheets.CommonLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -62,6 +59,10 @@
     <Content Include="Template\MathWordProblems.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">
+      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
+      <Name>MyMathSheets.CommonLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\MathWordProblems\MyMathSheets.ComputationalStrategy.MathWordProblems.csproj">
       <Project>{3bffe851-482c-43d6-9661-c32d20af334d}</Project>
       <Name>MyMathSheets.ComputationalStrategy.MathWordProblems</Name>

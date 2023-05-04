@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MyMathSheets.CommonLib">
-      <HintPath>..\..\..\Lib\MyMathSheets.CommonLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -73,6 +70,10 @@
     <Content Include="Template\CurrencyLinkage.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">
+      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
+      <Name>MyMathSheets.CommonLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\CurrencyLinkage\MyMathSheets.ComputationalStrategy.CurrencyLinkage.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de8cbd526e9}</Project>
       <Name>MyMathSheets.ComputationalStrategy.CurrencyLinkage</Name>

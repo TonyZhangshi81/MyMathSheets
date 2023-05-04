@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MyMathSheets.CommonLib">
-      <HintPath>..\..\..\Lib\MyMathSheets.CommonLib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -62,6 +59,10 @@
     <Folder Include="Content\image\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">
+      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
+      <Name>MyMathSheets.CommonLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\LearnLengthUnit\MyMathSheets.ComputationalStrategy.LearnLengthUnit.csproj">
       <Project>{a4afcd1e-6872-4643-9728-e5e6dff55389}</Project>
       <Name>MyMathSheets.ComputationalStrategy.LearnLengthUnit</Name>

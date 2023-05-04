@@ -52,9 +52,6 @@
     <Compile Include="Support\HowMuchMoreHtmlSupport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MyMathSheets.CommonLib">
-      <HintPath>..\..\..\Lib\MyMathSheets.CommonLib.dll</HintPath>
-    </Reference>
     <Content Include="Content\css\HowMuchMore.css" />
     <Content Include="Content\image\more\Circle.png" />
     <Content Include="Content\image\more\Diamond.png" />
@@ -67,6 +64,10 @@
     <Content Include="Template\HowMuchMore.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\CommonLib\MyMathSheets.CommonLib.csproj">
+      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
+      <Name>MyMathSheets.CommonLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\HowMuchMore\MyMathSheets.ComputationalStrategy.HowMuchMore.csproj">
       <Project>{18d1e434-d1c1-4634-b969-7ff11feca3ef}</Project>
       <Name>MyMathSheets.ComputationalStrategy.HowMuchMore</Name>
