@@ -28,13 +28,13 @@ jobs:
           git lfs pull
       working-directory: ${{ env.WORKING_DIR }}
 
-    #- name: setup .NET and install SDK
-    #  uses: actions/setup-dotnet@v3
-    #  id: install_dotnet
-    #  with:
-    #      dotnet-version: '4.8.x'
+    - name: setup .NET and install SDK
+      uses: actions/setup-dotnet@v3
+      id: install_dotnet
+      with:
+          dotnet-version: '5.0.x'
           
-    #- run: echo '${{ steps.install_dotnet.outputs.dotnet-version }}'
+    - run: echo '${{ steps.install_dotnet.outputs.dotnet-version }}'
 
     - name: dotnet build 
       id: dotnet_build
