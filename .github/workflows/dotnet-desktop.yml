@@ -48,7 +48,7 @@ jobs:
           #dotnet clean ./$targetSolution
           #dotnet restore ./$targetSolution
           #dotnet build ./$targetSolution -m:1 --no-restore /warnaserror
-          msbuild /p:Configuration=Debug /fileLogger /fileLoggerParameters:LogFile=test.log;Encoding=UTF-8 /maxcpucount /nodeReuse:false /consoleloggerparameters:ErrorsOnly;WarningsOnly;Summary; ./$targetSolution
+          run: msbuild /p:Configuration=Debug /fileLogger /fileLoggerParameters:LogFile=test.log;Encoding=UTF-8 /maxcpucount /nodeReuse:false /consoleloggerparameters:ErrorsOnly;WarningsOnly;Summary; ./$targetSolution
           #if (-Not $?) {
           #  $hasError = $true
           #  $err_sols = $err_sols + "[" + $targetSolution + "]"
