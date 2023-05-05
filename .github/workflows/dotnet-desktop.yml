@@ -29,8 +29,11 @@ jobs:
 
     - name: install dotnet
       uses: actions/setup-dotnet@v3
+      id: install_dotnet
       with:
-          dotnet-version: 4.5
+          dotnet-version: '4.5.x'
+          
+    - run: echo '${{ steps.install_dotnet.outputs.dotnet-version }}'
 
     - name: dotnet build 
       id: dotnet_build
