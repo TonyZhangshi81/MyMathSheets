@@ -7,6 +7,7 @@ on:
 
 env:
   WORKING_DIR: w_${{ github.run_id }}
+  target_Solution: "MyMathSheets.sln"
 
 jobs:
   build:
@@ -37,36 +38,4 @@ jobs:
 
     - name: dotnet build 
       id: dotnet_build
-      run: |
-          $err_sols = ""
-          $hasError = $false
-
-          $targetSolution = "MyMathSheets.sln"
-          Write-Output("***")
-          Write-Output("*** Solution [" + $targetSolution + "] building... ***")
-          Write-Output("***")
-          #dotnet clean ./$targetSolution
-          #dotnet restore ./$targetSolution
-          #dotnet build ./$targetSolution -m:1 --no-restore /warnaserror
-          run: msbuild /p:Configuration=Debug /fileLogger /fileLoggerParameters:LogFile=test.log;Encoding=UTF-8 /maxcpucount /nodeReuse:false /consoleloggerparameters:ErrorsOnly;WarningsOnly;Summary; ./$targetSolution
-          #if (-Not $?) {
-          #  $hasError = $true
-          #  $err_sols = $err_sols + "[" + $targetSolution + "]"
-          #}
-
-          #if ($hasError) {
-          #  echo "target_solution=$err_sols" >> $env:GITHUB_OUTPUT
-          #  exit 1
-          #} else {
-          #  exit 0
-          #}
-      working-directory: ${{ env.WORKING_DIR }}
-
-    #- name: error handling build
-    #  if: always()
-    #  run: |
-    #    if ("${{ steps.dotnet_build.outcome }}" -eq "failure") {
-    #      echo "::notice::*** ${{ steps.dotnet_build.outputs.target_solution }} build error ***"
-    #      echo ${{ steps.dotnet_build.outcome }}
-    #    }
-    #  working-directory: ${{ env.WORKING_DIR }}
+      run: msbuild /p:Configuration=Debug ./${{ env.target_Solution }}
