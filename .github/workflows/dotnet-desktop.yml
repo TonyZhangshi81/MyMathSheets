@@ -30,9 +30,9 @@ jobs:
       working-directory: ${{ env.WORKING_DIR }}
 
     - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v1.0.2
       with:
-          vs-version: '[16.4,16.5)'
+          msbuild-architecture: x64
           
     - name: Build app for release
       run: msbuild ${{ env.WORKING_DIR }}/$target_Solution -t:rebuild -verbosity:diag -property:Configuration=Debug
