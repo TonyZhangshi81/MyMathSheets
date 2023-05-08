@@ -39,18 +39,10 @@ jobs:
       run: nuget restore ${{ env.SOLUTION_FILE_PATH }}
 
     - name: Build
+      idÅF build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
-      run: msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ${{ env.SOLUTION_FILE_PATH }} /t:rebuild /v:Normal
-
-    - name: Set output if build fails
-      if: ${{ job.status != 'success' }}
-      run: echo "::set-output name=build-failed::true"
-      
-  checkin:
-    needs: build
-    runs-on: windows-latest
-    if: ${{ needs.build.outputs.build-failed != 'true' }}
-    steps:
-      - name: Checkin code
-        uses: actions/upload-artifact@v2
-    
+      run: |
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ${{ env.SOLUTION_FILE_PATH }} /t:rebuild /v:Normal /clp:ErrorsOnly;WarningsOnly;Summary;
+        if (-Not $?) {
+          echo "sln build error ! "
+        }
