@@ -22,18 +22,18 @@ jobs:
       uses: actions/checkout@v3
       with:
           path: ${{ env.WORKING_DIR }}
+          
     - name: checkout lfs contens
       run: |
           git lfs checkout
           git lfs pull
       working-directory: ${{ env.WORKING_DIR }}
 
-    - name: setup .NET and install SDK
-      uses: microsoft/setup-msbuild@v3
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
       with:
           vs-version: '[16.4,16.5)'
           msbuild-architecture: x64
           
-    - name: dotnet build 
-      id: dotnet_build
+    - name: Build app for release
       run: msbuild ./${{ env.target_Solution }} -t:rebuild -verbosity:diag -property:Configuration=Release
