@@ -25,6 +25,7 @@ namespace MyMathSheets.CommonLib.Util
         public static T GetRandomNumber<T>(List<T> list)
         {
             Guard.ArgumentNotNull(list, "list");
+            aaaa
 
             return list[GetRandomNumber(0, list.Count - 1)];
         }
