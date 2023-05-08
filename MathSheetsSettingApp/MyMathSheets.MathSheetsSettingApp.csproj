@@ -187,6 +187,6 @@
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>"$(ProjectDir)BuildPreCompleteScript.bat" $(ProjectName) $(ConfigurationName) "$(SolutionDir)" “$(TargetDir)”</PreBuildEvent>
+    <PreBuildEvent>"$(ProjectDir)BuildPreCompleteScript.bat" $(ProjectName) $(ConfigurationName) "$(SolutionDir)" "$(TargetDir)"</PreBuildEvent>
   </PropertyGroup>
 </Project>
