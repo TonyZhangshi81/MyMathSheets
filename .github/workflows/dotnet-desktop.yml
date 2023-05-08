@@ -29,13 +29,11 @@ jobs:
       working-directory: ${{ env.WORKING_DIR }}
 
     - name: setup .NET and install SDK
-      uses: actions/setup-dotnet@v3
-      id: install_dotnet
+      uses: microsoft/setup-msbuild@v3
       with:
-          dotnet-version: '5.0.x'
+          vs-version: '[16.4,16.5)'
+          msbuild-architecture: x64
           
-    - run: echo '${{ steps.install_dotnet.outputs.dotnet-version }}'
-
     - name: dotnet build 
       id: dotnet_build
-      run: msbuild /p:Configuration=Debug ./${{ env.target_Solution }}
+      run: msbuild ./${{ env.target_Solution }} -t:rebuild -verbosity:diag -property:Configuration=Release
