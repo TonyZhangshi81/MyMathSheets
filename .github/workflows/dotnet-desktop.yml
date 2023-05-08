@@ -35,4 +35,4 @@ jobs:
           msbuild-architecture: x64
           
     - name: Build app for release
-      run: msbuild CommonLib\MyMathSheets.CommonLib.csproj -t:rebuild -verbosity:diag -property:Configuration=Debug
+      run: msbuild ${{ env.WORKING_DIR }}/$target_Solution -t:rebuild -verbosity:diag -property:Configuration=Debug
