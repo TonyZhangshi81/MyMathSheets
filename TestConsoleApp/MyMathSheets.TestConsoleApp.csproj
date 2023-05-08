@@ -8,9 +8,10 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>MyMathSheets.TestConsoleApp</RootNamespace>
     <AssemblyName>MyMathSheets.TestConsoleApp</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -104,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Config" />
     <None Include="NLog.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -112,9 +114,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MsgResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Config\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonLib\MyMathSheets.CommonLib.csproj">
