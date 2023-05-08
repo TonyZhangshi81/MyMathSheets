@@ -41,7 +41,7 @@ jobs:
     - name: Build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ${{ env.SOLUTION_FILE_PATH }} /t:rebuild /v:Normal /consoleLoggerParameters:ErrorsOnly;WarningsOnly;Summary
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ${{ env.SOLUTION_FILE_PATH }} /t:rebuild /v:Normal /consoleLoggerParameters:ErrorsOnly;Summary
         if (-Not $?) {
           echo "sln build error ! "
         }
