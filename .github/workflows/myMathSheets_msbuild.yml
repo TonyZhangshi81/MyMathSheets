@@ -48,7 +48,7 @@ jobs:
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
         $targetSolution = "MyMathSheets.All.sln"
-        nuget restore ./$targetSolution
+        nuget restore ./${{ env.WORKING_DIR }}/$targetSolution
 
   build_common:
     needs: pre_process
