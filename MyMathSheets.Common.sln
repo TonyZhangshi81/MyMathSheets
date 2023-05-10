@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.BasicOperationsLib", "ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.MathWordProblemsConsoleApp", "Tools\MathWordProblemsConsoleApp\MyMathSheets.MathWordProblemsConsoleApp.csproj", "{C89B91C6-DB3A-4698-842D-4BA979C14AE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLib", "CommonLib\MyMathSheets.CommonLib.csproj", "{076E9C76-BEB2-4024-8A09-5183D0D65EC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{F9B5A9D1-8C95-4161-8708-65789BA74FC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLibTest", "CommonLibTest\MyMathSheets.CommonLibTest.csproj", "{ED81771C-7232-43D3-843A-62D32B00A705}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3206E500-28D2-4055-A14F-3DE3CBD526E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3206E500-28D2-4055-A14F-3DE3CBD526E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C89B91C6-DB3A-4698-842D-4BA979C14AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C89B91C6-DB3A-4698-842D-4BA979C14AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C89B91C6-DB3A-4698-842D-4BA979C14AE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{076E9C76-BEB2-4024-8A09-5183D0D65EC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{076E9C76-BEB2-4024-8A09-5183D0D65EC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{076E9C76-BEB2-4024-8A09-5183D0D65EC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{076E9C76-BEB2-4024-8A09-5183D0D65EC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED81771C-7232-43D3-843A-62D32B00A705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED81771C-7232-43D3-843A-62D32B00A705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED81771C-7232-43D3-843A-62D32B00A705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED81771C-7232-43D3-843A-62D32B00A705}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C89B91C6-DB3A-4698-842D-4BA979C14AE1} = {F9B5A9D1-8C95-4161-8708-65789BA74FC2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D308C80E-F93A-4F56-89CD-5A89344949B1}
+	EndGlobalSection
+EndGlobal

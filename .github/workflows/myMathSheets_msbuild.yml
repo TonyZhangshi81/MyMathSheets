@@ -25,11 +25,9 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    runs-on: windows-latest
-
+  pre_process:
     steps:
-    - name: checkout repository
+    - name: CheckOut Repository
       uses: actions/checkout@v3
 
     - name: Add MSBuild to PATH
@@ -39,10 +37,44 @@ jobs:
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: nuget restore ${{ env.SOLUTION_FILE_PATH }}
 
+  build_common:
+    needs: pre_process
+    runs-on: windows-latest
+    steps:
     - name: Build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ${{ env.SOLUTION_FILE_PATH }} /t:rebuild /v:Normal
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} MyMathSheets.Common.sln /t:rebuild /v:Normal
         if (-Not $?) {
-          echo "sln build error ! "
+          exit 1
+        } else {
+          exit 0
+        }
+
+  build_strategy:
+    needs: build_common
+    runs-on: windows-latest
+    steps:
+    - name: Build
+      working-directory: ${{ env.GITHUB_WORKSPACE }}
+      run: |
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} MyMathSheets.Strategy.sln /t:rebuild /v:Normal
+        if (-Not $?) {
+          exit 1
+        } else {
+          exit 0
+        }
+
+  build_shows:
+    needs: build_strategy
+    runs-on: windows-latest
+    steps:
+    - name: Build
+      working-directory: ${{ env.GITHUB_WORKSPACE }}
+      run: |
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} MyMathSheets.Shows.sln /t:rebuild /v:Normal
+        if (-Not $?) {
+          exit 1
+        } else {
+          exit 0
         }
