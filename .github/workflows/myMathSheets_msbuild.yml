@@ -36,10 +36,10 @@ jobs:
         path: ${{ env.WORKING_DIR }}
         
     - name: checkout lfs contens
+      working-directory: ${{ env.WORKING_DIR }}
       run: |
         git lfs checkout
         git lfs pull
-      working-directory: ${{ env.WORKING_DIR }}
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
