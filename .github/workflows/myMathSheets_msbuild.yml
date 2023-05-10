@@ -48,8 +48,7 @@ jobs:
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
         $targetSolution = "MyMathSheets.All.sln"
-        nuget restore $targetSolution
-        #nuget restore ./${{ env.WORKING_DIR }}/$targetSolution
+        nuget restore ./${{ env.WORKING_DIR }}/$targetSolution
 
   build_common:
     needs: pre_process
@@ -59,7 +58,7 @@ jobs:
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
         $targetSolution = "MyMathSheets.Common.sln"
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} $targetSolution /t:rebuild /v:Normal
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./$targetSolution /t:rebuild /v:Normal
         if (-Not $?) {
           exit 1
         } else {
@@ -71,7 +70,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Build
-      working-directory: ${{ env.GITHUB_WORKSPACE }}
+      working-directory: ${{ env.GITHUB_WORKSPACE }}  
       run: |
         $targetSolution = "MyMathSheets.Strategy.sln"
         msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./${{ env.WORKING_DIR }}/$targetSolution /t:rebuild /v:Normal
