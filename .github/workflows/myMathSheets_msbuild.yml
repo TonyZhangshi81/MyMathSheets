@@ -27,7 +27,7 @@ permissions:
   contents: read
 
 jobs:
-  build_common:
+  build:
     runs-on: windows-latest
     steps:
     - name: CheckOut Repository
