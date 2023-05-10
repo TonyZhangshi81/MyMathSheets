@@ -20,6 +20,8 @@ env:
   # You can convert this to a build matrix if you need coverage of multiple configuration types.
   # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
   BUILD_CONFIGURATION: Debug
+  
+  WORKING_DIR: w_${{ github.run_id }}
 
 permissions:
   contents: read
@@ -30,6 +32,14 @@ jobs:
     steps:
     - name: CheckOut Repository
       uses: actions/checkout@v3
+      with:
+        path: ${{ env.WORKING_DIR }}
+        
+    - name: checkout lfs contens
+      run: |
+        git lfs checkout
+        git lfs pull
+      working-directory: ${{ env.WORKING_DIR }}
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
@@ -45,7 +55,7 @@ jobs:
     - name: Build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} MyMathSheets.Common.sln /t:rebuild /v:Normal
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./MyMathSheets.Common.sln /t:rebuild /v:Normal
         if (-Not $?) {
           exit 1
         } else {
@@ -59,7 +69,7 @@ jobs:
     - name: Build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} MyMathSheets.Strategy.sln /t:rebuild /v:Normal
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./MyMathSheets.Strategy.sln /t:rebuild /v:Normal
         if (-Not $?) {
           exit 1
         } else {
@@ -73,7 +83,7 @@ jobs:
     - name: Build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} MyMathSheets.Shows.sln /t:rebuild /v:Normal
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./MyMathSheets.Shows.sln /t:rebuild /v:Normal
         if (-Not $?) {
           exit 1
         } else {
