@@ -50,7 +50,7 @@ jobs:
     - name: Build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} .\MyMathSheets.Common.sln /t:rebuild /v:Normal
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} MyMathSheets.Common.sln /t:rebuild /v:Normal
         if (-Not $?) {
           exit 1
         } else {
