@@ -57,8 +57,7 @@ jobs:
     - name: Build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
-        $targetSolution = "MyMathSheets.Common.sln"
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./$targetSolution /t:rebuild /v:Normal
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} MyMathSheets.Common.sln /t:rebuild /v:Normal
         if (-Not $?) {
           exit 1
         } else {
