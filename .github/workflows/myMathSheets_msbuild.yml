@@ -42,13 +42,13 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.2
 
     - name: Restore NuGet packages
-      working-directory: ${{ env.GITHUB_WORKSPACE }}
-      run: nuget restore ./${{ env.WORKING_DIR }}/MyMathSheets.All.sln
+      working-directory: ${{ env.WORKING_DIR }}
+      run: nuget restore MyMathSheets.All.sln
       
     - name: Build
-      working-directory: ${{ env.GITHUB_WORKSPACE }}
+      working-directory: ${{ env.WORKING_DIR }}
       run: |
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} .\${{ env.WORKING_DIR }}\MyMathSheets.Common.sln /t:rebuild /v:Normal
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} MyMathSheets.Common.sln /t:rebuild /v:Normal
         if (-Not $?) {
           exit 1
         } else {
