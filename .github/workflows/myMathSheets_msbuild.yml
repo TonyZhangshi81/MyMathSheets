@@ -47,8 +47,20 @@ jobs:
     needs: pre_process
     runs-on: windows-latest
     steps:
+    - name: CheckOut Repository
+      uses: actions/checkout@v3
+        
+    - name: checkout lfs contens
+      run: |
+        git lfs checkout
+        git lfs pull
+
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Restore NuGet packages
+      working-directory: ${{ env.GITHUB_WORKSPACE }}
+      run: nuget restore MyMathSheets.All.sln
       
     - name: Build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
