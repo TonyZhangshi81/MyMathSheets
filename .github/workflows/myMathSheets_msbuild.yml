@@ -46,7 +46,9 @@ jobs:
 
     - name: Restore NuGet packages
       working-directory: ${{ env.GITHUB_WORKSPACE }}
-      run: nuget restore MyMathSheets.All.sln
+      run: |
+        $targetSolution = "MyMathSheets.All.sln"
+        nuget restore ./$targetSolution
 
   build_common:
     needs: pre_process
@@ -55,7 +57,8 @@ jobs:
     - name: Build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./MyMathSheets.Common.sln /t:rebuild /v:Normal
+        $targetSolution = "MyMathSheets.Common.sln"
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./$targetSolution /t:rebuild /v:Normal
         if (-Not $?) {
           exit 1
         } else {
@@ -69,7 +72,8 @@ jobs:
     - name: Build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./MyMathSheets.Strategy.sln /t:rebuild /v:Normal
+        $targetSolution = "MyMathSheets.Strategy.sln"
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./$targetSolution /t:rebuild /v:Normal
         if (-Not $?) {
           exit 1
         } else {
@@ -83,7 +87,8 @@ jobs:
     - name: Build
       working-directory: ${{ env.GITHUB_WORKSPACE }}
       run: |
-        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./MyMathSheets.Shows.sln /t:rebuild /v:Normal
+        $targetSolution = "MyMathSheets.Shows.sln"
+        msbuild /m /p:Configuration=${{ env.BUILD_CONFIGURATION }} ./$targetSolution /t:rebuild /v:Normal
         if (-Not $?) {
           exit 1
         } else {
