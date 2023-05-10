@@ -36,7 +36,7 @@ jobs:
 
     - name: Restore NuGet packages
       working-directory: ${{ env.GITHUB_WORKSPACE }}
-      run: nuget restore ${{ env.SOLUTION_FILE_PATH }}
+      run: nuget restore MyMathSheets.All.sln
 
   build_common:
     needs: pre_process
