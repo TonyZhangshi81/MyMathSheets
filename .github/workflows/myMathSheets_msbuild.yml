@@ -1,27 +1,17 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
 
 name: MyMathSheet_MSBuild
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
 env:
   # Path to the solution file relative to the root of the project.
-  SOLUTION_FILE_PATH: .
+  WORKING_DIR: w_${{ github.run_id }}
 
   # Configuration type to build.
-  # You can convert this to a build matrix if you need coverage of multiple configuration types.
-  # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
   BUILD_CONFIGURATION: Debug
-  
-  WORKING_DIR: w_${{ github.run_id }}
 
 permissions:
   contents: read
