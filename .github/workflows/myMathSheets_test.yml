@@ -44,10 +44,10 @@ jobs:
         
     - name: Restore dependencies
       working-directory: ${{ env.WORKING_DIR }}
-      run: dotnet restore MyMathSheets.CommonLibTest.csproj
+      run: dotnet restore ./CommonLibTest/MyMathSheets.CommonLibTest.csproj
       
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
-      run: dotnet test MyMathSheets.CommonLibTest.csproj
+      run: dotnet test ./CommonLibTest/MyMathSheets.CommonLibTest.csproj
       # dotnet test --no-build --verbosity normal
 
