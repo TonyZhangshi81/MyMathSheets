@@ -33,21 +33,21 @@ jobs:
         git lfs checkout
         git lfs pull
         
-    - name: Restore NuGet packages
-      working-directory: ${{ env.WORKING_DIR }}
-      run: nuget restore MyMathSheets.All.sln
+    #- name: Restore NuGet packages
+    #  working-directory: ${{ env.WORKING_DIR }}
+    #  run: nuget restore MyMathSheets.All.sln
 
     - name: Setup .NET    
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
         
-    - name: Restore dependencies
-      working-directory: ${{ env.WORKING_DIR }}
-      run: dotnet restore ./CommonLibTest/MyMathSheets.CommonLibTest.csproj
+    #- name: Restore dependencies
+    #  working-directory: ${{ env.WORKING_DIR }}
+    #  run: dotnet restore ./CommonLibTest/MyMathSheets.CommonLibTest.csproj
       
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
-      run: dotnet test ./CommonLibTest/MyMathSheets.CommonLibTest.csproj
+      run: dotnet test ./CommonLibTest/MyMathSheets.CommonLibTest.csproj --no-build --verbosity normal
       # dotnet test --no-build --verbosity normal
 
