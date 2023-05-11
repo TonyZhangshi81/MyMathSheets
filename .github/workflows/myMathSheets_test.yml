@@ -10,6 +10,8 @@ on:
 
 env:
   OUTPUT_DIR: C:/runner/output/${{ github.run_id }}/tests
+  REPORT_DIR: C:/runner/output/${{ github.run_id }}/tests/reports
+  
   # Path to the solution file relative to the root of the project.
   WORKING_DIR: w_${{ github.run_id }}
 
@@ -48,6 +50,39 @@ jobs:
       
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
-      run: dotnet test ./CommonLibTest/MyMathSheets.CommonLibTest.csproj --no-build --verbosity normal
-      # dotnet test --no-build --verbosity normal
+      run: |
+        dotnet test ./CommonLibTest/MyMathSheets.CommonLibTest.csproj --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" /p:CollectCoverage=true /p:MergeWith=${{ env.OUTPUT_DIR }}/coverage.json /p:CoverletOutput=${{ env.OUTPUT_DIR }}/ --% /p:CoverletOutputFormat=\"cobertura,json\"
+    
+    - name: Create unit test report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+          name: NUnit report
+          path: "test-results.trx"
+          reporter: dotnet-trx
+          only-summary: 'false'
+          fail-on-error: 'false'
+          working-directory: ${{ env.WORKING_DIR }}
+          
+    - name: Archive nunit test artifacts
+      if: always()
+      continue-on-error: true
+      uses: actions/upload-artifact@v2
+      with:
+        name: NUnitTestLog
+        path: |
+          ${{ env.WORKING_DIR }}/test-results.trx
+        retention-days: 30
+        
+    - name: Create coverage report
+      if: always()
+      continue-on-error: true
+      run: |
+        reportgenerator -reports:${{ env.OUTPUT_DIR }}/coverage.cobertura.xml -targetdir:${{ env.REPORT_DIR }} -reporttypes:Html
 
+    - name: Archive coverage report artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: UnitTestCoverageReport
+        path: ${{ env.REPORT_DIR }}
+        retention-days: 30
