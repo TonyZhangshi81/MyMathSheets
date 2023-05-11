@@ -1,12 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MyMathSheets.CommonLib.Main.Calculate;
+﻿using MyMathSheets.CommonLib.Main.Calculate;
+using NUnit.Framework;
 
 namespace MyMathSheets.CommonLib.Util.Test
 {
     /// <summary>
     ///
     /// </summary>
-    [TestClass()]
+    [TestFixture]
     public class ExpressCalculateUtilTest
     {
         /// <summary>
@@ -15,28 +15,45 @@ namespace MyMathSheets.CommonLib.Util.Test
         private string Express { get; set; }
 
         /// <summary>
-        ///
+        /// 
         /// </summary>
-        [TestMethod()]
-        public void ArithmeticTest01()
+        [SetUp]
+        public void Setup()
         {
-            var calc = new ExpressArithmeticUtil();
+        }
 
-            Assert.AreEqual("7", calc.Arithmetic("3", "4", "+"));
-            Assert.AreEqual("1", calc.Arithmetic("4", "3", "-"));
-            Assert.AreEqual("12", calc.Arithmetic("3", "4", "*"));
-            Assert.AreEqual("8", calc.Arithmetic("28", "4", "/"));
-
-            Assert.AreEqual(3, calc.Formulas[0].LeftParameter);
-            Assert.AreEqual(4, calc.Formulas[0].RightParameter);
-            Assert.AreEqual(SignOfOperation.Plus, calc.Formulas[0].Sign);
-            Assert.AreEqual(7, calc.Formulas[0].Answer);
+        /// <summary>
+        /// 
+        /// </summary>
+        [TearDown]
+        public void TearDown()
+        {
         }
 
         /// <summary>
         ///
         /// </summary>
-        [TestMethod()]
+        [Test]
+        [TestCase(0, "3", "4", "+", "7", SignOfOperation.Plus)]
+        [TestCase(1, "4", "3", "-", "1", SignOfOperation.Subtraction)]
+        [TestCase(2, "3", "4", "*", "12", SignOfOperation.Multiple)]
+        [TestCase(3, "28", "4", "/", "7", SignOfOperation.Division)]
+        public void ArithmeticTest01(int caseIndex, string x, string y, string operators, string result, SignOfOperation sign)
+        {
+            var calc = new ExpressArithmeticUtil();
+
+            Assert.That(result, Is.EqualTo(calc.Arithmetic(x, y, operators)));
+
+            Assert.That(x, Is.EqualTo(calc.Formulas[0].LeftParameter.ToString()));
+            Assert.That(y, Is.EqualTo(calc.Formulas[0].RightParameter.ToString()));
+            Assert.That(sign, Is.EqualTo(calc.Formulas[0].Sign));
+            Assert.That(result, Is.EqualTo(calc.Formulas[0].Answer.ToString()));
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        [Test]
         public void SplitExpressTest01()
         {
             Express = "(3+1)*5-6/2";
@@ -96,7 +113,7 @@ namespace MyMathSheets.CommonLib.Util.Test
         /// <summary>
         ///
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void SplitExpressTest02()
         {
             Express = "(30+10)*50+60/20";
@@ -111,7 +128,7 @@ namespace MyMathSheets.CommonLib.Util.Test
         /// <summary>
         ///
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void SplitExpressTest03()
         {
             Express = "40+(60-1)*5";
@@ -126,7 +143,7 @@ namespace MyMathSheets.CommonLib.Util.Test
         /// <summary>
         ///
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void SplitExpressTest04()
         {
             var calc = new ExpressArithmeticUtil();
@@ -166,7 +183,7 @@ namespace MyMathSheets.CommonLib.Util.Test
         /// <summary>
         ///
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void SplitExpressTest05()
         {
             Express = "40+(60-10/2)*5";
@@ -184,7 +201,7 @@ namespace MyMathSheets.CommonLib.Util.Test
         /// <summary>
         ///
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void SplitExpressTest06()
         {
             Express = "(40+(60-10/2))*5";
@@ -202,7 +219,7 @@ namespace MyMathSheets.CommonLib.Util.Test
         /// <summary>
         ///
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void SplitExpressTest07()
         {
             Express = "[40+(60-10/2)]*5";
@@ -220,7 +237,7 @@ namespace MyMathSheets.CommonLib.Util.Test
         /// <summary>
         ///
         /// </summary>
-        [TestMethod()]
+        [Test]
         public void SplitExpressTest08()
         {
             Express = "100+{10+[40+(60-10/2)]}*5";
