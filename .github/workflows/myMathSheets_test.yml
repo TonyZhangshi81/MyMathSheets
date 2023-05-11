@@ -17,7 +17,7 @@ env:
   BUILD_CONFIGURATION: Debug
   
 jobs:
-  build:
+  test:
 
     runs-on: windows-latest
 
@@ -44,10 +44,10 @@ jobs:
         
     - name: Restore dependencies
       working-directory: ${{ env.WORKING_DIR }}
-      run: dotnet restore MyMathSheets.All.sln
+      run: dotnet restore MyMathSheets.CommonLibTest.csproj
       
     - name: Test
       working-directory: ${{ env.WORKING_DIR }}
-      run: dotnet test MyMathSheets.All.sln --no-restore --verbosity minimal -m:1 /p:CollectCoverage=true /p:MergeWith=${{ env.OUTPUT_DIR }}/coverage.json /p:CoverletOutput=${{ env.OUTPUT_DIR }}/ --% /p:CoverletOutputFormat=\"cobertura,json\"
+      run: dotnet test MyMathSheets.CommonLibTest.csproj
       # dotnet test --no-build --verbosity normal
 
