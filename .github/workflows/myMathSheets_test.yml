@@ -8,20 +8,46 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  OUTPUT_DIR: C:/runner/output/${{ github.run_id }}/tests
+  # Path to the solution file relative to the root of the project.
+  WORKING_DIR: w_${{ github.run_id }}
+
+  # Configuration type to build.
+  BUILD_CONFIGURATION: Debug
+  
 jobs:
   build:
 
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
+    - name: CheckOut Repository
+      uses: actions/checkout@v3
+      with:
+        path: ${{ env.WORKING_DIR }}
+
+    - name: checkout lfs contens
+      working-directory: ${{ env.WORKING_DIR }}
+      run: |
+        git lfs checkout
+        git lfs pull
+        
+    - name: Restore NuGet packages
+      working-directory: ${{ env.WORKING_DIR }}
+      run: nuget restore MyMathSheets.All.sln
+
+    - name: Setup .NET    
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+        
     - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+      working-directory: ${{ env.WORKING_DIR }}
+      run: dotnet restore MyMathSheets.All.sln
+      
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      working-directory: ${{ env.WORKING_DIR }}
+      run: dotnet test MyMathSheets.All.sln --no-restore --verbosity minimal -m:1 /p:CollectCoverage=true /p:MergeWith=${{ env.OUTPUT_DIR }}/coverage.json /p:CoverletOutput=${{ env.OUTPUT_DIR }}/ --% /p:CoverletOutputFormat=\"cobertura,json\"
+      # dotnet test --no-build --verbosity normal
+
