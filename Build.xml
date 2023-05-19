@@ -81,7 +81,7 @@
 		<Project_CommonLib>$(Project_CommonLib_Dir)\MyMathSheets.CommonLib.csproj</Project_CommonLib>
 		<Project_BasicOperationsLib>$(Project_BasicOperationsLib_Dir)\MyMathSheets.BasicOperationsLib.csproj</Project_BasicOperationsLib>
 		<Project_MathSheetsSettingApp>$(Project_MathSheetsSettingApp_Dir)\MyMathSheets.MathSheetsSettingApp.csproj</Project_MathSheetsSettingApp>
-		<Project_Topic_Arithmetic>$(Project_Topic_Arithmetic_Dir)\MyMathSheets.ComputationalStrategy.Arithmetic.csproj</Project_Topic_Arithmetic>
+		<Project_Topic_Arithmetic>$(Project_Topic_Arithmetic_Dir)\MyMathSheets.ComputationalStrategy.ArithmeticOperations.csproj</Project_Topic_Arithmetic>
 		<Project_Show_Arithmetic>$(Project_Show_Arithmetic_Dir)\MyMathSheets.TheFormulaShows.Arithmetic.csproj</Project_Show_Arithmetic>
 		<Project_Topic_CombinatorialEquation>$(Project_Topic_CombinatorialEquation_Dir)\MyMathSheets.ComputationalStrategy.CombinatorialEquation.csproj</Project_Topic_CombinatorialEquation>
 		<Project_Show_CombinatorialEquation>$(Project_Show_CombinatorialEquation_Dir)\MyMathSheets.TheFormulaShows.CombinatorialEquation.csproj</Project_Show_CombinatorialEquation>
