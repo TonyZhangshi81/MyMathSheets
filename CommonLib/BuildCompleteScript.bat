@@ -6,7 +6,7 @@ set TargetFileName=%~3
 
 echo ========== MyMathSheets.CommonLib (%ConfigurationName%) Build Complete ==========
 
-if "%ConfigurationName%"=="Debug" (
+if "%ConfigurationName%"=="Release" (
 
 	echo "%TargetFileName%"
 	copy "%TargetFileName%" "%SolutionDir%Lib" /y

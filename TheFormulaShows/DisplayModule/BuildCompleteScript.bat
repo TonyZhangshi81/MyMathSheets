@@ -7,7 +7,7 @@ set TargetFileName=%~4
 
 echo ========== %ProjectName% (%ConfigurationName%) Build Complete ==========
 
-if "%ConfigurationName%"=="Debug" (
+if "%ConfigurationName%"=="Release" (
 
 	if not exist "%SolutionDir%\Lib\DisplayModule" md "%SolutionDir%\Lib\DisplayModule"
 	echo %TargetFileName%

@@ -5,7 +5,7 @@ set SolutionDir=%~2
 
 echo ========== MyMathSheets.TheFormulaShows (%ConfigurationName%) Build Complete ==========
 
-if "%ConfigurationName%"=="Debug" (
+if "%ConfigurationName%"=="Release" (
 
 	echo ========== MathSheetsSettingApp Setting ... ==========
 
