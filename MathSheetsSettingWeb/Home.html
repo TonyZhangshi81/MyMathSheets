@@ -1,541 +1,542 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="AppData/Work/Content/image/favicon.ico">
-    <link href="AppData/Work/Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
-    <link href="AppData/Work/Content/normalize.css" rel="stylesheet" charset="utf-8">
-    <link href="AppData/Work/Content/jquery-ui.css" rel="stylesheet" charset="utf-8">
-    <link href="AppData/Work/Content/icon.css" rel="stylesheet" charset="utf-8">
-    <link href="AppData/Work/Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
-    <link href="AppData/Work/Content/Shake.css" rel="stylesheet" charset="utf-8">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="AppData/Work/Content/image/favicon.ico">
+	<link href="AppData/Work/Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+	<link href="AppData/Work/Content/normalize.css" rel="stylesheet" charset="utf-8">
+	<link href="AppData/Work/Content/jquery-ui.css" rel="stylesheet" charset="utf-8">
+	<link href="AppData/Work/Content/icon.css" rel="stylesheet" charset="utf-8">
+	<link href="AppData/Work/Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
+	<link href="AppData/Work/Content/Shake.css" rel="stylesheet" charset="utf-8">
 
-    <script src="AppData/Work/Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
-    <script src="AppData/Work/Scripts/jquery.linq.min.js" charset="utf-8"></script>
-    <script src="AppData/Work/Scripts/jquery.base64.js" charset="utf-8"></script>
-    <script src="AppData/Work/Scripts/jquery.PrintArea.js" charset="utf-8"></script>
-    <script src="AppData/Work/Scripts/jquery-ui.js" charset="utf-8"></script>
-    <script src="AppData/Work/Scripts/umd/popper.js" charset="utf-8"></script>
-    <script src="AppData/Work/Scripts/bootstrap.min.js" charset="utf-8"></script>
-    <script src="AppData/Work/Scripts/store.legacy.min.js" charset="utf-8"></script>
-    <script src="AppData/Work/Scripts/json2.min.js" charset="utf-8"></script>
-    <script src="AppData/Work/Scripts/snap/snap.svg-min.js"></script>
-    <script src="AppData/Work/Scripts/jquery.rating-stars.min.js"></script>
-    <script src="AppData/Work/Scripts/jquery.easing.1.3.js"></script>
-    <script src="AppData/Work/Scripts/Ext/MathSheets.System.js" charset="utf-8"></script>
+	<script src="AppData/Work/Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+	<script src="AppData/Work/Scripts/jquery.linq.min.js" charset="utf-8"></script>
+	<script src="AppData/Work/Scripts/jquery.base64.js" charset="utf-8"></script>
+	<script src="AppData/Work/Scripts/jquery.PrintArea.js" charset="utf-8"></script>
+	<script src="AppData/Work/Scripts/jquery-ui.js" charset="utf-8"></script>
+	<script src="AppData/Work/Scripts/umd/popper.js" charset="utf-8"></script>
+	<script src="AppData/Work/Scripts/bootstrap.min.js" charset="utf-8"></script>
+	<script src="AppData/Work/Scripts/store.legacy.min.js" charset="utf-8"></script>
+	<script src="AppData/Work/Scripts/json2.min.js" charset="utf-8"></script>
+	<script src="AppData/Work/Scripts/snap/snap.svg-min.js"></script>
+	<script src="AppData/Work/Scripts/jquery.rating-stars.min.js"></script>
+	<script src="AppData/Work/Scripts/jquery.easing.1.3.js"></script>
+	<script src="AppData/Work/Scripts/Ext/MathSheets.System.js" charset="utf-8"></script>
 
-    <title>一起数学</title>
-    <script type="text/javascript">
+	<title>一起数学</title>
+	<script type="text/javascript">
 
-        // 本站訪問地址
-        var HOST_URL = "http://172.31.6.8:8080/Home.html";
-        // API站點信息
-        var API_HOST = "http://172.31.6.8:8081/";
+		// 本站訪問地址
+		var HOST_URL = "http://172.31.6.8:8080/Home.html";
+		// API站點信息
+		var API_HOST = "http://172.31.6.8:8081/";
+		var SERVICE = "api/Compile/Do";
 
-        $(function () {
-            // 頁面初期化
-            init();
+		$(function () {
+			// 頁面初期化
+			init();
 
-            // 按鍵事件註冊
-            $("#btnReady").click(function () { return btnReadyClick(this); });
-        });
+			// 按鍵事件註冊
+			$("#btnReady").click(function () { return btnReadyClick(this); });
+		});
 
-        // 信息顯示
-        showMessage = function (msg, fixed = false) {
-            if (msg) {
-                $("#spanMsg").text(msg);
-            }
+		// 信息顯示
+		showMessage = function (msg, fixed = false) {
+			if (msg) {
+				$("#spanMsg").text(msg);
+			}
 
-            $('#myModal').modal('show');
+			$('#myModal').modal('show');
 
-            // 非固定狀態下提示信息自動關閉
-            if (!fixed) {
-                setTimeout(function () {
-                    $("#myModal").modal("hide")
-                }, 1200);
-            }
-        }
+			// 非固定狀態下提示信息自動關閉
+			if (!fixed) {
+				setTimeout(function () {
+					$("#myModal").modal("hide")
+				}, 1200);
+			}
+		}
 
-        var step = "";
-        var next = 0;
-        // 等待過程動畫展示
-        pleaseWait = function () {
-            if ($(".datagrid-mask").size == 0) {
-                // 中斷計時
-                clearTimeout(step);
-            }
-            next++;
-            if (next == 4) {
-                next = 0;
-                $("#dot").text("");
-            } else {
-                $("#dot").text($("#dot").text() + ".");
-            }
-            // 計時輪詢
-            step = setTimeout(function () { pleaseWait(); }, 300);
-        }
+		var step = "";
+		var next = 0;
+		// 等待過程動畫展示
+		pleaseWait = function () {
+			if ($(".datagrid-mask").size == 0) {
+				// 中斷計時
+				clearTimeout(step);
+			}
+			next++;
+			if (next == 4) {
+				next = 0;
+				$("#dot").text("");
+			} else {
+				$("#dot").text($("#dot").text() + ".");
+			}
+			// 計時輪詢
+			step = setTimeout(function () { pleaseWait(); }, 300);
+		}
 
-        // 出題按鈕事件
-        btnReadyClick = function (sender) {
+		// 出題按鈕事件
+		btnReadyClick = function (sender) {
 
-            // 題型選擇信息JSON化處理
-            var settingList = getTopicSettingJson();
-            if (settingList.length == 0) {
-                showMessage('未選擇題型');
-                return false;
-            }
+			// 題型選擇信息JSON化處理
+			var settingList = getTopicSettingJson();
+			if (settingList.length == 0) {
+				showMessage('未選擇題型');
+				return false;
+			}
 
-            // 按鍵不可用
-            $(sender).attr("disabled", true);
+			// 按鍵不可用
+			$(sender).attr("disabled", true);
 
-            // JSON對象化處理
-            var data = JSON.stringify(settingList);
-            console.log(data);
+			// JSON對象化處理
+			var data = JSON.stringify(settingList);
+			console.log(data);
 
-            // API響應地址
-            var apiUrl = API_HOST + "api/Compile/Do";
-            $.ajax({
-                url: apiUrl,
-                type: "POST",
-                dataType: 'json',
-                contentType: "application/json;charset=utf-8",
-                data: data,
+			// API響應地址
+			var apiUrl = API_HOST + SERVICE;
+			$.ajax({
+				url: apiUrl,
+				type: "POST",
+				dataType: 'json',
+				contentType: "application/json;charset=utf-8",
+				data: data,
 
-                // API響應前處理
-                beforeSend: function () {
-                    $("<div class=\"datagrid-mask\"></div>").html("正在連接<h5>(<span style='color: fuchsia;'>" + apiUrl + "</span>)</h5>出题中<span id='dot'></span>").appendTo("body");
-                    pleaseWait();
-                },
+				// API響應前處理
+				beforeSend: function () {
+					$("<div class=\"datagrid-mask\"></div>").html("正在連接<h5>(<span style='color: fuchsia;'>" + apiUrl + "</span>)</h5>出题中<span id='dot'></span>").appendTo("body");
+					pleaseWait();
+				},
 
-                // API響應完成
-                complete: function (data) {
-                    setTimeout(function () {
-                        $('.datagrid-mask').hide(200, function () { $(".datagrid-mask").remove(); });
-                    }, 400);
-                },
+				// API響應完成
+				complete: function (data) {
+					setTimeout(function () {
+						$('.datagrid-mask').hide(200, function () { $(".datagrid-mask").remove(); });
+					}, 400);
+				},
 
-                // API響應成功
-                success: function (result) {
-                    console.log(result);
+				// API響應成功
+				success: function (result) {
+					console.log(result);
 
-                    setTimeout(function () {
-                        showMessage();
-                        $(sender).attr("disabled", false);
+					setTimeout(function () {
+						showMessage();
+						$(sender).attr("disabled", false);
 
-                        setTimeout(function () { linkOpen(result.Url); }, 1000);
-                    }, 500);
-                },
+						setTimeout(function () { linkOpen(result.Url); }, 1000);
+					}, 500);
+				},
 
-                // API響應失敗
-                error: function (xhr, textStatus, errorThrown) {
-                    setTimeout(function () {
-                        console.log(("狀態:" + xhr.status + " 狀態碼:" + xhr.readyState + " 錯誤信息:" + xhr.responseText));
+				// API響應失敗
+				error: function (xhr, textStatus, errorThrown) {
+					setTimeout(function () {
+						console.log(("狀態:" + xhr.status + " 狀態碼:" + xhr.readyState + " 錯誤信息:" + xhr.responseText));
 
-                        showMessage("發生錯誤");
-                        $(sender).attr("disabled", false);
-                    }, 500);
-                }
-            });
+						showMessage("發生錯誤");
+						$(sender).attr("disabled", false);
+					}, 500);
+				}
+			});
 
-            return false;
-        }
+			return false;
+		}
 
-        // 題型頁面展示
-        linkOpen = function (url) {
-            var a = $("<a href='" + url + "' target='_blank' />").get(0);
-            var e = document.createEvent('MouseEvents');
-            e.initEvent('click', true, true);
-            a.dispatchEvent(e);
-        }
+		// 題型頁面展示
+		linkOpen = function (url) {
+			var a = $("<a href='" + url + "' target='_blank' />").get(0);
+			var e = document.createEvent('MouseEvents');
+			e.initEvent('click', true, true);
+			a.dispatchEvent(e);
+		}
 
-        // 頁面初期化（題型設定參數bind處理）
-        init = function () {
-            $("#btnReady").attr("disabled", true);
+		// 頁面初期化（題型設定參數bind處理）
+		init = function () {
+			$("#btnReady").attr("disabled", true);
 
-            $.ajax({
-                url: "Config/TopicManagement.json", // 讀取題型文件
-                type: "GET",                        // 請求方式為get
-                dataType: "json",                   // 返回數據格式為json
-                success: function (data) {
-                    // 遍歷返回的數據DATA
-                    $.each(data, function (i, item) {
-                        // 下拉列表框初期化
-                        ddlInit(item.id, item.name);
-                        // 題型編號列表框參數綁定
-                        setTopicModule(item.id, item.name);
-                    })
+			$.ajax({
+				url: "Config/TopicManagement.json", // 讀取題型文件
+				type: "GET",                        // 請求方式為get
+				dataType: "json",                   // 返回數據格式為json
+				success: function (data) {
+					// 遍歷返回的數據DATA
+					$.each(data, function (i, item) {
+						// 下拉列表框初期化
+						ddlInit(item.id, item.name);
+						// 題型編號列表框參數綁定
+						setTopicModule(item.id, item.name);
+					})
 
-                    $("#btnReady").attr("disabled", false);
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    setTimeout(function () {
-                        showMessage("發生錯誤", true);
+					$("#btnReady").attr("disabled", false);
+				},
+				error: function (xhr, textStatus, errorThrown) {
+					setTimeout(function () {
+						showMessage("發生錯誤", true);
 
-                        var local = window.location.href;
-                        if (local != HOST_URL) {
-                            $("<div class=\"datagrid-mask\"></div>").html("訪問錯誤<h5>(請使用<span style='color: fuchsia;'>" + HOST_URL + "</span>)</h5>跳轉中<span id='dot'></span>").appendTo("body");
-                            pleaseWait();
+						var local = window.location.href;
+						if (local != HOST_URL) {
+							$("<div class=\"datagrid-mask\"></div>").html("訪問錯誤<h5>(請使用<span style='color: fuchsia;'>" + HOST_URL + "</span>)</h5>跳轉中<span id='dot'></span>").appendTo("body");
+							pleaseWait();
 
-                            setTimeout(function () {
-                                window.location.href = HOST_URL;
-                            }, 5000);
-                        }
-                    }, 500);
-                }
-            })
-        }
+							setTimeout(function () {
+								window.location.href = HOST_URL;
+							}, 5000);
+						}
+					}, 500);
+				}
+			})
+		}
 
-        // 題型編號列表框參數綁定
-        setTopicModule = function (id, name) {
-            $.ajax({
-                url: "Config/" + id + ".json",      // 讀取題型參數配置文件
-                type: "GET",                        // 請求方式為get
-                dataType: "json",                   // 返回數據格式為json
-                success: function (data) {
-                    // 題型編號下拉列表框
-                    $ddl = $("#ddl" + id);
-                    // 遍歷返回的數據DATA
-                    $.each(data, function (i, item) {
-                        var option = "<option value='" + item.Identifier + "'>" + item.Identifier + "</option>";
-                        $ddl.append(option);
-                    })
-                }
-            })
-        }
+		// 題型編號列表框參數綁定
+		setTopicModule = function (id, name) {
+			$.ajax({
+				url: "Config/" + id + ".json",      // 讀取題型參數配置文件
+				type: "GET",                        // 請求方式為get
+				dataType: "json",                   // 返回數據格式為json
+				success: function (data) {
+					// 題型編號下拉列表框
+					$ddl = $("#ddl" + id);
+					// 遍歷返回的數據DATA
+					$.each(data, function (i, item) {
+						var option = "<option value='" + item.Identifier + "'>" + item.Identifier + "</option>";
+						$ddl.append(option);
+					})
+				}
+			})
+		}
 
-        // 列表控件初期化
-        ddlInit = function (id, name) {
-            // 題型名稱
-            $span = $("#span" + id);
-            $span.text(name);
-            // 題型編號下拉列表框
-            $ddl = $("#ddl" + id);
-            $ddl.html("<option value=''>請選擇</option>");
-        }
+		// 列表控件初期化
+		ddlInit = function (id, name) {
+			// 題型名稱
+			$span = $("#span" + id);
+			$span.text(name);
+			// 題型編號下拉列表框
+			$ddl = $("#ddl" + id);
+			$ddl.html("<option value=''>請選擇</option>");
+		}
 
-        // 題型設定設定參數JSON化
-        getTopicSettingJson = function () {
+		// 題型設定設定參數JSON化
+		getTopicSettingJson = function () {
 
-            var topicManagements = [];
-            $("select").each(function () {
-                if ($(this).val() != "") {
-                    var topicManagement = {};
-                    topicManagement.Id = $(this).attr("id").substring(3);
-                    topicManagement.Number = $(this).val();
-                    topicManagements.push(topicManagement);
-                }
-            });
+			var topicManagements = [];
+			$("select").each(function () {
+				if ($(this).val() != "") {
+					var topicManagement = {};
+					topicManagement.Id = $(this).attr("id").substring(3);
+					topicManagement.Number = $(this).val();
+					topicManagements.push(topicManagement);
+				}
+			});
 
-            return topicManagements;
-        }
-    </script>
-    <style>
-        div.datagrid-mask {
-            height: 170px;
-            text-align: center;
-            background: yellowgreen;
-            font-size: xx-large;
-            z-index: 1;
-            overflow: hidden;
-            position: fixed;
-            left: 0px;
-            width: 100%;
-            bottom: 0;
-            top: expression(document.documentElement.clientHeight + document.documentElement.scrollTop - this.offsetHeight);
-        }
+			return topicManagements;
+		}
+	</script>
+	<style>
+		div.datagrid-mask {
+			height: 170px;
+			text-align: center;
+			background: yellowgreen;
+			font-size: xx-large;
+			z-index: 1;
+			overflow: hidden;
+			position: fixed;
+			left: 0px;
+			width: 100%;
+			bottom: 0;
+			top: expression(document.documentElement.clientHeight + document.documentElement.scrollTop - this.offsetHeight);
+		}
 
-        .modal-content {
-            width: 340px;
-            height: 80px;
-            padding: 0.2rem 0.4rem;
-            background-color: gold;
-            text-align: center;
-            line-height: 80px !important;
-        }
+		.modal-content {
+			width: 340px;
+			height: 80px;
+			padding: 0.2rem 0.4rem;
+			background-color: gold;
+			text-align: center;
+			line-height: 80px !important;
+		}
 
-        span.title {
-            padding-right: 10px;
-        }
+		span.title {
+			padding-right: 10px;
+		}
 
-        div.myContainer {
-            background-color: cornflowerblue;
-        }
+		div.myContainer {
+			background-color: cornflowerblue;
+		}
 
-        body {
-            background-color: cornflowerblue;
-            overflow-x: hidden;
-        }
+		body {
+			background-color: cornflowerblue;
+			overflow-x: hidden;
+		}
 
-        .page-header.title {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 30px;
-            background-color: black;
-            color: cornflowerblue;
-            font-style: oblique;
-            font-family: cursive;
-            font-weight: 900;
-        }
-    </style>
+		.page-header.title {
+			padding-top: 10px;
+			padding-bottom: 10px;
+			padding-left: 30px;
+			background-color: black;
+			color: cornflowerblue;
+			font-style: oblique;
+			font-family: cursive;
+			font-weight: 900;
+		}
+	</style>
 </head>
 <body>
-    <div class="page-header title">
-        <h2>
-            <big>
-                一起數學 <small>出題面板</small>
-            </big>
-        </h2>
-    </div>
-    <p></p>
-    <div class="container myContainer">
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanArithmeticOperations" class="title"></span>
-                            <select id="ddlArithmeticOperations"></select>
-                        </h4>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanCombinatorialEquation" class="title"></span>
-                            <select id="ddlCombinatorialEquation"></select>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+	<div class="page-header title">
+		<h2>
+			<big>
+				一起數學 <small>出題面板</small>
+			</big>
+		</h2>
+	</div>
+	<p></p>
+	<div class="container myContainer">
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanArithmeticOperations" class="title"></span>
+							<select id="ddlArithmeticOperations"></select>
+						</h4>
+					</div>
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanCombinatorialEquation" class="title"></span>
+							<select id="ddlCombinatorialEquation"></select>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanComputingConnection" class="title"></span>
-                            <select id="ddlComputingConnection"></select>
-                        </h4>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanCurrencyLinkage" class="title"></span>
-                            <select id="ddlCurrencyLinkage"></select>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanComputingConnection" class="title"></span>
+							<select id="ddlComputingConnection"></select>
+						</h4>
+					</div>
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanCurrencyLinkage" class="title"></span>
+							<select id="ddlCurrencyLinkage"></select>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanCurrencyOperation" class="title"></span>
-                            <select id="ddlCurrencyOperation"></select>
-                        </h4>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanEqualityComparison" class="title"></span>
-                            <select id="ddlEqualityComparison"></select>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanCurrencyOperation" class="title"></span>
+							<select id="ddlCurrencyOperation"></select>
+						</h4>
+					</div>
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanEqualityComparison" class="title"></span>
+							<select id="ddlEqualityComparison"></select>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanEqualityLinkage" class="title"></span>
-                            <select id="ddlEqualityLinkage"></select>
-                        </h4>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanMathWordProblems" class="title"></span>
-                            <select id="ddlMathWordProblems"></select>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanEqualityLinkage" class="title"></span>
+							<select id="ddlEqualityLinkage"></select>
+						</h4>
+					</div>
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanMathWordProblems" class="title"></span>
+							<select id="ddlMathWordProblems"></select>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanFruitsLinkage" class="title"></span>
-                            <select id="ddlFruitsLinkage"></select>
-                        </h4>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanFindNearestNumber" class="title"></span>
-                            <select id="ddlFindNearestNumber"></select>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanFruitsLinkage" class="title"></span>
+							<select id="ddlFruitsLinkage"></select>
+						</h4>
+					</div>
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanFindNearestNumber" class="title"></span>
+							<select id="ddlFindNearestNumber"></select>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanFindTheLaw" class="title"></span>
-                            <select id="ddlFindTheLaw"></select>
-                        </h4>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanGapFillingProblems" class="title"></span>
-                            <select id="ddlGapFillingProblems"></select>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanFindTheLaw" class="title"></span>
+							<select id="ddlFindTheLaw"></select>
+						</h4>
+					</div>
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanGapFillingProblems" class="title"></span>
+							<select id="ddlGapFillingProblems"></select>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanHowMuchMore" class="title"></span>
-                            <select id="ddlHowMuchMore"></select>
-                        </h4>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanLearnCurrency" class="title"></span>
-                            <select id="ddlLearnCurrency"></select>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanHowMuchMore" class="title"></span>
+							<select id="ddlHowMuchMore"></select>
+						</h4>
+					</div>
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanLearnCurrency" class="title"></span>
+							<select id="ddlLearnCurrency"></select>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanLearnLengthUnit" class="title"></span>
-                            <select id="ddlLearnLengthUnit"></select>
-                        </h4>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanNumericSorting" class="title"></span>
-                            <select id="ddlNumericSorting"></select>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanLearnLengthUnit" class="title"></span>
+							<select id="ddlLearnLengthUnit"></select>
+						</h4>
+					</div>
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanNumericSorting" class="title"></span>
+							<select id="ddlNumericSorting"></select>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanSchoolClock" class="title"></span>
-                            <select id="ddlSchoolClock"></select>
-                        </h4>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanScoreGoal" class="title"></span>
-                            <select id="ddlScoreGoal"></select>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanSchoolClock" class="title"></span>
+							<select id="ddlSchoolClock"></select>
+						</h4>
+					</div>
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanScoreGoal" class="title"></span>
+							<select id="ddlScoreGoal"></select>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanTimeCalculation" class="title"></span>
-                            <select id="ddlTimeCalculation"></select>
-                        </h4>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanMathUpright" class="title"></span>
-                            <select id="ddlMathUpright"></select>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanTimeCalculation" class="title"></span>
+							<select id="ddlTimeCalculation"></select>
+						</h4>
+					</div>
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanMathUpright" class="title"></span>
+							<select id="ddlMathUpright"></select>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-12 col-md-12">
-                <div class="row">
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanCleverCalculation" class="title"></span>
-                            <select id="ddlCleverCalculation"></select>
-                        </h4>
-                    </div>
-                    <div class="col-sm-6 col-md-6 form-inline">
-                        <h4>
-                            <span id="spanRecursionEquation" class="title"></span>
-                            <select id="ddlRecursionEquation"></select>
-                        </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanCleverCalculation" class="title"></span>
+							<select id="ddlCleverCalculation"></select>
+						</h4>
+					</div>
+					<div class="col-sm-6 col-md-6 form-inline">
+						<h4>
+							<span id="spanRecursionEquation" class="title"></span>
+							<select id="ddlRecursionEquation"></select>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="panel-footer">
-        <div class="row">
-            <div class="col-md-5"></div>
-            <div class="col-md-2">
-                <p class="text-center">
-                    <button id="btnReady" type="button" class="btn btn-lg btn-success btn-block">出題</button>
-                </p>
-            </div>
-            <div class="col-md-5"></div>
-        </div>
-    </div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="col-md-5"></div>
+			<div class="col-md-2">
+				<p class="text-center">
+					<button id="btnReady" type="button" class="btn btn-lg btn-success btn-block">出題</button>
+				</p>
+			</div>
+			<div class="col-md-5"></div>
+		</div>
+	</div>
 
-    <div class="modal fade bd-example-modal-sm" id="myModal" role="dialog" data-backdrop="false" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <p class="text-center mb-0">
-                    <h2>
-                        <i class="fa fa-check-circle text-success mr-3" aria-hidden="true"></i>
-                        <span id="spanMsg">提交成功</span>
-                    </h2>
-                </p>
-            </div>
-        </div>
-    </div>
+	<div class="modal fade bd-example-modal-sm" id="myModal" role="dialog" data-backdrop="false" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<p class="text-center mb-0">
+					<h2>
+						<i class="fa fa-check-circle text-success mr-3" aria-hidden="true"></i>
+						<span id="spanMsg">提交成功</span>
+					</h2>
+				</p>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
