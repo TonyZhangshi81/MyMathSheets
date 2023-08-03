@@ -1,0 +1,12 @@
+[
+  {
+    "Identifier": "HMM01",
+    "MaximumLimit": 10,
+    "NumberOfQuestions": 4
+  },
+  {
+    "Identifier": "HMM02",
+    "MaximumLimit": 10,
+    "NumberOfQuestions": 6
+  }
+]

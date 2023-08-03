@@ -1,0 +1,75 @@
+﻿@import url(../default.css);
+@import url(MathSheets.css);
+
+.body-main {
+	background-color: coral;
+}
+
+.main-ext {
+	background-color: mistyrose;
+	border-radius: 0.8rem;
+	-webkit-box-shadow: 0 0 15px;
+}
+
+.list-group-ext .list-group-item {
+	padding: unset;
+	border: unset;
+	background-color: transparent;
+}
+
+.bs-docs-sidebar a {
+	color: blue;
+}
+
+.bs-docs-sidebar a:hover,
+.bs-docs-sidebar a.active {
+	color: white;
+}
+
+.totop {
+	width: 60px;
+	height: 60px;
+	background: url(../../Content/image/navigate-up.png) center no-repeat mistyrose;
+	background-size: 30px 30px;
+	border-radius: 50%;
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+	display: none;
+	z-index: 70;
+}
+
+.totop:hover {
+	background: url(../../Content/image/navigate-up.png) center no-repeat white;
+	background-size: 36px 36px;
+	-webkit-box-shadow: 0 0 10px;
+}
+
+.jumbotron-ext {
+	padding: 2rem 3rem;
+	border-radius: 0.8rem;
+	background: url("../../Content/image/theme_6.png") no-repeat;
+	background-size: 100% 100%;
+}
+
+.label-title {
+	margin-bottom: 0.5rem;
+	font-family: inherit;
+	font-weight: 900;
+	line-height: 1.2;
+	font-size: 2.5rem;
+	color: chocolate;
+}
+
+.ui-state-default {
+	background: lightpink;
+}
+
+.ui-state-hover {
+	background: beige;
+}
+
+.ui-state-active {
+	background-color: darksalmon;
+	color: #ffffff;
+}

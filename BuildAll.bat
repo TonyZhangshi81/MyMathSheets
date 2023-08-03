@@ -1,8 +1,10 @@
 @ECHO OFF
+
 TITLE BuildALL
 
 SET LOGFILE=%~n0.log
+SET CONFIGURATION=Debug
 
-MSBuild.exe Build.xml /fileLogger /fileLoggerParameters:LogFile=%LOGFILE%;Encoding=UTF-8 /maxcpucount /nodeReuse:false /consoleloggerparameters:ErrorsOnly;WarningsOnly;Summary;
+msbuild MyMathSheets.All.sln -t:Clean;Rebuild -p:Configuration=%CONFIGURATION% -m -nr:false -fileLoggerParameters:LogFile=%LOGFILE%;Encoding=UTF-8 -consoleloggerparameters:ErrorsOnly;WarningsOnly;Summary;
 
 PAUSE

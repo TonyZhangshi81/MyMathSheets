@@ -1,0 +1,12 @@
+[
+  {
+    "Identifier": "GFP01",
+    "NumberOfQuestions": 10,
+    "Reserve": "{\"Level\" : '1,2,3'}"
+  },
+  {
+    "Identifier": "GFP02",
+    "NumberOfQuestions": 10,
+    "Reserve": "{\"Level\" : '3,4,5'}"
+  }
+]

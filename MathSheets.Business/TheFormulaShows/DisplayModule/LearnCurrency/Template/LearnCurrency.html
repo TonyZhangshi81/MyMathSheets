@@ -1,0 +1,495 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../Content/image/favicon.ico">
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
+    <link title="default" href="../Content/switcher/MathSheets.css" rel="stylesheet" charset="utf-8">
+    <link title="burlywood" href="../Content/switcher/MathSheets-burlywood.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+    <link title="coral" href="../Content/switcher/MathSheets-coral.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+    <link title="cornflowerblue" href="../Content/switcher/MathSheets-cornflowerblue.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+    <link title="eyeshieldgreen" href="../Content/switcher/MathSheets-eyeshieldgreen.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+    <link href="../Content/Shake.css" rel="stylesheet" charset="utf-8">
+    <script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery.linq.min.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+    <script src="../Scripts/umd/popper.js" charset="utf-8"></script>
+    <script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
+    <script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
+    <script src="../Scripts/json2.min.js" charset="utf-8"></script>
+    <script src="../Scripts/snap/snap.svg-min.js"></script>
+    <script src="../Scripts/jquery.rating-stars.min.js"></script>
+    <script src="../Scripts/jquery.easing.1.3.js"></script>
+    <script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
+    <script src="../Scripts/Ext/MathSheets.LearnCurrency.js" charset="utf-8"></script>
+    <title>題庫</title>
+
+    <script>
+		// 打印
+		function btnPrintClick() {
+			MathSheets.LearnCurrency.printSetting();
+
+			// 頁面答應處理
+			MathSheets.Common.pagePrint('divPrintContent');
+			// 打印后恢復頁面最初狀態設置
+			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
+			// 打印后頁面設定
+			MathSheets.LearnCurrency.printAfterSetting();
+		}
+
+		// 答題準備按鍵
+		function btnReadyClick() {
+			// 設定頁面所有輸入域為可用狀態(共通)-交卷按鈕顯示,準備按鈕隱藏,打印按鈕隱藏
+			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
+			// 設定頁面所有輸入域為可用狀態(認識貨幣)
+			MathSheets.LearnCurrency.ready();
+
+			// 計時開始
+			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
+		}
+
+		// 完成(關閉頁面)
+		function btnOverClick() {
+			MathSheets.Common.windowClose();
+		}
+
+		// 訂正按鈕(不計入答題情況信息)
+		function btnMakeCorrectionsClick() {
+			var fault = 0;
+			// 認識貨幣
+			fault += MathSheets.LearnCurrency.makeCorrections();
+
+			// 訂正按鈕處理
+			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
+		}
+
+		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
+		function btnTheirPapersClick() {
+			// 認識貨幣
+			MathSheets.LearnCurrency.theirPapers();
+
+			// 交卷按鈕處理
+			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
+			// 計時停止（答題結果設定）
+			MathSheets.Common.timeStop('spanSS', 'spanMM', 'spanHH');
+		}
+    </script>
+</head>
+<body class="body-main">
+    <!-- 主題選擇區 -->
+    <div class="box">
+        <div class="box-content">
+            <a href="#" class="close close-ext" id="close">&times;</a>
+            <ul class="switcher">
+                <li style="background-color: lemonchiffon;" id="default"></li>
+                <li style="background-color: burlywood;" id="burlywood"></li>
+                <li style="background-color: coral;" id="coral"></li>
+                <li style="background-color: cornflowerblue;" id="cornflowerblue"></li>
+                <li style="background-color: #C7EDCC;" id="eyeshieldgreen"></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 設置按鈕 -->
+    <div class="navbar navbar-fixed-top navbar-ext">
+        <img src="../Content/image/triangle.png" class="imgNavbar" />
+    </div>
+    <!-- 右側題型導航菜單 -->
+    <div class="bs-docs-sidebar" id="divSidebar">
+        <ul class="nav nav-ext"></ul>
+    </div>
+    <!-- 獎牌擺放區 -->
+    <div class="honorArea">
+        <img src="" class="imgAward" />
+    </div>
+    <!-- 輔助滾動-向上 -->
+    <div class="scrollHelper-up">
+        <div class="help">
+            <img id="imgUp" src="../Content/image/navigate-up.png" class="imgHelper-up" />
+        </div>
+    </div>
+    <!-- 輔助滾動-向下 -->
+    <div class="scrollHelper-down">
+        <div class="help">
+            <img id="imgDown" src="../Content/image/navigate-down.png" class="imgHelper-down" />
+        </div>
+    </div>
+    <!-- 正文 -->
+    <div class="container theme-showcase main-ext" role="main" id="divContainer">
+        <!-- 標題歡迎畫面 -->
+        <div class="jumbotron-ext">
+            <div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
+            <div class="div-famousPeople">
+                <h6>
+                    <span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+                    <br />
+                    <span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+                    <br />
+                    <span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+                </h6>
+            </div>
+            <hr class="hr-Ext" />
+            <div class="text-info-ext">
+                前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+                <span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
+                <span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
+            </div>
+            <div class="plugin-butterfly">
+                <iframe frameborder="0" scrolling="no" src="../Plugin/butterfly.html" width="320" height="250"></iframe>
+            </div>
+        </div>
+        <!-- 題型區 -->
+        <div id="divPrintContent">
+            <br />
+            <div class="page-header"><h4 id="mathSheetLearnCurrency"><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">認識貨幣</span></h4></div><hr />
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <input id="inputLc0S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <span class="label">7</span><span class="label p-2">元</span>
+                        <span class="label">8</span><span class="label p-2">角</span>
+                        <input id="hidLcAnswer0" type="hidden" value="780" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency0" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency0" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <input id="inputLc1S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <span class="label">9</span><span class="label p-2">元</span>
+                        <span class="label">9</span><span class="label p-2">角</span>
+                        <input id="hidLcAnswer1" type="hidden" value="990" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency1" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency1" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <span class="label">560</span><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <input id="inputLc2S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">元</span>
+                        <input id="inputLc2S1" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">角</span>
+                        <input id="hidLcAnswer2" type="hidden" value="5,6" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency2" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency2" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <span class="label">840</span><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <input id="inputLc3S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">元</span>
+                        <input id="inputLc3S1" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">角</span>
+                        <input id="hidLcAnswer3" type="hidden" value="8,4" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency3" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency3" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <input id="inputLc4S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <span class="label">0</span><span class="label p-2">元</span>
+                        <span class="label">8</span><span class="label p-2">角</span>
+                        <input id="hidLcAnswer4" type="hidden" value="80" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency4" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency4" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <input id="inputLc5S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <span class="label">1</span><span class="label p-2">元</span>
+                        <span class="label">3</span><span class="label p-2">角</span>
+                        <input id="hidLcAnswer5" type="hidden" value="130" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency5" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency5" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <span class="label">510</span><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <input id="inputLc6S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">元</span>
+                        <input id="inputLc6S1" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">角</span>
+                        <input id="hidLcAnswer6" type="hidden" value="5,1" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency6" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency6" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <span class="label">940</span><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <input id="inputLc7S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">元</span>
+                        <input id="inputLc7S1" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">角</span>
+                        <input id="hidLcAnswer7" type="hidden" value="9,4" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency7" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency7" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <input id="inputLc8S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <span class="label">3</span><span class="label p-2">元</span>
+                        <span class="label">4</span><span class="label p-2">角</span>
+                        <input id="hidLcAnswer8" type="hidden" value="340" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency8" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency8" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <span class="label">610</span><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <input id="inputLc9S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">元</span>
+                        <input id="inputLc9S1" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">角</span>
+                        <input id="hidLcAnswer9" type="hidden" value="6,1" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency9" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency9" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <input id="inputLc10S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <span class="label">5</span><span class="label p-2">元</span>
+                        <span class="label">3</span><span class="label p-2">角</span>
+                        <input id="hidLcAnswer10" type="hidden" value="530" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency10" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency10" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <input id="inputLc11S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <span class="label">10</span><span class="label p-2">元</span>
+                        <span class="label">0</span><span class="label p-2">角</span>
+                        <input id="hidLcAnswer11" type="hidden" value="1000" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency11" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency11" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <span class="label">280</span><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <input id="inputLc12S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">元</span>
+                        <input id="inputLc12S1" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">角</span>
+                        <input id="hidLcAnswer12" type="hidden" value="2,8" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency12" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency12" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <span class="label">580</span><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <input id="inputLc13S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">元</span>
+                        <input id="inputLc13S1" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">角</span>
+                        <input id="hidLcAnswer13" type="hidden" value="5,8" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency13" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency13" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <span class="label">460</span><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <input id="inputLc14S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">元</span>
+                        <input id="inputLc14S1" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">角</span>
+                        <input id="hidLcAnswer14" type="hidden" value="4,6" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency14" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency14" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <input id="inputLc15S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <span class="label">6</span><span class="label p-2">元</span>
+                        <span class="label">4</span><span class="label p-2">角</span>
+                        <input id="hidLcAnswer15" type="hidden" value="640" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency15" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency15" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <input id="inputLc16S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <span class="label">1</span><span class="label p-2">元</span>
+                        <span class="label">7</span><span class="label p-2">角</span>
+                        <input id="hidLcAnswer16" type="hidden" value="170" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency16" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency16" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <input id="inputLc17S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <span class="label">6</span><span class="label p-2">元</span>
+                        <span class="label">0</span><span class="label p-2">角</span>
+                        <input id="hidLcAnswer17" type="hidden" value="600" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency17" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency17" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-6 form-inline">
+                    <h5>
+                        <input id="inputLc18S0" type="text" placeholder=" ?? " class="form-control input-addBorder-2" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" /><span class="label p-2">分</span>
+                        <span class="label">=</span>
+                        <span class="label">1</span><span class="label p-2">元</span>
+                        <span class="label">1</span><span class="label p-2">角</span>
+                        <input id="hidLcAnswer18" type="hidden" value="110" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKLearnCurrency18" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoLearnCurrency18" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <HR>
+        <!-- 按鍵操作區 -->
+        <div class="row">
+            <div class="col-md-12 col-md-offset-3">
+                <p class="text-center">
+                    <button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
+                    <button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
+                    <button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
+                    <button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
+                    <button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
+                </p>
+            </div>
+        </div>
+        <!-- 答題評分區 -->
+        <div class="page-header">
+            <div class="row text-left">
+                <div class="col-md-2">
+                    <h5>答題情況</h5>
+                </div>
+                <div class="col-md-9">
+                    <div class="rating-stars block" id="more-rating" style="display: none;">
+                        <input type="hidden" id="hidPracticeScore" value="0" class="rating-value" />
+                        <div class="rating-stars-container">
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 答題統計 -->
+        <div class="row text-left">
+            <div class="col-md-12">
+                <h7>
+                    用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+                    <br />答對:<span id="spanOK" style="width: 30px; display:inline; padding-left:20px;"></span>題
+                    <br />答錯:<span id="spanNo" style="width: 30px; display:inline; padding-left:20px;"></span>題
+                </h7>
+            </div>
+        </div>
+    </div>
+    <!-- 網頁版權 -->
+    <div class="div-company">
+        &copy; MyMathSheets.HOME 2018
+    </div>
+    <!-- 置頂按鍵 -->
+    <a href="javascript:" class="totop"></a>
+</body>
+</html>

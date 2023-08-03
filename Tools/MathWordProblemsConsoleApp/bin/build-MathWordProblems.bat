@@ -1,1 +1,0 @@
-MyMathSheets.MathWordProblemsConsoleApp.exe MathWordProblems

@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.BasicOperationsLib", "ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.BasicOperationsLib", "MathSheets.Business\ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TestConsoleApp", "TestConsoleApp\MyMathSheets.TestConsoleApp.csproj", "{B0727C1F-9FE4-4E61-B559-3D67772EA24E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TestConsoleApp", "MathSheets.Presentation\TestConsoleApp\MyMathSheets.TestConsoleApp.csproj", "{B0727C1F-9FE4-4E61-B559-3D67772EA24E}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E2} = {3206E500-28D2-4055-A14F-3DE3CBD526E2}
@@ -23,9 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TestConsoleApp
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLib", "CommonLib\MyMathSheets.CommonLib.csproj", "{076E9C76-BEB2-4024-8A09-5183D0D65EC3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLib", "MathSheets.Core\CommonLib\MyMathSheets.CommonLib.csproj", "{076E9C76-BEB2-4024-8A09-5183D0D65EC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.ArithmeticOperations", "ComputationalStrategy\TopicModule\Arithmetic\MyMathSheets.ComputationalStrategy.ArithmeticOperations.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.ArithmeticOperations", "MathSheets.Business\ComputationalStrategy\TopicModule\Arithmetic\MyMathSheets.ComputationalStrategy.ArithmeticOperations.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
@@ -33,49 +33,49 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TopicModule", "TopicModule", "{8BCE20EF-6C56-439F-B641-AF994D9A63FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.CombinatorialEquation", "ComputationalStrategy\TopicModule\CombinatorialEquation\MyMathSheets.ComputationalStrategy.CombinatorialEquation.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.CombinatorialEquation", "MathSheets.Business\ComputationalStrategy\TopicModule\CombinatorialEquation\MyMathSheets.ComputationalStrategy.CombinatorialEquation.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E3}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.ComputingConnection", "ComputationalStrategy\TopicModule\ComputingConnection\MyMathSheets.ComputationalStrategy.ComputingConnection.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.ComputingConnection", "MathSheets.Business\ComputationalStrategy\TopicModule\ComputingConnection\MyMathSheets.ComputationalStrategy.ComputingConnection.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.ScoreGoal", "ComputationalStrategy\TopicModule\ScoreGoal\MyMathSheets.ComputationalStrategy.ScoreGoal.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.ScoreGoal", "MathSheets.Business\ComputationalStrategy\TopicModule\ScoreGoal\MyMathSheets.ComputationalStrategy.ScoreGoal.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.EqualityComparison", "ComputationalStrategy\TopicModule\EqualityComparison\MyMathSheets.ComputationalStrategy.EqualityComparison.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.EqualityComparison", "MathSheets.Business\ComputationalStrategy\TopicModule\EqualityComparison\MyMathSheets.ComputationalStrategy.EqualityComparison.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.FindNearestNumber", "ComputationalStrategy\TopicModule\FindNearestNumber\MyMathSheets.ComputationalStrategy.FindNearestNumber.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.FindNearestNumber", "MathSheets.Business\ComputationalStrategy\TopicModule\FindNearestNumber\MyMathSheets.ComputationalStrategy.FindNearestNumber.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.FruitsLinkage", "ComputationalStrategy\TopicModule\FruitsLinkage\MyMathSheets.ComputationalStrategy.FruitsLinkage.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.FruitsLinkage", "MathSheets.Business\ComputationalStrategy\TopicModule\FruitsLinkage\MyMathSheets.ComputationalStrategy.FruitsLinkage.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.HowMuchMore", "ComputationalStrategy\TopicModule\HowMuchMore\MyMathSheets.ComputationalStrategy.HowMuchMore.csproj", "{18D1E434-D1C1-4634-B969-7FF11FECA3EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.HowMuchMore", "MathSheets.Business\ComputationalStrategy\TopicModule\HowMuchMore\MyMathSheets.ComputationalStrategy.HowMuchMore.csproj", "{18D1E434-D1C1-4634-B969-7FF11FECA3EF}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.MathWordProblems", "ComputationalStrategy\TopicModule\MathWordProblems\MyMathSheets.ComputationalStrategy.MathWordProblems.csproj", "{3BFFE851-482C-43D6-9661-C32D20AF334D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.MathWordProblems", "MathSheets.Business\ComputationalStrategy\TopicModule\MathWordProblems\MyMathSheets.ComputationalStrategy.MathWordProblems.csproj", "{3BFFE851-482C-43D6-9661-C32D20AF334D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
@@ -83,122 +83,122 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DisplayModule", "DisplayModule", "{3AFC4F7D-CEF7-4388-AE43-0268DF28E1E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.ArithmeticOperations", "TheFormulaShows\DisplayModule\Arithmetic\MyMathSheets.TheFormulaShows.ArithmeticOperations.csproj", "{41486B43-37E3-406A-A032-974BAED36747}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.ArithmeticOperations", "MathSheets.Business\TheFormulaShows\DisplayModule\Arithmetic\MyMathSheets.TheFormulaShows.ArithmeticOperations.csproj", "{41486B43-37E3-406A-A032-974BAED36747}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E2} = {3206E500-28D2-4055-A14F-3DE3CBD526E2}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.CombinatorialEquation", "TheFormulaShows\DisplayModule\CombinatorialEquation\MyMathSheets.TheFormulaShows.CombinatorialEquation.csproj", "{41486B43-37E3-406A-A032-974BAED36727}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.CombinatorialEquation", "MathSheets.Business\TheFormulaShows\DisplayModule\CombinatorialEquation\MyMathSheets.TheFormulaShows.CombinatorialEquation.csproj", "{41486B43-37E3-406A-A032-974BAED36727}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E3} = {3206E500-28D2-4055-A14F-3DE3CBD526E3}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.ComputingConnection", "TheFormulaShows\DisplayModule\ComputingConnection\MyMathSheets.TheFormulaShows.ComputingConnection.csproj", "{41486B43-37E3-406A-A032-974BAED36737}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.ComputingConnection", "MathSheets.Business\TheFormulaShows\DisplayModule\ComputingConnection\MyMathSheets.TheFormulaShows.ComputingConnection.csproj", "{41486B43-37E3-406A-A032-974BAED36737}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E4} = {3206E500-28D2-4055-A14F-3DE3CBD526E4}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.EqualityComparison", "TheFormulaShows\DisplayModule\EqualityComparison\MyMathSheets.TheFormulaShows.EqualityComparison.csproj", "{5F879B95-C458-48ED-A7C2-889F47DB7491}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.EqualityComparison", "MathSheets.Business\TheFormulaShows\DisplayModule\EqualityComparison\MyMathSheets.TheFormulaShows.EqualityComparison.csproj", "{5F879B95-C458-48ED-A7C2-889F47DB7491}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E6} = {3206E500-28D2-4055-A14F-3DE3CBD526E6}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.FindNearestNumber", "TheFormulaShows\DisplayModule\FindNearestNumber\MyMathSheets.TheFormulaShows.FindNearestNumber.csproj", "{5F879B95-C458-48ED-A7C2-889F47DB7591}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.FindNearestNumber", "MathSheets.Business\TheFormulaShows\DisplayModule\FindNearestNumber\MyMathSheets.TheFormulaShows.FindNearestNumber.csproj", "{5F879B95-C458-48ED-A7C2-889F47DB7591}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E7} = {3206E500-28D2-4055-A14F-3DE3CBD526E7}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.FruitsLinkage", "TheFormulaShows\DisplayModule\FruitsLinkage\MyMathSheets.TheFormulaShows.FruitsLinkage.csproj", "{5F879B95-C458-48ED-A7C2-889F47DB2591}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.FruitsLinkage", "MathSheets.Business\TheFormulaShows\DisplayModule\FruitsLinkage\MyMathSheets.TheFormulaShows.FruitsLinkage.csproj", "{5F879B95-C458-48ED-A7C2-889F47DB2591}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E8} = {3206E500-28D2-4055-A14F-3DE3CBD526E8}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.HowMuchMore", "TheFormulaShows\DisplayModule\HowMuchMore\MyMathSheets.TheFormulaShows.HowMuchMore.csproj", "{5F879B95-C458-48ED-A7C2-889347DB2591}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.HowMuchMore", "MathSheets.Business\TheFormulaShows\DisplayModule\HowMuchMore\MyMathSheets.TheFormulaShows.HowMuchMore.csproj", "{5F879B95-C458-48ED-A7C2-889347DB2591}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{18D1E434-D1C1-4634-B969-7FF11FECA3EF} = {18D1E434-D1C1-4634-B969-7FF11FECA3EF}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.MathWordProblems", "TheFormulaShows\DisplayModule\MathWordProblems\MyMathSheets.TheFormulaShows.MathWordProblems.csproj", "{5F879B95-C458-48ED-A7C2-889447DB2591}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.MathWordProblems", "MathSheets.Business\TheFormulaShows\DisplayModule\MathWordProblems\MyMathSheets.TheFormulaShows.MathWordProblems.csproj", "{5F879B95-C458-48ED-A7C2-889447DB2591}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{3BFFE851-482C-43D6-9661-C32D20AF334D} = {3BFFE851-482C-43D6-9661-C32D20AF334D}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.ScoreGoal", "TheFormulaShows\DisplayModule\ScoreGoal\MyMathSheets.TheFormulaShows.ScoreGoal.csproj", "{5F879B95-C458-48ED-A7C2-859447DB2591}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.ScoreGoal", "MathSheets.Business\TheFormulaShows\DisplayModule\ScoreGoal\MyMathSheets.TheFormulaShows.ScoreGoal.csproj", "{5F879B95-C458-48ED-A7C2-859447DB2591}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3206E500-28D2-4055-A14F-3DE3CBD526E1} = {3206E500-28D2-4055-A14F-3DE3CBD526E1}
 		{3206E500-28D2-4055-A14F-3DE3CBD526E5} = {3206E500-28D2-4055-A14F-3DE3CBD526E5}
 		{076E9C76-BEB2-4024-8A09-5183D0D65EC3} = {076E9C76-BEB2-4024-8A09-5183D0D65EC3}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.FindTheLaw", "ComputationalStrategy\TopicModule\FindTheLaw\MyMathSheets.ComputationalStrategy.FindTheLaw.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF85387}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.FindTheLaw", "MathSheets.Business\ComputationalStrategy\TopicModule\FindTheLaw\MyMathSheets.ComputationalStrategy.FindTheLaw.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF85387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.FindTheLaw", "TheFormulaShows\DisplayModule\FindTheLaw\MyMathSheets.TheFormulaShows.FindTheLaw.csproj", "{41486B43-37E3-406A-A032-824BAED36747}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.FindTheLaw", "MathSheets.Business\TheFormulaShows\DisplayModule\FindTheLaw\MyMathSheets.TheFormulaShows.FindTheLaw.csproj", "{41486B43-37E3-406A-A032-824BAED36747}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.NumericSorting", "ComputationalStrategy\TopicModule\NumericSorting\MyMathSheets.ComputationalStrategy.NumericSorting.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF95387}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.NumericSorting", "MathSheets.Business\ComputationalStrategy\TopicModule\NumericSorting\MyMathSheets.ComputationalStrategy.NumericSorting.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF95387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.NumericSorting", "TheFormulaShows\DisplayModule\NumericSorting\MyMathSheets.TheFormulaShows.NumericSorting.csproj", "{5F879B95-C458-48ED-A7C2-889F47DB7497}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.NumericSorting", "MathSheets.Business\TheFormulaShows\DisplayModule\NumericSorting\MyMathSheets.TheFormulaShows.NumericSorting.csproj", "{5F879B95-C458-48ED-A7C2-889F47DB7497}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.LearnCurrency", "ComputationalStrategy\TopicModule\LearnCurrency\MyMathSheets.ComputationalStrategy.LearnCurrency.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF55387}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.LearnCurrency", "MathSheets.Business\ComputationalStrategy\TopicModule\LearnCurrency\MyMathSheets.ComputationalStrategy.LearnCurrency.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF55387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.LearnCurrency", "TheFormulaShows\DisplayModule\LearnCurrency\MyMathSheets.TheFormulaShows.LearnCurrency.csproj", "{41486B43-37E3-406A-A032-974BAED36787}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.LearnCurrency", "MathSheets.Business\TheFormulaShows\DisplayModule\LearnCurrency\MyMathSheets.TheFormulaShows.LearnCurrency.csproj", "{41486B43-37E3-406A-A032-974BAED36787}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.EqualityLinkage", "TheFormulaShows\DisplayModule\EqualityLinkage\MyMathSheets.TheFormulaShows.EqualityLinkage.csproj", "{41486B43-37E3-406A-A032-974BAED36767}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.EqualityLinkage", "MathSheets.Business\TheFormulaShows\DisplayModule\EqualityLinkage\MyMathSheets.TheFormulaShows.EqualityLinkage.csproj", "{41486B43-37E3-406A-A032-974BAED36767}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.EqualityLinkage", "ComputationalStrategy\TopicModule\EqualityLinkage\MyMathSheets.ComputationalStrategy.EqualityLinkage.csproj", "{3206E500-28D2-4055-A14F-3DE8CBD526E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.EqualityLinkage", "MathSheets.Business\ComputationalStrategy\TopicModule\EqualityLinkage\MyMathSheets.ComputationalStrategy.EqualityLinkage.csproj", "{3206E500-28D2-4055-A14F-3DE8CBD526E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.SchoolClock", "TheFormulaShows\DisplayModule\SchoolClock\MyMathSheets.TheFormulaShows.SchoolClock.csproj", "{41486B43-37E3-406A-A032-974BAED36997}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.SchoolClock", "MathSheets.Business\TheFormulaShows\DisplayModule\SchoolClock\MyMathSheets.TheFormulaShows.SchoolClock.csproj", "{41486B43-37E3-406A-A032-974BAED36997}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.SchoolClock", "ComputationalStrategy\TopicModule\SchoolClock\MyMathSheets.ComputationalStrategy.SchoolClock.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.SchoolClock", "MathSheets.Business\ComputationalStrategy\TopicModule\SchoolClock\MyMathSheets.ComputationalStrategy.SchoolClock.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD526E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.CurrencyOperation", "ComputationalStrategy\TopicModule\CurrencyOperation\MyMathSheets.ComputationalStrategy.CurrencyOperation.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF55887}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.CurrencyOperation", "MathSheets.Business\ComputationalStrategy\TopicModule\CurrencyOperation\MyMathSheets.ComputationalStrategy.CurrencyOperation.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF55887}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.CurrencyOperation", "TheFormulaShows\DisplayModule\CurrencyOperation\MyMathSheets.TheFormulaShows.CurrencyOperation.csproj", "{41486B43-37E3-406A-A032-974BAED36749}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.CurrencyOperation", "MathSheets.Business\TheFormulaShows\DisplayModule\CurrencyOperation\MyMathSheets.TheFormulaShows.CurrencyOperation.csproj", "{41486B43-37E3-406A-A032-974BAED36749}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.CurrencyLinkage", "TheFormulaShows\DisplayModule\CurrencyLinkage\MyMathSheets.TheFormulaShows.CurrencyLinkage.csproj", "{41486B43-37E3-406A-A032-974BAED39967}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.CurrencyLinkage", "MathSheets.Business\TheFormulaShows\DisplayModule\CurrencyLinkage\MyMathSheets.TheFormulaShows.CurrencyLinkage.csproj", "{41486B43-37E3-406A-A032-974BAED39967}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.CurrencyLinkage", "ComputationalStrategy\TopicModule\CurrencyLinkage\MyMathSheets.ComputationalStrategy.CurrencyLinkage.csproj", "{3206E500-28D2-4055-A14F-3DE8CBD526E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.CurrencyLinkage", "MathSheets.Business\ComputationalStrategy\TopicModule\CurrencyLinkage\MyMathSheets.ComputationalStrategy.CurrencyLinkage.csproj", "{3206E500-28D2-4055-A14F-3DE8CBD526E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.TimeCalculation", "ComputationalStrategy\TopicModule\TimeCalculation\MyMathSheets.ComputationalStrategy.TimeCalculation.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD588E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.TimeCalculation", "MathSheets.Business\ComputationalStrategy\TopicModule\TimeCalculation\MyMathSheets.ComputationalStrategy.TimeCalculation.csproj", "{3206E500-28D2-4055-A14F-3DE3CBD588E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.TimeCalculation", "TheFormulaShows\DisplayModule\TimeCalculation\MyMathSheets.TheFormulaShows.TimeCalculation.csproj", "{41486B43-37E3-406A-A032-974BAED39997}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.TimeCalculation", "MathSheets.Business\TheFormulaShows\DisplayModule\TimeCalculation\MyMathSheets.TheFormulaShows.TimeCalculation.csproj", "{41486B43-37E3-406A-A032-974BAED39997}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.LearnLengthUnit", "ComputationalStrategy\TopicModule\LearnLengthUnit\MyMathSheets.ComputationalStrategy.LearnLengthUnit.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF55389}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.LearnLengthUnit", "MathSheets.Business\ComputationalStrategy\TopicModule\LearnLengthUnit\MyMathSheets.ComputationalStrategy.LearnLengthUnit.csproj", "{A4AFCD1E-6872-4643-9728-E5E6DFF55389}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.LearnLengthUnit", "TheFormulaShows\DisplayModule\LearnLengthUnit\MyMathSheets.TheFormulaShows.LearnLengthUnit.csproj", "{41486B43-37E3-406A-A032-974BAED36799}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.LearnLengthUnit", "MathSheets.Business\TheFormulaShows\DisplayModule\LearnLengthUnit\MyMathSheets.TheFormulaShows.LearnLengthUnit.csproj", "{41486B43-37E3-406A-A032-974BAED36799}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.GapFillingProblems", "ComputationalStrategy\TopicModule\GapFillingProblems\MyMathSheets.ComputationalStrategy.GapFillingProblems.csproj", "{3BFFE851-482C-43D6-9661-C32D20AF884D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.GapFillingProblems", "MathSheets.Business\ComputationalStrategy\TopicModule\GapFillingProblems\MyMathSheets.ComputationalStrategy.GapFillingProblems.csproj", "{3BFFE851-482C-43D6-9661-C32D20AF884D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.GapFillingProblems", "TheFormulaShows\DisplayModule\GapFillingProblems\MyMathSheets.TheFormulaShows.GapFillingProblems.csproj", "{5F879B95-C458-48ED-A7C2-889489DB2591}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.GapFillingProblems", "MathSheets.Business\TheFormulaShows\DisplayModule\GapFillingProblems\MyMathSheets.TheFormulaShows.GapFillingProblems.csproj", "{5F879B95-C458-48ED-A7C2-889489DB2591}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.MathUpright", "TheFormulaShows\DisplayModule\MathUpright\MyMathSheets.TheFormulaShows.MathUpright.csproj", "{41486B43-37E3-406A-A032-974BAED36778}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.MathUpright", "MathSheets.Business\TheFormulaShows\DisplayModule\MathUpright\MyMathSheets.TheFormulaShows.MathUpright.csproj", "{41486B43-37E3-406A-A032-974BAED36778}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.MathUpright", "ComputationalStrategy\TopicModule\MathUpright\MyMathSheets.ComputationalStrategy.MathUpright.csproj", "{B1181420-6BEA-4A5C-9751-806634F848D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.MathUpright", "MathSheets.Business\ComputationalStrategy\TopicModule\MathUpright\MyMathSheets.ComputationalStrategy.MathUpright.csproj", "{B1181420-6BEA-4A5C-9751-806634F848D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLibTest", "CommonLibTest\MyMathSheets.CommonLibTest.csproj", "{ED81771C-7232-43D3-843A-62D32B00A705}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.CommonLibTest", "MathSheets.Core\CommonLibTest\MyMathSheets.CommonLibTest.csproj", "{ED81771C-7232-43D3-843A-62D32B00A705}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.CleverCalculation", "ComputationalStrategy\TopicModule\CleverCalculation\MyMathSheets.ComputationalStrategy.CleverCalculation.csproj", "{98A95BDF-DDC6-4324-9263-6CA5A08F5E2F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.CleverCalculation", "MathSheets.Business\ComputationalStrategy\TopicModule\CleverCalculation\MyMathSheets.ComputationalStrategy.CleverCalculation.csproj", "{98A95BDF-DDC6-4324-9263-6CA5A08F5E2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.CleverCalculation", "TheFormulaShows\DisplayModule\CleverCalculation\MyMathSheets.TheFormulaShows.CleverCalculation.csproj", "{0E153E68-87A4-4FA4-9A69-AC5595155971}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.CleverCalculation", "MathSheets.Business\TheFormulaShows\DisplayModule\CleverCalculation\MyMathSheets.TheFormulaShows.CleverCalculation.csproj", "{0E153E68-87A4-4FA4-9A69-AC5595155971}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.RecursionEquation", "ComputationalStrategy\TopicModule\RecursionEquation\MyMathSheets.ComputationalStrategy.RecursionEquation.csproj", "{D943ECA3-91C8-4071-94DF-84B28B937793}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.ComputationalStrategy.RecursionEquation", "MathSheets.Business\ComputationalStrategy\TopicModule\RecursionEquation\MyMathSheets.ComputationalStrategy.RecursionEquation.csproj", "{D943ECA3-91C8-4071-94DF-84B28B937793}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.RecursionEquation", "TheFormulaShows\DisplayModule\RecursionEquation\MyMathSheets.TheFormulaShows.RecursionEquation.csproj", "{C7BB310D-6430-4445-B0DD-1ECF4107653A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMathSheets.TheFormulaShows.RecursionEquation", "MathSheets.Business\TheFormulaShows\DisplayModule\RecursionEquation\MyMathSheets.TheFormulaShows.RecursionEquation.csproj", "{C7BB310D-6430-4445-B0DD-1ECF4107653A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

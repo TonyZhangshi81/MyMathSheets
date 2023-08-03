@@ -1,0 +1,393 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../Content/favicon.ico">
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/MathSheets.css" rel="stylesheet" charset="utf-8">
+    <script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+    <script src="../Scripts/umd/popper.js" charset="utf-8"></script>
+    <script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
+    <script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
+    <script src="../Scripts/json2.min.js" charset="utf-8"></script>
+    <script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
+    <!--ARITHMETICSCRIPT-->
+    <script src="../Scripts/Ext/MathSheets.EqualityComparison.js" charset="utf-8"></script>
+    <!--COMPUTINGCONNECTIONSCRIPT-->
+    <!--MATHWORDPROBLEMSSCRIPT-->
+    <!--FRUITSLINKAGESCRIPT-->
+    <!--FINDNEARESTNUMBERSCRIPT-->
+    <!--COMBINATORIALEQUATIONSCRIPT-->
+    <!--SCOREGOALSCRIPT-->
+    <!--HOWMUCHMORESCRIPT-->
+    <title>題庫</title>
+
+    <script>
+		// 頁面啟動后加載
+		$(document).ready(function () {
+			// 準備
+			$('#btnReady').click(function () { btnReadyClick(); });
+			// 提交答題
+			$('#btnTheirPapers').click(function () { btnTheirPapersClick(); });
+			// 訂正錯題
+			$('#btnMakeCorrections').click(function () { btnMakeCorrectionsClick(); });
+			// 完成
+			$('#btnOver').click(function () { btnOverClick(); });
+			// 打印
+			$('#btnPrint').click(function () { btnPrintClick(); });
+
+			// 還原上一次答題結果
+			MathSheets.Common.lastTimeRestore('spanOld', 'spanOldOK', 'spanOldNo');
+			// 計算式提示
+			$(function () { $("[data-toggle='tooltip']").tooltip(); });
+		});
+
+		// 打印
+		function btnPrintClick() {
+			//<!--ARITHMETICPRINTSETTING-->
+			MathSheets.EqualityComparison.printSetting();
+			//<!--COMPUTINGCONNECTIONPRINTSETTING-->
+			//<!--MATHWORDPROBLEMSPRINTSETTING-->
+			//<!--FINDNEARESTNUMBERPRINTSETTING-->
+			//<!--COMBINATORIALEQUATIONPRINTSETTING-->
+			//<!--HOWMUCHMOREPRINTSETTING-->
+
+			// 頁面答應處理
+			MathSheets.Common.pagePrint('divPrintContent');
+			// 打印后恢復頁面最初狀態設置
+			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
+			// 打印后頁面設定
+			//<!--ARITHMETICPRINTAFTERSETTING-->
+			MathSheets.EqualityComparison.printAfterSetting();
+			//<!--COMPUTINGCONNECTIONPRINTAFTERSETTING-->
+			//<!--MATHWORDPROBLEMSPRINTAFTERSETTING-->
+			//<!--FINDNEARESTNUMBERPRINTAFTERSETTING-->
+			//<!--COMBINATORIALEQUATIONPRINTAFTERSETTING-->
+			//<!--HOWMUCHMOREPRINTAFTERSETTING-->
+		}
+
+		// 答題準備按鍵
+		function btnReadyClick() {
+			// 設定頁面所有輸入域為可用狀態(共通)-交卷按鈕顯示,準備按鈕隱藏,打印按鈕隱藏
+			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
+			// 設定頁面所有輸入域為可用狀態（四則運算）
+			//<!--ARITHMETICREADY-->
+			// 設定頁面所有輸入域為可用狀態(運算比大小)
+			MathSheets.EqualityComparison.ready();
+			// 設定頁面所有輸入域為可用狀態(等式接龍)
+			//<!--COMPUTINGCONNECTIONREADY-->
+			// 設定頁面所有輸入域為可用狀態(算數應用題)
+			//<!--MATHWORDPROBLEMSREADY-->
+			// 設定頁面所有輸入域為可用狀態(水果連連看)
+			//<!--FRUITSLINKAGEREADY-->
+			// 設定頁面所有輸入域為可用狀態(找到最近的數字)
+			//<!--FINDNEARESTNUMBERREADY-->
+			// 設定頁面所有輸入域為可用狀態(算式組合)
+			//<!--COMBINATORIALEQUATIONREADY-->
+			// 設定頁面所有輸入域為可用狀態(射門得分)
+			//<!--SCOREGOALREADY-->
+			// 設定頁面所有輸入域為可用狀態(比多少)
+			//<!--HOWMUCHMOREREADY-->
+
+			// 計時開始
+			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
+		}
+
+		// 完成(關閉頁面)
+		function btnOverClick() {
+			MathSheets.Common.windowClose();
+		}
+
+		// 訂正按鈕(不計入答題情況信息)
+		function btnMakeCorrectionsClick() {
+			var fault = 0;
+			// 四則運算題
+			//<!--ARITHMETICMAKECORRECTIONS-->
+			// 算式比較大小
+			fault += MathSheets.EqualityComparison.makeCorrections();
+			// 等式接龍
+			//<!--COMPUTINGCONNECTIONMAKECORRECTIONS-->
+			// 算數應用題
+			//<!--MATHWORDPROBLEMSMAKECORRECTIONS-->
+			// 水果連連看
+			//<!--FRUITSLINKAGEMAKECORRECTIONS-->
+			// 找到最近的數字
+			//<!--FINDNEARESTNUMBERMAKECORRECTIONS-->
+			// 算式組合
+			//<!--COMBINATORIALEQUATIONMAKECORRECTIONS-->
+			// 射門得分
+			//<!--SCOREGOALMAKECORRECTIONS-->
+			// 比多少
+			//<!--HOWMUCHMOREMAKECORRECTIONS-->
+
+			// 訂正按鈕處理
+			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
+		}
+
+		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
+		function btnTheirPapersClick() {
+			// 四則運算交卷
+			//<!--ARITHMETICTHEIRPAPERS-->
+			// 算式比大小交卷
+			MathSheets.EqualityComparison.theirPapers();
+			// 等式接龍交卷
+			//<!--COMPUTINGCONNECTIONTHEIRPAPERS-->
+			// 算數應用題交卷
+			//<!--MATHWORDPROBLEMSTHEIRPAPERS-->
+			// 水果連連看
+			//<!--FRUITSLINKAGETHEIRPAPERS-->
+			// 找到最近的數字
+			//<!--FINDNEARESTNUMBERTHEIRPAPERS-->
+			// 算式組合
+			//<!--COMBINATORIALEQUATIONTHEIRPAPERS-->
+			// 射門得分
+			//<!--SCOREGOALTHEIRPAPERS-->
+			// 比多少
+			//<!--HOWMUCHMORETHEIRPAPERS-->
+
+			// 交卷按鈕處理
+			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
+			// 計時停止（答題結果設定）
+			MathSheets.Common.timeStop('spanSS', 'spanMM', 'spanHH');
+		}
+    </script>
+</head>
+<body>
+    <div class="container theme-showcase main-ext" role="main">
+        <div class="jumbotron-ext">
+            <div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
+            <div class="div-famousPeople">
+                <h6>
+                    <span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+                    <br />
+                    <span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+                    <br />
+                    <span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+                </h6>
+            </div>
+            <hr class="hr-Ext" />
+            <div class="text-info-ext">
+                前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+                <span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
+                <span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
+            </div>
+        </div>
+        <div id="divPrintContent">
+            <!--ARITHMETIC-->
+            <br /><div class="page-header"><h4><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">算式比大小</span></h4></div><hr /><div class="row text-center row-margin-top">
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">4</span>
+                        <span class="label">-</span>
+                        <span class="label">4</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc0" title="help" />
+                        <input id="hiddenEc0" type="hidden" value="char-less" />
+                        <span class="label">23</span>
+                        <span class="label">-</span>
+                        <span class="label">21</span>
+                        <img id="imgOKEquality0" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality0" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">33</span>
+                        <span class="label">+</span>
+                        <span class="label">12</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc1" title="help" />
+                        <input id="hiddenEc1" type="hidden" value="char-more" />
+                        <span class="label">27</span>
+                        <span class="label">+</span>
+                        <span class="label">14</span>
+                        <img id="imgOKEquality1" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality1" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">19</span>
+                        <span class="label">-</span>
+                        <span class="label">11</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc2" title="help" />
+                        <input id="hiddenEc2" type="hidden" value="char-less" />
+                        <span class="label">29</span>
+                        <span class="label">+</span>
+                        <span class="label">5</span>
+                        <img id="imgOKEquality2" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality2" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">37</span>
+                        <span class="label">+</span>
+                        <span class="label">4</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc3" title="help" />
+                        <input id="hiddenEc3" type="hidden" value="char-more" />
+                        <span class="label">20</span>
+                        <span class="label">-</span>
+                        <span class="label">1</span>
+                        <img id="imgOKEquality3" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality3" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">22</span>
+                        <span class="label">+</span>
+                        <span class="label">13</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc4" title="help" />
+                        <input id="hiddenEc4" type="hidden" value="char-more" />
+                        <span class="label">18</span>
+                        <span class="label">+</span>
+                        <span class="label">5</span>
+                        <img id="imgOKEquality4" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality4" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">22</span>
+                        <span class="label">-</span>
+                        <span class="label">3</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc5" title="help" />
+                        <input id="hiddenEc5" type="hidden" value="char-more" />
+                        <span class="label">10</span>
+                        <span class="label">-</span>
+                        <span class="label">4</span>
+                        <img id="imgOKEquality5" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality5" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">16</span>
+                        <span class="label">+</span>
+                        <span class="label">15</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc6" title="help" />
+                        <input id="hiddenEc6" type="hidden" value="char-less" />
+                        <span class="label">2</span>
+                        <span class="label">+</span>
+                        <span class="label">36</span>
+                        <img id="imgOKEquality6" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality6" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">17</span>
+                        <span class="label">+</span>
+                        <span class="label">19</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc7" title="help" />
+                        <input id="hiddenEc7" type="hidden" value="char-less" />
+                        <span class="label">30</span>
+                        <span class="label">+</span>
+                        <span class="label">13</span>
+                        <img id="imgOKEquality7" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality7" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">26</span>
+                        <span class="label">+</span>
+                        <span class="label">22</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc8" title="help" />
+                        <input id="hiddenEc8" type="hidden" value="char-less" />
+                        <span class="label">49</span>
+                        <span class="label">+</span>
+                        <span class="label">0</span>
+                        <img id="imgOKEquality8" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality8" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">17</span>
+                        <span class="label">+</span>
+                        <span class="label">5</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc9" title="help" />
+                        <input id="hiddenEc9" type="hidden" value="char-less" />
+                        <span class="label">35</span>
+                        <span class="label">-</span>
+                        <span class="label">5</span>
+                        <img id="imgOKEquality9" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality9" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">27</span>
+                        <span class="label">+</span>
+                        <span class="label">20</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc10" title="help" />
+                        <input id="hiddenEc10" type="hidden" value="char-less" />
+                        <span class="label">37</span>
+                        <span class="label">+</span>
+                        <span class="label">11</span>
+                        <img id="imgOKEquality10" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality10" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+                <div class="col-md-4 form-inline">
+                    <h5>
+                        <span class="label">7</span>
+                        <span class="label">+</span>
+                        <span class="label">42</span>
+                        <img src="../Content/image/help.png" width="30" height="30" id="imgEc11" title="help" />
+                        <input id="hiddenEc11" type="hidden" value="char-more" />
+                        <span class="label">11</span>
+                        <span class="label">-</span>
+                        <span class="label">0</span>
+                        <img id="imgOKEquality11" src="../Content/image/correct.png" style="width: 40px; height: 40px; display: none; " />
+                        <img id="imgNoEquality11" src="../Content/image/fault.png" style="width: 40px; height: 40px; display: none; " />
+                    </h5>
+                </div>
+            </div>
+
+            <!--COMPUTINGCONNECTION-->
+            <!--MATHWORDPROBLEMS-->
+            <!--FRUITSLINKAGE-->
+            <!--FINDNEARESTNUMBER-->
+            <!--COMBINATORIALEQUATION-->
+            <!--SCOREGOAL-->
+            <!--HOWMUCHMORE-->
+        </div>
+        <HR>
+        <div class="row">
+            <div class="col-md-12 col-md-offset-3">
+                <p class="text-center">
+                    <button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
+                    <button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
+                    <button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
+                    <button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
+                    <button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
+                </p>
+            </div>
+        </div>
+        <div class="page-header">
+            <h4>練習情況</h4>
+        </div>
+        <div class="well">
+            <p>
+                做題用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+                <br />答對:<span id="spanOK" style="padding-left:20px;"></span>題
+                <br />打錯:<span id="spanNo" style="padding-left:20px;"></span>題
+            </p>
+        </div>
+    </div>
+    <a href="javascript:" class="totop"></a>
+</body>
+</html>

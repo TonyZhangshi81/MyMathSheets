@@ -1,0 +1,30 @@
+[
+  {
+    "Identifier": "FNN01",
+    "FourOperationsType": 1,
+    "MaximumLimit": 20,
+    "NumberOfQuestions": 8,
+    "Signs": [ 0 ]
+  },
+  {
+    "Identifier": "FNN02",
+    "FourOperationsType": 1,
+    "MaximumLimit": 20,
+    "NumberOfQuestions": 8,
+    "Signs": [ 1 ]
+  },
+  {
+    "Identifier": "FNN03",
+    "FourOperationsType": 2,
+    "MaximumLimit": 20,
+    "NumberOfQuestions": 10,
+    "Signs": [ 0, 1 ]
+  },
+  {
+    "Identifier": "FNN04",
+    "FourOperationsType": 2,
+    "MaximumLimit": 40,
+    "NumberOfQuestions": 10,
+    "Signs": [ 0, 1 ]
+  }
+]

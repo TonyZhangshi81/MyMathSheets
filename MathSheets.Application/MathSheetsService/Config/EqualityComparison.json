@@ -1,0 +1,30 @@
+[
+  {
+    "Identifier": "EC004",
+    "FourOperationsType": 2,
+    "MaximumLimit": 40,
+    "NumberOfQuestions": 12,
+    "Signs": [ 0, 1 ]
+  },
+  {
+    "Identifier": "EC001",
+    "FourOperationsType": 2,
+    "MaximumLimit": 20,
+    "NumberOfQuestions": 8,
+    "Signs": [ 0 ]
+  },
+  {
+    "Identifier": "EC002",
+    "FourOperationsType": 1,
+    "MaximumLimit": 20,
+    "NumberOfQuestions": 8,
+    "Signs": [ 1 ]
+  },
+  {
+    "Identifier": "EC003",
+    "FourOperationsType": 2,
+    "MaximumLimit": 20,
+    "NumberOfQuestions": 8,
+    "Signs": [ 0, 1 ]
+  }
+]
