@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Config\MathWordProblems.json" />
     <None Include="Config\MathWordProblemsLibrary.json" />
     <None Include="packages.config" />
