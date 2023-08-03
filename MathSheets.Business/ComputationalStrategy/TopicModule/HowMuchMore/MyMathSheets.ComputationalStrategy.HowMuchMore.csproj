@@ -61,6 +61,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Config\HowMuchMore.json" />
     <None Include="packages.config" />
   </ItemGroup>

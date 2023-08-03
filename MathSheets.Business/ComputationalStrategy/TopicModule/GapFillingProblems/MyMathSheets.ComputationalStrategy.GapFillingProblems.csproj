@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Config\GapFillingProblems.json" />
     <None Include="Config\GapFillingProblemsLibrary.json" />
     <None Include="packages.config" />
