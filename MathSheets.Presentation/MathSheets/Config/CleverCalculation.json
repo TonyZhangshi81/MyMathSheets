@@ -1,0 +1,27 @@
+[
+  {
+    "Identifier": "CLC01",
+    "NumberOfQuestions": 5,
+    "Reserve": "{\"TopicType\" : '2'}"
+  },
+  {
+    "Identifier": "CLC02",
+    "NumberOfQuestions": 5,
+    "Reserve": "{\"TopicType\" : '0'}"
+  },
+  {
+    "Identifier": "CLC03",
+    "NumberOfQuestions": 5,
+    "Reserve": "{\"TopicType\" : '1'}"
+  },
+  {
+    "Identifier": "CLC04",
+    "NumberOfQuestions": 5,
+    "Reserve": "{\"TopicType\" : '3', \"SubTopicType\" : '30,31'}"
+  },
+  {
+    "Identifier": "CLC05",
+    "NumberOfQuestions": 5,
+    "Reserve": "{\"TopicType\" : '0,1,2,3', \"SubTopicType\" : '30,31'}"
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "Identifier": "TC001",
+    "FourOperationsType": 1,
+    "NumberOfQuestions": 6,
+    "QuestionType": 1,
+    "Signs": [ 5 ],
+    "Reserve": "{\"ElapsedHours\" : '0', \"IsEssignMinutes\" : 0, \"IsShowSeconds\" : 0}"
+  },
+  {
+    "Identifier": "TC002",
+    "FourOperationsType": 1,
+    "NumberOfQuestions": 6,
+    "QuestionType": 1,
+    "Signs": [ 4 ],
+    "Reserve": "{\"ElapsedHours\" : '0', \"IsEssignMinutes\" : 0, \"IsShowSeconds\" : 0}"
+  },
+  {
+    "Identifier": "TC003",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 6,
+    "QuestionType": 1,
+    "Signs": [ 4, 5 ],
+    "Reserve": "{\"ElapsedHours\" : '0', \"IsEssignMinutes\" : 0, \"IsShowSeconds\" : 0}"
+  },
+  {
+    "Identifier": "TC004",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 6,
+    "QuestionType": 1,
+    "Signs": [ 4, 5 ],
+    "Reserve": "{\"ElapsedHours\" : '0,1,2,3,4,5,6', \"IsEssignMinutes\" : 1, \"IsShowSeconds\" : 0}"
+  },
+  {
+    "Identifier": "TC005",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 6,
+    "QuestionType": 2,
+    "Signs": [ 4, 5 ],
+    "Reserve": "{\"ElapsedHours\" : '0,1,2,3,4,5,6,7,8,9,10,11,12', \"IsEssignMinutes\" : 1, \"IsShowSeconds\" : 0}"
+  },
+  {
+    "Identifier": "TC006",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 6,
+    "QuestionType": 2,
+    "Signs": [ 4, 5 ],
+    "Reserve": "{\"ElapsedHours\" : '0,1,2,3,4,5,6,7,8,9,10,11,12', \"IsEssignMinutes\" : 1, \"IsShowSeconds\" : 1}"
+  }
+]

@@ -1,0 +1,19 @@
+.table-ext td, .table-ext th {
+    height: 38px;
+    padding: unset !important;
+    border-top: unset !important;
+    vertical-align: middle !important;
+}
+
+.table-tr-sum {
+    border-top-style: groove;
+    background-color: transparent !important;
+}
+
+.table-tr-hr th {
+    height: unset !important;
+}
+
+.table-th-sign {
+    width: 25px;
+}

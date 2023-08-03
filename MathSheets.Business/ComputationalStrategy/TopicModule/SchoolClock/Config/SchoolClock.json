@@ -1,0 +1,26 @@
+[
+  {
+    "Identifier": "SC001",
+    "FourOperationsType": 1,
+    "NumberOfQuestions": 4,
+    "Reserve": "{\"IsShowSeconds\" : 0}"
+  },
+  {
+    "Identifier": "SC002",
+    "FourOperationsType": 1,
+    "NumberOfQuestions": 5,
+    "Reserve": "{\"IsShowSeconds\" : 1}"
+  },
+  {
+    "Identifier": "SC003",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 5,
+    "Reserve": "{\"IsShowSeconds\" : 0}"
+  },
+  {
+    "Identifier": "SC004",
+    "FourOperationsType": 2,
+    "NumberOfQuestions": 6,
+    "Reserve": "{\"IsShowSeconds\" : 1}"
+  }
+]

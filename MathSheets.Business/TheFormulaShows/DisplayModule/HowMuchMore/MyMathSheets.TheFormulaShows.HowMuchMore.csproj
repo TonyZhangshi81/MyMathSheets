@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5F879B95-C458-48ED-A7C2-889347DB2591}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyMathSheets.TheFormulaShows.HowMuchMore</RootNamespace>
+    <AssemblyName>MyMathSheets.TheFormulaShows.Generally.HowMuchMore</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\MyMathSheets.TheFormulaShows.Generally.HowMuchMore.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\HowMuchMoreHtmlSupport.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\css\HowMuchMore.css" />
+    <Content Include="Content\image\more\Circle.png" />
+    <Content Include="Content\image\more\Diamond.png" />
+    <Content Include="Content\image\more\Fish.png" />
+    <Content Include="Content\image\more\HappyFace.png" />
+    <Content Include="Content\image\more\Humburger.png" />
+    <Content Include="Content\image\more\Like.png" />
+    <Content Include="Content\image\more\Square.png" />
+    <Content Include="Scripts\Ext\MathSheets.HowMuchMore.js" />
+    <Content Include="Template\HowMuchMore.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\MathSheets.Core\CommonLib\MyMathSheets.CommonLib.csproj">
+      <Project>{076e9c76-beb2-4024-8a09-5183d0d65ec3}</Project>
+      <Name>MyMathSheets.CommonLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ComputationalStrategy\TopicModule\HowMuchMore\MyMathSheets.ComputationalStrategy.HowMuchMore.csproj">
+      <Project>{18d1e434-d1c1-4634-b969-7ff11feca3ef}</Project>
+      <Name>MyMathSheets.ComputationalStrategy.HowMuchMore</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(ProjectDir)..\..\..\..\MathSheets.Core\Tools\deploy-display-module-script.bat" $(ProjectName) $(ConfigurationName) $(TargetFileName) $(ProjectDir) $(TargetPath)</PostBuildEvent>
+  </PropertyGroup>
+</Project>

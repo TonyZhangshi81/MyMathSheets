@@ -1,0 +1,23 @@
+[
+  {
+    "Identifier": "CC001",
+    "MaximumLimit": 20,
+    "NumberOfQuestions": 5,
+    "Signs": [ 0, 1 ],
+    "Reserve": "{\"SectionNumber\" : 5}"
+  },
+  {
+    "Identifier": "CC002",
+    "MaximumLimit": 20,
+    "NumberOfQuestions": 5,
+    "Signs": [ 0 ],
+    "Reserve": "{\"SectionNumber\" : 4}"
+  },
+  {
+    "Identifier": "CC003",
+    "MaximumLimit": 30,
+    "NumberOfQuestions": 5,
+    "Signs": [ 1 ],
+    "Reserve": "{\"SectionNumber\" : 5}"
+  }
+]

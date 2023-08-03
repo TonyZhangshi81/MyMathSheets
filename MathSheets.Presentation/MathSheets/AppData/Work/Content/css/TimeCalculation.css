@@ -1,0 +1,15 @@
+.span-tc-lighton {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../image/lighton.png);
+    background-repeat: no-repeat;
+}
+
+.span-tc-lightoff {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-image: url(../image/lightoff.png);
+    background-repeat: no-repeat;
+}

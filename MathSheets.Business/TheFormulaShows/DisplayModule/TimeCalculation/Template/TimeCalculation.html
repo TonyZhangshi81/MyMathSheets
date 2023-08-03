@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../Content/image/favicon.ico">
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" charset="utf-8">
+    <link href="../Content/font-awesome.min.css" rel="stylesheet" charset="utf-8">
+    <link title="default" href="../Content/switcher/MathSheets.css" rel="stylesheet" charset="utf-8">
+    <link title="burlywood" href="../Content/switcher/MathSheets-burlywood.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+    <link title="coral" href="../Content/switcher/MathSheets-coral.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+    <link title="cornflowerblue" href="../Content/switcher/MathSheets-cornflowerblue.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+    <link title="eyeshieldgreen" href="../Content/switcher/MathSheets-eyeshieldgreen.css" rel="stylesheet" charset="utf-8" disabled="disabled">
+    <link href="../Content/TimeCalculation.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery-3.3.1.min.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery.linq.min.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery.PrintArea.js" charset="utf-8"></script>
+    <script src="../Scripts/jquery.easyui.min.js" charset="utf-8"></script>
+    <script src="../Scripts/umd/popper.js" charset="utf-8"></script>
+    <script src="../Scripts/bootstrap.min.js" charset="utf-8"></script>
+    <script src="../Scripts/store.legacy.min.js" charset="utf-8"></script>
+    <script src="../Scripts/json2.min.js" charset="utf-8"></script>
+    <script src="../Scripts/snap/snap.svg-min.js"></script>
+    <script src="../Scripts/jquery.rating-stars.min.js"></script>
+    <script src="../Scripts/jquery.easing.1.3.js"></script>
+    <script src="../Scripts/Ext/MathSheets.Common.js" charset="utf-8"></script>
+    <script src="../Scripts/Ext/MathSheets.TimeCalculation.js" charset="utf-8"></script>
+    <title>題庫</title>
+
+    <script>
+		// 打印
+		function btnPrintClick() {
+			MathSheets.TimeCalculation.printSetting();
+
+			// 頁面答應處理
+			MathSheets.Common.pagePrint('divPrintContent');
+			// 打印后恢復頁面最初狀態設置
+			MathSheets.Common.printAfterSetting('btnTheirPapers', 'btnMakeCorrections', 'btnOver');
+			// 打印后頁面設定
+			MathSheets.TimeCalculation.printAfterSetting();
+		}
+
+		// 答題準備按鍵
+		function btnReadyClick() {
+			// 設定頁面所有輸入域為可用狀態(共通)-交卷按鈕顯示,準備按鈕隱藏,打印按鈕隱藏
+			MathSheets.Common.ready('btnTheirPapers', 'btnReady', 'btnPrint');
+			// 設定頁面所有輸入域為可用狀態（四則運算）
+			MathSheets.TimeCalculation.ready();
+
+			// 計時開始
+			MathSheets.Common.startTime('spanSS', 'spanMM', 'spanHH');
+		}
+
+		// 完成(關閉頁面)
+		function btnOverClick() {
+			MathSheets.Common.windowClose();
+		}
+
+		// 訂正按鈕(不計入答題情況信息)
+		function btnMakeCorrectionsClick() {
+			var fault = 0;
+			// 四則運算題
+			fault += MathSheets.TimeCalculation.makeCorrections();
+
+			// 訂正按鈕處理
+			MathSheets.Common.makeCorrections(fault, 'btnMakeCorrections', 'btnOver');
+		}
+
+		// 交卷按鈕(記錄在答題情況下,以便可以看到前一次做題情況)
+		function btnTheirPapersClick() {
+			// 四則運算交卷
+			MathSheets.TimeCalculation.theirPapers();
+
+			// 交卷按鈕處理
+			MathSheets.Common.theirPapers('spanOK', 'spanNo', 'btnMakeCorrections', 'btnOver', 'btnTheirPapers');
+			// 計時停止（答題結果設定）
+			MathSheets.Common.timeStop('spanSS', 'spanMM', 'spanHH');
+		}
+    </script>
+</head>
+<body class="body-main">
+    <!-- 主題選擇區 -->
+    <div class="box">
+        <div class="box-content">
+            <a href="#" class="close close-ext" id="close">&times;</a>
+            <ul class="switcher">
+                <li style="background-color: lemonchiffon;" id="default"></li>
+                <li style="background-color: burlywood;" id="burlywood"></li>
+                <li style="background-color: coral;" id="coral"></li>
+                <li style="background-color: cornflowerblue;" id="cornflowerblue"></li>
+                <li style="background-color: #C7EDCC;" id="eyeshieldgreen"></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 設置按鈕 -->
+    <div class="navbar navbar-fixed-top navbar-ext">
+        <img src="../Content/image/triangle.png" class="imgNavbar" />
+    </div>
+    <!-- 右側題型導航菜單 -->
+    <div class="bs-docs-sidebar" id="divSidebar">
+        <ul class="nav nav-ext"></ul>
+    </div>
+    <!-- 獎牌擺放區 -->
+    <div class="honorArea">
+        <img src="" class="imgAward" />
+    </div>
+    <!-- 輔助滾動-向上 -->
+    <div class="scrollHelper-up">
+        <div class="help">
+            <img id="imgUp" src="../Content/image/navigate-up.png" class="imgHelper-up" />
+        </div>
+    </div>
+    <!-- 輔助滾動-向下 -->
+    <div class="scrollHelper-down">
+        <div class="help">
+            <img id="imgDown" src="../Content/image/navigate-down.png" class="imgHelper-down" />
+        </div>
+    </div>
+    <!-- 正文 -->
+    <div class="container theme-showcase main-ext" role="main" id="divContainer">
+        <!-- 標題歡迎畫面 -->
+        <div class="jumbotron-ext">
+            <div style="margin-bottom: 50px;"><span class="label label-default label-title">歡迎，數學運算</span></div>
+            <div class="div-famousPeople">
+                <h6>
+                    <span class="text-info-ext">普羅克拉斯：哪裡有數，哪裡就有美。</span>
+                    <br />
+                    <span class="text-info-ext">羅素：數學，如果正常的看它，不但擁有真理，而且也具有至高的美，正如雕塑的美，是一種冷而嚴肅的美。"</span>
+                    <br />
+                    <span class="text-info-ext">華羅庚：數學是壯麗多彩、千姿百態、引人入勝的，認為數學枯燥乏味的人，只是看到了數學的嚴謹性，而沒有體會出數學的內在美。"</span>
+                </h6>
+            </div>
+            <hr class="hr-Ext" />
+            <div class="text-info-ext">
+                前一次做題用時:<span id="spanOld" style="padding-left:10px;">00：00：00</span>
+                <span style="padding-left:20px;">答對:</span><span id="spanOldOK" style="padding-left:10px;"></span>題
+                <span style="padding-left:20px;">答錯:</span><span id="spanOldNo" style="padding-left:10px;"></span>題
+            </div>
+            <div class="plugin-butterfly">
+                <iframe frameborder="0" scrolling="no" src="../Plugin/butterfly.html" width="320" height="250"></iframe>
+            </div>
+        </div>
+        <!-- 題型區 -->
+        <div id="divPrintContent">
+            <br /><div class="page-header"><h4 id="mathSheetTimeCalculation"><img src="../Content/image/homework.png" width="30" height="30" /><span style="padding: 8px">時間運算</span></h4></div><hr />
+            <div class="row text-center row-margin-top">
+                <div class="col-md-12 form-inline">
+                    <h5>
+                        <span class="span-tc-lightoff"></span>
+                        <span class="label">09:15:00</span>
+                        <span class="label">在1小時15分鐘之後是</span>
+                        <input id="inputTc000" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                        <span class="label">:</span>
+                        <input id="inputTc001" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                        <span class="label">:</span>
+                        <input id="inputTc002" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                        <input id="hiddenTc00" type="hidden" value="10:30:00" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKTimeCalculation0" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoTimeCalculation0" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-12 form-inline">
+                    <h5>
+                        <span class="span-tc-lightoff"></span>
+                        <input id="inputTc010" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                        <span class="label">:</span>
+                        <input id="inputTc011" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                        <span class="label">:</span>
+                        <input id="inputTc012" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                        <span class="label">在0小時45分鐘之前是</span>
+                        <span class="label">19:25:00</span>
+                        <input id="hiddenTc01" type="hidden" value="20:10:00" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKTimeCalculation1" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoTimeCalculation1" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center row-margin-top">
+                <div class="col-md-12 form-inline">
+                    <h5>
+                        <span class="span-tc-lightoff"></span>
+                        <span class="label">09:15:00</span>
+                        <span class="label">在</span>
+                        <input id="inputTc020" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                        <span class="label">小時</span>
+                        <input id="inputTc021" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                        <span class="label">分鐘</span>
+                        <input id="inputTc022" type="text" placeholder=" ?? " class="form-control input-addBorder" disabled="disabled" onkeyup="if(!/^\d+$/.test(this.value)) this.value='';" />
+                        <span class="label">秒之後是</span>
+                        <span class="label">10:30:00</span>
+                        <input id="hiddenTc00" type="hidden" value="10:30:00" />
+                    </h5>
+                    <div class="divCorrectOrFault-1">
+                        <img id="imgOKTimeCalculation2" src="../Content/image/correct.png" class="imgCorrect-1" />
+                        <img id="imgNoTimeCalculation2" src="../Content/image/fault.png" class="imgFault-1" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <HR>
+        <!-- 按鍵操作區 -->
+        <div class="row">
+            <div class="col-md-12 col-md-offset-3">
+                <p class="text-center">
+                    <button id="btnReady" type="button" class="btn btn-lg btn-success">準備</button>
+                    <button id="btnTheirPapers" type="button" class="btn btn-lg btn-success" style="display:none;">交卷</button>
+                    <button id="btnMakeCorrections" type="button" class="btn btn-lg btn-warning" style="display:none;">訂正</button>
+                    <button id="btnOver" type="button" class="btn btn-lg btn-info" style="display:none;">完成</button>
+                    <button id="btnPrint" type="button" class="btn btn-lg btn-info">打印</button>
+                </p>
+            </div>
+        </div>
+        <!-- 答題評分區 -->
+        <div class="page-header">
+            <div class="row text-left">
+                <div class="col-md-2">
+                    <h5>答題情況</h5>
+                </div>
+                <div class="col-md-9">
+                    <div class="rating-stars block" id="more-rating" style="display: none;">
+                        <input type="hidden" id="hidPracticeScore" value="0" class="rating-value" />
+                        <div class="rating-stars-container">
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                            <div class="rating-star shake shake-slow">
+                                <i class="fa fa-star"> </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 答題統計 -->
+        <div class="row text-left">
+            <div class="col-md-12">
+                <h7>
+                    用時:<span id="spanHH" style="padding-left:10px;">00</span>：<span id="spanMM">00</span>：<span id="spanSS">00</span>
+                    <br />答對:<span id="spanOK" style="width: 30px; display:inline; padding-left:20px;"></span>題
+                    <br />答錯:<span id="spanNo" style="width: 30px; display:inline; padding-left:20px;"></span>題
+                </h7>
+            </div>
+        </div>
+    </div>
+    <!-- 網頁版權 -->
+    <div class="div-company">
+        &copy; MyMathSheets.HOME 2018
+    </div>
+    <!-- 置頂按鍵 -->
+    <a href="javascript:" class="totop"></a>
+</body>
+</html>
