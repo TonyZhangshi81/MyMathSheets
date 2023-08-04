@@ -13,10 +13,10 @@
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="线程组" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
-          <stringProp name="LoopController.loops">1</stringProp>
+          <stringProp name="LoopController.loops">2</stringProp>
           <boolProp name="LoopController.continue_forever">false</boolProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.num_threads">2</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <boolProp name="ThreadGroup.delayedStart">false</boolProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
@@ -172,7 +172,7 @@
           <collectionProp name="Arguments.arguments">
             <elementProp name="htmlpages" elementType="Argument">
               <stringProp name="Argument.name">htmlpages</stringProp>
-              <stringProp name="Argument.value">E:\\localshare\\share\\MyProjects\\source\\repos\\MyMathSheets\\MathSheetsSettingWeb\\AppData\\Work\\Page</stringProp>
+              <stringProp name="Argument.value">E:\\localshare\\share\\MyProjects\\source\\repos\\MyMathSheets\\MathSheets.Presentation\\MathSheets\\AppData\\Work\\Page</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
           </collectionProp>
@@ -191,7 +191,7 @@ if (file == null || !file.exists()){
 File[] files = file.listFiles();
 for (File f: files){
 	String name = f.getName();
-	System.out.println(name);
+	System.out.println(name + &quot; Have been deleted &quot;);
 	f.delete();
 }</stringProp>
           <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
