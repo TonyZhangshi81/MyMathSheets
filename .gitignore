@@ -331,31 +331,34 @@ ASALocalRun/
 
 
 # MyProject ignore settings
-/TheFormulaShows/Template/*.html
-/TheFormulaShows/Content/image/*/
-/TheFormulaShows/Content/css/*.css
+/MathSheets.Business/TheFormulaShows/Template/*.html
+/MathSheets.Business/TheFormulaShows/Content/image/*/
+/MathSheets.Business/TheFormulaShows/Content/css/*.css
 
-/TheFormulaShows/Scripts/Ext/
-!/TheFormulaShows/Scripts/Ext/MathSheets.Common.js
-!/TheFormulaShows/Scripts/Ext/MathSheets.HelloMrTony.js
-!/TheFormulaShows/Scripts/Ext/MathSheets.System.js
+/MathSheets.Business/TheFormulaShows/Scripts/Ext/
+!/MathSheets.Business/TheFormulaShows/Scripts/Ext/MathSheets.Common.js
+!/MathSheets.Business/TheFormulaShows/Scripts/Ext/MathSheets.HelloMrTony.js
+!/MathSheets.Business/TheFormulaShows/Scripts/Ext/MathSheets.System.js
 
-/TestConsoleApp/Config/*.*
-!/TestConsoleApp/Config/ConsoleFormulas.xml
+/MathSheets.Presentation/TestConsoleApp/Config/*.*
+!/MathSheets.Presentation/TestConsoleApp/Config/ConsoleFormulas.xml
 
-/MathSheetsSettingApp/Config/
-!/MathSheetsSettingApp/Config/TopicManagement.json
+/MathSheets.Application/MathSheetsApp/Config/
+!/MathSheets.Application/MathSheetsApp/Config/TopicManagement.json
 
-/MathSheetsSettingWeb/AppData/Work/Content/
-/MathSheetsSettingWeb/AppData/Work/Games/
-/MathSheetsSettingWeb/AppData/Work/Plugin/
-/MathSheetsSettingWeb/AppData/Work/Page/
-/MathSheetsSettingWeb/AppData/Work/Scripts/
-/MathSheetsSettingWeb/Config/
-!/MathSheetsSettingWeb/Config/TopicManagement.json
+/MathSheets.Presentation/MathSheets/AppData/Work/Content/
+/MathSheets.Presentation/MathSheets/AppData/Work/Games/
+/MathSheets.Presentation/MathSheets/AppData/Work/Plugin/
+/MathSheets.Presentation/MathSheets/AppData/Work/Page/
+/MathSheets.Presentation/MathSheets/AppData/Work/Scripts/
+/MathSheets.Presentation/MathSheets/Config/
+!/MathSheets.Presentation/MathSheets/Config/TopicManagement.json
 
-/MathSheetsSettingWebApi/Config/
-!/MathSheetsSettingWebApi/Config/TopicManagement.json
+/MathSheets.Application/MathSheetsService/Config/
+!/MathSheets.Application/MathSheetsService/Config/TopicManagement.json
+
+/MathSheets.Presentation/TestConsoleApp/Config/*
+!/MathSheets.Presentation/TestConsoleApp/Config/.gitkeep
 
 /Lib/*
 !/Lib/.gitkeep

@@ -10,314 +10,330 @@ using System.Text;
 
 namespace MyMathSheets.TheFormulaShows.EqualityLinkage.Support
 {
-	/// <summary>
-	/// 題型模板支援類
-	/// </summary>
-	[HtmlSupport("EqualityLinkage")]
-	[Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/css/EqualityLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
-	[Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.EqualityLinkage.js\" charset=\"utf-8\"></script>")]
-	[Substitute(SubstituteType.ReadyEvent, "MathSheets.EqualityLinkage.ready();")]
-	[Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.EqualityLinkage.makeCorrections();")]
-	[Substitute(SubstituteType.TheirPapersEvent, "MathSheets.EqualityLinkage.theirPapers();")]
-	[Substitute(SubstituteType.PrintSettingEvent, "MathSheets.EqualityLinkage.printSetting();")]
-	[Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.EqualityLinkage.printAfterSetting();")]
-	public class EqualityLinkageHtmlSupport : HtmlSupportBase<EqualityLinkageParameter>
-	{
-		/// <summary>
-		/// 標題HTML模板
-		/// </summary>
-		private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
+    /// <summary>
+    /// 題型模板支援類
+    /// </summary>
+    [HtmlSupport("EqualityLinkage")]
+    [Substitute(SubstituteType.Stylesheet, "<link href=\"../Content/css/EqualityLinkage.css\" rel=\"stylesheet\" type=\"text/css\" />")]
+    [Substitute(SubstituteType.Script, "<script src=\"../Scripts/Ext/MathSheets.EqualityLinkage.js\" charset=\"utf-8\"></script>")]
+    [Substitute(SubstituteType.ReadyEvent, "MathSheets.EqualityLinkage.ready();")]
+    [Substitute(SubstituteType.MakeCorrectionsEvent, "fault += MathSheets.EqualityLinkage.makeCorrections();")]
+    [Substitute(SubstituteType.TheirPapersEvent, "MathSheets.EqualityLinkage.theirPapers();")]
+    [Substitute(SubstituteType.PrintSettingEvent, "MathSheets.EqualityLinkage.printSetting();")]
+    [Substitute(SubstituteType.PrintAfterSettingEvent, "MathSheets.EqualityLinkage.printAfterSetting();")]
+    public class EqualityLinkageHtmlSupport : HtmlSupportBase<EqualityLinkageParameter>
+    {
+        /// <summary>
+        /// 標題HTML模板
+        /// </summary>
+        private const string PAGE_HEADER_HTML_FORMAT = "<br/><div class=\"page-header\"><h4 id=\"mathSheet{0}\"><img src=\"../Content/image/homework.png\" width=\"30\" height=\"30\" /><span class=\"span-strategy-name\">{1}</span></h4></div><hr class=\"hr-Ext\" />";
 
-		/// <summary>
-		/// 左側計算式坐標列表（限定5個坐標）
-		/// </summary>
-		private readonly Dictionary<DivQueueType, List<string>> LeftFormulasArray;
+        /// <summary>
+        /// 左側計算式坐標列表（限定5個坐標）
+        /// </summary>
+        private readonly Dictionary<DivQueueType, List<string>> _leftFormulasArray;
 
-		/// <summary>
-		/// 右側計算式坐標列表（限定5個坐標）
-		/// </summary>
-		private readonly Dictionary<DivQueueType, List<string>> RightFormulasArray;
+        /// <summary>
+        /// 右側計算式坐標列表（限定5個坐標）
+        /// </summary>
+        private readonly Dictionary<DivQueueType, List<string>> _rightFormulasArray;
 
-		/// <summary>
-		/// 構造體
-		/// </summary>
-		[ImportingConstructor]
-		public EqualityLinkageHtmlSupport()
-		{
-			LeftFormulasArray = new Dictionary<DivQueueType, List<string>>
-			{
-				// 左側計算式坐標列表(縱向連線)
-				[DivQueueType.Lengthways] = new List<string>()
-				{
-					"left: 30px; top:10px;",
-					"left: 30px; top:70px;",
-					"left: 30px; top:130px;",
-					"left: 30px; top:190px;",
-					"left: 30px; top:250px;"
-				},
-				// 上位計算式坐標列表(橫向連線)
-				[DivQueueType.Crosswise] = new List<string>()
-				{
-					"left: 30px; top:10px;",
-					"left: 160px; top:10px;",
-					"left: 290px; top:10px;",
-					"left: 420px; top:10px;",
-					"left: 550px; top:10px;"
-				}
-			};
+        /// <summary>
+        /// 答案列表
+        /// </summary>
+        private readonly StringBuilder _answerString;
 
-			RightFormulasArray = new Dictionary<DivQueueType, List<string>>
-			{
-				// 右側計算式坐標列表(縱向連線)
-				[DivQueueType.Lengthways] = new List<string>()
-				{
-					"left: 250px; top:10px;",
-					"left: 250px; top:70px;",
-					"left: 250px; top:130px;",
-					"left: 250px; top:190px;",
-					"left: 250px; top:250px;"
-				},
-				// 下位計算式坐標列表(橫向連線)
-				[DivQueueType.Crosswise] = new List<string>()
-				{
-					"left: 30px; top:150px;",
-					"left: 160px; top:150px;",
-					"left: 290px; top:150px;",
-					"left: 420px; top:150px;",
-					"left: 550px; top:150px;"
-				}
-			};
+        /// <summary>
+        /// 初期化參數
+        /// </summary>
+        private readonly StringBuilder _hidInitSettings;
 
-			_answerString = new StringBuilder();
-			_hidInitSettings = new StringBuilder();
-		}
+        /// <summary>
+        /// 構造體
+        /// </summary>
+        [ImportingConstructor]
+        public EqualityLinkageHtmlSupport()
+        {
+            _leftFormulasArray = new Dictionary<DivQueueType, List<string>>
+            {
+                // 左側計算式坐標列表(縱向連線)
+                [DivQueueType.Lengthways] = new List<string>()
+                {
+                    "left: 30px; top:10px;",
+                    "left: 30px; top:70px;",
+                    "left: 30px; top:130px;",
+                    "left: 30px; top:190px;",
+                    "left: 30px; top:250px;"
+                },
+                // 上位計算式坐標列表(橫向連線)
+                [DivQueueType.Crosswise] = new List<string>()
+                {
+                    "left: 30px; top:10px;",
+                    "left: 160px; top:10px;",
+                    "left: 290px; top:10px;",
+                    "left: 420px; top:10px;",
+                    "left: 550px; top:10px;"
+                }
+            };
 
-		/// <summary>
-		/// 題型HTML上下文作成並返回
-		/// </summary>
-		/// <param name="p">題型參數</param>
-		/// <returns>題型HTML上下文內容</returns>
-		public override string MakeHtmlContent(EqualityLinkageParameter p)
-		{
-			if (p.Formulas.LeftFormulas.Count == 0)
-			{
-				return string.Empty;
-			}
+            _rightFormulasArray = new Dictionary<DivQueueType, List<string>>
+            {
+                // 右側計算式坐標列表(縱向連線)
+                [DivQueueType.Lengthways] = new List<string>()
+                {
+                    "left: 250px; top:10px;",
+                    "left: 250px; top:70px;",
+                    "left: 250px; top:130px;",
+                    "left: 250px; top:190px;",
+                    "left: 250px; top:250px;"
+                },
+                // 下位計算式坐標列表(橫向連線)
+                [DivQueueType.Crosswise] = new List<string>()
+                {
+                    "left: 30px; top:150px;",
+                    "left: 160px; top:150px;",
+                    "left: 290px; top:150px;",
+                    "left: 420px; top:150px;",
+                    "left: 550px; top:150px;"
+                }
+            };
 
-			StringBuilder html = new StringBuilder();
+            _answerString = new StringBuilder();
+            _hidInitSettings = new StringBuilder();
+        }
 
-			html.AppendLine(string.Format("<div class=\"row text-center row-margin-top {0}\">", p.QueueType == DivQueueType.Lengthways ? "drawLine-panel-lengthways" : "drawLine-panel-crosswise"));
-			html.Append(GetSvgHtml(p));
-			html.Append(GetLeftFormulasHtml(p));
-			html.Append(GetRightFormulasHtml(p));
-			html.Append(GetInitSettingsHtml(p));
-			html.AppendLine("</div>");
-			html.AppendLine(string.Format("<div class=\"{0}\">", p.QueueType == DivQueueType.Lengthways ? "divCorrectOrFault-lengthways" : "divCorrectOrFault-crosswise"));
-			html.AppendLine(string.Format("<img id=\"imgOKEqualityLinkage\" src=\"../Content/image/correct.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "OKEqualityLinkage-lengthways" : "OKEqualityLinkage-crosswise"));
-			html.AppendLine(string.Format("<img id=\"imgNoEqualityLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "NoEqualityLinkage-lengthways" : "NoEqualityLinkage-crosswise"));
-			html.AppendLine("</div>");
+        /// <summary>
+        /// 題型HTML模板作成之前的操作准备
+        /// </summary>
+        /// <param name="p"></param>
+        protected override void PreMakeHtmlContent(EqualityLinkageParameter p)
+        {
+            if (_answerString != null)
+            {
+                _answerString.Length = 0;
+            }
+            if (_hidInitSettings != null)
+            {
+                _hidInitSettings.Length = 0;
+            }
+        }
 
-			html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "EqualityLinkage", "算式連一連"));
+        /// <summary>
+        /// 題型HTML上下文作成並返回
+        /// </summary>
+        /// <param name="p">題型參數</param>
+        /// <returns>題型HTML上下文內容</returns>
+        public override string MakeHtmlContent(EqualityLinkageParameter p)
+        {
+            if (p.Formulas.LeftFormulas.Count == 0)
+            {
+                return string.Empty;
+            }
 
-			return html.ToString();
-		}
+            StringBuilder html = new StringBuilder();
 
-		/// <summary>
-		/// 線型HTML模板
-		/// </summary>
-		private const string LINE_HTML_FORMAT = "<line id=\"line{0}\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"0\" stroke=\"#ff006e\" stroke-width=\"1\" />";
+            html.AppendLine(string.Format("<div class=\"row text-center row-margin-top {0}\">", p.QueueType == DivQueueType.Lengthways ? "drawLine-panel-lengthways" : "drawLine-panel-crosswise"));
+            html.Append(GetSvgHtml(p));
+            html.Append(GetLeftFormulasHtml(p));
+            html.Append(GetRightFormulasHtml(p));
+            html.Append(GetInitSettingsHtml(p));
+            html.AppendLine("</div>");
+            html.AppendLine(string.Format("<div class=\"{0}\">", p.QueueType == DivQueueType.Lengthways ? "divCorrectOrFault-lengthways" : "divCorrectOrFault-crosswise"));
+            html.AppendLine(string.Format("<img id=\"imgOKEqualityLinkage\" src=\"../Content/image/correct.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "OKEqualityLinkage-lengthways" : "OKEqualityLinkage-crosswise"));
+            html.AppendLine(string.Format("<img id=\"imgNoEqualityLinkage\" src=\"../Content/image/fault.png\" class=\"{0}\" style=\"display: none; \" />", p.QueueType == DivQueueType.Lengthways ? "NoEqualityLinkage-lengthways" : "NoEqualityLinkage-crosswise"));
+            html.AppendLine("</div>");
 
-		/// <summary>
-		/// 起始點（結束點）DIV的HTML模板
-		/// </summary>
-		private const string DIVDRAWLINE_HTML_FORMAT = "<div class=\"divDrawLine\" style=\"{0}\" id=\"div{1}{2}\">{3}</div>";
+            html.Insert(0, string.Format(PAGE_HEADER_HTML_FORMAT, "EqualityLinkage", "算式連一連"));
 
-		/// <summary>
-		/// 算式HTML模板
-		/// </summary>
-		private const string FORMULA_HTML_FORMAT = "<span class=\"label\">{0} {1} {2}</span>";
+            return html.ToString();
+        }
 
-		/// <summary>
-		/// 算式圖標HTML
-		/// </summary>
-		private const string IMAGE_FORMULA_HTML = "<img src=\"../Content/image/project/Calculator.png\" width=\"16\" height=\"16\" />";
+        /// <summary>
+        /// 線型HTML模板
+        /// </summary>
+        private const string LINE_HTML_FORMAT = "<line id=\"line{0}\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"0\" stroke=\"#ff006e\" stroke-width=\"1\" />";
 
-		/// <summary>
-		/// 選擇控件HTML模板
-		/// </summary>
-		private const string CHECKBOX_HTML_FORMAT = "<input type=\"checkbox\" id=\"chkdiv{0}{1}\" style=\"display: none;\" />";
+        /// <summary>
+        /// 起始點（結束點）DIV的HTML模板
+        /// </summary>
+        private const string DIVDRAWLINE_HTML_FORMAT = "<div class=\"divDrawLine\" style=\"{0}\" id=\"div{1}{2}\">{3}</div>";
 
-		/// <summary>
-		/// 起始點（結束點）DIV的線型名稱模板
-		/// </summary>
-		private const string DIV_LINE_HTML_FORMAT = "<input type=\"hidden\" value=\"line{0}\" />";
+        /// <summary>
+        /// 算式HTML模板
+        /// </summary>
+        private const string FORMULA_HTML_FORMAT = "<span class=\"label\">{0} {1} {2}</span>";
 
-		/// <summary>
-		/// 初期化參數HTML模板
-		/// </summary>
-		private const string INIT_SETTINGS_HTML_FORMAT = "<input type = \"hidden\" id=\"hidInitSettings\" value=\"{0}\" />";
+        /// <summary>
+        /// 算式圖標HTML
+        /// </summary>
+        private const string IMAGE_FORMULA_HTML = "<img src=\"../Content/image/project/Calculator.png\" width=\"16\" height=\"16\" />";
 
-		/// <summary>
-		/// 題型答案HTML模板
-		/// </summary>
-		private const string ANSWER_HTML_FORMAT = "<input type = \"hidden\" value=\"{0}\" id=\"hidElAnswer\" />";
+        /// <summary>
+        /// 選擇控件HTML模板
+        /// </summary>
+        private const string CHECKBOX_HTML_FORMAT = "<input type=\"checkbox\" id=\"chkdiv{0}{1}\" style=\"display: none;\" />";
 
-		/// <summary>
-		/// 右側計算式HTML作成
-		/// </summary>
-		/// <param name="p">題型參數</param>
-		/// <returns>右側計算式HTML</returns>
-		private string GetRightFormulasHtml(EqualityLinkageParameter p)
-		{
-			int controlIndex = 0;
-			StringBuilder html = new StringBuilder();
-			StringBuilder content = new StringBuilder();
+        /// <summary>
+        /// 起始點（結束點）DIV的線型名稱模板
+        /// </summary>
+        private const string DIV_LINE_HTML_FORMAT = "<input type=\"hidden\" value=\"line{0}\" />";
 
-			p.Formulas.Sort.ToList().ForEach(i =>
-			{
-				content.Length = 0;
+        /// <summary>
+        /// 初期化參數HTML模板
+        /// </summary>
+        private const string INIT_SETTINGS_HTML_FORMAT = "<input type = \"hidden\" id=\"hidInitSettings\" value=\"{0}\" />";
 
-				Formula formula = p.Formulas.RightFormulas[i];
+        /// <summary>
+        /// 題型答案HTML模板
+        /// </summary>
+        private const string ANSWER_HTML_FORMAT = "<input type = \"hidden\" value=\"{0}\" id=\"hidElAnswer\" />";
 
-				// 開始
-				content.AppendLine("<h5>");
-				// 算式HTML模板
-				content.AppendLine(string.Format(FORMULA_HTML_FORMAT, formula.LeftParameter, formula.Sign.ToOperationUnicode(), formula.RightParameter));
-				// 閉合
-				content.AppendLine("</h5>");
+        /// <summary>
+        /// 右側計算式HTML作成
+        /// </summary>
+        /// <param name="p">題型參數</param>
+        /// <returns>右側計算式HTML</returns>
+        private string GetRightFormulasHtml(EqualityLinkageParameter p)
+        {
+            int controlIndex = 0;
+            StringBuilder html = new StringBuilder();
+            StringBuilder content = new StringBuilder();
 
-				// 選擇控件HTML模板
-				content.AppendLine(string.Format(CHECKBOX_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0'), "E"));
-				// 起始點（結束點）DIV的線型名稱模板
-				content.AppendLine(string.Format(DIV_LINE_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0')));
-				// 起始點（結束點）DIV的HTML模板
-				html.AppendLine(string.Format(DIVDRAWLINE_HTML_FORMAT, RightFormulasArray[p.QueueType][controlIndex], controlIndex.ToString().PadLeft(2, '0'), "E", content.ToString()));
+            p.Formulas.Sort.ToList().ForEach(i =>
+            {
+                content.Length = 0;
 
-				controlIndex++;
-			});
+                Formula formula = p.Formulas.RightFormulas[i];
 
-			return html.ToString();
-		}
+                // 開始
+                content.AppendLine("<h5>");
+                // 算式HTML模板
+                content.AppendLine(string.Format(FORMULA_HTML_FORMAT, formula.LeftParameter, formula.Sign.ToOperationUnicode(), formula.RightParameter));
+                // 閉合
+                content.AppendLine("</h5>");
 
-		/// <summary>
-		/// 答案列表
-		/// </summary>
-		private readonly StringBuilder _answerString;
+                // 選擇控件HTML模板
+                content.AppendLine(string.Format(CHECKBOX_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0'), "E"));
+                // 起始點（結束點）DIV的線型名稱模板
+                content.AppendLine(string.Format(DIV_LINE_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0')));
+                // 起始點（結束點）DIV的HTML模板
+                html.AppendLine(string.Format(DIVDRAWLINE_HTML_FORMAT, _rightFormulasArray[p.QueueType][controlIndex], controlIndex.ToString().PadLeft(2, '0'), "E", content.ToString()));
 
-		/// <summary>
-		/// 初期化參數
-		/// </summary>
-		private readonly StringBuilder _hidInitSettings;
+                controlIndex++;
+            });
 
-		/// <summary>
-		/// 初期化參數HTML作成
-		/// </summary>
-		/// <param name="p">題型參數</param>
-		/// <returns>初期化參數HTML</returns>
-		private string GetInitSettingsHtml(EqualityLinkageParameter p)
-		{
-			StringBuilder html = new StringBuilder();
+            return html.ToString();
+        }
 
-			if (p.QueueType == DivQueueType.Lengthways)
-			{
-				int divLastLastIndex = p.Formulas.RightFormulas.Count - 1;
-				_hidInitSettings.AppendFormat("#div00S,#div00E,#div{0}E,{1},#svg01", divLastLastIndex.ToString().PadLeft(2, '0'), (int)p.QueueType);
-			}
-			else
-			{
-				int divLastIndex = p.Formulas.LeftFormulas.Count - 1;
-				_hidInitSettings.AppendFormat("#div00S,#div{0}S,#div00E,{1},#svg01", divLastIndex.ToString().PadLeft(2, '0'), (int)p.QueueType);
-			}
+        /// <summary>
+        /// 初期化參數HTML作成
+        /// </summary>
+        /// <param name="p">題型參數</param>
+        /// <returns>初期化參數HTML</returns>
+        private string GetInitSettingsHtml(EqualityLinkageParameter p)
+        {
+            StringBuilder html = new StringBuilder();
 
-			html.AppendLine("<input type=\"hidden\" id=\"hidSelectedS\" />");
-			html.AppendLine("<input type=\"hidden\" id=\"hidSelectedE\" />");
-			html.AppendLine(string.Format(INIT_SETTINGS_HTML_FORMAT, _hidInitSettings.ToString()));
-			html.AppendLine(string.Format(ANSWER_HTML_FORMAT, _answerString.ToString()));
+            if (p.QueueType == DivQueueType.Lengthways)
+            {
+                int divLastLastIndex = p.Formulas.RightFormulas.Count - 1;
+                _hidInitSettings.AppendFormat("#div00S,#div00E,#div{0}E,{1},#svg01", divLastLastIndex.ToString().PadLeft(2, '0'), (int)p.QueueType);
+            }
+            else
+            {
+                int divLastIndex = p.Formulas.LeftFormulas.Count - 1;
+                _hidInitSettings.AppendFormat("#div00S,#div{0}S,#div00E,{1},#svg01", divLastIndex.ToString().PadLeft(2, '0'), (int)p.QueueType);
+            }
 
-			return html.ToString();
-		}
+            html.AppendLine("<input type=\"hidden\" id=\"hidSelectedS\" />");
+            html.AppendLine("<input type=\"hidden\" id=\"hidSelectedE\" />");
+            html.AppendLine(string.Format(INIT_SETTINGS_HTML_FORMAT, _hidInitSettings.ToString()));
+            html.AppendLine(string.Format(ANSWER_HTML_FORMAT, _answerString.ToString()));
 
-		/// <summary>
-		/// 左側計算式HTML作成
-		/// </summary>
-		/// <param name="p">題型參數</param>
-		/// <returns>左側計算式HTML</returns>
-		private string GetLeftFormulasHtml(EqualityLinkageParameter p)
-		{
-			int controlIndex = 0;
-			StringBuilder html = new StringBuilder();
-			StringBuilder content = new StringBuilder();
+            return html.ToString();
+        }
 
-			p.Formulas.LeftFormulas.ToList().ForEach(d =>
-			{
-				content.Length = 0;
+        /// <summary>
+        /// 左側計算式HTML作成
+        /// </summary>
+        /// <param name="p">題型參數</param>
+        /// <returns>左側計算式HTML</returns>
+        private string GetLeftFormulasHtml(EqualityLinkageParameter p)
+        {
+            int controlIndex = 0;
+            StringBuilder html = new StringBuilder();
+            StringBuilder content = new StringBuilder();
 
-				// 開始
-				content.AppendLine("<h5>");
-				// 算式圖標
-				content.AppendLine(IMAGE_FORMULA_HTML);
-				// 算式HTML模板
-				content.AppendLine(string.Format(FORMULA_HTML_FORMAT, d.LeftParameter, d.Sign.ToOperationUnicode(), d.RightParameter));
-				// 閉合
-				content.AppendLine("</h5>");
+            p.Formulas.LeftFormulas.ToList().ForEach(d =>
+            {
+                content.Length = 0;
 
-				// 選擇控件HTML模板
-				content.AppendLine(string.Format(CHECKBOX_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0'), "S"));
-				// 起始點（結束點）DIV的線型名稱模板
-				content.AppendLine(string.Format(DIV_LINE_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0')));
-				// 起始點（結束點）DIV的HTML模板
-				html.AppendLine(string.Format(DIVDRAWLINE_HTML_FORMAT, LeftFormulasArray[p.QueueType][controlIndex], controlIndex.ToString().PadLeft(2, '0'), "S", content.ToString()));
+                // 開始
+                content.AppendLine("<h5>");
+                // 算式圖標
+                content.AppendLine(IMAGE_FORMULA_HTML);
+                // 算式HTML模板
+                content.AppendLine(string.Format(FORMULA_HTML_FORMAT, d.LeftParameter, d.Sign.ToOperationUnicode(), d.RightParameter));
+                // 閉合
+                content.AppendLine("</h5>");
 
-				int seat = p.Formulas.Seats[controlIndex];
-				_answerString.AppendFormat("div{0}S#div{1}E;", controlIndex.ToString().PadLeft(2, '0'), seat.ToString().PadLeft(2, '0'));
+                // 選擇控件HTML模板
+                content.AppendLine(string.Format(CHECKBOX_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0'), "S"));
+                // 起始點（結束點）DIV的線型名稱模板
+                content.AppendLine(string.Format(DIV_LINE_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0')));
+                // 起始點（結束點）DIV的HTML模板
+                html.AppendLine(string.Format(DIVDRAWLINE_HTML_FORMAT, _leftFormulasArray[p.QueueType][controlIndex], controlIndex.ToString().PadLeft(2, '0'), "S", content.ToString()));
 
-				controlIndex++;
-			});
+                int seat = p.Formulas.Seats[controlIndex];
+                _answerString.AppendFormat("div{0}S#div{1}E;", controlIndex.ToString().PadLeft(2, '0'), seat.ToString().PadLeft(2, '0'));
 
-			if (_answerString.Length > 0)
-			{
-				_answerString.Length -= 1;
-			}
+                controlIndex++;
+            });
 
-			return html.ToString();
-		}
+            if (_answerString.Length > 0)
+            {
+                _answerString.Length -= 1;
+            }
 
-		/// <summary>
-		/// 線型HTML作成
-		/// </summary>
-		/// <param name="p">題型參數</param>
-		/// <returns>線型HTML</returns>
-		private string GetSvgHtml(EqualityLinkageParameter p)
-		{
-			int controlIndex = 0;
-			StringBuilder html = new StringBuilder();
+            return html.ToString();
+        }
 
-			html.AppendLine("<svg id=\"svg01\" style=\"left: 0px; top: 0px;\" width=\"0\" height=\"0\">");
-			// 線型HTML
-			p.Formulas.LeftFormulas.ToList().ForEach(d =>
-			{
-				html.AppendLine(string.Format(LINE_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0')));
-				controlIndex++;
-			});
-			// 封閉
-			html.AppendLine("</svg>");
+        /// <summary>
+        /// 線型HTML作成
+        /// </summary>
+        /// <param name="p">題型參數</param>
+        /// <returns>線型HTML</returns>
+        private string GetSvgHtml(EqualityLinkageParameter p)
+        {
+            int controlIndex = 0;
+            StringBuilder html = new StringBuilder();
 
-			return html.ToString();
-		}
+            html.AppendLine("<svg id=\"svg01\" style=\"left: 0px; top: 0px;\" width=\"0\" height=\"0\">");
+            // 線型HTML
+            p.Formulas.LeftFormulas.ToList().ForEach(d =>
+            {
+                html.AppendLine(string.Format(LINE_HTML_FORMAT, controlIndex.ToString().PadLeft(2, '0')));
+                controlIndex++;
+            });
+            // 封閉
+            html.AppendLine("</svg>");
 
-		/// <summary>
-		/// 資源釋放
-		/// </summary>
-		protected override void DisposeManaged()
-		{
-			if (LeftFormulasArray != null)
-			{
-				LeftFormulasArray.Clear();
-			}
-			if (RightFormulasArray != null)
-			{
-				RightFormulasArray.Clear();
-			}
-		}
-	}
+            return html.ToString();
+        }
+
+        /// <summary>
+        /// 資源釋放
+        /// </summary>
+        protected override void DisposeManaged()
+        {
+            if (_leftFormulasArray != null)
+            {
+                _leftFormulasArray.Clear();
+            }
+            if (_rightFormulasArray != null)
+            {
+                _rightFormulasArray.Clear();
+            }
+        }
+    }
 }
