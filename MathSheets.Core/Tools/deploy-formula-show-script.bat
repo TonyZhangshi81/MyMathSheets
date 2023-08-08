@@ -51,11 +51,11 @@ copy %ProjectDir%Scripts\jquery.dropdown.js %ProjectDir%..\..\MathSheets.Present
 copy %ProjectDir%Scripts\popper.js %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts /Y
 copy %ProjectDir%Scripts\popper.js.map %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts /Y
 
-if not exist %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts\umd md %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts\umd"
+if not exist %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts\umd md %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts\umd
 copy %ProjectDir%Scripts\umd\popper.js %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts\umd /Y
 copy %ProjectDir%Scripts\umd\popper.js.map %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts\umd /Y
 
-if not exist %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts\snap md %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts\snap"
+if not exist %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts\snap md %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts\snap
 copy %ProjectDir%Scripts\snap\snap.svg-min.js %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Scripts\snap /Y
 copy %ProjectDir%Content\bootstrap.min.css %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Content /Y
 copy %ProjectDir%Content\bootstrap.min.css.map %ProjectDir%..\..\MathSheets.Presentation\MathSheets\AppData\Work\Content /Y
