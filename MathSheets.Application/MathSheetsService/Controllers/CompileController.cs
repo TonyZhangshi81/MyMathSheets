@@ -11,6 +11,8 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.ServiceModel.Activation;
 using System.Web.Http;
 
@@ -49,7 +51,7 @@ namespace MyMathSheets.WebApi.Controllers
         /// <returns>接口應答結果</returns>
         [HttpPost]
         [WaitResponse]
-        public IHttpActionResult Do(List<TopicManagementReq> list)
+        public HttpResponseMessage Do(List<TopicManagementReq> list)
         {
             LogUtil.LogDebug(JsonConvert.SerializeObject(list));
 
@@ -64,7 +66,8 @@ namespace MyMathSheets.WebApi.Controllers
                 Url = $"{ConfigurationUtil.GetIISUrl()}{exerciseFile.Name}"
             };
 
-            return Json(result);
+            var response = Request.CreateResponse(HttpStatusCode.OK, result);
+            return response;
         }
 
         /// <summary>
@@ -72,9 +75,10 @@ namespace MyMathSheets.WebApi.Controllers
         /// </summary>
         /// <returns>應答結果</returns>
         [HttpGet]
-        public string Index()
+        public HttpResponseMessage Index()
         {
-            return "Request OK!";
+            var response = Request.CreateResponse(HttpStatusCode.OK, "Request OK!");
+            return response;
         }
     }
 }

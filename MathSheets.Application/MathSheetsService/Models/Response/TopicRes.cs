@@ -5,13 +5,19 @@ namespace MyMathSheets.WebApi.Models.Response
     /// <summary>
     /// 應答對象
     /// </summary>
-    [DataContract(Name = "應答電文")]
+    [DataContract]
     public class TopicRes
     {
         /// <summary>
         /// 頁面訪問地址
         /// </summary>
-        [DataMember(IsRequired = true, Name = "頁面訪問地址")]
+        [DataMember]
         public string Url { get; set; }
+
+        /// <summary>
+        /// 消息
+        /// </summary>
+        [DataMember]
+        public string Message { get; set; }
     }
 }

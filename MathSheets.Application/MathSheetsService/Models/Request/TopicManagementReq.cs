@@ -4,12 +4,12 @@ namespace MyMathSheets.WebApi.Models.Request
 {
     /// <summary>
     /// </summary>
-    [DataContract(Name = "請求電文")]
+    [DataContract]
     public class TopicManagementReq
     {
         /// <summary>
         /// </summary>
-        [DataMember(IsRequired = true, Name = "序列號")]
+        [DataMember(IsRequired = true)]
         public string Id
         {
             get;
@@ -18,7 +18,7 @@ namespace MyMathSheets.WebApi.Models.Request
 
         /// <summary>
         /// </summary>
-        [DataMember(IsRequired = true, Name = "題型號")]
+        [DataMember(IsRequired = true)]
         public string Number
         {
             get;
