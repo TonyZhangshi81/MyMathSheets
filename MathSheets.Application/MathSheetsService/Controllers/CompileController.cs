@@ -11,6 +11,8 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.ServiceModel.Activation;
 using System.Web.Http;
 
@@ -49,9 +51,16 @@ namespace MyMathSheets.WebApi.Controllers
         /// <returns>接口應答結果</returns>
         [HttpPost]
         [WaitResponse]
-        public IHttpActionResult Do(List<TopicManagementReq> list)
+        public HttpResponseMessage Do(List<TopicManagementReq> list)
         {
             LogUtil.LogDebug(JsonConvert.SerializeObject(list));
+
+            // 參數校驗
+            var (IsValid, Messages) = this.CheckModelValid();
+            if (!IsValid)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new TopicRes { Messages = Messages });
+            }
 
             // 題型參數設置
             list.ForEach(d => Process.TopicManagementList.Add(new TopicManagement() { TopicIdentifier = d.Id, Number = d.Number }));
@@ -64,7 +73,30 @@ namespace MyMathSheets.WebApi.Controllers
                 Url = $"{ConfigurationUtil.GetIISUrl()}{exerciseFile.Name}"
             };
 
-            return Json(result);
+            var response = Request.CreateResponse(HttpStatusCode.OK, result);
+            return response;
+        }
+
+
+        /// <summary>
+        /// 參數校驗
+        /// </summary>
+        /// <returns>驗證後的錯誤信息</returns>
+        private (bool IsValid, List<string> Messages) CheckModelValid()
+        {
+            if (!base.ModelState.IsValid)
+            {
+                var messages = new List<string>();
+                foreach (var entry in base.ModelState.Values)
+                {
+                    foreach (var error in entry.Errors)
+                    {
+                        messages.Add(error.ErrorMessage);
+                    }
+                }
+                return (false, messages);
+            }
+            return (true, null);
         }
 
         /// <summary>
@@ -72,9 +104,10 @@ namespace MyMathSheets.WebApi.Controllers
         /// </summary>
         /// <returns>應答結果</returns>
         [HttpGet]
-        public string Index()
+        public HttpResponseMessage Index()
         {
-            return "Request OK!";
+            var response = Request.CreateResponse(HttpStatusCode.OK, "Request OK!");
+            return response;
         }
     }
 }

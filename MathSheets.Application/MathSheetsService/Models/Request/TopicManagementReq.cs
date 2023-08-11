@@ -1,15 +1,17 @@
-﻿using System.Runtime.Serialization;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace MyMathSheets.WebApi.Models.Request
 {
     /// <summary>
     /// </summary>
-    [DataContract(Name = "請求電文")]
+    [DataContract]
     public class TopicManagementReq
     {
         /// <summary>
         /// </summary>
-        [DataMember(IsRequired = true, Name = "序列號")]
+        [DataMember(IsRequired = true)]
+        [Required(ErrorMessage = "題型必須輸入")]
         public string Id
         {
             get;
@@ -18,7 +20,8 @@ namespace MyMathSheets.WebApi.Models.Request
 
         /// <summary>
         /// </summary>
-        [DataMember(IsRequired = true, Name = "題型號")]
+        [DataMember(IsRequired = true)]
+        [Required(ErrorMessage = "題型參數序列必須輸入")]
         public string Number
         {
             get;
