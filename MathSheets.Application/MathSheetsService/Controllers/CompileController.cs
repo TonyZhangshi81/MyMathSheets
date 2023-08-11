@@ -11,8 +11,6 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
-using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel.Activation;
 using System.Web.Http;
 
@@ -54,10 +52,6 @@ namespace MyMathSheets.WebApi.Controllers
         public IHttpActionResult Do(List<TopicManagementReq> list)
         {
             LogUtil.LogDebug(JsonConvert.SerializeObject(list));
-
-            X509Certificate2 cert = Request.GetClientCertificate();
-            string issuer = cert.Issuer;
-            string subject = cert.Subject;
 
             // 題型參數設置
             list.ForEach(d => Process.TopicManagementList.Add(new TopicManagement() { TopicIdentifier = d.Id, Number = d.Number }));
