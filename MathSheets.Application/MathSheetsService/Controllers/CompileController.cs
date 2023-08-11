@@ -55,6 +55,13 @@ namespace MyMathSheets.WebApi.Controllers
         {
             LogUtil.LogDebug(JsonConvert.SerializeObject(list));
 
+            // 參數校驗
+            var (IsValid, Messages) = this.CheckModelValid();
+            if (!IsValid)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new TopicRes { Messages = Messages });
+            }
+
             // 題型參數設置
             list.ForEach(d => Process.TopicManagementList.Add(new TopicManagement() { TopicIdentifier = d.Id, Number = d.Number }));
             // 題型作成
@@ -68,6 +75,28 @@ namespace MyMathSheets.WebApi.Controllers
 
             var response = Request.CreateResponse(HttpStatusCode.OK, result);
             return response;
+        }
+
+
+        /// <summary>
+        /// 參數校驗
+        /// </summary>
+        /// <returns>驗證後的錯誤信息</returns>
+        private (bool IsValid, List<string> Messages) CheckModelValid()
+        {
+            if (!base.ModelState.IsValid)
+            {
+                var messages = new List<string>();
+                foreach (var entry in base.ModelState.Values)
+                {
+                    foreach (var error in entry.Errors)
+                    {
+                        messages.Add(error.ErrorMessage);
+                    }
+                }
+                return (false, messages);
+            }
+            return (true, null);
         }
 
         /// <summary>

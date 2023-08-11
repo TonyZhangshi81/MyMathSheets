@@ -2,6 +2,7 @@
 using MyMathSheets.WebApi.Models.Response;
 using MyMathSheets.WebApi.Properties;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Filters;
@@ -23,25 +24,27 @@ namespace MyMathSheets.WebApi.Filters
         {
             Log.Error(MessageUtil.GetMessage(() => MsgResources.E0001A), actionExecutedContext.Exception);
 
+            var messages = new List<string>();
+            messages.Add(actionExecutedContext.Exception.Message);
             if (actionExecutedContext.Exception is NotImplementedException)
             {
                 actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.NotImplemented, new TopicRes
                 {
-                    Message = actionExecutedContext.Exception.Message
+                    Messages = messages
                 });
             }
             else if (actionExecutedContext.Exception is TimeoutException)
             {
                 actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.RequestTimeout, new TopicRes
                 {
-                    Message = actionExecutedContext.Exception.Message
+                    Messages = messages
                 });
             }
             else
             {
                 actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.InternalServerError, new TopicRes
                 {
-                    Message = actionExecutedContext.Exception.Message
+                    Messages = messages
                 });
             }
 

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace MyMathSheets.WebApi.Models.Response
 {
@@ -18,6 +19,6 @@ namespace MyMathSheets.WebApi.Models.Response
         /// 消息
         /// </summary>
         [DataMember]
-        public string Message { get; set; }
+        public List<string> Messages { get; set; }
     }
 }
