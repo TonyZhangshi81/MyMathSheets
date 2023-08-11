@@ -151,6 +151,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CompileController.cs" />
+    <Compile Include="Filters\SslClientCertActionFilterAttribute.cs" />
     <Compile Include="Filters\WaitResponseAttribute.cs" />
     <Compile Include="Filters\WebApiExceptionFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">

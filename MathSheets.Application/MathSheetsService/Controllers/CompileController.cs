@@ -22,6 +22,7 @@ namespace MyMathSheets.WebApi.Controllers
     /// API控制類
     /// </summary>
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    [SslClientCertActionFilter]
     public class CompileController : ApiController
     {
         /// <summary>
