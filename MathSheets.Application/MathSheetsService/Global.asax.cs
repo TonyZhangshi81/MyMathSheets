@@ -5,24 +5,23 @@ using System.Web.Mvc;
 
 namespace MyMathSheets.WebApi
 {
-	/// <summary>
-	///
-	/// </summary>
-	public class Global : System.Web.HttpApplication
-	{
-		/// <summary>
-		///
-		/// </summary>
-		protected void Application_Start()
-		{
-			AreaRegistration.RegisterAllAreas();
-			// ˜H—Rİ’è
-			GlobalConfiguration.Configure(WebApiConfig.Register);
-			// ˆÙíâ¿‘IŠí
-			GlobalConfiguration.Configuration.Filters.Add(new WebApiExceptionFilterAttribute());
+    /// <summary>
+    ///
+    /// </summary>
+    public class Global : System.Web.HttpApplication
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
 
-			// Še‘èŒ^Assamly“±“ü
-			PluginHelper.GetManager().Initialize();
-		}
-	}
+            // ˜H—Rİ’è
+            GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            // Še‘èŒ^Assamly“±“ü
+            PluginHelper.GetManager().Initialize();
+        }
+    }
 }

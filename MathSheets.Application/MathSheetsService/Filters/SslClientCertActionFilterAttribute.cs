@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MyMathSheets.CommonLib.Configurations;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -11,8 +13,12 @@ namespace MyMathSheets.WebApi.Filters
     /// <summary>
     /// 
     /// </summary>
-    public class SslClientCertActionFilterAttribute : ActionFilterAttribute
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    public class SslClientCertAuthorizationFilterAttribute : AuthorizationFilterAttribute
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public List<string> AllowedThumbprints = new List<string>()
         {
             // Replace with the thumbprints the 3rd party
@@ -27,11 +33,16 @@ namespace MyMathSheets.WebApi.Filters
         /// </summary>
         /// <param name="actionContext"></param>
         /// <exception cref="HttpResponseException"></exception>
-        public override void OnActionExecuting(HttpActionContext actionContext)
+        public override void OnAuthorization(HttpActionContext actionContext)
         {
+            if (!Convert.ToBoolean(ConfigurationUtil.GetKeyValue("ssl", false, "False")))
+            {
+                return;
+            }
+
             var request = actionContext.Request;
 
-            if (!AuthorizeRequest(request))
+            if (!this.CheckAuthorizeRequest(request))
             {
                 throw new HttpResponseException(HttpStatusCode.Forbidden);
             }
@@ -43,7 +54,7 @@ namespace MyMathSheets.WebApi.Filters
         /// <param name="request"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        private bool AuthorizeRequest(HttpRequestMessage request)
+        private bool CheckAuthorizeRequest(HttpRequestMessage request)
         {
             var clientCertificate = request.GetClientCertificate();
 
