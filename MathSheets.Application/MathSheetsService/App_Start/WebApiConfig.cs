@@ -1,38 +1,46 @@
 ﻿using MyMathSheets.CommonLib.Configurations;
+using MyMathSheets.WebApi.Filters;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
 namespace MyMathSheets.WebApi
 {
-	/// <summary>
-	///
-	/// </summary>
-	public static class WebApiConfig
-	{
-		/// <summary>
-		///
-		/// </summary>
-		/// <param name="config"></param>
-		public static void Register(HttpConfiguration config)
-		{
-			var allowedMethods = ConfigurationUtil.GetKeyValue("cors:allowedMethods");
-			var allowedOrigin = ConfigurationUtil.GetKeyValue("cors:allowedOrigin");
-			var allowedHeaders = ConfigurationUtil.GetKeyValue("cors:allowedHeaders");
-			// 跨域設置
-			var geduCors = new EnableCorsAttribute(allowedOrigin, allowedHeaders, allowedMethods)
-			{
-				SupportsCredentials = true
-			};
-			config.EnableCors(geduCors);
+    /// <summary>
+    ///
+    /// </summary>
+    public static class WebApiConfig
+    {
+        /// <summary>
+        /// 過濾器註冊器
+        /// </summary>
+        /// <param name="config"></param>
+        public static void Register(HttpConfiguration config)
+        {
+            // 跨域設置
+            config.EnableCors(new EnableCorsAttribute(ConfigurationUtil.GetKeyValue("cors:allowedOrigin")
+                                                    , ConfigurationUtil.GetKeyValue("cors:allowedHeaders")
+                                                    , ConfigurationUtil.GetKeyValue("cors:allowedMethods"))
+            {
+                SupportsCredentials = true
+            });
 
-			// 路由設置
-			config.MapHttpAttributeRoutes();
+            // 路由設置
+            config.MapHttpAttributeRoutes();
 
-			config.Routes.MapHttpRoute(
-				name: "DefaultApi",
-				routeTemplate: "api/{controller}/{id}",
-				defaults: new { id = RouteParameter.Optional }
-			);
-		}
-	}
+            // ssl認證相關
+            config.Filters.Add(new SslClientCertAuthorizationFilterAttribute());
+
+            // 異常篩選器
+            config.Filters.Add(new WebApiExceptionFilterAttribute());
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new
+                {
+                    id = RouteParameter.Optional
+                }
+            );
+        }
+    }
 }

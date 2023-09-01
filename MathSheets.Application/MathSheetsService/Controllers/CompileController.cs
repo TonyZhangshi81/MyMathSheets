@@ -50,7 +50,7 @@ namespace MyMathSheets.WebApi.Controllers
         /// <param name="list">輸入參數(題型設定參數集合)</param>
         /// <returns>接口應答結果</returns>
         [HttpPost]
-        [WaitResponse]
+        [WaitResponse()]
         public HttpResponseMessage Do(List<TopicManagementReq> list)
         {
             LogUtil.LogDebug(JsonConvert.SerializeObject(list));
