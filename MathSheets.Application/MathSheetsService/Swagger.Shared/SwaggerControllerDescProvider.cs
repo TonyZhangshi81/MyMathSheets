@@ -7,22 +7,23 @@ using System.Xml;
 namespace MyMathSheets.WebApi.Swagger.Shared
 {
     /// <summary>
-    /// 
+    /// swagger 顯示控制器的描述
     /// </summary>
     public class SwaggerControllerDescProvider : ISwaggerProvider
     {
         private readonly ISwaggerProvider _swaggerProvider;
         private static ConcurrentDictionary<string, SwaggerDocument> _cache = new ConcurrentDictionary<string, SwaggerDocument>();
-        private readonly string _xml;
+        private readonly string _xmlPath;
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="swaggerProvider"></param>
-        /// <param name="xml">XML文檔路徑</param>
-        public SwaggerControllerDescProvider(ISwaggerProvider swaggerProvider, string xml)
+        /// <param name="xmlPath">XML文檔路徑</param>
+        public SwaggerControllerDescProvider(ISwaggerProvider swaggerProvider, string xmlPath)
         {
             _swaggerProvider = swaggerProvider;
-            _xml = xml;
+            _xmlPath = xmlPath;
         }
 
         /// <summary>
@@ -51,34 +52,27 @@ namespace MyMathSheets.WebApi.Swagger.Shared
         /// <returns>所有控制器描述</returns>
         public ConcurrentDictionary<string, string> GetControllerDesc()
         {
-            var xmlpath = _xml;
-            ConcurrentDictionary<string, string> controllerDescDict = new ConcurrentDictionary<string, string>();
-            if (File.Exists(xmlpath))
+            var controllerDescDict = new ConcurrentDictionary<string, string>();
+
+            if (File.Exists(_xmlPath))
             {
                 var xmldoc = new XmlDocument();
-                xmldoc.Load(xmlpath);
-
-                var type = string.Empty;
-                var path = string.Empty;
-                var controllerName = string.Empty;
+                xmldoc.Load(_xmlPath);
 
                 string[] arrPath;
-                int length = -1;
                 int cCount = "Controller".Length;
-                XmlNode summaryNode = null;
                 foreach (XmlNode node in xmldoc.SelectNodes("//member"))
                 {
-                    type = node.Attributes["name"].Value;
+                    var type = node.Attributes["name"].Value;
                     if (type.StartsWith("T:"))
                     {
                         // 控制器
                         arrPath = type.Split('.');
-                        length = arrPath.Length;
-                        controllerName = arrPath[length - 1];
+                        var controllerName = arrPath[arrPath.Length - 1];
                         if (controllerName.EndsWith("Controller"))
                         {
-                            // =獲取控制器注釋
-                            summaryNode = node.SelectSingleNode("summary");
+                            // 獲取控制器注釋
+                            XmlNode summaryNode = node.SelectSingleNode("summary");
                             string key = controllerName.Remove(controllerName.Length - cCount, cCount);
                             if (summaryNode != null && !string.IsNullOrEmpty(summaryNode.InnerText) && !controllerDescDict.ContainsKey(key))
                             {

@@ -1,14 +1,13 @@
 ﻿using MyMathSheets.CommonLib.Configurations;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
-namespace MyMathSheets.WebApi.Filters
+namespace MyMathSheets.WebApi.Filters.Security
 {
     /// <summary>
     /// 

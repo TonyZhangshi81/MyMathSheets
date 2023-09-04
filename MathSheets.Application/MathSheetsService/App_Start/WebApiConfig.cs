@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Configurations;
 using MyMathSheets.WebApi.Filters;
+using MyMathSheets.WebApi.Filters.Security;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -29,6 +30,8 @@ namespace MyMathSheets.WebApi
 
             // ssl認證相關
             config.Filters.Add(new SslClientCertAuthorizationFilterAttribute());
+            // JSON Web Token（JWT）認證相關
+            config.Filters.Add(new IdentityBasicAuthentication());
 
             // 異常篩選器
             config.Filters.Add(new WebApiExceptionFilterAttribute());

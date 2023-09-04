@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using System.Security.Authentication;
 using System.Web.Http.Filters;
 
 namespace MyMathSheets.WebApi.Filters
@@ -24,8 +25,10 @@ namespace MyMathSheets.WebApi.Filters
         {
             Log.Error(MessageUtil.GetMessage(() => MsgResources.E0001A), actionExecutedContext.Exception);
 
-            var messages = new List<string>();
-            messages.Add(actionExecutedContext.Exception.Message);
+            var messages = new List<string>
+            {
+                actionExecutedContext.Exception.Message
+            };
             if (actionExecutedContext.Exception is NotImplementedException)
             {
                 actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.NotImplemented, new TopicRes
@@ -36,6 +39,13 @@ namespace MyMathSheets.WebApi.Filters
             else if (actionExecutedContext.Exception is TimeoutException)
             {
                 actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.RequestTimeout, new TopicRes
+                {
+                    Messages = messages
+                });
+            }
+            else if (actionExecutedContext.Exception is AuthenticationException)
+            {
+                actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.Unauthorized, new TopicRes
                 {
                     Messages = messages
                 });
