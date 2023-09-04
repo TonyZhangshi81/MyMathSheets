@@ -1,10 +1,11 @@
-using System.Web.Http;
+﻿using System.Web.Http;
 using WebActivatorEx;
 using MyMathSheets.WebApi;
 using Swashbuckle.Application;
 using MyMathSheets.WebApi.Swagger.Shared;
 using System.Linq;
 using System.Reflection;
+using MyMathSheets.WebApi.Filters.Swagger;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -40,7 +41,6 @@ namespace MyMathSheets.WebApi
                         // Use "SingleApiVersion" to describe a single version API. Swagger 2.0 includes an "Info" object to
                         // hold additional metadata for an API. Version and title are required but you can also provide
                         // additional fields by chaining methods off SingleApiVersion.
-                        //
                         c.SingleApiVersion("v1", "MyMathSheets.WebApi");
 
                         // If you want the output Swagger docs to be indented properly, enable the "PrettyPrint" option.
@@ -109,15 +109,11 @@ namespace MyMathSheets.WebApi
                         // Xml comments (http://msdn.microsoft.com/en-us/library/b2s063f7(v=vs.110).aspx), you can incorporate
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
-                        //
-                        //c.IncludeXmlComments(GetXmlCommentsPath());
-                        var xmlFile = string.Format("{0}/bin/MyMathSheets.WebApi.xml", System.AppDomain.CurrentDomain.BaseDirectory);
+                        var xmlFile = $@"{System.AppDomain.CurrentDomain.BaseDirectory}/bin/MyMathSheets.WebApi.xml";
                         if (System.IO.File.Exists(xmlFile))
                         {
                             c.IncludeXmlComments(xmlFile);
                         }
-                        c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-                        c.CustomProvider((defaultProvider) => new SwaggerControllerDescProvider(defaultProvider, xmlFile));
 
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
@@ -174,6 +170,7 @@ namespace MyMathSheets.WebApi
                         // to execute the operation
                         //
                         //c.OperationFilter<AssignOAuth2SecurityRequirements>();
+                        c.OperationFilter<AuthorityHttpHeaderFilter>();
 
                         // Post-modify the entire Swagger document by wiring up one or more Document filters.
                         // This gives full control to modify the final SwaggerDocument. You should have a good understanding of
@@ -187,13 +184,13 @@ namespace MyMathSheets.WebApi
                         // with the same path (sans query string) and HTTP method. You can workaround this by providing a
                         // custom strategy to pick a winner or merge the descriptions for the purposes of the Swagger docs
                         //
-                        //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+
+                        // 當路由相同、HTTP方法相同、查詢參數不同時（Swagger會出現異常），以下取第一個方法以避免上述情況發生
+                        c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
                         // Wrap the default SwaggerGenerator with additional behavior (e.g. caching) or provide an
                         // alternative implementation for ISwaggerProvider with the CustomProvider option.
-                        //
-                        //c.CustomProvider((defaultProvider) => new CachingSwaggerProvider(defaultProvider));
-                        //
+                        c.CustomProvider((defaultProvider) => new SwaggerControllerDescProvider(defaultProvider, xmlFile));
                     })
                 .EnableSwaggerUi(c =>
                     {
@@ -211,8 +208,6 @@ namespace MyMathSheets.WebApi
                         // Use the "InjectJavaScript" option to invoke one or more custom JavaScripts after the swagger-ui
                         // has loaded. The file must be included in your project as an "Embedded Resource", and then the resource's
                         // "Logical Name" is passed to the method as shown above.
-                        //
-                        //c.InjectJavaScript(thisAssembly, "Swashbuckle.Dummy.SwaggerExtensions.testScript1.js");
                         c.InjectJavaScript(Assembly.GetExecutingAssembly(), "MyMathSheets.WebApi.Swagger.Shared.Scripts.SwaggerConfig.js");
 
                         // The swagger-ui renders boolean data types as a dropdown. By default, it provides "true" and "false"
