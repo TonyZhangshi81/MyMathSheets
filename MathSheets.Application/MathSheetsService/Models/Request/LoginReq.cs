@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 namespace MyMathSheets.WebApi.Models.Request
@@ -13,7 +14,7 @@ namespace MyMathSheets.WebApi.Models.Request
         /// 用戶ID
         /// </summary>
         [DataMember(IsRequired = true)]
-        [Required(ErrorMessage = "用戶ID")]
+        [Required(ErrorMessage = "用戶ID必須輸入")]
         public string UserId
         {
             get;
@@ -24,7 +25,7 @@ namespace MyMathSheets.WebApi.Models.Request
         /// 登錄密碼
         /// </summary>
         [DataMember(IsRequired = true)]
-        [Required(ErrorMessage = "登錄密碼")]
+        [Required(ErrorMessage = "登錄密碼必須輸入")]
         public string Passord
         {
             get;

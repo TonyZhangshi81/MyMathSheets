@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Configurations;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Authentication;
 using System.Security.Claims;
@@ -14,6 +15,8 @@ namespace MyMathSheets.WebApi.Filters.Security
     /// </summary>
     public class IdentityBasicAuthentication : IAuthenticationFilter
     {
+        private static readonly JwtHelper _JwtHelper = new JwtHelper();
+
         /// <summary>
         /// 
         /// </summary>
@@ -29,33 +32,54 @@ namespace MyMathSheets.WebApi.Filters.Security
         public Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
             // 獲取token
-            context.Request.Headers.TryGetValues("Authorization", out var tokenHeaders);
-            // 如果沒有token，不做後續處理
-            if (tokenHeaders == null || !tokenHeaders.Any())
+            if (!TryGetToken(context, out var token))
             {
+                // 如果沒有token，不做後續處理
                 return Task.FromResult(0);
             }
+
             // 如果token驗證通過，寫入到identity，如果誒通過則是指錯誤
-            var jwtHelper = new JWTHelper();
-            var payLoadClaims = jwtHelper.DecodeToObject(tokenHeaders.FirstOrDefault(), ConfigurationUtil.GetKeyValue("jwtKey"), out bool isValid, out string errMsg);
+            var payLoadClaims = _JwtHelper.VaridateToken(token, out bool isValid, out string authenticateResult);
             if (isValid)
             {
-                // 只要ClaimsIdentity設置了authenticationType，authenticated就是true，後面的authority根據authenticated=true來做權限
-                var identity = new ClaimsIdentity("jwt", "id", "auth");
-                foreach (var keyValuePair in payLoadClaims)
-                {
-                    identity.AddClaim(new Claim(keyValuePair.Key, keyValuePair.Value.ToString()));
-                }
+                var identity = new ClaimsIdentity();
+                identity.AddClaims(payLoadClaims);
+
                 // 最好是http上下文的principal和進程的currentPrincipal都設置
                 context.Principal = new ClaimsPrincipal(identity);
                 Thread.CurrentPrincipal = new ClaimsPrincipal(identity);
             }
             else
             {
-                throw new AuthenticationException(errMsg);
+                context.Request.Headers.Add(AuthHeaderKeys.AuthenticateResult, authenticateResult);
+                throw new AuthenticationException(authenticateResult);
             }
             return Task.FromResult(0);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        private bool TryGetToken(HttpAuthenticationContext context, out string token)
+        {
+            token = null;
+
+            foreach (var metadata in context.Request.Headers)
+            {
+                if (metadata.Key == AuthHeaderKeys.AuthorizationToken)
+                {
+                    token = metadata.Value.ElementAt(0);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
 
         /// <summary>
         /// 請求後
