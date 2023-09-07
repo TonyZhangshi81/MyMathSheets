@@ -4,159 +4,131 @@ using JWT.Exceptions;
 using JWT.Serializers;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
+using System.Security.Principal;
 
 namespace MyMathSheets.WebApi.Filters.Security
 {
     /// <summary>
     /// 
     /// </summary>
-    public class JWTHelper
+    internal sealed class JwtHelper
     {
-        private IJsonSerializer _jsonSerializer;
-        private IDateTimeProvider _dateTimeProvider;
-        private IJwtValidator _jwtValidator;
-        private IBase64UrlEncoder _base64UrlEncoder;
-        private IJwtAlgorithm _jwtAlgorithm;
-        private IJwtDecoder _jwtDecoder;
-        private IJwtEncoder _jwtEncoder;
+        internal const string secretKey = "GQDstcKsx0NHjPOuXOYg5MbeJ1XT0uFiwDVvVBrk";
+
+        internal IJwtEncoder Encoder { get; }
+        internal IJwtDecoder Decoder { get; }
+        internal IDateTimeProvider DateTimeProvider { get; }
+        internal IJsonSerializer JsonSerializer { get; }
+
+        private IBase64UrlEncoder UrlEncoder { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public JWTHelper()
+        internal JwtHelper()
         {
-            // 非fluent寫法
-            this._jsonSerializer = new JsonNetSerializer();
-            this._dateTimeProvider = new UtcDateTimeProvider();
-            this._jwtValidator = new JwtValidator(_jsonSerializer, _dateTimeProvider);
-            this._base64UrlEncoder = new JwtBase64UrlEncoder();
-            this._jwtAlgorithm = new HMACSHA256Algorithm();
-            this._jwtDecoder = new JwtDecoder(_jsonSerializer, _jwtValidator, _base64UrlEncoder, new HMACSHA256Algorithm());
-            this._jwtEncoder = new JwtEncoder(_jwtAlgorithm, _jsonSerializer, _base64UrlEncoder);
+            DateTimeProvider = new UtcDateTimeProvider();
+            JsonSerializer = new JsonNetSerializer();
+            UrlEncoder = new JwtBase64UrlEncoder();
+
+            Encoder = this.CreateJwtEncoder();
+            Decoder = this.CreateJwtDecorder();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private IJwtEncoder CreateJwtEncoder()
+        {
+            IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
+            return new JwtEncoder(algorithm, this.JsonSerializer, this.UrlEncoder);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private IJwtDecoder CreateJwtDecorder()
+        {
+            IAlgorithmFactory algorithm = new HMACSHAAlgorithmFactory();
+            IJwtValidator validator = new JwtValidator(this.JsonSerializer, this.DateTimeProvider);
+            return new JwtDecoder(this.JsonSerializer, validator, this.UrlEncoder, algorithm);
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="token"></param>
-        /// <param name="key"></param>
         /// <param name="isValid"></param>
-        /// <param name="errMsg"></param>
+        /// <param name="authenticateResult"></param>
         /// <returns></returns>
-        public string Decode(string token, string key, out bool isValid, out string errMsg)
+        public IEnumerable<Claim> VaridateToken(string token, out bool isValid, out string authenticateResult)
         {
             isValid = false;
-            var result = string.Empty;
-            try
-            {
-                result = _jwtDecoder.Decode(token, key, true);
-                isValid = true;
-                errMsg = "正確的token";
-                return result;
-            }
-            catch (TokenExpiredException)
-            {
-                errMsg = "token過期";
-                return result;
-            }
-            catch (SignatureVerificationException)
-            {
-                errMsg = "簽名無效";
-                return result;
-            }
-            catch (Exception)
-            {
-                errMsg = "token無效";
-                return result;
-            }
-        }
+            authenticateResult = string.Empty;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="token"></param>
-        /// <param name="key"></param>
-        /// <param name="isValid"></param>
-        /// <param name="errMsg"></param>
-        /// <returns></returns>
-        public T DecodeToObject<T>(string token, string key, out bool isValid, out string errMsg)
-        {
-            isValid = false;
             try
             {
-                var result = _jwtDecoder.DecodeToObject<T>(token, key, true);
-                isValid = true;
-                errMsg = "正確的token";
-                return result;
-            }
-            catch (TokenExpiredException)
-            {
-                errMsg = "token過期";
-                return default(T);
-            }
-            catch (SignatureVerificationException)
-            {
-                errMsg = "簽名無效";
-                return default(T);
-            }
-            catch (Exception)
-            {
-                errMsg = "token無效";
-                return default(T);
-            }
-        }
+                //var values = token.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries);
+                var json = this.Decoder.Decode(token, secretKey, verify: true);
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="token"></param>
-        /// <param name="key"></param>
-        /// <param name="isValid"></param>
-        /// <param name="errMsg"></param>
-        /// <returns></returns>
-        public IDictionary<string, object> DecodeToObject(string token, string key, out bool isValid, out string errMsg)
-        {
-            isValid = false;
-            try
-            {
-                var result = _jwtDecoder.DecodeToObject(token, key, true);
+                var user = this.JsonSerializer.Deserialize<IDictionary<string, object>>(json)["user"].ToString();
+
+                var payload = this.JsonSerializer.Deserialize<IDictionary<string, object>>(user);
+
+                var payLoadClaims = new List<Claim>();
+                foreach (var keyValuePair in payload)
+                {
+                    payLoadClaims.Add(new Claim(keyValuePair.Key, keyValuePair.Value.ToString()));
+                }
+
                 isValid = true;
-                errMsg = "正確的token";
-                return result;
+                return payLoadClaims;
             }
             catch (TokenExpiredException)
             {
-                errMsg = "token過期";
+                authenticateResult = "expired";
+                //errorMsg = "token過期";
                 return null;
             }
             catch (SignatureVerificationException)
             {
-                errMsg = "簽名無效";
+                authenticateResult = "invalid signature";
+                //errorMsg = "簽名無效";
                 return null;
             }
             catch (Exception)
             {
-                errMsg = "token無效";
+                authenticateResult = "invalid";
+                //errorMsg = "token無效";
                 return null;
             }
         }
 
         /// <summary>
-        /// 解密處理
+        /// 創建Token信息
         /// </summary>
-        /// <param name="payload"></param>
-        /// <param name="key"></param>
-        /// <param name="expiredMinute"></param>
-        /// <returns></returns>
-        public string Encode(Dictionary<string, object> payload, string key, int expiredMinute = 30)
+        /// <param name="info">需要傳遞的數據對象（Payload 部分）</param>
+        /// <param name="expiredMinute">有效期限設定（單位：分鐘）</param>
+        /// <returns>Token信息</returns>
+        public string CreateToken<T>(T info, int expiredMinute = 30)
         {
-            if (!payload.ContainsKey("exp"))
+            // 有效期限
+            DateTimeOffset expiration = this.DateTimeProvider.GetNow().AddMinutes(expiredMinute);
+
+            var expirySeconds = expiration.ToUniversalTime().Subtract(new DateTime(1970, 1, 1)).TotalMilliseconds;
+
+            //var expirySeconds = Math.Round((expiration - DateTime.).TotalSeconds);
+
+            var payload = new Dictionary<string, object>
             {
-                var exp = Math.Round((_dateTimeProvider.GetNow().AddMinutes(expiredMinute) - new DateTime(1970, 1, 1)).TotalSeconds);
-                payload.Add("exp", exp);
-            }
-            return _jwtEncoder.Encode(payload, key);
+                { "exp", expirySeconds },
+                { "user", this.JsonSerializer.Serialize(info) }
+            };
+
+            return this.Encoder.Encode(payload, secretKey);
         }
 
     }

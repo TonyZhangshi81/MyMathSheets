@@ -181,9 +181,11 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CompileController.cs" />
+    <Compile Include="Filters\Security\AuthHeaderKeys.cs" />
     <Compile Include="Filters\Security\IdentityBasicAuthentication.cs" />
-    <Compile Include="Filters\Security\JWTHelper.cs" />
+    <Compile Include="Filters\Security\JwtHelper.cs" />
     <Compile Include="Filters\Security\SslClientCertActionFilterAttribute.cs" />
     <Compile Include="Filters\Swagger\ApiAuthorizeAttribute.cs" />
     <Compile Include="Filters\Swagger\AuthorityHttpHeaderFilter.cs" />
@@ -193,10 +195,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Main\FromProcess\ApiProcess.cs" />
-    <Compile Include="Models\Request\LoginReq.cs" />
-    <Compile Include="Models\Request\TopicManagementReq.cs" />
-    <Compile Include="Models\Response\LoginRes.cs" />
     <Compile Include="Models\Response\TopicRes.cs" />
+    <Compile Include="Models\Request\TopicManagementReq.cs" />
+    <Compile Include="Models\Request\LoginReq.cs" />
+    <Compile Include="Models\Response\LoginRes.cs" />
     <Compile Include="Plugin\PluginsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\MsgResources.Designer.cs">
@@ -261,6 +263,8 @@
           <DevelopmentServerPort>58983</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>https://mymathsheets.com/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>https://mymathsheets.com/swagger/ui/index#/Compile</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

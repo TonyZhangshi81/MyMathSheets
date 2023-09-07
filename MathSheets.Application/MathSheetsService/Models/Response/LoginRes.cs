@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
 
 namespace MyMathSheets.WebApi.Models.Response
 {
@@ -13,6 +12,6 @@ namespace MyMathSheets.WebApi.Models.Response
         /// Token
         /// </summary>
         [DataMember]
-        public string Token { get; set; }
+        public string GeneralToken { get; set; }
     }
 }

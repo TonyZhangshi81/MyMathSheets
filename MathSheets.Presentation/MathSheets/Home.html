@@ -34,8 +34,9 @@
 		// 本站訪問地址
 		var HOST_URL = "http://172.31.6.8:8080/Home.html";
 		// API站點信息
-		var API_HOST = "https://mymathsheets.com/";
-		var SERVICE = "api/Compile/Do";
+		var API_HOST = "https://MyMathSheets.com/";
+    var SERVICE_LAUNCH = "api/Compile/Launch";
+    var SERVICE_LOGIN = "api/Compile/Login";
 
 		$(function () {
 			// 頁面初期化
@@ -43,6 +44,7 @@
 
 			// 按鍵事件註冊
 			$("#btnReady").click(function () { return btnReadyClick(this); });
+      $("#btnLogin").click(function () { return btnLoginClick(this); });
 		});
 
 		// 信息顯示
@@ -80,6 +82,68 @@
 			step = setTimeout(function () { pleaseWait(); }, 300);
 		}
 
+    // 登錄按鈕事件
+		btnLoginClick = function (sender) {
+
+			var into = {};
+      into.UserId = "admin";
+      into.Passord = "P@ssw0rd";
+
+      // API響應地址
+      var apiUrl = API_HOST + SERVICE_LOGIN;
+
+      $.ajax({
+        url: apiUrl,
+        type: "POST",
+        dataType: 'json',
+        contentType: "application/json;charset=utf-8",
+        data: JSON.stringify(into),
+
+        // API響應前處理
+        beforeSend: function () {
+					store.set('token', "");
+
+          $("<div class=\"datagrid-mask\"></div>").html("正在連接<h5>(<span style='color: fuchsia;'>" + apiUrl + "</span>)</h5>處理中<span id='dot'></span>").appendTo("body");
+          pleaseWait();
+        },
+
+        // API響應完成
+        complete: function (data) {
+          setTimeout(function () {
+            $('.datagrid-mask').hide(200, function () { $(".datagrid-mask").remove(); });
+          }, 400);
+        },
+
+        // API響應成功
+        success: function (result) {
+          console.log(result);
+
+          setTimeout(function () {
+            showMessage();
+            $(sender).attr("disabled", false);
+						$(sender).hide();
+
+						$("#btnReady").show();
+
+						// 本地瀏覽器存儲
+            store.set('token', result.GeneralToken);
+          }, 500);
+        },
+
+        // API響應失敗
+        error: function (xhr, textStatus, errorThrown) {
+          setTimeout(function () {
+            console.log(("狀態:" + xhr.status + " 狀態碼:" + xhr.readyState + " 錯誤信息:" + xhr.responseText));
+
+            showMessage("發生錯誤");
+						$(sender).attr("disabled", false);
+
+            store.set('token', "");
+          }, 500);
+        }
+      });
+		}
+
 		// 出題按鈕事件
 		btnReadyClick = function (sender) {
 
@@ -97,10 +161,13 @@
 			var data = JSON.stringify(settingList);
 			console.log(data);
 
+      var token = store.get('token');
+
 			// API響應地址
-			var apiUrl = API_HOST + SERVICE;
+      var apiUrl = API_HOST + SERVICE_LAUNCH;
 			$.ajax({
 				url: apiUrl,
+        headers: { 'Authorization': token},
 				type: "POST",
 				dataType: 'json',
 				contentType: "application/json;charset=utf-8",
@@ -156,6 +223,7 @@
 		// 頁面初期化（題型設定參數bind處理）
 		init = function () {
 			$("#btnReady").attr("disabled", true);
+			$("#btnReady").hide();
 
 			$.ajax({
 				url: "Config/TopicManagement.json", // 讀取題型文件
@@ -519,6 +587,7 @@
 			<div class="col-md-5"></div>
 			<div class="col-md-2">
 				<p class="text-center">
+					<button id="btnLogin" type="button" class="btn btn-lg btn-success btn-block">登錄</button>
 					<button id="btnReady" type="button" class="btn btn-lg btn-success btn-block">出題</button>
 				</p>
 			</div>
