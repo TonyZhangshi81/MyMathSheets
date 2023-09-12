@@ -19,7 +19,7 @@ namespace MyMathSheets.WebApi.Controllers
         /// <summary>
         /// 運行狀態檢查
         /// </summary>
-        [Import("Health", typeof(IHealthController))]
+        [Import("HealthCheck", typeof(IHealthController))]
         public WebHealthChecks.Base.HealthController HealthCheck
         {
             get;

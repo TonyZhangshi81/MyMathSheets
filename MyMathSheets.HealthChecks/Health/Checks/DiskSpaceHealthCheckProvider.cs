@@ -9,7 +9,7 @@ namespace MyMathSheets.WebHealthChecks.Checks
     /// <summary>
     /// 
     /// </summary>
-    [Export("DiskSpace", typeof(IHealthCheckProvider)), PartCreationPolicy(CreationPolicy.NonShared)]
+    [Export(typeof(IHealthCheckProvider)), PartCreationPolicy(CreationPolicy.NonShared)]
     public class DiskSpaceHealthCheckProvider : IHealthCheckProvider
     {
         private const int MinPercentageFree = 10;
@@ -20,17 +20,18 @@ namespace MyMathSheets.WebHealthChecks.Checks
         /// </summary>
         public Task<HealthCheckItemResult> GetHealthCheckAsync()
         {
-            var result = new HealthCheckItemResult(nameof(DiskSpaceHealthCheckProvider), SortOrder, "Checks disk space", $"Validates that the available disk space is more than {MinPercentageFree} percent.");
+            var result = new HealthCheckItemResult(nameof(DiskSpaceHealthCheckProvider), SortOrder, "當前部署環境下磁盤空間檢查", $"验证可用磁盘空间是否大于 {MinPercentageFree}%.");
             try
             {
-                var percentageFree = GetPercentageFree("C");
+                var drive = AppDomain.CurrentDomain.BaseDirectory.Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries)[0];
+                var percentageFree = GetPercentageFree(drive);
                 result.HealthState = DetermineState(percentageFree);
-                result.Messages.Add($"There is {(percentageFree > MinPercentageFree ? "more" : "LESS")} than {MinPercentageFree} percent available disk space.");
+                result.Messages.Add($"可用磁盤空間{(percentageFree > MinPercentageFree ? "大於" : "小於")} {MinPercentageFree}%.");
             }
             catch
             {
                 result.HealthState = HealthState.Unhealthy;
-                result.Messages.Add("Could not validate disk space.");
+                result.Messages.Add("當前磁盤不存在.");
             }
             return Task.FromResult(result);
         }
