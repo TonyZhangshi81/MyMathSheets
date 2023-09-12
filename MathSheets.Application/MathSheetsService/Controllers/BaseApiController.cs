@@ -1,12 +1,9 @@
 ﻿using MyMathSheets.CommonLib.Composition;
 using MyMathSheets.CommonLib.Configurations;
-using MyMathSheets.CommonLib.Main.FromProcess;
 using MyMathSheets.WebApi.Filters.Security;
-using MyMathSheets.WebApi.Main.FromProcess;
 using MyMathSheets.WebApi.Models.Request;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading;
@@ -20,16 +17,6 @@ namespace MyMathSheets.WebApi.Controllers
     public abstract class BaseApiController : ApiController
     {
         private static readonly JwtHelper _JwtHelper = new JwtHelper();
-
-        /// <summary>
-        /// API處理類
-        /// </summary>
-        [Import("Api", typeof(IMainProcess))]
-        public ApiProcess Process
-        {
-            get;
-            set;
-        }
 
         /// <summary>
         /// 

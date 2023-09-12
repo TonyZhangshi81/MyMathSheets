@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CompileController.cs" />
+    <Compile Include="Controllers\HealthController.cs" />
     <Compile Include="Filters\Security\AuthHeaderKeys.cs" />
     <Compile Include="Filters\Security\IdentityBasicAuthentication.cs" />
     <Compile Include="Filters\Security\JwtHelper.cs" />
@@ -242,6 +243,10 @@
     <ProjectReference Include="..\..\MathSheets.Business\ComputationalStrategy\MyMathSheets.BasicOperationsLib.csproj">
       <Project>{3206e500-28d2-4055-a14f-3de3cbd526e1}</Project>
       <Name>MyMathSheets.BasicOperationsLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MyMathSheets.HealthChecks\MyMathSheets.WebHealthChecks.csproj">
+      <Project>{3c9b617a-b228-4889-babd-691728706635}</Project>
+      <Name>MyMathSheets.WebHealthChecks</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

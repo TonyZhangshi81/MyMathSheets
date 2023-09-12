@@ -1,18 +1,20 @@
 ﻿using MyMathSheets.CommonLib.Configurations;
 using MyMathSheets.CommonLib.Logging;
+using MyMathSheets.CommonLib.Main.FromProcess;
 using MyMathSheets.CommonLib.Main.FromProcess.Support;
 using MyMathSheets.WebApi.Filters;
 using MyMathSheets.WebApi.Filters.Swagger;
+using MyMathSheets.WebApi.Main.FromProcess;
+using MyMathSheets.WebApi.Models.Request;
+using MyMathSheets.WebApi.Models.Response;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.ServiceModel.Activation;
 using System.Web.Http;
-using MyMathSheets.WebApi.Models.Request;
-using MyMathSheets.WebApi.Models.Response;
-using MyMathSheets.CommonLib.Composition;
 
 namespace MyMathSheets.WebApi.Controllers
 {
@@ -22,6 +24,16 @@ namespace MyMathSheets.WebApi.Controllers
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
     public class CompileController : BaseApiController
     {
+        /// <summary>
+        /// API處理類
+        /// </summary>
+        [Import("Api", typeof(IMainProcess))]
+        public ApiProcess Process
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// 
         /// </summary>
