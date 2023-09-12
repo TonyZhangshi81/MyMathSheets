@@ -1,5 +1,6 @@
 ﻿using MyMathSheets.CommonLib.Util;
 using MyMathSheets.WebHealthChecks.Base;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Net;
 using System.Net.Http;
@@ -19,12 +20,8 @@ namespace MyMathSheets.WebApi.Controllers
         /// <summary>
         /// 運行狀態檢查
         /// </summary>
-        [Import("Health", typeof(IHealthController))]
-        public WebHealthChecks.Base.HealthController HealthCheck
-        {
-            get;
-            set;
-        }
+        [ImportMany(typeof(IHealthCheckProvider))]
+        public IEnumerable<IHealthCheckProvider> HealthCheckProviders { get; set; }
 
         /// <summary>
         /// 
@@ -39,7 +36,11 @@ namespace MyMathSheets.WebApi.Controllers
         [Route("api/Health/Check")]
         public async Task<HttpResponseMessage> CheckAsync()
         {
-            var result = await HealthCheck.GetHealthInfoAsync();
+            var result = new HealthCheckResult();
+            foreach (var provider in HealthCheckProviders)
+            {
+                result.HealthChecks.Add(await provider.GetHealthCheckAsync());
+            }
 
             HttpResponseMessage responseMessage = new HttpResponseMessage
             {

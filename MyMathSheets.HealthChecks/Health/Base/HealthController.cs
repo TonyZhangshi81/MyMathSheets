@@ -10,7 +10,7 @@ namespace MyMathSheets.WebHealthChecks.Base
     /// <summary>
     /// 
     /// </summary>
-    [Export("Health", typeof(IHealthController)), PartCreationPolicy(CreationPolicy.NonShared)]
+    [Export("HealthCheck", typeof(IHealthController)), PartCreationPolicy(CreationPolicy.NonShared)]
     public class HealthController : IHealthController
     {
         /// <summary>

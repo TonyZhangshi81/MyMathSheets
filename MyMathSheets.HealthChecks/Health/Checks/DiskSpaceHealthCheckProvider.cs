@@ -9,7 +9,7 @@ namespace MyMathSheets.WebHealthChecks.Checks
     /// <summary>
     /// 
     /// </summary>
-    [Export("DiskSpace", typeof(IHealthCheckProvider)), PartCreationPolicy(CreationPolicy.NonShared)]
+    [Export(typeof(IHealthCheckProvider)), PartCreationPolicy(CreationPolicy.NonShared)]
     public class DiskSpaceHealthCheckProvider : IHealthCheckProvider
     {
         private const int MinPercentageFree = 10;
