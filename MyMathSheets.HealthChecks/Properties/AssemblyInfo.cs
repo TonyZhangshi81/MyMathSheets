@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("MyMathSheets.WebHealthChecks")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Implementing Health Checks in ASP.NET Framework Applications")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("tonyzhangshi")]
 [assembly: AssemblyProduct("MyMathSheets.WebHealthChecks")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
