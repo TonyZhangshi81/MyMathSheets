@@ -60,6 +60,7 @@
     <Compile Include="Health\Base\IHealthController.cs" />
     <Compile Include="Health\Base\MessageContainer.cs" />
     <Compile Include="Health\Checks\DiskSpaceHealthCheckProvider.cs" />
+    <Compile Include="Health\Checks\MemoryHealthCheckPovider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
