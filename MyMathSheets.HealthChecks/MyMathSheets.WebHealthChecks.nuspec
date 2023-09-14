@@ -21,6 +21,6 @@
   <files>
     <file src="README.md" target="" />
     <file src="icon.png" target="" />
-    <file src="Config\health-setting.json" target="" />
+    <file src="Config\health.option.json" target="" />
   </files>
 </package>
