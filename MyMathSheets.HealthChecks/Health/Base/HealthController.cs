@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyMathSheets.HealthChecks.Health.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
@@ -16,8 +17,8 @@ namespace MyMathSheets.WebHealthChecks.Base
         /// <summary>
         /// 運行狀態檢查
         /// </summary>
-        [ImportMany(typeof(IHealthCheckProvider))]
-        public IEnumerable<IHealthCheckProvider> HealthCheckProviders { get; set; }
+        [ImportMany(typeof(HealthControllerBase), RequiredCreationPolicy = CreationPolicy.NonShared)]
+        public IEnumerable<Lazy<HealthControllerBase>> HealthCheckProviders { get; set; }
 
         /// <summary>
         /// 
@@ -33,9 +34,9 @@ namespace MyMathSheets.WebHealthChecks.Base
             var stopwatch = new Stopwatch();
             stopwatch.Start();
             var items = new List<HealthCheckItemResult>();
-            foreach (var provider in HealthCheckProviders)
+            foreach (var provider in HealthCheckProviders.Where(d => d.Value.IsEnabled))
             {
-                items.Add(await provider.GetHealthCheckAsync());
+                items.Add(await provider.Value.GetHealthCheckAsync());
             }
             stopwatch.Stop();
 

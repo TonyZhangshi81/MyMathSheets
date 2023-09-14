@@ -53,9 +53,11 @@
     <Compile Include="Health\Base\HealthCheckItemResult.cs" />
     <Compile Include="Health\Base\HealthCheckResult.cs" />
     <Compile Include="Health\Base\HealthController.cs" />
+    <Compile Include="Health\Base\HealthControllerBase.cs" />
     <Compile Include="Health\Base\HealthMessageExtensions.cs" />
     <Compile Include="Health\Base\HealthState.cs" />
     <Compile Include="Health\Base\Helper.cs" />
+    <Compile Include="Health\Base\IConfigureHealthCheck.cs" />
     <Compile Include="Health\Base\IHealthCheckProvider.cs" />
     <Compile Include="Health\Base\IHealthController.cs" />
     <Compile Include="Health\Base\MessageContainer.cs" />
@@ -64,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\health.option.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
