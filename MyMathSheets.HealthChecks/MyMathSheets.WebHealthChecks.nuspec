@@ -6,20 +6,19 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <license type="file">LICENSE.txt</license>
+    <license type="expression">MIT</license>
     <readme>README.md</readme>
     <icon>icon.png</icon>
     <projectUrl>https://github.com/TonyZhangshi81/MyMathSheets/tree/master/MyMathSheets.HealthChecks</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Latest release.</releaseNotes>
     <copyright>$copyright$</copyright>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="13.0.3" />
+      <dependency id="Newtonsoft.Json" version="[10.0.1,]" />
     </dependencies>
   </metadata>
   <files>
-    <file src="LICENSE.txt" target="" />
     <file src="README.md" target="" />
     <file src="icon.png" target="" />
   </files>
