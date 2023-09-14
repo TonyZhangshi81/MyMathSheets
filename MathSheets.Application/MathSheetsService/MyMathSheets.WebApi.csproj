@@ -62,8 +62,8 @@
       <HintPath>..\..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MyMathSheets.HealthChecks, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MyMathSheets.HealthChecks.2.0.0\lib\net48\MyMathSheets.HealthChecks.dll</HintPath>
+    <Reference Include="MyMathSheets.HealthChecks, Version=2.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MyMathSheets.HealthChecks.2.1.4\lib\net48\MyMathSheets.HealthChecks.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -230,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\TopicManagement.json" />
+    <Content Include="Config\health.option.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
