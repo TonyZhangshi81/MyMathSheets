@@ -1,4 +1,7 @@
-﻿using MyMathSheets.WebHealthChecks.Base;
+﻿using MyMathSheets.HealthChecks.Health.Base;
+using MyMathSheets.WebHealthChecks.Base;
+using Newtonsoft.Json.Linq;
+using System.Linq;
 using System;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
@@ -15,18 +18,45 @@ namespace MyMathSheets.HealthChecks.Health.Checks
     /// Degraded – 80% – 90%
     /// Unhealthy – over 90%
     /// </remarks>
-    [Export(typeof(IHealthCheckProvider)), PartCreationPolicy(CreationPolicy.NonShared)]
-    public class MemoryHealthCheckPovider : IHealthCheckProvider
+    [Export(typeof(HealthControllerBase)), PartCreationPolicy(CreationPolicy.NonShared)]
+    public class MemoryHealthCheckPovider : HealthControllerBase
     {
-        private const int PercentUsedDegraded = 80;
-        private const int PercentUsedUnhealthy = 90;
+        private int _percentUsedDegraded = 80;
+        private int _percentUsedUnhealthy = 90;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [ImportingConstructor]
+        public MemoryHealthCheckPovider() : base() { }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        public override void SetHealthCheckConfiguration()
+        {
+            base.SortOrder = 29;
+            base.IsEnabled = true;
+
+            var percentUsedDegraded = base.OptionSetting.SelectTokens("$.Memory.PercentUsedDegraded");
+            if (percentUsedDegraded.Any())
+            {
+                this._percentUsedDegraded = percentUsedDegraded.ElementAt(0).Value<int>();
+            }
+            var percentUsedUnhealthy = base.OptionSetting.SelectTokens("$.Memory.PercentUsedUnhealthy");
+            if (percentUsedUnhealthy.Any())
+            {
+                this._percentUsedUnhealthy = percentUsedUnhealthy.ElementAt(0).Value<int>();
+            }
+        }
 
         /// <summary>
         /// 檢查結果
         /// </summary>
-        public Task<HealthCheckItemResult> GetHealthCheckAsync()
+        public override Task<HealthCheckItemResult> GetHealthCheckAsync()
         {
-            var result = new HealthCheckItemResult(nameof(MemoryHealthCheckPovider), SortOrder, "當前環境下的內存狀態檢查", "檢測內存使用率情況（退化[80% – 90%]、不健康[over 90%]）");
+            var result = new HealthCheckItemResult(nameof(MemoryHealthCheckPovider), base.SortOrder, "當前環境下的內存狀態檢查", $"檢測內存使用率情況（退化[{_percentUsedDegraded}% – {_percentUsedUnhealthy}%]、不健康[over {_percentUsedUnhealthy}%]）");
             try
             {
                 var drive = AppDomain.CurrentDomain.BaseDirectory.Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries)[0];
@@ -34,11 +64,11 @@ namespace MyMathSheets.HealthChecks.Health.Checks
                 var percentUsed = 100 * metrics.Used / metrics.Total;
 
                 var status = HealthState.Healthy;
-                if (percentUsed > PercentUsedDegraded)
+                if (percentUsed > _percentUsedDegraded)
                 {
                     status = HealthState.Degraded;
                 }
-                if (percentUsed > PercentUsedUnhealthy)
+                if (percentUsed > _percentUsedUnhealthy)
                 {
                     status = HealthState.Unhealthy;
                 }
@@ -102,9 +132,9 @@ namespace MyMathSheets.HealthChecks.Health.Checks
             {
                 FileName = "wmic",
                 Arguments = "OS get FreePhysicalMemory,TotalVisibleMemorySize /Value",
-                RedirectStandardOutput = true
+                RedirectStandardOutput = true,
+                UseShellExecute = false
             };
-            info.UseShellExecute = false;
 
             using (var process = Process.Start(info))
             {
@@ -115,9 +145,11 @@ namespace MyMathSheets.HealthChecks.Health.Checks
             var freeMemoryParts = lines[0].Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
             var totalMemoryParts = lines[1].Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
 
-            var metrics = new MemoryMetrics();
-            metrics.Total = Math.Round(double.Parse(totalMemoryParts[1]) / 1024, 0);
-            metrics.Free = Math.Round(double.Parse(freeMemoryParts[1]) / 1024, 0);
+            var metrics = new MemoryMetrics
+            {
+                Total = Math.Round(double.Parse(totalMemoryParts[1]) / 1024, 0),
+                Free = Math.Round(double.Parse(freeMemoryParts[1]) / 1024, 0)
+            };
             metrics.Used = metrics.Total - metrics.Free;
 
             return metrics;
@@ -131,10 +163,12 @@ namespace MyMathSheets.HealthChecks.Health.Checks
         {
             var output = "";
 
-            var info = new ProcessStartInfo("free -m");
-            info.FileName = "/bin/bash";
-            info.Arguments = "-c \"free -m\"";
-            info.RedirectStandardOutput = true;
+            var info = new ProcessStartInfo("free -m")
+            {
+                FileName = "/bin/bash",
+                Arguments = "-c \"free -m\"",
+                RedirectStandardOutput = true
+            };
 
             using (var process = Process.Start(info))
             {
@@ -154,16 +188,6 @@ namespace MyMathSheets.HealthChecks.Health.Checks
 
             return metrics;
         }
-
-        /// <summary>
-        /// Defines the order of this provider in the results.
-        /// </summary>
-        public int SortOrder => 29;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool IsEnabled => true;
     }
 
     /// <summary>

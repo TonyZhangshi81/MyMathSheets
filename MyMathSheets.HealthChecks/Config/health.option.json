@@ -1,0 +1,12 @@
+{
+  "DiskSpace": {
+    "MinPercentageFree": 10,
+    "WarningPercentageFree": 20,
+    "IsEnabled": 0
+  },
+  "Memory": {
+    "PercentUsedDegraded": 80,
+    "PercentUsedUnhealthy": 90,
+    "IsEnabled": 0
+  }
+}
