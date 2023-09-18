@@ -7,5 +7,5 @@ set ProjectDir=%~4
 
 echo ========== %ProjectName% (%ConfigurationName%) Build PreComplete ==========
 
-copy %ProjectDir%..\..\Lib\DisplayModule\*.dll %TargetDir% /y
-copy %ProjectDir%..\..\Lib\StrategyModule\*.dll %TargetDir% /y
+copy "%ProjectDir%"..\..\Lib\DisplayModule\*.dll "%TargetDir%" /y
+copy "%ProjectDir%"..\..\Lib\StrategyModule\*.dll "%TargetDir%" /y
