@@ -190,6 +190,6 @@
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>"$(ProjectDir)..\..\MathSheets.Core\Tools\deploy-build-preComplete-script.bat" $(ProjectName) $(ConfigurationName) $(TargetDir) $(ProjectDir)</PreBuildEvent>
+    <PreBuildEvent>..\..\..\MathSheets.Core\Tools\deploy-build-preComplete-script.bat $(ProjectName) $(ConfigurationName) "$(TargetDir)" "$(ProjectDir)"</PreBuildEvent>
   </PropertyGroup>
 </Project>
