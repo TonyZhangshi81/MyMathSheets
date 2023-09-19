@@ -180,7 +180,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>..\..\Tools\deploy-base-script.bat $(ProjectName) $(ConfigurationName) $(TargetFileName) "$(TargetPath)" "$(ProjectDir)"</PostBuildEvent>
+    <PostBuildEvent>"$(ProjectDir)..\Tools\deploy-base-script.bat" $(ProjectName) $(ConfigurationName) $(TargetFileName) $(TargetPath) $(ProjectDir)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

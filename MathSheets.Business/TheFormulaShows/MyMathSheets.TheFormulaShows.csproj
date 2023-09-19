@@ -303,6 +303,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>..\..\..\MathSheets.Core\Tools\deploy-formula-show-script.bat $(ProjectName) $(ConfigurationName) "$(ProjectDir)"</PostBuildEvent>
+    <PostBuildEvent>"$(ProjectDir)..\..\MathSheets.Core\Tools\deploy-formula-show-script.bat" $(ProjectName) $(ConfigurationName) $(ProjectDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>

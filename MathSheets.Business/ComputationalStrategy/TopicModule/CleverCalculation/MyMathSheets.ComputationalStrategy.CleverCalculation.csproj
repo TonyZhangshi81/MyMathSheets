@@ -69,6 +69,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>..\..\..\..\..\MathSheets.Core\Tools\deploy-topic-module-script.bat $(ProjectName) $(ConfigurationName) $(TargetFileName) "$(ProjectDir)" "$(TargetPath)"</PostBuildEvent>
+    <PostBuildEvent>"$(ProjectDir)..\..\..\..\MathSheets.Core\Tools\deploy-topic-module-script.bat" $(ProjectName) $(ConfigurationName) $(TargetFileName) $(ProjectDir) $(TargetPath)</PostBuildEvent>
   </PropertyGroup>
 </Project>
