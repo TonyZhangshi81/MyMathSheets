@@ -1,4 +1,5 @@
-﻿using MyMathSheets.CommonLib.Configurations;
+﻿using Microsoft.Ajax.Utilities;
+using MyMathSheets.CommonLib.Configurations;
 using MyMathSheets.CommonLib.Logging;
 using MyMathSheets.CommonLib.Main.FromProcess;
 using MyMathSheets.CommonLib.Main.FromProcess.Support;
@@ -22,6 +23,7 @@ namespace MyMathSheets.WebApi.Controllers
     /// API控制類
     /// </summary>
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    [RoutePrefix("api/Compile")]
     public class CompileController : BaseApiController
     {
         /// <summary>
@@ -46,7 +48,7 @@ namespace MyMathSheets.WebApi.Controllers
         /// <returns>接口應答結果</returns>
         [HttpPost]
         [WaitResponse()]
-        [Route("api/Compile/Launch")]
+        [Route("Launch")]
         [ApiAuthorize]
         public HttpResponseMessage Launch(List<TopicManagementReq> list)
         {
@@ -82,12 +84,48 @@ namespace MyMathSheets.WebApi.Controllers
         }
 
         /// <summary>
+        /// 題型作成API訪問接口
+        /// </summary>
+        /// <param name="topicId">題型識別ID</param>
+        /// <param name="number">題型配置編號</param>
+        /// <returns>接口應答結果</returns>
+        [HttpGet]
+        [WaitResponse()]
+        [Route("Launch/{topicId:isexist}/{number:nonempty}")]
+        [ApiAuthorize]
+        public HttpResponseMessage Launch(string topicId, string number)
+        {
+            LogUtil.LogDebug($"TopicIdentifier:{topicId} Number:{number}");
+
+            // 訪問權限驗證
+            if (!this.IsAuthorized())
+            {
+                var messages = new List<string>() { "Cannot access because there is no access permission" };
+                return Request.CreateResponse(HttpStatusCode.Unauthorized, new TopicRes { Messages = messages });
+            }
+
+            // 題型參數設置
+            Process.TopicManagementList.Add(new TopicManagement() { TopicIdentifier = topicId, Number = number });
+            // 題型作成
+            FileInfo exerciseFile = Process.Compile();
+            // 應答作成
+            var result = new TopicRes()
+            {
+                // 頁面地址返回
+                Url = $"{ConfigurationUtil.GetIISUrl()}{exerciseFile.Name}"
+            };
+
+            var response = Request.CreateResponse(HttpStatusCode.OK, result);
+            return response;
+        }
+
+        /// <summary>
         /// 用戶登錄處理-獲取Token信息
         /// </summary>
         /// <param name="login">登錄用戶</param>
         /// <returns>接口應答結果</returns>
         [HttpPost]
-        [Route("api/Compile/Login")]
+        [Route("Login")]
         public HttpResponseMessage Login(LoginReq login)
         {
             LogUtil.LogDebug(JsonConvert.SerializeObject(login));
@@ -114,7 +152,7 @@ namespace MyMathSheets.WebApi.Controllers
         /// </summary>
         /// <returns>應答結果</returns>
         [HttpGet]
-        [Route("api/Compile/Test")]
+        [Route("Test")]
         public HttpResponseMessage Index()
         {
             var response = Request.CreateResponse(HttpStatusCode.OK, "Request OK!");

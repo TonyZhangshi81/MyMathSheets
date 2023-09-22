@@ -187,6 +187,8 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CompileController.cs" />
     <Compile Include="Controllers\HealthController.cs" />
+    <Compile Include="Filters\Constraint\NonEmptyConstraint.cs" />
+    <Compile Include="Filters\Constraint\TopicExistConstraint.cs" />
     <Compile Include="Filters\Security\AuthHeaderKeys.cs" />
     <Compile Include="Filters\Security\IdentityBasicAuthentication.cs" />
     <Compile Include="Filters\Security\JwtHelper.cs" />
