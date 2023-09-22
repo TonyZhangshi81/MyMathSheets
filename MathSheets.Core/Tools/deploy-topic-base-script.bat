@@ -9,4 +9,4 @@ set ProjectDir=%~5
 echo ========== %ProjectName% (%ConfigurationName%) Build Complete ==========
 
 echo %TargetFileName%
-copy "%TargetPath%" "%ProjectDir%"..\..\Lib /y
+copy %TargetPath% %ProjectDir%..\..\Lib /y
