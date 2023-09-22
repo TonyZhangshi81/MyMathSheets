@@ -14,6 +14,7 @@ namespace MyMathSheets.WebApi.Controllers
     /// 
     /// </summary>
     [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    [RoutePrefix("api/Health")]
     public class HealthController : BaseApiController
     {
         /// <summary>
@@ -36,7 +37,7 @@ namespace MyMathSheets.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("api/Health/Check")]
+        [Route("Check")]
         public async Task<HttpResponseMessage> CheckAsync()
         {
             var result = await HealthCheck.GetHealthInfoAsync();
