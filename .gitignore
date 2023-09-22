@@ -362,3 +362,5 @@ ASALocalRun/
 
 /Lib/*
 !/Lib/.gitkeep
+
+/MyMathSheets/MathSheets.Core/Tools/demoCA/*.pfx
