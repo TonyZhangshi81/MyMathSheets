@@ -139,11 +139,21 @@ namespace MyMathSheets.CommonLib.Plugin
 			plugins.ToList().ForEach(f => action(f));
 		}
 
-		/// <summary>
-		/// 檢索並獲取插件文件信息
-		/// </summary>
-		/// <returns>插件文件信息集合</returns>
-		public virtual IList<FileInfo> SearchPlugins()
+        /// <summary>
+        /// 在插件加載列表中返回指定題型識別ID的插件對象
+        /// </summary>
+        /// <param name="topicId">題型識別ID</param>
+        /// <returns>插件對象</returns>
+        public PluginInfo FindByTopicId(string topicId)
+        {
+            return InitPluginsModuleList.FirstOrDefault(d => d.TopicIdentifier.Equals(topicId));
+        }
+
+        /// <summary>
+        /// 檢索並獲取插件文件信息
+        /// </summary>
+        /// <returns>插件文件信息集合</returns>
+        public virtual IList<FileInfo> SearchPlugins()
 		{
 			var fileList = new List<FileInfo>();
 			GetDirectoryFiles(Configurations.ConfigurationUtil.ApplicationRootPath, fileList);
