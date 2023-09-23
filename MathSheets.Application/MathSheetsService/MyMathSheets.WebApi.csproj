@@ -282,7 +282,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PreBuildEvent>"$(ProjectDir)..\..\MathSheets.Core\Tools\deploy-build-preComplete-script.bat" $(ProjectName) $(ConfigurationName) $(TargetDir) $(ProjectDir)</PreBuildEvent>
+    <PreBuildEvent>..\..\..\MathSheets.Core\Tools\deploy-build-preComplete-script.bat $(ProjectName) $(ConfigurationName) "$(TargetDir)" "$(ProjectDir)"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
