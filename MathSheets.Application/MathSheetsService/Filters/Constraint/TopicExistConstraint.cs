@@ -30,9 +30,7 @@ namespace MyMathSheets.WebApi.Filters.Constraint
                 }
 
                 var topicId = value as string;
-                // TODO
-                return ("error".Equals(topicId));
-
+                return MyMathSheets.CommonLib.Plugin.PluginHelper.IsExist(topicId);
             }
             return false;
         }

@@ -200,6 +200,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Health\Checks\PluginHealthCheckPovider.cs" />
     <Compile Include="Main\FromProcess\ApiProcess.cs" />
     <Compile Include="Models\Response\TopicRes.cs" />
     <Compile Include="Models\Request\TopicManagementReq.cs" />

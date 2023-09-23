@@ -18,10 +18,8 @@ namespace MyMathSheets.WebApi
         {
             AreaRegistration.RegisterAllAreas();
 
-            // ˜H—Rİ’è
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            // Še‘èŒ^Assamly“±“ü
             PluginHelper.GetManager().Initialize();
         }
     }
